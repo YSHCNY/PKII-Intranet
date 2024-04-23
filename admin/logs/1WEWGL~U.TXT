@@ -1,0 +1,46 @@
+Please find below details of your payroll salary for payroll period December 01-15, 2010 (cut off period November 16-30, 2010) is now available.
+
+cutoff period: 2010-11-16 -to- 2010-11-30
+
+Employee ID: 545
+Employee Name: Maurel Chito Borja
+Project: AUS AID Road
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - AUS Aid: 2333.33
+TOTAL Taxable Income: 2333.33
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9833.33
+
+Withholding Tax: 1416.58
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1466.58
+
+NET PAY: P8366.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

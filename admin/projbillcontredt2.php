@@ -1,0 +1,172 @@
+<?php
+// projbillcontredt2.php fr projbillcontredt.php
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$contract_id = (isset($_POST['contractid'])) ? $_POST['contractid'] :'';
+$proj_code = (isset($_POST['projcode'])) ? $_POST['projcode'] :'';
+
+$contract_title = trim((isset($_POST['contract_title'])) ? $_POST['contract_title'] :'');
+$contract_number = trim((isset($_POST['contract_number'])) ? $_POST['contract_number'] :'');
+
+$contract_type = (isset($_POST['contract_type'])) ? $_POST['contract_type'] :'';
+
+// $date_start = (isset($_POST['date_start'])) ? $_POST['date_start'] :'';
+// $date_end = (isset($_POST['date_end'])) ? $_POST['date_end'] :'';
+
+// $date_mob = (isset($_POST['date_mob'])) ? $_POST['date_mob'] :'';
+
+$projcostdirect = (isset($_POST['projcostdirect'])) ? $_POST['projcostdirect'] :'';
+$projcostdirect = sprintf('%0.2f', $projcostdirect);
+$projcosttaxpct = (isset($_POST['projcosttaxpct'])) ? $_POST['projcosttaxpct'] :'';
+$projcostremuneration = (isset($_POST['projcostremuneration'])) ? $_POST['projcostremuneration'] :'';
+$projcostremuneration = sprintf('%0.2f', $projcostremuneration);
+$totprojcost = $projcostdirect + (($projcostdirect*$projcosttaxpct)/100) + $projcostremuneration;
+$totprojcost = sprintf('%0.2f', $totprojcost);
+
+$recoupamt = (isset($_POST['recoupamt'])) ? $_POST['recoupamt'] :'';
+$recoupamt = sprintf('%0.2f', $recoupamt);
+$recouppct = (isset($_POST['recouppct'])) ? $_POST['recouppct'] :'';
+if($recouppct!=0 && $recoupamt==0) { $recoupamtfin = ($totprojcost*$recouppct)/100; } else { $recoupamtfin=$recoupamt; }
+$recoupamtfin = sprintf('%0.2f', $recoupamtfin);
+
+$contract_remarks = trim((isset($_POST['contract_remarks'])) ? $_POST['contract_remarks'] :'');
+
+/*
+$clientsw = (isset($_POST['clientsw'])) ? $_POST['clientsw'] :'';
+$client_companyid = (isset($_POST['client_companyid'])) ? $_POST['client_companyid'] :'';
+$client_contactid = (isset($_POST['client_contactid'])) ? $_POST['client_contactid'] :'';
+if($clientsw=='company') {
+// get companyid
+$client_companyid_fin=$client_companyid; $client_contactid_fin=0;
+} else if($clientsw=='contactperson') {
+// get contactid
+$client_companyid_fin=0; $client_contactid_fin=$client_contactid;
+} else {
+$client_companyid_fin=0; $client_contactid_fin=0;
+} // if-else
+
+$fundingagencysw = (isset($_POST['fundingagencysw'])) ? $_POST['fundingagencysw'] :'';
+$fundingagency_companyid = (isset($_POST['fundingagency_companyid'])) ? $_POST['fundingagency_companyid'] :'';
+$fundingagency_contactid = (isset($_POST['fundingagency_contactid'])) ? $_POST['fundingagency_contactid'] :'';
+if($fundingagencysw=='company') {
+// get companyid
+$fundingagency_companyid_fin=$fundingagency_companyid; $fundingagency_contactid_fin=0;
+} else if($fundingagencysw=='contactperson') {
+// get contactid
+$fundingagency_companyid_fin=0; $fundingagency_contactid_fin=$fundingagency_contactid;
+} else {
+$fundingagency_companyid_fin=0; $fundingagency_contactid_fin=0;
+} // if-else
+
+$implementingagencysw = (isset($_POST['implementingagencysw'])) ? $_POST['implementingagencysw'] :'';
+$implementingagency_companyid = (isset($_POST['implementingagency_companyid'])) ? $_POST['implementingagency_companyid'] :'';
+$implementingagency_contactid = (isset($_POST['implementingagency_contactid'])) ? $_POST['implementingagency_contactid'] :'';
+if($implementingagencysw=='company') {
+// get companyid
+$implementingagency_companyid_fin=$implementingagency_companyid; $implementingagency_contactid_fin=0;
+} else if($implementingagencysw=='contactperson') {
+// get contactid
+$implementingagency_companyid_fin=0; $implementingagency_contactid_fin=$implementingagency_contactid;
+} else {
+$implementingagency_companyid_fin=0; $implementingagency_contactid_fin=0;
+} // if-else
+*/
+
+$MAX_FILE_SIZE = (isset($_POST['MAX_FILE_SIZE'])) ? $_POST['MAX_FILE_SIZE'] :'';
+$uploadedfile = trim((isset($_POST['uploadedfile'])) ? $_POST['uploadedfile'] :'');
+
+// $target_path0 = "./transfers/archives/PROJ";
+$target_path1 = "./transfers/archives/PROJ";
+// $target_path1 = $target_path0 . "/" . $deptcd;
+$filename0 = basename( $_FILES['uploadedfile']['name'] );
+$filename1 = str_replace(' ', '_', $filename0);
+if($filename1 != "") { $filename = $proj_code."_C_".$filename1; }
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if($found == 1) {
+
+if($proj_code!='') {
+	// query tblcontract if proj_code exists
+	$res11query="SELECT contract_id, contract_filename FROM tblcontract WHERE fk_projcode='$proj_code'";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$contract_id11=$myrow11['contract_id'];
+		$filename11 = $myrow11['contract_filename'];
+		} // while
+	} // if
+	// verify filename if changed
+	if($filename11!='' && $filename=='') {
+		// not changed
+		$filename=$filename11;
+	} // if
+	if($filename11==$filename) {
+		$fnstat='no_change';
+	} else {
+		$fnstat='changed';
+	} // if-else
+
+	if($found11==1) {
+	//proceed
+		if($filename!='') {
+			// del old filename
+			if($fnstat=='changed') {
+			$filetodelete = "$target_path1/$filename11";
+ 	  	unlink("$filetodelete");
+			} // if
+		// start file upload if exists  
+  $target_path = $target_path1 . "/" . $filename;
+  if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {   
+    $imagefile = $target_path1 . "/" . $filename1;    
+    $newimagefile = $target_path1 . "/" . $filename;    
+    rename($imagefile, $newimagefile);    
+    echo "$target_path1/\n$filename\n"; 
+  } else {
+    echo "There was an error uploading the file, please try again!<br>";
+  }
+		} else {
+		$target_path1=''; $filename='';
+		} // if-else
+	$res12query="UPDATE tblcontract SET timestamp='$now', loginid=$loginid, contract_title='$contract_title', contract_num='$contract_number', contract_type='$contract_type', contract_totcost_directcost=$projcostdirect, contract_totcost_tax=$projcosttaxpct, contract_totcost_remuneration=$projcostremuneration, contract_recoupment_pct=$recouppct, contract_recoupment_amt=$recoupamtfin, contract_recoupment_balance=$recoupamtfin, contract_filepath='$target_path1', contract_filename='$filename', contract_remarks='$contract_remarks' WHERE contract_id=$contract_id AND fk_projcode='$proj_code'";
+	$result12=$dbh2->query($res12query);
+	// success screen
+	echo "<h3><font color='green'>Contract saved.</font></h3>";
+	// echo "<p>$proj_code<br>$contract_title<br>$contract_type<br>$date_start -to- $date_end</p>";
+	// log
+	$logdetails="Contract modified in tblcontract. projcode:$proj_code title:$contract_title type:$contract_type duration:$date_start-to-$date_end";
+	$res16query="INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp='$now', adminuid='$username', adminlogdetails='$logdetails'";
+	$result16=$dbh2->query($res16query);
+	// redirect
+	// header("Location: projbilling.php?loginid=$loginid");
+	// exit;
+	echo "<form action='projbilldtls.php?loginid=$loginid' method='POST' name='projbilldtls'>";
+	echo "<input type='hidden' name='contractid' value='$contract_id'>";
+	echo "<input type='hidden' name='projcode' value='$proj_code'>";
+	echo "<p><button type='submit' class='btn btn-primary'>back</button></p>";
+	echo "</form>";
+	} else {
+	// halt
+	echo "<h3 class='text-danger'>Sorry. Record missing.</h3>";
+	echo "<p><button onClick='history.go(-1);' class='btn btn-primary'>back</button></p>";
+	} // if-else
+
+} // if
+
+// echo "<p>vartest f11:$found11, prjcd:$proj_code, title:$contract_title<br>res12qry:$res12query<br>logqry:$res16query</p>";
+
+} else {
+     include ("logindeny.php");
+}
+
+$dbh2->close();
+?>

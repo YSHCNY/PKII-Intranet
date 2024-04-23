@@ -1,0 +1,395 @@
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$pid = (isset($_GET['pid'])) ? $_GET['pid'] :'';
+
+$employeeidsrc = (isset($_POST['employeeidsrc'])) ? $_POST['employeeidsrc'] :'';
+$employeeidtrgt = (isset($_POST['employeeidtrgt'])) ? $_POST['employeeidtrgt'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Manage Personnel >> Merge Personnel Info</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\">";
+  echo "<tr><th colspan=\"2\">Merge Personnel Information</th></tr>";
+
+  if($employeeidsrc != $employeeidtrgt) {
+    $found11 = 0;
+     $result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblcontact.employeeid = \"$employeeidsrc\" ORDER BY tblcontact.name_last ASC", $dbh);
+     if($result11 != "") {
+	while($myrow11 = mysql_fetch_row($result11)) {
+	$found11 = 1;
+	$employeeid11 = $myrow11[0];
+	$name_first11 = $myrow11[1];
+	$name_last11 = $myrow11[2];
+	$name_middle11 = $myrow11[3];
+	}
+     }
+     $found12 = 0;
+     $result12 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblcontact.employeeid = \"$employeeidtrgt\" ORDER BY tblcontact.name_last ASC", $dbh);
+     if($result12 != "") {
+	while($myrow12 = mysql_fetch_row($result12)) {
+	$found12 = 1;
+	$employeeid12 = $myrow12[0];
+	$name_first12 = $myrow12[1];
+	$name_last12 = $myrow12[2];
+	$name_middle12 = $myrow12[3];
+	}
+     }
+    echo "<tr><th colspan=\"2\">Source: $employeeid11 - $name_last11, $name_first11 $name_middle11[0]. -to- Target: $employeeid12 - $name_last12, $name_first12 $name_middle12[0].</th></tr>";
+
+    echo "<tr><th>tbladminlogin</th><td>";
+      $found14 = 0;
+      $result14 = mysql_query("SELECT adminloginid, adminuid, adminpw, date_created, remarks_login, adminloginstat, adminloginlevel, employeeid, contactid, accesslevel FROM tbladminlogin WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result14 != "") {
+	while($myrow14 = mysql_fetch_row($result14)) {
+	$found14 = 1;
+	$adminloginid14 = $myrow14[0];
+	$adminuid14 = $myrow14[1];
+	$adminpw14 = $myrow14[2];
+	$date_created14 = $myrow14[3];
+	$remarks_login14 = $myrow14[4];
+	$adminloginstat14 = $myrow14[5];
+	$adminloginlevel14 = $myrow14[6];
+	$employeeid14 = $myrow14[7];
+	$contactid14 = $myrow14[8];
+	$accesslevel14 = $myrow14[9];
+	echo "$adminloginid14, $adminuid14, $adminpw14, $date_created14, $remarks_login14, $adminloginstat14, $adminloginlevel14, $employeeid14, $contactid14, $accesslevel14<br>";
+	}
+      }
+      if($found14 == 1) {
+	$result14a = mysql_query("UPDATE tbladminlogin SET employeeid=\"$employeeid12\" WHERE adminloginid=$adminloginid14 AND employeeid=\"$employeeid11\"", $dbh);
+      }
+	echo "found14:$found14 update";
+    echo "</td></tr>";
+
+    echo "<tr><th>tblbankacct</th><td>";
+      $found15 = 0;
+      $result15 = mysql_query("SELECT bankacctid, employeeid, bank_name, bank_branch, acct_name, acct_num, acct_type, acct_currency FROM tblbankacct WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result15 != "") {
+	while($myrow15 = mysql_fetch_row($result15)) {
+	$found15 = 1;
+	$bankacctid15 = $myrow15[0];
+	$employeeid15 = $myrow15[1];
+	$bank_name15 = $myrow15[2];
+	$bank_branch15 = $myrow15[3];
+	$acct_name15 = $myrow15[4];
+	$acct_num15 = $myrow15[5];
+	$acct_type15 = $myrow15[6];
+	$acct_currency15 = $myrow15[7];
+	echo "$bankacctid15, $employeeid15, $bank_name15, $bank_branch15, $acct_name15, $acct_num15, $acct_type15, $acct_currency15<br>";
+	if($found15 == 1) {
+	$result15a = mysql_query("INSERT INTO tblbankacct SET employeeid=\"$employeeid12\", bank_name=\"$bank_name15\", bank_branch=\"$bank_branch15\", acct_name=\"$acct_name15\", acct_num=\"$acct_num15\", acct_type=\"$acct_type15\", acct_currency=\"$acct_currency15\"", $dbh);
+	}
+	echo "found15:$found15 insert<br>";
+	$found15 = 0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblcompany</th><td>";
+      $found16 = 0;
+      $result16 = mysql_query("SELECT companyid, company, branch, ofc_address1, ofc_address2, ofc_city, ofc_province, ofc_zipcode, ofc_country, ofc_num1_cc, ofc_num1_ac, ofc_num1, ofc_num1_ext, ofc_num2_cc, ofc_num2_ac, ofc_num2, ofc_num2_ext, ofc_num3_cc, ofc_num3_ac, ofc_num3, ofc_num3_ext, ofc_fax_cc, ofc_fax_ac, ofc_fax, ofc_fax2_cc, ofc_fax2_ac, ofc_fax2, ofc_mobile_cc, ofc_mobile_ac, ofc_mobile, ofc_email, ofc_url, products, services, remarks_company, company_type, supplierid, contactid, proj_code, employeeid FROM tblcompany WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result16 != "") {
+	while($myrow16 = mysql_fetch_row($result16)) {
+	$found16 = 1;
+	$companyid16 = $myrow16[0];
+	$company16 = $myrow16[1];
+	$branch16 = $myrow16[2];
+	$ofc_address116 = $myrow16[3];
+	$ofc_address216 = $myrow16[4];
+	$ofc_city16 = $myrow16[5];
+	$ofc_province16 = $myrow16[6];
+	$ofc_zipcode16 = $myrow16[7];
+	$ofc_country16 = $myrow16[8];
+	$ofc_num1_cc16 = $myrow16[9];
+	$ofc_num1_ac16 = $myrow16[10];
+	$ofc_num116 = $myrow16[11];
+	$ofc_num1_ext16 = $myrow16[12];
+	$ofc_num2_cc16 = $myrow16[13];
+	$ofc_num2_ac16 = $myrow16[14];
+	$ofc_num216 = $myrow16[15];
+	$ofc_num2_ext16 = $myrow16[16];
+	$ofc_num3_cc16 = $myrow16[17];
+	$ofc_num3_ac16 = $myrow16[18];
+	$ofc_num316 = $myrow16[19];
+	$ofc_num3_ext16 = $myrow16[20];
+	$ofc_fax_cc16 = $myrow16[21];
+	$ofc_fax_ac16 = $myrow16[22];
+	$ofc_fax16 = $myrow16[23];
+	$ofc_fax2_cc16 = $myrow16[24];
+	$ofc_fax2_ac16 = $myrow16[25];
+	$ofc_fax216 = $myrow16[26];
+	$ofc_mobile_cc16 = $myrow16[27];
+	$ofc_mobile_ac16 = $myrow16[28];
+	$ofc_mobile16 = $myrow16[29];
+	$ofc_email16 = $myrow16[30];
+	$ofc_url16 = $myrow16[31];
+	$products16 = $myrow16[32];
+	$services16 = $myrow16[33];
+	$remarks_company16 = $myrow16[34];
+	$company_type16 = $myrow16[35];
+	$supplierid16 = $myrow16[36];
+	$contactid16 = $myrow16[37];
+	$proj_code16 = $myrow16[38];
+	$employeeid16 = $myrow16[39];
+	echo "$companyid16, $company16, $branch16, $ofc_address116, $ofc_address216, $ofc_city16, $ofc_province16, $ofc_zipcode16, $ofc_country16, $ofc_num1_cc16, $ofc_num1_ac16, $ofc_num116, $ofc_num1_ext16, $ofc_num2_cc16, $ofc_num2_ac16, $ofc_num216, $ofc_num2_ext16, $ofc_num3_cc16, $ofc_num3_ac16, $ofc_num316, $ofc_num3_ext16, $ofc_fax_cc16, $ofc_fax_ac16, $ofc_fax16, $ofc_fax2_cc16, $ofc_fax2_ac16, $ofc_fax216, $ofc_mobile_cc16, $ofc_mobile_ac16, $ofc_mobile16, $ofc_email16, $ofc_url16, $products16, $services16, $remarks_company16, $company_type16, $supplierid16, $contactid16, $proj_code16, $employeeid16<br>";
+	if($found16 == 1) {
+	$result16a = mysql_query("INSERT INTO tblcompany SET company=\"$company16\", branch=\"$branch16\", ofc_address1=\"$ofc_address116\", ofc_address2=\"$ofc_address216\", ofc_city=\"$ofc_city16\", ofc_province=\"$ofc_province16\", ofc_zipcode=\"$ofc_zipcode16\", ofc_country=\"$ofc_country16\", ofc_num1_cc=\"$ofc_num1_cc16\", ofc_num1_ac=\"$ofc_num1_ac16\", ofc_num1=\"$ofc_num116\", ofc_num1_ext=\"$ofc_num1_ext16\", ofc_num2_cc=\"$ofc_num2_cc16\", ofc_num2_ac=\"$ofc_num2_ac16\", ofc_num2=\"$ofc_num216\", ofc_num2_ext=\"$ofc_num2_ext16\", ofc_num3_cc=\"$ofc_num3_cc16\", ofc_num3_ac=\"$ofc_num3_ac16\", ofc_num3=\"$ofc_num316\", ofc_num3_ext=\"$ofc_num3_ext16\", ofc_fax_cc=\"$ofc_fax_cc16\", ofc_fax_ac=\"$ofc_fax_ac16\", ofc_fax=\"$ofc_fax16\", ofc_fax2_cc=\"$ofc_fax2_cc16\", ofc_fax2_ac=\"$ofc_fax2_ac16\", ofc_fax2=\"$ofc_fax216\", ofc_mobile_cc=\"$ofc_mobile_cc16=\", ofc_mobile_ac=\"$ofc_mobile_ac16\", ofc_mobile=\"$ofc_mobile16\", ofc_email=\"$ofc_email16\", ofc_url=\"$ofc_url16\", products=\"$products16\", services=\"$services16\", remarks_company=\"$remarks_company16\", company_type=\"$company_type16\", supplierid=\"$supplierid16\", contactid=\"$contactid16\", proj_code=\"$proj_code16\", employeeid=\"$employeeid12\"", $dbh);
+	}
+	echo "found16:$found16 insert<br>";
+	$found16 = 0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblempdependent</th><td>";
+      $found17 = 0;
+      $result17 = mysql_query("SELECT empdependentid, employeeid, empdependentctr, dependentlast, dependentfirst, dependentmiddle, dependentbirthdate, dependentrelation FROM tblempdependent WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result17 != "") {
+	while($myrow17 = mysql_fetch_row($result17)) {
+	$found17 = 1;
+	$empdependentid17 = $myrow17[0];
+	$employeeid17 = $myrow17[1];
+	$empdependentctr17 = $myrow17[2];
+	$dependentlast17 = $myrow17[3];
+	$dependentfirst17 = $myrow17[4];
+	$dependentmiddle17 = $myrow17[5];
+	$dependentbirthdate17 = $myrow17[6];
+	$dependentrelation17 = $myrow17[7];
+	echo "$empdependentid17, $employeeid17, $empdependentctr17, $dependentlast17, $dependentfirst17, $dependentmiddle17, $dependentbirthdate17, $dependentrelation17<br>";
+	if($found17 == 1) {
+	$result17a = mysql_query("INSERT INTO tblempdependent SET employeeid=\"$employeeid12\", empdependentctr=\"$empdependentctr17\", dependentlast=\"$dependentlast17\", dependentfirst=\"$dependentfirst17\", dependentmiddle=\"$dependentmiddle17\", dependentbirthdate=\"$dependentbirthdate17\", dependentrelation=\"$dependentrelation17\"", $dbh);
+	}
+	echo "found17:$found17 insert<br>";
+	$found17 = 0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblempproflicense</th><td>";
+      $found18 = 0;
+      $result18 = mysql_query("SELECT empproflicenseid, employeeid, regulatoryboard, profession, licensenumber, licensedate FROM tblempproflicense WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result18 != "") {
+	while($myrow18 = mysql_fetch_row($result18)) {
+	$found18 = 1;
+	$empproflicenseid18 = $myrow18[0];
+	$employeeid18 = $myrow18[1];
+	$regulatoryboard18 = $myrow18[2];
+	$profession18 = $myrow18[3];
+	$licensenumber18 = $myrow18[4];
+	$licensedate18 = $myrow18[5];
+	echo "$empproflicenseid18, $employeeid18, $regulatoryboard18, $profession18, $licensenumber18, $licensedate18<br>";
+        if($found18 == 1) {
+	  $result18a = mysql_query("INSERT INTO tblempproflicense SET employeeid=\"$employeeid12\", regulatoryboard=\"$regulatoryboard18\", profession=\"$profession18\", licensenumber=\"$licensenumber18\", licensedate=\"$licensedate18\"", $dbh);
+        }
+        echo "found18:$found18 insert<br>";
+	$found18=0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblempspouse</th><td>";
+      $found19 = 0;
+      $result19 = mysql_query("SELECT empspouseid, employeeid, empspousectr, empspouselast, empspousefirst, empspousemiddle, empspousebirthdate FROM tblempspouse WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result19 != "") {
+	while($myrow19 = mysql_fetch_row($result19)) {
+	$found19 = 1;
+	$empspouseid19 = $myrow19[0];
+	$employeeid19 = $myrow19[1];
+	$empspousectr19 = $myrow19[2];
+	$empspouselast19 = $myrow19[3];
+	$empspousefirst19 = $myrow19[4];
+	$empspousemiddle19 = $myrow19[5];
+	$empspousebirthdate19 = $myrow19[6];
+	echo "$empspouseid19, $employeeid19, $empspousectr19, $empspouselast19, $empspousefirst19, $empspousemiddle19, $empspousebirthdate19<br>";
+        if($found19 == 1) {
+	  $result19a = mysql_query("INSERT INTO tblempspouse SET employeeid=\"$employeeid12\", empspousectr=\"$empspousectr19\", empspouselast=\"$empspouselast19\", empspousefirst=\"$empspousefirst19\", empspousemiddle=\"$empspousemiddle19\", empspousebirthdate=\"$empspousebirthdate19\"", $dbh);
+        }
+        echo "found19:$found19 insert<br>";
+	$found19=0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblempspouseemployer</th><td>";
+      $found20 = 0;
+      $result20 = mysql_query("SELECT empspouseemployerid, lastupdate, employeeid, empspouseid, companyid, datefrom, dateto FROM tblempspouseemployer WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result20 != "") {
+	while($myrow20 = mysql_fetch_row($result20)) {
+	$found20 = 1;
+	$empspouseemployerid20 = $myrow20[0];
+	$lastupdate20 = $myrow20[1];
+	$employeeid20 = $myrow20[2];
+	$empspouseid20 = $myrow20[3];
+	$companyid20 = $myrow20[4];
+	$datefrom20 = $myrow20[5];
+	$dateto20 = $myrow20[6];
+	echo "$empspouseemployerid20, $lastupdate20, $employeeid20, $empspouseid20, $companyid20, $datefrom20, $dateto20<br>";
+        if($found20 == 1) {
+	  $result20a = mysql_query("INSERT INTO tblempspouseemployer SET lastupdate=\"$lastupdate20\", employeeid=\"$employeeid12\", empspouseid=\"$empspouseid20\", companyid=\"$companyid20\", datefrom=\"$datefrom20\", dateto=\"$dateto20\"", $dbh);
+        }
+        echo "found20:$found20 insert<br>";
+	$found20=0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tbllogin</th><td>";
+      $found21 = 0;
+      $result21 = mysql_query("SELECT loginid, username, password, date_created, time_login, time_logout, remarks_login, login_status, login_level, employeeid, contactid FROM tbllogin WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result21 != "") {
+	while($myrow21 = mysql_fetch_row($result21)) {
+	$found21 = 1;
+	$loginid21 = $myrow21[0];
+	$username21 = $myrow21[1];
+	$password21 = $myrow21[2];
+	$date_created21 = $myrow21[3];
+	$time_login21 = $myrow21[4];
+	$time_logout21 = $myrow21[5];
+	$remarks_login21 = $myrow21[6];
+	$login_status21 = $myrow21[7];
+	$login_level21 = $myrow21[8];
+	$employeeid21 = $myrow21[9];
+	$contactid21 = $myrow21[10];
+	echo "$loginid21, $username21, $password21, $date_created21, $time_login21, $time_logout21, $remarks_login21, $login_status21, $login_level21, $employeeid21, $contactid21<br>";
+	}
+      }
+      if($found21 == 1) {
+	$result21a = mysql_query("UPDATE tbllogin SET employeeid=\"$employeeid12\" WHERE loginid=$loginid21 AND employeeid=\"$employeeid11\"", $dbh);
+      }
+	echo "found21:$found21 updated";
+    echo "</td></tr>";
+
+    echo "<tr><th>tblprojassign</th><td>";
+      $found22 = 0;
+      $result22 = mysql_query("SELECT projassignid, projdate, ref_no, employeeid, employeeid0, proj_code, proj_name, empprojctr, position, salary, salarycurrency, salarytype, allow_inc, allow_inc_currency, allow_inc_paytype, allow_proj, allow_proj_currency, allow_proj_paytype, ecola1, ecola1_currency, ecola2, ecola2_currency, allow_field_currency, allow_field_paytype, allow_field, allow_accomm, allow_accomm_currency, allow_accomm_paytype, allow_transpo, allow_transpo_currency, allow_transpo_paytype, allow_comm, allow_comm_currency, allow_comm_paytype, perdiem, perdiem_currency, durationfrom, durationto, durationtotal, durationtotprop, durationfrom2, durationto2, duration2total, duration2totprop, durationprojassigntot, durationprojassigntotprop, term_resign, remarks, remarks2, net_of_tax FROM tblprojassign WHERE employeeid=\"$employeeid11\"", $dbh);
+      if($result22 != "") {
+	while($myrow22 = mysql_fetch_row($result22)) {
+	$found22 = 1;
+	$projassignid22 = $myrow22[0];
+	$projdate22 = $myrow22[1];
+	$ref_no22 = $myrow22[2];
+	$employeeid22 = $myrow22[3];
+	$employeeid022 = $myrow22[4];
+	$proj_code22 = $myrow22[5];
+	$proj_name22 = $myrow22[6];
+	$empprojctr22 = $myrow22[7];
+	$position22 = $myrow22[8];
+	$salary22 = $myrow22[9];
+	$salarycurrency22 = $myrow22[10];
+	$salarytype22 = $myrow22[11];
+	$allow_inc22 = $myrow22[12];
+	$allow_inc_currency22 = $myrow22[13];
+	$allow_inc_paytype22 = $myrow22[14];
+	$allow_proj22 = $myrow22[15];
+	$allow_proj_currency22 = $myrow22[16];
+	$allow_proj_paytype22 = $myrow22[17];
+	$ecola122 = $myrow22[18];
+	$ecola1_currency22 = $myrow22[19];
+	$ecola222 = $myrow22[20];
+	$ecola2_currency22 = $myrow22[21];
+	$allow_field_currency22 = $myrow22[22];
+	$allow_field_paytype22 = $myrow22[23];
+	$allow_field22 = $myrow22[24];
+	$allow_accomm22 = $myrow22[25];
+	$allow_accomm_currency22 = $myrow22[26];
+	$allow_accomm_paytype22 = $myrow22[27];
+	$allow_transpo22 = $myrow22[28];
+	$allow_transpo_currency22 = $myrow22[29];
+	$allow_transpo_paytype22 = $myrow22[30];
+	$allow_comm22 = $myrow22[31];
+	$allow_comm_currency22 = $myrow22[32];
+	$allow_comm_paytype22 = $myrow22[33];
+	$perdiem22 = $myrow22[34];
+	$perdiem_currency22 = $myrow22[35];
+	$durationfrom22 = $myrow22[36];
+	$durationto22 = $myrow22[37];
+	$durationtotal22 = $myrow22[38];
+	$durationtotprop22 = $myrow22[39];
+	$durationfrom222 = $myrow22[40];
+	$durationto222 = $myrow22[41];
+	$duration2total22 = $myrow22[42];
+	$duration2totprop22 = $myrow22[43];
+	$durationprojassigntot22 = $myrow22[44];
+	$durationprojassigntotprop22 = $myrow22[45];
+	$term_resign22 = $myrow22[46];
+	$remarks22 = $myrow22[47];
+	$remarks222 = $myrow22[48];
+	$net_of_tax22 = $myrow22[49];
+	echo "$projassignid22, $projdate22, $ref_no22, $employeeid22, $employeeid022, $proj_code22, $proj_name22, $empprojctr22, $position22, $salary22, $salarycurrency22, $salarytype22, $allow_inc22, $allow_inc_currency22, $allow_inc_paytype22, $allow_proj22, $allow_proj_currency22, $allow_proj_paytype22, $ecola122, $ecola1_currency22, $ecola222, $ecola2_currency22, $allow_field_currency22, $allow_field_paytype22, $allow_field22, $allow_accomm22, $allow_accomm_currency22, $allow_accomm_paytype22, $allow_transpo22, $allow_transpo_currency22, $allow_transpo_paytype22, $allow_comm22, $allow_comm_currency22, $allow_comm_paytype22, $perdiem22, $perdiem_currency22, $durationfrom22, $durationto22, $durationtotal22, $durationtotprop22, $durationfrom222, $durationto222, $duration2total22, $duration2totprop22, $durationprojassigntot22, $durationprojassigntotprop22, $term_resign22, $remarks22, $remarks222, $net_of_tax22, $employeeid12<br>";
+        if($found22 == 1) {
+	  $result22a = mysql_query("INSERT INTO tblprojassign SET employeeid=\"$employeeid12\", projdate=\"$projdate22\", ref_no=\"$ref_no22\", employeeid0=\"$employeeid022\", proj_code=\"$proj_code22\", proj_name=\"$proj_name22\", empprojctr=\"$empprojctr22\", position=\"$position22\", salary=\"$salary22\", salarycurrency=\"$salarycurrency22\", salarytype=\"$salarytype22\", allow_inc=\"$allow_inc22\", allow_inc_currency=\"$allow_inc_currency22\", allow_inc_paytype=\"$allow_inc_paytype22\", allow_proj=\"$allow_proj22\", allow_proj_currency=\"$allow_proj_currency22\", allow_proj_paytype=\"$allow_proj_paytype22\", ecola1=\"$ecola122\", ecola1_currency=\"$ecola1_currency22\", ecola2=\"$ecola222\", ecola2_currency=\"$ecola2_currency22\", allow_field_currency=\"$allow_field_currency22\", allow_field_paytype=\"$allow_field_paytype22\", allow_field=\"$allow_field22\", allow_accomm=\"$allow_accomm22\", allow_accomm_currency=\"$allow_accomm_currency22\", allow_accomm_paytype=\"$allow_accomm_paytype22\", allow_transpo=\"$allow_transpo22\", allow_transpo_currency=\"$allow_transpo_currency22\", allow_transpo_paytype=\"$allow_transpo_paytype22\", allow_comm=\"$allow_comm22\", allow_comm_currency=\"$allow_comm_currency22\", allow_comm_paytype=\"$allow_comm_paytype22\", perdiem=\"$perdiem22\", perdiem_currency=\"$perdiem_currency22\", durationfrom=\"$durationfrom22\", durationto=\"$durationto22\", durationtotal=\"$durationtotal22\", durationtotprop=\"$durationtotprop22\", durationfrom2=\"$durationfrom222\", durationto2=\"$durationto222\", duration2total=\"$duration2total22\", duration2totprop=\"$duration2totprop22\", durationprojassigntot=\"$durationprojassigntot22\", durationprojassigntotprop=\"$durationprojassigntotprop22\", term_resign=\"$term_resign22\", remarks=\"$remarks22\", remarks2=\"$remarks222\", net_of_tax=\"$net_of_tax22\"", $dbh);
+        }
+        echo "found22:$found22 inserted<br>";
+	$found22=0;
+	}
+      }
+    echo "</td></tr>";
+
+    echo "<tr><th>tblhractlog</th>";
+    $res24query=""; $result24=""; $found24=0; $ctr24=0;
+    $res24query="SELECT count(*) AS counthractlog FROM tblhractlog WHERE loginid=$loginid21 AND employeeid=\"$employeeid11\"";
+    $result24=$dbh2->query($res24query);
+    if($result24->num_rows>0) {
+        while($myrow24=$result24->fetch_assoc()) {
+        $found24=1;
+        $counthractlog24 = $myrow24['counthractlog'];
+        } //while
+    } //if
+    if($found24==1) {
+    $res24bquery=""; $result24b=""; $found24b=0; $ctr24b=0;
+    $res24bquery="UPDATE tblhractlog SET employeeid=\"$employeeidtrgt\" WHERE employeeid=\"$employeeid11\" AND loginid=$loginid21";
+    $result24=$dbh2->query($res24bquery);
+    } //if
+    if($result24!="") {
+    echo "<td>$counthractlog24 records updated</td>";
+    } else {
+    echo "<td>no change</td>";
+    } //if-else
+    echo "</tr>";
+
+    $found23 = 0;
+    $result23 = mysql_query("SELECT emp_remarks FROM tblemployee WHERE employeeid=\"$employeeid12\"", $dbh);
+    if($result23 != "") {
+      while($myrow23 = mysql_fetch_row($result23)) {
+      $found23 = 1;
+      $emp_remarks23 = $myrow23[0];
+      }
+    }
+    if($found23 == 1) {
+      $emp_remarksfin = "$emp_remarks23"."&nbsp;"."Previous employeeid: $employeeid11";
+    } else {
+      $emp_remarksfin = "Previous employeeid: $employeeid11";
+    }
+    $result23a = mysql_query("UPDATE tblemployee SET emp_remarks=\"$emp_remarksfin\" WHERE employeeid=\"$employeeid12\"", $dbh);
+
+    echo "<tr><td colspan=\"2\"><a href=\"personneledit.php?loginid=$loginid\">Back</a></td></tr>";
+  } else {
+    echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, source and target employees should not be the same. Please try again.</font></td></tr>";
+    echo "<tr><td colspan=\"2\"><a href=\"personnelinfomerge.php?loginid=$loginid\">Back</a></td></tr>";
+  }
+
+
+  echo "</table>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

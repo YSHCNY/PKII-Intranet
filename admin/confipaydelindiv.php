@@ -1,0 +1,92 @@
+<?php 
+// 20180814 delete record from confipaygrp thru empalias or employeeid
+require("db1.php");
+include("datetimenow.php");
+include("clsmcrypt.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$confipaygrpid0 = (isset($_GET['cpgid'])) ? $_GET['cpgid'] :'';
+$confipaygrpid = (isset($_POST['confipaygrpid'])) ? $_POST['confipaygrpid'] :'';
+$empalias = (isset($_POST['confipayempalias'])) ? $_POST['confipayempalias'] :'';
+$confipayemployeeid = (isset($_POST['confipayemployeeid'])) ? $_POST['confipayemployeeid'] :'';
+
+if($confipaygrpid0!='') { $confipaygrpid=$confipaygrpid0; }
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}  
+
+if ($found == 1) {
+//     include ("header.php");
+//     include ("sidebar.php");
+
+// start contents here
+
+	include("mcryptenc.php");
+
+	// query groupname
+	$res14query="SELECT employeeid, groupname FROM tblconfipaygrp WHERE confipaygrpid=$confipaygrpid LIMIT 1";
+	$result14 = $dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
+		$found14=1;
+		$employeeid14 = $myrow14['employeeid'];
+		$groupname14 = $myrow14['groupname'];
+		} // while
+	} // if
+
+	// start deletion
+if($found14==1) {
+
+	// delete from tblconfipaygrp
+	$res12query="DELETE FROM tblconfipaygrp WHERE employeeid=\"$employeeid14\" AND confipaygrpid=$confipaygrpid";
+	$result12=$dbh2->query($res12query);
+
+	// update tblconfipaymeminfo set empstatus=inactive
+	$res15query="UPDATE tblconfipaymeminfo SET empstatus=\"inactive\" WHERE employeeid=\"$employeeid14\" AND groupname=\"$groupname14\"";
+	$result15=$dbh2->query($res15query);
+
+// create log
+    // include('datetimenow.php');
+    $res16query="SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid LIMIT 1";
+		$result16=$dbh2->query($res16query);
+		if($result16->num_rows>0) {
+			while($myrow16=$result16->fetch_assoc()) {
+			$found16=1;
+			$adminuid=$myrows16['adminuid'];
+			} // while
+		} // if
+    $adminlogdetails = "$loginid: Deleted personnel from confipaygroup gid:$confipaygrpid, empid:$employeeid14, grpname:$groupname14";
+    $res17query="INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"";
+		$result17=$dbh2->query($res17query);
+
+	echo "<h3><font color=\"red\">Record deleted.</font></h3>";
+	echo "<p>";
+	if($empalias!='') { echo "$empalias,"; }
+	echo "$employeeid14,$groupname14";
+	echo "</p>";
+
+} // if
+
+	// echo "<p>tst f14:$found14,eid14:$employeeid14,grpnm14:$groupname14,ealias:$empalias,cfpeid:$confipayemployeeid,cfpgid:$confipaygrpid<br>res14qry:$res14query<br>res12qry:$res12query<br>res15qry:$res15query</p>";
+
+	include("mcryptdec.php");
+
+  // header("Location: confipay.php?loginid=$loginid");
+  // exit;
+	echo "<p><a href=\"confipay2.php?loginid=$loginid&gn=$groupname14\">back</a></p>";
+
+// end contents here
+
+     $resquery = "UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'"; 
+		$result=$dbh2->query($resquery);
+
+//     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+$dbh2->close();
+?>

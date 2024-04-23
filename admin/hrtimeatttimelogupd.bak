@@ -1,0 +1,59 @@
+<?php
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$idpaygroup $_GET['idpg'];
+
+$employeeid = $_POST['employeeid'];
+$time_in1_hh = $_POST['time_in1_hh'];
+$time_in1_mm = $_POST['time_in1_mm'];
+$time_out1_hh = $_POST['time_out1_hh'];
+$time_out1_mm = $_POST['time_out1_mm'];
+$nextday1 = $_POST['nextday1'];
+$mealallow = $_POST['mealallow'];
+$leavecd = $_POST['leavecd'];
+$leavedaydur = $_POST['leavedaydur'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+
+	echo "<html><pre>";
+	foreach( $employeeid as $key ) {
+		// echo "".$n.",".$time_in1_hh[$key].",".$time_in1_mm[$key].",".$time_out1_hh[$key].",".$time_out1_mm[$key].",".$nextday1[$key].",".$mealallow[$key].",".$leavecd[$key].",".$leavedaydur[$key]."\n";
+		echo "vartest:n:&nbsp;".$key."\n";
+		// echo "vartest:employeeid:&nbsp;".$employeeid."\n";
+		// echo "vartest:key:&nbsp;".$key."\n";
+	}
+
+	/*
+		// insert into tblhrtapayshiftctg
+		$result14 = mysql_query("UPDATE tblhrtaleavectg SET timestamp=\"$now\", loginid=$loginid, code=\"$code\", name=\"$name\", quota=$quota WHERE idhrtaleavectg=$idhrtaleavectg", $dbh);
+		// create log
+  	$result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+		while($myrow16 = mysql_fetch_row($result16))
+		{ $adminuid=$myrow16[0]; }
+		$adminlogdetails = "$loginid:$adminuid - modified leave category for HR T&A details:$idhrtaleavectg11 - $code - $name quota:$quota";
+		$result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+	// redirect
+	header("Location: hrtimeattleave.php?loginid=$loginid");
+	exit;
+	*/
+	echo "</pre>";
+	// echo "<p><a href=\"hrtimeatttimelogs.php?loginid=$loginid&idpg=$idpaygroup&eid=$employeeid\">back</a></p>";
+	echo "</html>";
+}
+else
+{
+     include ("logindeny.php");
+}
+mysql_close($dbh); 
+?>

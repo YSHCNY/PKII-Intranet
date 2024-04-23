@@ -1,0 +1,4259 @@
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 007
+Employee Name: Alfredo Serillano
+Project: LIAISON
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8500.00
+
+Regular Overtime: 4030 (mins) - P6800.62
+Reg.Sun/Sat. OT: 2160 (mins) - P4169.88
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 210 (mins) - P28.35
+TOTAL OVERTIME: P10998.85
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P20248.85
+
+Withholding Tax: P4182.99
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Pag-Ibig Cont (add): 150.00
+TOTAL Other Deductions: P888.32
+
+TOTAL DEDUCTIONS: P5121.31
+
+NET PAY: P15127.55
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 195.57
+NET BASIC PAY: P9804.43
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P10804.43
+
+Withholding Tax: P898.46
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 500.00
+Pag-Ibig Cont (add): 250.00
+Insular Life: 75.00
+SSS Salary Loan: 738.32
+Pag-Ibig Loan: 901.29
+TOTAL Other Deductions: P2464.61
+
+TOTAL DEDUCTIONS: P3413.07
+
+NET PAY: P7391.36
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 140
+Employee Name: Ferdinand Joselito Bersalona
+Project: MRT 7 Structural
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 748.89
+NET BASIC PAY: P9251.11
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 500.00
+TOTAL Taxable Income: P500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10501.11
+
+Withholding Tax: P1135.78
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1540.54
+Intellicare 2017: 1488.75
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P3767.61
+
+TOTAL DEDUCTIONS: P4953.39
+
+NET PAY: P5547.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 144
+Employee Name: Antonio Maria Dela Torre
+Project: MRT 7 Structural
+
+PAY RATE: P16750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 20000.00
+TOTAL Taxable Income: P20000.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P38250.00
+
+Withholding Tax: P8634.89
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Contribution: 1000.00
+TOTAL Other Deductions: P1000.00
+
+TOTAL DEDUCTIONS: P9684.89
+
+NET PAY: P28565.11
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 145
+Employee Name: Mercedita Aquino
+Project: NISRIP
+
+PAY RATE: P11500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Transpo Allowance: 2333.33
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 3333.33
+
+GROSS PAY: P14833.33
+
+Withholding Tax: P1312.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Pag-ibig Loan: 1955.79
+Intellicare 2017: 1488.75
+Company Loan: 2300.00
+TOTAL Other Deductions: P6482.86
+
+TOTAL DEDUCTIONS: P7845.36
+
+NET PAY: P6987.97
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 152
+Employee Name: Mary Ann Castañares
+Project: GAE
+
+PAY RATE: P11250.00
+
+Total Late_Absent: 110.98
+NET BASIC PAY: P11139.02
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P12639.02
+
+Withholding Tax: P1482.76
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 738.32
+Intellicare 2017: 322.20
+TOTAL Other Deductions: P1060.52
+
+TOTAL DEDUCTIONS: P2593.28
+
+NET PAY: P10045.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 153
+Employee Name: Rose Mary Santos
+Project: GAE
+
+PAY RATE: P9750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P10750.00
+
+Withholding Tax: P887.57
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P250.00
+
+TOTAL DEDUCTIONS: P1187.57
+
+NET PAY: P9562.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 176
+Employee Name: Orlando Salomon
+Project: GAE
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 5049.6
+NET BASIC PAY: P11450.40
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1100.00
+TOTAL Non-Taxable Income: 1100.00
+
+GROSS PAY: P12550.40
+
+Withholding Tax: P1300.10
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 2181.45
+Pagibig Salary Loan: 511.26
+Philhealth Short Ded -Mar 2017: 25.00
+TOTAL Other Deductions: P2717.71
+
+TOTAL DEDUCTIONS: P4067.81
+
+NET PAY: P8482.59
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 186
+Employee Name: Gil Jr. Berdin
+Project: FFWS CDO
+
+PAY RATE: P18250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 12000.00
+TOTAL Taxable Income: P12000.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P31750.00
+
+Withholding Tax: P7221.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P7271.77
+
+NET PAY: P24478.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 189
+Employee Name: Rey Pantino
+Project: NLEX-3 BUROL
+
+PAY RATE: P13500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P13500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P14500.00
+
+Withholding Tax: P1812.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P1488.75
+
+TOTAL DEDUCTIONS: P3351.25
+
+NET PAY: P11148.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 247
+Employee Name: Yvette Velazco
+Project: DAVAO BYPASS
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2100.00
+TOTAL Taxable Income: P2100.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11350.00
+
+Withholding Tax: P1608.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1229.33
+TOTAL Other Deductions: P1229.33
+
+TOTAL DEDUCTIONS: P2887.58
+
+NET PAY: P8462.42
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 248
+Employee Name: Katherine Cruz
+Project: GAE
+
+PAY RATE: P11250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P12750.00
+
+Withholding Tax: P1770.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1110.17
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P1848.49
+
+TOTAL DEDUCTIONS: P3669.24
+
+NET PAY: P9080.76
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 268
+Employee Name: Girlie San Miguel
+Project: CAMBODIA WATER SUPPLY
+
+PAY RATE: P11000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P12000.00
+
+Withholding Tax: P1448.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1498.00
+
+NET PAY: P10502.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 269
+Employee Name: Christopher Cartera
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10750.00
+
+Withholding Tax: P520.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P570.77
+
+NET PAY: P10179.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 279
+Employee Name: Rudolph Yambot
+Project: FRIMP Video Animation
+
+PAY RATE: P17500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P17500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P19000.00
+
+Withholding Tax: P3270.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3320.73
+
+NET PAY: P15679.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 311
+Employee Name: Teresita Dungca
+Project: CLARK GREEN CITY
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 12500.00
+TOTAL Taxable Income: P12500.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+Communication Allow: 250.00
+TOTAL Non-Taxable Income: 1750.00
+
+GROSS PAY: P30750.00
+
+Withholding Tax: P7154.89
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 1488.75
+Pag-Ibig Cont (add): 250.00
+Pag-Ibig Cont 2: 750.00
+TOTAL Other Deductions: P2488.75
+
+TOTAL DEDUCTIONS: P9693.64
+
+NET PAY: P21056.36
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 325
+Employee Name: Alma Teresa Kojima
+Project: GAE - ICG
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P11000.00
+
+Withholding Tax: P1198.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 322.20
+Cellular Charges: 1142.86
+Pag-Ibig Cont (add): 150.00
+TOTAL Other Deductions: P1615.06
+
+TOTAL DEDUCTIONS: P2863.06
+
+NET PAY: P8136.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 373
+Employee Name: Robert Castillo
+Project: CLARK GREEN CITY
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 511.94
+NET BASIC PAY: P8488.06
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1500.00
+TOTAL Taxable Income: P1500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10738.06
+
+Withholding Tax: P935.18
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 715.25
+TOTAL Other Deductions: P715.25
+
+TOTAL DEDUCTIONS: P1700.43
+
+NET PAY: P9037.63
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 407
+Employee Name: Reynante Lorica
+Project: LIAISON
+
+PAY RATE: P7250.00
+
+Total Late_Absent: 49.45
+NET BASIC PAY: P7200.55
+
+Regular Overtime: 952 (mins) - P1368.50
+Reg.Sun/Sat. OT: 1221 (mins) - P1942.45
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 6 (mins) - P0.69
+TOTAL OVERTIME: P3311.64
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Refund - deducted PagIBIG loan for Mar: 1796.76
+TOTAL Non-Taxable Income: 2546.76
+
+GROSS PAY: P13058.95
+
+Withholding Tax: P1065.55
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 250.00
+SSS salary loan: 738.32
+TOTAL Other Deductions: P988.32
+
+TOTAL DEDUCTIONS: P2103.87
+
+NET PAY: P10955.09
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 422
+Employee Name: Anna Liza Flores
+Project: GAE
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 204.49
+NET BASIC PAY: P8795.51
+
+Regular Overtime: 70 (mins) - P125.12
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P125.12
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9670.63
+
+Withholding Tax: P929.90
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 500.00
+Pag-Ibig Loan: 775.77
+SSS salary loan: 738.32
+TOTAL Other Deductions: P2014.09
+
+TOTAL DEDUCTIONS: P2993.99
+
+NET PAY: P6676.65
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 427
+Employee Name: Teddy Viloria
+Project: NRUP Timor Leste (CS)
+
+PAY RATE: P18500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P20000.00
+
+Withholding Tax: P3570.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Tax Deficit 2016: 960.28
+Intellicare 2017: 2181.45
+TOTAL Other Deductions: P3141.73
+
+TOTAL DEDUCTIONS: P6762.46
+
+NET PAY: P13237.54
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 438
+Employee Name: Bonifacio Pitogo
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 1087.8
+NET BASIC PAY: P5912.20
+
+Regular Overtime: 187 (mins) - P259.46
+Reg.Sun/Sat. OT: 457 (mins) - P659.45
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P918.91
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P7581.11
+
+Withholding Tax: P316.29
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 789.70
+SSS Salary Loan: 738.32
+Intellicare 2017: 1407.59
+Company Loan: 1400.00
+TOTAL Other Deductions: P4335.61
+
+TOTAL DEDUCTIONS: P4701.90
+
+NET PAY: P2879.22
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 443
+Employee Name: Ma. Victoria Lucasia
+Project: GAE
+
+PAY RATE: P10500.00
+
+Total Late_Absent: 288.91
+NET BASIC PAY: P10211.09
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P11711.09
+
+Withholding Tax: P1511.02
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P738.32
+
+TOTAL DEDUCTIONS: P2299.34
+
+NET PAY: P9411.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 445
+Employee Name: Felita Mañacop
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 26.2
+NET BASIC PAY: P8223.80
+
+Regular Overtime: 455 (mins) - P745.06
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P745.06
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9718.86
+
+Withholding Tax: P731.34
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 1430.50
+TOTAL Other Deductions: P1430.50
+
+TOTAL DEDUCTIONS: P2211.84
+
+NET PAY: P7507.02
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 451
+Employee Name: Francisco Baltazar
+Project: FRIMP Video Animation
+
+PAY RATE: P14000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P14000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P16000.00
+
+Withholding Tax: P2833.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 658.40
+TOTAL Other Deductions: P658.40
+
+TOTAL DEDUCTIONS: P3541.73
+
+NET PAY: P12458.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 458
+Employee Name: Cherrie Vitug
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P17000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P17000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Reimbursement: 4000.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 5500.00
+
+GROSS PAY: P22500.00
+
+Withholding Tax: P3433.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3483.33
+
+NET PAY: P19016.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 462
+Employee Name: Frederick Allegado
+Project: GAE - ICG
+
+PAY RATE: P6400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6400.00
+
+Regular Overtime: 3454 (mins) - P4403.85
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 266 (mins) - P27.13
+TOTAL OVERTIME: P4430.98
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11580.98
+
+Withholding Tax: P895.37
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Advances to O: 1280.00
+Pag-Ibig Salary Loan: 594.53
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P2862.85
+
+TOTAL DEDUCTIONS: P3808.22
+
+NET PAY: P7772.77
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 480
+Employee Name: Tolentino Serrano
+Project: MRT 7 Construction
+
+PAY RATE: P12750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 8000.00
+TOTAL Taxable Income: P8000.00
+
+Non-Taxable Income:
+Per Diem: 12800.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 13800.00
+
+GROSS PAY: P34550.00
+
+Withholding Tax: P3620.83
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Tax Deficit 2016: 1280.64
+TOTAL Other Deductions: P1280.64
+
+TOTAL DEDUCTIONS: P4951.47
+
+NET PAY: P29598.53
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 483
+Employee Name: Brenda Saligumba
+Project: NK YANGON
+
+PAY RATE: P16000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16750.00
+
+Withholding Tax: P2820.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2870.73
+
+NET PAY: P13879.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 486
+Employee Name: Roberto Alindajao
+Project: GAE
+
+PAY RATE: P6400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6400.00
+
+Regular Overtime: 3905 (mins) - P4978.88
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 180 (mins) - P18.36
+TOTAL OVERTIME: P4997.24
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12147.24
+
+Withholding Tax: P1547.31
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 931.24
+SSS Salary Loan: 738.32
+Advances to O: 780.73
+Pag-Ibig Cont (add): 150.00
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P2850.29
+
+TOTAL DEDUCTIONS: P4447.60
+
+NET PAY: P7699.64
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 495
+Employee Name: Antonio Chew
+Project: DAVAO BYPASS
+
+PAY RATE: P25000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P25000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P25000.00
+
+Withholding Tax: P5541.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P1488.75
+
+TOTAL DEDUCTIONS: P7080.52
+
+NET PAY: P17919.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 505
+Employee Name: Glenn Mijares
+Project: DAVAO BYPASS
+
+PAY RATE: P9750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1500.00
+TOTAL Taxable Income: P1500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12000.00
+
+Withholding Tax: P1250.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 968.76
+Company Loan: 1000.00
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P3457.51
+
+TOTAL DEDUCTIONS: P4757.51
+
+NET PAY: P7242.49
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 508
+Employee Name: Aileen Villadiego
+Project: MRT 7 Architectural
+
+PAY RATE: P10500.00
+
+Total Late_Absent: 307.28
+NET BASIC PAY: P10192.72
+
+Regular Overtime: 2080 (mins) - P4342.00
+Reg.Sun/Sat. OT: 488 (mins) - P1064.66
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 573 (mins) - P95.69
+TOTAL OVERTIME: P5502.35
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16445.07
+
+Withholding Tax: P3041.85
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 394.07
+TOTAL Other Deductions: P394.07
+
+TOTAL DEDUCTIONS: P3485.92
+
+NET PAY: P12959.15
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 517
+Employee Name: Delia Bernardez
+Project: NRUP Timor Leste (CS)
+
+PAY RATE: P18000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P18000.00
+
+Withholding Tax: P3108.43
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3158.43
+
+NET PAY: P14841.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 532
+Employee Name: Francis Palomique
+Project: NISRIP
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2500.00
+TOTAL Taxable Income: P2500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12500.00
+
+Withholding Tax: P1895.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1945.75
+
+NET PAY: P10554.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 544
+Employee Name: Anthony Quejado
+Project: DAVAO BYPASS
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1500.00
+TOTAL Taxable Income: P1500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11500.00
+
+Withholding Tax: P1645.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P1488.75
+
+TOTAL DEDUCTIONS: P3184.50
+
+NET PAY: P8315.50
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 546
+Employee Name: Rizalina Cruz
+Project: LIAISON
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Transpo Allowance: 5000.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 6500.00
+
+GROSS PAY: P15500.00
+
+Withholding Tax: P948.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P2227.07
+
+TOTAL DEDUCTIONS: P3225.07
+
+NET PAY: P12274.93
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 552
+Employee Name: Arlene Ferrer
+Project: CLARK GREEN CITY
+
+PAY RATE: P8750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1400.00
+TOTAL Taxable Income: P1400.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10900.00
+
+Withholding Tax: P1495.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1545.75
+
+NET PAY: P9354.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: GAE
+
+PAY RATE: P9500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9500.00
+
+Regular Overtime: 439 (mins) - P828.61
+Reg.Sun/Sat. OT: 639 (mins) - P1254.36
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 35 (mins) - P5.29
+TOTAL OVERTIME: P2088.26
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12338.26
+
+Withholding Tax: P1855.31
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Intellicare 2017: 1415.70
+TOTAL Other Deductions: P1415.70
+
+TOTAL DEDUCTIONS: P3321.01
+
+NET PAY: P9017.24
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 558
+Employee Name: Dorcas Mae Padilla
+Project: KRI-TVHS
+
+PAY RATE: P11750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Transpo Allowance: 1200.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 2200.00
+
+GROSS PAY: P13950.00
+
+Withholding Tax: P1114.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1211.07
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P1949.39
+
+TOTAL DEDUCTIONS: P3113.89
+
+NET PAY: P10836.11
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 566
+Employee Name: Junalynne Pamintuan
+Project: CLARK GREEN CITY
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 1787.5
+NET BASIC PAY: P7212.50
+
+Regular Overtime: 359 (mins) - P641.71
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P641.71
+
+Taxable Income:
+Project Allowance: 1250.00
+TOTAL Taxable Income: P1250.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9104.21
+
+Withholding Tax: P1234.30
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 692.18
+TOTAL Other Deductions: P692.18
+
+TOTAL DEDUCTIONS: P1976.48
+
+NET PAY: P7127.73
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 571
+Employee Name: Kimberly Claire Inso
+Project: KRI-TVHS
+
+PAY RATE: P16000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 10000.00
+TOTAL Taxable Income: P10000.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P27500.00
+
+Withholding Tax: P6194.89
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 349.10
+TOTAL Other Deductions: P349.10
+
+TOTAL DEDUCTIONS: P6593.99
+
+NET PAY: P20906.01
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 578
+Employee Name: Sonny Lita
+Project: CLARK GREEN CITY
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6293.00
+
+Regular Overtime: 3588 (mins) - P4485.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 50 (mins) - P5.00
+TOTAL OVERTIME: P4490.00
+
+Taxable Income:
+Salary adjustment - March 15, 2017: 3.29
+TOTAL Taxable Income: P3.29
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11536.29
+
+Withholding Tax: P1134.09
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 1250.00
+Pag-Ibig Salary Loan: 270.85
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P2259.17
+
+TOTAL DEDUCTIONS: P3443.26
+
+NET PAY: P8093.11
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 580
+Employee Name: Karl Antonio Pangan
+Project: NISRIP
+
+PAY RATE: P10500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1866.67
+TOTAL Taxable Income: P1866.67
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P13116.67
+
+Withholding Tax: P2049.92
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2099.92
+
+NET PAY: P11016.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 585
+Employee Name: Jaydee Colis
+Project: NISRIP
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 933.33
+OT: 1280.00
+TOTAL Taxable Income: P2213.33
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Meal Allow - March 18, 25: 150.00
+TOTAL Non-Taxable Income: 900.00
+
+GROSS PAY: P10113.33
+
+Withholding Tax: P1261.58
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 512.36
+TOTAL Other Deductions: P512.36
+
+TOTAL DEDUCTIONS: P1823.94
+
+NET PAY: P8289.39
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 591
+Employee Name: Susana Joyce Aliling
+Project: LIAISON
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 374 (mins) - P656.37
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P656.37
+
+Taxable Income:
+Project Allowance: 933.33
+TOTAL Taxable Income: P933.33
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10839.70
+
+Withholding Tax: P1480.67
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 159.24
+SSS Salary Loan: 369.16
+TOTAL Other Deductions: P528.40
+
+TOTAL DEDUCTIONS: P2059.07
+
+NET PAY: P8780.62
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 596
+Employee Name: Johanna Angela Martin
+Project: LIAISON
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10000.00
+
+Withholding Tax: P1270.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1320.75
+
+NET PAY: P8679.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 597
+Employee Name: Mark Joseph Lorica
+Project: NISRIP
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6293.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Overtime - Mar 16-31: 2340.00
+TOTAL Taxable Income: P2340.00
+
+Non-Taxable Income:
+Meal Allow - March 18: 75.00
+Employment Benefits: 130.84
+TOTAL Non-Taxable Income: 205.84
+
+GROSS PAY: P8838.84
+
+Withholding Tax: P1116.52
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 191.69
+TOTAL Other Deductions: P191.69
+
+TOTAL DEDUCTIONS: P1358.21
+
+NET PAY: P7480.71
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 611
+Employee Name: Niel Perez
+Project: MNTC Pampanga Bridges
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 161 (mins) - P295.84
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P295.84
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10295.84
+
+Withholding Tax: P1344.71
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1394.71
+
+NET PAY: P8901.13
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 612
+Employee Name: Donnie Luzon
+Project: MNTC Pampanga Bridges
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6293.00
+
+Regular Overtime: 3486 (mins) - P4357.50
+Reg.Sun/Sat. OT: 393 (mins) - P510.90
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 159 (mins) - P15.90
+TOTAL OVERTIME: P4884.30
+
+Taxable Income:
+Salary adjustment - March 15, 2017: 3.29
+TOTAL Taxable Income: P3.29
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11930.59
+
+Withholding Tax: P1753.42
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 369.16
+Short on liquidation: 200.00
+Pag-Ibig Cont (add): 150.00
+TOTAL Other Deductions: P719.16
+
+TOTAL DEDUCTIONS: P2522.58
+
+NET PAY: P9408.10
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 616
+Employee Name: Mark Nathaniel Carpio
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 1026 (mins) - P1680.08
+Reg.Sun/Sat. OT: 901 (mins) - P1623.81
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 230 (mins) - P30.13
+TOTAL OVERTIME: P3334.02
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P11584.02
+
+Withholding Tax: P1854.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1904.25
+
+NET PAY: P9679.76
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 619
+Employee Name: Millie Ann Vale
+Project: GAE
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8000.00
+
+Withholding Tax: P958.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1008.25
+
+NET PAY: P6991.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 624
+Employee Name: Joel Briñas
+Project: MRT 7 Structural
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 578 (mins) - P1033.17
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1033.17
+
+Taxable Income:
+Project Allowance: 1250.00
+TOTAL Taxable Income: P1250.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12033.17
+
+Withholding Tax: P1779.04
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 500.00
+Intellicare 2017: 1488.75
+TOTAL Other Deductions: P1988.75
+
+TOTAL DEDUCTIONS: P3817.79
+
+NET PAY: P8215.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 625
+Employee Name: Jayson Ramos
+Project: GAE
+
+PAY RATE: P15000.00
+
+Total Late_Absent: 74.09
+NET BASIC PAY: P14925.91
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P16425.91
+
+Withholding Tax: P2186.20
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Company Loan: 2500.00
+TOTAL Other Deductions: P2500.00
+
+TOTAL DEDUCTIONS: P4736.20
+
+NET PAY: P11689.71
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 627
+Employee Name: Rosano Quillain
+Project: DAVAO BYPASS
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6293.00
+
+Regular Overtime: 1460 (mins) - P1825.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1825.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+COLA: 130.84
+TOTAL Non-Taxable Income: 130.84
+
+GROSS PAY: P8248.84
+
+Withholding Tax: P987.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 629.30
+TOTAL Other Deductions: P629.30
+
+TOTAL DEDUCTIONS: P1667.07
+
+NET PAY: P6581.85
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 631
+Employee Name: Antonette Chew
+Project: GAE
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 160.65
+NET BASIC PAY: P8339.35
+
+Regular Overtime: 111 (mins) - P187.31
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P187.31
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9276.66
+
+Withholding Tax: P1089.92
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1139.92
+
+NET PAY: P8136.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 635
+Employee Name: Gerald Joseph Tabeta
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P17500.00
+
+Total Late_Absent: 111.6
+NET BASIC PAY: P17388.40
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P18888.40
+
+Withholding Tax: P3549.85
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3599.85
+
+NET PAY: P15288.55
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 636
+Employee Name: Jeffrey Sacayan
+Project: NLEX SKYWAY 3
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 273.42
+NET BASIC PAY: P8976.58
+
+Regular Overtime: 133 (mins) - P244.39
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P244.39
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9970.97
+
+Withholding Tax: P1263.49
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Company Loan: 1000.00
+TOTAL Other Deductions: P1000.00
+
+TOTAL DEDUCTIONS: P2313.49
+
+NET PAY: P7657.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 637
+Employee Name: Jenine Nicole Abadilla
+Project: MRT 7 Peer Review
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 74.73
+NET BASIC PAY: P9925.27
+
+Regular Overtime: 467 (mins) - P928.16
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P928.16
+
+Taxable Income:
+Project Allowance: 2000.00
+TOTAL Taxable Income: P2000.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P13603.43
+
+Withholding Tax: P2189.36
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2239.36
+
+NET PAY: P11364.07
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 638
+Employee Name: Millard Cruz
+Project: NRUP Timor Leste (CS)
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10750.00
+
+Withholding Tax: P1458.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1508.25
+
+NET PAY: P9241.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 640
+Employee Name: Eliza Karla Nuñez
+Project: MRT 7 Structural
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 267.12
+NET BASIC PAY: P9732.88
+
+Regular Overtime: 748 (mins) - P1486.65
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 27 (mins) - P4.29
+TOTAL OVERTIME: P1490.94
+
+Taxable Income:
+Project Allowance: 2500.00
+TOTAL Taxable Income: P2500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P14473.82
+
+Withholding Tax: P2450.48
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2500.48
+
+NET PAY: P11973.35
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 641
+Employee Name: Judy Anne Tacder
+Project: GAE
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 307.34
+NET BASIC PAY: P7692.66
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P8442.66
+
+Withholding Tax: P892.70
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Short on Liquidation: 528.25
+TOTAL Other Deductions: P528.25
+
+TOTAL DEDUCTIONS: P1470.95
+
+NET PAY: P6971.71
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 647
+Employee Name: Carl Christian Sinda
+Project: MRT 7 Structural
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 224.19
+NET BASIC PAY: P9775.81
+
+Regular Overtime: 788 (mins) - P1566.15
+Reg.Sun/Sat. OT: 433 (mins) - P895.01
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2461.16
+
+Taxable Income:
+Project Allowance: 1750.00
+TOTAL Taxable Income: P1750.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P14736.97
+
+Withholding Tax: P2529.42
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2579.42
+
+NET PAY: P12157.55
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 650
+Employee Name: Jhoemar Rey Altomea
+Project: JICA PWSM
+
+PAY RATE: P12500.00
+
+Total Late_Absent: 326.36
+NET BASIC PAY: P12173.64
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 9000.00
+TOTAL Taxable Income: P9000.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P22173.64
+
+Withholding Tax: P4685.42
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 715.25
+TOTAL Other Deductions: P715.25
+
+TOTAL DEDUCTIONS: P5450.67
+
+NET PAY: P16722.97
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 651
+Employee Name: Maria Miracle Litimco
+Project: MRT 7 Structural
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 67.83
+NET BASIC PAY: P7432.17
+
+Regular Overtime: 1797 (mins) - P2673.04
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 294 (mins) - P34.99
+TOTAL OVERTIME: P2708.03
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10140.20
+
+Withholding Tax: P1493.30
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1543.30
+
+NET PAY: P8596.90
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 652
+Employee Name: Luisito Sanchez
+Project: NISRIP
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10000.00
+
+Withholding Tax: P1458.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1508.25
+
+NET PAY: P8491.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 653
+Employee Name: Arnel Tubongbanua
+Project: DAVAO BYPASS
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 0.00
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10000.00
+
+Withholding Tax: P1270.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 288.41
+TOTAL Other Deductions: P288.41
+
+TOTAL DEDUCTIONS: P1609.16
+
+NET PAY: P8390.84
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 654
+Employee Name: Jonas Eyana
+Project: DAVAO BYPASS
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2500.00
+TOTAL Taxable Income: P2500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P13250.00
+
+Withholding Tax: P2083.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2133.33
+
+NET PAY: P11116.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 656
+Employee Name: Jaimie Villamin
+Project: MNTC Pampanga Bridges
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 680.52
+NET BASIC PAY: P9319.48
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10069.48
+
+Withholding Tax: P1288.12
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1338.12
+
+NET PAY: P8731.36
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 657
+Employee Name: Jennard Libo-on
+Project: GAE
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 550
+NET BASIC PAY: P5743.00
+
+Regular Overtime: 2029 (mins) - P2536.25
+Reg.Sun/Sat. OT: 761 (mins) - P1098.89
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 36 (mins) - P3.60
+TOTAL OVERTIME: P3638.74
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 122.11
+TOTAL Non-Taxable Income: 122.11
+
+GROSS PAY: P9503.85
+
+Withholding Tax: P1303.71
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1353.71
+
+NET PAY: P8150.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 660
+Employee Name: Lito Bibat
+Project: GAE
+
+PAY RATE: P6293.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6293.00
+
+Regular Overtime: 2909 (mins) - P3636.25
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 53 (mins) - P5.30
+TOTAL OVERTIME: P3641.55
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 130.84
+TOTAL Non-Taxable Income: 130.84
+
+GROSS PAY: P10065.39
+
+Withholding Tax: P1181.66
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 75.00
+TOTAL Other Deductions: P75.00
+
+TOTAL DEDUCTIONS: P1306.66
+
+NET PAY: P8758.82
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 661
+Employee Name: Oliver John Ortiz
+Project: CLARK GREEN CITY
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 1451.67
+NET BASIC PAY: P8548.33
+
+Regular Overtime: 398 (mins) - P791.02
+Reg.Sun/Sat. OT: 275 (mins) - P568.42
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 94 (mins) - P14.95
+TOTAL OVERTIME: P1374.39
+
+Taxable Income:
+Project Allowance: 1866.67
+TOTAL Taxable Income: P1866.67
+
+Non-Taxable Income:
+Employment Benefits: 700.00
+TOTAL Non-Taxable Income: 700.00
+
+GROSS PAY: P12489.39
+
+Withholding Tax: P1905.60
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1955.60
+
+NET PAY: P10533.80
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 662
+Employee Name: Luis Villegas
+Project: MRT 7 Architectural
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7750.00
+
+Regular Overtime: 1605 (mins) - P2467.69
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 278 (mins) - P34.19
+TOTAL OVERTIME: P2501.88
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P11251.88
+
+Withholding Tax: P1771.22
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 276.87
+TOTAL Other Deductions: P276.87
+
+TOTAL DEDUCTIONS: P2098.09
+
+NET PAY: P9153.79
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 663
+Employee Name: Julian Ed Cortez
+Project: MRT 7 Architectural
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7750.00
+
+Regular Overtime: 2413 (mins) - P3709.99
+Reg.Sun/Sat. OT: 446 (mins) - P713.15
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 411 (mins) - P50.55
+TOTAL OVERTIME: P4473.69
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P13223.69
+
+Withholding Tax: P2300.44
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2350.44
+
+NET PAY: P10873.26
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 664
+Employee Name: Jessielle Pagorogon
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 275 (mins) - P450.31
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 35 (mins) - P4.58
+TOTAL OVERTIME: P454.89
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9454.89
+
+Withholding Tax: P1134.47
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1184.47
+
+NET PAY: P8270.42
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 665
+Employee Name: Mark Joshua Macadangdang
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 1022 (mins) - P1673.53
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1673.53
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10673.53
+
+Withholding Tax: P1439.13
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1489.13
+
+NET PAY: P9184.39
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 666
+Employee Name: Bianca Patricia Ocampo
+Project: GAE
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7500.00
+
+Withholding Tax: P854.17
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P904.17
+
+NET PAY: P6595.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 667
+Employee Name: Melanie Peñalosa
+Project: MRT 7 Architectural
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 2548 (mins) - P4044.95
+Reg.Sun/Sat. OT: 760 (mins) - P1393.44
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 414 (mins) - P52.58
+TOTAL OVERTIME: P5490.97
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P14490.97
+
+Withholding Tax: P2680.62
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2730.62
+
+NET PAY: P11760.35
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 668
+Employee Name: Ronila Gallemit
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 17.76
+NET BASIC PAY: P6982.24
+
+Regular Overtime: 682 (mins) - P946.27
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P946.27
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7928.51
+
+Withholding Tax: P940.38
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P990.38
+
+NET PAY: P6938.14
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 669
+Employee Name: Arlene Tugublimas
+Project: GAE
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 403 (mins) - P599.46
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P599.46
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8099.46
+
+Withholding Tax: P983.12
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1033.12
+
+NET PAY: P7066.35
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 670
+Employee Name: Anna Vanessa Samonte
+Project: MRT 7 Structural
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 1590
+NET BASIC PAY: P8410.00
+
+Regular Overtime: 801 (mins) - P1591.99
+Reg.Sun/Sat. OT: 721 (mins) - P1639.75
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P3231.74
+
+Taxable Income:
+Project Allowance: 1300.00
+TOTAL Taxable Income: P1300.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12941.74
+
+Withholding Tax: P2215.85
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2265.85
+
+NET PAY: P10675.89
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 672
+Employee Name: Gerrel Regulacion
+Project: MRT 7 Structural
+
+PAY RATE: P6500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6500.00
+
+Regular Overtime: 3289 (mins) - P4275.70
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 459 (mins) - P47.74
+TOTAL OVERTIME: P4323.44
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10823.44
+
+Withholding Tax: P1664.11
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1714.11
+
+NET PAY: P9109.33
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 674
+Employee Name: Daniel Lawrence Vivar
+Project: MRT 7 Peer Review
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 21.45
+NET BASIC PAY: P8978.55
+
+Regular Overtime: 897 (mins) - P1603.39
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1603.39
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10581.94
+
+Withholding Tax: P1603.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1653.73
+
+NET PAY: P8928.20
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 675
+Employee Name: Meriam Miculob
+Project: NISRIP
+
+PAY RATE: P6750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 500.00
+TOTAL Taxable Income: P500.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7250.00
+
+Withholding Tax: P804.17
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P854.17
+
+NET PAY: P6395.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 676
+Employee Name: Jennilyn Monson
+Project: MRT 7 Architectural
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 740.74
+NET BASIC PAY: P8259.26
+
+Regular Overtime: 2667 (mins) - P4767.26
+Reg.Sun/Sat. OT: 659 (mins) - P1324.91
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 526 (mins) - P75.22
+TOTAL OVERTIME: P6167.39
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P14426.65
+
+Withholding Tax: P2661.32
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 900.00
+TOTAL Other Deductions: P900.00
+
+TOTAL DEDUCTIONS: P3611.32
+
+NET PAY: P10815.32
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 678
+Employee Name: Sheila Gagno
+Project: MRT 7 Peer Review
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 554 (mins) - P907.17
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P907.17
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9157.17
+
+Withholding Tax: P1247.54
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 825.00
+TOTAL Other Deductions: P825.00
+
+TOTAL DEDUCTIONS: P2122.54
+
+NET PAY: P7034.63
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 679
+Employee Name: Cesar Rey Arellano
+Project: NISRIP
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9250.00
+
+Withholding Tax: P1270.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1320.75
+
+NET PAY: P7929.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 680
+Employee Name: Grace Neptuno
+Project: JICA PWSM
+
+PAY RATE: P25000.00
+
+Total Late_Absent: 9552
+NET BASIC PAY: P15448.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 3333.33
+TOTAL Taxable Income: P3333.33
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P18781.33
+
+Withholding Tax: P3967.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P4017.73
+
+NET PAY: P14763.60
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 683
+Employee Name: Princess Soleydad Palma
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 628.8
+NET BASIC PAY: P7621.20
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7621.20
+
+Withholding Tax: P878.41
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 825.00
+TOTAL Other Deductions: P825.00
+
+TOTAL DEDUCTIONS: P1753.41
+
+NET PAY: P5867.79
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 1-15, 2017) withdrawable today (April 12, 2017, Wednesday)
+
+cutoff period: 2017-03-16 -to- 2017-03-31
+
+Employee ID: 686
+Employee Name: Florenz Justin Calinog
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 1257.6
+NET BASIC PAY: P6992.40
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Refund - over deducted SSS cont for Mar: 381.50
+Refund - over deducted Philhealth cont for Mar: 100.00
+TOTAL Non-Taxable Income: 481.50
+
+GROSS PAY: P7473.90
+
+Withholding Tax: P752.65
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 825.00
+Pagibig Short Ded - Mar 2017: 50.00
+TOTAL Other Deductions: P875.00
+
+TOTAL DEDUCTIONS: P1677.65
+
+NET PAY: P5796.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

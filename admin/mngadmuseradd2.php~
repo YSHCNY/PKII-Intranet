@@ -1,0 +1,105 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$adminuid = $_POST['adminuid'];
+$adminpw1 = $_POST['adminpw1'];
+$adminpw2 = $_POST['adminpw2'];
+$employeeid = $_POST['employeeid'];
+$accesslevel0 = $_POST['accesslevel'];
+
+$defaultadminloginlevel = "000000000000000000010101000010";
+
+$found = 0;
+$found11 = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+  if($accesslevel >= 4 && $accesslevel <= 5)
+  {
+    echo "<table class=\"fin\" border=\"1\">";
+    echo "<tr><th colspan=\"2\">Manage Admin Users - Add user</th></tr>";
+
+// check passwords
+    if($adminuid != '' && $adminpw1 != '' && $adminpw2 != '' && $adminpw1 == $adminpw2 && $employeeid != '')
+    {
+      $result11 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminuid = \"$adminuid\"", $dbh);
+      if($result11 != '')
+      {
+	while($myrow11 = mysql_fetch_row($result11))
+	{
+	  $found11 = 1;
+	  $adminuid11 = $myrow11[0];
+	}
+	if($found11 == 1)
+	{
+	  echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, username already on database. Please try again.</font></td></tr>";
+	}
+	else
+	{
+	  $result12 = mysql_query("SELECT employeeid FROM tbladminlogin WHERE employeeid = \"$employeeid\"", $dbh);
+	  while($myrow12 = mysql_fetch_row($result12))
+	  {
+	    $found12 = 1;
+	    $employeeid12 = $myrow12[0];
+	  }
+	  if($found12 == 1)
+	  {
+	    $result13 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE employeeid=\"$employeeid12\"", $dbh);
+	    while($myrow13 = mysql_fetch_row($result13))
+	    {
+	      $found13 = 1;
+	      $adminuid13 = $myrow13[0];
+	    }
+	    echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, personnel selected already has a login name: <b>$adminuid13</b>. Please try again.</font></td></tr>";
+	  }
+	  else
+	  {
+	    echo "<tr><td colspan=\"2\">New admin user: <b>$adminuid</b> saved.</td></tr>";
+
+	    // insert new user into tbladminlogin
+	    $result14 = mysql_query("INSERT INTO tbladminlogin SET adminuid=\"$adminuid\", adminpw=\"$adminpw1\", date_created=\"$datenow\", adminloginstat=0, adminloginlevel=\"$defaultadminloginlevel\", employeeid=\"$employeeid\", accesslevel=$accesslevel0", $dbh);
+
+	    echo "<tr><td>details</td><td>";
+	    echo "$adminuid<br>$datenow<br>0<br>$defaultadminloginlevel<br>$employeeid<br>$accesslevel0</td></tr>";
+
+	    // create log
+	    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+	    while($myrow16 = mysql_fetch_row($result16))
+	    { $adminuid16=$myrow16[0]; }
+	    $adminlogdetails = "$loginid:$adminloginuid - Add new admin user:$adminuid with employeeid:$employeeid";
+	    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid16\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+	  }
+	}
+      }
+    }
+    else
+    {
+      echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, passwords do not match and/or fields should not be blank. Please try again.</font></td></tr>";
+    }
+    echo "</table>";
+    echo "<p><a href=\"mngadmuseradd.php?loginid=$loginid\">Back</a></p>";
+  }
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

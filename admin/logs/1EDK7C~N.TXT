@@ -1,0 +1,49 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-07-01 -to- 2018-07-15
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: GAE
+
+PAY RATE: P10500.00
+
+Total Late_Absent: 205.41
+NET BASIC PAY: P10294.59
+
+Regular Overtime: 681 (mins) - P1421.59
+Reg.Sun/Sat. OT: 493 (mins) - P1078.77
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2500.36
+
+Additional Income:
+Taxable Income:
+Fixed Allowance: 2000.00
+TOTAL Taxable Income: P2000.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P15544.95
+
+Withholding Tax: P875.59
+SSS: P581.30
+Philhealth: P263.42
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P738.32
+
+TOTAL DEDUCTIONS: P2508.63
+
+NET PAY: P13036.33
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

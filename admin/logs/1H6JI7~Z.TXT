@@ -1,0 +1,48 @@
+Please find below details of your payroll salary period August 16-31, 2010 (cut off: August 01-15, 2010) is now available.
+
+cutoff period: 2010-08-01 -to- 2010-08-15
+
+Employee ID: 556
+Employee Name: Richard Morilla
+Project: LAND BANK
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5286.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Unpaid OT on Aug01-15: 357.73
+TOTAL Taxable Income: 1616.12
+
+Non-Taxable Income:
+Refund overded SSS Cont: 266.70
+Refund overded Philhealth Cont: 112.50
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6902.12
+
+Withholding Tax: 734.59
+SSS: 500
+Philhealth: 187.50
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1472.09
+
+NET PAY: P5430.03
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

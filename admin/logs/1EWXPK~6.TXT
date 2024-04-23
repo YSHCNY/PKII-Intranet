@@ -1,0 +1,96 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-05-01 -to- 2018-05-15
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: GAE
+
+PAY RATE: P9500.00
+
+Total Late_Absent: 774.63
+NET BASIC PAY: P8725.37
+
+Regular Overtime: 601 (mins) - P1134.39
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 87 (mins) - P13.14
+TOTAL OVERTIME: P1147.53
+
+Additional Income:
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10622.90
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P245.88
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Intellicare: 4266.00
+TOTAL Other Deductions: P5004.32
+
+TOTAL DEDUCTIONS: P5881.50
+
+NET PAY: P4741.40
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-05-01 -to- 2018-05-15
+
+Employee ID: 700
+Employee Name: Mitzi Angela Politico
+Project: GAE
+
+PAY RATE: P8750.00
+
+Total Late_Absent: 696.39
+NET BASIC PAY: P8053.61
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Additional Income:
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 700.00
+TOTAL Non-Taxable Income: 700.00
+
+GROSS PAY: P8753.61
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P231.05
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P862.35
+
+NET PAY: P7891.26
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

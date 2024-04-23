@@ -1,0 +1,35 @@
+<?php 
+
+include '../includes/dbh.php';
+
+// start contents here
+// list available year-month of timelog data
+		
+			/*$res15query="SELECT tblhrattcheckinout.att_checktime FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid0\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"O\" ORDER BY tblhrattcheckinout.att_checktime DESC";
+			$result15=""; $found15=0;
+			$hrattcheckinoutid14Arr = array();
+			$timeout15Arr = array();
+			$att_userid15Arr = array();
+			$result15=$dbh->query($res15query);
+			
+			if($result15->num_rows>0) {
+				while($myrow15=$result15->fetch_assoc()) {
+				$found15 = 1;
+				//$timeout15Arr = $myrow15['att_checktime'];
+				array_push($hrattcheckinoutid15Arr, $myrow14['hrattcheckinoutid']);
+				array_push($timeout15Arr, $myrow14['att_checktime']);
+				}
+			}*/
+			// $res15query="SELECT tblhrattcheckinout.att_checktime FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid0\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"O\" ORDER BY tblhrattcheckinout.att_checktime DESC";
+$res15query="SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid0\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"o\" ORDER BY tblhrattcheckinout.att_checktime DESC LIMIT 1";
+			$result15=""; $found15=0;
+			$result15=$dbh->query($res15query);
+			if($result15->num_rows>0) {
+				while($myrow15=$result15->fetch_assoc()) {
+				$found15 = 1;
+				$timeout15 = $myrow15['att_checktime'];
+				}
+			}
+	
+$dbh->close();
+?>

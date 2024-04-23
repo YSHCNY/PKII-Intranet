@@ -1,0 +1,102 @@
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$projrelrefid = (isset($_GET['prrid'])) ? $_GET['prrid'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+  echo "<p><font size=1>Manage >> Accounting Modules >> Project relationships >> Edit</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+  echo "<tr><th colspan=\"2\">Project Relationships - Edit</th></tr>";
+
+// start contents here...
+
+  $res11query="SELECT code, name, companyid, level, seq, nkconso, codeprev, remarks, strvssht FROM tblprojrelref WHERE projrelrefid=$projrelrefid";
+  $result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+    $found11 = 1;
+		$code11 = $myrow11['code'];
+		$name11 = $myrow11['name'];
+		$companyid11 = $myrow11['companyid'];
+		$level11 = $myrow11['level'];
+		$seq11 = $myrow11['seq'];
+		$nkconso11 = $myrow11['nkconso'];
+		$codeprev11 = $myrow11['codeprev'];
+		$remarks11 = $myrow11['remarks'];
+		$strvssht11 = $myrow11['strvssht'];
+		} // while
+	} // if
+
+  echo "<form action=\"mngfinprojrelrefedit2.php?loginid=$loginid&prrid=$projrelrefid\" method=\"post\" name=\"mngfinprojrelrefedit2\">";
+	echo "<tr><th align=\"right\">id</th><td>$projrelrefid</td></tr>";
+	echo "<tr><th align=\"right\">code</th><td><input name=\"code\" value=\"$code11\"</td></tr>";
+	// echo "<tr><th align=\"right\">name</th><td><input name=\"name\" value=\"$name11\"></td></tr>";
+	echo "<tr><th align=\"right\">company name</th><td>";
+	// echo "<input name=\"companyid\" value=\"$companyid11\">";
+	if($companyid11==0) {
+		$companytypdropdownsel=""; $companytypmanualsel="checked";
+	} else {
+		$companytypdropdownsel="checked"; $companytypmanualsel="";
+		$name11="";
+	} // if
+	echo "<input type=\"radio\" name=\"companytyp\" value=\"dropdown\" $companytypdropdownsel>";
+	echo "<select name=\"companyid\">";
+	$res12query="SELECT companyid, company FROM tblcompany WHERE company<>'' ORDER BY company ASC";
+	$result12=""; $found12=0; $ctr12=0;
+	$result12=$dbh2->query($res12query);
+	if($companyid11==0) { echo "<option value=''>-</option>"; }
+	if($result12->num_rows>0) {
+		while($myrow12=$result12->fetch_assoc()) {
+		$found12 = 1;
+		$companyid12 = $myrow12['companyid'];
+		$company12 = $myrow12['company'];
+		if($companyid11==$companyid12) { $companyidsel="selected"; } else { $companyidsel=""; } // if
+		echo "<option value=\"$companyid12\" $companyidsel>$company12</option>";
+		} // while
+	} // if
+	echo "</select>";
+	echo "<br>";
+	echo "<input type=\"radio\" name=\"companytyp\" value=\"manual\" $companytypmanualsel>";
+	echo "<input size=\"60\" name=\"company\" value=\"$name11\">";
+	echo "</td></tr>";
+	echo "<tr><th align=\"right\">level</th><td><input type=\"number\" min=\"0\" max=\"3\" name=\"tablevel\" value=\"$level11\"></td></tr>";
+	echo "<tr><th align=\"right\">sequence</th><td><input type=\"number\" min=\"10\" max=\"1000\" step=\"1\" name=\"seq\" value=\"$seq11\"></td></tr>";
+	echo "<tr><th align=\"right\">nkconsolidated</th><td><input type=\"number\" min=\"0\" max=\"1\" name=\"nkconso\" value=\"$nkconso11\"></td></tr>";
+	echo "<tr><th align=\"right\">coderef</th><td><input name=\"codeprev\" value=\"$codeprev11\"></td></tr>";
+	echo "<tr><th align=\"right\">frmsheet</th><td><input name=\"strvssht\" value=\"$strvssht11\"></td></tr>";
+	echo "<tr><th align=\"right\">remarks</th><td><textarea cols=\"30\" rows\"3\" name=\"remarks\">$remarks11</textarea></td></tr>";
+	echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Update\"></td></tr>";
+	echo "</form>";
+
+// end contents here...
+
+  echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"mngfinprojrelref.php?loginid=$loginid\">Back</a></p>";
+
+     $resquery="UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid"; 
+		$result=$dbh2->query($resquery);
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+$dbh2->close();
+?> 

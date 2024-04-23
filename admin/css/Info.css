@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ADMIN DASHBAORD */
+
+#birthdays{
+    width: 36% !important;
+    padding: 0 2% 0 0 !important;
+}
+#holidays{
+    width: 32% !important;
+    padding: 0 1% 0 0 !important;
+}
+#scheduler{
+    width: 32% !important;
+    padding: 0 0 0 1% !important;
+}
+
+#fs-info{
+    font-size: 20px;
+    margin: 0;
+}
+#maintext-head{
+    height: 12%;
+    background-color: rgba(0, 86, 255, 0.5) !important;
+    border: 1px solid rgba(0, 86, 255, 0.2) !important;
+    border-radius: 15px !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+#P-content{
+    padding: 1.5% 0 !important;
+}
+#content{
+    width: 99.5% !important;
+    height: 55px;
+    background-color: #F5F5F5 !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 15px !important;
+}

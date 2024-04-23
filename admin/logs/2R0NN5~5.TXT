@@ -1,0 +1,52 @@
+Please find below details of your payroll salary for period September 16-30, 2021 is now available.
+
+cutoff period: 2021-09-01 -to- 2021-09-15
+
+Employee ID: 505
+Employee Name: Glenn Mijares
+Project: DAVAO BYPASS CS
+
+PAY RATE: P11000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11000.00
+
+Regular Overtime: P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P0.00
+
+Additional Income:
+Taxable Income:
+Project Allowance; Davao Bypass CS: 4000.00
+Project Allowance; AIIP Myanmar; Jan 2021: 3450.00
+TOTAL Taxable Income: P7450.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Per Diem; Sep 16-Sep 30: 5250.00
+Allowance for Vitamin: 5000.00
+TOTAL Non-Taxable Income: 11000.00
+
+GROSS PAY: P29450.00
+
+Withholding Tax: P1695.75
+SSS: P1125.00
+Philhealth: P330.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-IBIG Salary Loan: 887.97
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3200.75
+
+NET PAY: P26249.25
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

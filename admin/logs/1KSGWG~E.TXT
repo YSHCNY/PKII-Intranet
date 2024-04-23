@@ -1,0 +1,46 @@
+Please find below details of your payroll salary (payroll period December 01-15, 2014) withdrawable on December 13, 2014 (Saturday).
+
+cutoff period: 2014-11-16 -to- 2014-11-30
+
+Employee ID: 532
+Employee Name: Francis Palomique
+Project: GAE
+
+PAY RATE: P6435.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P6435.50
+
+Regular Overtime: 2907 (mins) - P3706.43
+Reg.Sun/Sat. OT: 1285 (mins) - P1735.34
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 141 (mins) - P14.38
+TOTAL OVERTIME: P5456.15
+
+Taxable Income:
+Incentive Allowance: 500.00
+TOTAL Taxable Income: P500.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12391.65
+
+Withholding Tax: P2056.16
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2106.16
+
+NET PAY: P10285.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

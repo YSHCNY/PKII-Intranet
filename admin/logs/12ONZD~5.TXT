@@ -1,0 +1,52 @@
+Please find below details of your payroll salary (March 01-15, 2010) is now available.
+
+cutoff period: 2010-02-16 -to- 2010-02-28
+
+Employee ID: 407
+Employee Name: Reynante Lorica
+Project: LIAISON
+
+PAY RATE: P5300.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5300.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 250.00
+TOTAL Taxable Income: 250.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5550.00
+
+Withholding Tax: 464.17
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+BDO Salary Loan - Anteng: 939.50
+Advances: 1000.00
+Pag-Ibig Multi-purpose Loan: 330.03
+Maxi Care for 2010: 705.49
+SSS Salary Loan: 575.00
+Philhealth Short: 12.50
+TOTAL Other Deductions: 3550.02
+
+TOTAL DEDUCTIONS: P4064.19
+
+NET PAY: P1485.81
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

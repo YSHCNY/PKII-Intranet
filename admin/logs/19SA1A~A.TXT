@@ -1,0 +1,49 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2012-10-01 -to- 2012-10-15
+
+Employee ID: 145
+Employee Name: Mercedita Aquino
+Project: LAND BANK
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 2289.6
+NET BASIC PAY: P7710.40
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2400.00
+TOTAL Taxable Income: 2400.00
+
+Non-Taxable Income:
+SSS Sickness Benefit: 6300.00
+TOTAL Non-Taxable Income: 6300.00
+
+GROSS PAY: P16410.40
+
+Withholding Tax: 542.85
+SSS: 500
+Philhealth: 212.50
+Pag-ibig: 50
+
+Other Deductions:
+Company Loan: 1666.67
+SSS Salary Loan: 525.00
+TOTAL Other Deductions: 2191.67
+
+TOTAL DEDUCTIONS: P3497.02
+
+NET PAY: P12913.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

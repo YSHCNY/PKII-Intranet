@@ -1,0 +1,50 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$finbalshtrefid = $_GET['bsid'];
+
+$tabpos = $_POST['tabpos'];
+$acctname = trim($_POST['acctname']);
+$seq = $_POST['seq'];
+$glcodefr = trim($_POST['glcodefr']);
+$glcodeto = trim($_POST['glcodeto']);
+$glrefver = $_POST['glrefver'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if($found == 1)
+{
+//     include ("header.php");
+//     include ("sidebar.php");
+
+  // update glcode
+    $result12 = mysql_query("UPDATE tblfinbalshtref SET timestamp=\"$now\", loginid=$loginid, tabpos=$tabpos, acctname=\"$acctname\", glcodefr=\"$glcodefr\", glcodeto=\"$glcodeto\", glrefver=$glrefver, seq=$seq WHERE finbalshtrefid=$finbalshtrefid", $dbh);
+
+  // create log
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminuid - balanche sheet account code modified. tab:$tabpos name:$acctname glcodes:$glcodefr-to-$glcodeto ver:$glrefver seq:$seq for PKII Voucher module";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+  header("Location: mngfinbalshtref.php?loginid=$loginid&ver=$glrefver");
+  exit;
+
+//     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 
+

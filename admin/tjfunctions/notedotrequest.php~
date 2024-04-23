@@ -1,0 +1,43 @@
+<?php
+//
+// notedotrequest.php
+// fr ../mngotrequest.php
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$action = (isset($_POST['id'])) ? $_POST['id'] :'';
+$idot = (isset($_POST['idot'])) ? $_POST['idot'] :'';
+
+include("../db1.php");
+
+$found=0;
+
+if($loginid != "") {
+     include("../logincheck.php");
+}
+
+if ($found == 1) {
+     include ("../addons.php");
+//     include ("header.php");
+//     include ("sidebar.php");
+
+
+$resquery="UPDATE tblhrtaotreq SET timestamp='$now', loginid=$loginid, notedctr=1, notedstamp='$now', notedbyid=$loginid, notedbyempid='$employeeid0', statusta=3 WHERE idhrtaotreq=".$idot."";
+// $result=$dbh2->query($resquery);
+
+// $result = mysql_query("UPDATE tblhrtaotreq SET timestamp='$now', loginid=$loginid, notedctr=1, notedstamp='$now', notedbyid=$loginid, notedbyempid='$employeeid0', statusta=3 WHERE idhrtaotreq=".$action, $dbh);
+// mysql_close($dbh);
+
+  // insert log
+  $logdetails="OT request with id:$idot has been NOTED by id:$loginid, empid:$employeeid0";
+  $res16query="INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp='$now', adminuid='$adminuid', adminlogdetails='$logdetails'";
+	// $result16=$dbh2->query($res16query);
+
+echo "<p>res:$resquery</p>";
+echo "<h4 class='text-success'>Noted!</h4>";
+echo "<p><a href='../mngotrequest.php?loginid=$loginid' class='btn btn-light'>back</a></p>";
+
+} // if
+
+$dbh2->close();
+?>

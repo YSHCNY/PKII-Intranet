@@ -1,0 +1,47 @@
+Please find below details of your payroll salary (payroll period September 16-30) is now available.
+
+cutoff period: 2015-09-01 -to- 2015-09-15
+
+Employee ID: 529
+Employee Name: Anthony Dacasin
+Project: NISRIP
+
+PAY RATE: P7654.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P7654.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+Project Allowance: 1200.00
+TOTAL Taxable Income: P3000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10654.50
+
+Withholding Tax: P1621.88
+SSS: P581.30
+Philhealth: P187.50
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2440.68
+
+NET PAY: P8213.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

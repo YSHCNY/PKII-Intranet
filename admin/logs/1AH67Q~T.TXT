@@ -1,0 +1,83 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 183.30
+A/P Others - SSS: 216.70
+A/P Others - SSS: 33.40
+Adjustment of Basic Pay: 1166.67
+A/P Others - Philhealth: 12.50
+Tax Refund for 2004: 1623.53
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 450.00
+A/P Others - Philhealth: 162.50
+A/P Others - Pag-Ibig: 100.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 75.00
+Tax Refund: 5594.12
+Meal Allowance: 1800.00
+Meal Allowance: 540.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 16.70
+Tax Refund for 2007: 2319.97
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Pag-Ibig Loan: 874.65
+Tax Refund for 2009: 6404.94
+APO - Pag Ibig Loan: 1911.94
+Diminish: 9000.00
+Refund of Pag-Ibig 1: 200.00
+Refund of Pag-Ibig 2: 250.00
+Employment Benefits: 1000.00
+Refund of SSS Loan Aug: 1384.36
+Refund of SSS Loan Sep: 692.18
+Refund of overdeduct Adv: 44.47
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P11000.00
+
+Withholding Tax: P520.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Insular Life: 75.00
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P325.00
+
+TOTAL DEDUCTIONS: P895.77
+
+NET PAY: P10104.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

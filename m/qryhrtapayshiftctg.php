@@ -1,0 +1,23 @@
+<?php
+//
+// qryhrtapayshiftctg.php
+// fr: ../vc/mhrotfrmreq.php
+//
+
+require '../includes/dbh.php';
+
+	$res12query="SELECT shiftin, shiftout, lunchstart, lunchend FROM tblhrtapayshiftctg WHERE idhrtapayshiftctg=$idhrtapayshiftctg11 LIMIT 1";
+	$result12=""; $found12=0;
+	$result12=$dbh->query($res12query);
+	if($result12->num_rows>0) {
+		while($myrow12 = $result12->fetch_assoc()) {
+		$found12 = 1;
+		$shiftin12 = $myrow12['shiftin'];
+		$shiftout12 = $myrow12['shiftout'];
+		$lunchstart12 = $myrow12['lunchstart'];
+		$lunchend12 = $myrow12['lunchend'];
+		} // while
+	} // if
+		
+$dbh->close();
+?>

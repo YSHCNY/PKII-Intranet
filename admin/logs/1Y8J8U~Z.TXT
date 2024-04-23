@@ -1,0 +1,47 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2012-06-16 -to- 2012-06-30
+
+Employee ID: 208
+Employee Name: Mariano Sartaguda
+Project: GAE
+
+PAY RATE: P11500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P11500.00
+
+Withholding Tax: 1833.25
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Tax Deficit for 2011: 769.67
+TOTAL Other Deductions: 1294.67
+
+TOTAL DEDUCTIONS: P3177.92
+
+NET PAY: P8322.08
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

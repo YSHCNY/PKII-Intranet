@@ -1,0 +1,49 @@
+Please find below details of your payroll salary for period February 16-28, 2011 is now available.
+
+cutoff period: 2011-02-01 -to- 2011-02-15
+
+Employee ID: 558
+Employee Name: Dorcas Mae Padilla
+Project: LIAISON
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 429.3
+NET BASIC PAY: P9570.70
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Refund of Late: 429.30
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9570.70
+
+Withholding Tax: 1350.92
+SSS: 500
+Philhealth: 237.50
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 563.55
+SSS Salary Loan: 525.00
+Tax Deficit for Year 2010: 700.15
+TOTAL Other Deductions: 1788.70
+
+TOTAL DEDUCTIONS: P3927.12
+
+NET PAY: P5643.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

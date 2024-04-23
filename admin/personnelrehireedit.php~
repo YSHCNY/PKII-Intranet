@@ -1,0 +1,313 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$employeeid = $_GET['eid'];
+$emprehiredid14 = $_GET['rhid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+?>
+<script language="JavaScript" src="ts_picker.js"></script>
+<?
+     echo "<p><font size=1>Directory >> Manage Personnel >> Edit re-employment details</font></p>";
+
+     echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><td bgcolor=blue colspan=2><font color=white><b>Edit re-employment details</b></font></td></tr>";
+
+     if ($employeeid == '')
+     {
+	echo "<tr><td colspan=2><font color=red><b>Sorry. No data available</b></font></td></tr>";
+     }
+     else
+     {
+
+	$result = mysql_query("SELECT name_last, name_first, name_middle, position FROM tblcontact WHERE employeeid = '$employeeid'", $dbh);
+	while ($myrow = mysql_fetch_row($result))
+	{
+	  $found = 1;
+	  $name_last = $myrow[0];
+	  $name_first = $myrow[1];
+	  $name_middle = $myrow[2];
+	  $position = $myrow[3];
+	}
+
+	echo "<tr><td colspan=2>For: $employeeid - <b>$name_last, $name_first $name_middle[0]</b> - $position</td></tr>";
+
+// start edit new project assignment
+
+	echo "<form action=\"personnelrehireedit2.php?loginid=$loginid&eid=$employeeid&rhid=$emprehiredid14\" method=\"post\" name=\"empchgrehire\">";
+
+	include("datetimenow.php");
+
+	$result15 = mysql_query("SELECT daterehired, dateresigned, remarks FROM tblemprehire WHERE employeeid=\"$employeeid\" AND emprehireid=$emprehiredid14", $dbh);
+	while($myrow15 = mysql_fetch_row($result15))
+	{
+	  $found15 = 1;
+	  $daterehired15 = $myrow15[0];
+	  $dateresigned15 = $myrow15[1];
+	  $remarks15 = $myrow15[2];
+	}
+
+	echo "<tr><th align=\"right\">Re-hire date</th><td>";
+	/*	
+    $cutarrdaterehired = split("-", $daterehired15);
+    $daterehiredyyyy = $cutarrdaterehired[0];
+    $daterehiredmmm = $cutarrdaterehired[1];
+    $daterehireddd = $cutarrdaterehired[2];
+    echo "<input name=\"fromyear\" size=\"4\" value=\"$daterehiredyyyy\">";
+
+    $selectjan=""; $selectfeb=""; $selectmar=""; $selectapr=""; $selectmay=""; $selectjun="";
+    $selectjul=""; $selectaug=""; $selectsep=""; $selectoct=""; $selectnov=""; $selectdec="";
+    if($daterehiredmmm == "01") { $selectjan = "selected"; }
+    else if($daterehiredmmm == "02") { $selectfeb = "selected"; }
+    else if($daterehiredmmm == "03") { $selectmar = "selected"; }
+    else if($daterehiredmmm == "04") { $selectapr = "selected"; }
+    else if($daterehiredmmm == "05") { $selectmay = "selected"; }
+    else if($daterehiredmmm == "06") { $selectjun = "selected"; }
+    else if($daterehiredmmm == "07") { $selectjul = "selected"; }
+    else if($daterehiredmmm == "08") { $selectaug = "selected"; }
+    else if($daterehiredmmm == "09") { $selectsep = "selected"; }
+    else if($daterehiredmmm == "10") { $selectoct = "selected"; }
+    else if($daterehiredmmm == "11") { $selectnov = "selected"; }
+    else if($daterehiredmmm == "12") { $selectdec = "selected"; }
+    else if($daterehiredmmm == "") { $selectmonth = "selected"; }
+    else { $selectmonth = "selected"; }
+    echo "<select name=\"frommonth\">";
+      echo "<option value=\"01\" $selectjan>Jan</option>";
+      echo "<option value=\"02\" $selectfeb>Feb</option>";
+      echo "<option value=\"03\" $selectmar>Mar</option>";
+      echo "<option value=\"04\" $selectapr>Apr</option>";
+      echo "<option value=\"05\" $selectmay>May</option>";
+      echo "<option value=\"06\" $selectjun>Jun</option>";
+      echo "<option value=\"07\" $selectjul>Jul</option>";
+      echo "<option value=\"08\" $selectaug>Aug</option>";
+      echo "<option value=\"09\" $selectsep>Sep</option>";
+      echo "<option value=\"10\" $selectoct>Oct</option>";
+      echo "<option value=\"11\" $selectnov>Nov</option>";
+      echo "<option value=\"12\" $selectdec>Dec</option>";
+    echo "</select>";
+
+    $select01=""; $select02=""; $select03=""; $select04=""; $select05=""; $select06=""; $select07=""; $select08=""; $select09=""; $select10="";
+    $select11=""; $select12=""; $select13=""; $select14=""; $select15=""; $select16=""; $select17=""; $select18=""; $select19=""; $select20="";
+    $select21=""; $select22=""; $select23=""; $select24=""; $select25=""; $select26=""; $select27=""; $select28=""; $select29=""; $select30=""; $select31="";
+    if($datehireddd == "01") { $select01 = "selected"; }
+    else if ($daterehireddd == "02") { $select02 = "selected"; }
+    else if ($daterehireddd == "03") { $select03 = "selected"; }
+    else if ($daterehireddd == "04") { $select04 = "selected"; }
+    else if ($daterehireddd == "05") { $select05 = "selected"; }
+    else if ($daterehireddd == "06") { $select06 = "selected"; }
+    else if ($daterehireddd == "07") { $select07 = "selected"; }
+    else if ($daterehireddd == "08") { $select08 = "selected"; }
+    else if ($daterehireddd == "09") { $select09 = "selected"; }
+    else if ($daterehireddd == "10") { $select10 = "selected"; }
+    else if ($daterehireddd == "11") { $select11 = "selected"; }
+    else if ($daterehireddd == "12") { $select12 = "selected"; }
+    else if ($daterehireddd == "13") { $select13 = "selected"; }
+    else if ($daterehireddd == "14") { $select14 = "selected"; }
+    else if ($daterehireddd == "15") { $select15 = "selected"; }
+    else if ($daterehireddd == "16") { $select16 = "selected"; }
+    else if ($daterehireddd == "17") { $select17 = "selected"; }
+    else if ($daterehireddd == "18") { $select18 = "selected"; }
+    else if ($daterehireddd == "19") { $select19 = "selected"; }
+    else if ($daterehireddd == "20") { $select20 = "selected"; }
+    else if ($daterehireddd == "21") { $select21 = "selected"; }
+    else if ($daterehireddd == "22") { $select22 = "selected"; }
+    else if ($daterehireddd == "23") { $select23 = "selected"; }
+    else if ($daterehireddd == "24") { $select24 = "selected"; }
+    else if ($daterehireddd == "25") { $select25 = "selected"; }
+    else if ($daterehireddd == "26") { $select26 = "selected"; }
+    else if ($daterehireddd == "27") { $select27 = "selected"; }
+    else if ($daterehireddd == "28") { $select28 = "selected"; }
+    else if ($daterehireddd == "29") { $select29 = "selected"; }
+    else if ($daterehireddd == "30") { $select30 = "selected"; }
+    else if ($daterehireddd == "31") { $select31 = "selected"; }
+    else if ($daterehireddd = "") { $selectday = "selected"; }
+    else { $selectday = "selected"; }
+    echo "<select name=\"fromday\">";
+      echo "<option value=\"01\" $select01>01</option>";
+      echo "<option value=\"02\" $select02>02</option>";
+      echo "<option value=\"03\" $select03>03</option>";
+      echo "<option value=\"04\" $select04>04</option>";
+      echo "<option value=\"05\" $select05>05</option>";
+      echo "<option value=\"06\" $select06>06</option>";
+      echo "<option value=\"07\" $select07>07</option>";
+      echo "<option value=\"08\" $select08>08</option>";
+      echo "<option value=\"09\" $select09>09</option>";
+      echo "<option value=\"10\" $select10>10</option>";
+      echo "<option value=\"11\" $select11>11</option>";
+      echo "<option value=\"12\" $select12>12</option>";
+      echo "<option value=\"13\" $select13>13</option>";
+      echo "<option value=\"14\" $select14>14</option>";
+      echo "<option value=\"15\" $select15>15</option>";
+      echo "<option value=\"16\" $select16>16</option>";
+      echo "<option value=\"17\" $select17>17</option>";
+      echo "<option value=\"18\" $select18>18</option>";
+      echo "<option value=\"19\" $select19>19</option>";
+      echo "<option value=\"20\" $select20>20</option>";
+      echo "<option value=\"21\" $select21>21</option>";
+      echo "<option value=\"22\" $select22>22</option>";
+      echo "<option value=\"23\" $select23>23</option>";
+      echo "<option value=\"24\" $select24>24</option>";
+      echo "<option value=\"25\" $select25>25</option>";
+      echo "<option value=\"26\" $select26>26</option>";
+      echo "<option value=\"27\" $select27>27</option>";
+      echo "<option value=\"28\" $select28>28</option>";
+      echo "<option value=\"29\" $select29>29</option>";
+      echo "<option value=\"30\" $select30>30</option>";
+      echo "<option value=\"31\" $select31>31</option>";
+    echo "</select>";
+	*/
+	echo "<input type=\"date\" name=\"daterehire\" size=\"10\" value=\"$daterehired15\">";
+	?>
+	<a href="javascript:show_calendar('document.empchgrehire.daterehire', document.empchgrehire.daterehire.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	<?
+	echo "</td></tr>";
+
+	echo "<tr><th align=\"right\">Resigned date</th><td>";
+	/*
+    $cutarrdateresigned = split("-", $dateresigned15);
+    $dateresignedyyyy = $cutarrdateresigned[0];
+    $dateresignedmmm = $cutarrdateresigned[1];
+    $dateresigneddd = $cutarrdateresigned[2];
+    echo "<input name=\"toyear\" size=\"4\" value=\"$dateresignedyyyy\">";
+
+    $selectjan=""; $selectfeb=""; $selectmar=""; $selectapr=""; $selectmay=""; $selectjun="";
+    $selectjul=""; $selectaug=""; $selectsep=""; $selectoct=""; $selectnov=""; $selectdec="";
+    if($dateresignedmmm == "01") { $selectjan = "selected"; }
+    else if($dateresignedmmm == "02") { $selectfeb = "selected"; }
+    else if($dateresignedmmm == "03") { $selectmar = "selected"; }
+    else if($dateresignedmmm == "04") { $selectapr = "selected"; }
+    else if($dateresignedmmm == "05") { $selectmay = "selected"; }
+    else if($dateresignedmmm == "06") { $selectjun = "selected"; }
+    else if($dateresignedmmm == "07") { $selectjul = "selected"; }
+    else if($dateresignedmmm == "08") { $selectaug = "selected"; }
+    else if($dateresignedmmm == "09") { $selectsep = "selected"; }
+    else if($dateresignedmmm == "10") { $selectoct = "selected"; }
+    else if($dateresignedmmm == "11") { $selectnov = "selected"; }
+    else if($dateresignedmmm == "12") { $selectdec = "selected"; }
+    else if($dateresignedmmm == "") { $selectmonth = "selected"; }
+    else { $selectmonth = "selected"; }
+    echo "<select name=\"tomonth\">";
+      echo "<option value=\"00\" $selectmonth>Month</option>";
+      echo "<option value=\"01\" $selectjan>Jan</option>";
+      echo "<option value=\"02\" $selectfeb>Feb</option>";
+      echo "<option value=\"03\" $selectmar>Mar</option>";
+      echo "<option value=\"04\" $selectapr>Apr</option>";
+      echo "<option value=\"05\" $selectmay>May</option>";
+      echo "<option value=\"06\" $selectjun>Jun</option>";
+      echo "<option value=\"07\" $selectjul>Jul</option>";
+      echo "<option value=\"08\" $selectaug>Aug</option>";
+      echo "<option value=\"09\" $selectsep>Sep</option>";
+      echo "<option value=\"10\" $selectoct>Oct</option>";
+      echo "<option value=\"11\" $selectnov>Nov</option>";
+      echo "<option value=\"12\" $selectdec>Dec</option>";
+    echo "</select>";
+
+    $select01=""; $select02=""; $select03=""; $select04=""; $select05=""; $select06=""; $select07=""; $select08=""; $select09=""; $select10="";
+    $select11=""; $select12=""; $select13=""; $select14=""; $select15=""; $select16=""; $select17=""; $select18=""; $select19=""; $select20="";
+    $select21=""; $select22=""; $select23=""; $select24=""; $select25=""; $select26=""; $select27=""; $select28=""; $select29=""; $select30=""; $select31="";
+    if($dateresigneddd == "01") { $select01 = "selected"; }
+    else if ($dateresigneddd == "02") { $select02 = "selected"; }
+    else if ($dateresigneddd == "03") { $select03 = "selected"; }
+    else if ($dateresigneddd == "04") { $select04 = "selected"; }
+    else if ($dateresigneddd == "05") { $select05 = "selected"; }
+    else if ($dateresigneddd == "06") { $select06 = "selected"; }
+    else if ($dateresigneddd == "07") { $select07 = "selected"; }
+    else if ($dateresigneddd == "08") { $select08 = "selected"; }
+    else if ($dateresigneddd == "09") { $select09 = "selected"; }
+    else if ($dateresigneddd == "10") { $select10 = "selected"; }
+    else if ($dateresigneddd == "11") { $select11 = "selected"; }
+    else if ($dateresigneddd == "12") { $select12 = "selected"; }
+    else if ($dateresigneddd == "13") { $select13 = "selected"; }
+    else if ($dateresigneddd == "14") { $select14 = "selected"; }
+    else if ($dateresigneddd == "15") { $select15 = "selected"; }
+    else if ($dateresigneddd == "16") { $select16 = "selected"; }
+    else if ($dateresigneddd == "17") { $select17 = "selected"; }
+    else if ($dateresigneddd == "18") { $select18 = "selected"; }
+    else if ($dateresigneddd == "19") { $select19 = "selected"; }
+    else if ($dateresigneddd == "20") { $select20 = "selected"; }
+    else if ($dateresigneddd == "21") { $select21 = "selected"; }
+    else if ($dateresigneddd == "22") { $select22 = "selected"; }
+    else if ($dateresigneddd == "23") { $select23 = "selected"; }
+    else if ($dateresigneddd == "24") { $select24 = "selected"; }
+    else if ($dateresigneddd == "25") { $select25 = "selected"; }
+    else if ($dateresigneddd == "26") { $select26 = "selected"; }
+    else if ($dateresigneddd == "27") { $select27 = "selected"; }
+    else if ($dateresigneddd == "28") { $select28 = "selected"; }
+    else if ($dateresigneddd == "29") { $select29 = "selected"; }
+    else if ($dateresigneddd == "30") { $select30 = "selected"; }
+    else if ($dateresigneddd == "31") { $select31 = "selected"; }
+    else if ($dateresigneddd = "") { $selectday = "selected"; }
+    else { $selectday = "selected"; }
+    echo "<select name=\"today\">";
+      echo "<option value=\"00\" $selectday>Day</option>";
+      echo "<option value=\"01\" $select01>01</option>";
+      echo "<option value=\"02\" $select02>02</option>";
+      echo "<option value=\"03\" $select03>03</option>";
+      echo "<option value=\"04\" $select04>04</option>";
+      echo "<option value=\"05\" $select05>05</option>";
+      echo "<option value=\"06\" $select06>06</option>";
+      echo "<option value=\"07\" $select07>07</option>";
+      echo "<option value=\"08\" $select08>08</option>";
+      echo "<option value=\"09\" $select09>09</option>";
+      echo "<option value=\"10\" $select10>10</option>";
+      echo "<option value=\"11\" $select11>11</option>";
+      echo "<option value=\"12\" $select12>12</option>";
+      echo "<option value=\"13\" $select13>13</option>";
+      echo "<option value=\"14\" $select14>14</option>";
+      echo "<option value=\"15\" $select15>15</option>";
+      echo "<option value=\"16\" $select16>16</option>";
+      echo "<option value=\"17\" $select17>17</option>";
+      echo "<option value=\"18\" $select18>18</option>";
+      echo "<option value=\"19\" $select19>19</option>";
+      echo "<option value=\"20\" $select20>20</option>";
+      echo "<option value=\"21\" $select21>21</option>";
+      echo "<option value=\"22\" $select22>22</option>";
+      echo "<option value=\"23\" $select23>23</option>";
+      echo "<option value=\"24\" $select24>24</option>";
+      echo "<option value=\"25\" $select25>25</option>";
+      echo "<option value=\"26\" $select26>26</option>";
+      echo "<option value=\"27\" $select27>27</option>";
+      echo "<option value=\"28\" $select28>28</option>";
+      echo "<option value=\"29\" $select29>29</option>";
+      echo "<option value=\"30\" $select30>30</option>";
+      echo "<option value=\"31\" $select31>31</option>";
+    echo "</select>";
+	*/
+	echo "<input type=\"date\" name=\"dateresigned\" size=\"10\" value=\"$dateresigned15\">";
+	?>
+	<a href="javascript:show_calendar('document.empchgrehire.dateresigned', document.empchgrehire.dateresigned.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	<?
+	echo "</td></tr>";
+
+	echo "<tr><th align=\"right\">Remarks</th><td><textarea rows=\"3\" cols=\"30\" name=\"remarks\">$remarks15</textarea></td></tr>";
+	echo "<tr><td colspan=\"2\">Note: If personnel is on active status,<br>please change date to '0000-00-00'<br>Thank you.</td></tr>";
+	echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Update\"></td></tr>";
+     }
+
+	echo "</table>";
+
+     // echo "<p><a href=personneledit2.php?loginid=$loginid&pid=$employeeid>Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

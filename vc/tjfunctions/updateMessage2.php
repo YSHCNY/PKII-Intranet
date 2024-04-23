@@ -1,0 +1,21 @@
+<?php 
+$action = $_POST['id'];
+$message = $_POST['message'];
+
+include("../../admin/db1.php");
+$result = mysql_query("UPDATE tblhrtalvreq SET comments = '".$message."' WHERE idhrtalvreq = ".$action, $dbh);
+mysql_close($dbh);
+
+// include("../../admin/db1.php");
+// $resquery = "UPDATE tblhrtalvreq SET comments=\"$message\" WHERE idhrtalvreq=$action";
+// $result = mysql_query("$resquery", $dbh);
+// $result=$dbh2->query($resquery);
+// mysql_close($dbh);
+// $dbh2->close();
+
+// echo "<p>rslt:$result<br>resqry:$resquery</p>";
+// include("../../admin/db1.php");
+// $result = mysql_query("UPDATE tblhrtaotreq SET comments = '".$message."' WHERE idhrtaotreq = ".$action, $dbh);
+// mysql_close($dbh);
+
+?>

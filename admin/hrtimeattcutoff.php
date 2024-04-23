@@ -1,0 +1,153 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$idhrtapaygrp0 = (isset($_GET['idpg'])) ? $_GET['idpg'] :'';
+
+$idhrtapaygrp = (isset($_POST['idhrtapaygrp'])) ? $_POST['idhrtapaygrp'] :'';
+
+if($idhrtapaygrp0 != "") { $idhrtapaygrp=$idhrtapaygrp0; }
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+?>
+<script language="JavaScript" src="ts_picker.js"></script>
+<?php
+// edit body-header
+     echo "<p><font size=1>Modules >> Time and Attendance >> Cut-off period</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+		 echo "<tr><th colspan=\"2\">Define cut-off period</th></tr>";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"2\">";
+
+  if($accesslevel >= 3)
+  {
+	echo "<table class=\"fin\" border=\"0\">";
+	echo "<tr>";
+
+		echo "<form action=\"hrtimeattcutoff.php?loginid=$loginid\" method=\"post\" name=\"modhrtacutoff\">";
+		// paygroupname dropdown list
+		echo "<td colspan=\"4\">";
+		echo "<select name=\"idhrtapaygrp\" onchange=\"this.form.submit()\">";
+		if($idhrtapaygrp == "") { echo "<option value=''>select paygroup</option>"; }
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY datecreated DESC", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11[0];
+			$paygroupname11 = $myrow11[1];
+			if($idtblhrtapaygrp11 == $idhrtapaygrp) { $idhrtapgsel="selected"; } else { $idhrtapgsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idhrtapgsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select>";
+		// echo "<input type=\"submit\">";
+		echo "&nbsp;<button type=\"submit\" class=\"btn btn-primary\">Submit</button>";
+		echo "</td>";
+		echo "</form>";
+		echo "</tr>";
+
+	//
+	// add function
+	//
+		echo "<tr>";
+		echo "<form action=\"hrtimeattcutoffadd.php?loginid=$loginid\" method=\"post\" name=\"modhrtacutoffadd\">";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("SELECT paygroupname FROM tblhrtapaygrp WHERE idtblhrtapaygrp=$idhrtapaygrp", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12 = 1;
+			$paygroupname12 = $myrow12[0];
+			}
+		}
+		echo "<input type=\"hidden\" name=\"idhrtapaygrp\" value=\"$idhrtapaygrp\">";
+		echo "<td><input name=\"paygroupname\" value=\"$paygroupname12\"></td>";
+		// cutstart input
+    echo "<td>";
+		echo "Cut-off start:<input type=\"date\" size=\"10\" name=\"cutstart\" value=\"$datenow\">";
+		?>
+	  <a href="javascript:show_calendar('document.modhrtacutoffadd.cutstart', document.modhrtacutoffadd.cutstart.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	  <?php
+		echo "</td>";
+
+		// cutstart input
+    echo "<td>";
+		echo "Cut-off end:<input type=\"date\" size=\"10\" name=\"cutend\" value=\"$datenow\">";
+		?>
+	  <a href="javascript:show_calendar('document.modhrtacutoffadd.cutend', document.modhrtacutoffadd.cutend.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	  <?php
+		echo "</td>";
+
+		// submit button
+		echo "<td>";
+		// echo "<input type=\"submit\" value=\"add\">";
+		echo "<button type=\"submit\" class=\"btn btn-success\">Add new cut-off</button>";
+    echo "</td>";
+
+		echo "</form>";
+	echo "</tr>";
+	echo "</table>";
+  } // endif accesslevel >= 4
+
+  echo "</td></tr>";
+
+	//
+	// list defined cutoff
+	//
+	if($idhrtapaygrp != "") {
+	echo "<tr><td colspan=\"2\">";
+	echo "<table width=\"100%\" class=\"fin\">";
+	// query cutoff
+	$result14=""; $found14=0;
+	$result14 = mysql_query("SELECT tblhrtacutoff.idhrtacutoff, tblhrtacutoff.cutstart, tblhrtacutoff.cutend, tblhrtacutoff.remarks, tblhrtapaygrp.paygroupname FROM tblhrtacutoff LEFT JOIN tblhrtapaygrp ON tblhrtacutoff.idhrtapaygrp=tblhrtapaygrp.idtblhrtapaygrp WHERE tblhrtapaygrp.idtblhrtapaygrp=$idhrtapaygrp AND status=1 ORDER BY cutstart DESC", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$idhrtacutoff14 = $myrow14[0];
+		$cutstart14 = $myrow14[1];
+		$cutend14 = $myrow14[2];
+		$remarks14 = $myrow14[3];
+		$paygroupname14 = $myrow14[4];
+		$ctr14 = $ctr14 + 1;
+		echo "<tr><td>".date("Y-M-d", strtotime($cutstart14))."</td><td>-to-</td><td>".date("Y-M-d", strtotime($cutend14))."</td>";
+		echo "<td>$paygroupname14</td>";
+		echo "<td><button type=\"button\" class=\"btn btn-warning\"><a href=\"hrtimeattcutoffedit.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">Edit_list</a></button></td>";
+		echo "<td><button typee=\"button\" class=\"btn btn-danger\"><a href=\"hrtimeattcutoffdel.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">del</a></button></td>";
+		echo "</tr>";
+		}
+	}
+	echo "</table>";
+	echo "</td></tr>";
+	}
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><button type=\"button\" class=\"btn btn-default\"><a href=\"hrtimeatt.php?loginid=$loginid\">Back</a></button></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

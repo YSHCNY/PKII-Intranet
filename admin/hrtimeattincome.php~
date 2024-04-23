@@ -1,0 +1,264 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$idpaygroup0 = $_GET['idpg'];
+$employeeid0 = $_GET['eid'];
+
+$idpaygroup = $_POST['idpaygroup'];
+$employeeid = $_POST['empid'];
+
+if($idpaygroup0 != "") { $idpaygroup=$idpaygroup0; }
+if($employeeid0 != "") { $employeeid=$employeeid0; }
+
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+?>
+<script language="JavaScript" src="ts_picker.js"></script>
+<?
+// edit body-header
+     echo "<p><font size=1>Modules >> Time and Attendance >> Allowances</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"2\">";
+
+  if($accesslevel >= 4)
+  {
+	echo "<table class=\"fin\" border=\"0\">";
+	echo "<tr>";
+		echo "<form action=\"hrtimeattincome.php?loginid=$loginid\" method=\"post\" name=\"modhrtaindivinfo\">";
+
+		// pay group name dropdown
+    echo "<td><select name=\"idpaygroup\" onchange=\"this.form.submit()\">";
+		echo "<option value=''>select paygroup</option>";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY timestamp DESC", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11[0];
+			$paygroupname11 = $myrow11[1];
+			if($idtblhrtapaygrp11 == $idpaygroup) { $idpaygrpsel="selected"; } else { $idpaygrpsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idpaygrpsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select></td>";
+
+		// individual personnel dropdown
+		if($idpaygroup != "") {
+		echo "<td>";
+		echo "<select name=\"empid\" onchange=\"this.form.submit()\">";
+		echo "<option value=''>select personnel</option>";
+		$result12=""; $found12=0;
+		$result12 = mysql_query("SELECT tblhrtapaygrpemplst.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtapaygrpemplst INNER JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblcontact.contact_type=\"personnel\"", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12 = 1;
+			$employeeid12 = $myrow12[0];
+			$name_last12 = $myrow12[1];
+			$name_first12 = $myrow12[2];
+			$name_middle12 = $myrow12[3];
+			if($employeeid12 == $employeeid) { $empidsel="selected"; } else { $empidsel=""; }
+			echo "<option value=\"$employeeid12\" $empidsel>$employeeid12 - $name_last12, $name_first12 $name_middle12[0]</option>";
+			}
+		}
+		echo "</select>";
+		echo "</td>";
+		}
+
+		// submit button
+		echo "<td>";
+		echo "<input type=\"submit\">";
+    echo "</td>";
+
+		echo "</form>";
+	echo "</tr>";
+	echo "</table>";
+  } // endif accesslevel >= 4
+
+  echo "</td></tr>";
+
+	//
+	// display individual info based on selected dropdown personnel
+	//
+	if($employeeid != "") {
+	echo "<tr><td colspan=\"2\">";
+	echo "<table width=\"100%\" class=\"fin\">";
+	// query personnel
+	$result14=""; $found14=0;
+	$result14 = mysql_query("SELECT tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.contact_gender, tblhrtapaygrpemplst.idhrtapayshiftctg, tblhrtapaygrpemplst.bankacctid, tblhrtapaygrpemplst.restday FROM tblhrtapaygrpemplst INNER JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid\" AND tblcontact.contact_type=\"personnel\"", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$name_last14 = $myrow14[0];
+		$name_first14 = $myrow14[1];
+		$name_middle14 = $myrow14[2];
+		$contact_gender14 = $myrow14[3];
+		$idhrtapayshiftctg14 = $myrow14[4];
+		$bankacctid14 = $myrow14[5];
+		$restday14 = $myrow14[6];
+		}
+	}
+
+	echo "<tr><th colspan=\"2\">Details of additional income for personnel:<br>$employeeid - ".strtoupper($name_last14).",&nbsp;".strtoupper($name_first14)."&nbsp;".strtoupper($name_middle14)."</th></tr>";
+
+	echo "<tr><td colspan=\"2\" align=\"center\">";
+
+	// add income screen
+	echo "<table class=\"fin\">";
+	echo "<form action=\"hrtimeattincadd.php?loginid=$loginid&idpg=$idpaygroup\" method=\"post\" name=\"modhrtaincadd\">";
+	echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
+	echo "<tr><td>";
+	echo "Name&nbsp;<input name=\"incomename\" size=\"30\" value=\"name of income\">";
+	echo "</td>";
+	echo "<td>";
+	echo "Amount&nbsp;<input type=\"currency\" name=\"amount\" size=\"10\" value=\"0.00\">";
+	echo "</td>";
+	echo "<td>";
+	echo "<input type=\"date\" name=\"datestart\" size=\"10\" value=\"$datenow\">";
+		?>
+	  <a href="javascript:show_calendar('document.modhrtaincadd.datestart', document.modhrtaincadd.datestart.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	  <?
+	echo "From";
+	echo "<br>";
+	echo "<input type=\"date\" name=\"dateend\" size=\"10\" value=\"$datenow\">";
+		?>
+	  <a href="javascript:show_calendar('document.modhrtaincadd.dateend', document.modhrtaincadd.dateend.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+	  <?
+	echo "To";
+	echo "</td>";
+	echo "</tr>";
+	echo "<tr><td>";
+	echo "<input type=\"checkbox\" name=\"nontaxable\">Non-taxable";
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo "<input type=\"checkbox\" name=\"vatinclusive\">VAT inclusive";
+	echo "</td>";
+	echo "<td>";
+	echo "Schedule&nbsp;<select name=\"schedule\">";
+	echo "<option value=\"all\">all</option>";
+	echo "<option value=\"15th\">15th only</option>";
+	echo "<option value=\"30th\">30th only</option>";
+	echo "</select>";
+	echo "</td>";
+	echo "<td>";
+	echo "<input type=\"checkbox\" name=\"status\" checked>Active status";
+	echo "</td>";
+	echo "</tr>";
+	echo "<tr><td colspan=\"3\" align=\"center\">";
+	echo "<input type=\"submit\" value=\"Add income\">";
+	echo "</td></tr";
+	echo "</form>";
+	echo "</table>";
+
+	echo "</td></tr>";
+
+	echo "<tr><td>";
+	// start column01
+	echo "<table width=\"100%\" class=\"fin2\">";
+	echo "<tr><th colspan=\"5\">Taxable income</th></tr>";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15 = mysql_query("SELECT idhrtaempincome, name, amount, datestart, dateend, nontaxable, vatinclusive, status, schedule FROM tblhrtaempincome WHERE idpaygroup=$idpaygroup AND employeeid=\"$employeeid\" AND (nontaxable='' OR nontaxable=0) ORDER BY dateend DESC, datestart DESC", $dbh);
+	if($result15 != "") {
+		while($myrow15 = mysql_fetch_row($result15)) {
+		$found15 = 1;
+		$idhrtaempincome15 = $myrow15[0];
+		$name15 = $myrow15[1];
+		$amount15 = $myrow15[2];
+		$datestart15 = $myrow15[3];
+		$dateend15 = $myrow15[4];
+		$nontaxable15 = $myrow15[5];
+		$vatinclusive15 = $myrow15[6];
+		$status15 = $myrow15[7];
+		$schedule15 = $myrow15[8];
+		echo "<tr><td><b>$name15</b><br><font size=\"1\"><i>";
+		if($vatinclusive15 == 1) { echo "VAT inclusive"; }
+		echo "</i></font></td><td align=\"center\">".date("Y-M-d", strtotime($datestart15))."&nbsp;-to-&nbsp;".date("Y-M-d", strtotime($dateend15))."<br><font size=\"1\"><i>schedule:";
+		echo "$schedule15";
+		echo "</i></font></td><td align=\"right\"><b>".number_format($amount15, 2)."</b><br><font size=\"1\"><i>status:";
+		if($status15 == 1) { echo "active"; } else { echo "inactive"; }
+		echo "</i></font></td><td>";
+		echo "<a href=\"hrtimeattincomeedit.php?loginid=$loginid&empincid=$idhrtaempincome15\">Edit</a>";
+		echo "</td><td>";
+		echo "<a href=\"hrtimeattincomedel.php?loginid=$loginid&empincid=$idhrtaempincome15\">Del</a>";
+		echo "</td></tr>";
+		}
+	}
+	echo "</table>";
+	echo "</td>";
+	// end column02
+
+	// start column02
+	echo "<td>";
+	echo "<table width=\"100%\" class=\"fin2\">";
+	echo "<tr><th colspan=\"5\">Non-taxable income</th></tr>";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15 = mysql_query("SELECT idhrtaempincome, name, amount, datestart, dateend, nontaxable, vatinclusive, status, schedule FROM tblhrtaempincome WHERE idpaygroup=$idpaygroup AND employeeid=\"$employeeid\" AND nontaxable=1 ORDER BY dateend DESC, datestart DESC", $dbh);
+	if($result15 != "") {
+		while($myrow15 = mysql_fetch_row($result15)) {
+		$found15 = 1;
+		$idhrtaempincome15 = $myrow15[0];
+		$name15 = $myrow15[1];
+		$amount15 = $myrow15[2];
+		$datestart15 = $myrow15[3];
+		$dateend15 = $myrow15[4];
+		$nontaxable15 = $myrow15[5];
+		$vatinclusive15 = $myrow15[6];
+		$status15 = $myrow15[7];
+		$schedule15 = $myrow15[8];
+		echo "<tr><td><b>$name15</b><br><font size=\"1\"><i>";
+		if($vatinclusive15 == 1) { echo "VAT inclusive"; }
+		echo "</i></font></td><td align=\"center\">".date("Y-M-d", strtotime($datestart15))."&nbsp;-to-&nbsp;".date("Y-M-d", strtotime($dateend15))."<br><font size=\"1\"><i>schedule:";
+		echo "$schedule15";
+		echo "</i></font></td><td align=\"right\"><b>".number_format($amount15, 2)."</b><br><font size=\"1\"><i>status:";
+		if($status15 == 1) { echo "active"; } else { echo "inactive"; }
+		echo "</i></font></td><td>";
+		echo "<a href=\"hrtimeattincomeedit.php?loginid=$loginid&empincid=$idhrtaempincome15\">Edit</a>";
+		echo "</td><td>";
+		echo "<a href=\"hrtimeattincomedel.php?loginid=$loginid&empincid=$idhrtaempincome15\">Del</a>";
+		echo "</td></tr>";
+		}
+	}
+	echo "</table>";
+	// end column02
+
+	echo "</td></tr>";
+	echo "</table>";
+
+	echo "</td></tr>";
+	}
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"hrtimeatt.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

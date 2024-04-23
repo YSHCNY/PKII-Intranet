@@ -1,0 +1,73 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['admloginid'])) ? $_GET['admloginid'] :'';
+$username = null;
+
+// $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=0 WHERE adminloginid=$loginid", $dbh);
+
+// 20170125 mysqli
+	$res1query = "UPDATE tbladminlogin SET adminloginstat='0' WHERE adminloginid=$loginid";
+	$result1 = $dbh2->query("$res1query");
+
+/*
+$result2 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+while($myrow2 = mysql_fetch_row($result2))
+{
+  $found2 = 1;
+  $adminuid2 = $myrow2[0];
+  $username = $adminuid2;
+}
+*/
+
+	$res2query="SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid";
+	$result2=$dbh2->query("$res2query");
+	if ($result2->num_rows > 0) {
+		while ($myrow2 = $result2->fetch_assoc()) {
+    $found2 = 1;
+  	$adminuid2 = $myrow2['adminuid'];
+  	$username = $adminuid2;
+		}
+	} else {
+		echo "<br /><font color=\"red\">0 results</font>";
+	}
+
+// include ("header.php");
+
+    include('datetimenow.php');
+
+    $usrip=$_SERVER['REMOTE_ADDR'];
+    $usrosbrowserver=$_SERVER['HTTP_USER_AGENT'];
+
+		echo "<p><center><font face=\"Helvetica\"><b>Philkoei International Inc. (PKII) Intranet</b></font></center></p>";
+
+    echo "<p><center><font size=\"1\" face=\"Helvetica\">Logged-out from $usrip using $usrosbrowserver on $now</font></center></p>";
+
+    $logdetails = "loginid:". $loginid . " logged-out from ip:$usrip using:$usrosbrowserver";
+
+    // $result12 = mysql_query("INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')", $dbh);
+
+    // 20221019
+	// update tblloginstatus
+	$res2query="UPDATE tblloginstatus SET timestamp=\"$now\", status=0 WHERE loginid=$loginid AND logintype=2";
+	$result2=$dbh2->query($res2query);
+    //update tblsysusracctmgt
+    $res3query=""; $result3="";
+    $res3query="UPDATE tblsysusracctmgt SET timestamp=\"$now\", logoutstamp=\"$now\" WHERE admloginid=$loginid AND loginid=0";
+    $result3=$dbh2->query($res3query);
+
+
+	$res12query="INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')";
+	$result12=$dbh2->query("$res12query");
+     
+echo "<center>";
+// echo "<p><font face=\"Helvetica\"><b>logged out</b></font></p>";
+echo "<p><a href=index.php><font face=\"Helvetica\">back to Login page</font></a></p>";
+echo "</center>";
+
+include ("footer.php");
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

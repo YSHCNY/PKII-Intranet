@@ -1,0 +1,22 @@
+<?php
+//
+// qryproj2.php
+// fr: ../vc/vprojmore.php
+//
+require '../includes/dbh.php';
+
+	$res11query="SELECT name_first, name_middle, name_last, email1 FROM tblcontact WHERE employeeid ='$employeeid11' LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0; $data="";
+	$result11=$dbh->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$name_first11 = $myrow11['name_first'];
+		$name_middle11 = $myrow11['name_middle'];
+		$name_last11 = $myrow11['name_last'];
+		$email111 = $myrow11['email1'];
+		} // while
+	} // if
+		
+$dbh->close();
+?> 

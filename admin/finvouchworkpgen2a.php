@@ -1,0 +1,185 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$wpgendate = (isset($_GET['gd'])) ? $_GET['gd'] :'';
+
+$cutarrwpgendate = split("-", $wpgendate);
+$wpgenyear = $cutarrwpgendate[0];
+$wpgenmonth = $cutarrwpgendate[1];
+
+// setup previous month
+if($wpgenmonth == "01" || $wpgenmonth == 1) { $prevmonth = 12; $prevyear = $wpgenyear-1; }
+else { $prevmonth = $wpgenmonth-1; $prevyear = $wpgenyear; }
+
+$prevdate = $prevyear."-".$prevmonth."-"."1";
+
+$result11 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+if($result11 != '') {
+  while($myrow11 = mysql_fetch_row($result11)) {
+    $found11 = 1;
+    $version11 = $myrow11[0];
+  }
+}
+$glrefver = $version11;
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}  
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+echo "<table class=\"fin\" border=\"1\">";
+
+?>
+
+<tr><th colspan='5'>PKII Working Paper for <?php echo "$wpgendate"; ?></th></tr>
+<tr><th colspan='5'>Beginning Balance entries</th></tr>
+<tr><td colspan='5'>
+
+<?php
+// check if previous month working paper exists
+  $result14 = mysql_query("SELECT wpacctcd, wpacctname, glcode, glrefver, trialbalancedr, trialbalancecr FROM tblfinworkpaper WHERE month=\"$prevdate\"", $dbh);
+  if($result14 != '') {
+    while($myrow14 = mysql_fetch_row($result14)) {
+    $found14 = 1;
+		$wpacctcd14 = $myrow14[0];
+		$wpacctname14 = $myrow14[1];
+    $glcode14 = $myrow14[2];
+    $glrefver14 = $myrow14[3];
+    $trialbalancedr14 = $myrow14[4];
+    $trialbalancecr14 = $myrow14[5];
+
+    $glrefver = $glrefver14;
+    }
+  }
+
+// input form for beginning balances
+    echo "<tr><td>Count</td><td>AcctCode</td><td>AcctName</td><td>Debit</td><td>Credit</td></tr>";
+
+    echo "<form action=\"finvouchworkpgen2run.php?loginid=$loginid&gd=$wpgendate\" method=\"post\">";
+
+if($glrefver == 1)
+{
+  $result11 = mysql_query("SELECT wprefid, glcode, glrefver, status FROM tblfinworkpaperref WHERE glrefver=$glrefver", $dbh);
+  if($result11 != "")
+  {
+    $count = 0;
+    while($myrow11 = mysql_fetch_row($result11))
+    {
+      $found11 = 1;
+      $wprefid11 = $myrow11[0];
+      $glcode11 = $myrow11[1];
+      $glrefver11 = $myrow11[2];
+      $count = $count + 1;
+      echo "<tr><td align=\"center\">$count</td><td><input name=\"glcode[]\" value=\"$glcode11\" size=\"8\" readonly></td><td>";
+
+      $result12 = mysql_query("SELECT glname FROM tblfinglref WHERE version=$glrefver AND glcode=\"$glcode11\"", $dbh);
+      if($result12 != "")
+      {
+	while($myrow12 = mysql_fetch_row($result12))
+	{ $glname12 = $myrow12[0]; }
+      }
+
+      $result15 = mysql_query("SELECT trialbalancedr, trialbalancecr FROM tblfinworkpaper WHERE month=\"$prevdate\" AND glcode=\"$glcode11\" AND glrefver=$glrefver", $dbh);
+      if($result15 != '') {
+	while($myrow15 = mysql_fetch_row($result15)) {
+	$trialbalancedr15 = $myrow15[0];
+	$trialbalancecr15 = $myrow15[1];
+	}
+      }
+
+      echo "$glname12</td><td align=\"right\"><input name=\"debitamt[]\" value=\"$trialbalancedr15\"></td><td><input name=\"creditamt[]\" value=\"$trialbalancecr15\"></td></tr>";
+
+      $trialbalancedr15 = 0; $trialbalancecr15 = 0;
+    }
+  }
+
+} else if($glrefver == 2) {
+
+  // set total variables to 0
+  $totbbdebit=0; $totbbcredit=0;
+
+  $result11 = mysql_query("SELECT DISTINCT wpacctcd, wpacctname, glrefver, status FROM tblfinworkpaperref WHERE glrefver=$glrefver ORDER BY wpacctcd ASC, seq ASC", $dbh);
+  if($result11 != "") {
+    $count = 0;
+    while($myrow11 = mysql_fetch_row($result11)) {
+      $found11 = 1;
+      $wpacctcd11 = $myrow11[0];
+			$wpacctname11 = $myrow11[1];
+      $glrefver11 = $myrow11[2];
+      $count = $count + 1;
+      echo "<tr><td align=\"center\">$count</td><td><input name=\"wpacctcd[]\" value=\"$wpacctcd11\" size=\"8\" readonly></td><td>";
+
+/*
+      $result12 = mysql_query("SELECT glname FROM tblfinglref WHERE version=$glrefver AND glcode=\"$glcode11\"", $dbh);
+
+      if($result12 != "")
+      {
+	while($myrow12 = mysql_fetch_row($result12))
+	{ $glname12 = $myrow12[0]; }
+      }
+*/
+
+      $result15 = mysql_query("SELECT trialbalancedr, trialbalancecr FROM tblfinworkpaper WHERE month=\"$prevdate\" AND glcode=\"$wpacctcd11\" AND glrefver=$glrefver", $dbh);
+      if($result15 != '') {
+	while($myrow15 = mysql_fetch_row($result15)) {
+	$trialbalancedr15 = $myrow15[0];
+	$trialbalancecr15 = $myrow15[1];
+	}
+      }
+
+        echo "$wpacctname11</td><td align=\"right\">";
+        echo "<input name=\"debitamt[]\" value=\"$trialbalancedr15\">";
+        echo "</td><td>";
+        echo "<input name=\"creditamt[]\" value=\"$trialbalancecr15\">";
+        echo "</td></tr>";
+
+        $totbbdebit = $totbbdebit + $trialbalancedr15;
+        $totbbcredit = $totbbcredit + $trialbalancecr15;
+
+      $trialbalancedr15 = 0; $trialbalancecr15 = 0;
+    }
+  }
+}
+
+  echo "<tr><th colspan='3' class='text-right'>Total</th><th class='text-right'>".number_format($totbbdebit, 2)."</th><th class='text-right'>".number_format($totbbcredit, 2)."</th></tr>";
+
+  echo "<tr><td colspan=\"5\" align=\"center\">";
+   // echo "<input type=\"submit\" value=\"Generate Working Paper\">";
+    echo "<button type='submit' class='btn btn-success'>Generate Working Paper</button>";
+  echo "</td></tr>";
+  echo "</form>";
+
+?>
+
+</td></tr>
+
+<?php
+echo "</table>";
+
+echo "<br><p><a href=\"finvouchmain.php?loginid=$loginid\" class='btn btn-default' role='button'>Back</a></p>";
+
+
+
+// end contents here
+
+     $resquery = "UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'";
+    $result=$dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?>

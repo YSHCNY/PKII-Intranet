@@ -1,0 +1,17 @@
+<?php
+//
+// hrtimeattqrycutoff.php
+// req: $idcutoff
+// fr hrtimeattcutleave.php
+//
+		$res18query="SELECT cutstart, cutend, paygroupname FROM tblhrtacutoff WHERE idhrtacutoff=$idcutoff LIMIT 1";
+		$result18=""; $found18=0; $ctr18=0;
+		$result18=$dbh2->query($res18query);
+		if($result18->num_rows>0) {
+			while($myrow18=$result18->fetch_assoc()) {
+			$found18=1;
+			$cutstart18=$myrow18['cutstart'];
+			$cutend18=$myrow18['cutend'];
+			} // while
+		} // if
+?>

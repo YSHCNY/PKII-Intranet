@@ -1,0 +1,527 @@
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$fromDate = date('Y-m-d',strtotime($_POST['fromDate']));
+$d = new DateTime($fromDate);
+
+$toDate = date('Y-m-d',strtotime($_POST['toDate']));
+$lastMonth =$d->modify('first day of last month');
+$workingPaperDate = $lastMonth->format('Y-m-d');
+$projectCode = (isset($_POST['projectCode'])) ? $_POST['projectCode'] :'';
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+?>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+<?php
+// edit body-header
+     echo "<div class='mainContainer'>";
+     echo "<div class='container-fluid'>";
+     echo "<input type='hidden' id='loginid' value='".$loginid."'/>";
+     echo "<p><font size=1>Manage >> Finance Reports >> Direct Cost Summary</font></p>";
+     echo '<form method="post" action="directcostsummary.php?loginid='.$loginid.'">';
+     ?>
+
+      <input class='btn form-control' type="text" id="fromDate" name='fromDate' placeholder="from"  style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <input class='btn form-control' type="text" id="toDate" name="toDate" placeholder="To"  style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <?php 
+        echo "<select style='width: 30%' class='projectChargeSelect' name=\"projectCode\">";
+        $res26query="SELECT DISTINCT tblproject1.proj_code, tblproject1.proj_sname, tblproject1.proj_fname FROM tblproject1 WHERE ((tblproject1.proj_code>=\"C00-001\" AND tblproject1.proj_code<=\"C00-002\") OR tblproject1.proj_code>=\"C2008-01\") ORDER BY tblproject1.proj_code DESC";
+    $result26=""; $found26=0; $ctr26=0;
+    $result26 = $dbh2->query($res26query);
+        if($result26->num_rows>0) {
+          echo "<option value=\"ALL\" selected>ALL </option> ";
+          while($myrow26 = $result26->fetch_assoc()) {
+          $proj_code26 = $myrow26['proj_code'];
+          $proj_name26 = $myrow26['proj_sname'];
+          $proj_fname26 = $myrow26['proj_fname'];
+          echo "<option value=\"$proj_code26\">$proj_code26 - ";
+          if($proj_name26 != "") {
+          echo "$proj_name26";
+          } else {
+          echo "".substr($proj_fname26, 0, 30)."";
+          }
+          echo "</option>";
+          }
+        }
+        echo "<select>";
+       ?>
+       <button type="submit" class="btn btnConfirm btn-default" id="btnConfirm">Submit</button>
+       </form>
+
+    <?php 
+
+    echo "<table id=\"ReportTable\" class=\"fin2\">";
+    echo "<tr><th colspan=\"2\" align=\"left\">Philkoei International Inc.</th></tr>";
+    // echo "<tr><th colspan=\"2\" align=\"left\">General and Administrative Expenses&nbsp;<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a></th></tr>";
+    echo "<tr><th colspan=\"2\" align=\"left\">Direct Cost Summary&nbsp;<a href='#' id='exportToExcel'><img src='./images/sheet.gif'></a></th></tr>";
+    echo "<tr><th colspan=\"2\" align=\"left\">Duration from ".date("Y-M-d", strtotime($fromDate))." to ".date("Y-M-d", strtotime($toDate))."</th></tr>";
+    echo "<tr><th colspan=\"2\" align=\"left\">PROJECT CODE ".$projectCode."</th></tr>";
+
+    echo "<tr><td colspan=\"2\">";
+    echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+    echo "<tr><th colspan='2'></th><th colspan='1'>Balance</th><th colspan='2'>Cash Disbursement Book</th><th colspan='2'>Accts Payable Book</th><th colspan='2'>Cash Receipt Book</th><th colspan='2'>Journal Book</th><th>Balance</th><th>THIS MONTH</th></tr>";
+    echo "<tr><th>Count</th><th>Account Name (PKII)</th><th>Beginning Balance</th><th>Debit</th><th>Credit</th><th>Debit</th><th>Credit</th><th>Debit</th><th>Credit</th><th>Debit</th><th>Credit</th><th>Ending Balance</th><th></th></tr>";
+
+  if(isset($_POST['fromDate'])) {
+
+    // query tblfingaeref
+    $result11=""; $found11=0; $ctr11=0;
+    $result11 = mysql_query("SELECT glcode, glname, glcode as glcodefr, glcode as glcodeto FROM tblfinglref where version = 2 AND glname LIKE '%DC%'", $dbh);
+
+    if($result11 != "") {
+      while($myrow11 = mysql_fetch_row($result11)) {
+      $found11 = 1;
+      $gaecd11 = $myrow11[0];
+      $gaename11 = $myrow11[1];
+      $glcodefr11 = $myrow11[2];
+      $glcodeto11 = $myrow11[3];
+
+      if($gaecd11 != $gaecdtmp) {
+      $ctr11 = $ctr11 + 1;
+      echo "<tr><td>$ctr11</td><td>$gaename11</td>";
+      }
+
+      /*
+      $result11b=""; $found11b=0; $ctr11b=0;
+      $result11b = mysql_query("SELECT glcodefr, glcodeto FROM tblfingaeref WHERE gaecd=\"$gaecd11\" AND gaename=\"$gaename11\"", $dbh);
+      if($result11b != "") {
+        while($myrow11b = mysql_fetch_row($result11b)) {
+        $found11b = 1;
+        $glcodefr11b = $myrow11b[0];
+        $glcodeto11b = $myrow11b[1];
+
+        $ctr11b = $ctr11b + 1;
+
+      */
+        // echo "<td colspan=\"4\">";
+
+
+        //GET BEGINNING BALANCE
+        if(strpos($fromDate,  '-07-01') !== false ){
+          $beginningBalance = 0;
+        }
+        else{
+          $getYear = date('Y', strtotime($fromDate));
+          $beginningFrom = date('Y-m-d', strtotime($getYear.'-01-01'));
+          $beginningTo = date('Y-m-d', strtotime($fromDate.'-1 days'));
+          
+
+
+        $result12=""; $found12=0; $ctr12=0;
+        if($projectCode == 'ALL'){
+          $query12 = "SELECT disbursementid, disbursementnumber, debitamt, creditamt FROM tblfindisbursement WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY date ASC";
+          $query14 = "SELECT cashreceiptid, cashreceiptnumber, debitamt, creditamt FROM tblfincashreceipt WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY date ASC";
+          $query15 = "SELECT journalid, journalnumber, debitamt, creditamt FROM tblfinjournal WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY journalid ASC";
+        $query16 = "SELECT acctspayableid, acctspayablenumber, debitamt, creditamt FROM tblfinacctspayable WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY acctspayableid ASC";
+        } else{
+          $query12 = "SELECT disbursementid, disbursementnumber, debitamt, creditamt FROM tblfindisbursement WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY date ASC";
+          $query14 = "SELECT cashreceiptid, cashreceiptnumber, debitamt, creditamt FROM tblfincashreceipt WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY date ASC";
+          $query15 = "SELECT journalid, journalnumber, debitamt, creditamt FROM tblfinjournal WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY journalid ASC";
+        $query16 = "SELECT acctspayableid, acctspayablenumber, debitamt, creditamt FROM tblfinacctspayable WHERE (date>=\"$beginningFrom\" AND date<=\"$beginningTo\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY acctspayableid ASC";
+        }
+        $result12 = mysql_query($query12, $dbh);
+        if($result12 != "") {
+          while($myrow12 = mysql_fetch_row($result12)) {
+          $found12 = 1;
+          $disbursementid12 = $myrow12[0];
+          $disbursementnumber12 = $myrow12[1];
+          $debitamt12 = $myrow12[2];
+          $creditamt12 = $myrow12[3];
+          $ctr12 = $ctr12 + 1;
+
+          $disbursementdebit = $disbursementdebit + $debitamt12;
+          $disbursementcredit = $disbursementcredit + $creditamt12;
+          // echo "disbno:$disbursementnumber12 | $glcodefr11b-to-$glcodeto11b || disbdebitamt:$debitamt12 | disbdebitsub:$disbursementdebit || disbcreditamt:$creditamt12 | disbcreditsub:$disbursementcredit<br>";
+          }
+        }
+
+
+        $result14=""; $found14=0; $ctr14=0;
+
+        $result14 = mysql_query($query14, $dbh);
+        if($result14 != "") {
+          while($myrow14 = mysql_fetch_row($result14)) {
+          $found14 = 1;
+          $cashreceiptid14 = $myrow14[0];
+          $cashreceiptnumber14 = $myrow14[1];
+          $debitamt14 = $myrow14[2];
+          $creditamt14 = $myrow14[3];
+          $ctr14 = $ctr14 + 1;
+  
+          $cashreceiptdebit = $cashreceiptdebit + $debitamt14;
+          $cashreceiptcredit = $cashreceiptcredit + $creditamt14;
+          // echo "cshrcptno:$cashreceiptnumber14 | $glcodefr11b-to-$glcodeto11b || cshrdebitamt:$debitamt14 | cshrdebitsub:$cashreceiptdebit || cshrcreditamt:$creditamt14 | cshrcreditsub:$cashreceiptcredit<br>";
+          }
+        }
+
+        
+        $result15=""; $found15=0; $ctr15=0;
+        $result15 = mysql_query($query15, $dbh);
+        if($result15 != "") {
+          while($myrow15 = mysql_fetch_row($result15)) {
+          $found15 = 1;
+          $journalid15 = $myrow15[0];
+          $journalnumber15 = $myrow15[1];
+          $debitamt15 = $myrow15[2];
+          $creditamt15 = $myrow15[3];
+          $ctr15 = $ctr15 + 1;
+
+          $journaldebit = $journaldebit + $debitamt15;
+          $journalcredit = $journalcredit + $creditamt15;
+          // echo "id:$journalid15 jrnlno:$journalnumber15 | $glcodefr11-to-$glcodeto11 || jrnldebitamt:$debitamt15 | jrnldebitsub:$journaldebit || jrnlcreditamt:$creditamt15 | jrnlcreditsub:$journalcredit<br>";
+          }
+        }
+
+
+        $result16=""; $found16=0; $ctr16=0;
+        $result16 = $dbh2->query($query16);
+        if($result16->num_rows>0) {
+            while($myrow16=$result16->fetch_assoc()) {
+          $found16 = 1;
+          $acctspayableid16 = $myrow16['acctspayableid'];
+          $acctspayablenumber16 = $myrow16['acctspayablenumber'];
+          $debitamt16 = $myrow16['debitamt'];
+          $creditamt16 = $myrow16['creditamt'];
+          $ctr15 = $ctr15 + 1;
+
+          $acctspayabledebit = $acctspayabledebit + $debitamt16;
+          $acctspayablecredit = $acctspayablecredit + $creditamt16;
+
+            } //while
+        } //if
+
+
+        // compute total debit and credit
+        $debitamt = $disbursementdebit + $acctspayabledebit + $cashreceiptdebit + $journaldebit;
+        $creditamt = $disbursementcredit + $acctspayablecredit + $cashreceiptcredit + $journalcredit;
+
+        }
+
+        $beginningBalance = $debitamt - $creditamt;
+
+        $debitamt=0; $creditamt=0;
+        $disbursementdebit=0; $disbursementcredit=0;
+        $cashreceiptdebit=0; $cashreceiptcredit=0;
+        $journaldebit=0; $journalcredit=0;
+        $acctspayabledebit=0; $acctspayablecredit=0;
+
+        //END BEGINNING BALANCE
+
+
+        if($projectCode == 'ALL'){
+          $query12 = "SELECT disbursementid, disbursementnumber, debitamt, creditamt FROM tblfindisbursement WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY date ASC";
+          $query14 = "SELECT cashreceiptid, cashreceiptnumber, debitamt, creditamt FROM tblfincashreceipt WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY date ASC";
+          $query15 = "SELECT journalid, journalnumber, debitamt, creditamt FROM tblfinjournal WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY journalid ASC";
+            $query16 = "SELECT acctspayableid, acctspayablenumber, debitamt, creditamt FROM tblfinacctspayable WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") ORDER BY acctspayableid ASC";
+        } else{
+          $query12 = "SELECT disbursementid, disbursementnumber, debitamt, creditamt FROM tblfindisbursement WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY date ASC";
+          $query14 = "SELECT cashreceiptid, cashreceiptnumber, debitamt, creditamt FROM tblfincashreceipt WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY date ASC";
+          $query15 = "SELECT journalid, journalnumber, debitamt, creditamt FROM tblfinjournal WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY journalid ASC";
+        $query16 = "SELECT acctspayableid, acctspayablenumber, debitamt, creditamt FROM tblfinacctspayable WHERE (date>=\"$fromDate\" AND date<=\"$toDate\") AND (glcode>=\"$glcodefr11\" AND glcode<=\"$glcodeto11\") AND projcode = '".$projectCode."' ORDER BY acctspayableid ASC";
+        }
+
+        // var_dump($query12);
+
+        $result12=""; $found12=0; $ctr12=0;
+        $result12 = mysql_query($query12, $dbh);
+        if($result12 != "") {
+          while($myrow12 = mysql_fetch_row($result12)) {
+          $found12 = 1;
+          $disbursementid12 = $myrow12[0];
+          $disbursementnumber12 = $myrow12[1];
+          $debitamt12 = $myrow12[2];
+          $creditamt12 = $myrow12[3];
+          $ctr12 = $ctr12 + 1;
+
+          $disbursementdebit = $disbursementdebit + $debitamt12;
+          $disbursementcredit = $disbursementcredit + $creditamt12;
+          // echo "disbno:$disbursementnumber12 | $glcodefr11b-to-$glcodeto11b || disbdebitamt:$debitamt12 | disbdebitsub:$disbursementdebit || disbcreditamt:$creditamt12 | disbcreditsub:$disbursementcredit<br>";
+          }
+        }
+
+
+        $result14=""; $found14=0; $ctr14=0;
+        $result14 = mysql_query($query14, $dbh);
+        if($result14 != "") {
+          while($myrow14 = mysql_fetch_row($result14)) {
+          $found14 = 1;
+          $cashreceiptid14 = $myrow14[0];
+          $cashreceiptnumber14 = $myrow14[1];
+          $debitamt14 = $myrow14[2];
+          $creditamt14 = $myrow14[3];
+          $ctr14 = $ctr14 + 1;
+  
+          $cashreceiptdebit = $cashreceiptdebit + $debitamt14;
+          $cashreceiptcredit = $cashreceiptcredit + $creditamt14;
+          // echo "cshrcptno:$cashreceiptnumber14 | $glcodefr11b-to-$glcodeto11b || cshrdebitamt:$debitamt14 | cshrdebitsub:$cashreceiptdebit || cshrcreditamt:$creditamt14 | cshrcreditsub:$cashreceiptcredit<br>";
+          }
+        }
+
+        
+        $result15=""; $found15=0; $ctr15=0;
+        $result15 = mysql_query($query15, $dbh);
+        if($result15 != "") {
+          while($myrow15 = mysql_fetch_row($result15)) {
+          $found15 = 1;
+          $journalid15 = $myrow15[0];
+          $journalnumber15 = $myrow15[1];
+          $debitamt15 = $myrow15[2];
+          $creditamt15 = $myrow15[3];
+          $ctr15 = $ctr15 + 1;
+
+          $journaldebit = $journaldebit + $debitamt15;
+          $journalcredit = $journalcredit + $creditamt15;
+          // echo "id:$journalid15 jrnlno:$journalnumber15 | $glcodefr11-to-$glcodeto11 || jrnldebitamt:$debitamt15 | jrnldebitsub:$journaldebit || jrnlcreditamt:$creditamt15 | jrnlcreditsub:$journalcredit<br>";
+          }
+        }
+
+
+        $result16=""; $found16=0; $ctr16=0;
+        $result16=$dbh2->query($query16);
+        if($result16->num_rows>0) {
+            while($myrow16=$result16->fetch_assoc()) {
+            $found16=1;
+            $ctr16++;
+            $acctspayableid16 = $myrow16['acctspayableid'];
+            $acctspayablenumber16 = $myrow16['acctspayablenumber'];
+            $debitamt16 = $myrow16['debitamt'];
+            $creditamt16 = $myrow16['creditamt'];
+
+            $acctspayabledebit = $acctspayabledebit + $debitamt16;
+            $acctspayablecredit = $acctspayablecredit + $creditamt16;
+
+            } //while
+        } //if
+
+        // compute total debit and credit
+        $debitamt = $disbursementdebit + $acctspayabledebit + $cashreceiptdebit + $journaldebit;
+        $creditamt = $disbursementcredit + $acctspayablecredit + $cashreceiptcredit + $journalcredit;
+
+        // compute total of disb, cshrcpt & jrnl
+        $disbdrtot = $disbdrtot+$disbursementdebit;
+        $disbcrtot = $disbcrtot+$disbursementcredit;
+        $cshrcptdrtot = $cshrcptdrtot+$cashreceiptdebit;
+        $cshrcptcrtot = $cshrcptcrtot+$cashreceiptcredit;
+        $jrnldrtot = $jrnldrtot+$journaldebit;
+        $jrnlcrtot = $jrnlcrtot+$journalcredit;
+        $endingBalance = $beginningBalance + $debitamt - $creditamt;
+        $thisMonth = $debitamt - $creditamt;
+        $apvdrtot = $apvdrtot + $acctspayabledebit;
+        $apvcrtot = $apvcrtot + $acctspayablecredit;
+
+        // echo "</td>";
+
+      /*
+        }
+      }
+      */
+      if($gaecd11 != $gaecdtmp) {
+        if($beginningBalance < 0){
+          echo "<td class='text-right'><span style='color:red'>(".number_format($beginningBalance * -1,2).")</span></td>";
+        }else{
+          echo "<td class='text-right'>".number_format($beginningBalance,2)."</td>";
+        }
+
+        if($disbursementdebit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($disbursementdebit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($disbursementdebit,2)."</td>";
+        } //if-else
+        if($disbursementcredit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($disbursementcredit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($disbursementcredit,2)."</td>";
+        } //if-else
+
+        if($acctspayabledebit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($acctspayabledebit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($acctspayabledebit,2)."</td>";
+        } //if-else
+        if($acctspayablecredit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($acctspayablecredit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($acctspayablecredit,2)."</td>";
+        } //if-else
+
+        if($cashreceiptdebit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($cashreceiptdebit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($cashreceiptdebit,2)."</td>";
+        } //if-else
+        if($cashreceiptcredit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($cashreceiptcredit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($cashreceiptcredit,2)."</td>";
+        } //if-else
+
+        if($journaldebit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($journaldebit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($journaldebit,2)."</td>";
+        } //if-else
+        if($journalcredit<0) {
+        echo "<td class='text-right'><span style='color:red'>(".number_format($journalcredit,2).")</span></td>";
+        } else {
+        echo "<td class='text-right'>".number_format($journalcredit,2)."</td>";
+        } //if-else
+
+      if($endingBalance < 0){
+        echo "<td class='text-right'><span style='color:red'>(".number_format($endingBalance * -1, 2).")</span></td>";
+      } else{
+        echo "<td class='text-right'>".number_format($endingBalance, 2)."</td>";
+      }
+
+      if($thisMonth < 0){
+        echo "<td class='text-right'><span style='color:red'>(".number_format($thisMonth * -1, 2).")</span></td>";
+      } else{
+        echo "<td class='text-right'>".number_format($thisMonth, 2)." </td>";
+      }
+      echo "</tr>";
+      }
+
+      // compute grand total
+      $debittot = $debittot + $debitamt;
+      // $debittot = $disbdrtot + $cshrcptdrtot + $jrnldrtot;
+      $credittot = $credittot + $creditamt;
+      $beginningBalanceTot = $beginningBalanceTot + $beginningBalance;
+      $endingBalanceTot = $endingBalanceTot + $endingBalance;
+      $thisMonthTot = $thisMonthTot + $thisMonth;
+      // $credittot = $disbcrtot + $cshrcptcrtot + $jrnlcrtot;
+
+      // echo "<td colspan=\"6\">disbdrtot:$disbdrtot | disbcrtot:$disbcrtot || cshrcptdrtot:$cshrcptdrtot | cshrcptcrtot:$cshrcptcrtot || jrnldrtot:$jrnldrtot | jrnlcrtot:$jrnlcrtot<br>";
+      // echo "debit:$debitamt | debittot:$debittot || credit:$creditamt | credittot:$credittot</td>";
+
+      // assign tmp variables
+      $gaecdtmp = $gaecd11;
+
+      // reset variables
+      $debitamt=0; $creditamt=0;
+      $disbursementdebit=0; $disbursementcredit=0;
+      $cashreceiptdebit=0; $cashreceiptcredit=0;
+      $disbursementcredit111= 0;
+      $disbursementdebit111= 0;
+      $cashreceiptcredit111= 0;
+      $cashreceiptdebit111= 0;
+      $journalcredit111= 0;
+      $journaldebit111= 0;
+      $journaldebit=0; $journalcredit=0; $beginningBalance = 0; $endingBalance =0; $thisMonth = 0;
+      $debitamtbeg =0; $creditamtbeg =0;
+        $acctspayabledebit=0; $acctspayablecredit=0;
+
+      }
+    }
+
+    echo "<tr><th colspan=\"2\">TOTAL</th>";
+    if($beginningBalanceTot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($beginningBalanceTot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($beginningBalanceTot, 2)."</th>";
+    } //if-else
+
+    if($disbdrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($disbdrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($disbdrtot, 2)."</th>";
+    } //if-else
+    if($disbcrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($disbcrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($disbcrtot, 2)."</th>";
+    } //if-else
+
+    if($apvdrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($apvdrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($apvdrtot, 2)."</th>";
+    } //if-else
+    if($apvcrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($apvcrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($apvcrtot, 2)."</th>";
+    } //if-else
+
+    if($cshrcptdrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($cshrcptdrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($cshrcptdrtot, 2)."</th>";
+    } //if-else
+    if($cshrcptcrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($cshrcptcrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($cshrcptcrtot, 2)."</th>";
+    } //if-else
+
+    if($jrnldrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($jrnldrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($jrnldrtot, 2)."</th>";
+    } //if-else
+    if($jrnlcrtot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($jrnlcrtot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($jrnlcrtot, 2)."</th>";
+    } //if-else
+
+    if($endingBalanceTot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($endingBalanceTot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($endingBalanceTot, 2)."</th>";
+    } //if-else
+
+    if($thisMonthTot<0) {
+    echo "<th class='text-right'><span style='color:red'>(".number_format($thisMonthTot, 2).")</span></th>";
+    } else {
+    echo "<th class='text-right'>".number_format($thisMonthTot, 2)."</th>";
+    } //if-else
+
+    echo "</tr>";
+
+}
+    echo "</table>";
+
+    echo "</td></tr>";
+    echo "</table>";
+
+    ?>
+      <script>
+        $(document).ready(function(){
+            $('#fromDate').datepicker();
+            $('#toDate').datepicker();
+            $('.projectChargeSelect').chosen();
+        });
+      </script>
+      </div>
+      </div>
+      <?php 
+
+    echo "<p><a href=\"finrptmnu.php?loginid=$loginid\" class='btn btn-default' role='button'>Back</a></p>";
+
+     $resquery="UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result=$dbh2->query($resquery);
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

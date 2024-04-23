@@ -1,0 +1,298 @@
+<?php 
+
+require('./db1.php');
+require('./db24.php');
+
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$startsw = $_POST['startsw'];
+$startswadd = $_POST['startswadd'];
+$startswadd2 = $_POST['startswadd2'];
+$startswdeduct = $_POST['startswdeduct'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     // include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Manage >> Acctg Modules >> Sync db24 payroll</font></p>";
+
+// start contents here...
+  if($accesslevel >= 4)
+  {
+
+		echo "<table class=\"fin\"><tr>";
+		echo "<td><form action=\"mngfinsyncdb24.php?loginid=$loginid\" method=\"post\"><input type=\"hidden\" name=\"startsw\" value=\"1\"><input type=submit value=\"Sync db24.sample to maindb.tblemppayroll\"></form></td>";
+		echo "<td><form action=\"mngfinsyncdb24.php?loginid=$loginid\" method=\"post\"><input type=\"hidden\" name=\"startswadd\" value=\"1\"><input type=submit value=\"Sync db24.add to maindb.tblemppayincomenontaxable\"></form></td>";
+		echo "<td><form action=\"mngfinsyncdb24.php?loginid=$loginid\" method=\"post\"><input type=\"hidden\" name=\"startswadd2\" value=\"1\"><input type=submit value=\"Sync db24.add2 to maindb.tblemppayincometaxable\"></form></td>";
+		echo "<td><form action=\"mngfinsyncdb24.php?loginid=$loginid\" method=\"post\"><input type=\"hidden\" name=\"startswdeduct\" value=\"1\"><input type=submit value=\"Sync db24.deduct to maindb.tblemppayotherdeductions\"></form></td>";
+		echo "</tr></table>";
+
+		if($startsw == 1) {
+		echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		echo "<tr><th colspan=\"35\">db24.sample</th><th>to</th><th colspan=\"4\">tblemppayroll</th><th>status</th></tr>";
+		echo "<tr><th>ctr</th><th>emp_no</th><th>emp_salary</th><th>deduction</th><th>phil_ded</th><th>wtax</th><th>emp_over_duration</th><th>Net_Pay</th><th>emp_date_wrk</th><th>emp_sick</th><th>emp_vacation</th><th>cut_start</th><th>cut_end</th><th>regHoliday</th><th>speHoliday</th><th>emp_late_duration</th><th>otSunday</th><th>regHolidayamt</th><th>SpeHolidayamt</th><th>otSundayamt</th><th>overamt</th><th>NigthDiffMinutes</th><th>NIgthDiffAmt</th><th>TotalTardy</th><th>OtherIncome</th><th>OtherIncomeTaxable</th><th>OtherDeduction</th><th>emp_dep</th><th>pagibig</th><th>VLused</th><th>SLUsed</th><th>PHILEMP</th><th>SS</th><th>EC</th><th>bracket</th><th>AbsentAmt</th>";
+		echo "<th></th>";
+		echo "<th>id</th><th>emp_salary</th><th>deduction</th><th>over_amt</th><th></th></tr>";
+
+		$result11=""; $found11=0;
+		$result11 = mysql_query("SELECT emp_no, emp_salary, deduction, phil_ded, emp_over_duration, Net_Pay, emp_date_wrk, emp_sick, emp_vacation, cut_start, cut_end, regHoliday, speHoliday, emp_late_duration, otSunday, regHolidayamt, SpeHolidayamt, otSundayamt, overamt, NigthDiffMinutes, NIgthDiffAmt, TotalTardy, OtherIncome, OtherIncomeTaxable, OtherDeduction, emp_dep, pagibig, VLused, SLUsed, PHILEMP, SS, EC, bracket, AbsentAmt, tax FROM sample WHERE emp_no<>'' ORDER BY cut_start ASC, emp_no ASC", $dbh24);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$emp_no11 = $myrow11[0];
+			$emp_salary11 = number_format($myrow11[1], 2, '.', '');
+			$deduction11 = number_format($myrow11[2], 2, '.', '');
+			$phil_ded11 = number_format($myrow11[3], 2, '.', '');
+			$emp_over_duration11 = number_format($myrow11[4], 2, '.', '');
+			$Net_Pay11 = number_format($myrow11[5], 2, '.', '');
+			$emp_date_wrk11 = $myrow11[6];
+			$emp_sick11 = $myrow11[7];
+			$emp_vacation11 = $myrow11[8];
+			$cut_start11 = substr($myrow11[9], 0, -9);
+			$cut_end11 = substr($myrow11[10], 0, -9);
+			$regHoliday11 = $myrow11[11];
+			$speHoliday11 = $myrow11[12];
+			$emp_late_duration11 = $myrow11[13];
+			$otSunday11 = $myrow11[14];
+			$regHolidayamt11 = number_format($myrow11[15], 2, '.', '');
+			$SpeHolidayamt11 = number_format($myrow11[16], 2, '.', '');
+			$otSundayamt11 = number_format($myrow11[17], 2, '.', '');
+			$overamt11 = number_format($myrow11[18], 2, '.', '');
+			$NigthDiffMinutes11 = $myrow11[19];
+			$NIgthDiffAmt11 = number_format($myrow11[20], 2, '.', '');
+			$TotalTardy11 = number_format($myrow11[21], 2, '.', '');
+			$OtherIncome11 = number_format($myrow11[22], 2, '.', '');
+			$OtherIncomeTaxable11 = number_format($myrow11[23], 2, '.', '');
+			$OtherDeduction11 = number_format($myrow11[24], 2, '.', '');
+			$emp_dep11 = $myrow11[25];
+			$pagibig11 = number_format($myrow11[26], 2, '.', '');
+			$VLused11 = $myrow11[27];
+			$SLUsed11 = $myrow11[28];
+			$PHILEMP11 = number_format($myrow11[29], 2, '.', '');
+			$SS11 = number_format($myrow11[30], 2, '.', '');
+			$EC11 = number_format($myrow11[31], 2, '.', '');
+			$bracket11 = $myrow11[32];
+			$AbsentAmt11 = number_format($myrow11[33], 2, '.', '');
+			$tax11 = number_format($myrow11[34], 2, '.', '');
+
+			$ctr11 = $ctr11 + 1;
+
+			echo "<tr><td>$ctr11</td><td>$emp_no11</td><td>$emp_salary11</td><td>$deduction11</td><td>$phil_ded11</td><td>$tax11</td><td>$emp_over_duration11</td><td>$Net_Pay11</td><td>$emp_date_wrk11</td><td>$emp_sick11</td><td>$emp_vacation11</td><td>$cut_start11</td><td>$cut_end11</td><td>$regHoliday11</td><td>$speHoliday11</td><td>$emp_late_duration11</td><td>$otSunday11</td><td>$regHolidayamt11</td><td>$SpeHolidayamt11</td><td>$otSundayamt11</td><td>$overamt11</td><td>$NigthDiffMinutes11</td><td>$NIgthDiffAmt11</td><td>$TotalTardy11</td><td>$OtherIncome11</td><td>$OtherIncomeTaxable11</td><td>$OtherDeduction11</td><td>$emp_dep11</td><td>$pagibig11</td><td>$VLused11</td><td>$SLUsed11</td><td>$PHILEMP11</td><td>$SS11</td><td>$EC11</td><td>$bracket11</td><td>$AbsentAmt11</td>";
+			echo "<td></td>";
+			$result12=""; $found12=0;
+			$result12 = mysql_query("SELECT emppayrollid, employeeid, emp_salary, deduction, phil_ded, emp_over_duration, net_pay, emp_date_wrk, emp_sick, emp_vacation, cut_start, cut_end, regholiday, speholiday, emp_late_duration, otsunday, regholidayamt, speholidayamt, otsundayamt, overamt, nightdiffminutes, nightdiffamt, totaltardy, otherincome, otherincometaxable, otherdeduction, emp_dep, pagibig, vlused, slused, philemp, ss, ec, bracket, absentamt, tax FROM tblemppayroll WHERE employeeid=\"$emp_no11\" AND cut_start=\"$cut_start11\" AND cut_end=\"$cut_end11\"", $dbh);
+			if($result12 != "") {
+				while($myrow12 = mysql_fetch_row($result12)) {
+				$found12 = 1;
+				$emppayrollid12 = $myrow12[0];
+				$employeeid12 = $myrow12[1];
+				$emp_salary12 = $myrow12[2];
+				$deduction12 = $myrow12[3];
+				$phil_ded12 = $myrow12[4];
+				$emp_over_duration12 = $myrow12[5];
+				$net_pay12 = $myrow12[6];
+				$emp_date_wrk12 = $myrow12[7];
+				$emp_sick12 = $myrow12[8];
+				$emp_vacation12 = $myrow12[9];
+				$cut_start12 = $myrow12[10];
+				$cut_end12 = $myrow12[11];
+				$regholiday12 = $myrow12[12];
+				$speholiday12 = $myrow12[13];
+				$emp_late_duration12 = $myrow12[14];
+				$otsunday12 = $myrow12[15];
+				$regholidayamt12 = $myrow12[16];
+				$speholidayamt12 = $myrow12[17];
+				$otsundayamt12 = $myrow12[18];
+				$overamt12 = $myrow12[19];
+				$nightdiffminutes12 = $myrow12[20];
+				$nightdiffamt12 = $myrow12[21];
+				$totaltardy12 = $myrow12[22];
+				$otherincome12 = $myrow12[23];
+				$otherincometaxable12 = $myrow12[24];
+				$otherdeduction12 = $myrow12[25];
+				$emp_dep12 = $myrow12[26];
+				$pagibig12 = $myrow12[27];
+				$vlused12 = $myrow12[28];
+				$slused12 = $myrow12[29];
+				$philemp12 = $myrow12[30];
+				$ss12 = $myrow12[31];
+				$ec12 = $myrow12[32];
+				$bracket12 = $myrow12[33];
+				$absentamt12 = $myrow12[34];
+				$tax12 = $myrow12[35];
+				}
+			}
+
+			if($found12 == 1) {
+				echo "<td>$emppayrollid12</td><td>$emp_salary12</td><td>$deduction12</td><td>$overamt12</td>";
+				echo "<td>record exists</td>";
+			} else if($found12 == 0) {
+				$result14 = mysql_query("INSERT INTO tblemppayroll SET employeeid=\"$emp_no11\", emp_salary=$emp_salary11, deduction=$deduction11, phil_ded=$phil_ded11, tax=$tax11, emp_over_duration=$emp_over_duration11, net_pay=$Net_Pay11, emp_date_wrk=$emp_date_wrk11, emp_sick=\"$emp_sick11\", emp_vacation=\"$emp_vacation11\", cut_start=\"$cut_start11\", cut_end=\"$cut_end11\", regholiday=$regHoliday11, speholiday=$speHoliday11, emp_late_duration=$emp_late_duration11, otsunday=$otSundayamt11, regholidayamt=$regHolidayamt11, speholidayamt=$SpeHolidayamt11, otsundayamt=$otSundayamt11, overamt=$overamt11, nightdiffminutes=$NigthDiffMinutes11, nightdiffamt=$NIgthDiffAmt11, totaltardy=$TotalTardy11, otherincome=$OtherIncome11, otherincometaxable=$OtherIncomeTaxable11, otherdeduction=$OtherDeduction11, emp_dep=\"$emp_dep11\", pagibig=$pagibig11, vlused=$VLused11, slused=$SLUsed11, philemp=$PHILEMP11, ss=$SS11, ec=$EC11, bracket=$bracket11, absentamt=$AbsentAmt11", $dbh);
+				echo "<td colspan=\"4\"></td>";
+				echo "<td><font color=\"green\">inserted</font></td>";
+			}
+			echo "</tr>";
+			}
+		}
+		echo "<tr><td colspan=\"35\">ok - eof</td><th>to</th><th colspan=\"4\"></th><th>end</th></tr>";
+		echo "</table>";
+		}
+
+		if($startswadd == 1) {
+		echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		echo "<tr><th colspan=\"5\">db24.add</th><th>to</th><th colspan=\"2\">tblemppayincomenontaxable</th><th>status</th></tr>";
+		echo "<tr><th>ctr</th><th>empid</th><th>add_desc</th><th>duration</th><th>amount</th><th></th><th>id</th><th></th><th></th></tr>";
+		$result21=""; $found21=0; $ctr21=0;
+		$result21 = mysql_query("SELECT emp_no, Add_desc, start, end, amount FROM add ORDER BY start ASC, emp_no ASC", $dbh24);
+		if($result21 != "") {
+			while($myrow21 = mysql_fetch_row($result21)) {
+			$found21 = 1;
+			$emp_no21 = trim($myrow21[0]);
+			$add_desc21 = trim($myrow21[1]);
+			$start21 = substr($myrow21[2], 0, -9);
+			$end21 = substr($myrow21[3], 0, -9);
+			$amount21 = number_format($myrow21[4], 2, '.', '');
+			$ctr21 = $ctr21 + 1;
+			echo "<tr><tr><td>$ctr21</td><td>$empno21</td><td>$add_desc21</td><td>$start21-to-$end21</td><td>$amount21</td><td></td>";
+			$result22=""; $found22=0; $ctr22=0;
+			$result22 = mysql_query("SELECT employeeid, add_desc, start, end, amount FROM tblemppayincomenontaxable WHERE employeeid=\"$emp_no21\" AND add_desc=\"$add_desc21\" AND start=\"$start21\" AND end=\"$end21\"", $dbh);
+			if($result22 != "") {
+				while($myrow22 = mysql_fetch_row($result22)) {
+				$found22=1;
+				$employeeid22 = $myrow22[0];
+				$add_desc22 = $myrow22[1];
+				$start22 = $myrow22[2];
+				$end22 = $myrow22[3];
+				$amount22 = $myrow22[4];
+				}
+			}
+			if($found22 == 1) {
+				echo "<td>$employeeid22</td><td>$amount22</td><td>record exists</td>";
+			} else {
+				$result23 = mysql_query("INSERT INTO tblemppayincomenontaxable SET employeeid=\"$emp_no21\", add_desc=\"$add_desc21\", start=\"$start21\", end=\"$end21\", amount=$amount21", $dbh);
+				echo "<td>$emp_no21</td><td>$amount21</td><td><font color=\"green\">inserted</font></td>";
+			}
+			echo "</tr>";
+			}
+		}
+		echo "<tr><th colspan=\"9\">ok - eof - db24.add vs maindb.tblemppayincomenontaxable</th></tr>";
+		echo "</table>";
+		}
+
+		if($startswadd2 == 1) {
+		echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		echo "<tr><th colspan=\"5\">db24.add2</th><th>to</th><th colspan=\"2\">tblemppayincometaxable</th><th>status</th></tr>";
+		echo "<tr><th>ctr</th><th>empid</th><th>add2_desc</th><th>duration</th><th>amount</th><th></th><th>id</th><th></th><th></th></tr>";
+		$result31=""; $found31=0; $ctr31=0;
+		$result31 = mysql_query("SELECT emp_no, Add_desc, start, end, amount FROM add2 ORDER BY start ASC, emp_no ASC", $dbh24);
+		if($result31 != "") {
+			while($myrow31 = mysql_fetch_row($result31)) {
+			$found31 = 1;
+			$emp_no31 = trim($myrow31[0]);
+			$add_desc31 = trim($myrow31[1]);
+			$start31 = substr($myrow31[2], 0, -9);
+			$end31 = substr($myrow31[3], 0, -9);
+			$amount31 = number_format($myrow31[4], 2, '.', '');
+			$ctr31 = $ctr31 + 1;
+			echo "<tr><td>$ctr31</td><td>$emp_no31</td><td>$add_desc31</td><td>$start31-to-$end31</td><td>$amount31</td><td></td>";
+			$result32=""; $found32=0; $ctr32=0;
+			$result32 = mysql_query("SELECT employeeid, add_desc, start, end, amount FROM tblemppayincometaxable WHERE employeeid=\"$emp_no31\" AND add_desc=\"$add_desc31\" AND start=\"$start31\" AND end=\"$end31\"", $dbh);
+			if($result32 != "") {
+				while($myrow32 = mysql_fetch_row($result32)) {
+				$found32 = 1;
+				$employeeid32 = $myrow432[0];
+				$add_desc32 = $myrow432[1];
+				$start32 = $myrow432[2];
+				$end32 = $myrow432[3];
+				$amount32 = $myrow432[4];
+				}
+			}
+			if($found32 == 1) {
+				echo "<td>$employeeid32</td><td>$amount32</td><td>record exists</td>";
+			} else {
+				$result33 = mysql_query("INSERT INTO tblemppayincometaxable SET employeeid=\"$emp_no31\", add_desc=\"$add_desc31\", start=\"$start31\", end=\"$end31\", amount=$amount31", $dbh);
+				echo "<td>$emp_no31</td><td>$amount31</td><td><font color=\"green\">inserted</font></td>";
+			}
+			echo "</tr>";
+			}
+		}
+		echo "<tr><th colspan=\"9\">ok - eof - db24.add2 vs maindb.tblemppayincometaxable</th></tr>";
+		echo "</table>";
+		}
+
+		if($startswdeduct == 1) {
+		echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		echo "<tr><th colspan=\"5\">db24.deduct</th><th>to</th><th colspan=\"2\">tblemppayotherdeductions</th><th>status</th></tr>";
+		echo "<tr><th>ctr</th><th>empid</th><th>ded_desc</th><th>duration</th><th>amount</th><th></th><th>id</th><th></th><th></th></tr>";
+		$result41=""; $found41=0; $ctr41=0;
+		$result41 = mysql_query("SELECT emp_no, ded_desc, start, end, amount, amountdeduct, balance FROM deduct ORDER BY start ASC, emp_no ASC", $dbh24);
+		if($result41 != "") {
+			while($myrow41 = mysql_fetch_row($result41)) {
+			$found41 = 1;
+			$emp_no41 = trim($myrow41[0]);
+			$ded_desc41 = trim($myrow41[1]);
+			$start41 = substr($myrow41[2], 0, -9);
+			$end41 = substr($myrow41[3], 0, -9);
+			$amount41 = number_format($myrow41[4], 2, '.', '');
+			$amountdeduct41 = number_format($myrow41[5], 2, '.', '');
+			$balance41 = number_format($myrow41[6], 2, '.', '');
+			$ctr41 = $ctr41 + 1;
+			echo "<tr><td>$ctr41</td><td>$emp_no41</td><td>$ded_desc41</td><td>$start41-to-$end41</td><td>$amount41 | $amountdeduct41 | $balance41</td><td></td>";
+			$result42=""; $found42=0; $ctr42=0;
+			$result42 = mysql_query("SELECT employeeid, ded_desc, start, end, amount, amountdeduct, balance FROM tblemppayotherdeductions WHERE employeeid=\"$emp_no41\" AND ded_desc=\"$ded_desc41\" AND start=\"$start41\" AND end=\"$end41\"", $dbh);
+			if($result42 != "") {
+				while($myrow42 = mysql_fetch_row($result42)) {
+				$found42 = 1;
+				$employeeid42 = $myrow42[0];
+				$ded_desc42 = $myrow42[1];
+				$start42 = $myrow42[2];
+				$end42 = $myrow42[3];
+				$amount42 = $myrow42[4];
+				$amountdeduct42 = $myrow42[5];
+				$balance42 = $myrow42[6];
+				$ctr42 = $ctr42 + 1;
+				}
+			}
+			if($found42 == 1) {
+				echo "<td>$employeeid42</td><td>$amount42 | $amountdeduct42 | $balance42</td><td>record exists</td>";
+			} else {
+				$result33 = mysql_query("INSERT INTO tblemppayotherdeductions SET employeeid=\"$emp_no41\", ded_desc=\"$ded_desc41\", start=\"$start41\", end=\"$end41\", amount=$amount41, amountdeduct=$amountdeduct41, balance=$balance41", $dbh);
+				echo "<td>$emp_no41</td><td>$amount41 | $amountdeduct42 | $balance42</td><td><font color=\"green\">inserted</font></td>";
+			}
+			echo "</tr>";
+			}
+		}
+		echo "<tr><th colspan=\"9\">ok - eof - db24.deduct vs maindb.tblemppayotherdeductions</th></tr>";
+		echo "</table>";
+		}
+
+  }
+
+// end contents here...
+
+// edit body-footer
+     // echo "<p><a href=\"mngfinmods.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+mysql_close($dbh24);
+?> 

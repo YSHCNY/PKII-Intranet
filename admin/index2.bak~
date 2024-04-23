@@ -1,0 +1,69 @@
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$username = (isset($_POST['username'])) ? $_POST['username'] :'';
+$password = (isset($_POST['password'])) ? $_POST['password'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} else {
+		/*
+     $result = mysql_query("SELECT * FROM tbladminlogin WHERE adminuid='$username' AND adminpw='$password'", $dbh); 
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $found = 1;
+          $loginid = $myrow[0];
+          $loginstatus = $myrow[5];
+          $level = $myrow[6];
+     }
+		*/
+
+		// 20170125 mysqli extension migration
+		$resquery = "SELECT adminloginid, adminloginstat, adminloginlevel, employeeid, contactid FROM tbladminlogin WHERE adminuid=\"$username\" AND adminpw=\"$password\"";
+		$result=""; $found=0;
+		$result = $dbh2->query($resquery);
+		if($result->num_rows>0) {
+			while($myrow = $result->fetch_assoc()) {
+      $found = 1;
+      $loginid = $myrow['adminloginid'];
+      $loginstatus = $myrow['adminloginstat'];
+      $level = $myrow['adminloginlevel'];
+		$employeeid0 = $myrow['employeeid'];
+		$contactid0 = $myrow['contactid'];
+			}
+		}
+}  
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+     echo "<p>Welcome <b>$username</b> to Philkoei International Inc.'s Intranet Admin Access<br>";
+     echo "Note: Only authorized PKII personnel with admin access are allowed to use this site.</p>";
+
+    include('datetimenow.php');
+
+     echo "<p><< please choose a link on the left</p>";
+
+		include('ddash.php'); 
+
+// end contents here
+
+     // $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+		$resquery="UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid=\"$username\"";
+		$result=$dbh2->query($resquery);
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

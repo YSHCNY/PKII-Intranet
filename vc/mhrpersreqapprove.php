@@ -1,0 +1,167 @@
+<?php
+//
+// mhrpersreqapprove.php
+// fr: vc/mhrpersreqdtl.php
+// indexlinks: $page==352
+
+require '../includes/config.inc';
+include '../includes/genranchars.php';
+
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$idhrpersreq = (isset($_POST['idpr'])) ? $_POST['idpr'] :'';
+$actor = (isset($_POST['actor'])) ? $_POST['actor'] :'';
+$dispsumm = (isset($_POST['ds'])) ? $_POST['ds'] :'';
+$actorempid = (isset($_POST['actorempid'])) ? $_POST['actorempid'] :'';
+
+//
+// notes on actors
+// REQ - requestor
+// END - endorser (HR mngr)
+// REC - recommending approver (VP)
+// APP - approver (Pres)
+// 
+
+	// prep session remarks
+	$sessrem="HR personnel request form has been approved by:$actorempid with id:$idhrpersreq\"";
+
+if($idhrpersreq!='') {
+
+	// query tblhrpersreq based on id
+	include '../m/qryhrpersreqid.php';
+
+	// declare variables
+	$deptcd=$deptcd11;
+	$requestorempid=$requestedbyempid11;
+	$requestctr=$requestctr11;
+	$endorsectr=$endorsectr11;
+	$recoappricgctr=$recoappricgctr11;
+	$recoapprdcgctr=$recoapprdcgctr11;
+	$approvectr=$approvectr11;
+	$endorseempid=$endorseempid11;
+	$endorsedate=$endorsedate11;
+	$recoappricgdate=$recoappricgdate11;
+	$recoapprdcgdate=$recoapprdcgdate11;
+	$approvedate=$approvedate11;
+	$recoappricgempid=$recoappricgempid11;
+	$recoapprdcgempid=$recoapprdcgempid11;
+	$approveempid=$approveempid11;
+	$comments=$comments11;
+
+	if($found11==1) {
+
+	// increment approvectr
+	$approvectrfin = $approvectr11 + 1;
+
+	// update query
+	include '../m/qryhrpersrequpd04.php';
+
+	//
+	// prepare and send mail notifications
+	//
+
+	// query requestor
+	$actorempid=$requestorempid;
+	include '../m/qryhrpersreqactor2.php';
+	$actorempid="";
+
+	// query endorser
+	$actorempid=$endorseempid;
+	include '../m/qryhrpersreqactor.php';
+	$actorempid="";
+
+	// query recommending approver
+	$actorempid=$recoapprempid;
+	include '../m/qryhrpersreqactor3.php';
+	$actorempid="";
+
+	// query hrd
+
+	// compose msg
+	$subject = "Approved HR Personnel Request from $deptcd";
+	$message = "Dear ALL,\r\n\r\n";
+	$message = $message . "A personnel requisition request from $requestorempid $name_last14, $name_first14 - $empposition14 for the position: $position11 has been APPROVED.\r\n\r\n";
+	$message = $message . "Please login to the PKII Intranet and click the HR Personnel Request sidebar link to check on the status of the recruitment process soon.\r\n\r\n";
+	$message = $message . "Thank you very much.\r\n\r\n";
+	$message = $message . "Note:\r\nThis is an auto-generated email from the PKII intranet system.\r\n";
+	$message = $message . "Please do not reply to this email. The HR personnel request module has the facility to provide input fields for comments and/or clarifications.";
+
+	// sendmail to requestor
+	$to = $email114;
+	include './fncsendmail.php';
+	$to = "";
+
+	// sendmail to endorser
+	$to = $email112;
+	include './fncsendmail.php';
+	$to = "";
+
+	// sendmail to recommending approver
+	if($recoappricgempid!='') {
+	$actorempid=$recoappricgempid;
+	include '../m/qryhrpersreqactor.php';
+	$actorempid="";
+	$to = $email112;
+	include './fncsendmail.php';
+	$to = "";
+	} // if
+	if($recoapprdcgempid!='') {
+	$actorempid=$recoapprdcgempid;
+	include '../m/qryhrpersreqactor.php';
+	$actorempid="";
+	$to = $email112;
+	include './fncsendmail.php';
+	$to = "";
+	} // if
+
+	// sendmail to hrd
+	$to="recruitment@philkoei.com.ph";
+	if($to!='') {
+	include './fncsendmail.php';
+	} // if
+
+	//
+	// prepare and log
+	$logdetails = "HR personnel requisition has been APPROVED dept:$deptcd empids:$requestorempid-to-$recoapprempid position:$position11 id:$idhrpersreq";
+	include '../m/qryinslog.php';
+
+	} // if($found11==1)
+
+} // if($idhrpersreq!='')
+?>
+<!-- display confirmation page -->
+<?php include './header.php'; ?>
+<div class="container">
+	<div class="wrapper">
+		<div class="form-group">
+			<h3>HR Personnel Requisition</h3>
+		</div>
+		<div class="form-group">
+<?php
+	if($ok) {
+?>
+			<h4><font color="green">You had approved the personnel requisition. E-mail notifications had been sent to the concerned personnels. Thank you.</font></h4>
+<?php
+	} else {
+?>
+			<h4><font color="red">Approved but problem in sending notifications. Sorry for the inconvenience.</font></h4>
+<?php
+	} // if
+?>
+		</div>
+		<div class="form-group">
+			<?php echo "<p><button type=\"submit\" class=\"btn btn-primary\" onclick=\"javascript:window.location='index.php?lst=1&lid=$loginid&sess=$session&p=35'\">Close</button></p>"; ?>
+		</div>
+	</div>
+</div>
+<?php include './footer.php'; ?>
+<?php
+
+// redirect
+// header("Location: index.php?lst=$lst&lid=$loginid&sess=$session&p=$page&prid=$idhrpersreq");
+// exit;
+
+?>

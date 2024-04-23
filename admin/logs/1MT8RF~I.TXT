@@ -1,0 +1,45 @@
+Please find below details of your payroll salary (February 16-29, 2016) is now available.
+
+cutoff period: 2016-02-01 -to- 2016-02-15
+
+Employee ID: 626
+Employee Name: Maria Angeline Kisses Montes
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 3531.33
+NET BASIC PAY: P4218.67
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 475.00
+
+GROSS PAY: P4693.67
+
+Withholding Tax: P237.02
+SSS: P454.20
+Philhealth: P137.50
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P878.72
+
+NET PAY: P3814.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

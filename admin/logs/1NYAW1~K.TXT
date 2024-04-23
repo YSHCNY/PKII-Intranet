@@ -1,0 +1,50 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2014-01-01 -to- 2014-01-15
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10000.00
+
+Withholding Tax: P520.77
+SSS: P581.30
+Philhealth: P225.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig 2: 250.00
+SSS Salary Loan: 692.18
+Insular Life: 75.00
+Pag-Ibig Contribution 1: 150.00
+TOTAL Other Deductions: P1167.18
+
+TOTAL DEDUCTIONS: P2544.25
+
+NET PAY: P7455.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,65 @@
+<?php
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$idhrtaleavectg = (isset($_GET['idl'])) ? $_GET['idl'] :'';
+
+$code = (isset($_POST['code'])) ? $_POST['code'] :'';
+$name = (isset($_POST['name'])) ? $_POST['name'] :'';
+$quota = (isset($_POST['quota'])) ? $_POST['quota'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if($found == 1) {
+
+	// check first if code exists
+	$res11query="SELECT idhrtaleavectg FROM tblhrtaleavectg WHERE code=\"$code\"";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$found11 = 1;
+		$idhrtaleavectg11 = $myrow11['idhrtaleavectg'];
+		} // while
+	} // if
+
+	if($found11 != 1) {
+		echo "<p><font color=\"red\">Sorry, code does not exists. Please try again.</p>";
+		echo "<p><a href=\"hrtimeattleave.php?loginid=$loginid\">back</a></p>";
+	} else {
+		// insert into tblhrtapayshiftctg
+		$res14query = "UPDATE tblhrtaleavectg SET timestamp=\"$now\", loginid=$loginid, code=\"$code\", name=\"$name\", quota=$quota WHERE idhrtaleavectg=$idhrtaleavectg";
+		$result14=$dbh2->query($res14query);
+
+		// create log
+  	$res16query = "SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid";
+		$result16=""; $found16=0;
+		$result16=$dbh2->query($res16query);
+		if($result16->num_rows>0) {
+			while($myrow16=$result16->fetch_assoc()) {
+			$found16=1;
+			$adminuid=$myrow16['adminuid'];
+			} // while
+		} // if
+		$adminlogdetails = "$loginid:$adminuid - modified leave category for HR T&A details:$idhrtaleavectg11 - $code - $name quota:$quota";
+		$res17query = "INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"";
+		$result17="";
+		$result17=$dbh2->query($res17query);
+
+	// redirect
+	header("Location: hrtimeattleave.php?loginid=$loginid");
+	exit;
+	} // if
+
+} else {
+     include ("logindeny.php");
+}
+// mysql_close($dbh);
+$dbh2->close();
+?>

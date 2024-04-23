@@ -1,0 +1,47 @@
+Please find below details of your payroll salary (payroll period April 01-15, 2012) is now available.
+
+cutoff period: 2012-03-16 -to- 2012-03-31
+
+Employee ID: 325
+Employee Name: Alma Teresa Kojima
+Project: JICA MWSS
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 253.50
+Project Allowance: 3500.00
+TOTAL Taxable Income: 3753.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9753.50
+
+Withholding Tax: 1396.62
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 1059.23
+
+TOTAL DEDUCTIONS: P2505.85
+
+NET PAY: P7247.65
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

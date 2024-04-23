@@ -1,0 +1,45 @@
+Please find below details of your payroll salary for payroll period November 16-30, 2010 (cut off period November 01-15, 2010) is now available.
+
+cutoff period: 2010-11-16 -to- 2010-11-30
+
+Employee ID: 556
+Employee Name: Richard Morilla
+Project: LAND BANK
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5286.00
+
+Regular Overtime: 680 (mins) - P714.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P714.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6000.00
+
+Withholding Tax: 0.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P50.00
+
+NET PAY: P5950.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

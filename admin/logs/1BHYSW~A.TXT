@@ -1,0 +1,48 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2011-04-16 -to- 2011-04-30
+
+Employee ID: 262
+Employee Name: Enerito Cunanan
+Project: AGNO 2
+
+PAY RATE: P3550.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P3550.00
+
+Regular Overtime: 576 (mins) - P410.40
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P410.40
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 3750.00
+TOTAL Non-Taxable Income: 3750.00
+
+GROSS PAY: P7710.40
+
+Withholding Tax: 0.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Multi-purpose Loan: 645.83
+SSS Condonation: 5000.00
+TOTAL Other Deductions: 5645.83
+
+TOTAL DEDUCTIONS: P5695.83
+
+NET PAY: P2014.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

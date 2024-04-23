@@ -1,0 +1,48 @@
+Please find below details of your payroll salary (payroll period May 16-31, 2013) is now available.
+
+cutoff period: 2013-05-01 -to- 2013-05-15
+
+Employee ID: 593
+Employee Name: Arianne Almera
+Project: JICA CAGAYAN
+
+PAY RATE: P12500.00
+
+Total Late_Absent: 477.6
+NET BASIC PAY: P12022.40
+
+Regular Overtime: 595 (mins) - P1480.06
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1480.06
+
+Taxable Income:
+Project Allowance: 12083.33
+TOTAL Taxable Income: 12083.33
+
+Non-Taxable Income:
+Meal Allowance: 150.00
+Transpo Allowance: 1450.00
+TOTAL Non-Taxable Income: 1600.00
+
+GROSS PAY: P27185.79
+
+Withholding Tax: 6062.34
+SSS: 500
+Philhealth: 287.50
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P6899.84
+
+NET PAY: P20285.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,654 @@
+<?php
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$idpaygroup = (isset($_GET['idpg'])) ? $_GET['idpg'] :'';
+$idcutoff = (isset($_GET['idct'])) ? $_GET['idct'] :'';
+
+$idhrtapaygrpemplst = (isset($_POST['idhrtapaygrpemplst'])) ? $_POST['idhrtapaygrpemplst'] :'';
+$employeeid = (isset($_POST['employeeid'])) ? $_POST['employeeid'] :'';
+$idhrtaemptimelog = (isset($_POST['idhtlog'])) ? $_POST['idhtlog'] :'';
+$cutstart = (isset($_POST['cutstart'])) ? $_POST['cutstart'] :'';
+$restdaysw = (isset($_POST['restdaysw'])) ? $_POST['restdaysw'] :'';
+$time_in1_hh = (isset($_POST['time_in1_hh'])) ? $_POST['time_in1_hh'] :'';
+$time_in1_mm = (isset($_POST['time_in1_mm'])) ? $_POST['time_in1_mm'] :'';
+$time_out1_hh = (isset($_POST['time_out1_hh'])) ? $_POST['time_out1_hh'] :'';
+$time_out1_mm = (isset($_POST['time_out1_mm'])) ? $_POST['time_out1_mm'] :'';
+$otbeforeinsw = (isset($_POST['otbeforeinsw'])) ? $_POST['otbeforeinsw'] :'';
+$otafteroutsw = (isset($_POST['otafteroutsw'])) ? $_POST['otafteroutsw'] :'';
+
+// echo "<p>vartest loginid:$loginid, idpaygroup:$idpaygroup, idcutoff:$idcutoff idhrtapaygrpemplst:$idhrtapaygrpemplst</p>";
+
+// $nextday1 = $_POST['nextday1'];
+// $nextday0 = $_POST['nextday0'];
+$nextday = (isset($_POST['nextday'])) ? $_POST['nextday'] :'';
+// $mealallow1 = $_POST['mealallow1'];
+// $mealallow0 = $_POST['mealallow0'];
+$mealallow = (isset($_POST['mealallow'])) ? $_POST['mealallow'] :'';
+$leavecd = (isset($_POST['leavecd'])) ? $_POST['leavecd'] :'';
+$leavedaydur = (isset($_POST['leavedaydur'])) ? $_POST['leavedaydur'] :'';
+$projcharge = (isset($_POST['projcharge'])) ? $_POST['projcharge'] :'';
+$checkboxman = (isset($_POST['checkboxman'])) ? $_POST['checkboxman'] :'';
+$totaltime = (isset($_POST['totaltime'])) ? $_POST['totaltime'] :'';
+$otval = (isset($_POST['otval'])) ? $_POST['otval'] :'';
+// $otval = array();
+// $utval = (isset($_POST['utval'])) ? $_POST['utval'] :'';
+// $otutval = (isset($_POST['otutval'])) ? $_POST['otutval'] :'';
+$nightdiffval = (isset($_POST['nightdiffval'])) ? $_POST['nightdiffval'] :'';
+$nofindings = (isset($_POST['nofindings'])) ? $_POST['nofindings'] :'';
+$remarks = (isset($_POST['remarks'])) ? $_POST['remarks'] :'';
+
+// echo "vartest2 cutstart:$cutstart, otv:$otval, utv:$utval, otutv:$otutval, ndv:$nightdiffval</p>";
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if($found == 1) {
+
+	// query cutstart cutend
+	$res14query = "SELECT cutstart, cutend, paygroupname FROM tblhrtacutoff WHERE idhrtacutoff=$idcutoff AND idhrtapaygrp=$idpaygroup";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14 = $dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14 = $result14->fetch_assoc()) {
+		$found14 = 1;
+		$cutstart14 = $myrow14['cutstart'];
+		$cutend14 = $myrow14['cutend'];
+		$paygroupname14 = $myrow14['paygroupname'];
+		}
+	}
+
+	echo "<html>";
+	echo "<pre>";
+
+	//
+	// start array loop
+	//
+	foreach($cutstart as $val => $n) {
+
+    // test vars 1st but comment in prod
+echo "<p>vartests cts:".$cutstart[$val].", val:$val, n:$n, eid:$employeeid, idtl:".$idhrtaemptimelog[$val].", dtfr:".$cutstart[$val].", rst:".$restdaysw[$val].", tminhh:".$time_in1_hh[$val].", tminmm:".$time_in1_mm[$val].", tmouthh:".$time_out1_hh[$val].", tmoutmm:".$time_out1_mm[$val].", otb4in:".$otbeforeinsw[$val].", otout:".$otafteroutsw[$val].", nxtdy:".$nextday[$val].", ml:".$mealallow[$val].", lv:".$leavecd[$val].", lvdur:".$leavedaydur[$val].",<br>prj:".$projcharge[$val].", cbman:".$checkboxman[$val]."|$checkboxman, tottm:".$totaltime[$val].", ot:".$otval[$val]."|".$otval."|".$val.", ut:".$utval[$val]."|$utval, otut:".$otutval[$val]."|$otutval, nd:".$nightdiffval[$val].", nof:".$nofindings[$val].", rem:".$remarks[$val]."<br>";
+
+		// prepare variables
+		$leavetypeval = $leavecd[$val];
+
+		// format time in yyyy-mm-dd hh:mm:ss
+		$timein1a = $n." ".$time_in1_hh[$val].":".$time_in1_mm[$val].":00";
+		$timein1b = $time_in1_hh[$val].":".$time_in1_mm[$val].":00";
+		$timein1c = strtotime($timein1b);
+		$timein1 = date("Y-m-d H:i:s", strtotime($timein1a));
+		$timein1unx = strtotime($timein1);
+		if($nextday[$val]==1) {
+		// add 1 day
+		$n2 = date("Y-m-d", strtotime($n . " +1 days"));
+		} else {
+		$n2 = date("Y-m-d", strtotime($n));
+		}
+		$timeout1a = $n2." ".$time_out1_hh[$val].":".$time_out1_mm[$val].":00";
+		$timeout1 = date("Y-m-d H:i:s", strtotime($timeout1a));
+		// for db insert update purposes only
+		$timeout1b = $n." ".$time_out1_hh[$val].":".$time_out1_mm[$val].":00";
+		$timeout1c = date("Y-m-d H:i:s", strtotime($timeout1b));
+		$timeout1unx = strtotime($timeout1c);
+
+		// check for manual entry switch
+		$checkboxmanual=0;
+		foreach($checkboxman as $val3 => $n3) {
+			if($n3==$n) { $checkboxmanual=1; }
+		} // foreach($checkboxman as $val3 => $n3)
+// echo "cboxman:".$checkboxman.", chkboxmanual:".$checkboxmanual.", n3:".$n3.", n:".$n.", ";
+
+		//20200206 modified
+		if($checkboxmanual==1) {
+
+			echo "<br>test00 $n chk:$checkboxmanual, ot:".$otval[$val]."|$otval, ut:".$utval[$val]."|$utval, otutval:".$otutval[$val]."|$otutval, nightdiff:".$nightdiffval[$val]."\n";
+
+			// $totaltimeval = $totaltime[$val];
+			// $otvalman = $otval[$val];
+			$otvalman = $otval1;
+			// $utvalman = $utval[$val];
+			$utvalman = $utval1;
+			// $otutvalman = $otutval[$val];
+			$otutvalman = $otutval1;
+			$nightdiffvalman = $nightdiffval[$val];
+
+			echo "<br>test01 $n chk:$checkboxmanual, ot:".$otvalman.", ut:".$utvalman.", otutval:".$otutvalman.", nightdiff:".$nightdiffvalman."\n";
+
+    } else { // if($checkboxmanual==1)
+    // compute ot & others
+
+			// compute totaltime in decimal by hour
+			$totaltime[$val] = ((strtotime($timeout1) - strtotime($timein1))/60)/60;
+
+  // echo "<br>test03 $n tottime:".$totaltime[$val].",";
+
+			// deduct lunch break
+			if((strtotime($timein1)<=strtotime("$n 12:00 pm")) && (strtotime($timeout1)>=strtotime("$n 01:00 pm"))) {
+				$totaltime[$val] = (((strtotime($timeout1) - strtotime($timein1))/60)/60) - 1;
+			}
+
+  // echo " tottimewlunch:".$totaltime[$val]." ";
+
+			// compute otutval
+			if($restdaysw[$val] == 1) {
+			// $otutval[$val] = $totaltime[$val];
+				// added 20161116
+				// check if($otafterouwsw==1)
+				// if($otafteroutsw[$val] == "1") {
+					// $otutval[$val] = $totaltime[$val];
+				// } else {
+					// $otutval[$val] = 0;
+				// } // if($otafteroutsw[$val] == "1")
+        $otval1 = $totaltime[$val];
+        $otvalman = $otval1;
+        $otutval1 = $totaltime[$val];
+        $otutvalman = $otutval1;
+        $utval1 = 0;
+        $utvalman = $utval1;
+        echo "<br> restdaysw:".$restdaysw[$val].", otval1:$otval1, otutval1:$otutval1, utval1:$utval1, tottime:".$totaltime[$val]." ";
+			} else {
+				// get emp shiftinoutcateg
+				$res21query="SELECT tblhrtapaygrpemplst.idhrtapayshiftctg, tblhrtapayshiftctg.shiftin, tblhrtapayshiftctg.shiftout, tblhrtapayshiftctg.lunchstart, tblhrtapayshiftctg.lunchend FROM tblhrtapaygrpemplst LEFT JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idhrtapayshiftctg=tblhrtapayshiftctg.idhrtapayshiftctg WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid\" AND tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup";
+				$result21=""; $found21=0; $ctr21=0;
+				$result21 = $dbh2->query($res21query);
+				if($result21->num_rows>0) {
+					while($myrow21 = $result21->fetch_assoc()) {
+					$found21 = 1;
+					$idhrtapayshiftctg21 = $myrow21['idhrtapayshiftctg'];
+					$shiftin21 = $myrow21['shiftin'];
+					$shiftout21 = $myrow21['shiftout'];
+					$lunchstart21 = $myrow21['lunchstart'];
+					$lunchend21 = $myrow21['lunchend'];
+
+					$shiftina = $n." ".$shiftin21;
+					$shiftouta = $n." ".$shiftout21;
+					$shiftin = date("Y-m-d H:i:s", strtotime($shiftina));
+					$shiftout = date("Y-m-d H:i:s", strtotime($shiftouta));
+					$shiftinunx = strtotime($shiftin);
+					$shiftoutunx = strtotime($shiftout);
+
+					$lunchstarta = $n." ".$lunchstart21;
+					$lunchenda = $n." ".$lunchend21;
+					$lunchstart = date("Y-m-d H:i:s", strtotime($lunchstarta));
+					$lunchend = date("Y-m-d H:i:s", strtotime($lunchenda));
+					$lunchstartunx = strtotime($lunchstart);
+					$lunchendunx = strtotime($lunchend);
+					// $lunchdur = strtotime($lunchend21) - strtotime($lunchstart21);
+					$lunchdur = $lunchendunx - $lunchstartunx;
+
+					// get halfoutam
+					$halfoutam0 = strtotime('+ 4 hours', $shiftinunx);
+					if(($halfoutam0 > $lunchstartunx) && ($halfoutam0 < $lunchendunx)) {
+						// deduct lunch brk
+						$halfoutamdiff = $lunchendunx - $halfoutam0;
+						$halfoutamunx = $lunchendunx + $halfoutamdiff;
+					} else if ($halfoutam0 >= $lunchendunx) {
+						$halfoutamunx = strtotime('+ 1 hours', $halfoutam0);
+					} else {
+						$halfoutamunx = $halfoutam0;
+					} // if($halfoutam0 > $lunchstart)
+					$halfoutam = date("Y-m-d H:i:s", $halfoutamunx);
+
+					// get halfinpm
+					$halfinpm0 = strtotime('-4 hours', $shiftoutunx);
+					if(($halfinpm0 > $lunchstartunx) && ($halfinpm0 < $lunchendunx)) {
+						// deduct lunch brk
+						$halfinpmdiff = $halfinpm0 - $lunchstartunx;
+						$halfinpmunx = $lunchstartunx - $halfinpmdiff;
+					} else {
+						$halfinpmunx = $halfinpm0;
+					} // if(($halfinpm0 > strtotime($lunchstart21)) && ($halfinpm0 < strtotime($lunchend21)))
+					$halfinpm = date("Y-m-d H:i:s", $halfinpmunx);
+
+					} // while($myrow21 = $result21->fetch_assoc())
+				} // if($result21->num_rows>0)
+
+  // echo "<br>shiftin:$shiftin, shiftout:$shiftout, lunchstart:$lunchstart|$halfoutam, lunchend:$lunchend|$halfinpm ";
+
+				// check for leaves first
+				if(($leavecd[$val] != "") && ($leavedaydur[$val] != "0.00")) {
+					// echo "test0 leavecd & leavedaydur not null\n";
+					if($leavecd[$val] == "absent") {
+					// echo "test1a with leavecd absent\n";
+						if($leavedaydur[$val]=="1.00") {
+							$totaltime[$val] = 8;
+							$otutval[$val] = 0;
+						} else if($leavedaydur[$val]=="0.50a") {
+							// get pm half-day shift schedule
+							$shiftpmin0 = strtotime('-4 hours', $shiftout21);
+							if($shiftpmin0>=$lunchend) {
+								$shiftpmin = $shiftpmin0;
+							} else {
+								// deduct lunch break
+								if($shiftpmin0<=$lunchstart) {
+
+								} // if($shiftpmin0<=$lunchstart)
+							}// if($shiftpmin0>=$lunchend21)
+						} else if($leavedaydur[$val]=="0.50p") {
+
+						} // if($leavedaydur[$val]==1)
+					} else {
+						// echo "test1b with leavecd not absent\n";
+						if($leavedaydur[$val]=="1.00") {
+							// echo "test2 leavedur:1\n";
+							$otutval[$val] = $totaltime[$val] - 8;
+						} else if($leavedaydur[$val]=="0.50a") {
+							// echo "test2 leavedur:".$leavedaydur[$val]." halfinpm:$halfinpm|".strtotime($halfinpm)."|".date("H:i:s", $halfinpm)."\n";
+							// check leave credits balance if enough for deduction
+							$leavedaydurval = 0.5;
+							$leavereqtot = $leavereqtot + $leavedaydurval;
+							include("hrtimeatttimelogchkleavcr.php");
+							if($leavereqstat==1) {
+								// compute total time of half-day pm
+								$totaltime[$val] = (((strtotime($timeout1) - strtotime($timein1))/60)/60) + 4;
+								// deduct lunch break
+								if(strtotime($timein1) <= strtotime($lunchstart)) {
+									$totaltime[$val] = $totaltime[$val] - 1;
+									$cond = "timein1b <= lunchstart";
+								} else if((strtotime($timein1) > strtotime($lunchstart)) && (strtotime($timein1) < strtotime($lunchend))) {
+									// compute lunch time diff and deduct in totaltime
+									$lunchdiff = ((strtotime($lunchend) - strtotime($timein1))/60)/60;
+									$totaltime[$val] = $totaltime[$val] - $lunchdiff;
+									$cond = "timein1b > lunchstart & < lunchend";
+								} // if($timein1c <= strtotime($lunchstart21))
+							} else { // if($leavereqstat==1)
+								// deny leave request, revert to absent
+								$leavetypeval = "absent";
+								$totaltime[$val] = (((strtotime($timeout1) - strtotime($timein1))/60)/60) + 4;
+								// deduct lunch break
+								if(strtotime($timein1) <= strtotime($lunchstart21)) {
+									$totaltime[$val] = $totaltime[$val] - 1;
+								} else if((strotime($timein1) > strtotime($lunchstart21)) && ($timein1 <= strtotime($lunchend21))) {
+									// compute lunch time diff and deduct in totaltime
+									$lunchdiff = strotime($lunchend21) - strtotime($timein1);
+									$totaltime[$val] = $totaltime[$val] - $lunchdiff;
+								} // if($halfoutam0 >= strtotime($lunchend21))
+							} // if($leavereqstat==1)
+
+							// prepare half-day variables for otut
+							$shiftinunx = $halfinpmunx;
+							// $shiftout = $halfoutam;
+							include("hrtimeattotutval.php");
+			
+							// echo "test2 leavetyp:$leavetypeval leavereqstat:$leavereqstat fnd20:$found20 loc:pre-lunch cond:$cond \n";
+							// echo "test3 inout:$timein1unx-to-$timeout1unx shift:$shiftinunx-to-$shiftoutunx lunch:$lunchstartunx-to-$lunchendunx half:$halfoutamunx|$halfinpmunx\n";
+							// echo "test4 otbeforein:$otbeforeinval otafterout:$otafteroutval utbeforein:$utbeforeinval\n";
+							// echo "test5 lvreqstat:$leavereqstat timelog:".strtotime($timein1)."-to-".strtotime($timeout1)." shift:".strtotime($shiftin)."|$halfinpm-to-".strtotime($shiftouta)." half:$halfoutam|$halfinpm lunch:".strtotime($lunchstart)."-to-".strtotime($lunchend21)." lunchdur:$lunchdur lunchdiff:$lunchdiff halfinpm0:".date("H:i:s", $halfinpm0)." diff:$halfinpmdiff  tottime:".$totaltime[$val]." leavereqtot:$leavereqtot \n";
+							// echo "test5b halfinpm0:$halfinpm0 diff:$halfinpmdiff halfinpm:$halfinpm halfinpmunx:$halfinpmunx\n";
+							// echo "test6 otin:".$otbeforeinsw[$val]." otout:".$otafteroutsw[$val]." otbeforein:$otbeforeinval otafterout:$otafteroutval utbeforein:$utbeforeinval otutval:$otutval \n";
+						} else if($leavedaydur[$val]=="0.50p") {
+							// echo "test2 leavedur:0.50p halfoutam:$halfoutam|".strtotime($halfoutam)."|".date("H:i:s", $halfoutam)."\n";
+							// check leave credits balance if enough for deduction
+							$leavedaydurval = 0.5;
+							$leavereqtot = $leavereqtot + $leavedaydurval;
+							include("hrtimeatttimelogchkleavcr.php");
+							if($leavereqstat==1) {
+								// compute total time of half-day pm
+								$totaltime[$val] = (((strtotime($timeout1) - strtotime($timein1))/60)/60) + 4;
+								// deduct lunch break
+								if($timeout1unx >= $lunchendunx) {
+									$totaltime[$val] = $totaltime[$val] - 1;
+									$cond = "timeout1 >= lunchend";
+								} else if(($timeout1unx >= $lunchstartunx) && ($timeout1unx <= $lunchendunx)) {
+									// compute lunch time diff and deduct in totaltime
+									$lunchdiff = (($timeout1unx - $lunchstartunx)/60)/60;
+									$totaltime[$val] = $totaltime[$val] - $lunchdiff;
+									$cond = "timeout1 > lunchstart & < lunchend";
+								} // if($halfoutam0 >= strtotime($lunchend21))
+							} else { // if($leavereqstat==1)
+								// deny leave request, revert to absent
+								$leavetypeval = "absent";
+								$totaltime[$val] = (((strtotime($timeout1) - strtotime($timein1))/60)/60) + 4;
+								// deduct lunch break
+								if($timeout1unx >= $lunchendunx) {
+									$totaltime[$val] = $totaltime[$val] - 1;
+									$cond = "timeout1 >= lunchend";
+								} else if(($timeout1unx >= $lunchstartunx) && ($timeout1unx <= $lunchendunx)) {
+									// compute lunch time diff and deduct in totaltime
+									$lunchdiff = (($timeout1unx - $lunchstartunx)/60)/60;
+									$totaltime[$val] = $totaltime[$val] - $lunchdiff;
+									$cond = "timeout1 > lunchstart & < lunchend";
+								} // if($halfoutam0 >= strtotime($lunchend21))
+							} // if($leavereqstat==1)
+
+							// prepare half-day variables for otut
+							// $shiftinunx = $halfinpmunx;
+							$shiftoutunx = $halfoutamunx;
+							include("hrtimeattotutval.php");
+							/*
+							echo "test3 inout:$timein1unx-to-$timeout1unx shift:$shiftinunx-to-$shiftoutunx lunch:$lunchstartunx-to-$lunchendunx half:$halfoutamunx,$halfoutam|$halfinpmunx\n";
+							echo "test4 otbeforein:$otbeforeinval otafterout:$otafteroutval utbeforein:$utbeforeinval\n";
+							echo "test5 lvreqstat:$leavereqstat shift:$shiftin21-to-$shiftout21 lunch:$lunchstart21-to-$lunchend21 lunchdur:$lunchdur halfinam:$halfinam halfoutam0:".date("H:i:s", $halfoutam0)." lunchstart0:$lunchstart0 diff:$halfoutamdiff tottime:".$totaltime[$val]."\n";
+							echo "test6 otin:".$otbeforeinsw[$val]." otout:".$otafteroutsw[$val]." otbeforein:$otbeforeinval otafterout:$otafteroutval utbeforein:$utbeforeinval otutval:".$otutval[$val]."\n";
+							*/
+						} // if($leavedaydur[$val]==1)
+					} // if($leavecd[$val] == "absent")
+				} else {
+					// compute otut
+					include("hrtimeattotutval.php");
+				}
+			} // end if($restdaysw[$val] == 1)
+
+			// put in array otutval
+			// $otutval[$val] = $otutval;
+
+			// compute night differential
+			if(strtotime($timeout1) > strtotime("$n 10:00 pm")) {
+				// $nightdiffval[$val] = ((strtotime($timeout1) - strtotime("$n 10:00 pm"))/60)/60;
+				$nightdiffval2[$val] = ((strtotime($timeout1) - strtotime("$n 10:00 pm"))/60)/60;
+			} // if
+			
+			echo "test1 $n chk:$checkboxmanual, timein:".$timein1." timeout:".$timeout1." totaltime:".$totaltime[$val].", ot:".$otval[$val]."|$otval1, ut:".$utval[$val]."|$utval1, otutval:".$otutval[$val]."|$otutval1, nightdiff:".$nightdiffval[$val]."\n";
+
+
+    } // if($checkboxmanual==1)
+
+			// prepare variables
+			$otbeforeinswval = $otbeforeinsw[$val];
+			$otafteroutswval = $otafteroutsw[$val];
+			$restdayswval = $restdaysw[$val];
+			$nextdayswval = $nextday[$val];
+			$mealallowswval = $mealallow[$val];
+			// $leavetypeval = $leavecd[$val];
+			// $leavedurationval = $leavedaydur[$val];
+			// $totaltimeval = round($totaltime[$val], 2);
+			$totaltimeval = $totaltime[$val];
+			// $otval = round($otval[$val], 2);
+			// $utval = round($utval[$val], 2);
+			// $otutval = $otutval[$val];
+			$otval = round($otval1, 2);
+			$utval = round($utval1, 2);
+			$otutval = round($otutval1, 2);
+			// $nightdiffval = round($nightdiffval2[$val], 2);
+			$nightdiffval = $nightdiffval2[$val];
+			$projchargeval = $projcharge[$val];
+			$remarksval = $remarks[$val];
+			// $remarksval = "rest:$restdayswval, tottime:$totaltimeval, otut:$otutval, ot:$otval, ut:$utval";
+			// if($leavetypeval=="") { $leavedurationval=0; } else { $leavedurationval=1; }
+			if($nightdiffval=="") { $nightdiffval=0; }
+			
+		if($checkboxmanual==1) {
+			// echo "test0 $n chk:$checkboxmanual, ot:".$otval[$val].", ut:".$utval[$val].", otutval:".$otutval[$val].", nightdiff:".$nightdiffval[$val]."\n";
+			// $totaltimeval = $totaltime[$val];
+			$otval = $otvalman;
+			$utval = $utvalman;
+			$otutval = $otutvalman;
+			$nightdiffval = $nightdiffvalman;
+        } // if
+			
+			$nofindingsval=0;
+			foreach($nofindings as $val2 => $n2) {
+				if($n2==$n) { $nofindingsval=1; }
+			} // foreach($nofindings as $val2 => $n2)
+
+		//
+		// db queries
+		//
+		// chk if exists and get id and update else insert
+		$res11query = "SELECT idhrtaemptimelog FROM tblhrtaemptimelog WHERE employeeid=\"$employeeid\" AND idpaygroup=$idpaygroup AND idcutoff=$idcutoff AND logdate=\"$n\"";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$idhrtaemptimelog11 = $myrow11['idhrtaemptimelog'];
+			} // while($myrow11 = $result11->fetch_assoc())
+		} // if($result11->num_rows>0)
+
+		if($found11 == 1) {
+			// update based on id
+			if($otutval == ''){
+				$otutval = 0;
+			}
+			$res12update = "UPDATE tblhrtaemptimelog SET timestamp=\"$now\", lastupdate=$loginid, timein='".$timein1."', timeout='".$timeout1c."', otbeforeinsw=$otbeforeinswval, otafteroutsw=$otafteroutswval, restdaysw=$restdayswval, nextdaysw=$nextdayswval, mealallowsw=$mealallowswval, leavetype=\"$leavetypeval\", leaveduration=\"".$leavedaydur[$val]."\", manualcompsw=$checkboxmanual, totaltime=$totaltimeval, otval=$otval, utval=$utval, otutval=$otutval, nightdiffval=$nightdiffval, projcharge=\"$projchargeval\", nofindings=$nofindingsval, remarks=\"$remarksval\" WHERE idhrtaemptimelog=".$idhrtaemptimelog11;
+		$result12 = $dbh2->query($res12update);
+		echo "r12upd:$res12update";				
+			var_dump($result12);
+		} else {
+			// insert query
+			$res12insert = "INSERT INTO tblhrtaemptimelog SET timestamp=\"$now\", loginid=$loginid, datecreated=\"$datenow\", lastupdate=$loginid, employeeid=\"$employeeid\", idpaygroup=$idpaygroup, idcutoff=$idcutoff, cutstart=\"$cutstart14\", cutend=\"$cutend14\", logdate=\"$n\", timein=\"$timein1\", timeout=\"$timeout1c\", otbeforeinsw=$otbeforeinswval, otafteroutsw=$otafteroutswval, restdaysw=$restdayswval, nextdaysw=$nextdayswval, mealallowsw=$mealallowswval, leavetype=\"$leavetypeval\", leaveduration=\"".$leavedaydur[$val]."\", manualcompsw=$checkboxmanual, totaltime=$totaltimeval, otval=$otval, utval=$utval, otutval=$otutval, nightdiffval=$nightdiffval, projcharge=\"$projchargeval\", nofindings=$nofindingsval, remarks=\"$remarksval\"";
+			$result12 = $dbh2->query($res12insert);
+			$insid = mysql_insert_id();
+		} // end if($found11 == 1)
+
+		//
+		// display vars
+		//
+/*
+		echo "test now:$now idl:$loginid idpg:$idpaygroup idct:$idcutoff eid:$employeeid idtmlog:$idhrtaemptimelog11 dt:$n|$n2|$n3 num:$val|$val2|$val3 in:$timein1|$shiftin out:";
+		if(strtotime($timein1) > strtotime($timeout1)) {
+		echo "<font color=\"red\">$timeout1</font>";
+		} else {
+		echo "$timeout1";
+		}
+		echo "|$shiftout ";
+		echo "otin:".$otbeforeinsw[$val].", otout:".$otafteroutsw[$val].",  restdy:".$restdaysw[$val]." nxtdy:".$nextday[$val]." meal:".$mealallow[$val]." lvcd:".$leavetypeval." lvdur:".$leavedurationval."|".$leavedaydur[$val]." otsw:$otsw, otval:$otval|".$otval[$val]." utsw:$utsw, utval:$utval|".$utval[$val]." chkboxmanual:".$checkboxman[$n3]."|$checkboxmanual otutval:$otutval tottime:".number_format($totaltime[$val], 2)." otut:";
+		
+		if($otutval<0) {
+		echo "<font color=\"red\">".number_format($otutval, 2)."</font>";
+		} else {
+		echo "".number_format($otutval, 2)."";
+		}
+*/
+		// echo "|otin:$otbeforeinval,otin2:$otbeforeinval2,otout:$otafteroutval";
+		// echo " nd:".number_format($nightdiffval, 2).", projcd:$projchargeval, nf:".$nofindings[$val2]."|$nofindingsval, rem:".$remarks[$val]."\n";
+		// echo "found11:$found11, idupd:$idhrtaemptimelog11, idins:$insid|$insid12b, query:$res12update,$res12insert \n";
+		// echo "sql: $res12update \n";
+		// echo "lvtyp:$leavetypeval, lvdur:".$leavedaydur[$val].", vlbal:$vlbal, slbal:$slbal, pater:$paterbal, matern:$maternbal, materc:$matercbal, spl:$splbal, accum:$slaccumcr \n";		
+		// echo "test2 $n chk:$checkboxmanual, timein:".$timein1." timeout:".$timeout1." totaltime:".$totaltimeval.", ot:".$otval.", ut:".$utval.", otutval:".$otutval.", nightdiff:".$nightdiffval."\n";
+
+		//
+		// reset variables
+    $otval1=0; $utval1=0; $otutval1=0;
+    $otbeforeinval=0; $otafteroutval=0; $utbeforeinval=0; $utafteroutval=0;
+		// $n=""; $n2=""; $n3=""; $utval=""; $otval=""; $leavetypeval=""; $leavedurationval=""; $shiftin=""; $otbeforeinval=0; $otbeforeinval2=0; $otafteroutval=0; $leavedaydurval=0;
+
+		//
+	} // end foreach($cutstart as $val => $n)
+		//
+
+		//
+		// query and update for leave credits
+		//
+		$res15query = "SELECT idhrtaempleavesumm, paygroupname, datestart, dateend, dateanniv, dateupd, vlquota, vlbal, vlcshcnv, vlaccumcr, vlretcr, vlforfeit, slquota, slbal, slcshcnv, slaccumcr, slretcr, slforfeit, splquota, splbal, paterquota, paterbal, maternquota, maternbal, matercquota, matercbal FROM tblhrtaempleavesumm WHERE employeeid=\"$employeeid\" AND idpaygroup=$idpaygroup AND idcutoff=$idcutoff ORDER BY dateupd DESC LIMIT 1";
+		$result15=""; $found15=0; $ctr15=0;
+		$result15 = $dbh2->query($res15query);
+		if($result15->num_rows>0) {
+			while($myrow15 = $result15->fetch_assoc()) {
+			$found15 = 1;
+			$idhrtaempleavesumm15 = $myrow15['idhrtaempleavesumm'];
+			$paygroupname15 = $myrow15['paygroupname'];
+			$datestart15 = $myrow15['datestart'];
+			$dateend15 = $myrow15['dateend'];
+			$dateanniv15 = $myrow15['dateanniv'];
+			$dateupd15 = $myrow15['dateupd'];
+			$vlquota15 = $myrow15['vlquota'];
+			$vlbal15 = $myrow15['vlbal'];
+			$vlcshcnv15 = $myrow15['vlcshcnv'];
+			$vlaccumcr15 = $myrow15['vlaccumcr'];
+			$vlretcr15 = $myrow15['vlretcr'];
+			$vlforfeit15 = $myrow15['vlforfeit'];
+			$slquota15 = $myrow15['slquota'];
+			$slbal15 = $myrow15['slbal'];
+			$slcshcnv15 = $myrow15['slcshcnv'];
+			$slaccumcr15 = $myrow15['slaccumcr'];
+			$slretcr15 = $myrow15['slretcr'];
+			$slforfeit15 = $myrow15['slforfeit'];
+			$splquota15 = $myrow15['splquota'];
+			$splbal15 = $myrow15['splbal'];
+			$paterquota15 = $myrow15['paterquota'];
+			$paterbal15 = $myrow15['paterbal'];
+			$maternquota15 = $myrow15['maternquota'];
+			$maternbal15 = $myrow15['maternbal'];
+			$matercquota15 = $myrow15['matercquota'];
+			$matercbal15 = $myrow15['matercbal'];
+			}
+		}
+		if($found15 == 1) {
+			// query previous leave credits record not in id15
+			$res19query = "SELECT idhrtaempleavesumm, paygroupname, datestart, dateend, dateanniv, dateupd, vlquota, vlbal, vlcshcnv, vlaccumcr, vlretcr, vlforfeit, slquota, slbal, slcshcnv, slaccumcr, slretcr, slforfeit, splquota, splbal, paterquota, paterbal, maternquota, maternbal, matercquota, matercbal FROM tblhrtaempleavesumm WHERE employeeid=\"$employeeid\" AND idpaygroup=$idpaygroup AND idhrtaempleavesumm<>$idhrtaempleavesumm15 ORDER BY dateupd DESC LIMIT 1";
+			$result19=""; $found19=0; $ctr19=0;
+			/*
+			$result19 = mysql_query("$res19select", $dbh);
+			if($result19 != "") {
+				while($myrow19 = mysql_fetch_row($result19)) {
+			*/
+			$result19 = $dbh2->query($res19query);
+			if($result19->num_rows>0) {
+				while($myrow19 = $result19->fetch_assoc()) {
+				$found19 = 1;
+				$idhrtaempleavesumm19 = $myrow19['idhrtaempleavesumm'];
+				$paygroupname19 = $myrow19['paygroupname'];
+				$datestart19 = $myrow19['datestart'];
+				$dateend19 = $myrow19['dateend'];
+				$dateanniv19 = $myrow19['dateanniv'];
+				$dateupd19 = $myrow19['dateupd'];
+				$vlquota19 = $myrow19['vlquota'];
+				$vlbal19 = $myrow19['vlbal'];
+				$vlcshcnv19 = $myrow19['vlcshcnv'];
+				$vlaccumcr19 = $myrow19['vlaccumcr'];
+				$vlretcr19 = $myrow19['vlretcr'];
+				$vlforfeit19 = $myrow19['vlforfeit'];
+				$slquota19 = $myrow19['slquota'];
+				$slbal19 = $myrow19['slbal'];
+				$slcshcnv19 = $myrow19['slcshcnv'];
+				$slaccumcr19 = $myrow19['slaccumcr'];
+				$slretcr19 = $myrow19['slretcr'];
+				$slforfeit19 = $myrow19['slforfeit'];
+				$splquota19 = $myrow19['splquota'];
+				$splbal19 = $myrow19['splbal'];
+				$paterquota19 = $myrow19['paterquota'];
+				$paterbal19 = $myrow19['paterbal'];
+				$maternquota19 = $myrow19['maternquota'];
+				$maternbal19 = $myrow19['maternbal'];
+				$matercquota19 = $myrow19['matercquota'];
+				$matercbal19 = $myrow19['matercbal'];
+				}
+			}
+			if($found19 == 1) {
+			// check available credits if enough then deduct
+			if($vlbal <= $vlbal19) {
+				$vlbal19 = $vlbal19 - $vlbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($slbal <= $slbal19) {
+				$slbal19 = $slbal19 - $slbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($splbal <= $splbal19) {
+				$splbal19 = $splbal19 - $splbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($paterbal <= $paterbal19) {
+				$paterbal19 = $paterbal19 - $paterbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($maternbal <= $maternbal19) {
+				$maternbal19 = $maternbal19 - $maternbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($matercbal <= $matercbal19) {
+				$matercbal19 = $matercbal19 - $matercbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($slaccumcr <= $slaccumcr19) {
+				$slaccumcr19 = $slaccumcr19 - $slaccumcr;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			} // end if($found19 == 1)
+			// update tblhrtaempleavesumm based on id
+			$res15bupdate = "UPDATE tblhrtaempleavesumm SET vlbal=$vlbal19, slbal=$slbal19, paterbal=$paterbal19, maternbal=$maternbal19, matercbal=$matercbal19, splbal=$splbal19, slaccumcr=$slaccumcr19 WHERE idhrtaempleavesumm=$idhrtaempleavesumm15 AND employeeid=\"$employeeid\"";
+			// $result15b = $dbh2->query($res15bupdate);
+		} else if($found15 == 0) {
+			// select query from tblhrtaempleavesumm
+			$res18select="SELECT idhrtaempleavesumm, paygroupname, datestart, dateend, dateanniv, dateupd, vlquota, vlbal, vlcshcnv, vlaccumcr, vlretcr, vlforfeit, slquota, slbal, slcshcnv, slaccumcr, slretcr, slforfeit, splquota, splbal, paterquota, paterbal, maternquota, maternbal, matercquota, matercbal FROM tblhrtaempleavesumm WHERE employeeid=\"$employeeid\" AND idpaygroup=$idpaygroup ORDER BY dateupd DESC LIMIT 1";
+			$result18=""; $found18=0; $ctr18=0;
+			$result18 = $dbh2->query($res18select);
+			if($result18->num_rows>0) {
+				while($myrow18 = $result18->fetch_assoc()) {
+				$found18 = 1;
+				$idhrtaempleavesumm18 = $myrow18['idhrtaempleavesumm'];
+				$paygroupname18 = $myrow18['paygroupname'];
+				$datestart18 = $myrow18['datestart'];
+				$dateend18 = $myrow18['dateend'];
+				$dateanniv18 = $myrow18['dateanniv'];
+				$dateupd18 = $myrow18['dateupd'];
+				$vlquota18 = $myrow18['vlquota'];
+				$vlbal18 = $myrow18['vlbal'];
+				$vlcshcnv18 = $myrow18['vlcshcnv'];
+				$vlaccumcr18 = $myrow18['vlaccumcr'];
+				$vlretcr18 = $myrow18['vlretcr'];
+				$vlforfeit18 = $myrow18['vlforfeit'];
+				$slquota18 = $myrow18['slquota'];
+				$slbal18 = $myrow18['slbal'];
+				$slcshcnv18 = $myrow18['slcshcnv'];
+				$slaccumcr18 = $myrow18['slaccumcr'];
+				$slretcr18 = $myrow18['slretcr'];
+				$slforfeit18 = $myrow18['slforfeit'];
+				$splquota18 = $myrow18['splquota'];
+				$splbal18 = $myrow18['splbal'];
+				$paterquota18 = $myrow18['paterquota'];
+				$paterbal18 = $myrow18['paterbal'];
+				$maternquota18 = $myrow18['maternquota'];
+				$maternbal18 = $myrow18['maternbal'];
+				$matercquota18 = $myrow18['matercquota'];
+				$matercbal18 = $myrow18['matercbal'];
+				}
+			}
+			// check available credits if enough then deduct
+			if($vlbal <= $vlbal18) {
+				$vlbal18 = $vlbal18 - $vlbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($slbal <= $slbal18) {
+				$slbal18 = $slbal18 - $slbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($splbal <= $splbal18) {
+				$splbal18 = $splbal18 - $splbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($paterbal <= $paterbal18) {
+				$paterbal18 = $paterbal18 - $paterbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($maternbal <= $maternbal18) {
+				$maternbal18 = $maternbal18 - $maternbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($matercbal <= $matercbal18) {
+				$matercbal18 = $matercbal18 - $matercbal;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			if($slaccumcr <= $slaccumcr18) {
+				$slaccumcr18 = $slaccumcr18 - $slaccumcr;
+			} else { include("hrtimeatttimelogupdlvmaxwarn.php"); }
+			// insert into tblbhrtaempleavesumm 
+			$res15binsert = "INSERT INTO tblhrtaempleavesumm SET timestamp=\"$now\", loginid=$loginid, datecreated=\"$datenow\", lastupdate=$loginid, idpaygroup=$idpaygroup, paygroupname=\"$paygroupname14\", idcutoff=$idcutoff, datestart=\"$cutstart14\", dateend=\"$cutend14\", employeeid=\"$employeeid\", dateanniv=\"\", dateupd=\"$now\", vlquota=$vlquota18, vlbal=$vlbal18, vlcshcnv=$vlcshcnv18, vlaccumcr=$vlaccumcr18, vlretcr=$vlretcr18, vlforfeit=$vlforfeit18, slquota=$slquota18, slbal=$slbal18, slcshcnv=$slcshcnv18, slaccumcr=$slaccumcr18, slretcr=$slretcr18, slforfeit=$slforfeit18, splquota=$splquota18, splbal=$splbal18, paterquota=$paterquota18, paterbal=$paterbal18, maternquota=$maternquota18, maternbal=$maternbal18, matercquota=$matercquota18, matercbal=$matercbal18";
+			// $result15b = $dbh2->query($res15binsert);
+		} // end if($found15 == 1)
+	// echo "$res15bupdate $res15binsert \n";
+		//
+		
+	echo "</pre>";
+
+		//
+		// create log
+		$res16query = "SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid";
+		$result16 = $dbh2->query($res16query);
+		if($result16->num_rows>0) {
+			while($myrow16 = $result16->fetch_assoc()) {
+			$adminuid=$myrow16['adminuid'];
+			}
+		}
+		if($res12update != "" && $res12insert == "") {
+		$adminlogdetails = "$loginid:$adminuid - updated records id:$idhrtaemptimelog11 for empid:$employeeid, paygroupid:$idpaygroup, cutoffid:$idcutoff-$cutstart14-to-$cutend14 in time & attendance module";
+		} else if($res12update == "" && $res12insert != "") {
+		$adminlogdetails = "$loginid:$adminuid - inserted new records for empid:$employeeid, paygroupid:$idpaygroup, cutoffid:$idcutoff-$cutstart14-to-$cutend14 in time & attendance module";
+		}
+
+	//
+	// redirect
+	// header("Location: hrtimeatttimelogs.php?loginid=$loginid&idpg=$idpaygroup&idct=$idcutoff&eid=$employeeid");
+	// exit;
+
+	echo "<p><a href=\"hrtimeatttimelogs.php?loginid=$loginid&idpg=$idpaygroup&idct=$idcutoff&eid=$employeeid\">back</a></p>";
+	echo "</html>";
+} else {
+     include ("logindeny.php");
+}
+mysql_close($dbh);
+$dbh2->close();
+?>

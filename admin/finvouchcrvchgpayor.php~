@@ -1,0 +1,168 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$crvnumber = $_GET['crvn'];
+$crvdate = $_GET['crvdt'];
+
+$found = 0;
+
+if($loginid != "")
+{
+	include("logincheck.php");
+}
+
+
+if ($found == 1)
+{
+	include ("header.php");
+  include ("sidebar.php");
+?>
+<script language="JavaScript" src="./js/auto_search.js"></script>
+<?
+// start contents here
+
+	$result11=""; $found11=0;
+	$result11 = mysql_query("SELECT payor, companyid, contactid FROM tblfincashreceipt WHERE cashreceiptnumber=\"$crvnumber\" AND date=\"$crvdate\"", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$payor11 = $myrow11[0];
+		$companyid11 = $myrow11[1];
+		$contactid11 = $myrow11[2];
+		}
+	}
+
+	if((($companyid11!="") || ($companyid11!=0)) && (($contactid11=="") || ($contactid11==0))) { $rdiocompanyid="checked=\"checked\""; $rdiocontactid=""; }
+	if((($contactid11!="") || ($contactid11!=0)) && (($companyid11=="") || ($companyid11==0))) { $rdiocontactid="checked=\"checked\""; $rdiocompanyid=""; }
+	if((($companyid11=="") && ($contactid11=="")) || (($companyid11==0) && ($contactid11==0))) { $rdiocompanyid="checked=\"checked\""; $rdiocontactid=""; }
+
+  echo "<table class=\"fin\" border=\"1\">";
+  echo "<tr><th colspan=\"2\">Cash Receipt - modify Received by</th></tr>";
+	echo "<form action=\"finvouchcrvchgpayor2.php?loginid=$loginid&crvn=$crvnumber&crvdt=$crvdate\" method=\"post\" name=\"form1\">";
+	echo "<tr><th align=\"right\">Date</th><td>$crvdate</td></tr>";
+	echo "<tr><th align=\"right\">C.R.V. no.</th><td>$crvnumber</td></tr>";
+	echo "<tr><th align=\"right\">Received by</th><td>";
+	// echo "<input name=\"payor\" size=\"60\" value=\"$payor11\">";
+	// echo "<input name=\"payor\" size=\"60\" value=\"$payor11\" onkeyup=\"search(document.form1.payor.value, document.form1.payor, document.form1.payor0, document.getElementById('contentpayor'), cshrcptpayor, cshrcptpayorid)\")>";
+	if((($companyid11=="") && ($contactid11=="")) || (($companyid11==0) && ($contactid11==0))) {
+		echo "<i>previous: $payor11</i><br />";
+	}  
+	echo "<input id=\"radio3\" type=\"radio\" name=\"payorsw\" value=\"company\" $rdiocompanyid>";
+		echo "<select name=\"payorcompanyid\" onchange=\"radioselect3()\">";
+		if((($companyid11=="") && ($contactid11=="")) || (($companyid11==0) && ($contactid11==0))) {
+			echo "<option value=\"\">select company</option>";
+		}
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("SELECT companyid, company, branch FROM tblcompany ORDER BY company ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12=1;
+			$companyid12 = $myrow12[0];
+			$company12 = $myrow12[1];
+			$branch12 = $myrow12[2];
+			if($companyid12 == $companyid11) { $payorcompanysel="selected"; } else { $payorcompanysel=""; }
+			echo "<option value=\"$companyid12\" $payorcompanysel>$company12";
+			if($branch12 != "") { echo " - $branch12"; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+	echo "<br /><input id=\"radio4\" type=\"radio\" name=\"payorsw\" value=\"contactperson\" $rdiocontactid>";
+		echo "<select name=\"payorcontactid\" onchange=\"radioselect4()\">";
+		if((($companyid11=="") && ($contactid11=="")) || (($companyid11==0) && ($contactid11==0))) {
+			echo "<option value=\"\">select individual person</option>";
+		}
+		$result14=""; $found14=0; $ctr14=0;
+		// $result14 = mysql_query("SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid=tblemployee.employeeid WHERE tblcontact.contact_type<>\"personnel\" OR (tblemployee.emp_record=\"active\" AND tblcontact.contact_type=\"personnel\") ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC", $dbh);
+		$result14 = mysql_query("SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+			$found14=1;
+			$contactid14 = $myrow14[0];
+			$companyid14 = $myrow14[1];
+			$employeeid14 = $myrow14[2];
+			$name_last14 = $myrow14[3];
+			$name_first14 = $myrow14[4];
+			$name_middle14 = $myrow14[5];
+			if($contactid14 == $contactid11) { $payorcontactsel="selected"; } else { $payorcontactsel=""; }
+			echo "<option value=\"$contactid14\" $payorcontactsel>$name_first14";
+			if($name_middle14 != "") { echo "&nbsp;$name_middle14[0]."; }
+			echo "&nbsp;$name_last14</option>";
+			}
+		}
+		echo "</select>";
+ 	/*
+		echo "<input name=\"payor0\" type=\"hidden\">";
+		echo "<div id=\"contentpayor\">";
+		echo "</div>";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("SELECT DISTINCT payor FROM tblfincashreceipt ORDER BY payor ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12=0;
+			$payor12 = $myrow12[0];
+			$cshrcptpayorid[$ctr12] = "$ctr12";
+			$cshrcptpayor[$ctr12] = "$payor12";
+			$ctr12 = $ctr12 + 1;
+			}
+		}
+	*/
+	echo "</td></tr>";
+	echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\"></td></tr>";
+	echo "</form>";
+  echo "</table>";
+
+  echo "<p><a href=\"finvouchcrvnew.php?loginid=$loginid&crvn=$crvnumber&crvdt=$crvdate\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+?>
+
+<SCRIPT type="text/javascript" language="JavaScript">
+
+var cshrcptpayorid = [
+<?
+  foreach ($cshrcptpayorid as $value)
+  {
+       echo "$value,";
+  }
+  echo "0";
+?>
+];
+
+var cshrcptpayor = [
+<?
+  foreach ($cshrcptpayor as $value)
+  {
+       echo "\"$value\",";
+  }
+  echo "\"Select\"";
+?>
+];
+
+
+function radioselect4()
+{
+     document.getElementById('radio4').checked = true;
+}
+function radioselect3()
+{
+     document.getElementById('radio3').checked = true;	
+}
+
+</SCRIPT>
+
+<?
+mysql_close($dbh);
+?>

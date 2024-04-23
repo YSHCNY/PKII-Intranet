@@ -1,0 +1,35 @@
+test only. Please find below details of the Pay Advisory
+
+Employee ID: 504
+Employee Name: Perez, Larresa Aniana
+
+GROSS AMOUNT: P1200.00
+
+Tax Deduction: P150.00
+Other Deductions: P0.00
+
+NET AMOUNT: P1050.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+test only. Please find below details of the Pay Advisory
+
+Employee ID: 545
+Employee Name: Borja, Maurel Chito Santos
+
+GROSS AMOUNT: P1200.00
+
+Tax Percentage: 5%
+Tax Deduction: P60.00
+Other Deductions: P0.00
+
+NET AMOUNT: P1140.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

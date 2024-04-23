@@ -1,0 +1,53 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+    include("logincheck.php");
+}
+
+if ($found == 1)
+{
+    include ("header.php");
+    include ("sidebar.php");
+
+    echo "<p><font size=1>Tools >> View log files</font></p>";
+
+    echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+    echo "<tr><td bgcolor=blue><font color=white><b>Log Viewer</b></font></td></tr>";
+
+    $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE login_id=$loginid", $dbh); 
+
+    echo "<tr><td>";
+    echo "<table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr>";
+      echo "<form action=\"loguser.php?loginid=$loginid\" method=\"post\">";
+      echo "<td><input type=\"submit\" value=\"Normal user logs\"></td></form>";
+      echo "<form action=\"logadminuser.php?loginid=$loginid\" method=\"post\">";
+      echo "<td><input type=\"submit\" value=\"Admin user logs\"></td></form>";
+      echo "<form action=\"lognotifier.php?loginid=$loginid\" method=\"post\">";
+			echo "<td><input type=\"submit\" value=\"Notifier Files\"></td></form>";
+			echo "</tr>";
+    echo "</table>";
+    echo "</td></tr>"; 
+    echo "</table>";
+
+    echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+    $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminloginid=$loginid", $dbh); 
+  
+    include ("footer.php");
+}
+else
+{
+    include ("logindeny.php");
+}
+
+mysql_close($dbh);
+
+?> 

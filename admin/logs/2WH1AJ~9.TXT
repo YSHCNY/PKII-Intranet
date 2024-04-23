@@ -1,0 +1,55 @@
+Please (disregard) find below details of your payroll salary is now available.
+
+cutoff period: 2019-12-01 -to- 2019-12-15
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P12750.00
+
+Total Late_Absent: 506.47
+NET BASIC PAY: P12243.53
+
+Regular Overtime: 0 (mins) - P1.00
+Reg.Sun/Sat. OT: 0 (mins) - P1.00
+Legal Holiday OT: 0 (mins) - P1.00
+Special Holiday OT: 0 (mins) - P1.00
+Night Differential: 0 (mins) - P1.00
+TOTAL OVERTIME: P5.00
+
+Additional Income:
+Taxable Income:
+Fixed Allowance: 1250.00
+Fixed Allowance: 2500.00
+TOTAL Taxable Income: P1250.00
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+APO - Philhealth Cont Oct & Nov: 592.45
+APO - SSS Cont Oct & Nov: 1600.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 3692.45
+
+GROSS PAY: P17190.98
+
+Withholding Tax: P615.51
+SSS: P800.00
+Philhealth: P321.45
+Pag-ibig: P50.00
+
+Other Deductions:
+Insular Life: 75.00
+Pag-Ibig Cont (add): 500.00
+Pag-Ibig Cont (add): 700.00
+TOTAL Other Deductions: P775.00
+
+TOTAL DEDUCTIONS: P2561.96
+
+NET PAY: P14629.02
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

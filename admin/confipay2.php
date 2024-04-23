@@ -1,0 +1,139 @@
+<?php 
+
+require("db1.php");
+include("clsmcrypt.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$groupname0 = (isset($_GET['gn'])) ? $_GET['gn'] :'';
+$employeetype = (isset($_POST['employeetype'])) ? $_POST['employeetype'] :'';
+$groupname = (isset($_POST['groupname'])) ? $_POST['groupname'] :'';
+
+if($groupname0!='') { $groupname=$groupname0; }
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     echo "<html><head><STYLE TYPE=\"text/css\">";
+     echo "<!--";
+     echo "TD{font-family: Helvetica; font-size: 10pt;}";
+     echo "--->";
+     echo "</STYLE></head>";
+
+	echo "<body>";
+	echo "<table class=\"fin\">";
+	echo "<tr><td>";
+	// 1st column
+     echo "Select personnel to edit<br>";
+
+     echo "<form action=\"confipay3.php?loginid=$loginid\" method=\"POST\" name=\"myform\">";
+		echo "<input type=\"hidden\" name=\"groupname\" value=\"$groupname\">";
+
+     echo "<select name=employeeid>";
+    // $result = mysql_query("SELECT tblconfipaygrp.confipaygrpid, tblconfipaygrp.groupname, tblconfipaygrp.employeeid, tblconfipaygrp.accesslevel FROM tblconfipaygrp WHERE tblconfipaygrp.groupname = \"$groupname\"", $dbh);
+	// if($result != "") {
+     // while ($myrow = mysql_fetch_row($result)) {
+		$resquery="SELECT tblconfipaygrp.confipaygrpid, tblconfipaygrp.groupname, tblconfipaygrp.employeeid, tblconfipaygrp.accesslevel FROM tblconfipaygrp WHERE tblconfipaygrp.groupname = \"$groupname\" ORDER BY tblconfipaygrp.employeeid";
+		$result=""; $ctr=0;
+		$result = $dbh2->query($resquery);
+		if($result->num_rows>0) {
+			while($myrow = $result->fetch_assoc()) {
+	$confipaygrpid = $myrow['confipaygrpid'];
+	$groupname = $myrow['groupname'];
+	$employeeid = $myrow['employeeid'];
+	$confiaccesslevel = $myrow['accesslevel'];
+	$ctr = $ctr + 1;
+
+	if($confiaccesslevel == 5 && $accesslevel == 5) {
+		$res12query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\"";
+		/*
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("$res12query", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+		*/
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = $dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12 = $result12->fetch_assoc()) {
+			$found12 = 1;
+			$empalias = $myrow12['empalias'];
+			}
+		}
+		include("mcryptdec.php");
+		if($found12 == 0) {
+		$res11query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$employeeid\" AND contact_type=\"personnel\"";
+		$result11=""; $found11=0; $ctr11=0;
+		/*
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+		*/
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$name_first11 = $myrow11['name_first'];
+			$name_middle11 = $myrow11['name_middle'];
+			$name_last11 = $myrow11['name_last'];
+			}
+		}
+		}
+		include("mcryptenc.php");
+		if($empalias!="") {
+		echo "<option value=\"$employeeid\">*** - $decealias</option><br>";
+		} else {
+		echo "<option value=\"$employeeid\">$decempid - $name_last11, $name_first11 $name_middle11[0]</option><br>";
+		}
+	} else if($confiaccesslevel <= 4) {
+		$res11query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$employeeid\"";
+		$result11=""; $found11=0; $ctr11=0;
+		/*
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+		*/
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$name_first11 = $myrow11['name_first'];
+			$name_middle11 = $myrow11['name_middle'];
+			$name_last11 = $myrow11['name_last'];
+			}
+		}
+		echo "<option value=\"$employeeid\">$employeeid - $name_last11, $name_first11 $name_middle11[0]</option><br>";
+	}
+		// reset variables
+		$decempid=""; $employeeid=""; $decealias=""; $empID=""; $empalias=""; $name_last11=""; $name_first11=""; $name_middle11="";
+     } // while($myrow = mysql_fetch_row($result))
+	} // if($result != "")
+
+			echo "</select>";
+     echo "<input type=submit value=Go>";
+     echo "</form>";
+
+		echo "</td><td>";
+	// 20180814 for 2nd column
+	// add personnel button
+		echo "<form action=\"confipayaddindiv.php?loginid=$loginid&gn=$groupname\" method=\"POST\" name=\"confipayaddindiv\">";
+		echo "<input type=\"hidden\" name=\"groupname\" value=\"$groupname\">";
+		echo "<input type=\"submit\" value=\"add new personnel to this group\">";
+		echo "</form>";
+		echo "</td></tr>";
+		echo "</table>";
+     echo "</body></html>";
+}
+else
+{
+     include ("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

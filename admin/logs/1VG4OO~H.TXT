@@ -1,0 +1,53 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2019-03-01 -to- 2019-03-15
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: FFWS PAGASA 3
+
+PAY RATE: P11500.00
+
+Total Late_Absent: 128.1
+NET BASIC PAY: P11371.90
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Additional Income:
+Taxable Income:
+Project Allowance: 1166.67
+Fixed Allowance: 2500.00
+TOTAL Taxable Income: P3666.67
+
+Non-Taxable Income:
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P16538.57
+
+Withholding Tax: P924.31
+SSS: P581.30
+Philhealth: P314.49
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 250.00
+SSS Salary Loan: 738.32
+Insular Life: 75.00
+Tax Deficit 2018: 785.47
+TOTAL Other Deductions: P1848.79
+
+TOTAL DEDUCTIONS: P3718.89
+
+NET PAY: P12819.68
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

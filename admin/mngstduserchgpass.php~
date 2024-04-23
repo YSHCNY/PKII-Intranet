@@ -1,0 +1,88 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$loginid0 = $_GET['stdlid'];
+$username0 = $_GET['stduid'];
+$genranchars = $_GET['genranchar'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+  if($accesslevel >= 4 && $accesslevel <= 5)
+  {
+    echo "<table class=\"fin\" border=\"1\">";
+    echo "<tr><th colspan=\"2\">Manage Users - Change Password</th></tr>";
+
+    $result11 = mysql_query("SELECT password, employeeid FROM tbllogin WHERE loginid=$loginid0 AND username=\"$username0\"", $dbh);
+    while($myrow11 = mysql_fetch_row($result11))
+    {
+      $found11 = 1;
+      $password11 = $myrow11[0];
+      $employeeid11 = $myrow11[1];
+    }
+
+
+    if($employeeid11 <> '')
+    {
+      $result12 = mysql_query("SELECT employeeid, name_last, name_first, name_middle FROM tblcontact WHERE employeeid=\"$employeeid11\"", $dbh);
+      while($myrow12 = mysql_fetch_row($result12))
+      {
+        $found12 = 1;
+        $employeeid12 = $myrow12[0];
+        $name_last12 = $myrow12[1];
+        $name_first12 = $myrow12[2];
+        $name_middle12 = $myrow12[3];
+      }
+    }
+    else
+    {
+      $employeeid12 = ''; $name_last12 = ''; $name_first12 = ''; $name_middle12 = '';
+    }
+
+    echo "<form action=\"mngstduserchgpass2.php?loginid=$loginid&stdlid=$loginid0&stduid=$username0\" method=\"post\">";
+    echo "<tr><td>username</td><td><b>$username0</b></td></tr>";
+    echo "<tr><td>linked to personnel</td><td><b>$employeeid12 - $name_first12 $name_middle12[0] $name_last12</b>";
+//    echo "&nbsp;&nbsp;<a href=\"mngadmuserchgpers.php?loginid=$loginid&admid=$adminloginid\">Change</a>";
+    echo "</td></tr>";
+    echo "<tr><td>New Password</td><td>";
+		// echo "<input type=\"password\" name=\"newpassword\">";
+		if($genranchars != "") {
+		echo "<input name=\"newpassword\" value=\"$genranchars\">";
+		} else {
+		echo "<input name=\"newpassword\">";
+		}
+		echo "<font size=\"1\"><i><a href=\"mngstduserchgpassgenranchars.php?loginid=$loginid&stdlid=$loginid0&stduid=$username0\">Generate</a></i></font>";
+		echo "</td></tr>";
+
+    echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Save\"></form></td></tr>";
+    echo "</table>";
+  }
+    echo "<p><a href=\"mngstdusers.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

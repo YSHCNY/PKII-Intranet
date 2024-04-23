@@ -1,0 +1,121 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+  if($accesslevel >= 4 && $accesslevel <= 5) {
+    echo "<table class=\"fin\" border=\"1\">";
+    echo "<tr><th colspan=\"9\">Manage Admin Users</th></tr>";
+    echo "<tr>";
+    echo "<td colspan=\"9\" align=\"center\"><form action=\"mngadmuseradd.php?loginid=$loginid\" method=\"post\">";
+    echo "<input type=\"submit\" value=\"Add new admin user\"></form></td>";
+    echo "</tr>";
+
+    echo "<tr><th>count</th><th>username</th><th>level</th><th>date_created</th><th>empID</th><th>name</th><th>status</th><th colspan=\"3\">action</th></tr>";
+
+    $res11query = "SELECT adminloginid, adminuid, adminpw, date_created, remarks_login, adminloginstat, adminloginlevel, employeeid, contactid, accesslevel FROM tbladminlogin WHERE adminloginid <> '' ORDER BY adminloginid ASC";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11=$dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11=$result11->fetch_assoc()) {
+      $found11 = 1;
+      $adminloginid11 = $myrow11['adminloginid'];
+      $adminuid11 = $myrow11['adminuid'];
+      $adminpw11 = $myrow11['adminpw'];
+      $date_created11 = $myrow11['date_created'];
+      $remarks_login11 = $myrow11['remarks_login'];
+      $adminloginstat11 = $myrow11['adminloginstat'];
+      $adminloginlevel11 = $myrow11['adminloginlevel'];
+      $employeeid11 = $myrow11['employeeid'];
+      $contactid11 = $myrow11['contactid'];
+      $accesslevel11 = $myrow11['accesslevel'];
+
+      $count11 = $count11 + 1;
+
+      $res12query = "SELECT name_last, name_first, name_middle FROM tblcontact WHERE employeeid=\"$employeeid11\"";
+			$result12=""; $found12=0;
+			$result12=$dbh2->query($res12query);
+			if($result12->num_rows>0) {
+				while($myrow12=$result12->fetch_assoc()) {
+	$found12 = 1;
+	$name_last12 = $myrow12['name_last'];
+	$name_first12 = $myrow12['name_first'];
+	$name_middle12 = $myrow12['name_Middle'];
+				} // while($myrow12=$result12->fetch_assoc())
+			} // if($result12->num_rows>0)
+
+    //20221021 incl tblsysusracctmgt to chk if attempt>=5, then show disabled account
+    $res14query=""; $result14=""; $found14=0;
+    $res14query="SELECT idtblsysusracctmgt, attempt FROM tblsysusracctmgt WHERE loginid=0 AND admloginid=$adminloginid11 AND employeeid=\"$employeeid11\" LIMIT 1";
+    $result14=$dbh2->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $found14=1;
+        $idtblsysusracctmgt14 = $myrow14['idtblsysusracctmgt'];
+        $attempt14 = $myrow14['attempt'];
+        } //while
+    } //if
+
+    //20221021 chk tblsysusracctmgt for non-admin based on employeeid
+    $res15query=""; $result15=""; $found15=0;
+    $res15query="SELECT idtblsysusracctmgt, loginid, attempt FROM tblsysusracctmgt WHERE employeeid=\"$employeeid11\" AND admloginid=0";
+    $result15=$dbh2->query($res15query);
+    if($result15->num_rows>0) {
+        while($myrow15=$result15->fetch_assoc()) {
+        $found15=1;
+        $idtblsysusracctmg15 = $myrow15['idtblsysusracctmgt'];
+        $loginid15 = $myrow15['admloginid'];
+        $attempt15 = $myrow15['attempt'];
+        } //while
+    } //if
+
+        $remarksfin=""; $fontclr="#000000";
+        if($attempt14>=$usrpwretries || $attempt15>=$usrpwretries) {
+        $fontclr="#808080";
+        $remadd="";
+        if($attempt14>=$usrpwretries) { $remadd .= " on non-admin profile."; }
+        if($attempt15>=$usrpwretries) { $remadd .= " on admin profile."; }
+        $remarksfin = $remarks_login11." "."reached max password retries".$remadd;
+        } else {
+        $fontclr="#000000"; 
+        $remarksfin = "";
+        } //if-else
+
+      echo "<tr><td align=\"center\"><font color='$fontclr'>$count11</font></td><td class='text-color:$fontclr'><b>$adminuid11</b></td><td align=\"center\" class='text-color:$fontclr'>$accesslevel11</td><td align=\"center\" class='text-color:$fontclr'>$date_created11</td><td align=\"center\" class='text-color:$fontclr'>$employeeid11</td><td class='text-color:$fontclr'>$name_last12, $name_first12 $name_middle12[0]</td>";
+        echo "<td class='text-color:$fontclr'>$remarksfin</td>";
+      echo "<td><a href=\"mngadmuserchgpass.php?loginid=$loginid&admid=$adminloginid11&admuid=$adminuid11\" class='btn btn-primary' role='button'>ChgPass</a></td>";
+      echo "<td><a href=\"mngadmuserdel.php?loginid=$loginid&admid=$adminloginid11&admuid=$adminuid11\" class='btn btn-danger' role='button'>Del</a></td>";
+      echo "<td><a href=\"mngadmuseredit.php?loginid=$loginid&admid=$adminloginid11\" class='btn btn-warning' role='button'>Edit</a></td></tr>";
+			} // while($myrow11=$result11->fetch_assoc())
+		} // if($result11->num_rows>0)
+
+    echo "</table>";
+  }
+    echo "<p><a href=\"mngusers.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $resquery = "UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'";
+		$result=$dbh2->query($resquery);
+ 
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+$dbh2->close();
+?>

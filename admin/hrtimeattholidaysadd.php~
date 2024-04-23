@@ -1,0 +1,63 @@
+<?php
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$holidate = $_POST['holidate'];
+$holidayname = $_POST['holidayname'];
+$holitype = $_POST['holitype'];
+$starttime = $_POST['starttime'];
+$endtime = $_POST['endtime'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+
+	// compile time
+	$timein = date("H:i:s", strtotime((sprintf("%02d", $inhh).":".sprintf("%02d", $inmm))));
+	$timeout = date("H:i:s", strtotime((sprintf("%02d", $outhh).":".sprintf("%02d", $outmm))));
+
+	// check timein and timeout if existing in tblhrtapayshiftctg
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("SELECT idhrtapayshiftctg, datecreated, in, out FROM tblhrtapayshiftctg WHERE in=\"$timein\" AND out=\"$timeout\"", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		}
+	}
+
+	if($found11 == 1) {
+		echo "<p><font color=\"red\">Sorry, timein and timeout exists. Please try again.</p>";
+		echo "<p><a href=\"mnghrempshiftctg.php?loginid=$loginid\">back</a></p>";
+
+	} else {
+		// insert into tblhrtapayshiftctg
+		$result14 = mysql_query("INSERT INTO tblhrtapayshiftctg SET timestamp=\"$now\", loginid=$loginid, datecreated=\"$datenow\", lastlogin=$loginid, shiftin=\"$timein\", shiftout=\"$timeout\"", $dbh);
+		// create log
+  	$result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+		while($myrow16 = mysql_fetch_row($result16))
+		{ $adminuid=$myrow16[0]; }
+		$adminlogdetails = "$loginid:$adminuid - add new shift category for payroll system timein:$timein timeout:$timeout";
+		$result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+	// redirect
+	header("Location: mnghrempshiftctg.php?loginid=$loginid");
+	exit;
+	}
+
+// echo "<p>vartest in:$timein out:$timeout</p>";
+
+}
+else
+{
+     include ("logindeny.php");
+}
+mysql_close($dbh); 
+?>

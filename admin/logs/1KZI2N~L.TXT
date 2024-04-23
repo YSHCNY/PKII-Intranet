@@ -1,0 +1,49 @@
+Please find below details of your payroll salary (payroll period April 16-30, 2014)  is now available.
+
+cutoff period: 2014-04-01 -to- 2014-04-15
+
+Employee ID: 247
+Employee Name: Yvette Velazco
+Project: TIMOR LESTE
+
+PAY RATE: P7250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+Transpo Allowance: 8000.00
+TOTAL Non-Taxable Income: 8000.00
+
+GROSS PAY: P16250.00
+
+Withholding Tax: P1020.75
+SSS: P581.30
+Philhealth: P175.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 935.49
+Tax Deficit for 2013: 546.62
+TOTAL Other Deductions: P1482.11
+
+TOTAL DEDUCTIONS: P3309.16
+
+NET PAY: P12940.84
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,52 @@
+Please find below details of your payroll salary (April 01 to 15, 2010) is now available.
+
+cutoff period: 2010-03-16 -to- 2010-03-31
+
+Employee ID: 145
+Employee Name: Mercedita Aquino
+Project: JICA PAGASA 2
+
+PAY RATE: P8700.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8700.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 500.00
+TOTAL Taxable Income: 500.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 6000.00
+TOTAL Non-Taxable Income: 6000.00
+
+GROSS PAY: P15200.00
+
+Withholding Tax: 360.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Desktop CPU: 700.00
+Advances: 1000.00
+Maxi Care for 2010: 705.49
+SSS salary Loan: 575.00
+Pag-Ibig Multi-purpose Loan: 1194.58
+TOTAL Other Deductions: 2280.49
+
+TOTAL DEDUCTIONS: P2691.26
+
+NET PAY: P12508.74
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

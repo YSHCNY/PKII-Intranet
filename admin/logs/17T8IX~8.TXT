@@ -1,0 +1,45 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2013-03-01 -to- 2013-03-15
+
+Employee ID: 594
+Employee Name: Ulysses  Nazario III
+Project: JICA CAGAYAN
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 115.57
+NET BASIC PAY: P7884.43
+
+Regular Overtime: 1452 (mins) - P2305.05
+Reg.Sun/Sat. OT: 540 (mins) - P921.26
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 45 (mins) - P5.71
+TOTAL OVERTIME: P3232.02
+
+Taxable Income:
+TOTAL Taxable Income: P5644.20
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 2100.00
+
+GROSS PAY: P18860.65
+
+Withholding Tax: P3048.93
+SSS: P500.00
+Philhealth: P187.50
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3786.43
+
+NET PAY: P15074.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,47 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2012-08-01 -to- 2012-08-15
+
+Employee ID: 593
+Employee Name: Arianne Almera
+Project: PANGASINAN BULK WATER
+
+PAY RATE: P12500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+Refund of SSS Cont: 16.60
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12500.00
+
+Withholding Tax: 2083.33
+SSS: 433
+Philhealth: 137.50
+Pag-ibig: 50
+
+Other Deductions:
+Philhealth Contribution-Short: 12.50
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P2703.83
+
+NET PAY: P9795.87
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

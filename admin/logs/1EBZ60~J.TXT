@@ -1,0 +1,48 @@
+Please find below details of your payroll salary (payroll period September 16-30, 2015 ) withdrawable last September 25 (Friday).
+
+cutoff period: 2015-09-01 -to- 2015-09-15
+
+Employee ID: 517
+Employee Name: Delia Bernardez
+Project: PINATUBO 3
+
+PAY RATE: P18000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 9600.00
+TOTAL Non-Taxable Income: 9600.00
+
+GROSS PAY: P27600.00
+
+Withholding Tax: P3108.43
+SSS: P581.30
+Philhealth: P437.50
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 1430.50
+Pag-Ibig Loan: 1126.55
+TOTAL Other Deductions: P2557.05
+
+TOTAL DEDUCTIONS: P6734.28
+
+NET PAY: P20865.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

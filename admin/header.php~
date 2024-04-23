@@ -1,0 +1,444 @@
+<?php
+
+// header
+
+?>
+
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+<title>PKII Intranet</title>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<STYLE TYPE="text/css">
+#tblName_length{display: none;}
+#tblName_filter{display: none;}
+p{font-family: Helvetica; font-size: 10pt;}
+b{font-family: Helvetica; font-size: 10pt;}
+td{font-family: Helvetica; font-size: 10pt;}
+label.error{color:red; font-size:11px;font-weight: 300;}
+
+.page_break {
+page-break-inside: avoid;
+}
+
+.modal-backdrop{
+	display: none;
+}
+
+html, body {
+	height: 100%;
+	margin:0;
+	padding: 0;
+	overflow: auto;
+	position: relative;
+	background: #F7F7F7;
+}
+
+@media print {
+    html, body {
+        height: 99%;    
+    }
+	
+	.container {
+	display: table;
+	height: 100%;
+	width: 100%;
+	}
+	
+	.block {
+	display: table-row;
+	height: 1px;
+	}
+	
+	.push {
+	height: auto;
+	}
+	
+	.block.push {
+	border: 1px solid gray;
+	display: table-cell;
+	}
+}
+body > table.fin {
+ /* background:#D3E4E5; */
+ background:#C6CEB0;
+ border:1px solid gray;
+ border-collapse:collapse;
+ color:#fff;
+ font:normal 12px verdana, arial, helvetica, sans-serif;
+ margin-left: 16%;
+  margin-top:6%;
+
+}
+caption { border:1px solid #5C443A;
+ color:#5C443A;
+ font-weight:bold;
+ letter-spacing:20px;
+ padding:6px 4px 8px 0px;
+ text-align:center;
+ text-transform:uppercase;
+}
+table.fin td, table.fin th { color:#363636;
+ padding:.4em;
+}
+tr { border:1px dotted gray;
+}
+table.fin thead th, table.fin tfoot th {
+ /* background:#5C443A; */
+ background:#c6ceb0;
+ color:#FFFFFF;
+ padding:3px 10px 3px 10px;
+ text-align:left;
+ text-transform:uppercase;
+}
+table.fin tbody td a { color:#363636;
+ text-decoration:none;
+}
+/* table.fin tbody td a:visited { color:gray;
+ text-decoration:line-through;
+} */
+table.fin tbody td a:hover { text-decoration:underline;
+}
+table.fin tbody th a { color:#363636;
+ font-weight:normal;
+ text-decoration:none;
+}
+table.fin tbody th a:hover { color:#363636;
+}
+table.fin tbody td+td+td+td a { background-image:url('bullet_blue.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+ color:#03476F;
+ padding-left:15px;
+}
+table.fin tbody td+td+td+td a:visited { background-image:url('bullet_white.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+table.fin tbody th, table.fin tbody td { vertical-align:top; }
+table.fin tfoot td { background:#5C443A;
+ color:#FFFFFF;
+ padding-top:3px;
+}
+.odd { background:#fff;
+}
+table.fin tbody tr:hover {
+ /* background:#99BCBF; */
+ background:#C6CEB0;
+ border:1px solid #03476F;
+ color:#000000;
+}
+
+
+body > table.fin2 {
+ /* background:#D3E4E5; */
+ background:#C6CEB0;
+ border:1px solid gray;
+ border-collapse:collapse;
+ color:#fff;
+ font:normal 12px verdana, arial, helvetica, sans-serif;
+  margin-left: 16%;
+  margin-top:6%;
+}
+table.fin2 td, table.fin2 th { color:#363636;
+}
+table.fin2 thead th, table.fin2 tfoot th { background:#5C443A;
+ color:#FFFFFF;
+ text-align:left;
+ text-transform:uppercase;
+}
+table.fin2 tbody td a { color:#363636;
+ text-decoration:none;
+}
+/* table.fin tbody td a:visited { color:gray;
+ text-decoration:line-through;
+} */
+table.fin2 tbody td a:hover { text-decoration:underline;
+}
+table.fin2 tbody th a { color:#363636;
+ font-weight:normal;
+ text-decoration:none;
+}
+table.fin2 tbody th a:hover { color:#363636;
+}
+table.fin2 tbody td+td+td+td a { background-image:url('bullet_blue.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+ color:#03476F;
+}
+table.fin2 tbody td+td+td+td a:visited { background-image:url('bullet_white.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+table.fin2 tbody th, table.fin2 tbody td { vertical-align:top; }
+table.fin2 tfoot td { background:#5C443A;
+ color:#FFFFFF;
+}
+.odd { background:#fff;
+}
+table.fin tbody tr:hover {
+ /* background:#99BCBF; */
+ background:#C6CEB0;
+ border:1px solid #03476F;
+ color:#000000;
+}
+
+/*
+  file icons
+*/
+ 
+a[href$='.zip'], a[href$='.rar'], a[href$='.gzip'], a[href$='.gz'], a[href$='.ZIP'], a[href$='.RAR'], a[href$='.GZIP'], a[href$='.GZ'] {
+background:transparent url(./images/rar.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.txt'], a[href$='.TXT'], a[href$='.rtf'], a[href$='.RTF'] {
+background:transparent url(./images/txt.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.doc'], a[href$='.docx'], a[href$='.DOC'], a[href$='.DOCX'] {
+background:transparent url(./images/msdoc.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.xls'], a[href$='.xlsx'], a[href$='.XLS'], a[href$='.XLSX'] {
+background:transparent url(./images/msxls.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.ppt'], a[href$='.pptx'], a[href$='.PPT'], a[href$='.PPTX'] {
+background:transparent url(./images/msppt.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.pdf'], a[href$='.PDF'] {
+background:transparent url(./images/pdf.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.png'], a[href$='.PNG'], a[href$='.jpg'], a[href$='.JPG'], a[href$='.tif'], a[href$='.TIF'], a[href$='.bmp'], a[href$='.BMP'] {
+background:transparent url(./images/img.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+
+img#profimg {
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+    border: 3px solid #ffffff;
+}
+
+#profname{
+	position: absolute;
+	right: 65;
+	top:20;
+	width: 200px;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    list-style: none;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    top: 66px;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 170px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+
+	.header-container{
+		width:100%;
+		height: 60px;	
+		display: table;
+		background: rgba(41, 22, 111, 0.9);
+		border-bottom: 1px solid #D9DEE4;
+		position: fixed;
+		z-index: 2;
+	}
+
+	.header-wrapper{
+		width: 100%;
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+		padding-left: 30px;
+		padding-right: 30px;
+		text-align: right;
+	}
+
+	.header-wrapper .left-container{
+		width:60%;
+		padding-left: 18%;
+	}
+
+
+	#sidebarLogo{
+		text-align: center;
+		padding-top:5px;
+		margin-bottom: 3px;
+	}
+
+	#pkiilogo2{
+		width: 80%;
+		height: 25px;
+	}
+	#pkiilogo1{
+		height: 25px;
+		text-align: center;
+	}
+
+	.dropdownMenu{
+		display: none;
+		list-style: none;
+		padding:0;
+	}
+.dropdownMenu li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    background: rgba(41, 22, 111, 0.9);
+    color: #f7f7f7;
+    transition: all 0.7s ease;
+
+}
+.dropdownMenu li >  a{
+	text-decoration: none;
+	color:#f7f7f7;
+
+}
+	.dropdownMenuList{
+		cursor: pointer;
+	}
+	#sidebar {
+    background: #ffffff;
+    width: 13%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    border-right: #2A3F54 1px solid;
+    z-index: 2;
+}
+
+ul#menuList {
+    font-size: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+div#bodyContainer {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    top: 0;
+    z-index: 1;
+}
+
+div#bodyWrapper {
+    padding-left: 15%;
+    padding-top: 75px;
+}
+
+.dropdownMenuList {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    border-bottom: 1px solid #2A3F54;
+    border-top: 1px solid #2A3F54;
+    padding-left: 12px;
+    transition: all 0.7s ease;
+    color:#2A3F54;
+
+}
+
+.dropdownMenuList:hover{
+    cursor: pointer;
+    color:#f7f7f7;
+    background: rgba(41, 22, 111, 0.9);
+
+}
+
+.dropdownMenuList i{   
+	margin-right: 10px;
+}
+.mainContainer{
+}
+</STYLE>
+</head>
+<body>
+<table><tr><td>
+<?php 
+	$sql = "SELECT * FROM tblcontact WHERE employeeid='$employeeid0' limit 1";
+	$result = mysql_query($sql);
+	$value = mysql_fetch_object($result);
+	$profimg = '';
+	if($value->picfn)
+		{
+			$profpic = $value->picfn;
+			$profimg = "<img class='dropbtn' src='images/$profpic' id='profimg'/>";
+		}
+	else{$profimg = "<img class='dropbtn' src='images/default.gif' id='profimg'/>";}
+?>
+	<div class="header-container">
+		<div class="header-wrapper">
+			<div class="dropdown">
+				<li class="dropbtn">
+					<?php echo $profimg.' <span id="profname">'. $value->name_first.' '.$value->name_last.'</span>'; ?>
+
+				<div id="myDropdown" class="dropdown-content">
+    			<?php 
+    			if(substr($level, -2, 1) == 1)
+				     {
+				          echo "<a href=admchgpw.php?loginid=$loginid style=\"color:midnightblue\">Change Password</a>";
+				     }
+    			echo "<a href=admlogout.php?admloginid=$loginid >Logout</a></li>";  
+    			?>
+				</div>
+				</li>
+			</div>
+		</div>
+	</div>
+

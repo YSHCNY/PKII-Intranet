@@ -1,0 +1,49 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2015-09-01 -to- 2015-09-15
+
+Employee ID: 558
+Employee Name: Dorcas Mae Padilla
+Project: KRI-TVHS
+
+PAY RATE: P11750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Unpaid SL on Aug 18: 898.09
+TOTAL Taxable Income: P898.09
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+Transpo Allowance: 1100.00
+TOTAL Non-Taxable Income: 2100.00
+
+GROSS PAY: P14748.09
+
+Withholding Tax: P1339.02
+SSS: P581.30
+Philhealth: P275.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P738.32
+
+TOTAL DEDUCTIONS: P2983.64
+
+NET PAY: P11764.45
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,50 @@
+Please find below details of your payroll salary for period February 16-28, 2022 is now available.
+
+cutoff period: 2022-02-01 -to- 2022-02-15
+
+Employee ID: 750
+Employee Name: Christsaac Jacob Esmilla
+Project: MRT-7 DEPOT BLDG DESIGN
+
+PAY RATE: P8750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8750.00
+
+Regular Overtime: P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P815.09
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P815.09
+
+Additional Income:
+Taxable Income:
+Project Allowance; MMSP-PO Depot: 918.00
+Project Allowance; MRT-7 Depot Bldg Design: 918.00
+TOTAL Taxable Income: P1836.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12151.09
+
+Withholding Tax: P0.00
+SSS: P1035.00
+Philhealth: P262.50
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-IBIG Multi-purpose Loan: 192.62
+TOTAL Other Deductions: P192.62
+
+TOTAL DEDUCTIONS: P1540.12
+
+NET PAY: P10610.97
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

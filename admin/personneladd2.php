@@ -1,0 +1,114 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$employeeid = trim($_POST['employeeid']);
+$name_last = trim($_POST['name_last']);
+$name_first = trim($_POST['name_first']);
+$name_middle = trim($_POST['name_middle']);
+$personnel_type = $_POST['personnel_type'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+	include ("header.php");
+  include ("sidebar.php");
+
+  echo "<p><font size=1>Directory >> Manage Personnel >> Add new personnel</font></p>";
+
+  $result0 = mysql_query("SELECT employeeid, name_last, name_first, name_middle FROM tblcontact WHERE employeeid = '$employeeid'", $dbh);
+  while($myrow0 = mysql_fetch_row($result0)) {
+	$found0 = 1;
+	$employeeid0 = $myrow0[0];
+	$name_last0 = $myrow0[1];
+	$name_first0 = $myrow0[2];
+	$name_middle0 = $myrow0[3];
+  }
+
+  if ($found0 == 1) {
+		echo "<p><font color=red><b>Sorry. EmployeeID is already assigned to:</b></font><br>";
+		echo "<b>$employeeid0 - $name_last0, $name_first0 $name_middle0</b></p>";
+		echo "<form action=personneladd.php?loginid=$loginid method=post name=personneladd>";
+		echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
+		echo "<input type=\"hidden\" name=\"name_last\" value=\"$name_last\">";
+		echo "<input type=\"hidden\" name=\"name_first\" value=\"$name_first\">";
+		echo "<input type=\"hidden\" name=\"name_middle\" value=\"$name_middle\">";
+		echo "<input type=\"hidden\" name=\"personnel_type\" value=\"$personnel_type\">";
+		echo "<p>Please provide new employee number.</p>";
+		echo "<input type=\"submit\" value=\"back\">";
+		echo "</form>";
+  } else {
+		$result1 = mysql_query("SELECT contactid, employeeid, name_last, name_first, name_middle, contact_type FROM tblcontact WHERE name_last = '$name_last' AND name_first = '$name_first' AND (employeeid='' OR employeeid IS NULL)", $dbh);
+		while($myrow1 = mysql_fetch_row($result1)) {
+			$found1 = 1;
+			$contactid1 = $myrow1[0];
+			$employeeid1 = $myrow1[1];
+			$name_last1 = $myrow1[2];
+			$name_first1 = $myrow1[3];
+			$name_middle1 = $myrow1[4];
+			$contact_type1 = $myrow1[5];
+		}
+
+		if ($found1 == 1) {
+	  	echo "<p><font color=red><b>Sorry. LastName and FirstName entered already on database:</b></font><br>";
+	  	echo "<b>$employeeid1 - $name_last1, $name_first1 $name_middle1 - $contact_type1</b></p>";
+			if($employeeid1 == "") {
+				echo "<form action=\"personneladd3.php?loginid=$loginid\" method=\"post\" name=\"newemployeeid\">";
+				echo "<p>You may convert this person to PKII personnel.<br>Please provide a new employee number here <input name=\"newemployeeid\" value=\"$employeeid\">";
+				echo "<input type=\"hidden\" name=\"contactid\" value=\"$contactid1\">";
+				echo "<input type=\"hidden\" name=\"name_last\" value=\"$name_last\">";
+				echo "<input type=\"hidden\" name=\"name_first\" value=\"$name_first\">";
+				echo "<input type=\"hidden\" name=\"name_middle\" value=\"$name_middle\">";
+				echo "<input type=\"hidden\" name=\"personnel_type\" value=\"$personnel_type\">";
+				echo "<input type=\"submit\"></p>";
+				echo "</form>";
+			}
+		} else {
+
+			$result2 = mysql_query("INSERT INTO tblcontact (employeeid, name_last, name_first, name_middle, contact_type) VALUES ('$employeeid', '$name_last', '$name_first', '$name_middle', 'personnel')", $dbh);
+
+			$datenow = date('Y-m-d');
+
+			$result3 = mysql_query("INSERT INTO tblemployee (employeeid, date, employee_type, term_resign, emp_record) VALUES ('$employeeid', '$datenow', '$personnel_type', '0000-00-00', \"active\")", $dbh);
+
+		// create log
+    include('datetimenow.php');
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminloginuid - Add new personnel: $employeeid - $name_last, $name_first $name_middle - $personnel_type";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+			echo "<p><font color=green><b>New personnel record saved.</b></font></p>";
+			echo "employeeid: $employeeid<br>";
+			echo "name: $name_last, $name_first $name_middle<br>";
+			echo "personneltype: $personnel_type<br>";
+			echo "date: $datenow<br></p>";
+
+			echo "<p>Click <a href=personneledit2.php?loginid=$loginid&pid=$employeeid><b>here</b></a> to enter more information to currently saved personnel</p>";
+
+			echo "<p><a href=personneledit.php?loginid=$loginid>Back to Manage Personnel</a><br>";
+
+		}
+
+  }
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 
