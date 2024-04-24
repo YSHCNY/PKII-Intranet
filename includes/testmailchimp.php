@@ -2,7 +2,7 @@
 
 require_once('/home/sysad/vendor/autoload.php');
 
-$apiKey = 'e9d900242ba795c6ccd5265db1182a19-us21';
+$apiKey = 'place api here';
 
 $mailchimp = new \Mailchimp\Mailchimp($apiKey);
 
