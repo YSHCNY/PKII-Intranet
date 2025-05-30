@@ -1,0 +1,137 @@
+<?php
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = 1;
+
+$found = 1;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+
+// start contents here...
+
+	// prepare router ip addresses
+	$ipaddr1 = "192.168.0.1";
+	$ipaddr3 = "192.168.0.3";
+	$ipaddr200 = "192.168.0.200";
+
+	// generate WAN logs
+	$res11select="SELECT idsysadpingres, timestamp, hostname, ipaddress, status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE ipaddress=\"$ipaddr1\" ORDER BY timestamp DESC LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("$res11select", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$idsysadpingres11 = $myrow11[0];
+		$timestamp11 = $myrow11[1];
+		$hostname11 = $myrow11[2];
+		$ipaddress11 = $myrow11[3];
+		$status11 = $myrow11[4];
+		$bwdownspeed11 = $myrow11[5];
+		$bwupspeed11 = $myrow11[6];
+		$remarks11 = $myrow11[7];
+		}
+	}
+
+	$res12select="SELECT idsysadpingres, timestamp, hostname, ipaddress, status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE ipaddress=\"$ipaddr3\" ORDER BY timestamp DESC LIMIT 1";
+	$result12=""; $found12=0; $ctr12=0;
+	$result12 = mysql_query("$res12select", $dbh);
+	if($result12 != "") {
+		while($myrow12 = mysql_fetch_row($result12)) {
+		$found12 = 1;
+		$idsysadpingres12 = $myrow12[0];
+		$timestamp12 = $myrow12[1];
+		$hostname12 = $myrow12[2];
+		$ipaddress12 = $myrow12[3];
+		$status12 = $myrow12[4];
+		$bwdownspeed12 = $myrow12[5];
+		$bwupspeed12 = $myrow12[6];
+		$remarks12 = $myrow12[7];
+		}
+	}
+
+	$res14select="SELECT idsysadpingres, timestamp, hostname, ipaddress, status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE ipaddress=\"$ipaddr200\" ORDER BY timestamp DESC LIMIT 1";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14 = mysql_query("$res14select", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$idsysadpingres14 = $myrow14[0];
+		$timestamp14 = $myrow14[1];
+		$hostname14 = $myrow14[2];
+		$ipaddress14 = $myrow14[3];
+		$status14 = $myrow14[4];
+		$bwdownspeed14 = $myrow14[5];
+		$bwupspeed14 = $myrow14[6];
+		$remarks14 = $myrow14[7];
+		}
+	}
+
+	// prepare email message
+	$message = "================= WAN devices =================";
+	$message = $message."\n"."on $timestamp11, status of $hostname11 with ip:$ipaddress11 is $status11.\n";
+	$message = $message."\n"."on $timestamp12, status of $hostname12 with ip:$ipaddress12 is $status12.\n";
+	$message = $message."\n"."on $timestamp14, status of $hostname14 with ip:$ipaddress14 is $status14.\n";
+
+	$message = $message."\n"."================= Servers and other devices =================";
+
+	// generate other LAN devices incl servers
+	$type1 = "server"; $type2 = "others";
+	// $res15select="SELECT DISTINCT ipaddress, hostname, timestamp, status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE type=\"$type1\" OR type=\"$type2\" GROUP BY ipaddress ORDER BY timestamp DESC";
+	// $res15select="SELECT ipaddress, hostname, MAX(timestamp), status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE type=\"$type1\" OR type=\"$type2\" GROUP BY ipaddress ORDER BY MAX(timestamp) DESC";
+	$res15select = "SELECT DISTINCT ipaddress, hostname FROM tblsysadpingres WHERE type=\"$type1\" OR type=\"$type2\" ORDER BY timestamp DESC";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15 = mysql_query("$res15select", $dbh);
+	if($result15 != "") {
+		while($myrow15 = mysql_fetch_row($result15)) {
+		$found15 = 1;
+		$ipaddress15 = $myrow15[0];
+		$hostname15 = $myrow15[1];
+
+		$res15bselect = "SELECT timestamp, status, bwdownspeed, bwupspeed, remarks FROM tblsysadpingres WHERE ipaddress=\"$ipaddress15\" ORDER BY timestamp DESC LIMIT 1";
+		$result15b=""; $found15b=0; $ctr15b=0;
+		$result15b = mysql_query("$res15bselect", $dbh);
+		if($result15b != "") {
+		while($myrow15b = mysql_fetch_row($result15b)) {
+		$found15b = 1;
+		$timestamp15b = $myrow15b[0];
+		$status15b = $myrow15b[1];
+		$bwdownspeed15b = $myrow15b[2];
+		$bwupspeed15b = $myrow15b[3];
+		$remarks15b = $myrow15b[4];
+		}
+		} // end if($result15b != "")
+
+		$message = $message."\n"."on $timestamp15b, status of $hostname15 with ip:$ipaddress15 is $status15b.\n";
+
+		// reset variables
+		$timestamp15b=""; $hostname15=""; $ipaddress15=""; $status15b="";
+		}
+	}
+
+	$to = "support@philkoei.com.ph";
+	$from = "noreply@philkoei.com.ph";
+	$subject = "PKII WAN status";
+
+	// send email
+	$ok = mail("$to", "$subject", "$message", "From: $from");
+
+// end contents here...
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

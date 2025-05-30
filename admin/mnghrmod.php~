@@ -1,0 +1,60 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Manage >> HR Modules</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+     echo "<tr><th colspan=\"2\">HR Modules</th></tr>";
+
+// start contents here...
+  if($accesslevel >= 4)
+  {
+    echo "<tr>";
+    echo "<td align=\"center\"><form action=\"mnghrofctimelogsync.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Sync time log\"></form></td>";
+    echo "<td>Upload/sync office time log from biometrics database</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td align=\"center\"><form action=\"mnghruseridsync.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Sync userid\"></form></td>";
+    echo "<td>Upload/sync userid of biometrics to employeeid</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td align=\"center\"><form action=\"mnghrempidlink.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Link EmployeeID\"></form></td>";
+    echo "<td>Link EmployeeID to Fingerprint Biometrics ID</td>";
+    echo "</tr>";
+  }
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

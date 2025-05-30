@@ -1,0 +1,111 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+
+if($found == 1 && substr($level, -33, 1) == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Billing >> Add new contract</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+	// title head
+	echo "<tr><th colspan=\"2\">Project Billing > New contract</th></tr>";
+	
+  echo "<tr><td colspan=\"2\">";
+
+	// for encoders
+  if($accesslevel >= 3) {
+	echo "<table>";
+	// add button > new contract
+	echo "<form action='projbillcontrnew2.php?loginid=$loginid' method='POST' name='projbillcontrnewadd'>";
+	echo "<tr><th class='text-right'>Project code<font color='red'>*</font></th><td>";
+	echo "<select name='proj_code'>";
+	echo "<option value=''>select project</option>";
+	// query projcode
+	include './qryprojcd.php';
+	// disp result
+	$param11 = count($projectid11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		echo "<option value='".$proj_code11Arr[$x]."'>".$proj_code11Arr[$x]." - ".$proj_sname11Arr[$x]." - ".substr($proj_fname11Arr[$x], 0, 50)."</option>";
+	} // for
+	echo "</select>";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Contract title<font color='red'>*</font></th><td><input size='100' name='contract_title'></td></tr>";
+	/*
+	$res12query="SELECT contract_num FROM tblcontract ORDER BY contract_num DESC LIMIT 1";
+	$result12=""; $found12=0; $ctr12=0;
+	$result12=$dbh2->query($res12query);
+	if($result12->num_rows>0) {
+		while($myrow12=$result12->fetch_assoc()) {
+		$found12=1;
+		$contract_num12=$myrow12['contract_num'];
+		} // while
+	} // if
+	// initialize $contract_num
+	$contract_num=0;
+	// set/assign value contract_num based on query result
+	if($found12==1) {
+	$contract_num = $contract_num12+1;
+	} else {
+	// prep contract_num based on current year, increment by 1
+	$contract_num = $yearnow . '001';
+	} // if-else
+	*/
+	echo "<tr><th class='text-right'>Contract number<font color='red'>*</font></th><td>";
+	// echo "<input size='25' name='contact_number' value='$contract_num'>";
+	echo "<input size='25' name='contract_number'>";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Contract type</th><td>";
+	echo "<select name='contract_type'>";
+	echo "<option value='time-based'>Time-based</option>";
+	echo "<option value='lump_sum'>Lump_sum</option>";
+	echo "</select>";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Date start</th><td><input type='date' name='date_start' value='$datenow'></td></tr>";
+	echo "<tr><th class='text-right'>Date end</th><td><input type='date' name='date_end' value='$datenow'></td></tr>";
+	// echo "<tr><th class='text-right'>Contract type</th><td>c/o proj_services</td></tr>";
+	echo "<tr><th class='text-right'>Mobilization date</th><td><input type='date' name='date_mob' value='$datenow'></td></tr>";
+	echo "<tr><td colspan='2' align='center'><button type='submit' class='btn btn-success'>Add new contract</button></td></tr>";
+	echo "</form>";
+	echo "</table>";
+	// dropdowns
+
+  } // (if accesslevel >= 3)
+
+	// for supervisors+
+	if($accesslevel >= 4) {
+
+	} // (if accesslevel >= 4)
+
+  echo "</td></tr>";
+
+// end contents here...
+
+     echo "</table>";
+
+     echo "<p><div id='redir_projbilling'><a href='projbilling.php?loginid=$loginid' class='btn btn-primary'>Back</a></div></p>";
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+$dbh2->close();
+?>
+

@@ -1,0 +1,67 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$finnkgacctrefid = $_GET['nkrid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+//     include ("header.php");
+//     include ("sidebar.php");
+
+// start contents here
+
+	// query details
+	$result10=""; $found10=0;
+	$result10 = mysql_query("SELECT type, code, name_j, name_e, seq, formref, sheetref, tabpos, remarks FROM tblfinnkgacctref WHERE finnkgacctrefid=$finnkgacctrefid", $dbh);
+	if($result10 != "") {
+		while($myrow10 = mysql_fetch_row($result10)) {
+		$found10 = 1;
+		$type10 = $myrow10[0];
+		$code10 = $myrow10[1];
+		$name_j10 = $myrow10[2];
+		$name_e10 = $myrow10[3];
+		$seq10 = $myrow10[4];
+		$formref10 = $myrow10[5];
+		$sheetref10 = $myrow10[6];
+		$tabpos10 = $myrow10[7];
+		$remarks10 = $myrow10[8];
+		}
+	}
+
+	// delete query
+  $result12 = mysql_query("DELETE FROM tblfinnkgacctref WHERE finnkgacctrefid=$finnkgacctrefid", $dbh);
+
+
+	// create log
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminuid - deleted NK-Stravis code with details: id:$finnkgacctrefid code:$code10 name:$name_ej10 $name_e10 formsheet:$formref10-$sheetref10";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+  header("Location: mngfinnkstrvscdref.php?loginid=$loginid");
+  exit;
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+//     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

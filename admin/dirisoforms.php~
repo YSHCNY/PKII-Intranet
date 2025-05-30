@@ -1,0 +1,237 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$docsw = $_GET['docsw'];
+
+$doctyp = $_POST['doctyp'];
+
+$defaultpath = $_POST['defpath'];
+
+$deletedir = $_GET['deletedir'];
+$deletefile = $_GET['deletefile'];
+$uploadsw = $_POST['uploadsw'];
+$uploadmode = $_POST['uploadmode'];
+$deletemode = $_GET['deletemode'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+	// echo "<p><font size=1>Directory >> ISO Documents</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\">";
+	
+	include("dirisodocshead.php");
+
+  echo "<tr><td colspan=\"2\">";
+	
+	echo "<table class=\"fin\" border=\"0\">";
+  // display folders
+  $dirArray = ReadFolderDirectory0("$defaultpath");
+  $ctr0 = 0; 
+  foreach ($dirArray as $value0) {
+    $dirname = urlencode($value0);
+    echo "<tr><td align=\"left\">".$value0."</td><td>&nbsp;</td><td>[folder]</td><td>&nbsp;</td>";
+    // if($accesslevel >= 4) {
+    // echo "<td><a href=\"dirisoforms.php?loginid=$loginid&docsw=1&deletedir=$dirname&deletemode=public\">Remove</a></td><td>&nbsp;</td>";
+    // }
+    echo "</tr>";
+  }
+  
+  // display files
+  $fileArray = ReadFolderDirectory("$defaultpath");
+  $ctr = 0; 
+  foreach ($fileArray as $value) {
+    $filename = urlencode($value);
+      if($filename != "index.htm") {
+        echo "<tr><td align=\"left\"><a href=\"$defaultpath/$value\" target=\"_blank\">$value</a></td><td>&nbsp;</td>";
+        // if($accesslevel >= 4) {
+        // echo "<td><a href=\"dirisoformsdel.php?loginid=$loginid&docsw=1&deletefile=$value&deletemode=public\">Del</a></td><td>&nbsp;</td>";
+        // }
+        echo "</tr>";
+      }
+  }
+	echo "</table>";
+
+	echo "</td></tr>";
+	echo "</table>";
+
+  echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+
+function ReadFolderDirectory0($dir0)
+{
+        $listDir0 = array();
+
+        if($handler0 = opendir($dir0))
+        {
+            while (($sub0 = readdir($handler0)) !== FALSE)
+            {
+                if ($sub0 != "." && $sub0 != ".." && $sub0 != "Thumb.db")
+                {
+                    if(is_file($dir0."/".$sub0))
+                    {
+//                        $listDir[] = $sub0;
+                    }
+                    elseif(is_dir($dir0."/".$sub0))
+                    {
+                        $listDir0[] = $sub0;
+		    }
+                }
+            }   
+            closedir($handler0);
+        }
+        return $listDir0;   
+} 
+
+function ReadFolderDirectory($dir)
+{
+        $listDir = array();
+
+        if($handler = opendir($dir))
+        {
+            while (($sub = readdir($handler)) !== FALSE)
+            {
+                if ($sub != "." && $sub != ".." && $sub != "Thumb.db")
+                {
+                    if(is_file($dir."/".$sub))
+                    {
+                        $listDir[] = $sub;
+                    }
+                    elseif(is_dir($dir."/".$sub))
+                    {
+//                        $listDir[$sub] = $this->ReadFolderDirectory($dir."/".$sub);
+//                        $listDir[] = $sub;
+		    }
+                }
+            }   
+            closedir($handler);
+        }
+        return $listDir;   
+} 
+
+function DeleteFile($file)
+{
+     unlink($file);
+}
+
+//functionnction CreateFolder($folder)
+//{
+//   mkdir($key."/var/www/transfers/$folder", 777); 
+//}
+
+function UploadFile($userfolder)
+{
+     $target = "./transfers/iso/forms/"; 
+     $target = $target . basename( $_FILES['uploaded']['name']) ; 
+     $ok=1; 
+
+     //This is our size condition 
+     // if ($uploaded_size > 350000) 
+     //{ 
+     //     echo "Your file is too large.<br>"; 
+     //     $ok=0; 
+     //} 
+
+     //This is our limit file type condition 
+     if ($uploaded_type =="text/php") 
+     { 
+          echo "No PHP files<br>"; 
+          $ok=0; 
+     } 
+
+     //Here we check that $ok was not set to 0 by an error 
+     if ($ok==0) 
+     { 
+          echo "<font color=red>Sorry your file was not uploaded. Please try again.</font>"; 
+     } 
+
+     //If everything is ok we try to upload it 
+     else 
+     { 
+          if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
+          { 
+               echo "<tr<td>The file ". basename( $_FILES['uploadedfile']['name']). " has been uploaded</td></tr>";
+          } 
+          else 
+          { 
+               echo "<font color=red>Sorry, there was a problem uploading your file. Please try again.</font>"; 
+          }
+     } 
+
+     echo "<br>";
+} 
+
+function UploadFilePublic()
+{
+     $target = "./transfers/iso/forms/"; 
+     $target = $target . basename( $_FILES['uploaded']['name']) ; 
+     $ok=1; 
+
+     //This is our size condition 
+     // if ($uploaded_size > 350000) 
+     //{ 
+     //     echo "Your file is too large.<br>"; 
+     //     $ok=0; 
+     //} 
+
+     //This is our limit file type condition 
+     if ($uploaded_type =="text/php") 
+     { 
+          echo "No PHP files<br>"; 
+          $ok=0; 
+     } 
+
+     //Here we check that $ok was not set to 0 by an error 
+     if ($ok==0) 
+     { 
+          echo "<font color=red>Sorry your file was not uploaded. Please try again.</font>"; 
+     } 
+
+     //If everything is ok we try to upload it 
+     else 
+     { 
+          if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
+          { 
+               echo "<tr><td>The file ". basename( $_FILES['uploadedfile']['name']). " has been uploaded</td></tr>";
+          } 
+          else 
+          { 
+               echo "<font color=red>Sorry, there was a problem uploading your file. Please try again.</font>"; 
+          }
+     } 
+
+     echo "<br>";
+}
+
+function SetAvatar($id, $path)
+{
+     echo "Avatar path: $path<br>";
+}
+
+?>

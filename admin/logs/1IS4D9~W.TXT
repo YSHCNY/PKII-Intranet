@@ -1,0 +1,48 @@
+If you can see this MIME then your client doesn't accept MIME types!
+--pkii123
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+
+Confidential
+
+Please find below details of the Advisory
+
+Project Name/s:
+MRT-7
+
+Pay Advisory Type:
+Professional Fee
+Project Allowance
+
+Amount: 37118.70
+Currency: Philippine Peso
+
+Pay Type: Bank Acct
+
+Bank Name: BPI
+Bank Branch: Ortigas Emerald
+Acct Number: 9829-2972-37
+Acct Name: Tyreen S. Laureta
+Acct Type: Savings
+Date Deposited: 2018-7-2
+
+Additional Details:
+ Professional fee and project allowance for the period June 16-30, 2018
+
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email,the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+
+--pkii123
+Content-Type: applications/pdf; name="Laureta T.pdf"
+Content-Transfer-Encoding: base64
+Content-disposition: attachment; file="Laureta T.pdf"
+
+
+--pkii123
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+
+--pkii123--

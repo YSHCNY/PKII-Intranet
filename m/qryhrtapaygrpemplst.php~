@@ -1,0 +1,20 @@
+<?php
+//
+// qryhrtapaygrpemplst.php
+// fr: ../vc/motlvfrm.php
+//
+
+require '../includes/dbh.php';
+
+	$res11query="SELECT idhrtapaygrpemplst, activesw FROM tblhrtapaygrpemplst WHERE employeeid=\"$employeeid0\"";
+	$result11=""; $activesw11='';
+	$result11=$dbh->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11 = $result11->fetch_assoc()) {
+		$idhrtapaygrpemplst11 = $myrow11['idhrtapaygrpemplst'];
+		$activesw11 = $myrow11['activesw'];
+		} // while
+	} // if
+		
+$dbh->close();
+?>

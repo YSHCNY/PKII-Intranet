@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /pkii/admin/
+
+# Rewrite projects.php?loginid=<id> to projects/<id>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^projects/(\d+)$ projects.php?loginid=$1 [QSA,L]

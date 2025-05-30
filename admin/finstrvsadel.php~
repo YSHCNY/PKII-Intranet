@@ -1,0 +1,94 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$finstrvsfrmaid = $_GET['strvsid'];
+
+$yravlbl = $_POST['yravlbl'];
+$qtravlbl = $_POST['qtravlbl'];
+$projrelref = $_POST['projrelref'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+  echo "<p><font size=1>Modules >> Vouchsers >> Manage NK-Stravis Form-A >> Delete item</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+  echo "<tr><th colspan=\"2\">Manage NK-Stravis Form-A - Delete item</th></tr>";
+
+// start contents here...
+
+  echo "<form action=\"finstrvsadel2.php?loginid=$loginid&strvsid=$finstrvsfrmaid\" method=\"post\" name=\"finstrvsadel2\">";
+
+	echo "<input type=\"hidden\" name=\"yravlbl\" value=\"$yravlbl\">";
+	echo "<input type=\"hidden\" name=\"qtravlbl\" value=\"$qtravlbl\">";
+	echo "<input type=\"hidden\" name=\"projrelref\" value=\"$projrelref\">";
+
+	$result10=""; $found10=0;
+	$result10 = mysql_query("SELECT transdate, projrelrefcd, acctcd, transvalue, projcode, amttranscurr, currtyp, contenttrans, transacct, code, remarks FROM tblfinstrvsfrma WHERE tblfinstrvsfrmaid=$finstrvsfrmaid", $dbh);
+	if($result10 != "") {
+		while($myrow10 = mysql_fetch_row($result10)) {
+		$found10 = 1;
+		$transdate10 = $myrow10[0];
+		$projrelrefcd10 = $myrow10[1];
+		$acctcd10 = $myrow10[2];
+		$transvalue10 = $myrow10[3];
+		$projcode10 = $myrow10[4];
+		$amttranscurr10 = $myrow10[5];
+		$currtyp10 = $myrow10[6];
+		$contenttrans10 = $myrow10[7];
+		$transacct10 = $myrow10[8];
+		$code10 = $myrow10[9];
+		$remarks10 = $myrow10[10];
+		}
+	}
+
+	$arrtransdate = split("-", $transdate10);
+	$arrtransyear = $arrtransdate[0];
+	$arrtransmonth = $arrtransdate[1];
+	$arrtransday = $arrtransdate[2];
+
+	echo "<tr><th colspan=\"2\">Deleting Form-A item<br><font color=\"red\"><b>Are you sure?</b></font></th></tr>";
+	echo "<tr><td colspan=\"2\">Details:<br>transaction date:$trandate10<br>formsheet:$projrelrefcd10<br>acct:$acctcd10<br>value:$transvalue10<br>projcode:$projcode10</td></tr>";
+	echo "<tr><form action=\"finstrvsadel2.php?loginid=$loginid&strvsid=$finstrvsfrmaid\" method=\"post\" name=\"finstrvsadel\">";
+	echo "<input type=\"hidden\" name=\"yravlbl\" value=\"$yravlbl\">";
+	echo "<input type=\"hidden\" name=\"qtravlbl\" value=\"$qtravlbl\">";
+	echo "<input type=\"hidden\" name=\"projrelref\" value=\"$projrelref\">";
+	echo "<td align=\"center\"><input type=\"submit\" value=\"Yes\"></td></form>";
+	echo "<form action=\"finstrvsamng.php?loginid=$loginid\" method=\"post\" name=\"finstrvsamng\">";
+	echo "<input type=\"hidden\" name=\"yravlbl\" value=\"$yravlbl\">";
+	echo "<input type=\"hidden\" name=\"qtravlbl\" value=\"$qtravlbl\">";
+	echo "<input type=\"hidden\" name=\"projrelref\" value=\"$projrelref\">";
+	echo "<td align=\"center\"><input type=\"submit\" value=\"No\"></td></form></tr>";
+
+// end contents here...
+
+  echo "</table>";
+
+// edit body-footer
+     // echo "<p><a href=\"finstrvsamng.php?loginid=$loginid&yravlbl=$yravlbl&qtravlbl=$qtravlbl&projrelref=$projrelrefcd10\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

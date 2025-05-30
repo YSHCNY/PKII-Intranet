@@ -1,0 +1,46 @@
+Please find below details of your payroll salary for payroll period December 16-31, 2010 is now available.
+
+cutoff period: 2010-12-01 -to- 2010-12-15
+
+Employee ID: 546
+Employee Name: Rizalina Cruz
+Project: LAND BANK
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 4395.6
+NET BASIC PAY: P2604.40
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1166.67
+TOTAL Taxable Income: 333.33
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P2937.73
+
+Withholding Tax: 0.00
+SSS: 400
+Philhealth: 112.50
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P562.50
+
+NET PAY: P2375.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

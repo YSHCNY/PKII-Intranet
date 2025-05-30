@@ -1,0 +1,49 @@
+Please find below details of your payroll salary (payroll period August 16-31, 2013) is now available.
+
+cutoff period: 2013-08-01 -to- 2013-08-15
+
+Employee ID: 140
+Employee Name: Ferdinand Joselito Bersalona
+Project: TIMOR LESTE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 963 (mins) - P1576.91
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 8 (mins) - P1.05
+TOTAL OVERTIME: P1577.96
+
+Taxable Income:
+Incentive Allowance: 1250.00
+Project Allowance: 1350.00
+TOTAL Taxable Income: 2750.00
+
+Non-Taxable Income:
+Transpo Allowance: 900.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P13577.96
+
+Withholding Tax: 1842.49
+SSS: 500
+Philhealth: 200.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 692.18
+TOTAL Other Deductions: 692.18
+
+TOTAL DEDUCTIONS: P3284.67
+
+NET PAY: P10293.29
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

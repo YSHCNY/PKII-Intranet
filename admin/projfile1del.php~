@@ -1,0 +1,43 @@
+<?php
+
+require("db1.php");
+include './datetimenow.php';
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$pid = (isset($_GET['pid'])) ? $_GET['pid'] :'';
+
+$proj_code = (isset($_POST['proj_code'])) ? $_POST['proj_code'] :'';
+$projectid = (isset($_POST['projectid'])) ? $_POST['projectid'] :'';
+$filename1 = (isset($_POST['filename1'])) ? $_POST['filename1'] :'';
+$filepath1 = (isset($_POST['filepath1'])) ? $_POST['filepath1'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+	// delete file if exists
+  if($filename1 != "") {
+  	$filetodelete = "$filepath1/$filename1";
+   	unlink("$filetodelete");
+  }
+
+  // update query
+  $resquery="UPDATE tblproject1 SET filename1='', filepath1='' WHERE projectid=$pid AND proj_code=\"$proj_code\"";
+	$result=$dbh2->query($resquery);
+
+  // insert log
+  $logdetails="Deleted PDS file attachment for projid:$pid, proj_code:$proj_code";
+	$res16query="INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp='$now', adminuid='$adminuid', adminlogdetails='$logdetails'";
+	$result16=$dbh2->query($res16query);
+	// redirect
+	header("Location: editproj.php?loginid=$loginid&pid=$pid");
+	exit;
+
+} else {
+     include("logindeny.php");
+}
+
+$dbh2->close();
+?>

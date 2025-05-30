@@ -1,0 +1,71 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$company_type = $_POST['companytype'];
+$sort_by = $_POST['sort_by'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Directory >> Business Contacts</font></p>";
+
+     echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><td bgcolor=blue colspan=6><font color=white><b>PKII Business Directory</b></font></td><tr>";
+
+//     if($sort_by == "company" || $sort_by == "")
+//     {
+//            $result = mysql_query("SELECT tblcompany.company, tblcompany.company_type, tblcompany.ofc_address1, tblcompany.ofc_address2, tblcompany.ofc_city, tblcompany.ofc_num1, tblcompany.ofc_num2, tblcompany.ofc_num3, tblcompany.ofc_fax, tblcompany.ofc_fax2, tblcompany.supplierid, tblcontact.name_first, tblcontact.supplierid FROM tblcompany, tblcontact WHERE tblcompany.company_type = 'supplier' AND tblcompany.supplierid = tblcontact.supplierid ORDER BY tblcompany.company", $dbh);
+            $result = mysql_query("SELECT tblcompany.companyid, tblcompany.company, tblcompany.company_type, tblcompany.ofc_address1, tblcompany.ofc_address2, tblcompany.ofc_city, tblcompany.ofc_num1, tblcompany.ofc_num2, tblcompany.ofc_num3, tblcompany.ofc_fax, tblcompany.ofc_fax2, tblcompany.supplierid, tblcontact.name_first FROM tblcompany JOIN tblcontact ON tblcompany.supplierid = tblcontact.supplierid WHERE tblcompany.company_type = 'supplier' ORDER BY tblcompany.company", $dbh);
+//     }
+//     else
+//     {
+//          $result = mysql_query("SELECT tblcompany.company, tblcompany.company_type tblcompany.ofc_address1, tblcompany.ofc_address2, tblcompany.ofc_city, tblcompany.ofc_num1, tblcompany.ofc_num2, tblcompany.ofc_num3, tblcompany.ofc_fax, tblcompany.ofc_fax2, tblcompany.supplierid FROM tblcompany JOIN tblcontact ON tblcompany.supplierid = tblcontact.supplierid WHERE tblcompany.company_type='supplier' ORDER BY '$sort_by'", $dbh);
+//     }
+
+//     echo "<form action=directorybiz.php?loginid=$loginid method=POST>";
+//     echo "<select name=sort_by>";
+//     echo "<option value=select>select</option>";
+//     echo "<option value=tblcompany.company>company_name</option>";
+//     echo "<option value=tblcontact.name_first>first_name</option>";
+//     echo "</select>";
+//     echo "<input type=submit value=Go>";
+//     echo "</form>";
+
+     echo "<tr bgcolor=yellow><td>company_name</td><td>address</td><td>landline</td><td>fax</td><td>contact_person</td><td>Action</td></tr>";
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+         $pid = $myrow[0];
+         echo "<tr><td>$myrow[1]</td><td>$myrow[3]</td>";
+         echo "<td>$myrow[6]</td>";
+	  echo "<td>$myrow[9]</td>";
+	  echo "<td>$myrow[12]</td>";
+         echo "<td><a href = moreinfobiz.php?pid=$pid&loginid=$loginid target=_blank>More Info</a></td></tr>";
+     }
+
+     echo "</table>"; 
+
+     echo "<p><a href=index2.php?loginid=$loginid>Back</a><br>";
+   
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+  
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

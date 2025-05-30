@@ -1,0 +1,140 @@
+<?php
+
+	$resquery = "SELECT tblbpipayrollfilespec.bpipayrollfilespecid, tblbpipayrollfilespec.headerrecid, tblbpipayrollfilespec.batchnumber, tblbpipayrollfilespec.companycode, tblbpipayrollfilespec.headerrectype, tblbpipayrollfilespec.compacctnumber, tblbpipayrollfilespec.presofficecode, tblbpipayrollfilespec.payrollidentifier, tblbpipayrollfilespec.detailrecid, tblbpipayrollfilespec.detailrectype, tblbpipayrollfilespec.trailerrecid, tblbpipayrollfilespec.trailerrectype, tblbpipayrollfilespec.preparedname, tblbpipayrollfilespec.preparedpos, tblbpipayrollfilespec.checkedname, tblbpipayrollfilespec.checkedpos, tblbpipayrollfilespec.notedname, tblbpipayrollfilespec.notedpos, tblbpipayrollfilespec.approvedname, tblbpipayrollfilespec.approvedpos FROM tblbpipayrollfilespec WHERE tblbpipayrollfilespec.bpipayrollfilespecid=1";
+	$result = $dbh2->query($resquery);
+	if($result->num_rows>0) {
+	while($myrow = $result->fetch_assoc()) {
+		$found = 1;
+		$bpipayrollfilespecid = $myrow['bpipayrollfilespecid'];
+		$headerrecid = $myrow['headerrecid'];
+		$batchnumber = $myrow['batchnumber'];
+		$companycode = $myrow['companycode'];
+		$headerrectype = $myrow['headerrectype'];
+		$compacctnumber = $myrow['compacctnumber'];
+		$presofficecode = $myrow['presofficecode'];
+		$payrollidentifier = $myrow['payrollidentifier'];
+		$detailrecid = $myrow['detailrecid'];
+		$detailrectype = $myrow['detailrectype'];
+		$trailerrecid = $myrow['trailerrecid'];
+		$trailerrectype = $myrow['trailerrectype'];
+		$preparedname = $myrow['preparedname'];
+		$preparedpos = $myrow['preparedpos'];
+		$checkedname = $myrow['checkedname'];
+		$checkedpos = $myrow['checkedpos'];
+		$notedname = $myrow['notedname'];
+		$notedpos = $myrow['notedpos'];
+		$approvedname = $myrow['approvedname'];
+		$approvedpos = $myrow['approvedpos'];
+	}
+	} // if($result->num_rows>0)
+
+	// additional var
+	$ceilingamt="1500000.00";
+
+	echo "<table border=0 spacing=1>";
+
+	echo "<tr><td align=\"right\">Payroll Date</td><td>";
+	echo "<input name=year size=4 value=\"$yearnow\">";
+	if($monthnow==01) {
+		$month01sel="selected"; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==02) {
+		$month01sel=""; $month02sel="selected"; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==03) {
+		$month01sel=""; $month02sel=""; $month03sel="selected"; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==04) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel="selected"; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==05) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel="selected"; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==06) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel="selected"; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==07) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel="selected"; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==08) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel="selected"; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==09) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel="selected"; $month10sel=""; $month11sel=""; $month12sel="";
+	} else if($monthnow==10) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel="selected"; $month11sel=""; $month12sel="";
+	} else if($monthnow==11) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel="selected"; $month12sel="";
+	} else if($monthnow==12) {
+		$month01sel=""; $month02sel=""; $month03sel=""; $month04sel=""; $month05sel=""; $month06sel=""; $month07sel=""; $month08sel=""; $month09sel=""; $month10sel=""; $month11sel=""; $month12sel="selected";
+	} // if
+	echo "<select name=month>";
+	echo "<option value=1 $month01sel>Jan</option>";
+	echo "<option value=2 $month02sel>Feb</option>";
+	echo "<option value=3 $month03sel>Mar</option>";
+	echo "<option value=4 $month04sel>Apr</option>";
+	echo "<option value=5 $month05sel>May</option>";
+	echo "<option value=6 $month06sel>Jun</option>";
+	echo "<option value=7 $month07sel>Jul</option>";
+	echo "<option value=8 $month08sel>Aug</option>";
+	echo "<option value=9 $month09sel>Sep</option>";
+	echo "<option value=10 $month10sel>Oct</option>";
+	echo "<option value=11 $month11sel>Nov</option>";
+	echo "<option value=12 $month12sel>Dec</option>";
+	echo "</select>";
+	echo "<select name=day>";
+	echo "<option value=1>1</option>";
+	echo "<option value=2>2</option>";
+	echo "<option value=3>3</option>";
+	echo "<option value=4>4</option>";
+	echo "<option value=5>5</option>";
+	echo "<option value=6>6</option>";
+	echo "<option value=7>7</option>";
+	echo "<option value=8>8</option>";
+	echo "<option value=9>9</option>";
+	echo "<option value=10>10</option>";
+	echo "<option value=11>11</option>";
+	echo "<option value=12>12</option>";
+	echo "<option value=13>13</option>";
+	echo "<option value=14>14</option>";
+	echo "<option value=15>15</option>";
+	echo "<option value=16>16</option>";
+	echo "<option value=17>17</option>";
+	echo "<option value=18>18</option>";
+	echo "<option value=19>19</option>";
+	echo "<option value=20>20</option>";
+	echo "<option value=21>21</option>";
+	echo "<option value=22>22</option>";
+	echo "<option value=23>23</option>";
+	echo "<option value=24>24</option>";
+	echo "<option value=25>25</option>";
+	echo "<option value=26>26</option>";
+	echo "<option value=27>27</option>";
+	echo "<option value=28>28</option>";
+	echo "<option value=29>29</option>";
+	echo "<option value=30>30</option>";
+	echo "<option value=31>31</option>";
+	echo "</select></td>";
+
+	echo "<tr><td align=\"right\">Header Record ID</td><td><input name=headerrecid value=$headerrecid readonly></td></tr>";
+	echo "<tr><td align=\"right\">Batch Number</td><td><input name=batchnumber value=$batchnumber></td></tr>";
+
+	echo "<tr><td align=\"right\">Company Code</td><td><input name=companycode value=";
+	print str_pad($companycode, 5, "0", STR_PAD_LEFT);
+	echo " readonly></td></tr>";
+
+	echo "<tr><td align=\"right\">Header Record Type</td><td><input name=headerrectype value=$headerrectype readonly></td></tr>";
+	echo "<tr><td align=\"right\">Company Account Number</td><td><input name=compacctnumber value=";
+	print str_pad($compacctnumber, 10, "0", STR_PAD_LEFT);
+	echo " readonly></td></tr>";
+
+	echo "<tr><td align=\"right\">Ceiling Amount</td><td><input name=ceilingamt value=$ceilingamt></td></tr>";
+
+	echo "<tr><td align=\"right\">Presenting Office Code</td><td><input name=presofficecode value=";
+	print str_pad($presofficecode, 3, "0", STR_PAD_LEFT);
+	echo " readonly></td></tr>";
+
+	echo "<tr><td align=\"right\">Payroll Identifier</td><td><input name=payrollidentifier value=$payrollidentifier readonly></td></tr>";
+	echo "<tr><td align=\"right\">Detail Record ID</td><td><input name=detailrecid value=$detailrecid readonly></td></tr>";
+	echo "<tr><td align=\"right\">Detail Record Type</td><td><input name=detailrectype value=$detailrectype readonly></td></tr>";
+	echo "<tr><td align=\"right\">Trailer Record ID</td><td><input name=trailerrecid value=$trailerrecid readonly></td></tr>";
+	echo "<tr><td align=\"right\">Trailer Record Type</td><td><input name=trailerrectype value=$trailerrectype readonly></td></tr>";
+	echo "<tr><td align=\"right\">Prepared</td><td><input name=preparedname value='$preparedname'></td><td><input name=preparedpos value='$preparedpos'></td></tr>";
+	echo "<tr><td align=\"right\">Checked</td><td><input name=checkedname value='$checkedname'></td><td><input name=checkedpos value='$checkedpos'></td></tr>";
+	echo "<tr><td align=\"right\">Noted</td><td><input name=notedname value='$notedname'></td><td><input name=notedpos value='$notedpos'></td></tr>";
+	echo "<tr><td align=\"right\">Approved</td><td><input name=approvedname value='$approvedname'></td><td><input name=approvedpos value='$approvedpos'></td></tr>";
+	echo "</table>";
+
+?>

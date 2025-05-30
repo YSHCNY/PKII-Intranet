@@ -1,0 +1,263 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$wpgendate = $_GET['gd'];
+
+$glcode0 = $_POST['glcode'];
+$debitamt0 = $_POST['debitamt'];
+$creditamt0 = $_POST['creditamt'];
+
+$cutarrwpgendate = split("-", $wpgendate);
+$wpgenyear = $cutarrwpgendate[0];
+$wpgenmonth = $cutarrwpgendate[1];
+
+$wpgencutstart = $wpgendate."-"."1";
+$wpgencutend = $wpgenyear."-".($wpgenmonth+1)."-"."1";
+
+echo "vartest cutstart:$wpgencutstart, cutend:$wpgencutend<br>";
+$result11 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+if($result11 != '')
+{
+  while($myrow11 = mysql_fetch_row($result11))
+  {
+    $found11 = 1;
+    $version11 = $myrow11[0];
+  }
+}
+$glrefver = $version11;
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+echo "<table class=\"fin\" border=\"1\">";
+
+?>
+
+<tr><th colspan='17'>PKII Working Paper for <? echo "$wpgendate"; ?></th></tr>
+
+<?
+    echo "<tr><th>&nbsp;</th><th colspan=\"2\" align=\"center\">Account</th><th colspan=\"2\" align=\"center\">Beginning Balance</th><th colspan=\"2\" align=\"center\">Cash Disbursement</th><th colspan=\"2\" align=\"center\">Cash Receipt</th><th colspan=\"2\" align=\"center\">Journal Book</th><th colspan=\"2\" align=\"center\">Trial Balance</th><th colspan=\"2\" align=\"center\">Balance Sheet</th><th colspan=\"2\" align=\"center\">Income Statement</th></tr>";
+    echo "<tr><th align=\"center\">Count</th><th align=\"center\">AcctCode</th><th align=\"center\">AcctName</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th><th align=\"center\">Debit</th><th align=\"center\">Credit</th></tr>";
+
+// insert $_POST values
+if($glrefver == 1)
+{
+  for ($i = 0; $i < count($glcode0) && $i < count($debitamt0) && $i < count($creditamt0); ++$i)
+  {
+    $begbalancedr=0; $begbalancecr=0;
+    $cashdisbursementdr=0; $cashdisbursementcr=0;
+    $cashreceiptdr=0; $cashreceiptcr=0;
+    $journaldr=0; $journalcr=0;
+    $trialbalancedr=0; $trialbalancecr=0;
+    $balancesheetdr=0; $balancesheetcr=0;
+    $incomestatementdr=0; $incomestatementcr=0;
+
+    $glcode = $glcode0[$i];
+    $begbalancedr = $debitamt0[$i];
+    $begbalancecr = $creditamt0[$i];
+
+    $begbalancedrtot = $begbalancedrtot + $begbalancedr;
+    $begbalancecrtot = $begbalancecrtot + $begbalancecr;
+
+    $count = $count + 1;
+    echo "<tr><td align=\"center\">$count</td><td>$glcode</td>";
+    $result11 = mysql_query("SELECT glname FROM tblfinglref WHERE glcode=\"$glcode\"", $dbh);
+    if($result11 != "")
+    {
+      while($myrow11 = mysql_fetch_row($result11))
+      {
+	$found11 = 1;
+	$glname11 = $myrow11[0];
+      }
+    }
+    echo "<td>$glname11</td><td align=\"right\">$begbalancedr</td><td align=\"right\">$begbalancecr</td>";
+
+    // compute cash disb
+    $result12 = mysql_query("SELECT debitamt, creditamt FROM tblfindisbursement WHERE glcode=\"$glcode\" AND date>=\"$wpgencutstart\" AND date<\"$wpgencutend\"", $dbh);
+    if($result12 != "")
+    {
+      while($myrow12 = mysql_fetch_row($result12))
+      {
+	$found12 = 1;
+	$debitamt12 = $myrow12[0];
+	$creditamt12 = $myrow12[1];
+	$cashdisbursementdr = $cashdisbursementdr + $debitamt12;
+	$cashdisbursementcr = $cashdisbursementcr + $creditamt12;
+      }
+    }
+    $cashdisbursementdrtot = $cashdisbursementdrtot + $cashdisbursementdr;
+    $cashdisbursementcrtot = $cashdisbursementcrtot + $cashdisbursementcr;
+    echo "<td align=\"right\">$cashdisbursementdr</td><td align=\"right\">$cashdisbursementcr</td>";
+
+    // compute cash receipt
+    $result14 = mysql_query("SELECT debitamt, creditamt FROM tblfincashreceipt WHERE glcode=\"$glcode\" AND date>=\"$wpgencutstart\" AND date<\"$wpgencutend\"", $dbh);
+    if($result14 != "")
+    {
+      while($myrow14 = mysql_fetch_row($result14))
+      {
+	$found14 = 1;
+	$debitamt14 = $myrow14[0];
+	$creditamt14 = $myrow14[1];
+	$cashreceiptdr = $cashreceiptdr + $debitamt14;
+	$cashreceiptcr = $cashreceiptcr + $creditamt14;
+      }
+    }
+    $cashreceiptdrtot = $cashreceiptdrtot + $cashreceiptdr;
+    $cashreceiptcrtot = $cashreceiptcrtot + $cashreceiptcr;
+    echo "<td align=\"right\">$cashreceiptdr</td><td align=\"right\">$cashreceiptcr</td>";
+
+    // compute journal
+    $result15 = mysql_query("SELECT debitamt, creditamt FROM tblfinjournal WHERE glcode=\"$glcode\" AND date>=\"$wpgencutstart\" AND date<\"$wpgencutend\"", $dbh);
+    if($result15 != "")
+    {
+      while($myrow15 = mysql_fetch_row($result15))
+      {
+	$found15 = 1;
+	$debitamt15 = $myrow15[0];
+	$creditamt15 = $myrow15[1];
+	$journaldr = $journaldr + $debitamt15;
+	$journalcr = $journalcr + $creditamt15;
+      }
+    }
+    $journaldrtot = $journaldrtot + $journaldr;
+    $journalcrtot = $journalcrtot + $journalcr;
+    echo "<td align=\"right\">$journaldr</td><td align=\"right\">$journalcr</td>";
+
+    // compute trial balance
+    $trialbalancedr = $begbalancedr + $cashdisbursementdr + $cashreceiptdr + $journaldr;
+    $trialbalancecr = $begbalancecr + $cashdisbursementcr + $cashreceiptcr + $journalcr;
+    $trialbalancedrtot = $trialbalancedrtot + $trialbalancedr;
+    $trialbalancecrtot = $trialbalancecrtot + $trialbalancecr;
+    echo "<td align=\"right\">$trialbalancedr</td><td align=\"right\">$trialbalancecr</td>";
+
+    // compute balance sheet
+    if($glcode>="10.10.101" && $glcode<="30.10.200")
+    {
+      if($glcode!="20.10.214")
+      {
+	$balancesheetdr = $trialbalancedr;
+	$balancesheetcr = $trialbalancecr;
+	$balancesheetdrtot = $balancesheetdrtot + $balancesheetdr;	
+	$balancesheetcrtot = $balancesheetcrtot + $balancesheetcr;
+	echo "<td align=\"right\">$balancesheetdr</td><td align=\"right\">$balancesheetcr</td>";
+      }
+    }
+    else { echo "<td>-</td><td>-</td>"; }
+
+    // compute income statement
+    if($glcode>="40.10.000" && $glcode<="70.00.000")
+    {
+      $incomestatementdr = $trialbalancedr;
+      $incomestatementcr = $trialbalancecr;
+      echo "<td align=\"right\">$incomestatementdr</td><td align=\"right\">$incomestatementcr</td>";
+    }
+    else if($glcode=="20.10.214")
+    {
+      $incomestatementdr = $trialbalancedr;
+      $incomestatementcr = $trialbalancecr;
+      echo "<td align=\"right\">$incomestatementdr</td><td align=\"right\">$incomestatementcr</td>";
+    }
+    else { echo "<td>-</td><td>-</td>"; }
+    $incomestatementdrtot = $incomestatementdrtot + $incomestatementdr;
+    $incomestatementcrtot = $incomestatementcrtot + $incomestatementcr;
+    echo "</tr>";
+
+//    $result12 = mysql_query("INSERT INTO tblfinworkpaper SET month=\"$wpgenmonth\", glcode=\"$glcode\", glrefver=\"$glrefver\", begbalancedr=$begbalancedr, begbalancecr=$begbalancecr, cashdisbursementdr=$cashdisbursementdr, cashdisbursementcr=$cashdisbursementcr, cashreceiptdr=$cashreceiptdr, cashreceipcr=$cashreceiptcr, journaldr=$journaldr, journalcr=$journalcr, trialbalancedr=$trialbalancedr, trialbalancecr=$trialbalancecr, balancesheetdr=$balancesheetdr, balancesheetcr=$balancesheetcr, incomestatementdr=$incomestatementdr, incomestatementcr=$incomestatementcr", $dbh);
+  }
+  echo "<tr><th></th><th></th><th align=\"center\">Total</th><th align=\"right\">".number_format($begbalancedrtot,2)."</th><th align=\"right\">".number_format($begbalancecrtot,2)."</th><th align=\"right\">".number_format($cashdisbursementdrtot,2)."</th><th align=\"right\">".number_format($cashdisbursementcrtot,2)."</th><th align=\"right\">".number_format($cashreceiptdrtot,2)."</th><th align=\"right\">".number_format($cashreceiptcrtot,2)."</th><th align=\"right\">".number_format($journaldrtot,2)."</th><th align=\"right\">".number_format($journalcrtot,2)."</th><th align=\"right\">".number_format($trialbalancedrtot,2)."</th><th align=\"right\">".number_format($trialbalancecrtot,2)."</th><td align=\"right\">".number_format($balancesheetdrtot,2)."</td><td align=\"right\">".number_format($balancesheetcrtot,2)."</td><td align=\"right\">".number_format($incomestatementdrtot,2)."</td><td align=\"right\">".number_format($incomestatementcrtot,2)."</td></tr>";
+
+  echo "<tr><td colspan=\"13\"></td>";
+  if($balancesheetdrtot > $balancesheetcrtot)
+  {
+    $balancesheetdrdiff = $balancesheetdrtot - $balancesheetcrtot;
+    echo "<td></td><th align=\"right\">".number_format($balancesheetdrdiff,2)."</th>";
+  }
+  else
+  {
+    $balancesheetcrdiff = $balancesheetcrtot - $balancesheetdrtot;
+    echo "<th align=\"right\">".number_format($balancesheetcrdiff,2)."</th><td></td>";
+  }
+  if($incomestatementdrtot > $incomestatementcrtot)
+  {
+    $incomestatementdrdiff = $incomestatementdrtot - $incomestatementcrtot;
+    echo "<td></td><th align=\"right\">".number_format($incomestatementdrdiff,2)."</th>";
+  }
+  else
+  {
+    $incomestatementcrdiff = $incomestatementcrtot - $incomestatementdrtot;
+    echo "<th align=\"right\">".number_format($incomestatementcrdiff,2)."</th><td></td>";
+  }
+  echo "</tr>";
+
+  echo "<tr><td colspan=\"13\"></td>";
+  if($balancesheetcrdiff != "")
+  {
+    $balancesheetdrgrandtot = $balancesheetdrtot + $balancesheetcrdiff;
+    echo "<th align=\"right\">".number_format($balancesheetdrgrandtot,2)."</th><th align=\"right\">".number_format($balancesheetcrtot,2)."</th>";
+  }
+  else if($balancesheetdrdiff != "")
+  {
+    $balancesheetcrgrandtot = $balancesheetcrtot + $balancesheetdrdiff;
+    echo "<th align=\"right\">".number_format($balancesheetdrtot,2)."</th><th align=\"right\">".number_format($balancesheetcrgrandtot,2)."</th>";
+  }
+  if($incomestatementcrdiff != "")
+  {
+    $incomestatementdrgrandtot = $incomestatementdrtot + $incomestatementcrdiff;
+    echo "<th align=\"right\">".number_format($incomestatementdrgrandtot,2)."</th><th align=\"right\">".number_format($incomestatementcrtot,2)."</th>";
+  }
+  else if($incomestatementdrdiff != "")
+  {
+    $incomestatementdrgrandtot = $incomestatementdrtot + $incomestatementcrdiff;
+    echo "<th align=\"right\">".number_format($incomestatementdrtot,2)."</th><th align=\"right\">".number_format($incomestatementcrgrandtot,2)."</th>";
+  }
+  echo "</tr>";
+
+//  $result14 = mysql_query("INSERT INTO tblfinworkpapertot SET ...", $dbh);
+}
+else if($glrefver == 2)
+{
+// insert queries here for glrefver=2
+}
+  
+
+// create log
+    include('datetimenow.php');
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminloginuid - Inserted beginning balances for PKII voucher working paper: $wpgendate";
+//    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+echo "</table>";
+
+echo "<p><a href=\"finvouchmain.php?loginid=$loginid\">Back</a></p>";
+
+
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

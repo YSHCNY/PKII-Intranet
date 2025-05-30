@@ -1,0 +1,20 @@
+<?php 
+
+require '../includes/dbh.php';
+
+	$result11=""; $found11=0;
+	$res11query = "SELECT username, employeeid, contactid FROM tbllogin WHERE loginid=$loginid";
+	$result11=$dbh->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+	  $username11=$myrow11['username'];
+		$employeeid11=$myrow11['employeeid'];
+		$contactid11=$myrow11['contactid'];
+    } // while
+	} // if
+
+$dbh2->close();
+?> 
+
+	

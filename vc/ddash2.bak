@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+        
+        <!-- Features -->
+        <div class="features-container section-container">
+	        <div class="container">
+	        	
+	            <div class="row">
+	                <div class="col-sm-10 features section-description wow fadeIn">
+	                    <h2>Dashboard</h2>
+	                    <div class="divider-1"><div class="line"></div></div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col-sm-6 features-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3 features-box-icon">
+	                			<i class="fa fa-twitter"></i>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<!--<h3>Ut wisi enim ad minim</h3>
+		                    	<p>
+		                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+		                    		Ut wisi enim ad minim veniam, quis nostrud.-->
+									<div class="container">
+	<div class="row">
+	<?php
+	// query birthdays <5d to >30d of curr_date
+	include("../m/qryddashbday.php");
+	// display results
+	$param11 = count($employeeid11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		echo "<tr><td><img src=\"$pathavatar/".$picfn11Arr[$x]."\" height=\"40\"></td>";
+		if(date("M-d", strtotime($emp_birthdate11Arr[$x]))==date("M-d", strtotime($datenow))) {
+    echo "<th>".$name_first11Arr[$x]."";
+		// if($name_middle11Arr[$x]!='') {
+			// echo "&nbsp;".$name_middle11Arr[$x][0].".";
+		// } // if
+		echo "&nbsp;".$name_last11Arr[$x]."</th>";
+		echo "<th>".date("M-d", strtotime($emp_birthdate11Arr[$x]))."</th></tr>";
+		} else {
+    echo "<td>".$name_first11Arr[$x]."";
+		// if($name_middle11Arr[$x]!='') {
+			// echo "&nbsp;".$name_middle11Arr[$x][0].".";
+		// } // if
+		echo "&nbsp;".$name_last11Arr[$x]."</td>";
+		echo "<td>".date("M-d", strtotime($emp_birthdate11Arr[$x]))."</td></tr>";
+		} // if
+	} // for
+	?>
+		                    	<!--</p>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="col-sm-6 features-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3 features-box-icon">
+	                			<i class="fa fa-instagram"></i>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Sed do eiusmod tempor</h3>
+		                    	<p>
+		                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+		                    		Ut wisi enim ad minim veniam, quis nostrud.
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col-sm-6 features-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3 features-box-icon">
+	                			<i class="fa fa-magic"></i>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Quis nostrud exerci tat</h3>
+		                    	<p>
+		                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+		                    		Ut wisi enim ad minim veniam, quis nostrud.
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="col-sm-6 features-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3 features-box-icon">
+	                			<i class="fa fa-cloud"></i>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Minim veniam quis nostrud</h3>
+		                    	<p>
+		                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.
+		                    		Ut wisi enim ad minim veniam, quis nostrud.
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+
+	        </div>
+        </div>-->
+        
+        <!-- Footer -->
+        <footer>
+	        <div class="container">
+	        	<div class="row">
+	        		<div class="col-sm-12 footer-copyright">AZMIND
+                    </div>
+                </div>
+	        </div>
+        </footer>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

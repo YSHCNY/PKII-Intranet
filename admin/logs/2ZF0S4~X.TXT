@@ -1,0 +1,44 @@
+Confidential
+
+Please find below details of the Advisory
+
+Project Name/s:
+C.O.
+
+Pay Advisory Type:
+Final Pay
+
+Amount: 24891.79
+Currency: Philippine Peso
+
+Pay Type: Bank Acct
+
+Bank Name: BPI
+Bank Branch: 
+Acct Number: 4579303978
+Acct Name: 
+Acct Type: Savings
+Date Deposited: 2022-3-3
+
+Additional Details:
+Final Payment
+
+Basic Pay        : P 8,600.00
+COLA             :     750.00
+VL               :   6,573.20
+SL               :   6,573.20
+13th mo          :   2,866.67
+Tax Refund       :     669.22
+
+Less:     
+SSS Cont.        :     832.50
+Philhealth Cont. :     258.00
+Pag-IBIG Cont.   :      50.00
+
+NET PAY          : P24,891.79
+
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email,the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+

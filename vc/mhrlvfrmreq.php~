@@ -1,0 +1,113 @@
+<?php
+//
+// mhrotfrmreq.php
+// fr: vc/index.php
+// indexlinks: $page==361
+
+require '../includes/config.inc';
+require '../includes/dbh.php';
+
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>New Leave Request</h3></div>
+	</div> <!-- div class="row" -->
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table table-striped">
+<thead>
+	<tr><th colspan="2" class="text-center">LEAVE APPLICATION FORM (HRD-F-12)</th></tr>
+</thead>
+<tbody>
+<?php
+	echo "<form method=\"POST\" action=\"index.php?lst=1&lid=$loginid&sess=$session&p=367\" name=\"mhrlvfrmreq2\">";	
+	echo "<input type=\"hidden\" name=\"requestorempid\" value=\"$employeeid0\">";
+	echo "<input type=\"hidden\" name=\"deptcd\" value=\"$empdepartment0\">";
+	echo "<input type=\"hidden\" name=\"ctgactor\" value=\"REQ\">";
+?>
+	
+		<tr><th class="text-right">Requested by</th><td class="text-left"><strong>
+<?php
+	echo "$name_last0, $name_first0 $name_middle0[0]";
+	if($empposition0!='') { echo "&nbsp;-&nbsp;$empposition0"; }
+	if($empdepartment0!='') { echo "&nbsp;-&nbsp;$empdepartment0"; }
+?>
+	</strong></td></tr>
+
+	<?php 
+			$resquery = "SELECT * from tblhrtaleavectg";
+     		$result = $dbh->query($resquery);
+     ?>
+
+	<tr><th class="text-right">Date of Application</th><td class="text-left"><input type="date" name="dateapplic" value="<?php echo $datenow; ?>" readonly></td></tr>
+	<tr><th class="text-right">Start Date</th><td class="text-left"><input type="date" name="startdate" value="<?php echo $datenow; ?>"></td></tr>
+	<tr><th class="text-right">End Date</th><td class="text-left"><input type="date" name="enddate" value="<?php echo $datenow; ?>"></td></tr>
+	<tr><th class="text-right">Leave Type</th><td class="text-left"><select class="form-control">
+		<?php
+          	while($myrow = $result->fetch_assoc()) {
+          		echo "<option value='".$myrow['idhrtaleavectg']."'>".$myrow['name']."</option>";
+          	}
+
+		?>
+		</select>
+	</td></tr>
+<?php
+		include '../m/qryhrtapaygrpemplst.php';
+
+?>
+
+<?php
+	// echo "<p>eid0:$employeeid0,dept0:$empdepartment0,f11:$found11$,idpaygrpemplst=$idhrtapaygrpemplst11,idpaygrp:$idtblhrtapaygrp11,idpayshift:$idhrtapayshiftctg11,actv:$activesw11<br>f12:$found12,durfrhh:$shiftouthh,durfrmm:$shiftoutmm</p>";
+?>
+	</td></tr>
+
+	<tr><th class="text-right">Reasons for Leave</th><td class="text-left"><textarea rows="5" cols="50" name="details"></textarea></td></tr>
+	<tr><th class="text-right">Approver</th><td class="text-left">
+	<select name="approver">
+	<?php
+
+	$deptcd16=$empdepartment0;
+	include '../m/qrymitsuppreq8b.php';
+	if($approver1empid18b!='') {
+	include '../m/qrymitsuppreq8c.php';
+	echo "<option value=\"$approver1empid18b\">$name_last18c, $name_first18c $name_middle18c[0]";
+	if($empposition18c!='') { echo "&nbsp;-&nbsp;$empposition18c"; }
+	echo "&nbsp;-&nbsp;$empdepartment18c</option>";
+	} // if
+	if($approver2empid18b!='') {
+	include '../m/qrymitsuppreq8d.php';
+	echo "<option value=\"$approver2empid18b\">$name_last18d, $name_first18d $name_middle18d[0]";
+	if($empposition18d!='') { echo "&nbsp;-&nbsp;$empposition18d"; }
+	echo "&nbsp;-&nbsp;$empdepartment18d</option>";
+	} // if
+?>
+</select>
+	</td></tr>
+	<tr><th></th><td class="text-left"><button id="btnsubmit" type="submit" class="btn btn-primary" value="submit">Submit request</button></td></tr>
+<?php
+	echo "</form>";
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+
+
+<style type="text/css">
+	.smalltext{
+		width: 40px;
+	}
+</style>
+
+<script type="text/javascript">
+	// $(document).ready(function(){
+	// 	$('#btnsubmit').on('click',function(){
+	// 		alert('Submitted OT Form Request');
+	// 	});
+	// });
+</script>
+

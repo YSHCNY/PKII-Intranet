@@ -1,0 +1,50 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2022-03-01 -to- 2022-03-15
+
+Employee ID: 757
+Employee Name: Joanne San Juan
+Project: SMC - MRT-7
+
+PAY RATE: P9650.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9650.00
+
+Regular Overtime: P2260.76
+Reg.Sun/Sat. OT: 0 (mins) - P1246.51
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P3507.27
+
+Additional Income:
+Taxable Income:
+Project Allowance; SMC - MRT-7: 2000.00
+TOTAL Taxable Income: P2000.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Tax Refund for year 2021: 2655.55
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P15907.27
+
+Withholding Tax: P655.15
+SSS: P1125.00
+Philhealth: P289.50
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 915.30
+TOTAL Other Deductions: P915.30
+
+TOTAL DEDUCTIONS: P3034.95
+
+NET PAY: P12872.32
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

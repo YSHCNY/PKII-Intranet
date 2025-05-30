@@ -1,0 +1,216 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$employeeid01 = $_POST['eid'];
+$yyyymm = $_POST['monsel'];
+$cutmonth = $_POST['cutmonth'];
+
+if(($yyyymm == " ") || ($yyyymm == "")) {
+	$cutstart = date("Y-m-01", strtotime($datenow));
+} else {
+	$cutstart = $yyyymm."-"."01";
+}
+
+if($cutmonth == "") { $cutmonth="0"; }
+
+if($cutmonth == "0") {
+	$cutstart = $yyyymm."-"."01";
+	$cutend = date("Y-m-t", strtotime("$cutstart"));
+} else if($cutmonth == "1") {
+	$cutstartarr = split("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutend = $cutstartyyyy . "-" . $cutstartmm . "-" . "15";
+} else if($cutmonth == "2") {
+  $cutend = date("Y-m-t", strtotime("$cutstart"));
+	$cutstartarr = split("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutstart = $cutstartyyyy . "-" . $cutstartmm . "-" . "16";
+}
+
+
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> HR >> Office time log</font></p>";
+
+		// if($accesslevel>=4) { $colspan=6; } else { $colspan=5; }
+		$colspan=5;
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+     echo "<tr><th colspan=\"$colspan\">Office Time Log</th></tr>";
+
+// start contents here...
+  if($accesslevel >= 3) {
+    echo "<tr><form action=\"hrofctimelog.php?loginid=$loginid\" method=\"post\"><td colspan=\"$colspan\">";
+		// list all available personnel w/ timelog data
+		echo "<select name=\"eid\">";
+		$result11=""; $found11=0;
+		$result11 = mysql_query("SELECT DISTINCT tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact, tblhrattuserinfo, tblhractlog WHERE tblcontact.employeeid=tblhrattuserinfo.employeeid OR tblcontact.employeeid=tblhractlog.employeeid ORDER BY tblcontact.name_last ASC, tblcontact.name_first ASC", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$employeeid11 = $myrow11[0];
+			$name_last11 = $myrow11[1];
+			$name_first11 = $myrow11[2];
+			$name_middle11 = $myrow11[3];
+			if($employeeid11 == $employeeid01) { $empidsel="selected"; } else { $empidsel=""; }
+			echo "<option value=\"$employeeid11\" $empidsel>$employeeid11 - $name_last11, $name_first11";
+			if($name_middle11!="") { echo "&nbsp;$name_middle11[0]."; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+
+		// list available year-month of timelog data
+		echo "<select name=\"monsel\">";
+		$result12=""; $found12=0;
+		$result12 = mysql_query("SELECT DISTINCT DATE_FORMAT(att_checktime, '%Y-%m' ) AS yyyymm FROM `tblhrattcheckinout`
+ORDER BY att_checktime DESC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12 = 1;
+			$yyyymm12 = $myrow12[0];
+			if($yyyymm12 == $yyyymm) { $yyyymmsel="selected"; } else { $yyyymmsel=""; }
+			echo "<option value=\"$yyyymm12\" $yyyymmsel>".date("Y-M", strtotime($yyyymm12))."</option>";
+			}
+		}
+		echo "</select>";
+		echo "<select name=\"cutmonth\">";
+		if($cutmonth == "0") { $cutmo0sel="selected"; $cutmo1sel=""; $cutmo2sel=""; }
+		else if($cutmonth == "1") { $cutmo0sel=""; $cutmo1sel="selected"; $cutmo2sel=""; }
+		else if($cutmonth == "2") { $cutmo0sel=""; $cutmo1sel=""; $cutmo2sel="selected"; }
+		else { $cutmo0sel="selected"; $cutmo1sel=""; $cutmo2sel=""; }
+		echo "<option value=\"0\" $cutmo0sel>whole month</option>";
+		echo "<option value=\"1\" $cutmo1sel>1st half</option>";
+		echo "<option value=\"2\" $cutmo2sel>2nd half</option>";
+		echo "</select>";
+    echo "<input type=submit></td></form></tr>";
+
+		// check if personnel has records on biometrics device
+		$result17=""; $found17=0; $ctr17=0;
+		$result17 = mysql_query("SELECT att_userid FROM tblhrattuserinfo WHERE employeeid=\"$employeeid01\"", $dbh);
+		if($result17 != "") {
+			while($myrow17 = mysql_fetch_row($result17)) {
+			$found17 = 1;
+			$att_userid17 = $myrow17[0];
+			}
+		}
+
+		echo "<tr><th colspan=\"2\">Date</th>";
+		if($att_userid17 != "") { 
+		echo "<th>Time-IN</th><th>Time-OUT</th>";
+		}
+		echo "<th>Activity</th>";
+		// if($accesslevel>=4) { echo "<th>Action</th>"; }
+		echo "</tr>";
+		// generate time log
+		if($yyyymm != "") {
+		while(strtotime($cutstart) <= strtotime($cutend)) {
+			$dateval = date("Y-M-d", strtotime($cutstart));
+			// echo "$dateval<br>";
+			if(date("D", strtotime($dateval)) == "Sun") {
+			echo "<tr><td><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font></td><td align=\"center\"><font color=\"red\">".date("D", strtotime($dateval))."</font></td>";
+			} else {
+			echo "<tr><td>".date("Y-M-d", strtotime($dateval))."</td><td align=\"center\">".date("D", strtotime($dateval))."</td>";
+			}
+
+		if($att_userid17 != "") { 
+
+			echo "<td align=\"center\">";
+			$result14=""; $found14=0;
+			$result14 = mysql_query("SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime, tblhrattcheckinout.att_userid FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid01\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"I\" ORDER BY tblhrattcheckinout.att_checktime ASC", $dbh);
+			if($result14 != "") {
+				while($myrow14 = mysql_fetch_row($result14)) {
+				$found14 = 1;
+				$hrattcheckinoutid14 = $myrow14[0];
+				$timein14 = $myrow14[1];
+				$att_userid14 = $myrow14[2];
+				if($timein14 != "") {
+				echo date("G:i", strtotime($timein14));
+				echo "<br>";
+				$timein14="";
+				}
+				}
+			}
+			echo "</td>";
+			echo "<td align=\"center\">";
+			$result15=""; $found15=0;
+			$result15 = mysql_query("SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid01\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"o\" ORDER BY tblhrattcheckinout.att_checktime DESC", $dbh);
+			if($result15 != "") {
+				while($myrow15 = mysql_fetch_row($result15)) {
+				$found15 = 1;
+				$hrattcheckinoutid15 = $myrow15[0];
+				$timeout15 = $myrow15[1];
+				if($timeout15 != "") {
+				echo date("G:i", strtotime($timeout15));
+				echo "<br>";
+				$timeout15="";
+				}
+				}
+			}
+			echo "</td>";
+
+		}
+
+			$arrcutdate = split(" ", $cutstart);
+			$arrcutdate0 = $arrcutdate[0];
+			echo "<td>";
+			$result16=""; $found16=0; $ctr16=0;
+			$result16 = mysql_query("SELECT hractlogid, activity, remarks, remarksby FROM tblhractlog WHERE date=\"$arrcutdate0\" AND employeeid=\"$employeeid01\" ORDER BY timestamp DESC", $dbh);
+			if($result16 != "") {
+				while($myrow16 = mysql_fetch_row($result16)) {
+				$found16 = 1;
+				$hractlogid16 = $myrow16[0];
+				$activity16 = $myrow16[1];
+				$remarks16 = $myrow16[2];
+				$remarksby16 = $myrow16[3];
+				$ctr16 = $ctr16+1;
+				if($ctr16 > 1) { echo "<br /><br />"; }
+				echo "".nl2br($activity16)."";
+				}
+			}
+			echo "</td>";
+			// if($accesslevel>=4) { echo "<td align=\"center\"><a href=\"hrofctimelogedit.php?loginid=$loginid&eid=$employeeid01&uid=$att_userid14&iid=$hrattcheckinoutid14&oid=$hrattcheckinoutid15\">Edit</a></td>"; } else { echo "<td></td>"; }
+			echo "</tr>";
+			$cutstart = date("Y-m-d", strtotime($cutstart. " + 1 days"));
+		}
+		}
+  }
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

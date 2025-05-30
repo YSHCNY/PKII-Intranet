@@ -1,0 +1,88 @@
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$employeetype = (isset($_POST['employeetype'])) ? $_POST['employeetype'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Modules >> Bonus Notifier >> Personnel details</font></p>";
+
+     echo "<p><a href=emppaybon01.php?loginid=$loginid class='btn btn-default' role='button'>Back</a></p>";
+
+     echo "<h3>Personnel Bonus Notifier - Details</h3>";
+
+     echo "Select Payroll Group:";
+
+    $res0query = "SELECT employeeid, accesslevel FROM tbladminlogin WHERE adminloginid=$loginid";
+    $result0=$dbh2->query($res0query);
+    if($result0->num_rows>0) {
+        while($myrow0=$result0->fetch_assoc()) {
+	$found0 = 1;
+	$employeeid = $myrow0['employeeid'];
+	$accesslevel = $myrow0['accesslevel'];
+        } //while
+    } //if
+
+     echo "<form action='emppayboninfo1.php?loginid=$loginid' method='POST' name='emppayboninfo1' onchange='this.form.submit()'>";
+    echo "<div class='form-group'>";
+     echo "<select name='groupname' class='form-control'>";
+
+    if ($accesslevel == 5) {
+        $resquery="SELECT DISTINCT groupname, datecreated FROM tblemppaybongrp WHERE accesslevel<=5";
+        $result=$dbh2->query($resquery);
+        if($result->num_rows>0) {
+            while($myrow=$result->fetch_assoc()) {
+	$found = 1;
+	$groupname = $myrow['groupname'];
+	$datecreated = $myrow['datecreated'];
+	echo "<option value=\"$groupname\">$groupname - $datecreated</option>";
+            } //while
+        } //if
+  } else if ($accesslevel <= 4) {
+     $res2query = "SELECT DISTINCT groupname, datecreated FROM tblemppaybongrp WHERE accesslevel<=4";
+    $result2=$dbh2->query($res2query);
+    if($result2->num_rows>0) {
+        while($myrow2=$result2->fetch_assoc()) {
+	$found2 = 1;
+	$groupname = $myrow2['groupname'];
+	$datecreated = $myrow2['datecreated'];
+	echo "<option value=\"$groupname\">$groupname - $datecreated</option>";
+        } //while
+    } //if
+  } else if ($accesslevel <= 3) {
+     $res2query = "SELECT DISTINCT groupname, datecreated FROM tblemppaybongrp WHERE accesslevel<=3";
+    $result2=$dbh2->query($res2query);
+    if($result2->num_rows>0) {
+        while($myrow2=$result2->fetch_assoc()) {
+	$found2 = 1;
+	$groupname = $myrow2['groupname'];
+	$datecreated = $myrow2['datecreated'];
+	echo "<option value=\"$groupname\">$groupname - $datecreated</option>";
+        } //while
+    } //if
+  }
+     echo "</select>";
+     echo "<button type='submit' class='btn btn-success'>Go</button>";
+    echo "</div>";
+     echo "</form>";
+
+     // echo "<iframe src=blank3.htm width=100% height=350 name=frame><iframe>";
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

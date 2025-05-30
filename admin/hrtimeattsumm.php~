@@ -1,0 +1,125 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$idpaygroup0 = $_GET['idpg'];
+$idcutoff0 = $_GET['idct'];
+
+$idpaygroup = $_POST['idpaygroup'];
+$idcutoff = $_POST['idcutoff'];
+
+if($idpaygroup0 != "") { $idpaygroup=$idpaygroup0; }
+if($idcutoff0 != "") { $idcutoff=$idcutoff0; }
+
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Time and Attendance >> Time log</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"2\">";
+
+  if($accesslevel >= 4)
+  {
+	echo "<table class=\"fin\" border=\"0\">";
+	echo "<tr>";
+		echo "<form action=\"hrtimeattsumm.php?loginid=$loginid\" method=\"post\" name=\"modhrtasummary\">";
+
+		// pay group name dropdown
+    echo "<td><select name=\"idpaygroup\" onchange=\"this.form.submit()\">";
+		if($idpaygroup == "") {
+		echo "<option value=''>select paygroup</option>";
+		}
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY timestamp DESC", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11[0];
+			$paygroupname11 = $myrow11[1];
+			if($idtblhrtapaygrp11 == $idpaygroup) { $idpaygrpsel="selected"; } else { $idpaygrpsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idpaygrpsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select></td>";
+
+		// cut-off period dropdown
+		echo "<td><select name=\"idcutoff\" onchange=\"this.form.submit()\">";
+		if($idcutoff == "") {
+		echo "<option value=''>select cutoff</option>";
+		}
+		$result15=""; $found15=0; $ctr15=0;
+		$result15 = mysql_query("SELECT idhrtacutoff, cutstart, cutend, paygroupname, remarks FROM tblhrtacutoff WHERE idhrtapaygrp=$idpaygroup ORDER BY cutstart DESC", $dbh);
+		if($result15 != "") {
+			while($myrow15 = mysql_fetch_row($result15)) {
+			$found15 = 1;
+			$idhrtacutoff15 = $myrow15[0];
+			$cutstart15 = $myrow15[1];
+			$cutend15 = $myrow15[2];
+			$paygroupname15 = $myrow15[3];
+			$remarks15 = $myrow15[4];
+			$ctr15 = $ctr15 + 1;
+			if($idhrtacutoff15 == $idcutoff) { $idcutoffsel="selected"; } else { $idcutoffsel=""; }
+			echo "<option value=\"$idhrtacutoff15\" $idcutoffsel>$cutstart15-to-$cutend15</option>";
+			}
+		}
+		echo "</select></td>";
+
+		// submit button
+		echo "<td>";
+		echo "<input type=\"submit\">";
+    echo "</td>";
+
+		echo "</form>";
+	echo "</tr>";
+	echo "</table>";
+  } // endif accesslevel >= 4
+
+  echo "</td></tr>";
+
+	//
+	// display individual info based on selected dropdown personnel
+	//
+	if($employeeid != "") {
+	echo "<tr><td colspan=\"2\">";
+	echo "<table width=\"100%\" class=\"fin\">";
+
+	echo "</table>";
+	echo "</td></tr>";
+	}
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"hrtimeatt.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

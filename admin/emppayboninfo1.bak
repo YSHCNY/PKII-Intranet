@@ -1,0 +1,241 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$groupname2 = $_GET['groupname'];
+
+$employeetype = $_POST['employeetype'];
+$groupname = $_POST['groupname'];
+$uploadsw = $_POST['uploadsw'];
+$filename = basename( $_FILES['uploaded']['name']);
+
+$datecreated = date("Y-m-d");
+
+if($groupname2 == "") { $groupname2 = $groupname; }
+else { $groupname = $groupname2; }
+// echo "vartest group:$groupname<br>";
+
+$found = 0;
+
+$totgrossamt = 0;
+$tottaxdeduct = 0;
+$tototherdeduct = 0;
+$totnetamt = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     echo "<html><head><STYLE TYPE=\"text/css\">";
+     echo "<!--";
+     echo "p{font-family: Helvetica; font-size: 10pt;}";
+     echo "B{font-family: Helvetica; font-size: 10pt;}";
+     echo "TD{font-family: Helvetica; font-size: 10pt;}";
+     echo "--->";
+     echo "</STYLE></head>";
+
+		echo "<table>";
+		echo "<tr><td>";
+     echo "Please fill-up individual details...";
+
+     echo "<form enctype=\"multipart/form-data\" action=\"emppayboninfo1.php?loginid=$loginid&groupname=$groupname\" method=\"POST\">";
+     echo "<input name=\"uploadsw\" type=\"hidden\" value=\"yes\">"; 
+     echo "<input name=\"uploaded\" type=\"file\" /><br />";
+     echo "<input type=\"submit\" value=\"Upload CSV File\" />";
+     echo "</form>";
+		echo "</td>";
+
+		echo "<td>";
+		 echo "or";
+		 echo "<form action=\"emppaybonaddemp.php?loginid=$loginid&groupname=$groupname\" method=\"POST\" name=\"emppaybonaddemp\">";
+		 echo "<input name=\"employeeid\" type=\"submit\" value=\"add personnel\">";
+		 echo "</form>";
+		echo "</td>";
+		echo "</tr>";
+		echo "</table>";
+  // echo "vartest uploadsw:$uploadsw, filename:$filename, groupname:$groupname,$groupname2<br>";
+
+  if($uploadsw == "yes")
+  {
+    UploadFile();
+// start inserting csv to mysql
+    if(isset($_POST['submit']))
+    {
+      $handle = fopen("transfers/$filename", "r");
+
+      while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+      {
+        $import="UPDATE tblemppaybonus SET date='$datenow', grossamt=$data[1], taxpercent=$data[2], taxdeduct=$data[3], otherdeduct=$data[4], netamt=$data[5], additional=$data[6] WHERE groupname='$groupname' AND employeeid='$data[0]'";
+        mysql_query($import) or die(mysql_error());
+        echo "Saving $datenow - $groupname - $data[0] - $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]<br>";
+      }
+
+      fclose($handle);
+      print "Import done using fopen";
+    }
+    else
+    {
+	$result21 = mysql_query("DELETE FROM tblemppaybonus WHERE groupname='$groupname2'", $dbh);
+//	include("../includes/populateemppaybongroup.php");
+
+	$data = mysql_query("LOAD DATA LOCAL INFILE '/var/www/pkii/admin/transfers/$filename'
+	INTO TABLE maindb.tblemppaybonus
+	FIELDS TERMINATED BY ','
+	LINES TERMINATED BY '\n'
+	(groupname, employeeid, grossamt, taxpercent, taxdeduct, otherdeduct, netamt, additional)")
+	or die(mysql_error());
+
+	print "Import done using data infile";
+    }
+  }
+
+	echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+
+	echo "<tr><td>Count</td><td>EmpID</td><td>LastName</td><td>FirstName</td><td>email</td><td>Gross<br>Amount</td><td>Additional</td><td>Tax<br>Percentage</td><td>Tax<br>Deduction</td><td>Other<br>Deductions</td><td>Net<br>Amount</td><td>Action</td></tr>";
+
+	$result2 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_last, tblcontact.name_middle, tblcontact.name_first, tblcontact.email1 FROM tblcontact WHERE tblcontact.employeeid != '' ORDER BY tblcontact.name_last ASC", $dbh);
+
+	$count1 = 0;
+
+	while ($myrow2 = mysql_fetch_row($result2))
+	{
+		$found2 = 1;
+		$employeeid = $myrow2[0];
+		$name_last = $myrow2[1];
+		$name_middle = $myrow2[2];
+		$name_first = $myrow2[3];
+		$email1 = $myrow2[4];
+
+
+
+		$result = mysql_query("SELECT DISTINCT tblemppaybonus.employeeid, tblemppaybonus.groupname, tblemppaybonus.grossamt, tblemppaybonus.taxpercent, tblemppaybonus.taxdeduct, tblemppaybonus.otherdeduct, tblemppaybonus.netamt, tblemppaybonus.additional FROM tblemppaybonus WHERE tblemppaybonus.employeeid = \"$employeeid\" AND tblemppaybonus.groupname = \"$groupname\"", $dbh);
+
+		while ($myrow = mysql_fetch_row($result))
+		{
+			$found = 1;
+			$employeeid = $myrow[0];
+			$groupname = $myrow[1];
+			$grossamt = $myrow[2];
+			$taxpercent = $myrow[3];
+			$taxdeduct = $myrow[4];
+			$otherdeduct = $myrow[5];
+			$netamt = $myrow[6];
+      $additional = $myrow[7];
+
+			$count1 = $count1 + 1;
+
+		echo "<form action=\"emppayboninfo3.php?loginid=$loginid&groupname=$groupname\" method=\"POST\" name=\"myform2\">";
+		echo "<tr><td>$count1</td><td><input type=checkbox name=\"employeeid\" value=\"$employeeid\" checked>$employeeid</td><td>$name_last</td><td>$name_first</td><td>$email1</td>";
+		echo "<td align=right><input size=7 style=\"text-align: right\" name=grossamt value=$grossamt></td>";
+		echo "<td align=right><input size=7 style=\"text-align: right\" name=additional value=$additional></td>";
+		echo "<td align=right><input size=\"3\" style=\"text-align: right\" name=\"taxpercent\" value=\"$taxpercent\">%</td>";
+		echo "<td align=right><input size=6 style=\"text-align: right\" name=taxdeduct value=$taxdeduct></td>";
+		echo "<td align=right><input size=6 style=\"text-align: right\" name=otherdeduct value=$otherdeduct></td>";
+		echo "<td align=right>$netamt</td>";
+		echo "<td><input type=submit value=\"Update\"></td></tr>";
+		echo "</form>";
+		}
+
+	}
+
+     $result5 = mysql_query("SELECT DISTINCT employeeid, groupname, grossamt, taxdeduct, otherdeduct, netamt, additional FROM tblemppaybonus WHERE groupname = \"$groupname\"", $dbh);
+
+     while ($myrow5 = mysql_fetch_row($result5))
+     {
+	$found5 = 1;
+	$employeeid = $myrow5[0];
+	$groupname = $myrow5[1];
+	$grossamt = $myrow5[2];
+	$taxdeduct = $myrow5[3];
+	$otherdeduct = $myrow5[4];
+	$netamt = $myrow5[5];
+  $additional = $myrow[6];
+
+  $grossamt1 = $grossamt + $additional;
+	$totgrossamt = $totgrossamt + $grossamt1;
+	$tottaxdeduct = $tottaxdeduct + $taxdeduct;
+	$tototherdeduct = $tototherdeduct + $otherdeduct;
+	$totnetamt = $totnetamt + $netamt;
+     }
+
+     $result6 = mysql_query("SELECT * FROM tblemppaybontotal WHERE groupname = \"$groupname\"", $dbh);
+
+     while ($myrow6 = mysql_fetch_row($result6))
+     {
+	$found6 = 1;
+	$groupname = $myrow6[1];
+     }
+
+     if ($found6 == 1)
+     {
+	$result7 = mysql_query("UPDATE tblemppaybontotal SET datecreated=\"$datecreated\", totgrossamt=$totgrossamt, tottaxdeduct=$tottaxdeduct, tototherdeduct=$tototherdeduct, totnetamt=$totnetamt WHERE groupname = \"$groupname\"", $dbh);
+     }
+     else
+     {
+	$result8 = mysql_query("INSERT INTO tblemppaybontotal (groupname, datecreated, totgrossamt, tottaxdeduct, tototherdeduct, totnetamt) VALUES (\"$groupname\", \"$datecreated\", $totgrossamt, $tottaxdeduct, $tototherdeduct, $totnetamt)", $dbh);
+     }
+
+     echo "<tr><td colspan=\"5\" align=\"right\"><b>Total</b></td><td align=\"right\"><b>$totgrossamt</b></td><td>&nbsp;</td><td align=\"right\">$tottaxdeduct</td><td align=\"right\">$tototherdeduct</td><td align=\"right\"><b>$totnetamt</b></td></tr>";
+
+     echo "</table>";
+     echo "<p>";
+//     echo "<input type=submit value=Save>";
+     echo "</form>";
+
+//     echo "<p><a href=emppayboninfo1.php?loginid=$loginid>Back</a><br>";
+     echo "</html>";
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+
+function UploadFile()
+{
+     $target = "transfers/"; 
+     $target = $target . basename( $_FILES['uploaded']['name']) ; 
+     $ok=1; 
+
+     //This is our size condition 
+     // if ($uploaded_size > 350000) 
+     //{ 
+     //     echo "Your file is too large.<br>"; 
+     //     $ok=0; 
+     //} 
+
+     //This is our limit file type condition 
+     if ($uploaded_type =="text/php") 
+     { 
+          echo "No PHP files<br>"; 
+          $ok=0; 
+     } 
+
+     //Here we check that $ok was not set to 0 by an error 
+     if ($ok==0) 
+     { 
+          echo "<font color=red>Sorry your file was not uploaded. Please try again.</font>"; 
+     } 
+
+     //If everything is ok we try to upload it 
+     else 
+     { 
+          if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
+          { 
+               echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been uploaded";
+          } 
+          else 
+          { 
+               echo "<font color=red>Sorry, there was a problem uploading your file. Please try again.</font>"; 
+          }
+     }
+
+     echo "<br>";
+} 
+?> 

@@ -1,0 +1,4948 @@
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 007
+Employee Name: Alfredo Serillano
+Project: LIAISON
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8500.00
+
+Regular Overtime: 1650 (mins) - P2784.38
+Reg.Sun/Sat. OT: 2040 (mins) - P4148.82
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 209 (mins) - P28.21
+TOTAL OVERTIME: P6961.41
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - SSS: 200.00
+A/P Others - Medicare: 12.50
+A / P Others - SSS: 200.00
+A / P Others - Medicare: 12.50
+A/P Others - Medicare: 6.25
+A/P Others - SSS: 100.00
+Pag Ibig Loan Refund: 1033.20
+A/P Others - Philhealth: 50.00
+Refund of SSS contribution: 116.70
+A/P Others - Philhealth: 300.00
+Tax Refund: 685.45
+Tax Refund for 2007: 2054.37
+Refund: 416.70
+Refund of Adv to O: 828.71
+Diminish: 9000.00
+Employment Benefits: 750.00
+Refund of SSS Loan: 1384.36
+Refund of SSS Loan: 1384.36
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16211.41
+
+Withholding Tax: P2971.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 150.00
+SSS Salary Loan: 603.32
+TOTAL Other Deductions: P753.32
+
+TOTAL DEDUCTIONS: P3775.07
+
+NET PAY: P12436.34
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 183.30
+A/P Others - SSS: 216.70
+A/P Others - SSS: 33.40
+Adjustment of Basic Pay: 1166.67
+A/P Others - Philhealth: 12.50
+Tax Refund for 2004: 1623.53
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 450.00
+A/P Others - Philhealth: 162.50
+A/P Others - Pag-Ibig: 100.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 75.00
+Tax Refund: 5594.12
+Meal Allowance: 1800.00
+Meal Allowance: 540.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 16.70
+Tax Refund for 2007: 2319.97
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Pag-Ibig Loan: 874.65
+Tax Refund for 2009: 6404.94
+APO - Pag Ibig Loan: 1911.94
+Diminish: 9000.00
+Refund of Pag-Ibig 1: 200.00
+Refund of Pag-Ibig 2: 250.00
+Employment Benefits: 1000.00
+Refund of SSS Loan Aug: 1384.36
+Refund of SSS Loan Sep: 692.18
+Refund of overdeduct Adv: 44.47
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P11000.00
+
+Withholding Tax: P520.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Insular Life: 75.00
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P325.00
+
+TOTAL DEDUCTIONS: P895.77
+
+NET PAY: P10104.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 135
+Employee Name: Eva Flores
+Project: GAE
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 164.64
+NET BASIC PAY: P9085.36
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 100.00
+A/P Others - SSS: 100.00
+Pagibig Loan Refund: 555.74
+Pagibig Loan Refund: 419.37
+A / P Others - SSS: 33.30
+A/R Others - Philhealth: 12.50
+Adjustment of Basic Pay: 1516.67
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Ohers - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Medicare: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Pag-Ibig Loan: 826.56
+A/P Others - Philhealth: 112.50
+A/P Others - SSS: 283.30
+A/P Others - Pag-Ibig Loan: 826.56
+APO-Pag Ibig Loan: 1277.34
+Tax Refund: 2091.87
+A/P Others - Pag-Ibig Loan: 1397.76
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.70
+Tax Refund for 2007: 2033.62
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.70
+Refund of Pag-Ibig Loan: 872.83
+A/P Others - SSS: 83.30
+Tax Refund for 2009: 1703.65
+Refund of Pagibig Loan: 1030.01
+Refund of O: 1650.00
+Refund of overdeduct Adv O: 1650.00
+Tax Refund for 2010: 491.07
+Diminish: 9000.00
+Refund of Pag-Ibig Loan: 1673.33
+Employment Benefits: 725.00
+Employment Benefits: 750.00
+Employment Benefits: 650.00
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 725.00
+Employment Benefits: 725.00
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9835.36
+
+Withholding Tax: P1229.59
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Company Loan: 500.00
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P1238.32
+
+TOTAL DEDUCTIONS: P2517.91
+
+NET PAY: P7317.45
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 140
+Employee Name: Ferdinand Joselito Bersalona
+Project: CATICLAN BWS
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 1111 (mins) - P2041.46
+Reg.Sun/Sat. OT: 510 (mins) - P991.81
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 119 (mins) - P17.49
+TOTAL OVERTIME: P3050.76
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 200.00
+A/P Others - SSS: 183.30
+A/P Others - Medicare: 6.25
+A / P Others - SSS: 16.60
+A/P Others - Medicare: 6.25
+A / P Others - SSS: 16.60
+AP Others - SSS: 16.70
+Adjustment of Basic Pay: 780.76
+Adjustment of Overtime: 320.33
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 25.00
+A/P Others - Medicare: 37.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Tax Refund: 1528.61
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 75.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 2650.16
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 50.00
+A/P Others - SSS: 16.60
+A/P Others - SSS: 66.70
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 83.30
+A/P Others - SSS: 16.60
+A/P Others - SSS: 50.00
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - SSS: 83.30
+Refund of SSS Loan: 525.00
+Refund of Pag-Ibig Loan: 910.55
+Tax Refund for 2009: 1895.69
+Tax Refund for 2010: 2472.85
+Diminish: 9000.00
+Employment Benefits: 750.00
+Employment Benefits: 725.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P13050.76
+
+Withholding Tax: P1773.19
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1334.32
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P2072.64
+
+TOTAL DEDUCTIONS: P3895.83
+
+NET PAY: P9154.93
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 144
+Employee Name: Antonio Maria Dela Torre
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P16750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Adjustment of Basic Pay: 1166.67
+Refund of PLDT charges: 17.49
+Adjustment of Project Allowance: 215.30
+Refund of PLDT charges: 200.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 75.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 87.50
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 5941.90
+A/P Others - Philhealth: 12.50
+Transportation Allowance: 2073.25
+Transportation Allowance: 1500.00
+Transportation Allowance: 812.10
+Transpo Allowance: 750.00
+Transpo Allowance: 700.00
+Transpo Allowance: 750.00
+Transpo Allowance: 650.00
+Adjustment of VL: 2866.25
+Tax Refund for 2010: 68.98
+Diminish: 9000.00
+Transpo Allowance: 3666.67
+Transpo Allowance: 5000.00
+Employment Benefits: 1500.00
+Transpo Allowance: 3666.67
+Transpo Allowance: 5000.00
+Transpo Allowance: 4666.67
+Transpo Allowance: 5000.00
+Transpo Allowance: 3333.33
+Smart Bro, Internet Load: 1427.00
+Internet Load: 300.00
+Transpo Allowance: 4666.67
+Transpo Allowance: 1333.33
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P18250.00
+
+Withholding Tax: P2420.83
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2470.83
+
+NET PAY: P15779.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 145
+Employee Name: Mercedita Aquino
+Project: NISRIP
+
+PAY RATE: P10250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 16.70
+A/P Others - SSS: 33.30
+Employees Loan Refund: 1000.00
+Pag-Ibig Loan Refund: 773.24
+A / P Others - SSS: 16.60
+Employees Loan Refund: 2000.00
+Pag Ibig Loan Refund: 773.24
+A/P Others - Medicare: 50.00
+Adjustment of Basic Pay: 936.67
+A/P Ohers - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Pag-Ibig Loan: 985.12
+Refund of Pag-Ibig Loan: 985.12
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - SSS Loan: 537.50
+Refund of deducted Pag-Ibig Loan: 772.58
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 87.50
+Tax Refund: 2316.36
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 25.00
+Pag-ibig Loan: 879.69
+A/P Others - SSS: 133.30
+Refund of Pag Loan: 1194.58
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 83.30
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 2197.48
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/R Others-Per Diem: 1600.00
+A/R Others-Per Diem: 4000.00
+A/P Others - Philhealth: 12.50
+A/R Others-Per Diem: 8000.00
+A/R Others-Per Diem: 4000.00
+A/R Others-Per Diem: 7600.00
+A/R Others-Per Diem: 2000.00
+ARO-Per Diem Aug 01-20: 8000.00
+A/R Others-Per Diem: 6000.00
+Refund of Pag-Ibig Loan: 983.12
+A/R Others-Per Diem: 4000.00
+A/R Others-Per Diem: 6000.00
+A/R Others - Per Diem: 5250.00
+A/R Others - Per Diem: 5600.00
+A/R Others - Per Diem: 2450.00
+A/R Others-Per Diem: 1600.00
+A/R Per Diem Apr05-15: 4400.00
+A/R Others-Per Diem: 6000.00
+Refund of SSS Loan: 1050.00
+Tax Refund for 2009: 1354.62
+ARO-Per Diem Mar04-15: 4800.00
+A/R Others - Per Diem: 6000.00
+Tax Refund for 2010: 64.46
+A/R Others - Per Diem: 5600.00
+Diminish: 9000.00
+Transpo Allowance: 1500.00
+Tax Refund for 2014: 2833.60
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1300.00
+Transpo Allowance: 1000.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Employment Benefits: 1000.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1300.00
+Transpo Allowance: 1000.00
+Transpo Allowance: 1500.00
+TOTAL Non-Taxable Income: 2500.00
+
+GROSS PAY: P12750.00
+
+Withholding Tax: P779.17
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 873.32
+Company Loan: 2000.00
+Pag-Ibig Loan: 1822.98
+TOTAL Other Deductions: P4696.30
+
+TOTAL DEDUCTIONS: P5525.47
+
+NET PAY: P7224.53
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 152
+Employee Name: Mary Ann Castañares
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 39.75
+NET BASIC PAY: P9960.25
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 183.30
+A/P Others - SSS: 166.70
+Tax Refund: 63.44
+A/P Others - Medicare: 18.75
+A / P Others - SSS: 33.30
+Pagibig Loan Refund: 449.84
+Adjustment of Basic Pay: 834.17
+A/P Others - Pag-Ibig Loan: 699.02
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 283.30
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+APO - SSS Cont: 466.70
+APO - Pag-Ibig Cont: 100.00
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 12.50
+Trans Allow - DILG KRI: 1200.00
+A/P Others - Philhealth: 137.50
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 3968.18
+Refund of Pag-Ibig Loan: 659.18
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+Refund of Advances: 67.58
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 50.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 83.30
+Refund of SSS Loan: 525.00
+Tax Refund for 2009: 1646.07
+Refund of Pag Loan: 848.88
+Tax Refund for 2010: 1972.99
+Diminish: 9000.00
+Employment Benefits: 1000.00
+Employment Benefits: 933.33
+Employment Benefits: 1000.00
+Employment Benefits: 966.67
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P10960.25
+
+Withholding Tax: P1188.06
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 1384.35
+TOTAL Other Deductions: P1384.35
+
+TOTAL DEDUCTIONS: P2622.41
+
+NET PAY: P8337.84
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 153
+Employee Name: Rose Mary Santos
+Project: GAE
+
+PAY RATE: P9750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 166.70
+A/P Others - SSS: 166.70
+A / P Others - SSS: 150.00
+A/P Others - Medicare: 56.25
+A/P Others - Pag-Ibig: 50.00
+Tax Refund: 881.34
+A/P Others - SSS: 33.30
+Adjustment of Basic Pay: 1382.50
+Adjustment of Overtime: 158.05
+Tax Refund for 2004: 1067.72
+A/P Others - Philhealth: 87.50
+Tax Refund: 1906.91
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 2276.15
+A/P Others - SSS: 16.70
+Refund of SSS Loan: 525.00
+Tax Refund for 2009: 602.82
+Refund ded Pag Loan: 763.03
+A/P-Others TAX: 637.57
+Tax Refund for 2010: 561.57
+Diminish: 9000.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P10750.00
+
+Withholding Tax: P887.57
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 250.00
+TOTAL Other Deductions: P250.00
+
+TOTAL DEDUCTIONS: P1187.57
+
+NET PAY: P9562.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 176
+Employee Name: Orlando Salomon
+Project: GAE
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 1772.60
+A/R Others-Per Diem: 2124.20
+A/R Others-Per Diem: 2124.20
+A/R Others-Per Diem: 1421.02
+Project Allowance - NTX: 2300.00
+A/R Others-Per Diem: 2124.20
+A/R Others-Per Diem: 2655.25
+A/R Others-Per Diem: 2875.00
+A/R Others-Per Diem: 1977.75
+Project Allowance - NTX: 2651.76
+Project Allowance - NTX: 2300.00
+Project Allowance - NTX: 2075.48
+Project Allowance - NTX: 1348.41
+Project Allowance - NTX: 1888.22
+Project Allowance - NTX: 2828.44
+Project Allowance - NTX: 1423.96
+Adjustment of Basic Pay: 4083.33
+Adjustment of Project Allowance: 322.76
+Project Allowance - NTX: 2711.39
+Project Allowance - NTX: 2360.27
+Project Allowance - NTX: 2945.46
+Advances for Liquidation: 749.04
+Advances for Liquidation: 2075.48
+Advances for Liquidation: 2308.92
+Advances for Liquidation: 2308.92
+Advances for Liquidation: 1544.59
+Advances for Liquidation: 2022.29
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 87.50
+A/P Others - Philhealth: 62.50
+A/P Others - SSS: 116.70
+A/P Others - Philhealth: 150.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 12.50
+Refund of Adv O: 2112.79
+Transportation Allowance: 10000.00
+Diminish: 9000.00
+Refund of Pag-Ibig Loan: 2734.44
+Refund of over deduction: 1643.07
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P18000.00
+
+Withholding Tax: P2658.43
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 280.96
+TOTAL Other Deductions: P280.96
+
+TOTAL DEDUCTIONS: P2989.39
+
+NET PAY: P15010.61
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 186
+Employee Name: Gil Jr. Berdin
+Project: GAE
+
+PAY RATE: P18250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 7500.00
+A/R Others-Per Diem: 8000.00
+A/R Others-Per Diem: 7500.00
+A/R Others-Per Diem: 1000.00
+A/R Others-Per Diem: 8000.00
+A/R Others-Per Diem: 5000.00
+Adjustment of Basic Pay: 1866.67
+Adjustment of Project Allowance: 293.98
+Over deduction of Tax Deficit: 70.19
+Refund of Pag-Ibig Loan: 351.56
+Per Diem-PAKISTAN Road: 28872.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 3294.97
+A/P Others-Pag-Ibig Loan: 691.87
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Pag-Ibig Loan: 835.49
+Refund of Pag Ibig Loan: 923.21
+Diminish: 9000.00
+Employment Benefits: 1500.00
+Reimburse: travel to Cagayan: 87.50
+Transpo Allow: 22735.00
+Transpo Allow: 23085.00
+Transpo Allow: 23390.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P19750.00
+
+Withholding Tax: P3495.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 1395.32
+TOTAL Other Deductions: P1395.32
+
+TOTAL DEDUCTIONS: P4941.05
+
+NET PAY: P14808.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 189
+Employee Name: Rey Pantino
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P13500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P13500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 7500.00
+A / R Others-Per Diem: 6500.00
+A/R Others-Per Diem: 7500.00
+Tax Refund: 794.86
+Refund of Philamcare: 294.86
+Adjustment of Basic Pay: 1400.00
+Adjustment of Project Allowance: 357.35
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 7500.00
+A/R Others-Per Diem: 15000.00
+Overdeduction of Philamcare: 294.86
+A/R Others-Per Diem: 7000.00
+A/R Others-Per Diem: 7500.00
+Price Esc 1 - Apr 01 to May 03: 10694.44
+A/R Others-Per Diem: 5000.00
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 75.00
+Tax Refund for 2007: 1624.53
+A/P Others - Philhealth: 12.50
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 7000.00
+A/R Others-Per Diem: 10500.00
+Refund of Maxicare: 0.02
+A/R Others - Per Diem: 8400.00
+A/R Others - Per Diem: 10500.00
+Refund of deducted Per Diem: 1400.00
+A/R Others - Per Diem: 7200.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 5600.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 4800.00
+A/R Others - Per Diem: 5200.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 10500.00
+Adj of Per Diem: 13300.00
+Diminish: 9000.00
+Transpo Allowance: 1466.67
+Transpo Allowance: 2000.00
+A/R Others - Per Diem: 8800.00
+A/R Others - Per Diem: 12000.00
+A/R Others - Per Diem: 9600.00
+A/R Others - Per Diem: 12000.00
+Transpo Allowance: 1600.00
+Transpo Allowance: 2000.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P14500.00
+
+Withholding Tax: P1812.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1862.50
+
+NET PAY: P12637.50
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 190
+Employee Name: Enrique Tungol
+Project: NISRIP
+
+PAY RATE: P11250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 4000.00
+TOTAL Taxable Income: P4000.00
+
+Non-Taxable Income:
+SSS Salary Loan Refund: 1033.36
+Adjustment of Basic Pay: 933.33
+Adjustment of Project Allowance: 181.38
+A/P Others - Philhealth: 25.00
+Tax Refund: 1051.71
+Tax Refund for 2007: 2247.65
+A/R Others-Per Diem: 3500.00
+A/R Others-Per Diem: 10500.00
+Diminish: 9000.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P16250.00
+
+Withholding Tax: P2908.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2958.33
+
+NET PAY: P13291.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 208
+Employee Name: Mariano Sartaguda
+Project: GAE
+
+PAY RATE: P12750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Adjustment of Basic Pay: 1166.67
+Adjustment of Project Allowance: 264.32
+Tax Refund: 324.58
+Tax Refund for 2007: 2976.45
+Refund of SSS Loan: 525.00
+Diminish: 9000.00
+Employment Benefits: 1000.00
+Refund of Pag-Ibig Loan: 616.06
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P13750.00
+
+Withholding Tax: P2158.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2208.33
+
+NET PAY: P11541.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 227
+Employee Name: Rogelio Jr. Noleal
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 1213.23
+NET BASIC PAY: P5786.77
+
+Regular Overtime: 830 (mins) - P1151.62
+Reg.Sun/Sat. OT: 2339 (mins) - P3598.55
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 75 (mins) - P8.32
+TOTAL OVERTIME: P4758.49
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 316.70
+A/P Others - SSS: 283.30
+A/P Others - SSS: 33.30
+A/P Others - SSS: 66.70
+Tax Refund: 1177.66
+Pagibig Loan Refund: 233.64
+Adjustment of Basic Pay: 600.83
+Adjustment of Overtime: 257.77
+Tax Refund for 2004: 1290.91
+Refund of Pag-Ibig Loan: 350.06
+Refund of Pag-Ibig Loan: 350.06
+Refund of overdeducted PLDT: 85.49
+Refund of Pag-Ibig Loan: 535.32
+A/P Others - Philhealth: 150.00
+A/P Others - SSS: 16.70
+Tax Refund: 1787.45
+A/P Others - Philhealth: 12.50
+A/P Others - Pag-Ibig Loan: 592.86
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 50.00
+Refund of PLDT charges: 97.44
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 1786.79
+A/P Others-SSS Loan: 525.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Advances: 42.00
+A/P Others - SSS: 16.70
+Refund of Pag-Ibig Loan: 757.78
+A/P Others - SSS: 50.00
+Refund of Banco de Oro: 1492.00
+A/P Others - SSS: 50.00
+A/P Others - SSS: 83.30
+Refund of SSS Loan: 525.00
+Refund of Pag-Ibig Loan: 471.26
+Tax Refund for 2009: 2376.84
+Excess SSS Loan Ded: 25.00
+A/P Others - SSS: 16.70
+Tax Refund for 2010: 3388.50
+Diminish: 9000.00
+Refund of Pag-Ibig Loan: 681.68
+Employment Benefits: 750.00
+Employment Benefits: 725.00
+Employment Benefits: 750.00
+Employment Benefits: 625.00
+Employment Benefits: 700.00
+Employment Benefits: 100.00
+Employment Benefits: 725.00
+Employment Benefits: 650.00
+Employment Benefits: 700.00
+Employment Benefits: 600.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11295.26
+
+Withholding Tax: P838.22
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Company Loan: 1400.00
+TOTAL Other Deductions: P1400.00
+
+TOTAL DEDUCTIONS: P2288.22
+
+NET PAY: P9007.05
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 247
+Employee Name: Yvette Velazco
+Project: TIMOR UNTL
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 233.30
+A/P Others - SSS: 233.30
+Tax Refund: 1237.33
+Tax Refund for 2004: 1563.75
+A/P Others - Philhealth: 37.50
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - Pag-Ibig Loan: 353.63
+Trans Allow - Cost Based: 1270.70
+Trans Allow - Cost Based: 1500.00
+Trans Allow - Cost Based: 1270.70
+Trans Allow - Cost Based: 1500.00
+Tax Refund: 1310.16
+Trans Allow - Cost Based: 582.80
+Trans Allow - Cost Based: 1500.00
+Trans Allow - Cost Based: 1385.35
+Trans Allow - Cost Based: 1500.00
+Trans Allow - Cost Based: 926.75
+Tax Refund for 2007: 1668.30
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.70
+A/P Others - Pag-Ibig Loan: 832.86
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 133.30
+A/P Others - Philhealth: 12.50
+Refund of Pag-Ibig Loan: 615.19
+Tax Refund for 2010: 1560.23
+Refund of Pag-Ibig Loan: 1406.64
+Diminish: 9000.00
+A/P-Others: 34.00
+Transpo Allowance: 8000.00
+Employment Benefits: 750.00
+Trans Allow - May 16-31: 8000.00
+Transpo Allowance: 8000.00
+Trans Allow - Aug 01-15: 8000.00
+Transpo Allowance: 8000.00
+TOTAL Non-Taxable Income: 8750.00
+
+GROSS PAY: P16750.00
+
+Withholding Tax: P958.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Deduction: 873.32
+TOTAL Other Deductions: P873.32
+
+TOTAL DEDUCTIONS: P1881.57
+
+NET PAY: P14868.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 248
+Employee Name: Katherine Cruz
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 100.00
+A/P Others - SSS: 183.30
+A/P Others - Medicare: 43.75
+Tax Refund: 80.16
+Adjustment of Basic Pay: 1061.67
+Adjustment of Overtime: 137.19
+Tax Refund for 2004: 373.49
+A/P OTHERS - Pag-Ibig: 321.94
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 62.50
+A/P Others - SSS: 266.70
+A/P Others - Philhealth: 62.50
+A/P Others - Philhealth: 12.50
+Tax Refund: 4128.99
+A/P Others - Banco de Oro: 188.00
+Refund of SSS Loan: 525.00
+A/P Others - SSS: 16.70
+Tax Refund for 2007: 2147.80
+Refund of SSS Loan: 525.00
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - Philhealth: 12.50
+Refund of SSS Salary Loan: 525.00
+Refund of BDO Salary Loan: 2803.00
+Refund of SSS Loan: 525.00
+SSS Sickness Benefit: 5670.00
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - SSS: 500.00
+A/P Others - Philhealth: 150.00
+A/P Others - Pag-Ibig: 50.00
+Tax Refund for 2009: 4214.67
+Tax Refund for 2010: 1432.79
+Refund of Pag-Ibig Loan: 638.57
+Diminish: 9000.00
+Transpo Allowance: 1000.00
+Employment Benefits: 1000.00
+Vacation Leave adjustment: 248.40
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P11000.00
+
+Withholding Tax: P1458.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 935.78
+TOTAL Other Deductions: P935.78
+
+TOTAL DEDUCTIONS: P2444.03
+
+NET PAY: P8555.97
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 250
+Employee Name: Ma. Joicel Hernando
+Project: PINATUBO 3
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+A / P Others - SSS: 233.30
+A/P Others - SSS: 233.30
+A/P Others - SSS: 83.30
+A / P Others - SSS: 16.60
+Tax Refund: 2691.82
+Tax Refund for 2004: 2131.21
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 5600.00
+A/R Others-Per Diem: 6000.00
+A/P Others - Philhealth: 12.50
+A/R Others-Per Diem: 4000.00
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 5600.00
+A/R Others-Per Diem: 6000.00
+Tax Refund for 2009: 1673.09
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 6000.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 5200.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 5600.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 5600.00
+A/R Others - Per Diem: 6000.00
+TOTAL Non-Taxable Income: 6000.00
+
+GROSS PAY: P14000.00
+
+Withholding Tax: P958.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 889.94
+TOTAL Other Deductions: P889.94
+
+TOTAL DEDUCTIONS: P1898.19
+
+NET PAY: P12101.81
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 252
+Employee Name: Rossalie Yalung
+Project: PINATUBO 3
+
+PAY RATE: P5000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 282.50
+TOTAL Taxable Income: P282.50
+
+Non-Taxable Income:
+A / P Others - SSS: 283.30
+A/P Others - SSS: 283.30
+Tax Refund: 1063.05
+Tax Refund for 2004: 1557.12
+A/P Others - SSS: 250.00
+A/P Others - Philhealth: 87.50
+A/R Others-Per Diem: 2250.00
+A/R Others-Per Diem: 1500.00
+A/R Others-Per Diem: 2250.00
+Advances: 2000.00
+A/P Others - SSS: 16.70
+A/R Others-Per Diem: 2100.00
+A/R Others-Per Diem: 2250.00
+A/R Others-Per Diem: 2100.00
+A/R Others-Per Diem: 2250.00
+A/R Others-Per Diem: 2100.00
+A/R Others-Per Diem: 2250.00
+A/R Others-Per Diem: 2100.00
+A/R Others-Per Diem: 2250.00
+A/R Others-Per Diem: 1950.00
+A/R Others-Per Diem: 2250.00
+Tax Refund for 2010: 661.05
+A/R Others-Per Diem: 2100.00
+A/R Others-Per Diem: 2250.00
+A/R Others - Per Diem: 2250.00
+A/R Others - Per Diem: 2100.00
+A/R Others - Per Diem: 2250.00
+A/R Others - Per Diem: 1950.00
+A/R Others - Per Diem: 2250.00
+A/R Others - Per Diem: 1500.00
+A/R Others - Per Diem: 2250.00
+A/R Others - Per Diem: 2100.00
+A/R Others - Per Diem: 1800.00
+A/R Others - Per Diem: 2250.00
+A/R Others - Per Diem: 1950.00
+A/R Others - Per Diem: 1500.00
+A/R Others - Per Diem: 1800.00
+A/R Others - Per Diem: 2250.00
+TOTAL Non-Taxable Income: 2250.00
+
+GROSS PAY: P7532.50
+
+Withholding Tax: P410.67
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 682.51
+TOTAL Other Deductions: P682.51
+
+TOTAL DEDUCTIONS: P1143.18
+
+NET PAY: P6389.32
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 268
+Employee Name: Girlie San Miguel
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1500.00
+TOTAL Taxable Income: P1500.00
+
+Non-Taxable Income:
+A / P Others - SSS: 283.30
+A/P Others - SSS: 283.30
+Employees Loan Refund: 500.00
+Tax Refund: 684.74
+Tax Refund for 2004: 791.41
+Refund of Pag-Ibig Loan: 303.00
+Leave adjustment: 1147.61
+13th Month Adjustment: 4225.00
+A/P Others - Philhealth: 50.00
+A/P Others - SSS: 16.70
+Tax Refund: 1983.94
+Tax Refund for 2007: 1604.95
+Leave Adjusment: 2413.13
+A/P Others - SSS: 50.00
+Tax Refund for 2009: 1394.52
+Tax Refund for 2010: 2276.24
+APO - Pag-Ibig Cont: 50.00
+A/P-Others Pag-Ibig Loan: 40.00
+A/P-Others SSS Cont: 300.00
+A/P-Others Philhealth Cont: 100.00
+Diminish: 9000.00
+Communication Allow: 500.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P13000.00
+
+Withholding Tax: P1573.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1623.00
+
+NET PAY: P11377.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 269
+Employee Name: Christopher Cartera
+Project: QIPs - CCDP-B
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+SSS Salary Loan Refund: 700.00
+Escalation-Tax: 7095.55
+Escalation-Tax: 2952.80
+A/P Others - SSS: 700.00
+Tax Refund for 2004: 3283.53
+Unpaid Salary: 2460.89
+A/R Others-Per Diem: 600.00
+A/R Others-Per Diem: 3000.00
+A/R Others-Per Diem: 2885.35
+A/R Others-Per Diem: 2770.70
+A/R Others-Per Diem: 3000.00
+A/R Others-Per Diem: 2885.35
+A/R Others-Per Diem: 2541.40
+A/R Others-Per Diem: 2770.70
+A/R Others-Per Diem: 3000.00
+A/R Others-Per Diem: 1694.27
+A/R Others-Per Diem: 1847.13
+A/R Others-Per Diem: 2000.00
+A/R Others-Per Diem: 1923.57
+A/R Others-Per Diem: 2000.00
+A/P Others - Philhealth: 200.00
+A/R Others-Per Diem: 1770.70
+A/R Others-Per Diem: 1770.70
+A/R Others-Per Diem: 2000.00
+A/R Others-Per Diem: 1847.13
+A/R Others-Per Diem: 1923.57
+A/R Others-Per Diem: 1770.70
+A/R Others-Per Diem: 2000.00
+A/R Others-Per Diem: 1923.57
+A/R Others-Per Diem: 2000.00
+Transportation Allowance: 1770.70
+Transportation Allowance: 2000.00
+Refund of Pag-Ibig Loan: 380.00
+Transportation Allowance: 1770.70
+Transportation Allowance: 1847.13
+Transportation Allowance: 2000.00
+Transportation Allowance: 1923.57
+Transportation Allowance: 2000.00
+Tax Refund: 2349.17
+Transportation Allowance: 1847.13
+Transportation Allowance: 2000.00
+Transportation Allowance: 1847.13
+Transportation Allowance: 1847.13
+Transportation Allowance: 1770.70
+Transportation Allowance: 2000.00
+Transportation Allowance: 1923.57
+Transportation Allowance: 2000.00
+Transportation Allowance: 1770.70
+Transportation Allowance: 2000.00
+Tax Refund for 2007: 4118.65
+Transportation Allowance: 1694.27
+Transportation Allowance: 2000.00
+Transportation Allowance: 1694.27
+Transportation Allowance: 2000.00
+Chew Basic: 3821.66
+Chew 13th Month: 318.47
+Transportation Allowance: 1694.27
+Transportation Allowance: 2000.00
+Transportation Allowance: 1847.13
+Transportation Allowance: 2000.00
+Conversion of VL: 6989.85
+Transportation Allowance: 1333.33
+Transportation Allowance: 2000.00
+Transportation Allowance: 1866.67
+Transportation Allowance: 2000.00
+Transportation Allowance: 1933.33
+Transportation Allowance: 500.00
+Transpo Allowance: 500.00
+Transportation Allowance: 300.00
+Transportation Allowance: 466.67
+Transportation Allowance: 433.33
+Transportation Allowance: 450.00
+Transportation Allowance: 500.00
+Transportation Allowance: 466.67
+Transportation Allowance: 466.67
+Transportation Allowance: 500.00
+Transportation Allowance: 483.33
+Transportation Allowance: 500.00
+Transportation Allowance: 433.33
+Transportation Allowance: 483.33
+Transportation Allowance: 500.00
+Transportation Allowance: 483.33
+Transportation Allowance: 500.00
+Transportation Allowance: 450.00
+Reimbursement of expense: 1330.50
+Unpaid Trans - Mar 01-08: 533.33
+Refund of late - Nov 01-15: 114.48
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10000.00
+
+Withholding Tax: P520.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P570.77
+
+NET PAY: P9429.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 279
+Employee Name: Rudolph Yambot
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P16000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 4800.00
+A / P Others - SSS: 233.30
+A/P Others - SSS: 233.30
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4200.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+Tax Refund: 1590.83
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+Over Deduction of Loan Payment: 2000.00
+Tax Refund for 2004: 1943.68
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 3900.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 4800.00
+A/R Others-Per Diem: 4500.00
+A/R Others-Per Diem: 3300.00
+A/R Others-Per Diem: 3000.00
+Refund of deducted SSS Loan: 370.84
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 25.00
+Per Diem - Nov 21-Dec 06: 11250.00
+Per Diem - Dec 06-20: 2250.00
+Tax Refund: 1454.22
+Per Diem - San Roque: 3000.00
+Per Diem - San Roque: 1500.00
+Tax Refund for 2007: 1075.06
+Tax Refund for 2009: 2033.78
+Diminish: 9000.00
+Refund of Tax: 3750.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P17500.00
+
+Withholding Tax: P2820.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2870.73
+
+NET PAY: P14629.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 311
+Employee Name: Teresita Dungca
+Project: PINATUBO 3
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 50.00
+A/R Others-Per Diem: 1200.00
+A/R Others-Per Diem: 7800.00
+A/R Others-Per Diem: 7800.00
+A/R Others-Per Diem 8/6-20: 9000.00
+A/R Others-Per Diem 8/4: 600.00
+A/R Others-Per Diem: 8400.00
+A/R Others-Per Diem: 9000.00
+A/R Others-Per Diem 8/31: 600.00
+A/R Others-Per Diem: 9000.00
+A/R Others-Per Diem: 5000.00
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 2804.05
+A/P Others - Philhealth: 12.50
+A/P Others - Per Diem: 4200.00
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 7000.00
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 9800.00
+A/R Others-Per Diem: 10500.00
+Refund of Maxicare: 0.14
+A/R Others-Per Diem: 9800.00
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 8400.00
+A/R Others-Per Diem: 9100.00
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 9800.00
+A/R Others-Per Diem: 10500.00
+A/R Others-Per Diem: 9800.00
+A/R Others-Per Diem: 10500.00
+Diminish: 9000.00
+A/R Others - Per Diem: 10500.00
+A/R Others - Per Diem: 9100.00
+A/R Others - Per Diem: 10500.00
+Employment Benefits: 1500.00
+A/R Others - Per Diem: 7700.00
+A/R Others - Per Diem: 10500.00
+A/R Others - Per Diem: 9100.00
+A/R Others - Per Diem: 10500.00
+A/R Others - Per Diem: 9800.00
+A/R Others - Per Diem: 10500.00
+TOTAL Non-Taxable Income: 12000.00
+
+GROSS PAY: P28500.00
+
+Withholding Tax: P3283.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 250.00
+Pag-Ibig Cont 2: 750.00
+Pag-Ibig Loan: 635.31
+TOTAL Other Deductions: P1635.31
+
+TOTAL DEDUCTIONS: P4968.64
+
+NET PAY: P23531.36
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 325
+Employee Name: Alma Teresa Kojima
+Project: GAE - ICG
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 58.63
+NET BASIC PAY: P8941.37
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 233.30
+A/P Others - SSS: 233.30
+A/P Others - SSS: 16.60
+Tax Refund: 1449.18
+Pagibig Loan Refund: 153.88
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9691.37
+
+Withholding Tax: P934.04
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 150.00
+Pag-Ibig Loan: 350.40
+PLDT charges: 200.00
+TOTAL Other Deductions: P700.40
+
+TOTAL DEDUCTIONS: P1684.44
+
+NET PAY: P8006.93
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 354
+Employee Name: Rene Tamayo
+Project: FRIMP CAVITE
+
+PAY RATE: P18500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 7500.00
+A/R Others-Per Diem: 6500.00
+A/R Others-Per Diem: 7500.00
+Project Allowance: 23866.67
+Adjustment of Basic Pay: 1866.67
+A/R Others-Per Diem: 6500.00
+Refund of Unpaid Per Diem: 1000.00
+A/R Others-Per Diem: 7500.00
+Price Esc 1 - Apr 01 to May 03: 6891.66
+A/R Others-Per Diem: 5000.00
+Per Diem - Nov 09: 600.00
+Per Diem - Dec 06: 600.00
+Per Diem - Dec 06: 600.00
+A/P Others - R Tamayo: 144.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Refund of Maxicare: 0.02
+Diminish: 9000.00
+Employment Benefits: 1500.00
+Per Diem - Sep 01: 1000.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P20000.00
+
+Withholding Tax: P2945.83
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Tax Deficit for year 2014: 3500.00
+TOTAL Other Deductions: P3500.00
+
+TOTAL DEDUCTIONS: P6495.83
+
+NET PAY: P13504.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 373
+Employee Name: Robert Castillo
+Project: JICA NIA O
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 479.05
+NET BASIC PAY: P8520.95
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 316.70
+A/P Others - SSS: 266.70
+Employees Loan Refund: 1000.00
+A/P Others - Medicare: 6.25
+A / P Others - SSS: 16.70
+A/P Others - SSS: 16.60
+Tax Refund: 817.41
+A/P Others - Philhealth: 12.50
+A/P Others - Medicare: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/R Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 25.00
+A/P Others - Philhealth: 25.00
+Tax Refund: 1575.11
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 25.00
+Tax Refund for 2007: 526.81
+A/P Others - SSS: 116.70
+A/P Others - Philhealth: 62.50
+Refund of Pag-Ibig Loan: 311.65
+A/P Others - SSS: 50.00
+A/P-Others SSS Cont: 254.30
+A/P-Others Philhealth Cont: 350.00
+Refund of SSS Loan: 1384.36
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8520.95
+
+Withholding Tax: P641.76
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 715.25
+TOTAL Other Deductions: P715.25
+
+TOTAL DEDUCTIONS: P1407.01
+
+NET PAY: P7113.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 398
+Employee Name: Richard Valic
+Project: GAE
+
+PAY RATE: P6250.00
+
+Total Late_Absent: 755
+NET BASIC PAY: P5495.00
+
+Regular Overtime: 1332 (mins) - P1665.00
+Reg.Sun/Sat. OT: 1385 (mins) - P1966.25
+Legal Holiday OT: 856 (mins) - P1937.60
+Special Holiday OT: 554 (mins) - P749.06
+Night Differential: 282 (mins) - P28.20
+TOTAL OVERTIME: P6346.11
+
+Taxable Income:
+Incentive Allowance: 500.00
+TOTAL Taxable Income: P500.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 50.00
+A/P Others - SSS: 166.70
+A/P Others - SSS: 83.30
+A/P Others - Philhealth: 50.00
+Tax Refund for 2009: 5113.64
+A/P Others - SSS: 50.00
+Transpo Allowance: 466.67
+Transpo Allowance: 933.33
+Transportation Allowance: 1000.00
+Transpo Allowance: 866.67
+Transpo Allowance: 966.67
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Refund of Pag-Ibig Loan: 207.84
+A/P-Others PagIbig Loan: 207.84
+Transpo Allowance: 933.33
+Transpo Allowance: 1000.00
+Transpo Allowance: 966.67
+Tax Refund for 2010: 1621.47
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 966.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 933.33
+Transpo Allowance: 933.33
+Transpo Allowance: 933.33
+Transpo Allowance: 966.67
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 900.00
+Transpo Allowance: 1000.00
+Transpo Allowance: 761.24
+Transpo Allowance: 1087.49
+Transpo Allowance: 978.75
+Transpo Allowance: 1051.25
+Overdeduct SSS cont: 72.60
+Overdeduct Philhealth cont: 100.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12341.11
+
+Withholding Tax: P1002.03
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 692.17
+Pag-Ibig Loan: 798.07
+TOTAL Other Deductions: P1490.24
+
+TOTAL DEDUCTIONS: P2542.27
+
+NET PAY: P9798.84
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 407
+Employee Name: Reynante Lorica
+Project: LIAISON
+
+PAY RATE: P7250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7250.00
+
+Regular Overtime: 1441 (mins) - P2071.44
+Reg.Sun/Sat. OT: 2773 (mins) - P4528.21
+Legal Holiday OT: 829 (mins) - P2147.51
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 183 (mins) - P21.05
+TOTAL OVERTIME: P8768.21
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A / P Others - SSS: 300.00
+A/P Others - SSS: 300.00
+A/P Others - SSS: 50.00
+Tax Refund: 1423.79
+Refund of PLDT charges: 25.01
+Adjustment of Basic Pay: 600.83
+Adjustment of Overtime: 268.65
+Tax Refund for 2004: 932.74
+Refund overdeducted PLDT: 85.00
+A/P Others - Philhealth: 162.50
+A/P Others - SSS: 50.00
+Tax Refund: 1928.76
+Tax Refund for 2007: 2294.44
+A/P Others - SSS: 16.70
+Refund of Pag-Ibig Loan: 246.14
+Refund of Maxicare: 0.02
+Refund of Banco de Oro: 939.50
+A/P Others - SSS: 66.70
+Refund of Liquidation: 7.50
+Refund of SSS Loan: 525.00
+Tax Refund for 2009: 2209.49
+Refund of Pag-Ibig Loan: 330.03
+Tax Refund for 2010: 2450.61
+Refund on Liquidation: 178.00
+Diminish: 9000.00
+Employment Benefits: 750.00
+Employment Benefits: 600.00
+Employment Benefits: 750.00
+Refund of Pag-Ibig Loan: 1462.64
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16768.21
+
+Withholding Tax: P2513.89
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 250.00
+SSS salary loan: 692.18
+Pag-Ibig Loan: 809.63
+TOTAL Other Deductions: P1751.81
+
+TOTAL DEDUCTIONS: P4315.70
+
+NET PAY: P12452.50
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 422
+Employee Name: Anna Liza Flores
+Project: GAE
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 57.2
+NET BASIC PAY: P8942.80
+
+Regular Overtime: 98 (mins) - P175.18
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P175.18
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - SSS: 383.30
+A/P Others - Medicare: 12.50
+A / P Others - SSS: 283.30
+A/P Others - Medicare: 6.25
+A / P Others - SSS: 33.40
+A/P Others - SSS: 16.70
+Tax Refund: 2325.90
+Adjustment of Basic Pay: 1166.67
+Adjustment of Overtime: 90.96
+Tax Refund for 2004: 6.03
+A/P Others - Philhealth: 37.50
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 12.50
+Tax Refund: 1410.52
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Pag-Ibig Loan: 120.10
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 1569.14
+Refund of BDO Loan: 1261.50
+A/P Others - SSS: 16.60
+A/P Others - SSS: 16.70
+Refund of Pag-Ibig Loan: 170.73
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 66.70
+Tax Refund for 2009: 1569.27
+A/P-Others Philhealth Cont: 162.50
+A/P-Others SSS Cont: 333.30
+Diminish: 9000.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9867.98
+
+Withholding Tax: P977.49
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 715.25
+Pag-Ibig Cont 2: 500.00
+Pag-Ibig Loan: 775.77
+TOTAL Other Deductions: P1991.02
+
+TOTAL DEDUCTIONS: P3018.51
+
+NET PAY: P6849.46
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 427
+Employee Name: Teddy Viloria
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P18500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Tax Refund: 6177.86
+Tax Refund for 2004: 2834.89
+Tax Refund: 1116.12
+A/R Others-Per Diem: 6400.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 8000.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 7200.00
+A/R Others-Per Diem: 7200.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 8800.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 11200.00
+A/R Others-Per Diem: 11200.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 9600.00
+A/R Others-Per Diem: 10400.00
+Diminish: 9000.00
+Employment Benefits: 1500.00
+Per Diem - Aug 01-30: 24000.00
+Per Diem - Sep 01-15: 12000.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P20000.00
+
+Withholding Tax: P3570.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 873.32
+TOTAL Other Deductions: P873.32
+
+TOTAL DEDUCTIONS: P4494.05
+
+NET PAY: P15505.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 438
+Employee Name: Bonifacio Pitogo
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 185.37
+NET BASIC PAY: P6814.63
+
+Regular Overtime: 762 (mins) - P1057.28
+Reg.Sun/Sat. OT: 1214 (mins) - P1861.76
+Legal Holiday OT: 755 (mins) - P1859.25
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 130 (mins) - P14.43
+TOTAL OVERTIME: P4792.72
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Medicare: 12.50
+A / P Others - SSS: 33.30
+A/P Others - Medicare: 12.50
+Tax Refund: 3119.22
+A/P Ohers - Philhealth: 12.50
+Refund of deducted Tax Deficit: 300.00
+A/R Others - Philhealth: 12.50
+A/R Others - SSS: 266.70
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 233.40
+A/P Others - Philhealth: 25.00
+Trans Allow - Cost Based: 541.40
+Trans Allow - Cost Based: 1000.00
+Trans Allow - Cost Based: 923.57
+Trans Allow - Cost Based: 1000.00
+A/P Others - Philhealth: 12.50
+A/P Others-Pag-Ibig Loan: 77.34
+Trans Allow - Cost Based: 961.78
+Trans Allow - Cost Based: 1000.00
+Trans Allow - Cost Based: 923.57
+A/P Others - Philhealth: 12.50
+Trans Allow - Cost Based: 617.83
+Refund of Pag-Ibig Loan: 111.09
+Tax Refund for 2007: 3634.98
+A/P Others - Philhealth: 12.50
+Refund of SSS Loan: 196.88
+A/P Others - SSS: 16.60
+A/P Others - SSS: 16.70
+Refund of Pag-Ibig Loan: 286.94
+A/P Others - Philhealth: 12.50
+Transpo Allowance: 400.00
+Transpo Allowance: 1000.00
+A/P Others - Philhealth: 12.50
+Transpo Allowance: 966.67
+Transpo Allowance: 933.33
+Transpo Allowance: 966.67
+Transpo Allowance: 800.00
+Transpo Allowance: 966.67
+A/P Others - SSS: 116.70
+Transpo Allowance: 933.33
+Transpo Allowance: 933.33
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 933.33
+Transpo Allowance: 800.00
+Refund of SSS Loan: 525.00
+Transpo Allowance: 933.33
+Transpo Allowance: 1000.00
+Transpo Allowance: 966.67
+Transpo Allowance: 933.33
+Transpo Allowance: 1000.00
+Tax Refund for 2009: 2062.10
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 933.33
+Transpo Allowance: 533.33
+Transpo Allowance: 900.00
+Refund of Pag-Ibig Loan: 255.80
+Tax Refund for 2010: 2993.58
+Diminish: 9000.00
+Refund of Pag-Ibig Loan: 623.56
+Refund of Pag Loan: 614.28
+Refund of SSS Loan Feb: 1384.36
+Refund of SSS Loan Mar: 692.18
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P12357.35
+
+Withholding Tax: P1339.34
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 659.49
+SSS Salary Loan: 738.32
+Company Loan: 1400.00
+TOTAL Other Deductions: P2797.81
+
+TOTAL DEDUCTIONS: P4187.15
+
+NET PAY: P8170.20
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 443
+Employee Name: Ma. Victoria Lucasia
+Project: GAE
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 76.95
+NET BASIC PAY: P8423.05
+
+Regular Overtime: 795 (mins) - P1341.56
+Reg.Sun/Sat. OT: 2367 (mins) - P4389.43
+Legal Holiday OT: 578 (mins) - P1639.98
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 57 (mins) - P7.70
+TOTAL OVERTIME: P7378.67
+
+Taxable Income:
+Unpaid OT - Nov 13: 355.29
+TOTAL Taxable Income: P355.29
+
+Non-Taxable Income:
+Tax Refund: 1432.04
+Tax Refund: 457.24
+A/P Others - SSS: 33.30
+Tax Refund: 2189.75
+Tax Refund for 2004: 1211.86
+A/P Others - Philhealth: 50.00
+Tax Refund: 1419.34
+APO - SSS Loan: 831.26
+A/P Others - SSS: 16.60
+Tax Refund for 2007: 1481.77
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.60
+Refund of excess liquidation: 3.10
+Refund of Pag-Ibig Loan: 770.77
+A/P Others - SSS: 100.00
+Refund of Advances: 1000.00
+Tax Refund for 2009: 1596.21
+Tax Refund for 2010: 2320.20
+Refund on Liquidation: 6.35
+Diminish: 9000.00
+Employment Benefits: 750.00
+Paluwagan from Gina: 500.00
+TOTAL Non-Taxable Income: 1250.00
+
+GROSS PAY: P17407.01
+
+Withholding Tax: P3180.43
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Company Loan: 1000.00
+TOTAL Other Deductions: P1738.32
+
+TOTAL DEDUCTIONS: P4968.75
+
+NET PAY: P12438.26
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 445
+Employee Name: Felita Mañacop
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 120 (mins) - P166.50
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P166.50
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Tax Refund: 1691.63
+Tax Refund: 551.19
+Tax Refund: 922.36
+Tax Refund for 2004: 1812.90
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 316.70
+Tax Refund for 2009: 2380.36
+Tax Refund for 2010: 1957.29
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P7916.50
+
+Withholding Tax: P370.87
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 715.25
+TOTAL Other Deductions: P715.25
+
+TOTAL DEDUCTIONS: P1136.12
+
+NET PAY: P6780.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 451
+Employee Name: Francisco Baltazar
+Project: GAE
+
+PAY RATE: P14000.00
+
+Total Late_Absent: 102.58
+NET BASIC PAY: P13897.42
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - SSS: 33.30
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Tax Refund: 1019.90
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 2938.40
+Tax Refund for 2010: 2614.63
+Diminish: 9000.00
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P14897.42
+
+Withholding Tax: P2502.56
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2552.56
+
+NET PAY: P12344.86
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 458
+Employee Name: Cherrie Vitug
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P17000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P17000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Transportation Allowance: 2000.00
+Transportation Allowance: 1847.13
+Transportation Allowance: 2000.00
+Transportation Allowance: 1923.56
+Tax Refund for 2004: 6746.88
+Transportation Allowance: 1541.39
+Transportation Allowance: 1770.69
+Transportation Allowance: 1923.56
+Transportation Allowance: 1923.56
+Transportation Allowance: 2000.00
+Transportation Allowance: 1923.57
+Transportation Allowance: 2000.00
+Transportation Allowance: 1235.67
+Adjustment of Trans Allow: 1070.06
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 50.00
+Trans Allow - Cost Based: 382.17
+Trans Allow - Cost Based: 2500.00
+Trans Allow - Cost Based: 2308.92
+Trans Allow - Cost Based: 2500.00
+Tax Refund: 122.63
+A/P Others - Philhealth: 12.50
+Trans Allow - Cost Based: 1926.75
+Trans Allow - Cost Based: 2500.00
+Trans Allow - Cost Based: 2308.92
+Trans Allow - Cost Based: 2500.00
+Trans Allow - Cost Based: 2500.00
+Refund of PLDT charges: 24.00
+Advances for Liquidation: 2000.00
+Tax Refund for 2007: 2824.20
+Refund of PLDT charges: 100.00
+A/P Others - Philhealth: 25.00
+Employment Benefits: 1500.00
+Vacation Leave adjustment: 611.44
+Reimbursement for August: 4000.00
+Reimbursement - Sep: 4000.00
+Reimbursement - Oct: 4000.00
+Reimburse - Nov: 4000.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P18500.00
+
+Withholding Tax: P3433.33
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3483.33
+
+NET PAY: P15016.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 462
+Employee Name: Frederick Allegado
+Project: GAE
+
+PAY RATE: P6400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6400.00
+
+Regular Overtime: 1662 (mins) - P2119.05
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2119.05
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 133.40
+A/P Others - Philhealth: 37.50
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 50.00
+A/P Others - Philhealth: 12.50
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 3497.62
+Refund of Adv for Liquidation: 300.00
+A/P Others - SSS: 383.30
+A/P Others - Philhealth: 100.00
+A/P Others - Pag-Ibig: 100.00
+A/P Others - SSS: 133.30
+Refund of SSS Cont: 216.70
+Refund of Philhealth Cont: 162.50
+Refund of Liquidation: 146.00
+Tax Refund for 2010: 4636.71
+Refund of overdeduct liq: 99.85
+Diminish: 9000.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9269.05
+
+Withholding Tax: P432.98
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont 2: 250.00
+SSS salary loan: 1050.00
+Pag-Ibig Loan: 411.13
+TOTAL Other Deductions: P1711.13
+
+TOTAL DEDUCTIONS: P2194.11
+
+NET PAY: P7074.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 480
+Employee Name: Tolentino Serrano
+Project: PRC/NLRC LEYTE
+
+PAY RATE: P12750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 25.00
+Tax Refund: 3673.00
+Tax Refund for 2007: 1974.75
+A/R Others - Per Diem: 6000.00
+Refund of Overdeduction: 1733.21
+A/R Others - Per Diem: 5200.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 6000.00
+A/R Others - Per Diem: 5200.00
+A/R Others - Per Diem: 6000.00
+Employment Benefits: 1000.00
+Comm Allow - Jul16-Aug15: 1000.00
+Comm Allow - Aug16-Sep15: 1000.00
+Over Liquidation: 1626.00
+Comm Allow - Sep16-Oct15: 1000.00
+A/P Others: 1194.35
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P13750.00
+
+Withholding Tax: P1364.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1414.50
+
+NET PAY: P12335.50
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 483
+Employee Name: Brenda Saligumba
+Project: NK YANGON
+
+PAY RATE: P16000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 12.50
+Tax Refund: 7561.95
+Tax Refund for 2007: 3582.52
+Tax Refund for 2010: 3623.77
+Diminish: 9000.00
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16750.00
+
+Withholding Tax: P2820.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2870.73
+
+NET PAY: P13879.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 486
+Employee Name: Roberto Alindajao
+Project: GAE
+
+PAY RATE: P6400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6400.00
+
+Regular Overtime: 2375 (mins) - P3028.12
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 5 (mins) - P0.51
+TOTAL OVERTIME: P3028.63
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 137.50
+A/P Others - SSS: 233.30
+Tax Refund: 6870.86
+Tax Refund for 2007: 1944.79
+Refund of Maxicare: 0.14
+A/P Others - SSS: 66.70
+Refund of Advances: 69.06
+Tax Refund for 2009: 2301.40
+Refund of Maxicare: 705.49
+Refund of deducted ADV: 468.00
+Refund of Pag-Ibig Loan: 74.49
+Tax Refund for 2010: 2367.85
+Refund of overdeduct liq: 300.00
+Diminish: 9000.00
+A/P Others: 50.00
+Employment Benefits: 750.00
+Vacation Leave adjustment: 158.20
+Refund of O: 700.00
+TOTAL Non-Taxable Income: 1450.00
+
+GROSS PAY: P10878.63
+
+Withholding Tax: P823.30
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 150.00
+Pag-Ibig Cont 2: 250.00
+Pag-Ibig Loan: 470.08
+SSS salary loan: 738.32
+TOTAL Other Deductions: P1608.40
+
+TOTAL DEDUCTIONS: P2481.70
+
+NET PAY: P8396.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 495
+Employee Name: Antonio Chew
+Project: AZERBAIJAN
+
+PAY RATE: P25000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P25000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Tax Refund for 2007: 5386.28
+Tax Refund for 2009: 9944.72
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P25000.00
+
+Withholding Tax: P5541.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P5591.77
+
+NET PAY: P19408.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 505
+Employee Name: Glenn Mijares
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 2340.24
+NET BASIC PAY: P6909.76
+
+Regular Overtime: 557 (mins) - P1023.49
+Reg.Sun/Sat. OT: 947 (mins) - P1912.91
+Legal Holiday OT: 568 (mins) - P1747.54
+Special Holiday OT: 484 (mins) - P927.22
+Night Differential: 17 (mins) - P2.50
+TOTAL OVERTIME: P5613.66
+
+Taxable Income:
+Unpaid leave on Oct: 2828.03
+TOTAL Taxable Income: P2828.03
+
+Non-Taxable Income:
+A/P Others - SSS: 250.00
+A/P Others - Philhealth: 112.50
+ARO PerDiem Jul16-20: 4000.00
+ARO PerDiem Jul31-Aug08: 7200.00
+Advances: 9300.00
+Advances: 9002.00
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 16.60
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 10670.91
+A/P Others - Philhealth: 25.00
+A/P Others - SSS: 16.70
+A/P Others - SSS: 16.70
+A/P Others - Philhealth: 12.50
+A/P Others - SSS: 66.70
+A/P Others - Philhealth: 37.50
+A/P Others - Maxicare: 2716.56
+Refund of Maxicare: 163.54
+Meal Allowance: 300.00
+A/P Others - SSS: 33.30
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 5600.00
+A/R Others-Per Diem: 6000.00
+Meal Allowance: 240.00
+A/R Others-Per Diem: 5800.00
+A/R Others-Per Diem: 6000.00
+Meal Allowance: 180.00
+Meal Allowance: 120.00
+Tax Refund for 2009: 1834.00
+Meal Allowance: 120.00
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 6000.00
+Meal Allowance: 240.00
+Transpo Allowance: 120.00
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 2800.00
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 4000.00
+A/R Others-Per Diem: 6000.00
+A/R Others-Per Diem: 5200.00
+A/R Others-Per Diem: 6000.00
+Diminish: 9000.00
+Meal Allow - Mar 16-31: 225.00
+Meal Allow - Apr 01-15: 225.00
+Refund of Pag-Ibig Loan: 751.72
+Refund of overdeduct: 1500.00
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 750.00
+Employment Benefits: 550.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P16101.45
+
+Withholding Tax: P2313.86
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 842.95
+Company Loan: 2000.00
+TOTAL Other Deductions: P2842.95
+
+TOTAL DEDUCTIONS: P5206.81
+
+NET PAY: P10894.63
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 508
+Employee Name: Aileen Quizzagan
+Project: PRC/JRCS LEYTE
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 214.5
+NET BASIC PAY: P8785.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P Others - Philhealth: 12.50
+Tax Refund for 2007: 4846.46
+Refund of Maxicare: 0.02
+A/P Others - SSS: 150.00
+Tax Refund for 2009: 1789.96
+A/P Others - Philhealth: 125.00
+A/P Others - SSS: 316.70
+Employment Benefits: 750.00
+Employment Benefits: 725.00
+Transpo: 45000.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9535.50
+
+Withholding Tax: P1154.62
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 715.25
+TOTAL Other Deductions: P715.25
+
+TOTAL DEDUCTIONS: P1919.87
+
+NET PAY: P7615.62
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 517
+Employee Name: Delia Bernardez
+Project: PINATUBO 3
+
+PAY RATE: P18000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Per Diem - Feb 06-15: 9000.00
+A/R Others-Per Diem: 12800.00
+A/R Others-Per Diem: 12000.00
+A/P Others - Philhealth: 187.50
+A/R Others-Per Diem: 12800.00
+A/R Others-Per Diem: 12000.00
+A/R Others-Per Diem: 13500.00
+Per Diem Adj Apr 01-05: 500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+Out-of-Station Allowance: 2800.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 11700.00
+A/R Others-Per Diem: 13500.00
+A/R Others-Per Diem: 14400.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 11700.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 13500.00
+Out of Station Allow: 2800.00
+A/R Others - Per Diem: 11700.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 11700.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 13500.00
+A/R Others - Per Diem: 14400.00
+A/R Others - Per Diem: 12600.00
+A/R Others - Per Diem: 14400.00
+Out of Station Allow-June: 5600.00
+A/R Others-Per Diem: 12000.00
+A/P-Others Pag-Ibig Loan: 0.90
+A/R Others - Per Diem: 12000.00
+A/R Others - Per Diem: 10400.00
+A/R Others - Per Diem: 12000.00
+A/R Others - Per Diem: 11200.00
+A/R Others - Per Diem: 12000.00
+A/R Others - Per Diem: 7200.00
+A/R Others - Per Diem: 12000.00
+A/R Others - Per Diem: 9600.00
+A/R Others - Per Diem: 10400.00
+A/R Others - Per Diem: 8800.00
+A/R Others - Per Diem: 10400.00
+A/R Others - Per Diem: 9600.00
+A/R Others - Per Diem: 11200.00
+A/R Others - Per Diem: 10400.00
+TOTAL Non-Taxable Income: 12000.00
+
+GROSS PAY: P30000.00
+
+Withholding Tax: P3108.43
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 1430.50
+Pag-Ibig Loan: 1126.55
+TOTAL Other Deductions: P2557.05
+
+TOTAL DEDUCTIONS: P5715.48
+
+NET PAY: P24284.52
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 532
+Employee Name: Francis Palomique
+Project: PINATUBO 3
+
+PAY RATE: P7250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2000.00
+TOTAL Taxable Income: P2000.00
+
+Non-Taxable Income:
+Advances: 1500.00
+A/P Others - SSS: 50.00
+Refund of Overdeduction: 505.61
+A/P Others - SSS: 16.70
+Tax Refund for 2010: 2403.22
+Per Diem - Jun 16-30: 5250.00
+Per Diem - Jun 08-15: 2450.00
+Employment Benefits: 750.00
+A/R Others - Per Diem: 5250.00
+A/R Others - Per Diem: 4900.00
+A/R Others - Per Diem: 5250.00
+TOTAL Non-Taxable Income: 6000.00
+
+GROSS PAY: P15250.00
+
+Withholding Tax: P1270.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 282.07
+TOTAL Other Deductions: P282.07
+
+TOTAL DEDUCTIONS: P1602.82
+
+NET PAY: P13647.18
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 544
+Employee Name: Anthony Quejado
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 1113 (mins) - P1766.89
+Reg.Sun/Sat. OT: 1120 (mins) - P1928.37
+Legal Holiday OT: 870 (mins) - P2506.98
+Special Holiday OT: 495 (mins) - P824.67
+Night Differential: 30 (mins) - P3.81
+TOTAL OVERTIME: P7030.72
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Tax Refund for 2009: 6235.59
+Tax Refund for 2010: 980.35
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P15780.72
+
+Withholding Tax: P2842.55
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2892.55
+
+NET PAY: P12888.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 546
+Employee Name: Rizalina Cruz
+Project: LIAISON
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others SSS Cont: 183.30
+A/P-Others Philhealth Cont: 100.00
+Tax Refund for 2010: 7269.61
+Transpo Allowance: 5000.00
+Trans Allow - Mar 09-31: 7675.16
+Transpo Allowance: 5000.00
+Reimburse - Trans: 5555.00
+Employment Benefits: 700.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 6500.00
+
+GROSS PAY: P15500.00
+
+Withholding Tax: P948.00
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 738.32
+TOTAL Other Deductions: P738.32
+
+TOTAL DEDUCTIONS: P1736.32
+
+NET PAY: P13763.68
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 549
+Employee Name: Michelle Ablan
+Project: JICA NIA O
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+Tax Refund for 2010: 3077.42
+A/P-Others SSS Cont: 350.00
+A/P-Others Philhealth Cont: 125.00
+De Minimis: 9000.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9250.00
+
+Withholding Tax: P845.77
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 692.18
+Pag-Ibig Loan: 496.25
+TOTAL Other Deductions: P1188.43
+
+TOTAL DEDUCTIONS: P2084.20
+
+NET PAY: P7165.80
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 552
+Employee Name: Arlene Ferrer
+Project: GAE - BUSINESS DEVELOPMENT
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 65.19
+NET BASIC PAY: P7684.81
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others SSS Cont: 316.70
+A/P-Others Philhealth Cont: 75.00
+Tax Refund for 2010: 2356.40
+Employment Benefits: 750.00
+Vacation Leave adjustment: 152.88
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P8434.81
+
+Withholding Tax: P891.13
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 167.00
+TOTAL Other Deductions: P167.00
+
+TOTAL DEDUCTIONS: P1108.13
+
+NET PAY: P7326.68
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 630.11
+NET BASIC PAY: P7619.89
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 408 (mins) - P694.82
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P694.82
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others SSS Cont: 283.30
+A/P-Others Philhealth Cont: 75.00
+Tax Refund for 2010: 3236.24
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 750.00
+Employment Benefits: 675.00
+Employment Benefits: 700.00
+Employment Benefits: 625.00
+Employment Benefits: 700.00
+Employment Benefits: 700.00
+Employment Benefits: 725.00
+Employment Benefits: 650.00
+Employment Benefits: 700.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P9064.71
+
+Withholding Tax: P1036.93
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 230.73
+Pag-Ibig Loan: 167.00
+TOTAL Other Deductions: P397.73
+
+TOTAL DEDUCTIONS: P1484.66
+
+NET PAY: P7580.06
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 558
+Employee Name: Dorcas Mae Padilla
+Project: KRI-TVHS
+
+PAY RATE: P11750.00
+
+Total Late_Absent: 364.65
+NET BASIC PAY: P11385.35
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Refund of Pag-Ibig Loan: 563.55
+Transpo Allowance: 1500.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1300.00
+Transpo Allowance: 1500.00
+Employment Benefits: 1000.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1450.00
+Transpo Allowance: 1500.00
+Transpo Allowance: 1400.00
+Transpo Allowance: 1500.00
+Employment Benefits: 933.33
+Employment Benefits: 1000.00
+Transpo Allowance: 1100.00
+TOTAL Non-Taxable Income: 2500.00
+
+GROSS PAY: P13885.35
+
+Withholding Tax: P1023.34
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+Pag-Ibig Loan: 1107.39
+Advances Pag Loan: 1107.39
+TOTAL Other Deductions: P2953.10
+
+TOTAL DEDUCTIONS: P4026.44
+
+NET PAY: P9858.91
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 570
+Employee Name: Jerel John Celadiña
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P9500.00
+
+Total Late_Absent: 2544.35
+NET BASIC PAY: P6955.65
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 725.00
+Employment Benefits: 750.00
+Employment Benefits: 600.00
+Employment Benefits: 500.00
+Employment Benefits: 375.00
+Employment Benefits: 325.00
+Employment Benefits: 575.00
+Employment Benefits: 525.00
+Employment Benefits: 350.00
+Employment Benefits: 750.00
+Employment Benefits: 475.00
+Employment Benefits: 275.00
+Employment Benefits: 450.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P7705.65
+
+Withholding Tax: P745.30
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 357.63
+TOTAL Other Deductions: P357.63
+
+TOTAL DEDUCTIONS: P1152.93
+
+NET PAY: P6552.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 571
+Employee Name: Kimberly Claire Inso
+Project: KRI-TVHS
+
+PAY RATE: P16000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 10000.00
+TOTAL Taxable Income: P10000.00
+
+Non-Taxable Income:
+Reimbursement of expense: 6000.00
+Reimbursement: 6000.00
+Reimburse of expenses: 6000.00
+Employment Benefits: 1500.00
+Reimbursement - Jul to Aug: 6000.00
+Reimburse - Sep-Oct: 6000.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P27500.00
+
+Withholding Tax: P6194.89
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 349.10
+TOTAL Other Deductions: P349.10
+
+TOTAL DEDUCTIONS: P6593.99
+
+NET PAY: P20906.01
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 574
+Employee Name: Christopher Fausto
+Project: NISRIP
+
+PAY RATE: P8144.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P8144.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2500.00
+Overtime - Nov 11-30: 3120.00
+TOTAL Taxable Income: P5620.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 5250.00
+Per Diem - Jun25-Aug31: 23100.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P13764.50
+
+Withholding Tax: P2462.68
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2512.68
+
+NET PAY: P11251.82
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 578
+Employee Name: Sonny Lita
+Project: GAE
+
+PAY RATE: P6250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6250.00
+
+Regular Overtime: 2494 (mins) - P3117.50
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 15 (mins) - P1.50
+TOTAL OVERTIME: P3119.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Refund of Pag Loan: 186.28
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10119.00
+
+Withholding Tax: P394.57
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Loan: 123.96
+SSS Loan: 692.18
+Company Loan: 1250.00
+TOTAL Other Deductions: P2066.14
+
+TOTAL DEDUCTIONS: P2510.71
+
+NET PAY: P7608.29
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 580
+Employee Name: Karl Antonio Pangan
+Project: NISRIP
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2000.00
+TOTAL Taxable Income: P2000.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11750.00
+
+Withholding Tax: P1708.25
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1758.25
+
+NET PAY: P9991.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 585
+Employee Name: Jaydee Colis
+Project: NISRIP
+
+PAY RATE: P6678.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6678.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+Overtime - Nov 11-30: 1480.00
+TOTAL Taxable Income: P2480.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9158.00
+
+Withholding Tax: P1247.75
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 669.10
+TOTAL Other Deductions: P669.10
+
+TOTAL DEDUCTIONS: P1966.85
+
+NET PAY: P7191.15
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 591
+Employee Name: Susana Joyce Aliling
+Project: GAE
+
+PAY RATE: P6750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6750.00
+
+Regular Overtime: 355 (mins) - P474.81
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P474.81
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P7974.81
+
+Withholding Tax: P799.13
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P849.13
+
+NET PAY: P7125.68
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 596
+Employee Name: Johanna Angela Martin
+Project: LIAISON
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 989 (mins) - P1657.60
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1657.60
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+Employment Benefits: 750.00
+Employment Benefits: 625.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10407.60
+
+Withholding Tax: P1372.65
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1422.65
+
+NET PAY: P8984.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 597
+Employee Name: Mark Joseph Lorica
+Project: NISRIP
+
+PAY RATE: P6096.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P6096.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Overtime - Nov 11-30: 3186.67
+TOTAL Taxable Income: P3186.67
+
+Non-Taxable Income:
+Meal Allow - Feb 01-15: 825.00
+Meal Allow - Feb 16-28: 825.00
+Meal Allow - Mar 01-15: 825.00
+Meal Allow - Mar 16-31: 900.00
+Meal: 810.00
+Meal Allow - Apr 16-30: 975.00
+Meal Allow - May 01-15: 900.00
+Meal Allowance: 825.00
+Meal Allow - Jun 01-15: 750.00
+Meal Allow - Jun 16-30: 975.00
+Meal Allow - Jul 01-15: 975.00
+Meal Allow - Jul 16-31: 900.00
+Meal Allow - Aug 01-15: 750.00
+Meal Allow - Aug 16-31: 600.00
+Meal Allow - Sep 01-15: 600.00
+Meal Allow - Sep 16-30: 225.00
+Meal Allow - Oct 01-15: 300.00
+Meal Allow - Oct 01-15: 225.00
+Meal Allow - Nov 16-30: 150.00
+TOTAL Non-Taxable Income: 150.00
+
+GROSS PAY: P9433.17
+
+Withholding Tax: P1018.79
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1068.79
+
+NET PAY: P8364.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 608
+Employee Name: Phillip Borbon
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7750.00
+
+Regular Overtime: 1199 (mins) - P1843.46
+Reg.Sun/Sat. OT: 1123 (mins) - P1873.87
+Legal Holiday OT: 869 (mins) - P2424.82
+Special Holiday OT: 605 (mins) - P1027.36
+Night Differential: 44 (mins) - P5.41
+TOTAL OVERTIME: P7174.92
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Meal: 210.00
+Meal Allowance: 150.00
+Employment Benefits: 750.00
+Meal Allow - Jun 01-15: 150.00
+Meal Allow - Jun 16-30: 75.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P15674.92
+
+Withholding Tax: P2810.81
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 334.55
+TOTAL Other Deductions: P334.55
+
+TOTAL DEDUCTIONS: P3195.36
+
+NET PAY: P12479.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 611
+Employee Name: Niel Perez
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 753 (mins) - P1233.04
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 623 (mins) - P1744.66
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2977.70
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Meal Allow - Mar 16-31: 75.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11977.70
+
+Withholding Tax: P1765.17
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS salary loan: 692.18
+TOTAL Other Deductions: P692.18
+
+TOTAL DEDUCTIONS: P2507.35
+
+NET PAY: P9470.34
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 612
+Employee Name: Donnie Luzon
+Project: GAE
+
+PAY RATE: P6096.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P6096.50
+
+Regular Overtime: 2715 (mins) - P3291.94
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 405 (mins) - P39.28
+TOTAL OVERTIME: P3331.22
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9427.72
+
+Withholding Tax: P1315.18
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig Cont (add): 150.00
+SSS salary loan: 369.16
+Company Loan: 500.00
+TOTAL Other Deductions: P1019.16
+
+TOTAL DEDUCTIONS: P2384.34
+
+NET PAY: P7043.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 614
+Employee Name: Elsie Manaloto
+Project: NISRIP
+
+PAY RATE: P6193.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6193.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+Overtime - Nov 11-30: 1480.00
+TOTAL Taxable Income: P2480.00
+
+Non-Taxable Income:
+Refund of SSS Loan: 1000.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8673.00
+
+Withholding Tax: P1126.50
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Loan: 692.18
+TOTAL Other Deductions: P692.18
+
+TOTAL DEDUCTIONS: P1868.68
+
+NET PAY: P6804.32
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 616
+Employee Name: Mark Nathaniel Carpio
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 504 (mins) - P870.57
+Legal Holiday OT: 480 (mins) - P1257.60
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2128.17
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10378.17
+
+Withholding Tax: P1552.79
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1602.79
+
+NET PAY: P8775.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 624
+Employee Name: Joel Briñas
+Project: FRIMP 2
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 326.06
+NET BASIC PAY: P7173.94
+
+Regular Overtime: 501 (mins) - P745.24
+Reg.Sun/Sat. OT: 554 (mins) - P891.38
+Legal Holiday OT: 745 (mins) - P1962.31
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 201 (mins) - P23.92
+TOTAL OVERTIME: P3622.85
+
+Taxable Income:
+Project Allowance: 933.33
+TOTAL Taxable Income: P933.33
+
+Non-Taxable Income:
+Meal Allow - Jan 17: 150.00
+Meal Allow - Feb 07: 150.00
+Meal Allow - Mar 16-31: 150.00
+Meal Allow - Apr 01-15: 75.00
+Meal Allow - Apr 16-30: 150.00
+Meal Allow - May 01-15: 150.00
+Meal Allowance: 150.00
+Meal Allow - Jun 01-15: 75.00
+Meal Allow - Jun 16-30: 150.00
+Meal Allow - Jul 01-15: 75.00
+Meal Allow - Jul 16-31: 75.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P11730.12
+
+Withholding Tax: P1890.78
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Proj Allow of Carl: 1000.00
+TOTAL Other Deductions: P1000.00
+
+TOTAL DEDUCTIONS: P2940.78
+
+NET PAY: P8789.34
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 625
+Employee Name: Jayson Ramos
+Project: GAE
+
+PAY RATE: P15000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P15000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Transpo Allowance: 1000.00
+Transpo Allowance: 866.67
+Transpo Allowance: 1000.00
+Transpo Allowance: 933.33
+Transpo Allowance: 866.67
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P16500.00
+
+Withholding Tax: P2520.73
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2570.73
+
+NET PAY: P13929.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 626
+Employee Name: Maria Angeline Kisses Montes
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 1355.46
+NET BASIC PAY: P6394.54
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+Employment Benefits: 550.00
+Employment Benefits: 750.00
+Employment Benefits: 650.00
+Employment Benefits: 650.00
+Employment Benefits: 750.00
+Employment Benefits: 450.00
+Employment Benefits: 575.00
+Employment Benefits: 750.00
+Employment Benefits: 550.00
+Employment Benefits: 750.00
+Employment Benefits: 700.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P7144.54
+
+Withholding Tax: P633.08
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P683.08
+
+NET PAY: P6461.46
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 635
+Employee Name: Gerald Joseph Tabeta
+Project: ENGLISH EDITING-NK
+
+PAY RATE: P17500.00
+
+Total Late_Absent: 61.38
+NET BASIC PAY: P17438.62
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1400.00
+Employment Benefits: 1500.00
+TOTAL Non-Taxable Income: 1500.00
+
+GROSS PAY: P18938.62
+
+Withholding Tax: P3564.92
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P3614.92
+
+NET PAY: P15323.70
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 636
+Employee Name: Jeffrey Sacayan
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 1841 (mins) - P3014.64
+Reg.Sun/Sat. OT: 1470 (mins) - P2763.97
+Legal Holiday OT: 813 (mins) - P2391.80
+Special Holiday OT: 540 (mins) - P950.27
+Night Differential: 133 (mins) - P17.42
+TOTAL OVERTIME: P9138.10
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others Philhealth Cont: 325.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P17388.10
+
+Withholding Tax: P3549.76
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 1031.25
+TOTAL Other Deductions: P1031.25
+
+TOTAL DEDUCTIONS: P4631.01
+
+NET PAY: P12757.09
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 637
+Employee Name: Jenine Nicole Abadilla
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 74.67
+NET BASIC PAY: P8175.33
+
+Regular Overtime: 1480 (mins) - P2423.50
+Reg.Sun/Sat. OT: 582 (mins) - P1043.26
+Legal Holiday OT: 778 (mins) - P2272.59
+Special Holiday OT: 497 (mins) - P855.08
+Night Differential: 130 (mins) - P17.03
+TOTAL OVERTIME: P6611.46
+
+Taxable Income:
+Salary Adj - Oct16-Nov15: 1500.00
+OT Adj - Oct16-Nov15: 780.10
+Unpaid OT - Nov 14-15: 3447.13
+TOTAL Taxable Income: P5727.23
+
+Non-Taxable Income:
+A/P-Others Philhealth Cont: 325.00
+Emp Benefits - Oct16-Nov15: 1500.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 2250.00
+
+GROSS PAY: P22764.02
+
+Withholding Tax: P4487.53
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 937.50
+TOTAL Other Deductions: P937.50
+
+TOTAL DEDUCTIONS: P5475.03
+
+NET PAY: P17288.98
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 638
+Employee Name: Millard Cruz
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 45.85
+NET BASIC PAY: P8204.15
+
+Regular Overtime: 1127 (mins) - P1845.46
+Reg.Sun/Sat. OT: 1139 (mins) - P2031.17
+Legal Holiday OT: 777 (mins) - P2269.18
+Special Holiday OT: 484 (mins) - P826.30
+Night Differential: 123 (mins) - P16.11
+TOTAL OVERTIME: P6988.22
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others Philhealth Cont: 312.50
+Emp Benefits - Oct20-Nov15: 1250.00
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 2000.00
+
+GROSS PAY: P17192.37
+
+Withholding Tax: P2891.04
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 1031.25
+TOTAL Other Deductions: P1031.25
+
+TOTAL DEDUCTIONS: P3972.29
+
+NET PAY: P13220.08
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 640
+Employee Name: Eliza Karla Nuñez
+Project: MNTC SEGMENT 8.2
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 1116 (mins) - P1771.65
+Reg.Sun/Sat. OT: 360 (mins) - P594.36
+Legal Holiday OT: 638 (mins) - P1740.92
+Special Holiday OT: 510 (mins) - P856.87
+Night Differential: 105 (mins) - P13.34
+TOTAL OVERTIME: P4977.14
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others Philhealth Cont: 312.50
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12977.14
+
+Withholding Tax: P2226.47
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 1000.00
+TOTAL Other Deductions: P1000.00
+
+TOTAL DEDUCTIONS: P3276.47
+
+NET PAY: P9700.66
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 641
+Employee Name: Judy Anne Tacder
+Project: GAE
+
+PAY RATE: P6875.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6875.00
+
+Regular Overtime: 98 (mins) - P133.53
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P133.53
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+A/P-Others SSS Cont: 72.60
+A/P-Others Philhealth Cont: 325.00
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7008.53
+
+Withholding Tax: P755.88
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 859.38
+PLDT charges: 500.00
+TOTAL Other Deductions: P1359.38
+
+TOTAL DEDUCTIONS: P2165.26
+
+NET PAY: P4843.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period December 01-15, 2015 ) withdrawable last Saturday (December 12, 2015).
+
+cutoff period: 2015-11-16 -to- 2015-11-30
+
+Employee ID: 647
+Employee Name: Carl Christian Sinda
+Project: FRIMP 2
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 1170 (mins) - P1857.38
+Reg.Sun/Sat. OT: 966 (mins) - P1672.13
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 210 (mins) - P26.67
+TOTAL OVERTIME: P3556.18
+
+Taxable Income:
+Unpaid PA Nov 16-30: 1000.00
+Project Allowance: 1000.00
+Underpaid Night Diff: 12.90
+TOTAL Taxable Income: P2012.90
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P13569.08
+
+Withholding Tax: P2404.05
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Company Loan: 1000.00
+TOTAL Other Deductions: P1000.00
+
+TOTAL DEDUCTIONS: P3454.05
+
+NET PAY: P10115.02
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

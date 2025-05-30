@@ -1,0 +1,606 @@
+<?php
+
+// header
+// echo "header: <br>";
+?>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+<title>PKII Intranet</title>
+<link rel="icon" type="png/x-icon" href="./pictures/admin.ico">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- datatables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.dataTables.min.css">
+<script src="https:///cdn.datatables.net/2.0.4/js/dataTables.min.js"></script>
+
+
+<style>
+.dataTables_length select,
+.dataTables_paginate,
+.dataTables_info {
+    font-size: 12px !important; /* Adjust the font size as needed */
+}
+/* Override bold font-weight for "Show entries" dropdown */
+.dataTables_wrapper .dataTables_length label {
+    font-weight: normal !important;
+}
+/* Override bold font-weight for "Search" input */
+.dataTables_wrapper .dataTables_filter input {
+    font-weight: normal !important;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<STYLE TYPE="text/css">
+#tblName_length{display: none;}
+#tblName_filter{display: none;}
+p{font-family: Helvetica; font-size: 10pt;}
+b{font-family: Helvetica; font-size: 10pt;}
+td{font-family: Helvetica; font-size: 10pt;}
+label.error{color:red; font-size:11px;font-weight: 300; padding: 2rem;}
+
+.page_break {
+page-break-inside: avoid;
+}
+
+.modal-backdrop{
+	display: none;
+}
+
+@media print {
+    html, body {
+        height: 99%;    
+		font-family: 'Poppins', sans-serif;
+    }
+	.block {
+	display: table-row;
+	height: 1px;
+	}
+	
+	.push {
+	height: auto;
+	}
+	
+	.block.push {
+	border: 1px solid gray;
+	display: table-cell;
+	}
+}
+body > table.fin {
+	background: #C6CEB0;
+	border:1px solid gray;
+	border-collapse:collapse;
+	color:#fff;
+	margin-left: 16%;
+	margin-top:6%;
+}
+caption { 
+	border:1px solid #5C443A;
+	color:#5C443A;
+	font-weight:bold;
+	letter-spacing:20px;
+	padding:6px 4px 8px 0px;
+	text-align:center;
+	text-transform:uppercase;
+}
+table.fin td, table.fin th {
+	font-family: 'Poppins', sans-serif;
+	color: black !important;
+	border: 1px solid black !important;
+}
+table.fin th{
+	height: 65px !important;
+	vertical-align: middle !important;
+	padding: 0 10px;
+}
+table.fin td{
+	height: 50px !important;
+	vertical-align: middle !important;
+	padding: 0 10px;
+}
+tr { 
+	border:1px dotted gray;
+}
+table.fin tbody td a { 
+	color: black !important;
+	text-decoration: none;
+}
+table.fin tbody td a:hover { 
+	text-decoration:underline;
+	font-weight: 600;
+}
+table.fin tbody th a { color:#363636;
+ font-weight:normal;
+ text-decoration:none;
+}
+table.fin tbody th a:hover {
+	color:#363636;
+}
+table.fin tbody td+td+td+td a { background-image:url('bullet_blue.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+table.fin tbody td+td+td+td a:visited { background-image:url('bullet_white.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+table.fin tbody th, table.fin tbody td { vertical-align:top; }
+table.fin tfoot td { 
+	background:#5C443A;
+ 	color:#FFFFFF;
+ 	padding-top:3px;
+}
+.odd { 
+	background:#fff; 
+}
+table.fin tbody tr:hover {
+	background: #9bd9fe;
+	border:1px solid #03476F;
+	color: #000000;
+}
+body > table.fin2 {
+	background:#C6CEB0;
+	border:1px solid gray;
+	border-collapse:collapse;
+	color:#fff;
+	font:normal 12px verdana, arial, helvetica, sans-serif;
+	margin-left: 16%;
+	margin-top:6%;
+}
+table.fin2 td, table.fin2 th { color:#363636;
+}
+table.fin2 thead th, table.fin2 tfoot th { background:#5C443A;
+ color:#FFFFFF;
+ text-align:left;
+ text-transform:uppercase;
+}
+table.fin2 tbody td a { color:#363636;
+ text-decoration:none;
+}
+table.fin2 tbody td a:hover { text-decoration:underline;
+}
+table.fin2 tbody th a { color:#363636;
+ font-weight:normal;
+ text-decoration:none;
+}
+table.fin2 tbody th a:hover { color:#363636;
+}
+table.fin2 tbody td+td+td+td a { background-image:url('bullet_blue.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+ color:#03476F;
+}
+table.fin2 tbody td+td+td+td a:visited { background-image:url('bullet_white.png');
+ background-position:left center;
+ background-repeat:no-repeat;
+}
+table.fin2 tbody th, table.fin2 tbody td { vertical-align:top; }
+table.fin2 tfoot td { background:#5C443A;
+ color:#FFFFFF;
+}
+.odd { background:#fff;
+}
+
+/*file icons*/
+ 
+a[href$='.zip'], a[href$='.rar'], a[href$='.gzip'], a[href$='.gz'], a[href$='.ZIP'], a[href$='.RAR'], a[href$='.GZIP'], a[href$='.GZ'] {
+background:transparent url(./images/rar.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.txt'], a[href$='.TXT'], a[href$='.rtf'], a[href$='.RTF'] {
+background:transparent url(./images/txt.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.doc'], a[href$='.docx'], a[href$='.DOC'], a[href$='.DOCX'] {
+background:transparent url(./images/msdoc.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.xls'], a[href$='.xlsx'], a[href$='.XLS'], a[href$='.XLSX'] {
+background:transparent url(./images/msxls.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.ppt'], a[href$='.pptx'], a[href$='.PPT'], a[href$='.PPTX'] {
+background:transparent url(./images/msppt.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.pdf'], a[href$='.PDF'] {
+background:transparent url(./images/pdf.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+a[href$='.png'], a[href$='.PNG'], a[href$='.jpg'], a[href$='.JPG'], a[href$='.tif'], a[href$='.TIF'], a[href$='.bmp'], a[href$='.BMP'] {
+background:transparent url(./images/img.png) center left no-repeat;
+display:inline-block;
+padding-left:20px;
+line-height:18px;
+}
+
+img#profimg {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    border: 1px solid #ffffff;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 18px;
+    border: none;
+    list-style: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+#uname {
+	padding: 10px;
+	text-align: center;
+	transition: .3s ease-in-out;
+}
+
+#uname:hover, #upic:hover{
+	cursor: pointer;
+	transition: .3s ;
+	color: orange;
+}
+
+.dropdown-content {
+    display: none;
+    top: 100%;
+    position: absolute;
+    right: -10px;
+    background-color: #f9f9f9;
+    min-width: 190px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+
+.dropdown-content a {
+    color: #191919;
+	padding: 1rem;
+    text-decoration: none;
+    display: block;
+	font-family: 'Poppins', sans-serif;
+}
+
+.dropdown a:hover{
+	background: rgba(49, 49, 49, 0.5);
+	text-decoration: none !important;
+	color: white;
+	background: #0a1d44;
+}
+
+.show {display:block;}
+
+.header-container{
+	width:100%;
+	height: 6rem;	
+	transition: background-color 0.3s;
+	position: fixed;
+	z-index: 2;
+
+}
+
+
+#bgnewtest {
+
+            background-color: #0a1d44; 
+        }
+.header-wrapper{
+	width: 100%;
+	height: 100%;
+}
+.header-wrapper2{
+	width: 100%;
+	height: 100%;
+}
+
+#sidebarLogo{
+	height: 12%;
+	margin-bottom: 15%;
+}
+
+.dropdownMenu{
+	display: none;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0 15px;
+}
+
+.dropdownMenu li{
+    transition: all 0.2s ease;
+}
+
+.dropdownMenu li:hover{
+	color: white;
+	background: #0a1d44;
+}
+.dropdownMenu  a:hover{
+	color: white;
+	text-decoration: none !important;
+}
+.dropdownMenu  a{
+	text-decoration: none !important;
+	color: #4A4A4A;
+}
+
+.amainbgc{
+	background-color:  #0a1d44 !important;
+}
+
+.dropdownMenuList{
+	cursor: pointer;
+	color: #0a1d44;
+}
+
+.dropdownMenuListsolo{
+	cursor: pointer;
+	color: #0a1d44;
+}
+
+
+/* #sidebar{
+	width: 13%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 999 !important;
+	font-family: 'Poppins', sans-serif;
+	transition: transform 0.3s ease !important;
+} */
+
+/* ul#menuList {
+    font-size: 15px;
+    list-style: none;
+    padding: 0;
+} */
+
+.mainbtnclr{
+	background-color: #1e3b75 !important;
+}
+div#bodyContainer {
+	background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+}
+div#bodyWrapper {
+    padding-left: 14%;
+    padding-top: 6.5%;
+}
+.dropdown {
+    
+    transition: all 0.7s ease;
+    color:#2A3F54;
+}
+.dropdownMenuList:hover, .stay-hover{
+    cursor: pointer;
+    color: white;
+	background: #0a1d44;
+	border-radius: 5px;
+}
+
+.dropdownMenuListsolo:hover, .stay-hover{
+    cursor: pointer;
+    color: white;
+	background: #0a1d44;
+	border-radius: 5px;
+}
+
+.dropdownMenuListsolo i{   
+	margin-right: 10px;
+	height: 20px !important;
+	width: 20px !important;
+}
+
+.dropdownMenuList i{   
+	margin-right: 10px;
+	height: 20px !important;
+	width: 20px !important;
+}
+
+#dash{
+	transition: transform 0.5s ease;
+}
+#dash:hover, #dash h4:hover{
+	color: white;
+}
+#dash:hover path{
+    fill: orange;
+}
+#notif{
+	transition: transform 0.5s;
+}
+#notif:hover{
+
+	cursor: pointer;
+}
+#notif:hover path {
+    fill: orange;
+}
+.dropdownIcon{
+	width: 16px;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+.btnbgc{
+	color: white;
+	background-color: #03476F;
+}
+#sc-up{
+	font-size: 40px;
+	cursor: pointer;
+}
+
+.flicker-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.flicker {
+  animation: flicker 1.5s infinite;
+}
+
+
+
+.flicker-containerleave {
+  overflow: hidden;
+  width: 100%;
+}
+
+.flickerleave {
+  animation: flicker 2.5s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+.moving-text {
+            display: inline-block;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 2em; /* Adjust font size if necessary */
+            animation: moveLeft 10s linear infinite;
+        }
+
+        @keyframes moveLeft {
+            0% {
+                transform: translateX(150%);
+            }
+            100% {
+                transform: translateX(-400%);
+            }
+        }
+
+        /* Centering text */
+        .text-center {
+            display: flex;
+            justify-content: center;
+			
+        }
+
+
+.bgnewtest{
+	transition: background-color 0.3s;
+}
+
+
+
+</STYLE>
+</head>
+<body>
+<?php 
+// echo "hdsec2: <br>";
+    include ("addons.php");
+
+	$sql = "SELECT * FROM tblcontact WHERE employeeid='$employeeid0' limit 1";
+	$result = $dbh2->query($sql);
+	if($result->num_rows>0) {
+	    while($myrow=$result->fetch_assoc()) {
+	    $value=$myrow['picfn'];
+		$first = $myrow['name_first'];
+		$last = $myrow['name_last'];
+
+	    } //while
+	} //if
+	// $value = mysql_fetch_object($result);
+	$profimg = '';
+	if($value!="")
+		{
+			$profpic = $value;
+			$profimg = "<img class='dropbtn' src='images/$profpic' id='profimg'/>";
+		}
+	else { $profimg = "<img class='dropbtn' src='images/default.gif' id='profimg'/>"; }
+?>
+	<div class="header-container shadow" id = 'bgnewtest'>
+		
+		<div class="header-wrapper d-flex align-items-center justify-content-end">
+		<div class="header-wrapper2 d-flex align-items-center justify-content-between px-4">
+
+	<div class="px-4">
+	<a class="btn mainbtnclr d-lg-none" data-coreui-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+	<i class="bi bi-three-dots text-white h4 fw-bold"></i>
+</a>
+
+
+	</div>
+		<div class="d-flex align-items-center gap-5">
+		<div class="text-center">
+        <!-- <h1 class="moving-text text-warning">* DEVELOPMENT SERVER * comment line before uploading (header.php)</h1> -->
+    </div>
+		
+		</div>
+		
+		</div>
+		</div>
+
+	</div>
+	<div class="offcanvas offcanvas-lg offcanvas-start " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+   
+    <button type="button" class="btn-close text-reset" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body ">
+	<div class = 'd-lg-none'>  <?php include 'sidbarsmall.php'; ?></div>
+
+  </div>
+</div>
+
+
+<script>
+window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY; // Get the vertical scroll position
+            const bgElement = document.getElementById('bgnewtest'); // Select the element with the ID
+
+            // Change background color based on scroll position
+            if (scrollPosition > 100) {
+                bgElement.style.backgroundColor = '#ffffff'; // Example color when scrolled down
+            } else {
+                bgElement.style.backgroundColor = '#0a1d44'; // Original color when at the top
+            }
+        });
+</script>

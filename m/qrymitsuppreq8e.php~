@@ -1,0 +1,26 @@
+<?php
+//
+// qrymitsuppreq8d.php
+// fr: ./vc/mitsuppreqdtl.php
+
+// db conn string
+
+require '../includes/dbh.php';
+
+	$res18cquery="SELECT tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.email1, tblempdetails.empposition, tblempdetails.empdepartment FROM tblcontact LEFT JOIN tblempdetails ON tblcontact.employeeid=tblempdetails.employeeid WHERE tblcontact.employeeid=\"$approver1empid18b\" LIMIT 1";
+	$result18d=""; $found18d=0; $ctr18d=0;
+	$result18d=$dbh->query($res18dquery);
+	if($result18d->num_rows>0) {
+		while($myrow18d=$result18d->fetch_assoc()) {
+		$name_last18d = $myrow18d['name_last'];
+		$name_first18d = $myrow18d['name_first'];
+		$name_middle18d = $myrow18d['name_middle'];
+		$email118d = $myrow18d['email1'];
+		$empposition18d = $myrow18d['empposition'];
+		$empdepartment18d = $myrow18d['empdepartment'];
+		} // while
+	} // if
+
+// close database
+$dbh->close();
+?>

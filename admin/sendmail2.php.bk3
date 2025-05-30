@@ -1,0 +1,260 @@
+<?php
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$employeeid = $_GET['eid'];
+
+$projectname = $_POST['projectname'];
+$projectnameothers = $_POST['projectnameothers'];
+$advisorytype = $_POST['advisorytype'];
+$advisorytypeothers = $_POST['advisorytypeothers'];
+$payamount = $_POST['payamount'];
+$currency = $_POST['currency'];
+$othercurrency = $_POST['othercurrency'];
+$paytype = $_POST['paytype'];
+$acct_num = $_POST['acct_num'];
+$paytypebankname = $_POST['paytypebankname'];
+$paytypebankbranch = $_POST['paytypebankbranch'];
+$paytypeacctnumber = $_POST['paytypeacctnumber'];
+$paytypeacctname = $_POST['paytypeacctname'];
+$paytypeaccttype = $_POST['paytypeaccttype'];
+$acctdatedeposited = $_POST['year'] . "-" . $_POST['month'] . "-" . $_POST['day'];
+$paytypedatedeposited = $_POST['year2'] . "-" . $_POST['month2'] . "-" . $_POST['day2'];
+$moredetails = $_POST['moredetails'];
+
+// $acctdatedeposited = date ("Y-M-d", $acctdatedeposited1);
+// $paytypedatedeposited = date ("Y-M-d", $paytypedeposited1);
+
+$to = $_POST['to'];
+$from = $_POST['from'];
+$cc = $_POST['cc'];
+$bcc = $_POST['bcc'];
+$subject = $_POST['subject'];
+$header = $_POST['header'];
+$footer = $_POST['footer'];
+$notes = $_POST['notes'];
+
+$message = "$subject\n\n$header\n\n";
+
+     echo "<html>";
+?>
+<STYLE TYPE="text/css">
+<!--
+TD{font-family: Helvetica; font-size: 10pt;}
+--->
+</STYLE>
+<?php
+
+echo "<pre>";
+
+// if($projectname <> "")
+// {
+//      $message = $message . "Project Name: $projectname\n\n";
+//      $messagehtm = $messagehtm . "<table><tr><td>Project Name</td><td>$projectname</td></tr>";
+// }
+
+$message = $message . "Project Name:\n";
+
+foreach($projectname as $val)
+{
+     if($val == "Others")
+     {
+          $message = $message . "$projectnameothers\n";
+     }
+     else
+     {
+          $message = $message . "$val\n";
+     }
+
+//     $message = $message . "Project Name/s:\n$val\n";
+//     $messagehtm = $messagehtm . "<table><tr><td>Project Name</td><td>$val0</td></tr>";
+}
+
+$message = $message . "Pay Advisory Type:\n";
+
+
+foreach($advisorytype as $val)
+{
+     if($val == "Others")
+     {
+          $message = $message . "$advisorytypeothers\n";
+     }
+     else
+     {
+          $message = $message . "$val\n";
+     }
+}
+
+if($payamount <> "")
+{
+     $payamount = FormatMoney($payamount);
+     $message = $message . "\nAmount: $payamount\n";
+}
+
+if($currency == "Others")
+{
+     $message = $message . "Currency: $othercurrency\n\n";
+}
+else
+{
+     $message = $message . "Currency: $currency\n\n";
+}
+
+$message = $message . "Pay Type: $paytype\n\n";
+
+if($paytype == "Bank Acct")
+{
+     $result = mysql_query("SELECT acct_num, bank_name, bank_branch, acct_name, acct_type FROM tblbankacct WHERE acct_num='$acct_num'", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $acct_num = $myrow[0];
+          $bank_name = $myrow[1];
+          $bank_branch = $myrow[2];
+          $acct_name = $myrow[3];
+          $acct_type = $myrow[4];
+     }
+
+     $message = $message . "Bank Name: $bank_name\n";
+     $message = $message . "Bank Branch: $bank_branch\n";
+     $message = $message . "Acct Number: $acct_num\n";
+     $message = $message . "Acct Name: $acct_name\n";
+     $message = $message . "Acct Type: $acct_type\n";
+     $message = $message . "Date Deposited: $acctdatedeposited\n\n";
+}
+else if($paytype == "Bank Deposit")
+{
+     $message = $message . "Bank Name: $paytypebankname\n";
+     $message = $message . "Bank Branch: $paytypebankbranch\n";
+     $message = $message . "Acct Number: $paytypeacctnumber\n";
+     $message = $message . "Acct Name: $paytypeacctname\n";
+     $message = $message . "Acct Type: $paytypeaccttype\n";
+     $message = $message . "Date Deposited: $paytypedatedeposited\n\n";
+}
+
+$message = $message . "Additional Details: $moredetails\n\n";
+
+$message = $message . "$footer\n\n$notes\n\n";
+
+echo "$message<br>";
+
+echo "to: $to<br>";
+echo "cc: $cc<br>";
+echo "bcc: $bcc<br>";
+
+$mailheader = "From:$from\r\n";
+$mailheader .= "CC:$cc\r\n";
+$mailheader .= "BCC:$bcc\r\n";
+
+echo "</pre>";
+
+foreach($projectname as $projectname2)
+{
+     if($projectname2 == "Others")
+     {
+          echo "";
+     }
+     else
+     {
+          $projectname0 = $projectname0 . "$projectname2" . "/";
+     }
+}
+$projectname0 = $projectname0 . "$projectnameothers";
+
+foreach($advisorytype as $advisorytype2)
+{
+     if($advisorytype2 == "Others")
+     {
+          echo "";
+     }
+     else
+     {
+          $advisorytype0 = $advisorytype0 . "$advisorytype2" . "/";
+     }
+}
+$advisorytype0 = $advisorytype0 . "$advisorytypeothers";
+
+if($currency == "Others")
+{
+     $currency0 = "$othercurrency";
+}
+else
+{
+     $currency0 = "$currency";
+}
+
+if ($paytype == "Bank Acct")
+{
+  $paytype0 = "$paytype";
+  $bankname0 = "$bank_name";
+  $bankbranch0 = "$bank_branch";
+  $acctnum0 = "$acct_num";
+  $acctname0 = "$acct_name";
+  $accttype0 = "$acct_type";
+  $datedeposited0 = "$acctdatedeposited";
+}
+else if ($paytype == "Bank Deposit")
+{
+  $paytype0 = "$paytype";
+  $bankname0 = "$paytypebankname";
+  $bankbranch0 = "$paytypebankbranch";
+  $acctnum0 = "$paytypeacctnumber";
+  $acctname0 = "$paytypeacctname";
+  $accttype0 = "$paytypeaccttype";
+  $datedeposited0 = "$paytypedatedeposited";
+}
+else
+{
+  $paytype0 = "Cash";
+  $bankname0 = "";
+  $bankbranch0 = "";
+  $acctnum0 = "";
+  $acctname0 = "";
+  $accttype0 = "";
+  $datedeposited0 = "";
+}
+
+echo "<form action=sendmail3.php?eid=$employeeid method=post>";
+
+echo "<input type=hidden name=projectname value=\"$projectname0\">";
+echo "<input type=hidden name=advisorytype value=\"$advisorytype0\">";
+echo "<input type=hidden name=payamount value=\"$payamount\">";
+echo "<input type=hidden name=currency value=\"$currency0\">";
+echo "<input type=hidden name=paytype value=\"$paytype0\">";
+echo "<input type=hidden name=bankname value=\"$bankname0\">";
+echo "<input type=hidden name=bankbranch value=\"$bankbranch0\">";
+echo "<input type=hidden name=acct_num value=\"$acctnum0\">";
+echo "<input type=hidden name=acctname value=\"$acctname0\">";
+echo "<input type=hidden name=accttype value=\"$accttype0\">";
+echo "<input type=hidden name=datedeposited value=\"$datedeposited0\">";
+echo "<input type=hidden name=moredetails value=\"$moredetails\">";
+
+echo "<input type=hidden name=to value=\"$to\">";
+echo "<input type=hidden name=subject value=\"$subject\">";
+echo "<input type=hidden name=message value=\"$message\">";
+echo "<input type=hidden name=mailheader value=\"$mailheader\">";
+
+echo "<input type=submit value=Send>";
+echo "</form>";
+
+echo "</html>";
+
+mysql_close($dbh);
+
+function FormatMoney($number) {
+    $number = preg_replace("/[^0-9\.]/", "", str_replace(',','.',$number));
+    if (substr($number,-3,1)=='.') {
+        $sents = '.'.substr($number,-2);
+        $number = substr($number,0,strlen($number)-3);
+    } elseif (substr($number,-2,1)=='.') {
+        $sents = '.'.substr($number,-1);
+        $number = substr($number,0,strlen($number)-2);
+    } else {
+        $sents = '.00';
+    }
+    $number = preg_replace("/[^0-9]/", "", $number);
+    return number_format($number.$sents,2,'.','');
+}
+
+?>

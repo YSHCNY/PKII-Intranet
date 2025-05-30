@@ -1,0 +1,68 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$pid = $_GET['pid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+
+     echo "<p><font size=1>Directory >> Projects</font></p>";
+
+     echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><th colspan=\"2\">PKII Projects Listing</th></tr>";
+
+     $result = mysql_query("SELECT tblcompany.companyid, tblcompany.company, tblcompany.company_type, tblcompany.ofc_address1, tblcompany.ofc_address2, tblcompany.ofc_city, tblcompany.ofc_num1, tblcompany.ofc_num2, tblcompany.ofc_num3, tblcompany.ofc_fax, tblcompany.ofc_fax2, tblcompany.supplierid, tblcontact.name_first FROM tblcompany JOIN tblcontact ON tblcompany.supplierid = tblcontact.supplierid WHERE tblcompany.companyid=$pid LIMIT 1", $dbh);
+
+//     $result = mysql_query("SELECT tblcompany.companyid, tblcompany.company, tblcompany.company_type, tblcompany.ofc_address1, tblcompany.ofc_address2, tblcompany.ofc_city, tblcompany.ofc_num1, tblcompany.ofc_num2, tblcompany.ofc_num3, tblcompany.ofc_fax, tblcompany.ofc_fax2, tblcompany.supplierid, tblcontact.name_first FROM tblcompany JOIN tblcontact ON tblcompany.supplierid = tblcontact.supplierid WHERE tblcompany.company_type = 'supplier' ORDER BY tblcompany.company", $dbh);
+   
+     while ($myrow = mysql_fetch_row($result))
+     {
+	$companyid = $myrow[0];
+	$pid = $companyid;
+	$company = $myrow[1];
+	$company_type = $myrow[2];
+	$ofc_address1 = $myrow[3];
+	$ofc_address2 = $myrow[4];
+	$ofc_city = $myrow[5];
+	$ofc_num1 = $myrow[6];
+	$ofc_num2 = $myrow[7];
+	$ofc_num3 = $myrow[8];
+	$ofc_fax = $myrow[9];
+	$ofc_fax2 = $myrow[10];
+	$supplierid = $myrow[11];
+	$name_first = $myrow[12];
+
+         echo "<tr><th align=\"right\">Company</th><th>$company</th></tr>";
+         echo "<tr><th align=\"right\">Address</th><td>$ofc_address1</td></tr>";
+         echo "<tr><th align=\"right\">Landline(s)</th><td>$ofc_num1</td></tr>";
+         echo "<tr><th align=\"right\">&nbsp;</th><td>$ofc_num2</td></tr>";
+         echo "<tr><th align=\"right\">&nbsp;</th><td>$ofc_num3</td></tr>";
+	 echo "<tr><th align=\"right\">Fax</th><td>$ofc_fax</td></tr>";
+         echo "<tr><th align=\"right\">&nbsp;</th><td>&nbsp;</td></tr>";
+	 echo "<tr><th align=\"right\">Contact Person</th><td>$name_first</td></tr>";
+         echo "</table>";
+     }
+ 
+     echo "<p><FORM><INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'></FORM></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh);
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

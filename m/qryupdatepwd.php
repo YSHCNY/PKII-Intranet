@@ -1,0 +1,81 @@
+<?php 
+//
+// qryupdatepwd.php
+// fr: ./vc/mchgpass2.php (page 411)
+
+// db conn string
+require '../includes/dbh.php';
+
+	$res12query="UPDATE tbllogin SET password=md5(\"$cnewpass\") WHERE loginid=$loginid AND username=\"$username\"";
+	$result12=""; $found12=0; $ctr12=0;
+	$result12=$dbh->query($res12query);
+
+    // 20221011 query tbladminlogin if user exists
+    $res18query=""; $result18=""; $found18=0;
+    $res18query="SELECT adminloginid FROM tbladminlogin WHERE employeeid=\"$employeeid0\"";
+    $result18=$dbh->query($res18query);
+    if($result18->num_rows>0) {
+        while($myrow18=$result18->fetch_assoc()) {
+        $found18=1;
+        $adminloginid18=$myrow18['adminloginid'];
+        } //while
+    } //if
+
+    if($found18==1) {
+    // update query tbladminlogin
+    $res18bquery=""; $result18b="";
+    $res18bquery="UPDATE tbladminlogin SET adminpw=md5(\"$cnewpass\") WHERE adminloginid=$adminloginid18 AND employeeid=\"$employeeid0\"";
+    $result18b=$dbh->query($res18bquery);
+    } //if
+
+    //20221011 query loginid from tblsysusracctmgt
+    $res14query=""; $result14=""; $found14=0;
+    $res14query="SELECT idtblsysusracctmgt, employeeid FROM tblsysusracctmgt WHERE loginid=$loginid";
+    $result14=$dbh->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $found14=1;
+        $idtblsysusracctmgt14 = $myrow14['idtblsysusracctmgt'];
+        $employeeid14 = trim($myrow14['employeeid']);
+        } //while
+    } //if
+
+    // set vars
+    $res15query=""; $result15=""; $attempt=0; $attemptstamp=""; $skippwctr=0; $skiplastdt="";
+
+    if($found14==1) {
+        //update tblsysusracctmgt query
+        $res15query="UPDATE tblsysusracctmgt SET timestamp=\"$now\", attempt=$attempt, attemptstamp=\"$attemptstamp\", pwchangedt=\"$now\", pwlast=md5(\"$cnewpass\"), skippwctr=$skippwctr, skiplastdt=\"$skiplastdt\" WHERE idtblsysusracctmgt=$idtblsysusracctmgt14 AND employeeid=\"$employeeid14\"";
+
+    } else {
+        //insert into tblsysusracctmgt queries
+        $res15query="INSERT INTO tblsysusracctmgt SET timestamp=\"\", loginid=$loginid, adminloginid=0, employeeid=\"$employeeid14\", loginstamp=\"\", logoutstamp=\"\", attempt=$attempt, attemptstamp=\"$attemptstamp\", pwchangedt=\"$now\", pwlast=md5(\"$cnewpass\"), skippwctr=$skippwctr, skiplastdt=\"$skiplastdt\", remarks=\"\"";
+
+    } //if-else
+    $result15=$dbh->query($res15query);
+
+    // query for admin user if exists
+    $res16query=""; $result16=""; $found16=0;
+    $res16query="SELECT idtblsysusracctmgt, admloginid FROM tblsysusracctmgt WHERE admloginid<>0 AND employeeid=\"$employeeid14\" AND loginid=0";
+    $result16=$dbh->query($res16query);
+    if($result16->num_rows>0) {
+        while($myrow16=$result16->fetch_assoc()) {
+        $found16=1;
+        $idtblsysusracctmgt16 = $myrow16['idtblsysusracctmgt'];
+        $admloginid16 = $myrow16['admloginid'];
+        } //while
+    } //if
+
+    if($found16==1) {
+        //update query
+        $res17query=""; $result17="";
+        $res17query="UPDATE tblsysusracctmgt SET timestamp=\"$now\", attempt=$attempt, attemptstamp=\"$attemptstamp\", pwchangedt=\"$now\", pwlast=md5(\"$cnewpass\"), skippwctr=$skippwctr, skiplastdt=\"$skiplastdt\" WHERE idtblsysusracctmgt=$idtblsysusracctmgt16 AND admloginid=$admloginid16 AND employeeid=\"$employeeid14\"";
+        $result17=$dbh->query($res17query);
+
+    } //if
+
+// close database
+$dbh->close();
+?> 
+
+	

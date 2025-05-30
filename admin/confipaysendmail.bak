@@ -1,0 +1,336 @@
+<?php
+
+include("db1.php");
+
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$groupname = $_GET['groupname'];
+
+$cutstart = $_GET['cutstart'];
+$cutend = $_GET['cutend'];
+
+$employeeid = $_POST['employeeid'];
+$from = $_POST['from'];
+$cc = $_POST['cc'];
+$bcc = $_POST['bcc'];
+$subject = $_POST['subject'];
+$header = $_POST['header'];
+$mailhead = $_POST['mailhead'];
+$salary = $_POST['salary'];
+$footer = $_POST['footer'];
+$notes = $_POST['notes'];
+
+/**
+* start email message format
+*/
+
+// Check single-line inputs: returns false if text contains newline character
+function has_no_newlines($text)
+{
+  return preg_match("/(%0A|%0D|\\n+|\\r+)/i", $text) == 0;
+}
+
+// Check multi-line inputs: returns false if text contains newline followed by email-header specific string
+function has_no_emailheaders($text)
+{
+  return preg_match("/(%0A|%0D|\\n+|\\r+)(content-type:|to:|cc:|bcc:)/i", $text) == 0;
+}
+
+// Check OS type for line breaks
+if (strtoupper(substr(PHP_OS,0,3)=='WIN')) { $eol = "\r\n"; }
+elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) { $eol = "\r"; }
+else { $eol = "\n"; }
+
+foreach ($employeeid as $value)
+{
+  // Common Headers
+  $mailheader .= 'From: <noreply@philkoei.com.ph>'.$eol;
+  $mailheader .= 'Reply-To: <noreply@philkoei.com.ph>'.$eol;
+  $mailheader .= 'Return-Path: <noreply@philkoei.com.ph>'.$eol;
+  $mailheader .= "Message-ID:<".$now.$_SERVER['SERVER_NAME'].">".$eol;
+  $mailheader .= "X-Mailer: PHP v".phpversion().$eol;
+
+  // Set boundaries
+  $mime_boundary = md5(time());
+  $mailheader .= 'Mime-Version: 1.0'.$eol;
+  $mailheader .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
+  $msg = "";
+
+  // Text version
+  $msgtxt .= "PHILKOEI INTERNATIONAL, INC.".$eol;
+  $msgtxt .= "Pay Advisory - Confidential".$eol;
+  $msgtxt .= $header.$eol.$eol;
+
+  $msgtxt .= "Payroll Summary".$eol;
+  $msgtxt .= "Payroll Group: $groupname".$eol;
+  $msgtxt .= "$cutstart -to- $cutend".$eol.$eol;
+
+  // HTML version
+  $msghtml .= "<html><head><title>PKII - Payslip Summary</title>";
+  $msghtml .= "<STYLE TYPE=\"text/css\">";
+  $msghtml .= "<!--";
+  $msghtml .= "BODY{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "p{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "B{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "TD{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "--->";
+  $msghtml .= "</STYLE>";
+  $msghtml .= "</head><body>";
+
+  $msghtml .= "<h2><font color=\"blue\">PHILKOEI INTERNATIONAL, INC.</font></h2>";
+  $msghtml .= "<p><b>Pay Advisory - Confidential</b><br>";
+  $msghtml .= "$header</p>";
+
+  $msghtml .= "<p><b>Payroll Summary</b></br>";
+  $msghtml .= "Payroll Group: $groupname</br>";
+  $msghtml .= "$cutstart -to- $cutend</p>";
+
+  $result = mysql_query("SELECT tblconfipayroll.confipayrollid, tblconfipayroll.employeeid, tblconfipayroll.groupname, tblconfipayroll.cutstart, tblconfipayroll.cutend, tblconfipayroll.netbasicpay, tblconfipayroll.otherincome, tblconfipayroll.otherincomenontaxable, tblconfipayroll.grosspay, tblconfipayroll.withholdingtax, tblconfipayroll.sssee,  tblconfipayroll.ssser, tblconfipayroll.philhealthee, tblconfipayroll.philhealther, tblconfipayroll.pagibiger, tblconfipayroll.pagibigee, tblconfipayroll.otherdeductions, tblconfipayroll.totaldeductions, tblconfipayroll.netpay, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.email1 FROM tblconfipayroll, tblcontact WHERE tblconfipayroll.employeeid = \"$value\" AND tblconfipayroll.groupname = '$groupname' AND tblconfipayroll.cutstart = '$cutstart' AND tblconfipayroll.cutend = '$cutend' AND tblconfipayroll.employeeid = tblcontact.employeeid", $dbh);
+
+  while ($myrow = mysql_fetch_row($result))
+  {
+    $found = 1;
+    $confipayrollid = $myrow[0];
+    $employeeid = $myrow[1];
+//    $groupname= $myrow[2];
+//    $cutstart = $myrow[3];
+//    $cutend = $myrow[4];
+    $netbasicpay = $myrow[5];
+    $otherincome = $myrow[6];
+    $otherincomenontaxable = $myrow[7];
+    $grosspay = $myrow[8];
+    $withholdingtax = $myrow[9];
+    $sssee = $myrow[10];
+    $ssser = $myrow[11];
+    $philhealthee = $myrow[12];
+    $philhealther = $myrow[13];
+    $pagibiger = $myrow[14];
+    $pagibigee = $myrow[15];
+    $otherdeductions = $myrow[16];
+    $totaldeductions = $myrow[17];
+    $netpay = $myrow[18];
+    $value2 = $myrow[19];
+    $name_last = $myrow[20];
+    $name_first = $myrow[21];
+    $name_middle = $myrow[22];
+    $email1 = $myrow[23];
+  }
+
+  // Text format main summary
+  $msgtxt .= "Employee No.: $employeeid".$eol;
+  $msgtxt .= "Fullname: $name_last, $name_first $name_middle".$eol.$eol;
+
+  $msgtxt .= "Net Basic Pay: $netbasicpay".$eol;
+  $msgtxt .= "Add'l. Income (Taxable): $otherincome".$eol;
+  $msgtxt .= "Other Income (Non-Taxable): $otherincomenontaxable".$eol;
+  $msgtxt .= "GROSS Pay: $grosspay".$eol.$eol;
+
+  $msgtxt .= "Withholding Tax: $withholdingtax".$eol;
+  if($sssee != 0) { $msgtxt .= "SSS: $sssee".$eol; }
+  if($philhealthee != 0) { $msgtxt .= "Philhealth: $philhealthee".$eol; }
+  if($pagibigee != 0) { $msgtxt .= "Pagibig: $pagibigee".$eol; }
+  $msgtxt .= "Other Deductions: $otherdeductions".$eol;
+  $msgtxt .= "TOTAL Deductions: $totaldeductions".$eol.$eol;
+
+  $msgtxt .= "NET PAY: $netpay".$eol;
+
+  // HTML format main summary
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>NetBasicPay</td><td>OtherIncome</td><td>NonTaxableIncome</td><td>GrossPay</td><td>WithholdingTax</td><td>SSS</td><td>Philhealth</td><td>PagIBIG</td><td>OtherDeductions</td><td>TotalDeductions</td><td><b>NetPay</b></td></tr>";
+
+  $msghtml .= "<tr><td>$employeeid</td><td><b>$name_last, $name_first $name_middle</b></td><td align=right>$netbasicpay</td><td align=right>$otherincome</td><td align=\"right\">$otherincomenontaxable</td><td align=right>$grosspay</td><td align=right>$withholdingtax</td><td align=right>$sssee</td><td align=right>$philhealthee</td><td align=right>$pagibigee</td><td align=right>$otherdeductions</td><td align=right>$totaldeductions<td align=right><b>$netpay</b></td></tr>";
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+  // start additional income summary here taxable
+  $msgtxt .= "List of Additional Income (Taxable)".$eol;
+
+  $msghtml .= "<b>List of Additional Income (Taxable)</b><br>";
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>OtherIncomeType</td><td>Amount</td></tr>";
+
+  $result4 = mysql_query("SELECT confipayrolladdid, employeeid, groupname, cutstart, cutend, nameadd, addamount, nontaxable FROM tblconfipayrolladd WHERE employeeid = \"$employeeid\" AND groupname = '$groupname' AND cutstart = '$cutstart' AND cutend = '$cutend' AND  nontaxable != 'yes'", $dbh);
+
+  while ($myrow4 = mysql_fetch_row($result4))
+  {
+    $found4 = 1;
+    $confipayrolladdid = $myrow4[0];
+//    $employeeid = $myrow4[1];
+//    $groupname = $myrow4[2];
+//    $cutstart = $myrow4[3];
+//    $cutend = $myrow4[4];
+    $nameadd = $myrow4[5];
+    $addamount = $myrow4[6];
+    $nontaxable = $myrow4[7];
+
+    $msgtxt .= "$nameadd: $addamount".$eol;
+
+    $msghtml .= "<tr><td>$employeeid</td><td><b>$name_last, $name_first $name_middle</b></td><td>$nameadd</td><td align=right><b>$addamount</b></td></tr>";
+  }
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+  // start additional income summary here nontaxable
+  $msgtxt .= "List of Non-Taxable Income".$eol;
+
+  $msghtml .= "<b>List of Non-Taxable Income</b><br>";
+
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>OtherIncomeType</td><td>Amount</td><td>NonTaxable</td></tr>";
+
+  $result5 = mysql_query("SELECT confipayrolladdid, employeeid, groupname, cutstart, cutend, nameadd, addamount, nontaxable FROM tblconfipayrolladd WHERE employeeid = \"$employeeid\" AND groupname = '$groupname' AND cutstart = '$cutstart' AND cutend = '$cutend' AND  nontaxable = 'yes'", $dbh);
+
+  while ($myrow5 = mysql_fetch_row($result5))
+  {
+    $found5 = 1;
+    $confipayrolladdid = $myrow5[0];
+//    $employeeid = $myrow5[1];
+//    $groupname = $myrow5[2];
+//    $cutstart = $myrow5[3];
+//    $cutend = $myrow5[4];
+    $nameadd = $myrow5[5];
+    $addamount = $myrow5[6];
+    $nontaxable = $myrow5[7];
+
+    $msgtxt .= "$nameadd: $addamount".$eol;
+
+    $msghtml .= "<tr><td>$employeeid</td><td><b>$name_last, $name_first $name_middle</b></td><td>$nameadd</td><td align=right><b>$addamount</b></td><td>$nontaxable</td></tr>";
+  }
+
+    $msghtml .= "</table>";
+
+    $msgtxt .= $eol;
+
+    $msghtml .= "<p><p><br>";
+
+  // start deductions summary here
+  $msgtxt .= "List of Deductions".$eol;
+
+  $msghtml .= "<b>List of Deductions</b><br>";
+
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>TypeOfDeduction</td><td>Amount</td></tr>";
+
+  $result2 = mysql_query("SELECT tblconfipayrolldeduct.confipayrolldeductid, tblconfipayrolldeduct.employeeid, tblconfipayrolldeduct.groupname, tblconfipayrolldeduct.cutstart, tblconfipayrolldeduct.cutend, tblconfipayrolldeduct.namededuct, tblconfipayrolldeduct.deductamount, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblconfipayrolldeduct, tblcontact WHERE tblconfipayrolldeduct.employeeid = \"$employeeid\" AND tblconfipayrolldeduct.groupname = '$groupname' AND tblconfipayrolldeduct.cutstart = '$cutstart' AND tblconfipayrolldeduct.cutend = '$cutend' AND tblconfipayrolldeduct.employeeid = tblcontact.employeeid", $dbh);
+
+  while ($myrow2 = mysql_fetch_row($result2))
+  {
+    $found2 = 1;
+    $confipayrolldeductid = $myrow2[0];
+//    $employeeid = $myrow2[1];
+//    $groupname = $myrow2[2];
+//    $cutstart = $myrow2[3];
+//    $cutend = $myrow2[4];
+    $namededuct = $myrow2[5];
+    $deductamount = $myrow2[6];
+    $employeeid2 = $myrow2[7];
+//    $name_last = $myrow2[8];
+//    $name_first = $myrow2[9];
+//    $name_middle = $myrow2[10];
+
+    $msgtxt .= "$namededuct: $deductamount".$eol;
+
+    $msghtml .= "<tr><td>$employeeid</td><td><b>$name_last, $name_first $name_middle</b></td><td>$namededuct</td><td align=right><b>$deductamount</b></td></tr>";
+  }
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+  // additional details here...
+  $msgtxt .= "$footer".$eol.$eol;
+  $msghtml .= "<p>$footer</p>";
+
+  $msgtxt .= "$notes".$eol.$eol;
+  $msghtml .= "<p>$notes</p>";
+
+  $msghtml .= "</body></html>";
+
+  // set content-type to Text
+  $mailheader .= "--".$mime_boundary.$eol;
+  $mailheader .= "Content-Type: text/plain; charset=iso-8859-1".$eol;
+  $mailheader .= "Content-Transfer-Encoding: 8bit".$eol;
+  $mailheader .= "This is a multi-part message in MIME format.".$eol;
+  $mailheader .= "If you are reading this, please update your email-reading software.".$eol;
+  $mailheader .= $msgtxt.$eol.$eol;
+
+  // set content-type to HTML
+  $mailheader .= "--".$mime_boundary.$eol;
+  $mailheader .= "Content-Type:text/html;charset=iso-8859-1" . "$eol";
+  $mailheader .= "Content-Transfer-Encoding: 8bit".$eol;
+  $mailheader .= $msghtml.$eol.$eol;
+
+  // Finished formatting
+  $mailheader .= "--".$mime_boundary."--".$eol.$eol;
+
+  // prepare sendmail
+
+  echo "$mailheader<br>";
+
+  $ok = "";
+
+  // process sendmail
+
+//  $ok = mail($email1, $subject, $msghtml, $mailheader);
+
+//  echo "vartest to:$email1 header:$mailheader subj:$subject msg:$msghtml<br>";
+
+  if ($ok)
+  {
+    echo "Congratulations your email has been processed and will be sent immediately<br>";
+
+    $processed = $processed . $msgheader . "------------------------------------------------------------------------------------------------------------$eol";
+
+  }
+  else
+  {
+    echo "<font color=red>Sorry, the email was not sent. Pls try again.</font><br>";
+  }
+
+  echo "to: $email1<hr>";
+  $mailheader = "";
+}
+
+// $File = "/var/www/admin/logs/". date("y-m-d_H:i:s", time()) . "_" . $groupname ."_" . $cutstart . "_" . $cutend . ".txt";
+// $Handle = fopen($File, 'w');
+// $Data = "$processed"; 
+// fwrite($Handle, $Data);
+// fclose($Handle);
+
+// echo "logfile saved: $File<br>";
+
+echo "<p><FORM><INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'></FORM></p>";
+
+echo "</html>";
+
+mysql_close($dbh);
+
+function FormatMoney($number) {
+    $number = preg_replace("/[^0-9\.]/", "", str_replace(',','.',$number));
+    if (substr($number,-3,1)=='.') {
+        $sents = '.'.substr($number,-2);
+        $number = substr($number,0,strlen($number)-3);
+    } elseif (substr($number,-2,1)=='.') {
+        $sents = '.'.substr($number,-1);
+        $number = substr($number,0,strlen($number)-2);
+    } else {
+        $sents = '.00';
+    }
+    $number = preg_replace("/[^0-9]/", "", $number);
+    return 'P' . number_format($number.$sents,2,'.','');
+}
+
+?>

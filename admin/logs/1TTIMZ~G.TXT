@@ -1,0 +1,48 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2015-01-01 -to- 2015-01-15
+
+Employee ID: 247
+Employee Name: Yvette Velazco
+Project: TIMOR MCIE
+
+PAY RATE: P7409.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P7409.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: P1000.00
+
+Non-Taxable Income:
+Transpo Allowance: 8000.00
+Tax Refund for 2014: 8562.72
+TOTAL Non-Taxable Income: 16562.72
+
+GROSS PAY: P24972.22
+
+Withholding Tax: P1060.62
+SSS: P581.30
+Philhealth: P175.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1866.92
+
+NET PAY: P23105.29
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

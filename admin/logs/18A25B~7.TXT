@@ -1,0 +1,46 @@
+Please find below details of your payroll salary October 01-15, 2010 (cut off period September 16-30, 2010) is now available.
+
+cutoff period: 2010-09-16 -to- 2010-09-30
+
+Employee ID: 560
+Employee Name: Kristel Grace Quiming
+Project: AGNO 2
+
+PAY RATE: P4000.00
+
+Total Late_Absent: 1843.2
+NET BASIC PAY: P2156.80
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 3200.00
+TOTAL Non-Taxable Income: 4400.00
+
+GROSS PAY: P6556.80
+
+Withholding Tax: 3.69
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P53.69
+
+NET PAY: P6503.11
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

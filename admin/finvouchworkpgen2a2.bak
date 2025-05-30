@@ -1,0 +1,582 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$wpgendate = $_GET['gd'];
+
+$cutarrwpgendate = split("-", $wpgendate);
+$wpgenyear = $cutarrwpgendate[0];
+$wpgenmonth = $cutarrwpgendate[1];
+
+$result11 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+if($result11 != '')
+{
+  while($myrow11 = mysql_fetch_row($result11))
+  {
+    $found11 = 1;
+    $version11 = $myrow11[0];
+  }
+}
+$glrefver = $version11;
+
+if($glrefver == "1")
+{
+  $gldr1010100 = $_POST['gldr1010100']; $glcr1010100 = $_POST['glcr1010100'];
+  if($gldr1010100 == '') { $gldr1010100 = 0; } if($glcr1010100 == '') { $glcr1010100 = 0; }
+  $gldr1010201 = $_POST['gldr1010201']; $glcr1010201 = $_POST['glcr1010201'];
+  if($gldr1010201 == '') { $gldr1010201 = 0; } if($glcr1010201 == '') { $glcr1010201 = 0; }
+  $gldr1010202 = $_POST['gldr1010202']; $glcr1010202 = $_POST['glcr1010202'];
+  if($gldr1010202 == '') { $gldr1010202 = 0; } if($glcr1010202 == '') { $glcr1010202 = 0; }
+  $gldr1010209 = $_POST['gldr1010209']; $glcr1010209 = $_POST['glcr1010209'];
+  if($gldr1010209 == '') { $gldr1010209 = 0; } if($glcr1010209 == '') { $glcr1010209 = 0; }
+  $gldr1010211 = $_POST['gldr1010211']; $glcr1010211 = $_POST['glcr1010211'];
+  if($gldr1010211 == '') { $gldr1010211 = 0; } if($glcr1010211 == '') { $glcr1010211 = 0; }
+  $gldr1010207 = $_POST['gldr1010207']; $glcr1010207 = $_POST['glcr1010207'];
+  if($gldr1010207 == '') { $gldr1010207 = 0; } if($glcr1010207 == '') { $glcr1010207 = 0; }
+  $gldr1010204 = $_POST['gldr1010204']; $glcr1010204 = $_POST['glcr1010204'];
+  if($gldr1010204 == '') { $gldr1010204 = 0; } if($glcr1010204 == '') { $glcr1010204 = 0; }
+  $gldr1010203 = $_POST['gldr1010203']; $glcr1010203 = $_POST['glcr1010203'];
+  if($gldr1010203 == '') { $gldr1010203 = 0; } if($glcr1010203 == '') { $glcr1010203 = 0; }
+  $gldr1010300 = $_POST['gldr1010300']; $glcr1010300 = $_POST['glcr1010300'];
+  if($gldr1010300 == '') { $gldr1010300 = 0; } if($glcr1010300 == '') { $glcr1010300 = 0; }
+  $gldr1010400 = $_POST['gldr1010400']; $glcr1010400 = $_POST['glcr1010400'];
+  if($gldr1010400 == '') { $gldr1010400 = 0; } if($glcr1010400 == '') { $glcr1010400 = 0; }
+
+  $gldr10104001 = $_POST['gldr10104001']; $glcr10104001 = $_POST['glcr10104001'];
+  if($gldr10104001 == '') { $gldr10104001 = 0; } if($glcr10104001 == '') { $glcr10104001 = 0; }
+  $gldr1010500 = $_POST['gldr1010500']; $glcr1010500 = $_POST['glcr1010500'];
+  if($gldr1010500 == '') { $gldr1010500 = 0; } if($glcr1010500 == '') { $glcr1010500 = 0; }
+  $gldr1010554 = $_POST['gldr1010554']; $glcr1010554 = $_POST['glcr1010554'];
+  if($gldr1010554 == '') { $gldr1010554 = 0; } if($glcr1010554 == '') { $glcr1010554 = 0; }
+  $gldr1010555 = $_POST['gldr1010555']; $glcr1010555 = $_POST['glcr1010555'];
+  if($gldr1010555 == '') { $gldr1010555 = 0; } if($glcr1010555 == '') { $glcr1010555 = 0; }
+  $gldr1010552 = $_POST['gldr1010552']; $glcr1010552 = $_POST['glcr1010552'];
+  if($gldr1010552 == '') { $gldr1010552 = 0; } if($glcr1010552 == '') { $glcr1010552 = 0; }
+  $gldr1010553 = $_POST['gldr1010553']; $glcr1010553 = $_POST['glcr1010553'];
+  if($gldr1010553 == '') { $gldr1010553 = 0; } if($glcr1010553 == '') { $glcr1010553 = 0; }
+  $gldr1010556 = $_POST['gldr1010556']; $glcr1010556 = $_POST['glcr1010556'];
+  if($gldr1010556 == '') { $gldr1010556 = 0; } if($glcr1010556 == '') { $glcr1010556 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+  $gldr1010551 = $_POST['gldr1010551']; $glcr1010551 = $_POST['glcr1010551'];
+  if($gldr1010551 == '') { $gldr1010551 = 0; } if($glcr1010551 == '') { $glcr1010551 = 0; }
+  $gldr1010700 = $_POST['gldr1010700']; $glcr1010700 = $_POST['glcr1010700'];
+  if($gldr1010700 == '') { $gldr1010700 = 0; } if($glcr1010700 == '') { $glcr1010700 = 0; }
+
+  $gldr1010706 = $_POST['gldr1010706']; $glcr1010706 = $_POST['glcr1010706'];
+  if($gldr1010706 == '') { $gldr1010706 = 0; } if($glcr1010706 == '') { $glcr1010706 = 0; }
+  $gldr1010707 = $_POST['gldr1010707']; $glcr1010707 = $_POST['glcr1010707'];
+  if($gldr1010707 == '') { $gldr1010707 = 0; } if($glcr1010707 == '') { $glcr1010707 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+  $gldr1010600 = $_POST['gldr1010600']; $glcr1010600 = $_POST['glcr1010600'];
+  if($gldr1010600 == '') { $gldr1010600 = 0; } if($glcr1010600 == '') { $glcr1010600 = 0; }
+  $gldr1020202 = $_POST['gldr1020202']; $glcr1020202 = $_POST['glcr1020202'];
+  if($gldr1020202 == '') { $gldr1020202 = 0; } if($glcr1020202 == '') { $glcr1020202 = 0; }
+  $gldr10202022 = $_POST['gldr10202022']; $glcr10202022 = $_POST['glcr10202022'];
+  if($gldr10202022 == '') { $gldr10202022 = 0; } if($glcr10202022 == '') { $glcr10202022 = 0; }
+  $gldr1020700 = $_POST['gldr1020700']; $glcr1020700 = $_POST['glcr1020700'];
+  if($gldr1020700 == '') { $gldr1020700 = 0; } if($glcr1020700 == '') { $glcr1020700 = 0; }
+  $gldr1020100 = $_POST['gldr1020100']; $glcr1020100 = $_POST['glcr1020100'];
+  if($gldr1020100 == '') { $gldr1020100 = 0; } if($glcr1020100 == '') { $glcr1020100 = 0; }
+  $gldr10201011 = $_POST['gldr10201011']; $glcr10201011 = $_POST['glcr10201011'];
+  if($gldr10201011 == '') { $gldr10201011 = 0; } if($glcr10201011 == '') { $glcr10201011 = 0; }
+  $gldr1020401 = $_POST['gldr1020401']; $glcr1020401 = $_POST['glcr1020401'];
+  if($gldr1020401 == '') { $gldr1020401 = 0; } if($glcr1020401 == '') { $glcr1020401 = 0; }
+
+  $gldr10204011 = $_POST['gldr10204011']; $glcr10204011 = $_POST['glcr10204011'];
+  if($gldr10204011 == '') { $gldr10204011 = 0; } if($glcr10204011 == '') { $glcr10204011 = 0; }
+  $gldr1020301 = $_POST['gldr1020301']; $glcr1020301 = $_POST['glcr1020301'];
+  if($gldr1020301 == '') { $gldr1020301 = 0; } if($glcr1020301 == '') { $glcr1020301 = 0; }
+  $gldr10203011 = $_POST['gldr10203011']; $glcr10203011 = $_POST['glcr10203011'];
+  if($gldr10203011 == '') { $gldr10203011 = 0; } if($glcr10203011 == '') { $glcr10203011 = 0; }
+  $gldr1020200 = $_POST['gldr1020200']; $glcr1020200 = $_POST['glcr1020200'];
+  if($gldr1020200 == '') { $gldr1020200 = 0; } if($glcr1020200 == '') { $glcr1020200 = 0; }
+  $gldr10202011 = $_POST['gldr10202011']; $glcr10202011 = $_POST['glcr10202011'];
+  if($gldr10202011 == '') { $gldr10202011 = 0; } if($glcr10202011 == '') { $glcr10202011 = 0; }
+  $gldr1020204 = $_POST['gldr1020204']; $glcr1020204 = $_POST['glcr1020204'];
+  if($gldr1020204 == '') { $gldr1020204 = 0; } if($glcr1020204 == '') { $glcr1020204 = 0; }
+  $gldr10202044 = $_POST['gldr10202044']; $glcr10202044 = $_POST['glcr10202044'];
+  if($gldr10202044 == '') { $gldr10202044 = 0; } if($glcr10202044 == '') { $glcr10202044 = 0; }
+  $gldr1020203 = $_POST['gldr1020203']; $glcr1020203 = $_POST['glcr1020203'];
+  if($gldr1020203 == '') { $gldr1020203 = 0; } if($glcr1020203 == '') { $glcr1020203 = 0; }
+  $gldr10202033 = $_POST['gldr10202033']; $glcr10202033 = $_POST['glcr10202033'];
+  if($gldr10202033 == '') { $gldr10202033 = 0; } if($glcr10202033 == '') { $glcr10202033 = 0; }
+  $gldr1020501 = $_POST['gldr1020501']; $glcr1020501 = $_POST['glcr1020501'];
+  if($gldr1020501 == '') { $gldr1020501 = 0; } if($glcr1020501 == '') { $glcr1020501 = 0; }
+
+  $gldr10205011 = $_POST['gldr10205011']; $glcr10205011 = $_POST['glcr10205011'];
+  if($gldr10205011 == '') { $gldr10205011 = 0; } if($glcr10205011 == '') { $glcr10205011 = 0; }
+  $gldr1020104 = $_POST['gldr1020104']; $glcr1020104 = $_POST['glcr1020104'];
+  if($gldr1020104 == '') { $gldr1020104 = 0; } if($glcr1020104 == '') { $glcr1020104 = 0; }
+  $gldr10201044 = $_POST['gldr10201044']; $glcr10201044 = $_POST['glcr10201044'];
+  if($gldr10201044 == '') { $gldr10201044 = 0; } if($glcr10201044 == '') { $glcr10201044 = 0; }
+  $gldr1030200 = $_POST['gldr1030200']; $glcr1030200 = $_POST['glcr1030200'];
+  if($gldr1030200 == '') { $gldr1030200 = 0; } if($glcr1030200 == '') { $glcr1030200 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+// $gldrxxxxxxx = $_post['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['dlcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+  $gldr1030300 = $_POST['gldr1030300']; $glcr1030300 = $_POST['glcr1030300'];
+  if($gldr1030300 == '') { $gldr1030300 = 0; } if($glcr1030300 == '') { $glcr1030300 = 0; }
+  $gldr1030100 = $_POST['gldr1030100']; $glcr1030100 = $_POST['glcr1030100'];
+  if($gldr1030100 == '') { $gldr1030100 = 0; } if($glcr1030100 == '') { $glcr1030100 = 0; }
+  $gldr2010208 = $_POST['gldr2010208']; $glcr2010208 = $_POST['glcr2010208'];
+  if($gldr2010208 == '') { $gldr2010208 = 0; } if($glcr2010208 == '') { $glcr2010208 = 0; }
+  $gldr2010201 = $_POST['gldr2010201']; $glcr2010201 = $_POST['glcr2010201'];
+  if($gldr2010201 == '') { $gldr2010201 = 0; } if($glcr2010201 == '') { $glcr2010201 = 0; }
+
+  $gldr2010207 = $_POST['gldr2010207']; $glcr2010207 = $_POST['glcr2010207'];
+  if($gldr2010207 == '') { $gldr2010207 = 0; } if($glcr2010207 == '') { $glcr2010207 = 0; }
+  $gldr2010203 = $_POST['gldr2010203']; $glcr2010203 = $_POST['glcr2010203'];
+  if($gldr2010203 == '') { $gldr2010203 = 0; } if($glcr2010203 == '') { $glcr2010203 = 0; }
+  $gldr2010204 = $_POST['gldr2010204']; $glcr2010204 = $_POST['glcr2010204'];
+  if($gldr2010204 == '') { $gldr2010204 = 0; } if($glcr2010204 == '') { $glcr2010204 = 0; }
+  $gldr2010205 = $_POST['gldr2010205']; $glcr2010205 = $_POST['glcr2010205'];
+  if($gldr2010205 == '') { $gldr2010205 = 0; } if($glcr2010205 == '') { $glcr2010205 = 0; }
+  $gldr2010206 = $_POST['gldr2010206']; $glcr2010206 = $_POST['glcr2010206'];
+  if($gldr2010206 == '') { $gldr2010206 = 0; } if($glcr2010206 == '') { $glcr2010206 = 0; }
+  $gldr2010202 = $_POST['gldr2010202']; $glcr2010202 = $_POST['glcr2010202'];
+  if($gldr2010202 == '') { $gldr2010202 = 0; } if($glcr2010202 == '') { $glcr2010202 = 0; }
+  $gldr2030100 = $_POST['gldr2030100']; $glcr2030100 = $_POST['glcr2030100'];
+  if($gldr2030100 == '') { $gldr2030100 = 0; } if($glcr2030100 == '') { $glcr2030100 = 0; }
+  $gldr2030101 = $_POST['gldr2030101']; $glcr2030101 = $_POST['glcr2030101'];
+  if($gldr2030101 == '') { $gldr2030101 = 0; } if($glcr2030101 == '') { $glcr2030101 = 0; }
+  $gldr2010211 = $_POST['gldr2010211']; $glcr2010211 = $_POST['glcr2010211'];
+  if($gldr2010211 == '') { $gldr2010211 = 0; } if($glcr2010211 == '') { $glcr2010211 = 0; }
+  $gldr2030102 = $_POST['gldr2030102']; $glcr2030102 = $_POST['glcr2030102'];
+  if($gldr2030102 == '') { $gldr2030102 = 0; } if($glcr2030102 == '') { $glcr2030102 = 0; }
+
+  $gldr2010213 = $_POST['gldr2010213']; $glcr2010213 = $_POST['glcr2010213'];
+  if($gldr2010213 == '') { $gldr2010213 = 0; } if($glcr2010213 == '') { $glcr2010213 = 0; }
+  $gldr2010209 = $_POST['gldr2010209']; $glcr2010209 = $_POST['glcr2010209'];
+  if($gldr2010209 == '') { $gldr2010209 = 0; } if($glcr2010209 == '') { $glcr2010209 = 0; }
+  $gldr2020200 = $_POST['gldr2020200']; $glcr2020200 = $_POST['glcr2020200'];
+  if($gldr2020200 == '') { $gldr2020200 = 0; } if($glcr2020200 == '') { $glcr2020200 = 0; }
+  $gldr3010100 = $_POST['gldr3010100']; $glcr3010100 = $_POST['glcr3010100'];
+  if($gldr3010100 == '') { $gldr3010100 = 0; } if($glcr3010100 == '') { $glcr3010100 = 0; }
+  $gldr3010101 = $_POST['gldr3010101']; $glcr3010101 = $_POST['glcr3010101'];
+  if($gldr3010101 == '') { $gldr3010101 = 0; } if($glcr3010101 == '') { $glcr3010101 = 0; }
+  $gldr3010102 = $_POST['gldr3010102']; $glcr3010102 = $_POST['glcr3010102'];
+  if($gldr3010102 == '') { $gldr3010102 = 0; } if($glcr3010102 == '') { $glcr3010102 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+  $gldr3010200 = $_POST['gldr3010200']; $glcr3010200 = $_POST['glcr3010200'];
+  if($gldr3010200 == '') { $gldr3010200 = 0; } if($glcr3010200 == '') { $glcr3010200 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+
+  $gldr5010000 = $_POST['gldr5010000']; $glcr5010000 = $_POST['glcr5010000'];
+  if($gldr5010000 == '') { $gldr5010000 = 0; } if($glcr5010000 == '') { $glcr5010000 = 0; }
+  $gldr5010200 = $_POST['gldr5010200']; $glcr5010200 = $_POST['glcr5010200'];
+  if($gldr5010200 == '') { $gldr5010200 = 0; } if($glcr5010200 == '') { $glcr5010200 = 0; }
+  $gldr5010100 = $_POST['gldr5010100']; $glcr5010100 = $_POST['glcr5010100'];
+  if($gldr5010100 == '') { $gldr5010100 = 0; } if($glcr5010100 == '') { $glcr5010100 = 0; }
+  $gldr6000000 = $_POST['gldr6000000']; $glcr6000000 = $_POST['glcr6000000'];
+  if($gldr6000000 == '') { $gldr6000000 = 0; } if($glcr6000000 == '') { $glcr6000000 = 0; }
+  $gldr7000000 = $_POST['gldr7000000']; $glcr7000000 = $_POST['glcr7000000'];
+  if($gldr7000000 == '') { $gldr7000000 = 0; } if($glcr7000000 == '') { $glcr7000000 = 0; }
+// $gldrxxxxxxx = $_POST['gldrxxxxxxx']; $glcrxxxxxxx = $_POST['glcrxxxxxxx'];
+// if($gldrxxxxxxx == '') { $gldrxxxxxxx = 0; } if($glcrxxxxxxx == '') { $glcrxxxxxxx = 0; }
+  $gldr2010214 = $_POST['gldr2010214']; $glcr2010214 = $_POST['glcr2010214'];
+  if($gldr2010214 == '') { $gldr2010214 = 0; } if($glcr2010214 == '') { $glcr2010214 = 0; }
+}
+else
+{
+// reserved for glrefver=2 post variables
+}
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+echo "<table class=\"fin\" border=\"1\">";
+
+?>
+
+<tr><th colspan='5'>PKII Working Paper for <? echo "$wpgendate"; ?></th></tr>
+<tr><th colspan='5'>Saving Beginning Balance entries</th></tr>
+
+<?
+    echo "<tr><td>Count</td><td>GLCode</td><td>Debit</td><td>Credit</td><td>Status</td></tr>";
+
+    $wpgenmonth = $wpgendate."-"."01";
+
+// insert $_POST values
+  if($glrefver == "1")
+  {
+    $result01 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.100\", begbalancedr=$gldr1010100, begbalancecr=$glcr1010100", $dbh);
+    echo "<tr><td>1</td><td>10.10.100</td><td>$gldr1010100</td><td>$glcr1010100</td><td>";
+    if($result01 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result02 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.201\", begbalancedr=$gldr1010201, begbalancecr=$glcr1010201", $dbh);
+    echo "<tr><td>2</td><td>10.10.201</td><td>$gldr1010201</td><td>$glcr1010201</td><td>";
+    if($result02 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result03 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.202\", begbalancedr=$gldr1010202, begbalancecr=$glcr1010202", $dbh);
+    echo "<tr><td>3</td><td>10.10.202</td><td>$gldr1010202</td><td>$glcr1010202</td><td>";
+    if($result03 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result04 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.209\", begbalancedr=$gldr1010209, begbalancecr=$glcr1010209", $dbh);
+    echo "<tr><td>4</td><td>10.10.209</td><td>$gldr1010209</td><td>$glcr1010209</td><td>";
+    if($result04 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result05 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.211\", begbalancedr=$gldr1010211, begbalancecr=$glcr1010211", $dbh);
+    echo "<tr><td>5</td><td>10.10.211</td><td>$gldr1010211</td><td>$glcr1010211</td><td>";
+    if($result05 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "Not saved"; }
+    echo "</td></tr>";
+    $result06 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.207\", begbalancedr=$gldr1010207, begbalancecr=$glcr1010207", $dbh);
+    echo "<tr><td>6</td><td>10.10.207</td><td>$gldr1010207</td><td>$glcr1010207</td><td>";
+    if($result06 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result07 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.204\", begbalancedr=$gldr1010204, begbalancecr=$glcr1010204", $dbh);
+    echo "<tr><td>7</td><td>10.10.204</td><td>$gldr1010204</td><td>$glcr1010204</td><td>";
+    if($result07 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result08 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.203\", begbalancedr=$gldr1010203, begbalancecr=$glcr1010203", $dbh);
+    echo "<tr><td>8</td><td>10.10.203</td><td>$gldr1010203</td><td>$glcr1010203</td><td>";
+    if($result08 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result09 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.300\", begbalancedr=$gldr1010300, begbalancecr=$glcr1010300", $dbh);
+    echo "<tr><td>9</td><td>10.10.300</td><td>$gldr1010300</td><td>$glcr1010300</td><td>";
+    if($result09 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result10 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.400\", begbalancedr=$gldr1010400, begbalancecr=$glcr1010400", $dbh);
+    echo "<tr><td>10</td><td>10.10.400</td><td>$gldr1010400</td><td>$glcr1010400</td><td>";
+    if($result10 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result11 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.400-1\", begbalancedr=$gldr10104001, begbalancecr=$glcr10104001", $dbh);
+    echo "<tr><td>11</td><td>10.10.400-1</td><td>$gldr10104001</td><td>$glcr10104001</td><td>";
+    if($result11 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result12 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.500\", begbalancedr=$gldr1010500, begbalancecr=$glcr1010500", $dbh);
+    echo "<tr><td>12</td><td>10.10.500</td><td>$gldr1010500</td><td>$glcr1010500</td><td>";
+    if($result12 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result13 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.554\", begbalancedr=$gldr1010554, begbalancecr=$glcr1010554", $dbh);
+    echo "<tr><td>13</td><td>10.10.554</td><td>$gldr1010554</td><td>$glcr1010554</td><td>";
+    if($result13 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result14 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.555\", begbalancedr=$gldr1010555, begbalancecr=$glcr1010555", $dbh);
+    echo "<tr><td>14</td><td>10.10.555</td><td>$gldr1010555</td><td>$glcr1010555</td><td>";
+    if($result14 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result15 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.552\", begbalancedr=$gldr1010552, begbalancecr=$glcr101055", $dbh);
+    echo "<tr><td>15</td><td>10.10.552</td><td>$gldr1010552</td><td>$glcr101055</td><td>";
+    if($result15 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result16 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.553\", begbalancedr=$gldr1010553, begbalancecr=$glcr1010553", $dbh);
+    echo "<tr><td>16</td><td>10.10.553</td><td>$gldr1010553</td><td>$glcr1010553</td><td>";
+    if($result16 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result17 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.556\", begbalancedr=$gldr1010556, begbalancecr=$glcr1010556", $dbh);
+    echo "<tr><td>17</td><td>10.10.556</td><td>$gldr1010556</td><td>$glcr1010556</td><td>";
+    if($result17 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result18 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>18</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result18 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+    $result19 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.551\", begbalancedr=$gldr1010551, begbalancecr=$glcr1010551", $dbh);
+    echo "<tr><td>19</td><td>10.10.551</td><td>$gldr1010551</td><td>$glcr1010551</td><td>";
+    if($result19 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result20 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.700\", begbalancedr=$gldr1010700, begbalancecr=$glcr1010700", $dbh);
+    echo "<tr><td>20</td><td>10.10.700</td><td>$gldr1010700</td><td>$glcr1010700</td><td>";
+    if($result20 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result21 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.706\", begbalancedr=$gldr1010706, begbalancecr=$glcr1010706", $dbh);
+    echo "<tr><td>21</td><td>10.10.706</td><td>$gldr1010706</td><td>$glcr1010706</td><td>";
+    if($result21 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result22 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.707\", begbalancedr=$gldr1010707, begbalancecr=$glcr1010707", $dbh);
+    echo "<tr><td>22</td><td>10.10.707</td><td>$gldr1010707</td><td>$glcr1010707</td><td>";
+    if($result22 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result23 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.707\", begbalancedr=$gldr1010707, begbalancecr=$glcr1010707", $dbh);
+    echo "<tr><td>23</td><td>10.10.707</td><td>$gldr1010707</td><td>$glcr1010707</td><td>";
+    if($result23 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result24 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>24</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result24 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+    $result25 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.10.600\", begbalancedr=$gldr1010600, begbalancecr=$glcr1010600", $dbh);
+    echo "<tr><td>25</td><td>10.10.600</td><td>$gldr1010600</td><td>$glcr1010600</td><td>";
+    if($result25 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result26 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.202\", begbalancedr=$gldr1020202, begbalancecr=$glcr1020202", $dbh);
+    echo "<tr><td>26</td><td>10.20.202</td><td>$gldr1020202</td><td>$glcr1020202</td><td>";
+    if($result26 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result27 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.202-2\", begbalancedr=$gldr10202022, begbalancecr=$glcr10202022", $dbh);
+    echo "<tr><td>27</td><td>10.20.202-2</td><td>$gldr10202022</td><td>$glcr10202022</td><td>";
+    if($result27 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result28 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.700\", begbalancedr=$gldr1020700, begbalancecr=$glcr1020700", $dbh);
+    echo "<tr><td>28</td><td>10.20.700</td><td>$gldr1020700</td><td>$glcr1020700</td><td>";
+    if($result28 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result29 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.100\", begbalancedr=$gldr1020100, begbalancecr=$glcr1020100", $dbh);
+    echo "<tr><td>29</td><td>10.20.100</td><td>$gldr1020100</td><td>$glcr1020100</td><td>";
+    if($result29 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result30 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.101-1\", begbalancedr=$gldr10201011, begbalancecr=$glcr10201011", $dbh);
+    echo "<tr><td>30</td><td>10.20.101-1</td><td>$gldr10201011</td><td>$glcr10201011</td><td>";
+    if($result30 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result31 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.401\", begbalancedr=$gldr1020401, begbalancecr=$glcr1020401", $dbh);
+    echo "<tr><td>31</td><td>10.20.401</td><td>$gldr1020401</td><td>$glcr1020401</td><td>";
+    if($result31 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result32 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.301\", begbalancedr=$gldr1020301, begbalancecr=$glcr1020301", $dbh);
+    echo "<tr><td>32</td><td>10.20.301</td><td>$gldr1020301</td><td>$glcr1020301</td><td>";
+    if($result32 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result33 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.301-1\", begbalancedr=$gldr10203011, begbalancecr=$glcr10203011", $dbh);
+    echo "<tr><td>33</td><td>10.20.301-1</td><td>$gldr10203011</td><td>$glcr10203011</td><td>";
+    if($result33 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result34 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.200\", begbalancedr=$gldr1020200, begbalancecr=$glcr1020200", $dbh);
+    echo "<tr><td>34</td><td>10.20.200</td><td>$gldr1020200</td><td>$glcr1020200</td><td>";
+    if($result34 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result35 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.201-1\", begbalancedr=$gldr10202011, begbalancecr=$glcr10202011", $dbh);
+    echo "<tr><td>35</td><td>10.20.201-1</td><td>$gldr10202011</td><td>$glcr10202011</td><td>";
+    if($result35 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result36 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.204\", begbalancedr=$gldr1020204, begbalancecr=$glcr1020204", $dbh);
+    echo "<tr><td>36</td><td>10.20.204</td><td>$gldr1020204</td><td>$glcr1020204</td><td>";
+    if($result36 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result37 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.204-4\", begbalancedr=$gldr10202044, begbalancecr=$glcr10202044", $dbh);
+    echo "<tr><td>37</td><td>10.20.204-4</td><td>$gldr10202044</td><td>$glcr10202044</td><td>";
+    if($result37 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result38 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.203\", begbalancedr=$gldr1020203, begbalancecr=$glcr1020203", $dbh);
+    echo "<tr><td>38</td><td>10.20.203</td><td>$gldr1020203</td><td>$glcr1020203</td><td>";
+    if($result38 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result39 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.203-3\", begbalancedr=$gldr10202033, begbalancecr=$glcr10202033", $dbh);
+    echo "<tr><td>39</td><td>10.20.203-3</td><td>$gldr10202033</td><td>$glcr10202033</td><td>";
+    if($result39 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result40 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.501\", begbalancedr=$gldr1020501, begbalancecr=$glcr1020501", $dbh);
+    echo "<tr><td>40</td><td>10.20.501</td><td>$gldr1020501</td><td>$glcr1020501</td><td>";
+    if($result40 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result41 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.501-1\", begbalancedr=$gldr10205011, begbalancecr=$glcr10205011", $dbh);
+    echo "<tr><td>41</td><td>10.20.501-1</td><td>$gldr10205011</td><td>$glcr10205011</td><td>";
+    if($result41 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result42 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.104\", begbalancedr=$gldr1020104, begbalancecr=$glcr1020104", $dbh);
+    echo "<tr><td>42</td><td>10.20.104</td><td>$gldr1020104</td><td>$glcr1020104</td><td>";
+    if($result42 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result43 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.20.104-4\", begbalancedr=$gldr10201044, begbalancecr=$glcr10201044", $dbh);
+    echo "<tr><td>43</td><td>10.20.104-4</td><td>$gldr10201044</td><td>$glcr10201044</td><td>";
+    if($result43 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result44 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.30.200\", begbalancedr=$gldr1030200, begbalancecr=$glcr1030200", $dbh);
+    echo "<tr><td>44</td><td>10.30.200</td><td>$gldr1030200</td><td>$glcr1030200</td><td>";
+    if($result44 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result45 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>45</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result45 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+//    $result46 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>46</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result46 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+    $result47 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.30.300\", begbalancedr=$gldr1030300, begbalancecr=$glcr1030300", $dbh);
+    echo "<tr><td>47</td><td>10.30.300</td><td>$gldr1030300</td><td>$glcr1030300</td><td>";
+    if($result47 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result48 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"10.30.100\", begbalancedr=$gldr1030100, begbalancecr=$glcr1030100", $dbh);
+    echo "<tr><td>48</td><td>10.30.100</td><td>$gldr1030100</td><td>$glcr1030100</td><td>";
+    if($result48 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result49 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.208\", begbalancedr=$gldr2010208, begbalancecr=$glcr2010208", $dbh);
+    echo "<tr><td>49</td><td>20.10.208</td><td>$gldr2010208</td><td>$glcr2010208</td><td>";
+    if($result49 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result50 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.201\", begbalancedr=$gldr2010201, begbalancecr=$glcr2010201", $dbh);
+    echo "<tr><td>50</td><td>20.10.201</td><td>$gldr2010201</td><td>$glcr2010201</td><td>";
+    if($result50 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result51 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.207\", begbalancedr=$gldr2010207, begbalancecr=$glcr2010207", $dbh);
+    echo "<tr><td>51</td><td>20.10.207</td><td>$gldr2010207</td><td>$glcr2010207</td><td>";
+    if($result51 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result52 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.203\", begbalancedr=$gldr2010203, begbalancecr=$glcr2010203", $dbh);
+    echo "<tr><td>52</td><td>20.10.203</td><td>$gldr2010203</td><td>$glcr2010203</td><td>";
+    if($result52 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result53 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.204\", begbalancedr=$gldr2010204, begbalancecr=$glcr2010204", $dbh);
+    echo "<tr><td>53</td><td>20.10.204</td><td>$gldr2010204</td><td>$glcr2010204</td><td>";
+    if($result53 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result54 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.205\", begbalancedr=$gldr2010205, begbalancecr=$glcr2010205", $dbh);
+    echo "<tr><td>54</td><td>20.10.205</td><td>$gldr2010205</td><td>$glcr2010205</td><td>";
+    if($result54 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result55 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.206\", begbalancedr=$gldr2010206, begbalancecr=$glcr2010206", $dbh);
+    echo "<tr><td>55</td><td>20.10.206</td><td>$gldr2010206</td><td>$glcr2010206</td><td>";
+    if($result55 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result56 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.202\", begbalancedr=$gldr2010202, begbalancecr=$glcr2010202", $dbh);
+    echo "<tr><td>56</td><td>20.10.202</td><td>$gldr2010202</td><td>$glcr2010202</td><td>";
+    if($result56 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result57 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.30.100\", begbalancedr=$gldr2030100, begbalancecr=$glcr2030100", $dbh);
+    echo "<tr><td>57</td><td>20.30.100</td><td>$gldr2030100</td><td>$glcr2030100</td><td>";
+    if($result57 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result58 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.30.101\", begbalancedr=$gldr2030101, begbalancecr=$glcr2030101", $dbh);
+    echo "<tr><td>58</td><td>20.30.101</td><td>$gldr2030101</td><td>$glcr2030101</td><td>";
+    if($result58 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result59 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.211\", begbalancedr=$gldr2010211, begbalancecr=$glcr2010211", $dbh);
+    echo "<tr><td>59</td><td>20.10.211</td><td>$gldr2010211</td><td>$glcr2010211</td><td>";
+    if($result59 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result60 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.30.102\", begbalancedr=$gldr2030102, begbalancecr=$glcr2030102", $dbh);
+    echo "<tr><td>60</td><td>20.30.102</td><td>$gldr2030102</td><td>$glcr2030102</td><td>";
+    if($result60 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+
+    $result61 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.213\", begbalancedr=$gldr2010213, begbalancecr=$glcr2010213", $dbh);
+    echo "<tr><td>61</td><td>20.10.213</td><td>$gldr2010213</td><td>$glcr2010213</td><td>";
+    if($result61 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result62 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.209\", begbalancedr=$gldr2010209, begbalancecr=$glcr2010209", $dbh);
+    echo "<tr><td>62</td><td>20.10.209</td><td>$gldr2010209</td><td>$glcr2010209</td><td>";
+    if($result62 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result63 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.20.200\", begbalancedr=$gldr2020200, begbalancecr=$glcr2020200", $dbh);
+    echo "<tr><td>63</td><td>20.20.200</td><td>$gldr2020200</td><td>$glcr2020200</td><td>";
+    if($result63 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result64 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"30.10.100\", begbalancedr=$gldr3010100, begbalancecr=$glcr3010100", $dbh);
+    echo "<tr><td>64</td><td>30.10.100</td><td>$gldr3010100</td><td>$glcr3010100</td><td>";
+    if($result64 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result65 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"30.10.101\", begbalancedr=$gldr3010101, begbalancecr=$glcr3010101", $dbh);
+    echo "<tr><td>65</td><td>30.10.101</td><td>$gldr3010101</td><td>$glcr3010101</td><td>";
+    if($result65 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result66 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"30.10.102\", begbalancedr=$gldr3010102, begbalancecr=$glcr3010102", $dbh);
+    echo "<tr><td>66</td><td>30.10.102</td><td>$gldr3010102</td><td>$glcr3010102</td><td>";
+    if($result66 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result67 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>67</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result67 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+    $result68 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"30.10.200\", begbalancedr=$gldr3010200, begbalancecr=$glcr3010200", $dbh);
+    echo "<tr><td>68</td><td>30.10.200</td><td>$gldr3010200</td><td>$glcr3010200</td><td>";
+    if($result68 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result69 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>69</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result69 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+//    $result70 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>70</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result70 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+
+    $result71 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"50.10.000\", begbalancedr=$gldr5010000, begbalancecr=$glcr5010000", $dbh);
+    echo "<tr><td>71</td><td>50.10.000</td><td>$gldr5010000</td><td>$glcr5010000</td><td>";
+    if($result71 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result72 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"50.10.200\", begbalancedr=$gldr5010200, begbalancecr=$glcr5010200", $dbh);
+    echo "<tr><td>72</td><td>50.10.200</td><td>$gldr5010200</td><td>$glcr5010200</td><td>";
+    if($result72 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result73 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"50.10.100\", begbalancedr=$gldr5010100, begbalancecr=$glcr5010100", $dbh);
+    echo "<tr><td>73</td><td>50.10.100</td><td>$gldr5010100</td><td>$glcr5010100</td><td>";
+    if($result73 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result74 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"60.00.000\", begbalancedr=$gldr6000000, begbalancecr=$glcr6000000", $dbh);
+    echo "<tr><td>74</td><td>60.00.000</td><td>$gldr6000000</td><td>$glcr6000000</td><td>";
+    if($result74 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+    $result75 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"70.00.000\", begbalancedr=$gldr7000000, begbalancecr=$glcr7000000", $dbh);
+    echo "<tr><td>75</td><td>70.00.000</td><td>$gldr7000000</td><td>$glcr7000000</td><td>";
+    if($result75 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+//    $result76 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"\", begbalancedr=$gldrxxxxxxx, begbalancecr=$glcrxxxxxxx", $dbh);
+//    echo "<tr><td>76</td><td></td><td>$gldrxxxxxxx</td><td>$glcrxxxxxxx</td><td>";
+//    if($result76 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+//    echo "</td></tr>";
+    $result77 = mysql_query("INSERT tblfinworkpaper SET month=\"$wpgenmonth\", glrefver=$glrefver, glcode=\"20.10.214\", begbalancedr=$gldr2010214, begbalancecr=$glcr2010214", $dbh);
+    echo "<tr><td>77</td><td>20.10.214</td><td>$gldr2010214</td><td>$glcr2010214</td><td>";
+    if($result77 != '') { echo "<font color=\"green\">OK</font>"; } else { echo "<font color=\"red\">Not saved</font>"; }
+    echo "</td></tr>";
+  }
+  else if($glrefver == "2")
+  {
+// insert queries here for glrefver=2
+  }
+  
+
+    echo "<tr><td colspan=\"5\">";
+      echo "<table border=\"0\" class=\"fin\">";
+      echo "<tr><td colspan=\"2\">OK - EOF</td></tr>";
+
+// create log
+    include('datetimenow.php');
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminloginuid - Inserted beginning balances for PKII voucher working paper: $wpgendate";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+      echo "<tr><td colspan=\"2\">Proceed to generate working paper (for the month $wpgendate)?</td></tr>";
+      echo "<tr><td><form action=\"finvouchworkpgenrun.php?loginid=$loginid&gd=$wpgendate\" method=\"post\">";
+      echo "<input type=\"submit\" value=\"OK\"></form></td>";
+      echo "<td><form action=\"finvouchworkpgen2a2n.php?loginid=$loginid&gd=$wpgendate\" method=\"post\">";
+      echo "<input type=\"submit\" value=\"Cancel\"></form></td></tr>";
+      echo "</table>";
+    echo "</td></tr>";
+
+echo "</table>";
+
+echo "<p><a href=\"finvouchmain.php?loginid=$loginid\">Back</a></p>";
+
+
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

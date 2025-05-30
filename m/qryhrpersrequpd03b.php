@@ -1,0 +1,15 @@
+<?php
+//
+// qryhrpersrequpd03b.php
+// fr: ../vc/mhrpersreqrecoappr.php
+//
+// update for recommending approver of dcg
+
+require '../includes/dbh.php';
+
+	$res11query="UPDATE tblhrpersreq SET timestamp=\"$now\", loginid=$loginid, recoapprdcgempid=\"$recoapprdcgempid\", recoapprdcgdate=\"$now\", recoapprdcgctr=$recoapprctrfin, approveempid=\"$approveempidfin\" WHERE idhrpersreq=$idhrpersreq";
+	$result11="";
+	$result11=$dbh->query($res11query);
+		
+$dbh->close();
+?>

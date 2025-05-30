@@ -1,0 +1,47 @@
+Please find below details of your payroll salary (payroll period August 01-15, 2014) is now available.
+
+cutoff period: 2014-07-16 -to- 2014-07-31
+
+Employee ID: 619
+Employee Name: Millie Ann Vale
+Project: ARISP 3
+
+PAY RATE: P7654.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P7654.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+Salary adj - Apr 01-Jun 30: 921.85
+TOTAL Taxable Income: P1921.85
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9576.35
+
+Withholding Tax: P1352.34
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1402.34
+
+NET PAY: P8174.01
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

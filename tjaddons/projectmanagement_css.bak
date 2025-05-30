@@ -1,0 +1,211 @@
+h1, h2, h3, h4, h5, h6, p, span, label, input, a, li{
+	font-family: 'Century Gothic' !important;
+	font-weight: 400 !important;
+}
+.projectDetailsContainer{
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+.projectDetailsWrapper{
+	width: 100%;
+	height: 100%;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.firstRow{
+	width: 100%;
+	padding-right: 3%;
+}
+
+.firstRow h3{
+	text-align: center;	
+	font-size: 20px;
+}
+
+.firstRow h5{
+	text-align: center;
+	font-size: 16px;
+}
+.firstRowColumn{
+	margin-top:10px;
+}
+.firstRowColumn h3{
+	text-align: left;
+	font-size: 18px;
+}
+
+.firstRowColumn h5{
+	text-align: left;
+	font-size: 15px;
+	margin: 2px;
+	margin-left: 0;
+	margin-right: 0;
+}
+.firstRowColumn .col-md-6{
+	padding: 0;
+}
+
+#commentSection{
+	width: 100%;
+	height: 450px;
+	background: #efefef;
+	padding:10px;	
+	border-radius: 10px;
+	border: 1px solid #777777;
+}
+
+#commentSection h4{
+	margin: 0;
+	text-align: left;
+	padding-left: 10px;
+
+}
+#line{
+	width: 100%;
+	margin-top:5px;
+	height: 2px;
+	background: #000000;
+	margin-bottom: 5px;
+}
+
+#messagecontainer{
+	width: 100%;
+	height: 320px;
+	margin-bottom: 5px;
+	border: 1px solid #000000;
+	overflow: auto;
+}
+#messagesubmit{
+	width: 100%;
+	height: 75px;
+	padding:10px;
+	border: 1px solid #000000;
+	border-radius: 0px 0px 10px 10px;
+}
+#messagesubmit .col-md-9{
+	padding: 0;
+}
+#messagesubmit .col-md-3{
+	padding-right: 0;
+}
+
+button#btnSubmit {
+    width: 100%;
+    height: 100%;
+    background: #3d2c7d;
+    text-transform: uppercase;
+    border: 2px solid #3d2c7d;
+    transition: all 0.5s ease;
+}
+
+button#btnSubmit:hover{
+	background: #f7f7f7;
+	color:#3d2c7d;
+}
+
+.messageDiv h6{
+	font-size: 16px;
+	margin-top:5px;
+}
+.messageDiv .col-md-4{
+	margin-top:5px;
+}
+
+.messageSecondRow{
+	border-bottom: 2px solid #000000;
+}
+.borderGray{
+	border:2px solid #efefef;
+}
+.secondRowColumn h3{
+	text-align: left;
+	font-size: 16px;
+}
+
+#leftPayment, #rightPayment, #leftInvoice, #rightInvoice{
+	height: 60px;
+	padding:5px;
+}
+#leftPayment{
+	background: #1aaada;
+}
+#rightPayment{
+	background: #bde7f7;
+}
+
+#leftPayment h4, #rightPayment h4{
+	margin: 0;
+	text-align: left;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+#leftPayment h4, #leftPayment h5{
+	color:#ffffff;
+}
+
+#leftPayment h5, #rightPayment h5{
+	margin: 0;
+	text-align: left;
+	font-size: 14px;
+	font-weight: 700 !important;
+}
+
+.no-padding-left{
+	padding-left: 0;
+}
+.no-padding-right{
+	padding-right: 0;
+}
+
+
+#leftInvoice{
+	background: #8ec165;
+	border-right: 1px solid #efefef;
+}
+#rightInvoice{
+	background: #cfefb6;
+	border-left: 1px solid #efefef;
+}
+
+#leftInvoice h4, #rightInvoice h4{
+	margin: 0;
+	text-align: left;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+#leftInvoice h4, #leftInvoice h5{
+	color:#ffffff;
+}
+
+#leftInvoice h5, #rightInvoice h5{
+	margin: 0;
+	text-align: left;
+	font-size: 14px;
+	font-weight: 700 !important;
+}
+
+#graphContainer{
+	min-width: 310px;
+	max-width: 100%;
+	width: 100%;
+	height: 400px;
+	margin: 0 auto;
+	margin-top:20px;
+}
+
+#commentTextArea {
+    height: 100%;
+}
+
+.thirdRow{
+	margin-top:20px;
+}
+
+.btn-info{
+	margin-left: 10px;
+}

@@ -1,0 +1,330 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$groupname = (isset($_POST['groupname'])) ? $_POST['groupname'] :'';
+
+$employeeid = (isset($_POST['employeeid'])) ? $_POST['employeeeid'] :'';
+$year = (isset($_POST['year'])) ? $_POST['year'] :'';
+$month = (isset($_POST['month'])) ? $_POST['month'] :'';
+$day = (isset($_POST['day'])) ? $_POST['day'] :'';
+$payrolldate = "$year-$month-$day";
+$payrolldate = date("Y-m-d", strtotime($payrolldate));
+
+$headerrecid = (isset($_POST['headerrecid'])) ? $_POST['headerrecid'] :'';
+$batchnumber = (isset($_POST['batchnumber'])) ? $_POST['batchnumber'] :'';
+$companycode = (isset($_POST['companycode'])) ? $_POST['companycode'] :'';
+$headerrectype = (isset($_POST['headerrectype'])) ? $_POST['headerrectype'] :'';
+$compacctnumber = (isset($_POST['compacctnumber'])) ? $_POST['compacctnumber'] :'';
+$ceilingamt = (isset($_POST['ceilingamt'])) ? $_POST['ceilingamt'] :'';
+$presofficecode = (isset($_POST['presofficecode'])) ? $_POST['presofficecode'] :'';
+$payrollidentifier = (isset($_POST['payrollidentifier'])) ? $_POST['payrollidentifier'] :'';
+$detailrecid = (isset($_POST['detailrecid'])) ? $_POST['detailrecid'] :'';
+$detailrectype = (isset($_POST['detailrectype'])) ? $_POST['detailrectype'] :'';
+$trailerrecid = (isset($_POST['trailerrecid'])) ? $_POST['trailerrecid'] :'';
+$trailerrectype = (isset($_POST['trailerrectype'])) ? $_POST['trailerrectype'] :'';
+$preparedname = (isset($_POST['preparedname'])) ? $_POST['preparedname'] :'';
+$preparedpos = (isset($_POST['preparedpos'])) ? $_POST['preparedpos'] :'';
+$checkedname = (isset($_POST['checkedname'])) ? $_POST['checkedname'] :'';
+$checkedpos = (isset($_POST['checkedpos'])) ? $_POST['checkedpos'] :'';
+$notedname = (isset($_POST['notedname'])) ? $_POST['notedname'] :'';
+$notedpos = (isset($_POST['notedpos'])) ? $_POST['notedpos'] :'';
+$approvedname = (isset($_POST['approvedname'])) ? $_POST['approvedname'] :'';
+$approvedpos = (isset($_POST['approvedpos'])) ? $_POST['approvedpos'] :'';
+
+//20190519
+$paytimehh = $_POST['paytimehh'];
+$paytimemm = $_POST['paytimemm'];
+$paytimeampm = $_POST['paytimeampm'];
+$payrolltime = "$paytimehh".":"."$paytimemm"."$paytimeampm";
+$ctr0=(isset($_POST['ctr0'])) ? $_POST['ctr0'] :'';
+$totnetamt=(isset($_POST['totnetamt'])) ? $_POST['totnetamt'] :'';
+
+$found = 0;
+
+$counter = 0;
+$counter2 = 0;
+$totacctnum = 0;
+$grandtotnetpay = 0;
+$grandtothh = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+?>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+<?php
+     echo "<html><head><STYLE TYPE=\"text/css\">";
+     echo "<!--";
+     echo "p{font-family: Helvetica; font-size: 10pt;}";
+     echo "B{font-family: Helvetica; font-size: 10pt;}";
+     echo "TD{font-family: Helvetica; font-size: 10pt;}";
+     echo "--->";
+     echo "</STYLE></head><body>";
+
+     echo "<h2>BPI Payroll File Process</h2>";
+     echo "<p>For $groupname<br>";
+
+	echo "<table id=\"ReportTable\" border=\"1\" spacing=\"1\">";
+	// display header
+	echo "<tr><td><a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a>$headerrecid</td>";
+	echo "<td>Payroll Date</td><td>".date('F j, Y', mktime(0, 0, 0, $month, $day, $year))."</td>";
+	echo "<td>Payroll Time</td><td>$payrolltime</td>";
+	echo "<td>Total Amount</td><td>$totnetamt</td>";
+	echo "<td>Total Count</td><td>$ctr0</td>";
+	echo "<td>Funding Account</td><td>$compacctnumber</td></tr>";
+
+	// display looped detail records
+	$res14query="SELECT emppaybonusid, employeeid, netamt FROM tblemppaybonus WHERE groupname = '$groupname' ORDER BY employeeid ASC";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14=$dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
+			$found14=1;
+			$ctr14=$ctr14+1;
+			$emppaybonusid14 = $myrow14['emppaybonusid'];
+			$employeeid14 = $myrow14['employeeid'];
+			$netamt14 = $myrow14['netamt'];
+			// query full name of emplooyee
+		$res3query = "SELECT employeeid, name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$employeeid14\"";
+		$result3 = $dbh2->query($res3query);
+		if($result3->num_rows>0) {
+			while ($myrow3 = $result3->fetch_assoc()) {
+			$found3 = 1;
+			$name_first = $myrow3['name_first'];
+			$name_middle = $myrow3['name_middle'];
+			$name_last = $myrow3['name_last'];
+			} // while
+		} // if($result3)
+		// query bank account
+		$res141query="SELECT acct_num, acct_type FROM tblbankacct WHERE employeeid=\"$employeeid14\" AND payrolldflt=1";
+		$result141=$dbh2->query($res141query);
+		if($result141->num_rows>0) {
+			while($myrow141=$result141->fetch_assoc()) {
+		$acct_num = str_replace("-", "", $myrow141['acct_num']);
+		$acct_num = str_replace(" ", "", $acct_num);
+		$acct_type = $myrow141['acct_type'];			
+			} // while
+		} // if
+
+			include("bpihashfnc.php");
+
+			echo "<tr><td>$detailrecid</td>";
+			echo "<td>$name_first $name_last</td>";
+			// echo "<td>$acct_num</td>";
+			echo "<td>$acctnumfin</td>";
+			echo "<td>$netamt14</td>";
+			echo "<td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+			echo "</tr>";
+			
+			// reset variables
+			$netamt14=0; $acctnumfin=""; $employeeid14=""; $name_last=""; $name_first=""; $name_middle="";
+			} // while
+	} // if($result14)
+	echo "</table>";
+	echo "<p><i>above summary for new BPI bizlink format</i></p>";
+
+	// divider
+	echo "<hr>";
+
+	echo "<p><i>below summary for old BPI expresslink format</i></p>";
+	echo "<table border=0 spacing=1><tr>";
+
+	echo "<form action=emppaybonbpicsv.php?loginid=$loginid&groupname=$groupname&companycode=$companycode&batchnumber=$batchnumber&payrolldate=$payrolldate method=POST>";
+	echo "<td><input type=submit value='Export to CSV'></td></form>";
+
+	echo "<form action=\"emppbbpitxt.php?loginid=$loginid\" method=\"POST\" name=\"emppbbpitxt\">";
+	echo "<input type=\"hidden\" name=\"groupname\" value=\"$groupname\">";
+	echo "<input type=\"hidden\" name=\"companycode\" value=\"$companycode\">";
+	echo "<input type=\"hidden\" name=\"batchnumber\" value=\"$batchnumber\">";
+	echo "<input type=\"hidden\" name=\"payrolldate\" value=\"$payrolldate\">";
+
+	echo "<td><input type=\"submit\" value=\"Export to BPI txt format\"></td></form>";
+
+	echo "</tr></table>";
+
+     echo "Summary Table:<br>";
+
+	echo "<table border=1 spacing=1>";
+	echo "<tr><td colspan=9 align=center>PHILKOEI INTERNATIONAL, INC.</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>Company Code</td><td colspan=4>$companycode</td><td>Payroll Date</td><td>";
+	echo date("F j, Y", mktime(0, 0, 0, $month, $day, $year));
+	echo "</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>Account Number</td><td colspan=4>$compacctnumber</td></td><td>Ceiling Amount</td><td align=right>";
+	echo number_format($ceilingamt, 2, '.', ',');
+	echo "</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>Batch Number</td><td colspan=4>$batchnumber</td><td>Total Payroll Amount</td>";
+
+	$resquery = "SELECT totnetamt FROM tblemppaybontotal WHERE groupname = '$groupname'";
+	$result = $dbh2->query($resquery);
+	if($result->num_rows>0) {
+	while($myrow = $result->fetch_assoc()) {
+		$found = 1;
+		$totnetamt = $myrow['totnetamt'];
+	} // while($myrow = $result->fetch_assoc())
+	} // if($result->num_rows>0)
+
+	echo "<td align=right>";
+	echo number_format($totnetamt, 2, '.', ',');
+	echo "</td></tr>";
+
+	echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>Full Name</td><td colspan=4>Account Number</td><td>Net Pay</td><td>Horizontal Hash</td></tr>";
+
+	$res2query = "SELECT employeeid FROM tblemppaybonus WHERE groupname=\"$groupname\" ORDER BY employeeid ASC";
+	$result2 = $dbh2->query($res2query);
+	if($result2->num_rows>0) {
+	while($myrow2 = $result2->fetch_assoc()) {
+		$found2 = 1;
+		$employeeid = $myrow2['employeeid'];
+
+		$res3query = "SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$employeeid\" AND contact_type=\"personnel\"";
+		$result3 = $dbh2->query($res3query);
+		if($result3->num_rows>0) {
+		while($myrow3 = $result3->fetch_assoc()) {
+			$found3 = 1;
+			$name_first = $myrow3['name_first'];
+			$name_middle = $myrow3['name_middle'];
+			$name_last = $myrow3['name_last'];
+			$counter = $counter + 1;
+		} // while($myrow3
+		} // if($result3->num_rows>0)
+
+			// $res4query = "SELECT employeeid, bank_name, acct_num FROM tblbankacct WHERE employeeid=\"$employeeid\" AND ((payrolldflt=1) OR (bank_name LIKE \"%BPI%\" AND ((bank_branch LIKE \"%Ayala%\" OR bank_branch='') OR (acct_type=\"Current\" OR acct_type=\"Savings\"))) ORDER BY bankacctid ASC LIMIT 1";
+			$res4query = "SELECT employeeid, bank_name, acct_num, acct_type FROM tblbankacct WHERE employeeid=\"$employeeid\" AND payrolldflt=1";
+			$result4 = $dbh2->query($res4query);
+			if($result4->num_rows>0) {
+			while($myrow4 = $result4->fetch_assoc()) {
+				$found4 = 1;
+				$bank_name = $myrow4['bank_name'];
+				$acct_num = str_replace("-", "", $myrow4['acct_num']);
+				$acct_num = str_replace(" ", "", $acct_num);
+				$acct_type = $myrow4['acct_type'];
+				// $acct_type = $myrow4[3];
+			} // while($myrow4 = $result4->fetch_assoc())
+			} // if($result4->num_rows>0)
+
+				$res5query = "SELECT netamt FROM tblemppaybonus WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\"";
+				$result5 = $dbh2->query($res5query);
+				if($result5->num_rows>0) {
+				while($myrow5 = $result5->fetch_assoc()) {
+					$found5 = 1;
+					$netamt = $myrow5['netamt'];
+
+					$tothh56 = 0;
+					$tothh78 = 0;
+					$tothh910 = 0;
+					$tothhnetpay = 0;
+
+					$acctnum4th = substr($acct_num, 3, 1);
+
+					if ($acctnum4th == '5') {
+						if ($acct_type == 'Savings') {
+							$acctnum4thfin = '6';
+						} else {
+							$acctnum4thfin = $acctnum4th;
+						}
+					} else {
+						$acctnum4thfin = $acctnum4th;
+					}
+
+					$acctnumpre1 = substr($acct_num, 0, 3);
+					$acctnumpre2 = substr($acct_num, 4, 6);
+					$acctnumfin = "$acctnumpre1$acctnum4thfin$acctnumpre2";
+
+					$acct_num04 = substr($acctnumfin, 0, 4);
+					$hh56 = substr($acctnumfin, 4, 2);
+					$hh78 = substr($acctnumfin, 6, 2);
+					$hh910 = substr($acctnumfin, 8, 2);
+
+					$tothh56 = $hh56 * $netamt;
+					$tothh78 = $hh78 * $netamt;
+					$tothh910 = $hh910 * $netamt;
+
+					$tothhnetpay = $tothh56 + $tothh78 + $tothh910;
+
+					echo "<tr><td>$counter</td><td>$acctnumfin</td><td>$name_last, $name_first $name_middle</td><td>$acct_num04</td><td>$hh56</td><td>$hh78</td><td>$hh910</td><td align=right>";
+					echo number_format($netamt, 2, '.', ',');
+					echo "</td><td align=right>";
+					echo number_format($tothhnetpay, 2, '.', '');
+					echo "</td></tr>";
+				} // while($myrow5
+				} // if($result5
+
+			$totacctnum = $totacctnum + $acctnumfin;
+			$grandtotnetpay = $grandtotnetpay + $netamt;
+			$grandtothh = $grandtothh + $tothhnetpay;
+
+			// reset variables
+			$acct_num="";
+
+	} // while($myrow2
+	} // if($result2->num_rows>0)
+
+	echo "<tr><td>&nbsp;</td><td>$totacctnum</td><td>Hash Totals</td><td colspan=4 align=right>$totacctnum</td><td align=right>";
+	echo number_format($grandtotnetpay, 2, '.', ',');
+	echo "</td><td align=right>";
+	echo number_format($grandtothh, 2, '.', '');
+	echo "</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>Record Count</td><td>$counter</td><td colspan=5>&nbsp;</td></tr>";
+
+	echo "<tr><td colspan=2>&nbsp;</td><td>Prepared:</td><td colspan=4>Checked:</td><td>Noted:</td><td>Approved:</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>$preparedname</td><td colspan=4>$checkedname</td><td>$notedname</td><td>$approvedname</td></tr>";
+	echo "<tr><td colspan=2>&nbsp;</td><td>$preparedpos</td><td colspan=4>$checkedpos</td><td>$notedpos</td><td>$approvedpos</td></tr>";
+
+	echo "</table>";
+
+//     echo "<p><a href=confipay2.php?loginid=$loginid>Back</a><br>";
+
+	$batchnumber2 = $batchnumber + 1;
+
+	$res6query = "UPDATE tblbpipayrollfilespec SET headerrecid='$headerrecid', batchnumber=$batchnumber2, companycode=$companycode, headerrectype=$headerrectype, compacctnumber=$compacctnumber, presofficecode=$presofficecode, payrollidentifier=$payrollidentifier, detailrecid='$detailrecid', detailrectype=$detailrectype, trailerrecid='$trailerrecid', trailerrectype=$trailerrectype, preparedname='$preparedname', preparedpos='$preparedpos', checkedname='$checkedname', checkedpos='$checkedpos', notedname='$notedname', notedpos='$notedpos', approvedname='$approvedname', approvedpos='$approvedpos' WHERE bpipayrollfilespecid = 1";
+	$result6 = $dbh2->query($res6query);
+
+	$res7query = "SELECT groupname, cutstart, cutend, payrolldate FROM tblbpipayrollfileresult WHERE groupname = '$groupname' AND payrolldate = '$payrolldate'";
+	$found7=0; $result7="";
+	$result7 = $dbh2->query($res7query);
+	if($result7->num_rows>0) {
+	while($myrow7 = $result7->fetch_assoc()) {
+		$found7 = 1;
+		$groupname = $myrow7['groupname'];
+		$cutstart = $myrow7['cutstart'];
+		$cutend = $myrow7['cutend'];
+		$payrolldate = $myrow7['payrolldate'];
+	} // while($myrow7
+	} // if($result7
+
+	if($found7 == 1) {
+
+		$res71query = "UPDATE tblbpipayrollfileresult SET cutstart = '$payrolldate', cutend = '$payrolldate', payrolldate = '$payrolldate', batchnumber = $batchnumber, companycode = $companycode, compacctnumber = $compacctnumber, ceilingamount = $ceilingamt, totalnetpay = $grandtotnetpay, acctnumhashtot = $totacctnum, transactamthashtot = $grandtotnetpay, grandhorizhashtot = $grandtothh, recordcount = $counter WHERE groupname = '$groupname' AND payrolldate = '$payrolldate'";
+		$result71 = $dbh2->query($res71query);
+
+	} else if ($found7 == 0) {
+
+		$res72query = "INSERT INTO tblbpipayrollfileresult (groupname, cutstart, cutend, payrolldate, batchnumber, companycode, compacctnumber, ceilingamount, totalnetpay, acctnumhashtot, transactamthashtot, grandhorizhashtot, recordcount) VALUES ('$groupname', '$payrolldate', '$payrolldate', '$payrolldate', $batchnumber, $companycode, $compacctnumber, $ceilingamt, $grandtotnetpay, $totacctnum, $grandtotnetpay, $grandtothh, $counter)";
+		$result72 = $dbh2->query($res72query);
+
+	} // if($found7==1)
+
+	// echo "<p>found7:$found7 | $res71query | $res72query</p>";
+
+     echo "</body></html>";
+
+} else {
+     include ("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

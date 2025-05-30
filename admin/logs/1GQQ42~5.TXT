@@ -1,0 +1,136 @@
+This is a test. Pls disregard if received. Thanks!
+- revised brkdown of income by combining taxable and non-taxable to additional income.
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-01-01 -to- 2018-01-15
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: GAE
+
+PAY RATE: P9500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9500.00
+
+Regular Overtime: 1393 (mins) - P2629.29
+Reg.Sun/Sat. OT: 602 (mins) - P1253.57
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 676 (mins) - P1442.41
+Night Differential: 43 (mins) - P6.49
+TOTAL OVERTIME: P5331.76
+
+Additional Income:
+Employment Benefits: 750.00
+TOTAL Additional Income: P750.00
+
+GROSS PAY: P15581.76
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P260.13
+Pag-ibig: P50.00
+
+Other Deductions:
+SSS Salary Loan: 738.32
+TOTAL Other Deductions: P738.32
+
+TOTAL DEDUCTIONS: P1629.75
+
+NET PAY: P13952.01
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+This is a test. Pls disregard if received. Thanks!
+- revised brkdown of income by combining taxable and non-taxable to additional income.
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-01-01 -to- 2018-01-15
+
+Employee ID: 616
+Employee Name: Mark Nathaniel Carpio
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 1465 (mins) - P2398.94
+Reg.Sun/Sat. OT: 1567 (mins) - P2742.68
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 584 (mins) - P1047.69
+Night Differential: 40 (mins) - P5.24
+TOTAL OVERTIME: P6194.55
+
+Additional Income:
+Employment Benefits: 750.00
+TOTAL Additional Income: P750.00
+
+GROSS PAY: P15194.55
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P218.32
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P849.62
+
+NET PAY: P14344.93
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+This is a test. Pls disregard if received. Thanks!
+- revised brkdown of income by combining taxable and non-taxable to additional income.
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-01-01 -to- 2018-01-15
+
+Employee ID: 707
+Employee Name: Mariecar Gutierrez
+Project: GAE
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7750.00
+
+Regular Overtime: 1037 (mins) - P1594.39
+Reg.Sun/Sat. OT: 455 (mins) - P727.54
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2321.93
+
+Additional Income:
+TOTAL Additional Income: P0.00
+
+GROSS PAY: P10071.93
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P210.88
+Pag-ibig: P50.00
+
+Other Deductions:
+Advances to O: 775.00
+TOTAL Other Deductions: P775.00
+
+TOTAL DEDUCTIONS: P1617.18
+
+NET PAY: P8454.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

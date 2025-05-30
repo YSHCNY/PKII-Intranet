@@ -1,0 +1,264 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$journalid0 = $_GET['jid'];
+$journalnumber0 = $_GET['jvn'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+      echo "<table class=\"fin\" border=\"0\">";
+      echo "<tr><th colspan=\"2\">Journal Voucher - Edit item</th></tr>";
+
+		// get default version of glcode
+      $result20 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+      while($myrow20 = mysql_fetch_row($result20))
+      {
+				$version20 = $myrow20[0];
+      }
+
+      if($version20 == 1) { $dynselglcode="20.10.208"; }
+      else if($version20 == 2) { $dynselglcode="20.10.210"; }
+
+	// query tblfinjournal voucher item details
+	$result11=""; $found11=0;
+	$result11 = mysql_query("SELECT date, glcode, glrefver, glnamedetails, projcode, particulars, debitamt, creditamt, explanation FROM tblfinjournal WHERE journalid=$journalid0 AND journalnumber=\"$journalnumber0\"", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$date11 = $myrow11[0];
+		$glcode11 = $myrow11[1];
+		$glrefver11 = $myrow11[2];
+		$glnamedetails11 = $myrow11[3];
+		$projcode11 = $myrow11[4];
+		$particulars11 = $myrow11[5];
+		$debitamt11 = $myrow11[6];
+		$creditamt11 = $myrow11[7];
+		$explanation11 = $myrow11[8];
+		}
+	}
+
+	// query tblfinjournaltot table based on journalnumber
+	$result12=""; $found12=0;
+	$result12 = mysql_query("SELECT journaltotid, journalnumber, date, explanation, debittot, credittot, status FROM tblfinjournaltot WHERE journalnumber=\"$journalnumber0\"", $dbh);
+	if($result12 != "") {
+		while($myrow12 = mysql_fetch_row($result12)) {
+		$found12 = 1;
+		$journaltotid12 = $myrow12[0];
+		$journalnumber12 = $myrow12[1];
+		$date12 = $myrow12[2];
+		$explanation12 = $myrow12[3];
+		$debittot12 = $myrow12[4];
+		$credittot12 = $myrow12[5];
+		$status12 = $myrow12[6];
+		}
+	}
+
+  if ($explanation12 != '') { $explanationfin = $explanation12; }
+  else if ($explanation11 != '') { $explanationfin = $explanation11; }
+
+    echo "<form action=\"finvouchjvpartedit2.php?loginid=$loginid&jvid=$journalid0&jvn=$journalnumber0\" method=\"post\" name=\"myJVForm\">";
+    echo "<tr><td>Date:&nbsp;<b><input name=\"jvdate\" value=\"$date11\" size=\"12\" readonly></b></td><td>J.V. No.:&nbsp;<b><input name=\"journalnumber\" value=\"$journalnumber0\" size=\"12\" readonly></b></td></tr>";
+    echo "<tr><td colspan=\"2\"><table class=\"fin\" width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr><td>Acct Code</td><td>Project Code</td><td>Ver</td><td>Particulars</td><td>Debit</td><td>Credit</td></tr>";
+
+	$result18 = mysql_query("SELECT glname FROM tblfinglref WHERE glcode=\"$glcode11\" AND version=$glrefver11", $dbh);
+	while($myrow18 = mysql_fetch_row($result18))
+	{
+	  $found18 = 1;
+	  $glname18 = $myrow18[0];
+	}
+
+	echo "<tr><td>$glcode11</td>";
+	echo "<td>$projcode11</td><td>$glrefver11</td>";
+	echo "<td>$particulars11</td><td align=\"right\">$debitamt11</td><td align=\"right\">$creditamt11</td>";
+	echo "</tr>";
+
+    echo "<tr><th colspan=\"6\">Modify journal voucher item</th></tr>";
+    echo "<tr><td colspan=\"6\">Acct Code<br>";
+    echo "<select name=\"glcode\" onchange=\"dynamicpulldown()\" id=\"myGlCode\">";
+    $result14 = mysql_query("SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 ORDER BY glcode ASC", $dbh);
+    while($myrow14 = mysql_fetch_row($result14))
+    {
+      $glcode14 = $myrow14[0];
+      $glname14 = $myrow14[1];
+			if($glcode14 == $glcode11) { $glcodesel="selected"; } else { $glcodesel=""; }
+      echo "<option value=\"$glcode14\" $glcodesel>$glcode14 - $glname14</option>";
+    }
+    echo "</select><br>";
+
+    //
+    // dynamic pulldown
+    //
+
+    echo "<div id=myDynamicPullDown>";
+
+    echo "</div>";
+
+    echo "<input name=\"aepglcode\" type=\"Hidden\">";
+
+    echo "Add'l.Details&nbsp<input name=\"glnamedetails\" value=\"$glnamedetails11\" size=\"35\">";
+    echo "</td></tr>";
+
+    echo "</td></tr>";
+
+    echo "<tr><td colspan=\"6\">Project Code<br>";
+    echo "<select name=\"projcode\">";
+		if(($projcode11 != "") || ($projcode11 != "-")) {
+    echo "<option value=\"-\">-</option>";
+		}
+    $result15 = mysql_query("SELECT projectid, proj_code, proj_fname, proj_sname FROM tblproject1 WHERE projectid<>0 ORDER BY proj_code DESC", $dbh);
+    while($myrow15 = mysql_fetch_row($result15))
+    {
+      $projectid15 = $myrow15[0];
+      $proj_code15 = $myrow15[1];
+      $proj_fname15 = $myrow15[2];
+      $proj_sname15 = $myrow15[3];
+      $proj_fname152 = substr("$proj_fname15", 0, 47);
+			if($proj_code15 == $projcode11) { $projcodesel="selected"; } else { $projcodesel=""; }
+      if($proj_sname15 <> '') { echo "<option value=\"$proj_code15\" $projcodesel>$proj_code15 - $proj_sname15</option>"; }
+      else
+      { echo "<option value=\"$proj_code15\" $projcodesel>$proj_code15 - $proj_fname152</option>"; }
+    }
+    echo "</select>";
+    echo "</td></tr>";
+    echo "<tr><td colspan=\"6\">Particulars<br>";
+    echo "<textarea rows=\"6\" cols=\"60\" name=\"particulars\"></textarea></td></tr>";
+    echo "<tr><td colspan=\"6\">";
+			echo "<table width=\"100%\"><tr><td>Debit Amount<br><input name=\"debitamt\" size=\"12\" value=\"$debitamt11\"></td>";
+			echo "<td>Credit Amount<br><input name=\"creditamt\" size=\"12\" value=\"$creditamt11\"></td></tr></table>";
+		echo "</td></tr>";
+    echo "<tr><td colspan=\"6\" align=\"right\"><input type=\"submit\" value=\"Update\"></td></tr>";
+    echo "</form>";
+
+      echo "</table>";
+
+    echo "<p><a href=\"finvouchjvnew.php?loginid=$loginid&jvn=$journalnumber0\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+?>
+
+<script language="javascript">
+
+// This function goes through the options for the given
+// drop down box and removes them in preparation for
+// a new set of values
+
+function emptyList( box ) {
+	// Set each option to null thus removing it
+	while ( box.options.length ) box.options[0] = null;
+}
+
+// This function assigns new drop down options to the given
+// drop down box from the list of lists specified
+
+function fillList( box, arr ) {
+	// arr[0] holds the display text
+	// arr[1] are the values
+
+	for ( i = 0; i < arr[0].length; i++ ) {
+
+		// Create a new drop down option with the
+		// display text and value from arr
+
+		option = new Option( arr[0][i], arr[1][i] );
+
+		// Add to the end of the existing options
+
+		box.options[box.length] = option;
+	}
+
+	// Preselect option 0
+
+	box.selectedIndex=0;
+}
+
+// This function performs a drop down list option change by first
+// emptying the existing option list and then assigning a new set
+
+function changeList( box ) {
+	// Isolate the appropriate list by using the value
+	// of the currently selected option
+
+	list = lists[box.options[box.selectedIndex].value];
+
+	// Next empty the slave list
+
+	emptyList( box.form.slave );
+
+	// Then assign the new list values
+
+	fillList( box.form.slave, list );
+}
+
+//
+// dynamic pulldown
+//
+
+function dynamicpulldown()
+{
+    var htmlStr = "";
+
+    var selectedGlCode = document.getElementById('myGlCode').value;
+
+//    alert(selectedGlCode);
+
+    if(selectedGlCode == '<?=$dynselglcode?>')
+    {
+         htmlStr = htmlStr + "<select id=\"aepglcodelist\" onclick=\"getSelected()\">";
+
+         <?
+         $result = mysql_query("SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 AND glcode >= '60.00.00' AND glcode <= '70.80.199' ORDER BY glcode ASC", $dbh);
+	 ?>
+		htmlStr = htmlStr + "<option value=\"-\">-</option>";
+	 <?
+         while($myrow = mysql_fetch_row($result))
+         {
+             $glcode = $myrow[0];
+             $glname = $myrow[1];
+             ?>
+                  htmlStr = htmlStr + "<option value=\"<?=$glcode?>\"><?=$glcode?> - <?=$glname?></option>";
+             <?
+         }
+         ?>
+
+         htmlStr = htmlStr + "</select>";
+    }
+
+    document.getElementById('myDynamicPullDown').innerHTML = htmlStr;
+}
+
+function getSelected()
+{
+     document.myForm.aepglcode.value = document.getElementById('aepglcodelist').value;
+}
+
+</script>
+
+<?
+mysql_close($dbh);
+?>

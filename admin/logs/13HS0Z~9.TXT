@@ -1,0 +1,46 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2010-12-16 -to- 2010-12-31
+
+Employee ID: 551
+Employee Name: Arlie Jaromamay
+Project: GAE
+
+PAY RATE: P5750.00
+
+Total Late_Absent: 577.76
+NET BASIC PAY: P5172.24
+
+Regular Overtime: 187 (mins) - P215.05
+Reg.Sun/Sat. OT: 292 (mins) - P349.23
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P564.28
+
+Taxable Income:
+Unpaid OT on Dec 01-15: 527.62
+TOTAL Taxable Income: 527.62
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6264.14
+
+Withholding Tax: 607.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P657.00
+
+NET PAY: P5607.14
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

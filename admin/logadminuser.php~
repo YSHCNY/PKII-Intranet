@@ -1,0 +1,153 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$pagenum = $_GET['page'];
+
+$logdtfr = $_POST['logdtfr'];
+$logdtto = $_POST['logdtto'];
+$logusrnm = $_POST['logusrnm'];
+
+if(($logdtfr == '') || ($logdtto == '')) {
+	$logdtto = $datenow;
+	// $logdtfr = (strtotime($datenow) - 30 days);
+	$logdtfr = strtotime(date("Y-m-d", strtotime($logdtto)) . " - 30 days");
+	$logdtfr1 = date("Y-m-d", $logdtfr);
+} else { $logdtfr1 = $logdtfr; }
+
+$logdtfrts = $logdtfr1 . " " . "00:00:00";
+$logdttots = $logdtto . " " . "23:59:59";
+
+$found = 0;
+
+$reccount = 0;
+$pagerecstart = 0;
+$rowsperpage = 100;
+
+if($loginid != "")
+{
+    include("logincheck.php");
+}
+
+if ($found == 1)
+{
+    include ("header.php");
+    include ("sidebar.php");
+?>
+
+<script language="JavaScript" src="ts_picker.js"></script>
+
+<?
+    if($pagenum == "")
+    {
+      $pagenum = 0;
+      $pagerecstart = 0;
+    }
+    else
+    {
+      $pagerecstart = ($pagenum) * $rowsperpage;
+    }
+
+    echo "<p><font size=1>Tools >> View logs</font></p>";
+
+    echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+    echo "<tr><td bgcolor=blue><font color=white><b>User activity logs</b></font></td></tr>";
+
+		echo "<tr><td align=\"center\">";
+		echo "<form method=\"post\" action=\"logadminuser.php?loginid=$loginid&page=$pagenum0\" name=\"formlog\">";
+		echo "datefrom<input size=\"8\" name=\"logdtfr\" value=\"$logdtfr1\">";
+		?>
+     <a href="javascript:show_calendar('document.formlog.logdtfr', document.formlog.logdtfr.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+    <?
+		echo "dateto<input size=\"8\" name=\"logdtto\" value=\"$datenow\">";
+		?>
+     <a href="javascript:show_calendar('document.formlog.logdtto', document.formlog.logdtto.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+    <?
+		echo "<select name=\"logusrnm\">";
+		if($logusrnm == "") {
+			echo "<option value=\"usersall\">ALL</option>";
+		}
+		$result12=""; $found12=0;
+		$result12 = mysql_query("SELECT DISTINCT adminuid FROM tbladminlogs WHERE ORDER BY adminuid ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12=1;
+			$adminuid12 = $myrow12[0];
+			if($adminuid12 == $logusrnm) { $logusrnmsel="selected"; } else { $logusrnmsel=""; }
+			echo "<option value=\"$adminuid12\" $logusrnmsel>$adminuid12</option>";
+			}
+		}
+		echo "</select>";
+		echo "<input type=\"submit\">";
+		echo "</form>";
+		// echo "<br>vartest usrnm:$logusrnm, ttfr:$logdtfrts ttto:$logdttots";
+		echo "</td></tr>";
+
+    echo "<tr><td>";
+    echo "<table width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr><td>count</td><td>stamp</td><td>user</td><td>details</td></tr>";
+			if(($logusrnm == "usersall") || ($logusrnm == "")) {
+      $result11 = mysql_query("SELECT adminlogid, timestamp, adminuid, adminlogdetails FROM tbladminlogs WHERE timestamp>=\"$logdtfrts\" AND timestamp<=\"$logdttots\" ORDER BY timestamp DESC", $dbh);
+			// $result11 = mysql_query("SELECT adminlogid, timestamp, adminuid, adminlogdetails FROM tbladminlogs WHERE timestamp>=\"$logdtfrts\" AND timestamp<=\"$logdttots\" ORDER BY timestamp DESC LIMIT $pagerecstart, $rowsperpage", $dbh);
+			} else {
+      $result11 = mysql_query("SELECT adminlogid, timestamp, adminuid, adminlogdetails FROM tbladminlogs WHERE adminuid=\"$logusrnm\" AND (timestamp>=\"$logdtfrts\" AND timestamp<=\"$logdttots\") ORDER BY timestamp DESC", $dbh);
+			// $result11 = mysql_query("SELECT adminlogid, timestamp, adminuid, adminlogdetails FROM tbladminlogs WHERE adminuid=\"$logusrnm\" AND (timestamp>=\"$logdtfrts\" AND timestamp<=\"$logdttots\") ORDER BY timestamp DESC LIMIT $pagerecstart, $rowsperpage", $dbh);
+			}
+      while($myrow11 = mysql_fetch_row($result11))
+      {
+	$found11 = 1;
+	$adminlogid11 = $myrow11[0];
+	$timestamp11 = $myrow11[1];
+	$adminuid11 = $myrow11[2];
+	$adminlogdetails11 = $myrow11[3];
+	echo "<tr><td align=\"center\">$adminlogid11</td><td>$timestamp11</td><td>$adminuid11</td><td>$adminlogdetails11</td></tr>";
+      }
+
+    $pagenum0 = $pagenum - 1;
+    $pagenum2 = $pagenum + 1;
+		/*
+    echo "<tr><td colspan=\"4\" align=\"right\">";
+    if ($pagenum0 < 0) { echo "&nbsp;"; } else {
+    echo "<a href=\"logadminuser.php?loginid=$loginid&page=$pagenum0\">Back | </a>"; }
+
+    $result22 = mysql_query("SELECT adminlogid FROM tbladminlogs ORDER BY adminlogid DESC LIMIT 0, 1", $dbh);
+    while ($myrow22 = mysql_fetch_row($result22))
+    {
+      $found22 = 1;
+      $maxadminlogid = $myrow22[0];
+    }
+
+    $reccounttot = $pagerecstart + $rowsperpage;
+
+    echo "&nbsp;<b>$pagenum2</b>&nbsp;";
+
+    if ($reccounttot >= $maxadminlogid)
+    {
+      echo "&nbsp;";
+    }
+    else
+    {
+      echo "<a href=\"logadminuser.php?loginid=$loginid&page=$pagenum2\"> | Next</a>";
+    }
+    echo "</td></tr>";
+		*/
+    echo "</table>";
+    echo "</td></tr>"; 
+    echo "</table>";
+
+    echo "<p><a href=\"logs.php?loginid=$loginid\">Back</a></p>";
+
+    $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminloginid=$loginid", $dbh); 
+  
+    include ("footer.php");
+}
+else
+{
+    include ("logindeny.php");
+}
+
+mysql_close($dbh);
+
+?> 

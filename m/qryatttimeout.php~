@@ -1,0 +1,25 @@
+<?php
+//
+// qryatttimeout.php
+// fr: ./vc/mactivitylogprtvw.php
+
+// db conn string
+
+require '../includes/dbh.php';
+
+	$res15query = "SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart 23:59:59\") AND tblhrattcheckinout.att_checktype=\"o\" ORDER BY tblhrattcheckinout.att_checktime DESC";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15=$dbh->query($res15query);
+	$hrattcheckinoutid15Arr=array();
+	$timeout15Arr=array();
+	if($result15->num_rows>0) {
+		while($myrow15=$result15->fetch_assoc()) {
+		$found15 = 1;
+		array_push($hrattcheckinoutid15Arr, $myrow15['hrattcheckinoutid']);
+		array_push($timeout15Arr, $myrow15['att_checktime']);
+		} // while
+	} // if
+
+// close database
+$dbh->close();
+?>

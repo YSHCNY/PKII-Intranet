@@ -1,0 +1,59 @@
+<?php
+
+	echo "<tr><td colspan=\"2\">";
+		echo "<table width=\"100%\" class=\"fin2\" border=\"0\">";
+		echo "<tr><th colspan=\"5\">ISO Documents</th></tr>";
+		echo "<tr>";
+
+		echo "<form action=\"dirisodocs.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"isomanual\">";
+		echo "<input type=\"hidden\" name=\"fn\" value=\"isomanual.PDF\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/iso/\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"ISO Manual\"></td>";
+		echo "</form>";
+
+		echo "<form action=\"dirisodocs.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"isosysproc\">";
+		echo "<input type=\"hidden\" name=\"fn\" value=\"isosysproc.PDF\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/iso/\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"System Procedures\"></td>";
+		echo "</form>";
+
+		echo "<form action=\"dirisodocs.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"isojobdesc\">";
+		echo "<input type=\"hidden\" name=\"fn\" value=\"isojobdesc.PDF\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/iso/\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"Job Descriptions\"></td>";
+		echo "</form>";
+
+		echo "<form action=\"dirisodocs.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"isoworkinst\">";
+		echo "<input type=\"hidden\" name=\"fn\" value=\"isoworkinst.PDF\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/iso/\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"Work Instructions\"></td>";
+		echo "</form>";
+
+		echo "<form action=\"dirisoforms.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"isoforms\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/iso/forms\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"ISO Forms\"></td>";
+		echo "</form>";
+
+		echo "</tr>";
+		echo "</table>";
+	echo "</td><td>";
+
+		echo "<table width=\"100%\" class=\"fin2\" border=\"0\">";
+		echo "<tr><th>Others</th></tr>";
+		echo "<tr>";
+		echo "<form action=\"diritpolicy.php?loginid=$loginid&docsw=1\" method=\"post\">";
+		echo "<input type=\"hidden\" name=\"doctyp\" value=\"docitpolicy\">";
+		echo "<input type=\"hidden\" name=\"fn\" value=\"docitpolicy.PDF\">";
+		echo "<input type=\"hidden\" name=\"fp\" value=\"./transfers/others/\">";
+		echo "<td align=\"center\"><input type=\"submit\" value=\"IT Policy\"></td>";
+		echo "</form>";
+		echo "</tr>";
+		echo "</table>";
+
+	echo "</td></tr>";
+?>

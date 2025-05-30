@@ -1,0 +1,49 @@
+Please find below details of your payroll salary (payroll period August 16-31, 2015) withdrawable on August 28 2015 (Friday).
+
+cutoff period: 2015-08-01 -to- 2015-08-15
+
+Employee ID: 152
+Employee Name: Mary Ann Castañares
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 144.69
+NET BASIC PAY: P9855.31
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P10855.31
+
+Withholding Tax: P1161.83
+SSS: P581.30
+Philhealth: P237.50
+Pag-ibig: P50.00
+
+Other Deductions:
+PLDT charges: 200.00
+SSS salary loan: 1384.35
+Pag-Ibig Loan: 1363.76
+TOTAL Other Deductions: P2948.11
+
+TOTAL DEDUCTIONS: P4978.74
+
+NET PAY: P5876.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,31 @@
+<?php
+//
+// qryattactivity.php
+// fr: ./vc/mactivitylogprtvw.php
+
+// db conn string
+
+require '../includes/dbh.php';
+
+	$res16query = "SELECT hractlogid, activity, remarks, remarksby FROM tblhractlog WHERE date=\"$arrcutdate0\" AND employeeid=\"$employeeid0\" ORDER BY timestamp DESC";
+	$result16=""; $found16=0; $ctr16Arr=0;
+	$result16=$dbh->query($res16query);
+	$ctr16Arr=array();
+	$hractlogid16Arr=array();
+	$activity16Arr=array();
+	$remarks16Arr=array();
+	$remarksby16=array();
+	if($result16->num_rows>0) {
+		while($myrow16=$result16->fetch_assoc()) {
+		$found16 = 1;
+		$ctr16Arr = $ctr16+1;
+		array_push($hractlogid16Arr, $myrow16['hractlogid']);
+		array_push($activity16Arr, $myrow16['activity']);
+		array_push($remarks16Arr, $myrow16['remarks']);
+		array_push($remarksby16Arr, $myrow16['remarksby']);
+		} // while
+	} // if
+
+// close database
+$dbh->close();
+?>

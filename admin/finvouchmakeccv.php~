@@ -1,0 +1,59 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$acctspayablenumber = $_GET['apn'];
+$cvnumber = $_POST['cvnumber'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+  $subCashReceipt = "SELECT * FROM tblfinacctspayable WHERE acctspayablenumber=\"$acctspayablenumber\"";
+  $subCashReceiptResult = $dbh2->query($subCashReceipt);
+  $TotalCredit = 0;
+  $TotalDebit = 0;
+  $explanation = '';
+echo "<h3>Successfully Created CV</h3>";
+      echo "<form action=\"finvouchlist.php?loginid=$loginid\" method=\"post\">";
+    echo "<input type=\"submit\" value=\"Go Back To List Vouchers\"></form>";
+  while($rowCashReceipt = $subCashReceiptResult->fetch_assoc()) 
+  {
+    $resquery = "INSERT INTO tblfindisbursement SET disbursementnumber='".$cvnumber."', disbursementtype='Check', payee=\"".$rowCashReceipt['payee']."\", date='".date('Y-m-d')."', glcode='".$rowCashReceipt['glcode']."', glrefver='".$rowCashReceipt['glrefver']."', projcode='".$rowCashReceipt['projcode']."', particulars='".$rowCashReceipt['particulars']."', debitamt=".$rowCashReceipt['creditamt'].", creditamt=".$rowCashReceipt['debitamt'].", explanation='".$rowCashReceipt['explanation']."'";
+	$result=$dbh2->query($resquery);
+
+
+    $explanation = $rowCashReceipt['explanation'];
+    $TotalCredit += $rowCashReceipt['creditamt'];
+    $TotalDebit += $rowCashReceipt['debitamt'];
+  }
+
+  $res3query = "INSERT INTO tblfindisbursementtot SET disbursementnumber='".$cvnumber."', date='".date('Y-m-d')."', debittot=".$TotalCredit.", credittot=".$TotalDebit.", explanation='".$explanation."', status='pending'";
+	$result3=$dbh2->query($res3query);
+
+	echo "<p>APV:$acctspayablenumber, CV:$cvnumber, DebitTot:$TotalDebit, CreditTot:$TotalCredit";
+	echo "<br>$resquery<br>$res3query";
+	echo "</p>";
+
+  $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+	$result=$dbh2->query($resquery);
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

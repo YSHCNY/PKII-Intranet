@@ -1,0 +1,47 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2018-07-01 -to- 2018-07-15
+
+Employee ID: 707
+Employee Name: Mariecar Gutierrez
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8250.00
+
+Regular Overtime: 835 (mins) - P1367.31
+Reg.Sun/Sat. OT: 493 (mins) - P846.22
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2213.53
+
+Additional Income:
+Taxable Income:
+TOTAL Taxable Income: P0.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P11213.53
+
+Withholding Tax: P0.00
+SSS: P581.30
+Philhealth: P226.88
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P858.18
+
+NET PAY: P10355.35
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

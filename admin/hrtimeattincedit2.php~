@@ -1,0 +1,80 @@
+<?php
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$idhrtaempincome = $_GET['empincid'];
+
+$employeeid = $_POST['employeeid'];
+$idpaygroup = $_POST['idpaygroup'];
+$incomename = $_POST['incomename'];
+$amount = $_POST['amount'];
+$datestart = $_POST['datestart'];
+$dateend = $_POST['dateend'];
+$nontaxable = $_POST['nontaxable'];
+if($nontaxable=="on") { $nontaxableval=1; } else { $nontaxableval=0; }
+$vatinclusive = $_POST['vatinclusive'];
+if($vatinclusive=="on") { $vatinclusiveval=1; } else { $vatinclusiveval=0; }
+$schedule = $_POST['schedule'];
+$status = $_POST['status'];
+if($status=="on") { $statusval=1; } else { $statusval=0; }
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+	// query paygroupname
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("SELECT paygroupname FROM tblhrtapaygrp WHERE idtblhrtapaygrp=$idpaygroup", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$paygroupname11 = $myrow11[0];
+		}
+	}
+
+	// query personnel name
+	$result14=""; $found14=0;
+	$result14 = mysql_query("SELECT tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.contact_gender FROM tblhrtapaygrpemplst INNER JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid\" AND tblcontact.contact_type=\"personnel\"", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$name_last14 = $myrow14[0];
+		$name_first14 = $myrow14[1];
+		$name_middle14 = $myrow14[2];
+		$contact_gender14 = $myrow14[3];
+		}
+	}
+
+	if($found11 == 1 && $employeeid != "" && $incomename != "" && $amount>0 && $dateend>=$datestart) {
+		// insert into tblhrtaempincome
+		$result12 = mysql_query("INSERT INTO tblhrtaempincome SET timestamp=\"$now\", loginid=$loginid, datecreated=\"$datenow\", lastupdate=$loginid, paygroupname=\"$paygroupname11\", employeeid=\"$employeeid\", name=\"$incomename\", amount=\"$amount\", datestart=\"$datestart\", dateend=\"$dateend\", nontaxable=$nontaxableval, vatinclusive=$vatinclusiveval, status=$statusval, schedule=\"$schedule\", idpaygroup=$idpaygroup", $dbh);
+		// create log
+  	$result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+		while($myrow16 = mysql_fetch_row($result16))
+		{ $adminuid=$myrow16[0]; }
+		$adminlogdetails = "$loginid:$adminuid - add new additional income for personnel: $employeeid - $name_last14, $name_first14 $name_middle14 under paygroup:$idpaygroup-$paygroupname11 in payroll system with income:$incomename amt:$amount dur:$datestart-to-$dateend, nontax:$nontaxable, vatinc:$vatinclusive, sched:$schedule, status:$status";
+		$result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+	// redirect
+	header("Location: hrtimeattincome.php?loginid=$loginid&idpg=$idpaygroup&eid=$employeeid");
+	exit;
+	// echo "<p>vartest timestamp=\"$now\", loginid=$loginid, datecreated=\"$datenow\", lastupdate=$loginid, paygroupname=\"$paygroupname\", employeeid=\"$employeeid\", name=\"$incomename\", amount=\"$amount\", datestart=\"$datestart\", dateend=\"$dateend\", nontaxable=$nontaxableval, vatinclusive=$vatinclusiveval, status=$statusval, schedule=\"$schedule\", idpaygroup=$idpaygroup</p>";
+	// echo "<p>$adminlogdetails</p>";
+	// echo "<p><a href=\"hrtimeattincome.php?loginid=$loginid&idpg=$idpaygroup&eid=$employeeid\">back</a></p>";
+	}
+
+// echo "<p>vartest in:$timein out:$timeout</p>";
+
+}
+else
+{
+     include ("logindeny.php");
+}
+mysql_close($dbh); 
+?>

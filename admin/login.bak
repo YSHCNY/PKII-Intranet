@@ -1,0 +1,66 @@
+<html>
+<head><title>Philkoei Intranet Admin Login</title></head>
+
+<body bgcolor="204060">
+<center>
+<font face="Arial, Helvetica">
+<table bgcolor="white" width="380" cellspacing="1" id="table1">
+	<tr>
+		<td align="center">
+		<img border="0" src="logohead00.jpg" align=middle></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td><font color=red face="Arial, Helvetica"><h2 align="center">INTRANET ADMIN LOGIN</h2></font></td>
+	</tr>
+	
+	<tr>
+		<td align="center">
+<font face="Arial, Helvetica">
+
+       <table bgcolor=white border=0 spacing=1 id="table2">
+	  <form method=post action=admlogin.php>
+           <tr>
+		<td width=100 align=right><font size=2>Username</font></td>
+		<td width=185 align=left><input name=username></td>
+	   </tr>
+	    <tr>
+		<td width=100 align=right><font size=2>Password</font></td>
+		<td width=185 align=left><input name=password type=password></td>
+	    </tr>
+	    <tr>
+		<td width=100 align=right>&nbsp;</td>
+		<td width=185 align=left><input type=submit></td>
+	    </tr>
+         </form>
+       </table>
+
+</font>
+		</td>
+       </tr>
+
+	<tr>
+		<td align="center">
+<center>
+<font face="Arial, Helvetica">
+
+       <tr>
+              <td width=370 align=center><b><font color=red><i>Warning: Only authorized admin users<br>are allowed to login on this page.</i></font></td>
+       </tr>
+
+</table>
+</b>
+</font>
+</center>
+		</td>
+       </tr>
+
+       </table>
+<p>&nbsp;</p>
+</font>
+</center>
+</body>
+</html>

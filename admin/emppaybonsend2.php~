@@ -1,0 +1,131 @@
+<?php
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$groupname = $_POST['groupname'];
+$employeeid = $_POST['employeeid'];
+$totest = $_POST['totest'];
+$from = $_POST['from'];
+$subject = $_POST['subject'];
+$header = $_POST['header'];
+$salary = $_POST['salary'];
+$footer = $_POST['footer'];
+$notes = $_POST['notes'];
+
+date_default_timezone_set('Asia/Manila');
+$date = date("Y-m-d H:i:s", time());
+
+$projectname = "C.O.";
+// $advisorytype = "Bonus";
+$advisorytype = "Allowance";
+$currency = "Philippine Peso";
+
+$message = "$header\n\n$salary\n\n$footer\n\n$notes<br>";
+
+echo "<html>";
+
+echo "<pre>";
+
+foreach ($employeeid as $value)
+{
+     $result = mysql_query("SELECT * FROM tblemppaybonus WHERE employeeid=\"$value\" AND groupname=\"$groupname\"", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $employeeid = $myrow[1];
+	  $grossamt = $myrow[8];
+	  $taxpercent = $myrow[9];
+	  $taxdeduct = $myrow[10];
+	  $otherdeduct = $myrow[11];
+	  $netamt = $myrow[12];
+     }
+
+     $result = mysql_query("SELECT name_first, name_middle, name_last, email1 FROM tblcontact WHERE employeeid=\"$value\"", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $name_first = $myrow[0];
+	  $name_middle = $myrow[1];
+          $name_last = $myrow[2];
+          $email1 = $myrow[3];
+     }
+
+     $message = "";
+     $message = $message . "$header\n\n";
+
+     $message = $message . "Employee ID: $value\n";
+     $message = $message . "Employee Name: $name_last, $name_first $name_middle\n\n";
+
+     $message = $message . "GROSS AMOUNT: " . formatMoney($grossamt) . "\n\n";
+
+    if($taxpercent == "" || $taxpercent == "0")
+    {
+     $message = $message . "Tax Deduction: " . formatMoney($taxdeduct) . "\n";
+    }
+    else if($taxpercent <> "")
+    {
+     $message = $message . "Tax Percentage: $taxpercent%" . "\n";
+     $message = $message . "Tax Deduction: " . formatMoney($taxdeduct) . "\n";
+    }
+     $message = $message . "Other Deductions: " . formatMoney($otherdeduct) . "\n\n";
+
+     $message = $message . "NET AMOUNT: " . formatMoney($netamt) . "\n\n";
+
+     $message = $message . "$footer\n\n$notes\n\n";
+
+     echo "$message<br>";
+
+     $ok = "";
+
+  if($totest <> "") { $ok = mail("$totest", "$subject", "$message", "From: $from"); }
+  else if($totest == "") { $ok = mail("$email1", "$subject", "$message", "From: $from"); }
+
+	  $result1 = mysql_query ("INSERT INTO tblcustompayadvise (employeeid, date, proj_name, advisorytype, amount, currency) VALUES (\"$employeeid\", \"$date\", \"$projectname\", \"$advisorytype\", $netamt, \"$currency\")", $dbh);
+
+     if ($ok)
+     {
+          echo "<p>Congratulations your email has been sent</p>";
+
+          $processed = $processed . $message . "------------------------------------------------------------------------------------------------------------\n";
+
+     }
+     else
+     {
+          echo "<p><font color=red>Sorry, the email was not sent. Pls try again.</font></p>";
+     }
+
+  if($totest <> "") { echo "email: $totest<hr>"; }
+  else if($totest == "") { echo "email: $email1<hr>"; }
+
+}
+
+echo "</pre>";
+
+$File = "/var/www/admin/logs/". date("y-m-d_H:i:s", time()) . "_" . "$groupname" . ".txt";
+$Handle = fopen($File, 'w');
+$Data = "$processed"; 
+fwrite($Handle, $Data);
+fclose($Handle);
+
+// echo "<a href=emailnotifier.php?loginid=$loginid>Back</a><br>";
+echo "</html>";
+
+mysql_close($dbh);
+
+function FormatMoney($number) {
+    $number = preg_replace("/[^0-9\.]/", "", str_replace(',','.',$number));
+    if (substr($number,-3,1)=='.') {
+        $sents = '.'.substr($number,-2);
+        $number = substr($number,0,strlen($number)-3);
+    } elseif (substr($number,-2,1)=='.') {
+        $sents = '.'.substr($number,-1);
+        $number = substr($number,0,strlen($number)-2);
+    } else {
+        $sents = '.00';
+    }
+    $number = preg_replace("/[^0-9]/", "", $number);
+    return 'P' . number_format($number.$sents,2,'.','');
+}
+?>

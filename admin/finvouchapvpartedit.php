@@ -1,0 +1,347 @@
+<?php 
+//
+// finvouchapvpartedit.php 20210205
+//
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$acctspayableid = (isset($_GET['apid'])) ? $_GET['apid'] :'';
+$acctspayablenumber = (isset($_GET['apn'])) ? $_GET['apn'] :'';
+
+$found = 0;
+
+if($loginid!="") {
+     include("logincheck.php");
+}  
+
+if($found==1) {
+     include("header.php");
+     include("sidebar.php");
+
+// start contents here
+
+      echo "<table class=\"fin\" border=\"0\">";
+      echo "<tr><th colspan=\"2\">Accounts Payable Voucher - Edit item</th></tr>";
+
+// choose default glcode version
+    $res20query=""; $result20=""; $found20=0;
+    $res20query="SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"";
+	$result20=$dbh2->query($res20query);
+	if($result20->num_rows>0) {
+		while($myrow20=$result20->fetch_assoc()) {
+			$found20=1;
+			$version20 = $myrow20['version'];
+		} //while
+	} //if
+
+      if($version20 == 1) { $dynselglcode="20.10.208"; }
+      else if($version20 == 2) { $dynselglcode="20.10.210"; }
+
+if(($acctspayablenumber != '') && ($acctspayableid != '')) {
+	$res15query=""; $result15=""; $found15=0; $ctr15=0;
+	$res15query="SELECT payee, date, due_date, particulars, company_id, contact_id FROM tblfinacctspayable WHERE acctspayableid=$acctspayableid AND acctspayablenumber=\"$acctspayablenumber\"";
+	$result15=$dbh2->query($res15query);
+	if($result15->num_rows>0) {
+		while($myrow15=$result15->fetch_assoc()) {
+			$found15=1;
+			$ctr15++;
+			$payee15 = $myrow15['payee'];
+			$date15 = $myrow15['date'];
+			$due_date15 = $myrow15['due_date'];
+			$particulars15 = $myrow15['particulars'];
+			$companyid15 = $myrow15['company_id'];
+			$contactid15 = $myrow15['contact_id'];
+
+  if($companyid15!=0) {
+		//query tblcompany
+		$res15bqry=""; $result15b=""; $found15b=0; $ctr15b=0;
+		$res15bqry="SELECT company, branch FROM tblcompany WHERE companyid=$companyid15";
+		$result15b=$dbh2->query($res15bqry);
+		if($result15b->num_rows>0) {
+			while($myrow15b=$result15b->fetch_assoc()) {
+				$found15b=1;
+				$ctr15b++;
+				$companyname15b = $myrow15b['company'];
+				$companybranch15b = $myrow15b['branch'];
+				if($companybranch15b!='') {
+					$payeefin = $companyname15b . " - " . $companybranch15b;
+				} else {
+					$payeefin = $companyname15b;
+				}
+			} //while
+		} //if
+	} elseif($contactid15!=0) {
+		// query tblcontact
+		$res15cqry=""; $result15c=""; $found15c=0; $ctr15c=0;
+		$res15cqry="SELECT name_last, name_first, name_middle, employeeid FROM tblcontact WHERE contactid=$contactid15";
+		$result15c=$dbh2->query($res15cqry);
+		if($result15c->num_rows>0) {
+			while($myrow15c=$result15c->fetch_assoc()) {
+				$found15c=1;
+				$ctr15c++;
+				$name_last15c = $myrow15c['name_last'];
+				$name_first15c = $myrow15c['name_first'];
+				$name_middle15c = $myrow15c['name_middle'];
+				$employeeid15c = $myrow15c['employeeid'];
+				if($name_middle15c!='') {
+					$payeefin = $name_first15c . " " . $name_middle15c[0] . ". " . $name_last15c;
+				} else {
+					$payeefin = $name_first15c . " " . $name_last15c;					
+				}
+			} //while
+		} //if
+	}
+			
+		} //while
+	} //if
+	
+    echo "<form action=\"finvouchapvpartedit2.php?loginid=$loginid&apid=$acctspayableid&apn=$acctspayablenumber\" method=\"post\" name=\"myForm\">";
+    echo "<tr><td>Date:&nbsp;<strong><input class=\"form-control\" name=\"apdate\" value=\"".date('Y-M-d', strtotime($date15))."\" /></strong>";
+	echo "</td><td>APV No.:&nbsp;<strong><input class=\"form-control\" name=\"apnumber\" value=\"$acctspayablenumber\" readonly></strong>";
+	echo "</td>";
+    echo "</tr>";
+    echo "<tr><td>Payee";
+	if($companyid15==0 && $contactid15==0) {
+		// echo ":&nbsp;$payee15";
+    $payeefin=$payee15;
+	} //if
+	echo "<br><strong><input class=\"form-control\" name=\"appayee\" value=\"$payeefin\" /></strong>";
+	echo "</td>";
+	echo "<input type=\"hidden\" name=\"apcompanyid\" value=\"$companyid15\" />";
+	echo "<input type=\"hidden\" name=\"apcontactid\" value=\"$contactid15\" />";
+    echo "<td>Due Date:<br><strong><input class=\"form-control\" type='text' name=\"apduedate\" value=\"".date('Y-M-d', strtotime($due_date15))."\" /></strong>";
+	echo "</td></tr>";
+
+    echo "<tr><td colspan=\"2\"><table width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr><td>Acct Code</td><td>Project Code</td><td>Particulars</td><td>Debit</td><td>Credit</td></tr>";
+
+      $res17query=""; $result17=""; $found17=0; $ctr17=0;
+      $res17query="SELECT glcode, glrefver, glnamedetails, projcode, particulars, debitamt, creditamt, due_date FROM tblfinacctspayable WHERE acctspayablenumber=\"$acctspayablenumber\" AND acctspayableid=$acctspayableid LIMIT 1";
+    $result17=$dbh2->query($res17query);
+    if($result17->num_rows>0) {
+        while($myrow17=$result17->fetch_assoc()) {
+        $found17=1;
+        $glcode17 = trim($myrow17['glcode']);
+        $glrefver17 = $myrow17['glrefver'];
+        $glnamedetails17 = $myrow17['glnamedetails'];
+        $projcode17 = $myrow17['projcode'];
+        $particulars17 = $myrow17['particulars'];
+        $debitamt17 = $myrow17['debitamt'];
+        $creditamt17 = $myrow17['creditamt'];
+        $due_date17 = $myrow17['due_date'];
+        } //while
+    } //if
+
+    if($found17==1) {
+
+        $res18query=""; $result18=""; $found18=0;
+        $res18query="SELECT glname FROM tblfinglref WHERE glcode=\"$glcode17\" AND version=$glrefver17";
+        $result18=$dbh2->query($res18query);
+        if($result18->num_rows>0) {
+            while($myrow18=$result18->fetch_assoc()) {
+            $found18=1;
+            $glname18 = $myrow18['glname'];
+            } //while
+        } //if
+
+  echo "<tr><td>$glcode17</td>";
+  echo "<td>$projcode17</td>";
+  echo "<td>$particulars17</td><td align=\"right\">".number_format($debitamt17, 2)."</td><td align=\"right\">".number_format($creditamt17, 2)."</td>";
+	echo "</tr>";
+
+    } //if
+
+    echo "</table></td></tr>";
+
+		echo "<tr><td colspan=\"2\">Account Code<br>";
+		echo "<select class='form-control' name=\"glcode\" onchange=\"dynamicpulldown()\" id=\"myGlCode\">";
+    $res12query=""; $result12=""; $found12=0;
+    $res12query="SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 ORDER BY glcode ASC";
+    $result12=$dbh2->query($res12query);
+    if($result12->num_rows>0) {
+        while($myrow12=$result12->fetch_assoc()) {
+      $found12=1;
+      $glcode12 = trim($myrow12['glcode']);
+      $glname12 = $myrow12['glname'];
+			if($glcode12 == $glcode17) { $glcodesel="selected"; } else { $glcodesel=""; }
+      echo "<option value=\"$glcode12\" $glcodesel>$glcode12 - $glname12</option>";
+        } //while
+    } //if
+    echo "</select><br>";
+
+		// added 20180809 to display particulars if 20.10.210
+		if($glcode17==$dynselglcode) {
+		echo "$particulars17<br>";
+		} // if
+
+    //
+    // dynamic pulldown
+    //
+
+    echo "<div id=myDynamicPullDown>";
+
+    echo "</div>";
+
+    echo "<input name=\"aepglcode\" type=\"Hidden\">";
+
+    echo "Add'l.Details&nbsp<input class='form-control' name=\"glnamedetails\" size=\"35\" value=\"$glnamedetails17\">";
+    echo "</td>";
+		echo "</tr>";
+
+		// echo "<tr><td colspan=\"2\">Particulars<br><textarea class='form-control' rows=\"3\" name=\"particulars\" readonly />$particulars17</textarea></td>";
+		echo "</tr>";
+
+		echo "<tr><td colspan=\"2\">Project Code<br><select class='form-control' name=\"projcode\">";
+		if($projcode17 == '-') { $projcd0sel="selected"; $projcodesel=""; } else { $projcd0sel=""; }
+    echo "<option value=\"-\" $projcd0sel>-</option>";
+    $res14query=""; $result14=""; $found14=0; $ctr14=0;
+    $res14query="SELECT projectid, proj_code, proj_fname, proj_sname FROM tblproject1 WHERE projectid<>0 ORDER BY proj_code DESC";
+    $result14=$dbh2->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $found14=1;
+        $ctr14++;
+      $projectid14 = $myrow14['projectid'];
+      $proj_code14 = $myrow14['proj_code'];
+      $proj_fname14 = $myrow14['proj_fname'];
+      $proj_sname14 = $myrow14['proj_sname'];
+      $proj_fname142 = substr("$proj_fname14", 0, 47); 
+			if($projcode17 == $proj_code14) { $projcodesel="selected"; } else { $projcodesel=""; $projcd0sel=""; }
+      if($proj_sname14 <> '') { echo "<option value=\"$proj_code14\" $projcodesel>$proj_code14 - $proj_sname14</option>"; }
+      else { echo "<option value=\"$proj_code14\" $projcodesel>$proj_code14 - $proj_fname142</option>"; }
+        } //while
+    } //if
+    echo "</select></td>";
+		echo "</tr>";
+
+    echo "<tr><td>Debit Amount<br><input class='form-control' name=\"debitamt\" value=\"$debitamt17\"></td>";
+    echo "<td>Credit Amount<br><input class='form-control' name=\"creditamt\" value=\"$creditamt17\"></td></tr>";
+		// echo "<input type=\"hidden\" name=\"particulars\" value=\"$particulars17\">";
+    echo "<tr><td colspan=\"2\" align='center'>";
+    echo "<input type=\"submit\" value=\"Update\" class='btn btn-success' role='button' /></td></tr>";
+		echo "</form>";
+
+} else {
+
+  echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, APV ID or APV Number should not be blank. Please try again.</font></td></tr>";
+
+}
+      echo "</table>";
+
+    echo "<br><p><a href=\"finvouchapnew.php?loginid=$loginid&apid=$acctspayableid&apn=$acctspayablenumber\" class='btn btn-default' role='button' />Back</a></p>";
+
+// end contents here
+
+     $resquery="UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'";
+    $result=$dbh2->query($resquery);
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+} //if-else
+
+?>
+
+<script language="javascript">
+
+// This function goes through the options for the given
+// drop down box and removes them in preparation for
+// a new set of values
+
+function emptyList( box ) {
+	// Set each option to null thus removing it
+	while ( box.options.length ) box.options[0] = null;
+}
+
+// This function assigns new drop down options to the given
+// drop down box from the list of lists specified
+
+function fillList( box, arr ) {
+	// arr[0] holds the display text
+	// arr[1] are the values
+
+	for ( i = 0; i < arr[0].length; i++ ) {
+
+		// Create a new drop down option with the
+		// display text and value from arr
+
+		option = new Option( arr[0][i], arr[1][i] );
+
+		// Add to the end of the existing options
+
+		box.options[box.length] = option;
+	}
+
+	// Preselect option 0
+
+	box.selectedIndex=0;
+}
+
+// This function performs a drop down list option change by first
+// emptying the existing option list and then assigning a new set
+
+function changeList( box ) {
+	// Isolate the appropriate list by using the value
+	// of the currently selected option
+
+	list = lists[box.options[box.selectedIndex].value];
+
+	// Next empty the slave list
+
+	emptyList( box.form.slave );
+
+	// Then assign the new list values
+
+	fillList( box.form.slave, list );
+}
+
+//
+// dynamic pulldown
+//
+
+function dynamicpulldown()
+{
+    var htmlStr = "";
+
+    var selectedGlCode = document.getElementById('myGlCode').value;
+
+//    alert(selectedGlCode);
+
+    if(selectedGlCode == '<?php=$dynselglcode?>')
+    {
+         htmlStr = htmlStr + "<select id=\"aepglcodelist\" onclick=\"getSelected()\">";
+
+         <?php
+         $result = mysql_query("SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 AND glcode >= '60.00.00' AND glcode <= '70.80.199' ORDER BY glcode ASC", $dbh);
+	 ?>
+		htmlStr = htmlStr + "<option value=\"-\">-</option>";
+	 <?php
+         while($myrow = mysql_fetch_row($result))
+         {
+             $glcode = $myrow[0];
+             $glname = $myrow[1];
+             ?>
+                  htmlStr = htmlStr + "<option value=\"<?php=$glcode?>\"><?php=$glcode?> - <?php=$glname?></option>";
+             <?php
+         }
+         ?>
+
+         htmlStr = htmlStr + "</select>";
+    }
+
+    document.getElementById('myDynamicPullDown').innerHTML = htmlStr;
+}
+
+function getSelected()
+{
+     document.myForm.aepglcode.value = document.getElementById('aepglcodelist').value;
+}
+
+</script>
+
+<?php
+mysql_close($dbh);
+$dbh2->close();
+?>

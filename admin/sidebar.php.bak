@@ -1,0 +1,175 @@
+<?php
+
+// sidebar
+
+  echo "<table width=100% border=0 spacing=0 style=table-layout:fixed>";
+  echo "<tr><td width=160 valign=top bgcolor=#D3D3D3>";
+    echo "<table width=100% border=0 spacing=0><tr><td bgcolor=midnightblue align=center><font color=white><b>INTRANET Admin Menu</b></td></tr>";
+
+    echo "<tr><td>DIRECTORY</td></tr>";
+     
+     if(substr($level, -11, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=projects.php?loginid=$loginid style=\"color:midnightblue\">Projects</font></td></tr>";
+     }
+
+     if(substr($level, -9, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=personnel.php?loginid=$loginid style=\"color:midnightblue\">Personnel</font></td></tr>";
+     }
+
+     if(substr($level, -7, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=directorybiz.php?loginid=$loginid style=\"color:midnightblue\">Business Contacts</font></td></tr>";
+     }
+
+     if(substr($level, -23, 1) == 1) {
+       echo "<tr><td><font color=\"midnightblue\"><li><a href=\"dirisodocs.php?loginid=$loginid\" style=\"color:midnightblue\">ISO Documents</font></td></tr>";
+     }
+
+     echo "<tr><td>MODULES</td></tr>";
+
+     if(substr($level, -17, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=finvouchmain.php?loginid=$loginid style=\"color:midnightblue\">Vouchers</font></td></tr>";
+     }
+
+     if(substr($level, -6, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=confipay.php?loginid=$loginid style=\"color:midnightblue\">Custom Payroll System</font></td></tr>";
+     }
+
+     if(substr($level, -5, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=cutoff.php?loginid=$loginid style=\"color:midnightblue\">Employees Payslip</font></td></tr>";
+     }
+
+     if(substr($level, -4, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=emailnotifier2.php?loginid=$loginid style=\"color:midnightblue\">Custom Pay Advisory</font></td></tr>";
+     }
+
+     if(substr($level, -3, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=emppaybon01.php?loginid=$loginid style=\"color:midnightblue\">Special Pay Notifier</font></td></tr>";
+     }
+
+     if(substr($level, -26, 1) == 1)
+     {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"hrtimeatt.php?loginid=$loginid\" style=\"color:midnightblue\">Time & Attendance</font></td></tr>";
+     }
+
+     if(substr($level, -27, 1) == 1)
+     {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"finpaysys.php?loginid=$loginid\" style=\"color:midnightblue\">Payroll System</font></td></tr>";
+     }
+
+     if(substr($level, -13, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=projassign.php?loginid=$loginid style=\"color:midnightblue\">Project Assignments</font></td></tr>";
+     }
+
+     if(substr($level, -14, 1) == 1)
+     {
+	echo "<tr><td><font color=midnightblue><li><a href=projassignexpiring.php?loginid=$loginid style=\"color:midnightblue\">Expiring Contracts</font></td></tr>";
+     }
+
+     if(substr($level, -15, 1) == 1)
+     {
+	echo "<tr><td><font color=midnightblue><li><a href=persrptmnu.php?loginid=$loginid style=\"color:midnightblue\">HR Reports</font></td></tr>";
+     }
+
+     if(substr($level, -20, 1) == 1)
+     {
+	echo "<tr><td><font color=midnightblue><li><a href=finrptmnu.php?loginid=$loginid style=\"color:midnightblue\">Finance Reports</font></td></tr>";
+     }
+
+     if(substr($level, -22, 1) == 1)
+     {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"hrofctimelog.php?loginid=$loginid\" style=\"color:midnightblue\">Office time log</font></td></tr>";
+     }
+
+     if(substr($level, -25, 1) == 1)
+     {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"docsarchive.php?loginid=$loginid\" style=\"color:midnightblue\">Documents Archiving</font></td></tr>";
+     }
+
+     if(substr($level, -29, 1) == 1)
+     {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"itadmsuppreq.php?loginid=$loginid\" style=\"color:midnightblue\">IT Support Request</font></td></tr>";
+     }
+
+		// 20171024
+     if(substr($level, -41, 1) == 1) {
+	echo "<tr><td><font color=\"midnightblue\"><li><a href=\"hrpersreq.php?loginid=$loginid\" style=\"color:midnightblue\">Personnel Requisition</font></td></tr>";
+     }
+
+     echo "<tr><td>MANAGE</td></tr>";
+
+     if(substr($level, -10, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=project2.php?loginid=$loginid style=\"color:midnightblue\">Manage Projects</font></td></tr>";
+     }
+
+     if(substr($level, -8, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=personneledit.php?loginid=$loginid style=\"color:midnightblue\">Manage Personnel</font></td></tr>";
+     }
+
+     if(substr($level, -12, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=businessedit.php?loginid=$loginid style=\"color:midnightblue\">Business Contacts</font></td></tr>";
+     }
+
+     if(substr($level, -18, 1) == 1)
+     {
+     echo "<tr><td><font color=midnightblue><li><a href=\"mngfinmods.php?loginid=$loginid\" style=\"color:midnightblue\">Accounting Modules</font></td></tr>";
+     }
+
+     if(substr($level, -21, 1) == 1)
+     {
+     echo "<tr><td><font color=\"midnightblue\"><li><a href=\"mnghrmod.php?loginid=$loginid\" style=\"color:midnightblue\">HR Modules</font></td></tr>";
+     }
+
+     if(substr($level, -24, 1) == 1) {
+       echo "<tr><td><font color=\"midnightblue\"><li><a href=\"mngcateg.php?loginid=$loginid\" style=\"color:midnightblue\">Manage Categories</font></td></tr>";
+     }
+
+     if(substr($level, -28, 1) == 1) {
+       echo "<tr><td><font color=\"midnightblue\"><li><a href=\"mngscheduler.php?loginid=$loginid\" style=\"color:midnightblue\">Scheduler</font></td></tr>";
+     }
+
+     if(substr($level, -30, 1) == 1) {
+       echo "<tr><td><font color=\"midnightblue\"><li><a href=\"purchasingmodules.php?loginid=$loginid\" style=\"color:midnightblue\">Purchasing</font></td></tr>";
+     }
+
+     echo "<tr><td>TOOLS</td></tr>"; 
+
+     if(substr($level, -2, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=admchgpw.php?loginid=$loginid style=\"color:midnightblue\">Change Password</font></td></tr>";
+     }
+ 
+     if(substr($level, -1, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=logs.php?loginid=$loginid style=\"color:midnightblue\">View Logs</font></td></tr>";
+     }
+
+     if(substr($level, -16, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=sysadtools.php?loginid=$loginid style=\"color:midnightblue\">SysAd Tools</font></td></tr>";
+     }
+
+     if(substr($level, -19, 1) == 1)
+     {
+          echo "<tr><td><font color=midnightblue><li><a href=mngusers.php?loginid=$loginid style=\"color:midnightblue\">Manage Users</font></td></tr>";
+     }
+
+     echo "<tr><td>&nbsp;</td></tr>";
+    echo "<tr><td>Welcome <b>$username</b></td></tr>";
+    echo "<tr><td><font color=midnightblue><a href=admlogout.php?admloginid=$loginid style=\"color:midnightblue\">Logout</a></font></td></tr>"; 
+
+    echo "</table>";
+  echo "<td valign=top align=left>";
+
+?>

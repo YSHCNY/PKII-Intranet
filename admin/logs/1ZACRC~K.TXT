@@ -1,0 +1,45 @@
+Please find below details of your payroll salary (payroll period August 01-15, 2013) withdrawable on August 15 (Thursday).
+
+cutoff period: 2013-07-16 -to- 2013-07-31
+
+Employee ID: 608
+Employee Name: Phillip Borbon
+Project: GAE
+
+PAY RATE: P6500.00
+
+Total Late_Absent: 2246.4
+NET BASIC PAY: P4253.60
+
+Regular Overtime: 1230 (mins) - P1599.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1599.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5852.60
+
+Withholding Tax: 524.69
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P574.69
+
+NET PAY: P5277.91
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,38 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['admloginid'];
+
+$result = mysql_query("UPDATE tbladminlogin SET adminloginstat=0 WHERE adminloginid=$loginid", $dbh);
+
+$result2 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+while($myrow2 = mysql_fetch_row($result2))
+{
+  $found2 = 1;
+  $adminuid2 = $myrow2[0];
+  $username = $adminuid2;
+}
+
+include ("header.php");
+
+    include('datetimenow.php');
+
+    $usrip=$_SERVER['REMOTE_ADDR'];
+    $usrosbrowserver=$_SERVER['HTTP_USER_AGENT'];
+
+    echo "<p><center><font size=\"1\" face=\"Helvetica\"Logged-out from $usrip using $usrosbrowserver on $now</font></center></p>";
+
+    $logdetails = "loginid:". $loginid . " logged-out from ip:$usrip using:$usrosbrowserver";
+
+    $result12 = mysql_query("INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')", $dbh);
+     
+echo "<center>";
+echo "<p><b>logged out</b></p>";
+echo "<p><a href=index.php>back to Login page</a></p>";
+echo "</center>";
+
+include ("footer.php");
+
+mysql_close($dbh);
+?> 

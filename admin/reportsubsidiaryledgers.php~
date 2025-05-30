@@ -1,0 +1,566 @@
+
+
+<?php 
+
+include("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$fromDate = date('Y-m-d',strtotime((isset($_POST['fromDate'])) ? $_POST['fromDate'] :''));
+$d = new DateTime($fromDate);
+
+$toDate = date('Y-m-d',strtotime((isset($_POST['toDate'])) ? $_POST['toDate'] :''));
+$lastMonth =$d->modify('first day of last month');
+$workingPaperDate = $lastMonth->format('Y-m-d');
+
+
+if($loginid!="") {
+     include("logincheck.php");
+}
+
+if($found==1) {
+     include ("header.php");
+     include ("sidebar.php");
+     
+     $accountCodes = "SELECT * FROM tblfinglref where version = 2";
+     $acctResult = $dbh2->query($accountCodes);
+// edit body-header
+     echo "<div class='mainContainer'>";
+     echo "<div class='container-fluid'>";
+     echo "<input type='hidden' id='loginid' value='".$loginid."'/>";
+     echo "<p><font size=1>Modules >> Finance Reports >> Subsidiary - Ledgers</font></p>";
+     echo '<form method="post" action="reportsubsidiaryledgers.php?loginid='.$loginid.'">';
+     ?>
+      <script type="text/javascript">
+        $(function() {
+          $("#exportToExcel").click(function() {
+            var data='<table>' + $("#tblName").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+            $('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+            $('#ReportTableData').submit().remove();
+        });
+      });
+      </script>
+      <?php
+        echo "<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a>";
+        if (isset($_POST["glcode"]))
+          {
+            echo "<input type='hidden' id='placeholderFromDate' value='".$_POST['fromDate']."'/>";
+            echo "<input type='hidden' id='placeholderToDate' value='".$_POST['toDate']."'/>";
+            echo "<input type='hidden' id='placeholderGlcode' value='".$_POST['glcode']."'/>";
+            echo "<input type='hidden' id='placeholderIndex' value='1'/>";
+          }
+          else{
+            echo "<input type='hidden' id='placeholderIndex' value='0'/>";
+          }
+
+      ?>
+
+      <script type="text/javascript">
+        $(function() {
+
+          var placeholderIndex = $('#placeholderIndex').val();
+          if(placeholderIndex == '1' || placeholderIndex == 1)
+          {
+            $('#fromDate').val($('#placeholderFromDate').val());
+            $('#toDate').val($('#placeholderToDate').val());
+            $('#glcode').val($('#placeholderGlcode').val());
+          }
+        });
+      </script>
+
+      <input class='btn form-control' type="text" id="fromDate" name='fromDate' placeholder="from" style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <input class='btn form-control' type="text" id="toDate" name="toDate" placeholder="To"  style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <select id="glcode" name="glcode" class="form-control btn" style='width:20%; text-align: left; border: 1px solid #ddd;'>
+          <option value="All">All</option>
+          <?php 
+            while($row = $acctResult->fetch_assoc()) 
+              {
+                echo "<option value='".$row['glcode']."'>".$row['glcode']. ' - '.$row['glname']."</option>";
+              }
+          ?>
+       </select>
+       <button type="submit" class="btn btnConfirm btn-default" id="btnConfirm">Submit</button>
+       </form>
+
+     <table id="tblName" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+      <thead>
+        <th>Ref. Number</th>
+        <th>Date</th>
+        <th>Payee</th>
+        <th>Particulars</th>
+        <th>Additional Details</th>
+        <th>Beginning Balance</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Ending Balance</th>
+      </thead>
+     <tbody>
+     <?php 
+     if (isset($_POST["fromDate"]))
+     {
+
+     if($_POST['glcode'] == 'All'){
+       $accountCodes = "SELECT * FROM tblfinglref where version = 2";
+       $acctResult = $dbh2->query($accountCodes);
+     }
+     else{
+       $accountCodes = "SELECT * FROM tblfinglref where version = 2 AND glcode = '".$_POST['glcode']."'";
+       $acctResult = $dbh2->query($accountCodes);
+
+       $beginningBalance = 0;
+
+        $getWorkingPaper = "SELECT * from tblfinworkpaper where glcode = '".$_POST['glcode']."' AND month = '".$workingPaperDate."'";
+        $getWorkingPaperRows = $dbh2->query($getWorkingPaper);
+
+
+        while($rowTotal = $getWorkingPaperRows->fetch_assoc()) 
+          {
+            $beginningBalance = $rowTotal['balancesheetdr'];
+
+          }
+     }
+     $grandTotalCredit = 0;
+     $grandTotalDebit = 0;
+
+     while($row = $acctResult->fetch_assoc()) 
+      {
+        $sumDisbursementDebit = 0;
+        $sumDisbursementCredit = 0;
+        $sumCashReceiptDebit = 0;
+        $sumCashReceiptCredit = 0;
+
+        // 20210510
+        $sumAcctsPayableDebit = 0;
+        $sumAcctsPayableCredit = 0;
+
+        $sumJournalDebit = 0;
+        $sumJournalCredit = 0;
+        $totalSubDebit = 0;
+        $totalSubCredit = 0;
+        echo "<tr>";
+        echo "<td colspan='7'><h2 style='font-size:20; font-weight:700;'>".$row['glcode'] ." - ".$row['glname']."<b/><h2></td>";
+        echo "</tr>";
+
+        //disbursement
+        $subDisbursement = "SELECT * FROM tblfindisbursement WHERE date BETWEEN '".$fromDate."' AND '".$toDate."' AND glcode = '".$row['glcode']."'";
+        $subDisbursementResult = $dbh2->query($subDisbursement);
+        while($rowDisbursement = $subDisbursementResult->fetch_assoc()) 
+        {
+          $companyid15 = $rowDisbursement['companyid'];
+          $contactid15 = $rowDisbursement['contactid'];
+          echo "<tr>";
+            echo "<td><a href='finvouchcvview.php?loginid=".$loginid."&cvn=".$rowDisbursement['disbursementnumber']."' target=\"_blank\"><b>".$rowDisbursement['disbursementnumber']."</b></a></td>";
+            // echo "<td>".$rowDisbursement['disbursementnumber'] ."</td>";
+
+
+            echo "<td>".$rowDisbursement['date'] ."</td>";
+            echo '<td>';
+            if((($companyid15!="") || ($companyid15!=0)) && (($contactid15=="") || ($contactid15==0))) {
+              $result15a=""; $found15a=0; $ctr15a=0;
+              $result15a = mysql_query("SELECT company, branch FROM tblcompany WHERE companyid=$companyid15", $dbh);
+              if($result15a != "") {
+                while($myrow15a = mysql_fetch_row($result15a)) {
+                $found15a = 1;
+                $company15a = $myrow15a[0];
+                $branch15a = $myrow15a[1];
+                }
+              }
+              $company15afin = $company15a;
+              if($branch15a!="") { $company15afin = $company15a . " - " . $branch15a; }
+              $company15afin2 = str_replace("'", "", $company15afin);
+              echo "<b><u>$company15afin2</u></b>";
+            }
+            if((($contactid15!="") || ($contactid15!=0)) && (($companyid15=="") || ($companyid15==0))) {
+              $result15b=""; $found15b=0; $ctr15b=0;
+              $result15b = mysql_query("SELECT companyid, employeeid, name_last, name_first, name_middle FROM tblcontact WHERE contactid=$contactid15", $dbh);
+              if($result15b != "") {
+                while($myrow15b = mysql_fetch_row($result15b)) { 
+                $found15b = 1;
+                $companyid15b = $myrow15b[0];
+                $employeeid15b = $myrow15b[1];
+                $name_last15b = $myrow15b[2];
+                $name_first15b = $myrow15b[3];
+                $name_middle15b = $myrow15b[4];
+                }
+              }
+              $contactname15bfin = $name_first15b;
+              if($name_middle15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_middle15b[0] . "."; }
+              if($name_last15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_last15b; }
+              $contactname15bfin2 = str_replace("'", "", $contactname15bfin);
+              echo "<b><u>$contactname15bfin2</u></b>";
+            }
+            echo '</td>';
+
+            echo "<td>".$rowDisbursement['particulars'] ."</td>";
+            echo "<td>".$rowDisbursement['explanation'] ."</td>";
+
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>"; }
+            echo "<td class='text-right'>".number_format($rowDisbursement['debitamt'],2) ."</td>";
+            echo "<td class='text-right'>".number_format($rowDisbursement['creditamt'],2) ."</td>";
+
+
+
+            if(($row['glcode'] >= "10.00.000") && ($row['glcode'] <= "10.40.140")) {
+              $beginningBalance += $rowDisbursement['debitamt'];
+              $beginningBalance -= $rowDisbursement['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "20.00.000") && ($row['glcode'] <= "50.10.400")) {
+              $beginningBalance -= $rowDisbursement['debitamt'];
+              $beginningBalance += $rowDisbursement['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "60.00.000") && ($row['glcode'] <= "72.00.000")) {
+              $beginningBalance += $rowDisbursement['debitamt'];
+              $beginningBalance -= $rowDisbursement['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "80.00.000") && ($row['glcode'] <= "90.00.000")) {
+              $beginningBalance -= $rowDisbursement['debitamt'];
+              $beginningBalance += $rowDisbursement['creditamt'];
+            }
+
+
+
+
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+
+
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>";}
+            
+          echo "</tr>";
+          $sumDisbursementDebit = $sumDisbursementDebit + $rowDisbursement['debitamt'];
+          $sumDisbursementCredit = $sumDisbursementCredit + $rowDisbursement['creditamt'];
+        }
+        //enddisbursement
+
+        //cashreceipt
+
+        $subCashReceipt = "SELECT * FROM tblfincashreceipt WHERE date BETWEEN '".$fromDate."' AND '".$toDate."' AND glcode = '".$row['glcode']."'";
+        $subCashReceiptResult = $dbh2->query($subCashReceipt);
+
+        while($rowCashReceipt = $subCashReceiptResult->fetch_assoc()) 
+        {
+
+          $companyid16 = $rowCashReceipt['companyid'];
+          $contactid16 = $rowCashReceipt['contactid'];
+
+          echo "<tr>";
+            
+            echo "<td><a href='finvouchcrvview.php?loginid=".$loginid."&crvn=".$rowCashReceipt['cashreceiptnumber']."' target=\"_blank\"><b>".$rowCashReceipt['cashreceiptnumber']."</b></a></td>";
+            // echo "<td>".$rowCashReceipt['cashreceiptnumber'] ."</td>";
+
+            echo "<td>".$rowCashReceipt['date'] ."</td>";
+
+            echo '<td>';
+            if((($companyid16!="") || ($companyid16!=0)) && (($contactid16=="") || ($contactid16==0))) {
+              $result15a=""; $found15a=0; $ctr15a=0;
+              $result15a = mysql_query("SELECT company, branch FROM tblcompany WHERE companyid=$companyid16", $dbh);
+              if($result15a != "") {
+                while($myrow15a = mysql_fetch_row($result15a)) {
+                $found15a = 1;
+                $company15a = $myrow15a[0];
+                $branch15a = $myrow15a[1];
+                }
+              }
+              $company15afin = $company15a;
+              if($branch15a!="") { $company15afin = $company15a . " - " . $branch15a; }
+              $company15afin2 = str_replace("'", "", $company15afin);
+              echo "<b><u>$company15afin2</u></b>";
+            }
+            if((($companyid16!="") || ($companyid16!=0)) && (($contactid16=="") || ($contactid16==0))) {
+              $result15b=""; $found15b=0; $ctr15b=0;
+              $result15b = mysql_query("SELECT companyid, employeeid, name_last, name_first, name_middle FROM tblcontact WHERE contactid=$contactid16", $dbh);
+              if($result15b != "") {
+                while($myrow15b = mysql_fetch_row($result15b)) { 
+                $found15b = 1;
+                $companyid15b = $myrow15b[0];
+                $employeeid15b = $myrow15b[1];
+                $name_last15b = $myrow15b[2];
+                $name_first15b = $myrow15b[3];
+                $name_middle15b = $myrow15b[4];
+                }
+              }
+              $contactname15bfin = $name_first15b;
+              if($name_middle15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_middle15b[0] . "."; }
+              if($name_last15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_last15b; }
+              $contactname15bfin2 = str_replace("'", "", $contactname15bfin);
+              echo "<b><u>$contactname15bfin2</u></b>";
+            }
+            echo '</td>';
+
+
+
+            echo "<td>". $rowCashReceipt['particulars'] ."</td>";
+            echo "<td>". $rowCashReceipt['explanation'] ."</td>";
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>"; }
+            echo "<td class='text-right'>".number_format($rowCashReceipt['debitamt'],2) ."</td>";
+            echo "<td class='text-right'>".number_format($rowCashReceipt['creditamt'],2) ."</td>";
+
+            if(($row['glcode'] >= "10.00.000") && ($row['glcode'] <= "10.40.140")) {
+              $beginningBalance += $rowCashReceipt['debitamt'];
+              $beginningBalance -= $rowCashReceipt['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "20.00.000") && ($row['glcode'] <= "50.10.400")) {
+              $beginningBalance -= $rowCashReceipt['debitamt'];
+              $beginningBalance += $rowCashReceipt['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "60.00.000") && ($row['glcode'] <= "72.00.000")) {
+              $beginningBalance += $rowCashReceipt['debitamt'];
+              $beginningBalance -= $rowCashReceipt['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "80.00.000") && ($row['glcode'] <= "90.00.000")) {
+              $beginningBalance -= $rowCashReceipt['debitamt'];
+              $beginningBalance += $rowCashReceipt['creditamt'];
+            }
+
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>";}
+          echo "</tr>";
+          $sumCashReceiptDebit = $sumCashReceiptDebit + $rowCashReceipt['debitamt'];
+          $sumCashReceiptCredit = $sumCashReceiptCredit + $rowCashReceipt['creditamt'];
+        }
+
+          //endcashreceipt
+
+        // 20210510
+        // acctspayable
+        $subAcctsPayable = "SELECT * FROM tblfinacctspayable WHERE date BETWEEN '".$fromDate."' AND '".$toDate."' AND glcode = '".$row['glcode']."'";
+        $subAcctsPayableResult = $dbh2->query($subAcctsPayable);
+        while($rowAcctsPayable = $subAcctsPayableResult->fetch_assoc()) 
+        {
+          $companyid18 = $rowAcctsPayable['company_id'];
+          $contactid18 = $rowAcctsPayable['contact_id'];
+          echo "<tr>";
+            echo "<td><a href='finvouchapview.php?loginid=".$loginid."&apn=".$rowAcctsPayable['acctspayablenumber']."' target=\"_blank\"><b>".$rowAcctsPayable['acctspayablenumber']."</b></a></td>";
+            // echo "<td>".$rowAcctsPayable['acctspayablenumber'] ."</td>";
+
+            echo "<td>".$rowAcctsPayable['date'] ."</td>";
+            echo '<td>';
+            if((($companyid18!="") || ($companyid18!=0)) && (($contactid18=="") || ($contactid18==0))) {
+              $result18a=""; $found18a=0; $ctr18a=0;
+              $res18aquery = "SELECT company, branch FROM tblcompany WHERE companyid=$companyid18";
+              $result18a = $dbh2->query($res18aquery);
+              if($result18a->num_rows>0) {
+                while($myrow18a=$result18a->fetch_assoc()) {
+                $found18a = 1;
+                $company18a = $myrow18a['company'];
+                $branch18a = $myrow18a['branch'];
+                } //while
+              } //if
+              $company18afin = $company18a;
+              if($branch18a!="") { $company18afin = $company18a . " - " . $branch18a; }
+              $company18afin2 = str_replace("'", "", $company18afin);
+              echo "<b><u>$company18afin2</u></b>";
+            } //if
+            if((($contactid18!="") || ($contactid18!=0)) && (($companyid18=="") || ($companyid18==0))) {
+              $result18b=""; $found18b=0; $ctr18b=0;
+              $res18bquery="SELECT companyid, employeeid, name_last, name_first, name_middle FROM tblcontact WHERE contactid=$contactid18";
+              $result18b=$dbh2->query($res18bquery);
+              if($result18b->num_rows>0) {
+                while($myrow18b=$result18b->fetch_assoc()) {
+                $found18b = 1;
+                $companyid18b = $myrow18b['companyid'];
+                $employeeid18b = $myrow18b['employeeid'];
+                $name_last18b = $myrow18b['name_last'];
+                $name_first18b = $myrow18b['name_first'];
+                $name_middle18b = $myrow18b['name_middle'];
+                } //while
+              } //if
+              $contactname18bfin = $name_first18b;
+              if($name_middle18b != "") { $contactname18bfin = $contactname18bfin . "&nbsp;" . $name_middle18b[0] . "."; }
+              if($name_last18b != "") { $contactname18bfin = $contactname18bfin . "&nbsp;" . $name_last18b; }
+              $contactname18bfin2 = str_replace("'", "", $contactname18bfin);
+              echo "<b><u>$contactname18bfin2</u></b>";
+            }
+            if($found18a==0 && $found18b==0) {
+              echo "<b><u>".$rowAcctsPayable['payee']."</u></b>";
+            } //if
+            echo '</td>';
+
+            echo "<td>".$rowAcctsPayable['particulars'] ."</td>";
+            // echo "<td>".$rowAcctsPayable['explanation'] ."</td>";
+            echo "<td></td>";
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>"; }
+            echo "<td class='text-right'>".number_format($rowAcctsPayable['debitamt'],2) ."</td>";
+            echo "<td class='text-right'>".number_format($rowAcctsPayable['creditamt'],2) ."</td>";
+
+            if(($row['glcode'] >= "10.00.000") && ($row['glcode'] <= "10.40.140")) {
+              $beginningBalance += $rowAcctsPayable['debitamt'];
+              $beginningBalance -= $rowAcctsPayable['creditamt'];
+            }
+            else if(($row['glcode'] >= "20.00.000") && ($row['glcode'] <= "50.10.400")) {
+              $beginningBalance -= $rowAcctsPayable['debitamt'];
+              $beginningBalance += $rowAcctsPayable['creditamt'];
+            }
+            else if(($row['glcode'] >= "60.00.000") && ($row['glcode'] <= "72.00.000")) {
+              $beginningBalance += $rowAcctsPayable['debitamt'];
+              $beginningBalance -= $rowAcctsPayable['creditamt'];
+            }
+            else if(($row['glcode'] >= "80.00.000") && ($row['glcode'] <= "90.00.000")) {
+              $beginningBalance -= $rowAcctsPayable['debitamt'];
+              $beginningBalance += $rowAcctsPayable['creditamt'];
+            } // if - else if
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>"; }
+            
+          echo "</tr>";
+          $sumAcctsPayableDebit = $sumAcctsPayableDebit + $rowAcctsPayable['debitamt'];
+          $sumAcctsPayableCredit = $sumAcctsPayableCredit + $rowAcctsPayable['creditamt'];
+        } //while
+        // endacctspayable
+
+          //JV
+          $subJournal = "SELECT * FROM tblfinjournal WHERE date BETWEEN '".$fromDate."' AND '".$toDate."' AND glcode = '".$row['glcode']."'";
+        $subJournalResult = $dbh2->query($subJournal);
+
+        while($rowJournal = $subJournalResult->fetch_assoc()) 
+        {
+
+          $companyid17 = $rowJournal['companyid'];
+          $contactid17 = $rowJournal['contactid'];
+
+          echo "<tr>";
+            // echo "<td>".$rowJournal['journalnumber'] ."</td>";
+            echo "<td><a href='finvouchjvview.php?loginid=".$loginid."&jvn=".$rowJournal['journalnumber']."' target=\"_blank\"><b>".$rowJournal['journalnumber']."</b></a></td>";
+
+            echo "<td>".$rowJournal['date'] ."</td>";
+
+
+            echo '<td>';
+            if((($companyid17!="") || ($companyid17!=0)) && (($contactid17=="") || ($contactid17==0))) {
+              $result15a=""; $found15a=0; $ctr15a=0;
+              $result15a = mysql_query("SELECT company, branch FROM tblcompany WHERE companyid=$companyid17", $dbh);
+              if($result15a != "") {
+                while($myrow15a = mysql_fetch_row($result15a)) {
+                $found15a = 1;
+                $company15a = $myrow15a[0];
+                $branch15a = $myrow15a[1];
+                }
+              }
+              $company15afin = $company15a;
+              if($branch15a!="") { $company15afin = $company15a . " - " . $branch15a; }
+              $company15afin2 = str_replace("'", "", $company15afin);
+              echo "<b><u>$company15afin2</u></b>";
+            }
+            if((($companyid17!="") || ($companyid17!=0)) && (($contactid17=="") || ($contactid17==0))) {
+              $result15b=""; $found15b=0; $ctr15b=0;
+              $result15b = mysql_query("SELECT companyid, employeeid, name_last, name_first, name_middle FROM tblcontact WHERE contactid=$contactid17", $dbh);
+              if($result15b != "") {
+                while($myrow15b = mysql_fetch_row($result15b)) { 
+                $found15b = 1;
+                $companyid15b = $myrow15b[0];
+                $employeeid15b = $myrow15b[1];
+                $name_last15b = $myrow15b[2];
+                $name_first15b = $myrow15b[3];
+                $name_middle15b = $myrow15b[4];
+                }
+              }
+              $contactname15bfin = $name_first15b;
+              if($name_middle15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_middle15b[0] . "."; }
+              if($name_last15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_last15b; }
+              $contactname15bfin2 = str_replace("'", "", $contactname15bfin);
+              echo "<b><u>$contactname15bfin2</u></b>";
+            }
+            echo '</td>';
+
+
+            echo "<td>".$rowJournal['particulars'] ."</td>";
+            echo "<td>".$rowJournal['explanation'] ."</td>";
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>";}
+            echo "<td class='text-right'>".number_format($rowJournal['debitamt'],2) ."</td>";
+            echo "<td class='text-right'>".number_format($rowJournal['creditamt'],2) ."</td>";
+
+            if(($row['glcode'] >= "10.00.000") && ($row['glcode'] <= "10.40.140")) {
+              $beginningBalance += $rowJournal['debitamt'];
+              $beginningBalance -= $rowJournal['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "20.00.000") && ($row['glcode'] <= "50.10.400")) {
+              $beginningBalance -= $rowJournal['debitamt'];
+              $beginningBalance += $rowJournal['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "60.00.000") && ($row['glcode'] <= "72.00.000")) {
+              $beginningBalance += $rowJournal['debitamt'];
+              $beginningBalance -= $rowJournal['creditamt'];
+            }
+
+            else if(($row['glcode'] >= "80.00.000") && ($row['glcode'] <= "90.00.000")) {
+              $beginningBalance -= $rowJournal['debitamt'];
+              $beginningBalance += $rowJournal['creditamt'];
+            }
+
+
+
+            if($beginningBalance < 0) { echo "<td class='text-right'>(".number_format(abs($beginningBalance),2) .")</td>"; }
+            else { echo "<td class='text-right'>".number_format($beginningBalance,2) ."</td>"; }
+          echo "</tr>";
+          $sumJournalDebit = $sumJournalDebit + $rowJournal['debitamt'];
+          $sumJournalCredit = $sumJournalCredit + $rowJournal['creditamt'];
+        }
+          //END JV
+
+          // compute AllTotal
+          $allTotalDebit = $sumCashReceiptDebit+$sumDisbursementDebit+$sumJournalDebit+$sumAcctsPayableDebit;
+          $allTotalCredit = $sumCashReceiptCredit+$sumDisbursementCredit+$sumJournalCredit+$sumAcctsPayableCredit;
+          echo "<tr>";
+            echo "<td colspan='5'><h3 style='font-size:18px; font-weight:700;'>TOTAL: DEBIT/CREDIT</h3></td>";
+            echo "<td colspan='1' class='text-right'><h3 style='font-size:18px; font-weight:700;'>".number_format($allTotalDebit,2)."</h3></td>";
+            echo "<td colspan='1' class='text-right'><h3 style='font-size:18px; font-weight:700;'>".number_format($allTotalCredit,2)."</h3></td>";
+          echo "</tr>";
+          $grandTotalDebit = $allTotalDebit;
+          $grandTotalCredit = $allTotalCredit;
+          $pinakaTotalDebit += $allTotalDebit;
+          $pinakaTotalCredit += $allTotalCredit;
+      }
+
+
+       echo "<tr>";
+       echo "<td colspan='5'><h3 style='font-size:18px; font-weight:700;'>GRAND TOTAL: DEBIT/CREDIT</h3></td>";
+       echo "<td colspan='1' class='text-right'><h3 style='font-size:18px; font-weight:700;'>".number_format($pinakaTotalDebit,2)."</h3></td>";
+       echo "<td colspan='1' class='text-right'><h3 style='font-size:18px; font-weight:700;'>".number_format($pinakaTotalCredit,2)."</h3></td>";
+       echo "</tr>";
+      }
+
+      ?>
+      </tbody>
+      </table>
+      <script>
+        $(document).ready(function(){
+            $('#fromDate').datepicker();
+            $('#toDate').datepicker();
+        });
+      </script>
+      </div>
+      </div>
+      <?php 
+     $resquery="UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+     $result=$dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 
+
+
+<script>
+  $(document).ready(function(){
+    $('#glcode').chosen();
+  });
+</script>

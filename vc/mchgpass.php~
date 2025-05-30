@@ -1,0 +1,104 @@
+<?php
+//
+// mchgpass.php
+// fr: vc/index.php -> menu.php -> indexlist.php
+//page 41
+
+include("../m/qryusernm.php"); 
+
+?>
+
+	<div class="row">
+		<div class="col-md-12"><h3>Change Password</h3></div>
+	</div>
+
+
+<thead>
+	
+</thead>
+<tbody>
+
+<?php
+ echo "<form method=\"post\" action=\"index.php?lst=1&lid=$loginid&sess=$session&p=411\" name=\"mchgpass2\">";
+	echo "<input type=\"hidden\" name=\"username\" value=\"$username11\">";
+?>
+
+<!-- <form id="identicalForm" class="form-horizontal"
+    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+	<br> -->
+	<div class="form-group">
+      <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5"><strong>
+<?php echo $username11; ?>
+            <!-- <input class="form-control" id="username" name="username" placeholder="<?php echo '$username11'; ?>"  value="<?php echo '$username11'; ?>" /> -->
+        </strong></div>
+		<br>
+
+<div class="form-group">
+      <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+            <p>Note: Your password should have a minimum of at least seven (7) alphanumeric characters, with  capital and lowercase	letters.</p>
+        </div>
+		<br><br>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" 
+                input autocomplete="current-password" class="form-control" placeholder="Current Password" id="password" name="password" type="password" />
+		
+        </div>
+		<br><br>
+    <div class="form-group">
+        <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+            <input autocomplete="new-password" class="form-control" id="newpass" placeholder="New Password" name="newpass" type="password"  />
+		
+        </div>
+    </div>
+	<br>
+    <div class="form-group">
+        <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+            <input autocomplete="new-password" class="form-control" id="cnewpass" placeholder="Confirm New Password" name ="cnewpass" type="password" />
+		
+        </div>
+		</div><br>
+    <div class="form-group">
+        <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+	<table class="table">
+  <tbody>
+    <tr>
+      <td><input class="btn btn-success" id="submit" type="submit" name="submit" value="Change password"></td>
+<?php echo "</form>"; ?>
+<?php	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session\" method=\"POST\" name=\"home\">"; ?>
+      <td><button type='submit' class='btn btn-danger'>Cancel</button></td>
+<?php echo "</form>"; ?>
+    </tr>
+  </tbody>
+</table>
+        </div>
+		</div><br>
+	
+    </div>
+
+<script>
+/*var newPassword = document.getElementById("newpass");
+		    var confirmPassword = document.getElementById("cnewpass");
+
+		    function validatePassword() {
+		        if (newPassword.value != confirmPassword.value) {
+		            document.getElementById("cnewpass").setCustomValidity("Passwords do not match!");
+		        } else {
+		            //empty string means no validation error
+		            document.getElementById("cnewpass").setCustomValidity('');
+		        }
+		    }
+		    newPassword.addEventListener("submit", validatePassword);
+		    confirmPassword.addEventListener("submit", validatePassword);
+*/
+
+</script>

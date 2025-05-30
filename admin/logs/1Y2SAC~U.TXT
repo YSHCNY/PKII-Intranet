@@ -1,0 +1,51 @@
+Please find below details of your payroll salary (payroll period March 01-15, 2013) is now available.
+
+cutoff period: 2013-02-16 -to- 2013-02-28
+
+Employee ID: 394
+Employee Name: Crissaliz Decena
+Project: ARISP 3
+
+PAY RATE: P9114.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P9114.50
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1235.00
+Esc: Nov01-Feb15; Basic: 6657.20
+Esc: Nov01-Feb15; PA: 4284.46
+TOTAL Taxable Income: 12176.66
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P21291.16
+
+Withholding Tax: 3783.18
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Maxi-Care for 2013: 835.29
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 483.05
+TOTAL Other Deductions: 1843.34
+
+TOTAL DEDUCTIONS: P5676.52
+
+NET PAY: P15614.64
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

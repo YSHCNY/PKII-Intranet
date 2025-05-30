@@ -1,0 +1,113 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$ver = $_POST['ver'];
+
+if ($ver == '')
+{
+  $result10 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+  if($result10 != '')
+  {
+    while($myrow10 = mysql_fetch_row($result10))
+    {
+      $found10 = 1;
+      $version10 = $myrow10[0];
+    }
+  }
+  $ver = $version10;
+}
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+  echo "<p><font size=1>Manage >> Accounting Modules</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+  echo "<tr><th colspan=\"8\">Working Paper Account Codes</th></tr>";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"8\">Displaying Chart of Accts Ver.<b>$ver</b></td></tr>";
+  echo "<tr><td colspan=\"8\" align=\"center\">";
+  echo "<table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  echo "<tr><form action=\"mngfinwprefadd.php?loginid=$loginid&ver=$ver\" method=\"post\">";
+  echo "<td align=\"right\"><select name=\"glcode\">";
+  $result11 = mysql_query("SELECT tblfinglref.glrefid, tblfinglref.glcode, tblfinglref.glname FROM tblfinglref LEFT JOIN tblfinworkpaperref ON tblfinglref.glcode = tblfinworkpaperref.glcode WHERE tblfinglref.version=$ver ORDER BY tblfinglref.glcode ASC", $dbh);
+  if($result11 != '')
+  {
+    while($myrow11 = mysql_fetch_row($result11))
+    {
+      $found11 = 1;
+      $glrefid11 = $myrow11[0];
+      $glcode11 = $myrow11[1];
+      $glname11 = $myrow11[2];
+      echo "<option value=\"$glcode11\">$glcode11 - $glname11</option>";
+    }
+  }
+  echo "</select></td>";
+  echo "<td align=\"left\"><input type=\"submit\" value=\"Add\"></td></form></tr>";
+  echo "</table>";
+  echo "</td></tr>";
+  echo "<tr><th>Count</th><th>AcctCode</th><th>Name</th><th>Ver</th><th>Status</th><th>Action</th></tr>";
+  $result12 = mysql_query("SELECT wprefid, glcode, glrefver, status FROM tblfinworkpaperref WHERE glrefver=$ver ORDER BY glcode ASC", $dbh);
+  if($result12 != '')
+  {
+    while($myrow12 = mysql_fetch_row($result12))
+    {
+      $found12 = 1;
+      $wprefid12 = $myrow12[0];
+      $glcode12 = $myrow12[1];
+      $glrefver12 = $myrow12[2];
+      $status12 = $myrow12[3];
+
+      $count1 = $count1 + $found11;
+
+      $result14 = mysql_query("SELECT glname FROM tblfinglref WHERE glcode=\"$glcode12\" AND version=$ver", $dbh);
+      if($result14 != '')
+      {
+	while($myrow14 = mysql_fetch_row($result14))
+	{
+	  $found14 = 1;
+	  $glname14 = $myrow14[0];
+	}
+      }
+
+      echo "<tr><td>$count1</td><td>$glcode12</td><td>$glname14</td><td>$glrefver12</td><td>$status12</td>";
+      if($accesslevel >= 4 && $accesslevel <= 5)
+      {
+        echo "<td><a href=\"mngfinwprefdel.php?loginid=$loginid&wpid=$wprefid12\">Del</a></td></tr>";
+      }
+    }
+  }
+
+// end contents here...
+
+  echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"mngfinmods.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

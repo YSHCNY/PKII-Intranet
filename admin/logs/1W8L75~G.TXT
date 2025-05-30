@@ -1,0 +1,47 @@
+Please find below details of your payroll salary (payroll period October 16-31, 2012) is now available.
+
+cutoff period: 2012-10-01 -to- 2012-10-15
+
+Employee ID: 578
+Employee Name: Sonny Lita
+Project: GAE
+
+PAY RATE: P5573.50
+
+Total Late_Absent: 0
+NET BASIC PAY: P5573.50
+
+Regular Overtime: 2421 (mins) - P2693.36
+Reg.Sun/Sat. OT: 410 (mins) - P474.37
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P3167.73
+
+Taxable Income:
+COLA: 287.50
+TOTAL Taxable Income: 287.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9028.73
+
+Withholding Tax: 333.48
+SSS: 500
+Philhealth: 137.50
+Pag-ibig: 50
+
+Other Deductions:
+Short on Liquidation: 610.00
+TOTAL Other Deductions: 610.00
+
+TOTAL DEDUCTIONS: P1630.98
+
+NET PAY: P7397.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,254 @@
+<?php
+
+// sidebar
+     include ("addons.php");
+     $sql = ("SELECT COUNT(*) FROM tblinventoryrequest where request_status = 'Pending'");
+$rs = mysql_query($sql);
+ //-----------^  need to run query here
+
+ $result = mysql_fetch_array($rs);
+ //here you can echo the result of query
+
+  echo "<div id='sidebar'>";
+       echo "<div id='sidebarLogo'>";
+       echo "<a href='index2.php?loginid=$loginid'>";
+        echo "<img src='images/logo1.png' id='pkiilogo1'/>";
+       echo "<img src='images/logo2.png' id='pkiilogo2'/>";
+        echo "</a>";
+       echo "</div>";
+
+  echo "<ul id='menuList'>";
+    echo "<li class='dropdownMenuList' data-id='directory'><i class='fa fa-address-book' aria-hidden='true'></i>DIRECTORY</li>";
+    echo "<ul class='directory dropdownMenu'>";
+     if(substr($level, -11, 1) == 1)
+     {
+     echo "<li><a href=projects.php?loginid=$loginid >Projects</a></li>";
+     }
+
+     if(substr($level, -9, 1) == 1)
+     {
+          echo "<li><a href=personnel.php?loginid=$loginid >Personnel</a></li>";
+     }
+
+     if(substr($level, -7, 1) == 1)
+     {
+          echo "<li><a href=directorybiz.php?loginid=$loginid >Business Contacts</a></li>";
+     }
+
+     if(substr($level, -23, 1) == 1) {
+       echo "<li><a href=\"dirisodocs.php?loginid=$loginid\" >ISO Documents</a></li>";
+     }
+
+
+     if(substr($level, -44, 1) == 1) {
+       echo "<li><a href=\"mngschedulermtgrm.php?loginid=$loginid\" >Meeting room schedules</a></li>";
+     }
+     echo "</ul>";
+
+     echo "<li class='dropdownMenuList' data-id='modules'><i class='fa fa-desktop' aria-hidden='true'></i>MODULES</li>";
+    echo "<ul class='modules dropdownMenu'>";
+
+     if(substr($level, -17, 1) == 1)
+     {
+     echo "<li><a href=finvouchmain.php?loginid=$loginid >Vouchers</a></li>";
+     }
+
+     if(substr($level, -6, 1) == 1)
+     {
+     echo "<li><a href=confipay.php?loginid=$loginid >Custom Payroll System</a></li>";
+     }
+
+     if(substr($level, -5, 1) == 1)
+     {
+          echo "<li><a href=cutoff.php?loginid=$loginid >Employees Payslip</a></li>";
+     }
+
+     if(substr($level, -4, 1) == 1)
+     {
+          echo "<li><a href=emailnotifier2.php?loginid=$loginid >Custom Pay Advisory</a></li>";
+     }
+
+     if(substr($level, -3, 1) == 1)
+     {
+          // echo "<li><a href=emppaybon01.php?loginid=$loginid >Special Pay Notifier</a></li>";
+    echo "<li><a href=emppaybon00.php?loginid=$loginid >Special Pay Notifier</a></li>"; //20210426
+     }
+
+     if(substr($level, -26, 1) == 1)
+     {
+	echo "<li><a href=\"hrtimeatt.php?loginid=$loginid\" >Time & Attendance</a></li>";
+     }
+
+     if(substr($level, -27, 1) == 1)
+     {
+	echo "<li><a href=\"finpaysys.php?loginid=$loginid\" >Payroll System</a></li>";
+     }
+
+     if(substr($level, -13, 1) == 1)
+     {
+          echo "<li><a href=projassign.php?loginid=$loginid >Project Assignments</a></li>";
+     }
+
+     if(substr($level, -14, 1) == 1)
+     {
+	echo "<li><a href=projassignexpiring.php?loginid=$loginid >Expiring Contracts</a></li>";
+     }
+
+		// 20181029
+     if(substr($level, -33, 1) == 1) {
+	echo "<li><a href=projbilling.php?loginid=$loginid >Project Billing</a></li>";
+     }
+
+     if(substr($level, -15, 1) == 1)
+     {
+	echo "<li><a href=persrptmnu.php?loginid=$loginid >HR Reports</a></li>";
+     }
+
+     if(substr($level, -20, 1) == 1)
+     {
+	echo "<li><a href=finrptmnu.php?loginid=$loginid >Finance Reports</a></li>";
+     }
+
+     if(substr($level, -22, 1) == 1)
+     {
+	echo "<li><a href=\"hrofctimelog.php?loginid=$loginid\" >Office time log</a></li>";
+     }
+
+     if(substr($level, -25, 1) == 1)
+     {
+	echo "<li><a href=\"docsarchive.php?loginid=$loginid\" >Documents Archiving</a></li>";
+     }
+
+     if(substr($level, -29, 1) == 1)
+     {
+	echo "<li><a href=\"itadmsuppreq.php?loginid=$loginid\" >IT Support Request</a></li>";
+     }
+		// 20190701
+     if(substr($level, -42, 1) == 1 || substr($level, -43, 1) == 1)
+     {
+    // -42 to -43 OT/Leave request approval
+		// but should be relocated to non-admin
+    echo "<li><a href=mngotrequest.php?loginid=$loginid >OT/Leave Requests</a></li>";
+    // echo "<li><a href=mngleaverequest.php?loginid=$loginid >Leave Requests</a></li>";
+     }
+
+
+     if(substr($level, -41, 1) == 1)
+     {
+	echo "<li><a href=\"hrpersreq.php?loginid=$loginid\" >HR Personnel Request</a></li>";
+     }
+     echo "</ul>";
+
+     if(substr($level, -30, 1) == 1) {
+    echo "<li class='dropdownMenuList' data-id='purchasing'><i class='fa fa-wrench' aria-hidden='true'></i>PURCHASING</li>"; 
+    echo "<ul class='purchasing dropdownMenu'>";
+       echo "<li><a href=\"purchasingsuppliers.php?loginid=$loginid\" >Suppliers</a></li>";
+     if(substr($level, -31, 1) == 1) {
+       echo "<li><a href=\"inventory.php?loginid=$loginid\" >Inventory</a></li>";
+     }
+     if(substr($level, -32, 1) == 1) {
+       echo "<li><a href=\"inventoryrequest.php?loginid=$loginid\" >Requests (".$result[0].")</a></li>";
+     }
+     echo "</ul>";
+     } // if(substr($level, -30, 1) == 1)
+
+     echo "<li class='dropdownMenuList' data-id='manage'><i class='fa fa-cogs' aria-hidden='true'></i>MANAGE</li>";
+    echo "<ul class='manage dropdownMenu'>";
+
+     if(substr($level, -10, 1) == 1)
+     {
+     echo "<li><a href=project2.php?loginid=$loginid >Manage Projects</a></li>";
+     }
+
+     if(substr($level, -8, 1) == 1)
+     {
+     echo "<li><a href=personneledit.php?loginid=$loginid >Manage Personnel</a></li>";
+     }
+
+     if(substr($level, -12, 1) == 1)
+     {
+     echo "<li><a href=businessedit.php?loginid=$loginid >Business Contacts</a></li>";
+     }
+
+     if(substr($level, -18, 1) == 1)
+     {
+     echo "<li><a href=\"mngfinmods.php?loginid=$loginid\" >Accounting Modules</a></li>";
+     }
+
+     if(substr($level, -21, 1) == 1)
+     {
+     echo "<li><a href=\"mnghrmod.php?loginid=$loginid\" >HR Modules</a></li>";
+     }
+
+     if(substr($level, -24, 1) == 1) {
+       echo "<li><a href=\"mngcateg.php?loginid=$loginid\" >Manage Categories</a></li>";
+     }
+
+     if(substr($level, -28, 1) == 1) {
+       echo "<li><a href=\"mngscheduler.php?loginid=$loginid\" >Scheduler</a></li>";
+     }
+     echo "</ul>";
+
+     echo "<li class='dropdownMenuList' data-id='tools'><i class='fa fa-wrench' aria-hidden='true'></i>TOOLS</li>"; 
+    echo "<ul class='tools dropdownMenu'>";
+
+     
+ 
+     if(substr($level, -1, 1) == 1)
+     {
+          echo "<li><a href=logs.php?loginid=$loginid >View Logs</a></li>";
+     }
+
+     if(substr($level, -16, 1) == 1)
+     {
+          echo "<li><a href=sysadtools.php?loginid=$loginid >SysAd Tools</a></li>";
+     }
+
+     if(substr($level, -19, 1) == 1)
+     {
+          echo "<li><a href=mngusers.php?loginid=$loginid >Manage Users</a></li>";
+     }
+
+     echo "</ul>";
+
+
+  echo "</ul>";
+  echo "</div>";
+
+?>
+
+<!-- start main body here -->
+	<div id="bodyContainer">
+		<div id="bodyWrapper">
+
+<script>
+    $(document).ready(function(){
+        $('li.dropdownMenuList').click(function(e) {
+          e.preventDefault();
+          var dropdownClass = "." + $(this).data('id');
+          $(this).closest("ul").find(dropdownClass).slideToggle();
+        });
+
+        $('#profname').click(function(e){
+          e.preventDefault();
+             $('#myDropdown').slideToggle();
+        });
+    });
+
+
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>

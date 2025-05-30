@@ -1,0 +1,77 @@
+<?php
+//
+// mhrotfrmreq.php
+// fr: vc/index.php
+// indexlinks: $page==361
+
+require '../includes/config.inc';
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>New Overtime Request</h3></div>
+	</div> <!-- div class="row" -->
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table table-striped">
+<thead>
+	<tr><th colspan="2" class="text-center">OVERTIME REQUEST/AUTHORIZATION FORM (HRD-F-11)</th></tr>
+</thead>
+<tbody>
+<?php
+	echo "<form method=\"POST\" action=\"mhrotfrmreq2.php?lst=1&lid=$loginid&sess=$session&p=361\" name=\"mhrotfrmreq2\">";
+	echo "<input type=\"hidden\" name=\"requestorempid\" value=\"$employeeid0\">";
+	echo "<input type=\"hidden\" name=\"deptcd\" value=\"$empdepartment0\">";
+	echo "<input type=\"hidden\" name=\"ctgactor\" value=\"REQ\">";
+?>
+	<tr><th class="text-right">Request date</th><td class="text-left"><input type="date" name="stamprequest" value="<?php echo $datenow; ?>"></td></tr>
+	<tr><th class="text-right">Requested by</th><td class="text-left"><strong>
+<?php
+	echo "$name_last0, $name_first0 $name_middle0[0]";
+	if($empposition0!='') { echo "&nbsp;-&nbsp;$empposition0"; }
+	if($empdepartment0!='') { echo "&nbsp;-&nbsp;$empdepartment0"; }
+?>
+	</strong></td></tr>
+	<tr><th class="text-right">Request/s</th><td class="text-left">
+<?php
+	// include '../m/qrymitsuppreq3.php';
+	// display result
+	$param14=count($idctgsuppreq14Arr);
+	for($z=0; $z<$param14; $z++) {
+		$found14=1;
+		$ctr14=$ctr14+1;
+		echo "<input type=\"checkbox\" name=\"requestcd[]\" value=\"".$code14Arr[$z]."\">&nbsp;".$name14Arr[$z]."<br>";
+	} // for
+?>
+	</td></tr>
+	<tr><th class="text-right">Details</th><td class="text-left"><textarea rows="5" cols="50" name="details"></textarea></td></tr>
+	<tr><th class="text-right">For approval</th><td class="text-left">
+	<select name="approver">
+<?php
+	$deptcd16=$empdepartment0;
+	// include '../m/qrymitsuppreq8b.php';
+	if($approver1empid18b!='') {
+	// include '../m/qrymitsuppreq8c.php';
+	echo "<option value=\"$approver1empid18b\">$name_last18c, $name_first18c $name_middle18c[0]";
+	if($empposition18c!='') { echo "&nbsp;-&nbsp;$empposition18c"; }
+	echo "&nbsp;-&nbsp;$empdepartment18c</option>";
+	} // if
+	if($approver2empid18b!='') {
+	// include '../m/qrymitsuppreq8d.php';
+	echo "<option value=\"$approver2empid18b\">$name_last18d, $name_first18d $name_middle18d[0]";
+	if($empposition18d!='') { echo "&nbsp;-&nbsp;$empposition18d"; }
+	echo "&nbsp;-&nbsp;$empdepartment18d</option>";
+	} // if
+?>
+	</select>
+	</td></tr>
+	<tr><th></th><td class="text-left"><button type="submit" value="submit">Submit request</button></td></tr>
+<?php
+	echo "</form>";
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->

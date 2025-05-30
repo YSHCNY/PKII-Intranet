@@ -1,0 +1,406 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+include '../includes/genranchars.php';
+	// generate randomstring for session
+	$genranchars = genRandomString();
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$username = $dbh2->real_escape_string(stripslashes(trim((isset($_POST['username'])) ? $_POST['username']:'')));
+$password = $dbh2->real_escape_string(stripslashes(trim((isset($_POST['password'])) ? $_POST['password']:'')));
+
+// echo "vartest: $loginid,$username,$password<br>";
+
+$found = 0;
+
+if($loginid != "") {
+		/*
+     $result = mysql_query("SELECT * FROM tbladminlogin WHERE adminloginid=$loginid AND adminloginstat=1", $dbh); 
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $found = 1;
+          $loginid = $myrow[0];
+          $username = $myrow[1];
+          $loginstatus = $myrow[5];
+          $level = $myrow[6];
+     }
+		*/
+
+		// 20170125 mysqli
+		$resquery = "SELECT adminloginid, adminloginstat, adminloginlevel, employeeid, contactid FROM tbladminlogin, deptscd WHERE adminloginid=$loginid AND adminloginstat=1 LIMIT 1";
+		$result=$dbh2->query($resquery);
+		if ($result->num_rows > 0) {
+			while ($myrow = $result->fetch_assoc()) {
+      $found = 1;
+			$loginid = $myrow['adminloginid'];
+			$loginstatus = $myrow['adminloginstat'];
+			$level = $myrow['adminloginlevel'];
+			$employeeid0 = $myrow['employeeid'];
+			$contactid0 = $myrow['contactid'];
+      $deptscd0 = $myrow['deptscd'];
+			}
+		} else {
+		echo "<font color=\"red\">0 results</font><br />";
+		}
+		echo "rq:$resquery<br>";
+
+} else { //if($loginid != "")
+		/*
+     $result = mysql_query("SELECT * FROM tbladminlogin WHERE adminuid='$username' AND adminpw=md5('$password')", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $found = 1;
+
+          $loginid = $myrow[0];
+          $loginstatus = $myrow[5];
+          $level = $myrow[6];
+     }
+		*/
+
+		// 20170125 mysqli
+		$res2query = "SELECT * FROM tbladminlogin WHERE adminuid='$username' AND adminpw=md5('$password') LIMIT 1";
+		$result2=$dbh2->query($res2query);
+		if ($result2->num_rows > 0) {
+			while ($myrow2 = $result2->fetch_assoc()) {
+      $found = 1;
+			$loginid = $myrow2['adminloginid'];
+			$loginstatus = $myrow2['adminloginstat'];
+			$level = $myrow2['adminloginlevel'];
+			$employeeid0 = $myrow2['employeeid'];
+			$contactid0 = $myrow2['contactid'];
+      $deptscd0 = $myrow2['deptscd'];
+			}
+		} else {
+		echo "<font color=\"red\">0 results</font><br />";
+		}
+
+} //if($loginid != "")
+// echo "f:$found, r2q:$res2query<br>";
+if($found == 1) {
+
+	// set logged-in user to admin
+	$pkintrausr="adm";
+
+	// set user var for tblloginstatus
+	$logintype=2; // 1:non-admin, 2:admin
+	$disabled=0; // 0:enabled, 1:disabled
+	$loginstatus=1; // 0:logged-out, 1:logged-in
+
+    // 20230112 get empdepartment0 from tblempdetails
+    $res6query=""; $result6=""; $found6=0;
+    $res6query="SELECT empdetailsid, empdepartment FROM tblempdetails WHERE employeeid=\"$employeeid0\" LIMIT 1";
+    $result6=$dbh2->query($res6query);
+    if($result6->num_rows>0) {
+        while($myrow6=$result6->fetch_assoc()) {
+        $found6=1;
+        $empdetaildid6 = $myrow6['empdetailsid'];
+        $empdepartment6 = $myrow6['empdepartment'];
+        } //while
+    } //if
+    if($found6==1 && $empdepartment6!='') {
+        $empdepartment0 = $empdepartment6;
+    } //if
+// echo "f6:$found6, dept:$empdepartment6|$empdepartment0<br>";
+	// start query verification
+	$res1query="SELECT idloginstatus FROM tblloginstatus WHERE loginid=$loginid AND logintype=$logintype LIMIT 1";
+	$result1=""; $found1=0;
+	$result1=$dbh2->query($res1query);
+	if($result1->num_rows>0) {
+		while($myrow1=$result1->fetch_assoc()) {
+		$found1=1;
+		$idloginstatus1 = $myrow1['idloginstatus'];
+		} // while
+	} // if
+// echo "f1:$found1, ids1:$idloginstatus1<br>";
+	if($found1==1) { //if($found1==1)
+		// update query for tblloginstatus
+		$res3query="UPDATE tblloginstatus SET timestamp=\"$now\", loginid=$loginid, session=\"$genranchars\", status=$loginstatus WHERE idloginstatus=$idloginstatus1";
+	} else { //if($found1==1)
+    // chk user's loginid of non-admin if exists and get employeeid, then check if status is disabled
+    $res8query=""; $result8=""; $found8=0;
+    $res8query="SELECT tbllogin.loginid FROM tbllogin WHERE tbllogin.username=\"$username\"";
+    $result8=$dbh2->query($res8query);
+    if($result8->num_rows>0) {
+        while($myrow8=$result8->fetch_assoc()) {
+        $found8=1;
+        $loginid8=$myrow8['loginid'];
+        } //while
+    } //if 
+    if($found8==1) {
+        $res9query=""; $result9=""; $found9=0;
+        $res9query="SELECT idloginstatus, disabled FROM tblloginstatus WHERE loginid=$loginid8 AND logintype=1 LIMIT 1";
+        $result9=$dbh2->query($res9query);
+        if($result9->num_rows>0) {
+            while($myrow9=$result9->fetch_assoc()) {
+            $found9=1;
+            $idloginstatus9 = $myrow9['idloginstatus'];
+            $disabled9 = $myrow9['disabled'];
+            } //while
+        } //if
+    } //if($found8==1)
+    if($disabled9=='') { $disabled9=0; }
+		// insert query for tblloginstatus
+		$res3query="INSERT INTO tblloginstatus SET timestamp=\"$now\", loginid=$loginid, logintype=$logintype, session=\"$genranchars\", status=$loginstatus, disabled=$disabled9";
+	} //if($found1==1)
+	$result3=$dbh2->query($res3query);
+// echo "r3q:$res3query<br>";
+    // chk user from tblloginstatus if disabled and block access
+    $res7query=""; $result7=""; $found7=0;
+    $res7query="SELECT idloginstatus, disabled FROM tblloginstatus WHERE loginid=$loginid AND logintype=$logintype LIMIT 1";
+    $result7=$dbh2->query($res7query);
+    if($result7->num_rows>0) {
+        while($myrow7=$result7->fetch_assoc()) {
+        $found7=1;
+        $idloginstatus7 = $myrow7['idloginstatus'];
+        $disabled7 = $myrow7['disabled'];
+        } //while
+    } //if
+// echo "f7:$found7, dis7:$disabled7, r7q:$res7query<br>";
+    if($found7==1) {
+    //allow but check if user acct is not disabled
+
+        if($disabled7!=1) {
+        // allow
+
+    // 20221011 query tblsysusracctmgt admin user
+    $res5query=""; $result5=""; $found5=0;
+    $res5query="SELECT idtblsysusracctmgt, pwchangedt, skippwctr, skiplastdt FROM tblsysusracctmgt WHERE admloginid=$loginid AND loginid=0";
+    $result5=$dbh2->query($res5query);
+    if($result5->num_rows>0) {
+        while($myrow5=$result5->fetch_assoc()) {
+        $found5=1;
+        $idtblsysusracctmgt5=$myrow5['idtblsysusracctmgt'];
+        $pwchangedt5 = $myrow5['pwchangedt'];
+        $skippwctr5 = $myrow5['skippwctr'];
+        $skiplastdt5 = $myrow5['skiplastdt'];
+        } //while
+    } //if
+// echo "f5:$found5, iduam:$idtblsysusracctmgt5, pwcd5:$pwchangedt5, r5q:$res5query<br>";
+    // chk also non-admin record if exists and get last pw details (pwchangedt, pwlast)
+    $res5cquery=""; $result5c=""; $found5c=0;
+    $res5cquery="SELECT idtblsysusracctmgt, pwchangedt, skippwctr, skiplastdt FROM tblsysusracctmgt WHERE employeeid=\"$employeeid0\" AND admloginid=0";
+    $result5c=$dbh2->query($res5cquery);
+    if($result5c->num_rows>0) {
+        while($myrow5c=$result5c->fetch_assoc()) {
+        $found5c=1;
+        $idtblsysusracctmgt5c = $myrow5c['idtblsysusracctmgt'];
+        $pwchangedt5c = $myrow5c['pwchangedt'];
+        $skippwctr5c = $myrow5c['skippwctr'];
+        $skiplastdt5c = $myrow5c['skiplastdt'];
+        } //while
+    } //if
+// echo "f5c:$found5c, iduam5c:$idtblsysusracctmgt5c, r5cq:$res5cquery<br>";
+    if($found5==1) {
+        // chk if pwchangedt5 is blank
+        if($pwchangedt5!='') {
+            if($pwchangedt5=='0000-00-00 00:00:00') {
+                if($found5c==1) {
+                    if($pwchangedt5c!='') {
+                        if($pwchangedt5c=='0000-00-00 00:00:00') {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL, pwchangedt=\"$now\", skippwctr=0 WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+
+                        } else {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+                        } //if-else
+                    } else {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL, pwchangedt=\"$now\", skippwctr=0 WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+                    } //if-else
+                } else {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL, pwchangedt=\"$now\", skippwctr=0 WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+                } //if-else
+
+            } else {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL, skippwctr=0 WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+            } //if-else
+
+    $result5b=$dbh2->query($res5bquery);
+        } else {
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+    $result5b=$dbh2->query($res5bquery);
+        } //if-else
+    } else {
+        // insert query tblsysusracctmgt
+        $res5bquery="INSERT INTO tblsysusracctmgt SET timestamp=\"$now\", loginid=0, admloginid=$loginid0, employeeid=\"$employeeid0\", loginstamp=\"$now\", logoutstamp=NULL, attempt=0, attemptstamp=NULL, pwchangedt=\"$now\", pwlast=md5(\"$password\"), skippwctr=0, skiplastdt=NULL";
+    $result5b=$dbh2->query($res5bquery);
+    } //if-else
+// echo "r5bq: $res5bquery<br>";
+        $loginstat=1;
+    //chk if pwchangedt IS NULL, set to $now
+    if($pwchangedt5==NULL || $pwchangedt5=='0000-00-00 00:00:00') {
+// echo $loginid0." ".$pwchangedt5."==NULL?";
+//       include '../m/qryupdsysusracctmgt.php';
+    if($loginid0!=0) {
+    // update tblsysusracctmgt.php pwchangedt to $now
+    $res8query=""; $result8=""; $found8=0;
+    $res8query="UPDATE tblsysusracctmgt SET pwchangedt=\"$now\" WHERE loginid=0 AND admloginid=$loginid0";
+    $result8=$dbh2->query($res8query);
+    } //if
+// echo "ls:$loginstat, r8q: $res8query<br>";
+
+    include './admfrontpg.php';
+
+    } else { //if($pwchangedt5==NULL || $pwchangedt5=='0000-00-00 00:00:00')
+// echo "ls:$loginstat, pwc5:$pwchangedt5<br>";
+
+        if($empdepartment0!='FIN') { $usrpwexpiry='P90D'; $usrpwexpiry2=90; $deptintmos=3; } else { $usrpwexpiry2=30; $deptintmos=1; }
+        // $datenow = new DateTime($datenow);
+        // $pwchgdtplus30d = new DateTime($pwchangedt5); // Y-m-d
+        // $pwchgdtplus30d->add(new DateInterval($usrpwexpiry));
+        if($skiplastdt5!='' || $skiplastdt5!='0000-00-00 00:00:00') {
+            if(strtotime($skiplastdt5) > strtotime($pwchangedt5)) {
+            $pwchgdtplus30d = date('Y-m-d', strtotime($skiplastdt5));
+            } else {
+        $pwchgdtplus30d = date('Y-m-d', strtotime('+'.$deptintmos.' month', strtotime($pwchangedt5)));
+            } //if-else
+        } else {
+        $pwchgdtplus30d = date('Y-m-d', strtotime('+'.$deptintmos.' month', strtotime($pwchangedt5)));
+        } //if-else
+// var_dump(0,$empdepartment0,$usrpwexpiry,$pwchgdtplus30d);
+// var_dump(2, $pwchgdtplus30d);
+// var_dump(1,$skiplastdt5,$skippwctr5,$skippwctr5c);
+// echo "<h3>vartest</h3><p>dept:$empdepartment0 usrpwexpiry:$usrpwexpiry usrpwexpiry2:$usrpwexpiry2 deptintmos:$deptintmos";
+// echo "<br>dtnow:$datenow pwchgdt5:$pwchangedt5 pwchgdtplus30d:$pwchgdtplus30d";
+// echo "</p>";
+// echo "upwx:$usrpwexpiry|$usrpwexpiry2, dmos:$deptintmos, pwcd30:$pwchgdtplus30d<br>";
+        if(strtotime($datenow) >= strtotime($pwchgdtplus30d)) {
+
+            if($skippwctr5>=3 && (strtotime($skiplastdt5) >= strtotime($datenow))) {
+// echo "skpc5:$skippwctr5, sld5:$skiplastdt5<br>";
+                    //prompt to chg password
+    echo "<h3><font color='red'>Security warning:</font></h3>";
+    echo "<p class='text-danger'>You need to change your intranet login password for security.<br>Please click  <strong><a href=\"admchgpw.php?loginid=$loginid\" class='btn btn-success' role='button'>continue</a></strong> to change your password.</p>";
+// echo "<p>test skippwctr:$skippwctr5, skiplastdt5:".strtotime($skiplastdt5).", skiplastdt5plus30d:".strtotime($skiplastdt5plus30d).", dtnow:".strtotime($datenow)."</p>";
+
+            } else { //if($skippwctr5>=3 && ($skiplastdt5=='0000-00-00 00:00:00' || $skiplastdt5==NULL))
+// echo "skpc5:$skippwctr5, sld5:$skiplastdt5<br>";
+// var_dump(2,$pwchangedt5,$pwchgdtplus30d,$datenow,$skippwctr5,$skiplastdt5);
+		// redirect
+    // include './admfrontpg.php';
+    // header("Location: index2.php?loginid=$loginid0");
+                    //prompt to chg password or option to skip
+    echo "<h3><font color='red'>Security warning:</font></h3>";
+    echo "<p class='text-danger'>Your password is more than $deptintmos month/s old.<br>For security, it is advisable to change your password now.<br>Please click <strong><a href=\"admchgpw.php?loginid=$loginid\" class='btn btn-success' role='button'>continue</a></strong> to change your password OR <strong><a href=\"admpwskip.php?loginid=$loginid\" class='btn btn-warning' role='button'>skip</a></strong> for some other time.</p>";
+            } //if-else if($skippwctr5>=3 && ($skiplastdt5=='0000-00-00 00:00:00' || $skiplastdt5==NULL))
+
+        } else { //if($pwchgdtplus30d >= $datenow) 
+// echo "dtnow:$datenow, pwcd30:$pwchgdtplus30d<br>";
+// var_dump(3,$pwchgdtplus30d,$datenow,$skippwctr5,$skiplastdt5);
+		// redirect
+    include("./admfrontpg.php");
+    // header("Location: index2.php?loginid=$loginid0");
+
+        } //if-else if($pwchgdtplus30d >= $datenow)
+
+    } //if-else if($pwchangedt5==NULL || $pwchangedt5=='0000-00-00 00:00:00')
+    // include './admfrontpg.php';
+
+		/*
+    $result12 = mysql_query("INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')", $dbh);
+
+		*/
+
+	$res12query="INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')";
+	$result12=$dbh2->query("$res12query");
+
+// end contents here
+
+        } else {
+
+        // deny
+// insert log
+  $logdetails = "$loginid:$username has reached the max login attempts. $username is now disabled on system";
+	$res12query="INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')";
+	$result12=$dbh2->query("$res12query");
+
+    // display user blocked advisory
+        $loginstat=0;
+    echo "<p class='text-danger'>Sorry, your username is disabled on this system. Please contact IT through their Telegram channel or email:support@philkoei.com.ph<br><a href=\"./index.php\" class='btn btn-default' role='button'>back</a></p>";
+
+        } //if-else
+
+    } //if
+
+     // $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh);
+
+		$res14query="UPDATE tbladminlogin SET adminloginstat=1, lastlogin='$now', lastip='$usrip' WHERE adminuid='$username'";
+		$result=$dbh2->query($res14query);
+		/*
+		if($dbh2->query($result) === FALSE) {
+		  $mysqlerr1 = trigger_error('Wrong SQL: ' . $result . ' Error: ' . $dbh2->error, E_USER_ERROR);
+		echo "<font color=\"red\">$mysqlerr1</font><br />";
+		} else {
+		  $affected_rows = $dbh2->affected_rows;
+		echo "<font color=\"green\">tst row:$affected_rows</font><br />";
+		}
+		*/
+
+     include ("footer.php");
+} else {
+//     include ("logindeny.php");
+
+	// display header
+	include("header2.php");
+
+    //chk and update tblsysusracctmgt add 1 on attempt and log attemptdt
+    $res14query=""; $result14=""; $found14=0;
+    $res14query="SELECT tbladminlogin.adminloginid AS loginid, tblsysusracctmgt.attempt AS attempt FROM tbladminlogin LEFT JOIN tblsysusracctmgt ON tbladminlogin.adminloginid=tblsysusracctmgt.admloginid WHERE tbladminlogin.adminuid=\"$username\"";
+    $result14=$dbh2->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $found14=1;
+        $loginid14 = $myrow14['loginid'];
+        $attempt14 = $myrow14['attempt'];
+        } //while
+    } //if
+    if($found14==1) {
+        $attempts = 0;
+        $attempts = $attempt14 + 1;
+        // update tblsysusracctmgt
+        $res14bquery=""; $result14b="";
+        $res14bquery="UPDATE tblsysusracctmgt SET attempt=$attempts, attemptstamp=\"$now\" WHERE admloginid=$loginid14 AND loginid=0";
+        $result14b=$dbh2->query($res14bquery);
+
+        if($attempts>=$usrpwretries) {
+        // disable user profile on intranet non-admin
+        $res15query=""; $result15=""; $found15=0;
+        $res15query="SELECT idloginstatus FROM tblloginstatus WHERE loginid=$loginid14 AND logintype=2";
+        $result15=$dbh2->query($res15query);
+        if($result15->num_rows>0) {
+            while($myrow15=$result15->fetch_assoc()) {
+            $found15=1;
+            $idloginstatus15 = $myrow15['idloginstatus'];
+            } //while
+        } //if
+        if($found15==1) {
+        $res15bquery=""; $result15b=""; $status=0; $disabled=1; $remarks="disabled on $now due to max login attempts reached.";
+        $res15bquery="UPDATE tblloginstatus SET timestamp=\"$now\", status=$status, disabled=$disabled, remarks=\"$remarks\" WHERE idloginstatus=$idloginstatus15 AND loginid=$loginid14";
+        $result15b=$dbh2->query($res15bquery);
+        } //if($found15==1)
+
+// insert log
+  $logdetails = "$loginid:$username has reached the max login attempts. $username is now disabled on system";
+	$res12query="INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')";
+	$result12=$dbh2->query("$res12query");
+
+        echo "<p class='text-danger'>You have reached the maximum login attempts. Please contact IT support through their Telegram channel or email:support@philkoei.com.ph<br><a href='./login.htm' class='btn btn-primary' role='button'>back to login</a></p>";
+        sleep(1);
+// echo "<p>$res14query<br>$res14bquery<br>$res15query<br>$res15bquery</p>";
+        } else { //if($attempts>=$usrpwretries)
+		// $loginstat=0;
+        echo "<p class='text-danger'>WRONG password!<br>Login attempt:$attempts on $now where max=$usrpwretries.<br>Please click <a href='./login.htm' class='btn btn-primary' role='button'>here</a> if you are not automatically redirected.</p>";
+        sleep(1);
+        } //if-else //if($attempts>=$usrpwretries)
+    } else { //if-elseif($found14==1)
+		// $loginstat=0;
+        echo "<p class='text-danger'>UNKOWN username!<br>Please click <a href='./login.htm' class='btn btn-primary' role='button'>here</a> if you are not automatically redirected.</p>";
+        sleep(1);
+    } //if-else //if($found14==1)
+
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

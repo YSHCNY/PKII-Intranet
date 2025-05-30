@@ -1,0 +1,17 @@
+<link href="tjaddons/bootstrap.min.css" rel="stylesheet">
+<link href="tjaddons/datatable.css" rel="stylesheet">
+<link href="tjaddons/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="tjaddons/chosen.css" rel="stylesheet">
+<link href="tjaddons/sweet-alert-solar.css" rel="stylesheet">
+  <link rel="stylesheet" href="tjaddons/prism.css">
+<script src="tjaddons/jquery-1.11.3.min.js"></script>
+<script src="tjaddons/bootstrap.min.js"></script>
+<script src="tjaddons/datatable.min.js"></script>
+<script src="tjaddons/validation/jquery.validate.min.js"></script>
+<script src="tjaddons/validation/jquery.additional-methods.min.js"></script>
+<script src="tjaddons/jquery.form.js"></script>
+<script src="tjaddons/sweet-alert-solar.js"></script>
+<script src="tjaddons/bootstrap-datepicker.min.js"></script>
+<script src="tjaddons/chosen.jquery.js"></script>
+  <script src="tjaddons/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script src="tjaddons/init.js" type="text/javascript" charset="utf-8"></script>

@@ -1,0 +1,45 @@
+Please find below details of your payroll salary (payroll period September 16-30, 2013) withdrawable on Saturday (September 28, 2013).
+
+cutoff period: 2013-09-01 -to- 2013-09-15
+
+Employee ID: 614
+Employee Name: Elsie Bonaos
+Project: TIMOR LESTE
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 133.44
+NET BASIC PAY: P5866.56
+
+Regular Overtime: 265 (mins) - P318.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P318.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6184.56
+
+Withholding Tax: 591.08
+SSS: 450
+Philhealth: 137.50
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1228.58
+
+NET PAY: P4955.98
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

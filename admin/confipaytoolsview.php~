@@ -1,0 +1,959 @@
+<?php 
+
+require("db1.php");
+include("clsmcrypt.php");
+
+$loginid = $_GET['loginid'];
+$groupname = $_POST['groupname'];
+$cutstart = $_POST['cutstart'];
+$cutend = $_POST['cutend'];
+
+$cutoffstring = date("Y-M-d", strtotime($cutstart))."&nbsp;-to-&nbsp;".date("Y-M-d", strtotime($cutend));
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header2.php");
+?>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+<?php
+		// check groupname's accesslevel
+		$res19query="SELECT accesslevel FROM tblconfipaygrp WHERE groupname=\"$groupname\"";
+		$result19=""; $found19=0; $ctr19=0;
+		$result19 = mysql_query("$res19query", $dbh);
+		if($result19 != "") {
+			while($myrow19 = mysql_fetch_row($result19)) {
+			$found19 = 1;
+			$confiaccesslevel = $myrow19[0];
+			}
+		}
+
+		if($confiaccesslevel==5 && $accesslevel==5) {
+		include("mcryptdec.php");
+		$grpnm1 = $groupname;
+		include("mcryptenc.php");
+		} else if($confiaccesslevel<=4) {
+		$grpnm1 = $groupname;
+		}
+
+	//
+	// main table for export
+	//
+	echo "<table id=\"ReportTable\" class=\"fin\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+	echo "<tr><td colspan=\"2\">";
+	echo "<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a>";
+	echo "</td></tr><tr><td colspan=\"2\">";
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"19\">";
+		echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"19\">";
+     echo "<b>Payroll Summary - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"19\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+
+     echo "<tr><th>EmpID</th><th>Alias</th><th>Name</th><th>AcctNo.</th><th>NetPay</th><th>Prof.Fee</th><th>Absent</th><th>NetBasicPay</th><th>VATrate</th><th>NetofVAT</th><th>OtherIncome</th><th>OtherIncome VATrate</th><th>OtherIncome NetofVAT</th><th>NonTaxableIncome</th><th>GrossPay</th><th>WithholdingTax</th><th>SSS</th><th>Philhealth</th><th>PagIBIG</th><th>OtherDeductions</th><th>TotalDeductions</th></tr>";
+
+     $result = mysql_query("SELECT tblconfipayroll.confipayrollid, tblconfipayroll.employeeid, tblconfipayroll.groupname, tblconfipayroll.accesslevel, tblconfipayroll.cutstart, tblconfipayroll.cutend, tblconfipayroll.netbasicpay, tblconfipayroll.daysabsent, tblconfipayroll.daysabsentamt, tblconfipayroll.netbasicpay2, tblconfipayroll.vatrate, tblconfipayroll.netofvat, tblconfipayroll.otherincome, tblconfipayroll.otherincvatrate, tblconfipayroll.otherincnetofvat, tblconfipayroll.otherincomenontaxable, tblconfipayroll.grosspay, tblconfipayroll.withholdingtax, tblconfipayroll.sssee,  tblconfipayroll.ssser, tblconfipayroll.philhealthee, tblconfipayroll.philhealther, tblconfipayroll.pagibiger, tblconfipayroll.pagibigee, tblconfipayroll.otherdeductions, tblconfipayroll.totaldeductions, tblconfipayroll.netpay FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+	$found = 1;
+	$confipayrollid = $myrow[0];
+	$employeeid = $myrow[1];
+	$groupname= $myrow[2];
+	$confiaccesslevel = $myrow[3];
+	$cutstart = $myrow[4];
+	$cutend = $myrow[5];
+	$netbasicpay = $myrow[6];
+	$daysabsent = $myrow[7];
+	$daysabsentamt = $myrow[8];
+	$netbasicpay2 = $myrow[9];
+	$vatrate = $myrow[10];
+	$netofvat = $myrow[11];
+	$otherincome = $myrow[12];
+	$otherincvatrate = $myrow[13];
+	$otherincnetofvat = $myrow[14];
+	$otherincomenontaxable = $myrow[15];
+	$grosspay = $myrow[16];
+	$withholdingtax = $myrow[17];
+	$sssee = $myrow[18];
+	$ssser = $myrow[19];
+	$philhealthee = $myrow[20];
+	$philhealther = $myrow[21];
+	$pagibiger = $myrow[22];
+	$pagibigee = $myrow[23];
+	$otherdeductions = $myrow[24];
+	$totaldeductions = $myrow[25];
+	$netpay = $myrow[26];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1=$employeeid;
+	$empaliasfin=$empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1=$employeeid;
+	}
+
+	$res12query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result12=""; $found12=0; $ctr12=0;
+	$result12 = mysql_query("$res12query", $dbh);
+	if($result12 != "") {
+		while($myrow12 = mysql_fetch_row($result12)) {
+		$found12 = 1;
+		$name_first12 = $myrow12[0];
+		$name_middle12 = $myrow12[1];
+		$name_last12 = $myrow12[2];
+		}
+	}
+
+			$res3query="SELECT employeeid, bank_name, acct_num, acct_type FROM tblbankacct WHERE employeeid=\"$empid1\" AND payrolldflt=1 AND bank_name LIKE \"%BPI%\" LIMIT 1";
+		$result3=$dbh2->query($res3query);
+			if($result3->num_rows>0) {
+			while($myrow3 = $result3->fetch_assoc()) {
+				$found3 = 1;
+				$bank_name = $myrow3['bank_name'];
+				$acct_num = str_replace("-", "", $myrow3['acct_num']);
+				$acct_num = str_replace(" ", "", $acct_num);
+			} // while($myrow3 = $result3->fetch_assoc())
+			} // if($result3->num_rows>0)
+
+	echo "<tr><td>$empid1</td>";
+	if($empalias!='') {
+	echo "<td>$empaliasfin</td>";
+	} else {
+	echo "<td>$name_last12, $name_first12 $name_middle12[0]</td>";
+	} // if
+
+	echo "<td>$name_last12, $name_first12 $name_middle12[0]</td><td>$acct_num</td><th align=right>".number_format($netpay, 2)."</th><td align=right>".number_format($netbasicpay, 2)."</td><td align=right>".number_format($daysabsentamt, 2)."</td><td align=right>".number_format($netbasicpay2, 2)."</td><td align=right>".number_format($vatrate, 2)."</td><td align=right>".number_format($netofvat, 2)."</td><td align=right>".number_format($otherincome, 2)."</td><td align=\"right\">".number_format($otherincvatrate, 2)."</td><td align=\"right\">".number_format($otherincnetofvat, 2)."</td><td align=\"right\">".number_format($otherincomenontaxable, 2)."</td><td align=right>".number_format($grosspay, 2)."</td><td align=right>".number_format($withholdingtax, 2)."</td><td align=right>".number_format($sssee, 2)."</td><td align=right>".number_format($philhealthee, 2)."</td><td align=right>".number_format($pagibigee, 2)."</td><td align=right>".number_format($otherdeductions, 2)."</td><td align=right>".number_format($totaldeductions, 2)."</tr>";
+     }
+
+     $result11 = mysql_query("SELECT confipaycutoffid, datecreated, confipaygrpid, groupname, cutstart, cutend, totalnetbasic, totaldaysabsentamt, totalnetbasicpay2, totalnetofvat, totalincome, totalincnetofvat, totalincomenontax, totalgross, totalwtax, totalsssee, totalssser, totalsssecer, totalsssec, totalsss, totalphilhealthee, totalphilhealther, totalphilhealth, totalpagibigee, totalpagibiger, totalpagibig, totalotherdeductions, totaldeductions, totalnetpay FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow11 = mysql_fetch_row($result11))
+     {
+	$found11 = 1;
+	$totalnetbasic = $myrow11[6];
+	$totaldaysabsentamt = $myrow11[7];
+	$totalnetbasicpay2 = $myrow11[8];
+	$totalnetofvat = $myrow11[9];
+	$totalincome = $myrow11[10];
+	$totalincnetofvat = $myrow11[11];
+	$totalincomenontax = $myrow11[12];
+	$totalgross = $myrow11[13];
+	$totalwtax = $myrow11[14];
+	$totalsssee = $myrow11[15];
+	$totalssser = $myrow11[16];
+	$totalsssecer = $myrow11[17];
+	$totalsssec = $myrow11[18];
+	$totalsss = $myrow11[19];
+	$totalphilhealthee = $myrow11[20];
+	$totalphilhealther = $myrow11[21];
+	$totalphilhealth = $myrow11[22];
+	$totalpagibigee = $myrow11[23];
+	$totalpagibiger = $myrow11[24];
+	$totalpagibig = $myrow11[25];
+	$totalotherdeductions = $myrow11[26];
+	$totaldeductions2 = $myrow11[27];
+	$totalnetpay = $myrow11[28];
+     }
+     echo "<tr><td>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalnetbasic, 2)."</th><td align=right></td><th align=right>".number_format($totalnetpay, 2)."</th><th align=right>".number_format($totalnetbasicpay2, 2)."</th><td>".number_format($totaldaysabsentamt, 2)."</td><th align=right>".number_format($totalnetofvat, 2)."</th><td align=right>".number_format($totalincome, 2)."</td><td>&nbsp;</td><td align=right>".number_format($totalincnetofvat, 2)."</td><td align=right>".number_format($totalincomenontax, 2)."</td><th align=right>".number_format($totalgross, 2)."</th><td align=right>".number_format($totalwtax, 2)."</td><td align=right>".number_format($totalsssee, 2)."</td><td align=right>".number_format($totalphilhealthee, 2)."</td><td align=right>".number_format($totalpagibigee, 2)."</td><td align=right>".number_format($totalotherdeductions, 2)."</td><td align=right>".number_format($totaldeductions2, 2)."</td></tr>";
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+
+// start additional income summary here taxable
+
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>PHILKOEI INTERNATIONAL INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>Other Income - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"4\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>OtherIncomeType</th><th>Amount</th>";
+
+     $result4 = mysql_query("SELECT tblconfipayrolladd.confipayrolladdid, tblconfipayrolladd.employeeid, tblconfipayrolladd.groupname, tblconfipayrolladd.cutstart, tblconfipayrolladd.cutend, tblconfipayrolladd.nameadd, tblconfipayrolladd.addamount, tblconfipayrolladd.nontaxable, tblconfipayrolladd.confipaygrpid, tblconfipaygrp.accesslevel FROM tblconfipayrolladd LEFT JOIN tblconfipaygrp ON tblconfipayrolladd.confipaygrpid=tblconfipaygrp.confipaygrpid WHERE tblconfipayrolladd.groupname=\"$groupname\" AND tblconfipayrolladd.cutstart=\"$cutstart\" AND tblconfipayrolladd.cutend=\"$cutend\" AND tblconfipayrolladd.nontaxable!=\"yes\"", $dbh);
+
+     while ($myrow4 = mysql_fetch_row($result4))
+     {
+	$found4 = 1;
+	$confipayrolladdid = $myrow4[0];
+	$employeeid = $myrow4[1];
+	$groupname = $myrow4[2];
+	$cutstart = $myrow4[3];
+	$cutend = $myrow4[4];
+	$nameadd = $myrow4[5];
+	$addamount = $myrow4[6];
+	$nontaxable = $myrow4[7];
+	$confipaygrpid = $myrow4[8];
+	$confiaccesslevel = $myrow4[9];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$result41 = mysql_query("SELECT employeeid, name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\"", $dbh);
+
+	while ($myrow41 = mysql_fetch_row($result41))
+	{
+		$found41 = 1;
+		$employeeid2 = $myrow41[0];
+		$name_first = $myrow41[1];
+		$name_middle = $myrow41[2];
+		$name_last = $myrow41[3];
+		echo "<tr><td>$empid1</td>";
+		if($empalias!='') {
+		echo "<td>$empaliasfin</td>";
+		} else {
+		echo "<td>$name_last, $name_first $name_middle[0]</td>";
+		} // if
+		echo "<td>$nameadd</td><th align=right>".number_format($addamount, 2)."</th></tr>";
+	}
+     }
+
+	$result42 = mysql_query("SELECT totalincome FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+	while ($myrow42 = mysql_fetch_row($result42))
+	{
+		$found42 = 1;
+		$totalincome = $myrow42[0];
+
+		echo "<tr><td align=right colspan=2>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalincome, 2)."</th></tr>";
+	}
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+// start additional income summary here nontaxable
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>PHILKOEI INTERNATIONAL INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>Non-Taxable Income - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"5\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>OtherIncomeType</th><th>Amount</th><th>NonTaxable</th></tr>";
+
+     $result5 = mysql_query("SELECT confipayrolladdid, employeeid, nameadd, addamount, nontaxable FROM tblconfipayrolladd WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\" AND  nontaxable=\"yes\"", $dbh);
+
+     while ($myrow5 = mysql_fetch_row($result5))
+     {
+	$found5 = 1;
+	$confipayrolladdid = $myrow5[0];
+	$employeeid = $myrow5[1];
+	$nameadd = $myrow5[2];
+	$addamount = $myrow5[3];
+	$nontaxable = $myrow5[4];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$result51 = mysql_query("SELECT employeeid, name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\"", $dbh);
+
+	while ($myrow51 = mysql_fetch_row($result51))
+	{
+		$found51 = 1;
+		$employeeid2 = $myrow51[0];
+		$name_first = $myrow51[1];
+		$name_middle = $myrow51[2];
+		$name_last = $myrow51[3];
+
+		echo "<tr><td>$empid1</td>";
+		if($empalias!='') {
+		echo "<td>$empaliasfin</td>";
+		} else {
+		echo "<td>$name_last, $name_first $name_middle[0]</td>";
+		} // if
+		echo "<td>$nameadd</td><th align=right>".number_format($addamount, 2)."</th><td>$nontaxable</td></tr>";
+	}
+     }
+
+	$result52 = mysql_query("SELECT totalincomenontax FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+	while ($myrow52 = mysql_fetch_row($result52))
+	{
+		$found52 = 1;
+		$totalincomenontax = $myrow52[0];
+
+		echo "<tr><td align=right colspan=2>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalincomenontax, 2)."</th></tr>";
+	}
+	echo "</table>";
+
+     // echo "</table>";
+
+     echo "<p><p><br>";
+
+// start withholding tax summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>Withholding Tax - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"4\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>GrossPay</th><th>WithholdingTax</th></tr>";
+
+     $result6 = mysql_query("SELECT tblconfipayroll.employeeid, tblconfipayroll.grosspay, tblconfipayroll.withholdingtax, tblconfipayroll.accesslevel FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow6 = mysql_fetch_row($result6))
+     {
+	$found6 = 1;
+	$employeeid = $myrow6[0];
+	$grosspay = $myrow6[1];
+	$withholdingtax = $myrow6[2];
+	$confiaccesslevel = $myrow6[3];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin=$empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14 = mysql_query("$res14query", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$name_first14 = $myrow14[0];
+		$name_middle14 = $myrow14[1];
+		$name_last14 = $myrow14[2];
+		}
+	}
+
+	echo "<tr><td>$empid1</td>";
+	if($empalias!='') {
+	echo "<td>$empaliasfin</td>";
+	} else {
+	echo "<td>$name_last14, $name_first14 $name_middle14[0]</td>";
+	} // if
+	echo "<td align=right>".number_format($grosspay, 2)."</td><th align=right>".number_format($withholdingtax, 2)."</th></tr>";
+
+     }
+
+     $result61 = mysql_query("SELECT totalgross, totalwtax FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow61 = mysql_fetch_row($result61))
+     {
+	$found61 = 1;
+	$totalgross = $myrow61[0];
+	$totalwtax = $myrow61[1];
+
+	echo "<tr><th align=right colspan=2>Total</th><th align=right>".number_format($totalgross, 2)."</th><th align=right>".number_format($totalwtax, 2)."</th></tr>";
+     }
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+// start sss summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"7\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"7\">";
+     echo "<b>SSS Contribution - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"7\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>EE</th><th>ER</th><th>EC-ER</th><th>Total+EC</th><th>TotalContribution</th></tr>";
+
+     $result7 = mysql_query("SELECT tblconfipayroll.employeeid, tblconfipayroll.sssee, tblconfipayroll.ssser, tblconfipayroll.sssec, tblconfipayroll.ssstotalec, tblconfipayroll.ssstotal, tblconfipayroll.accesslevel FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow7 = mysql_fetch_row($result7))
+     {
+	$found7 = 1;
+	$employeeid = $myrow7[0];
+	$sssee = $myrow7[1];
+	$ssser = $myrow7[2];
+	$sssec = $myrow7[3];
+	$ssstotalec = $myrow7[4];
+	$ssstotal = $myrow7[5];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin=$empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res15query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15 = mysql_query("$res15query", $dbh);
+	if($result15 != "") {
+		while($myrow15 = mysql_fetch_row($result15)) {
+		$found15 = 1;
+		$name_first = $myrow15[0];
+		$name_middle = $myrow15[1];
+		$name_last = $myrow15[2];
+		}
+	}
+
+	if($sssee != 0)
+	{
+	  echo "<tr><td>$empid1</td>";
+		if($empalias!='') {
+		echo "<td>$empaliasfin</td>";
+		} else {
+		echo "<td>$name_last, $name_first $name_middle</td>";
+		} // if
+		echo "<td align=right>".number_format($sssee, 2)."<td align=right>".number_format($ssser, 2)."</td><td align=right>".number_format($sssec, 2)."</td><th align=right>".number_format($ssstotalec, 2)."</th><th align=right>".number_format($ssstotal, 2)."</th></tr>";
+	}
+	$found7 = 0;
+
+     }
+
+     $result71 = mysql_query("SELECT totalsssee, totalssser, totalsssecer, totalsssec, totalsss FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow71 = mysql_fetch_row($result71))
+     {
+	$found71 = 1;
+	$totalsssee = $myrow71[0];
+	$totalssser = $myrow71[1];
+	$totalsssecer = $myrow71[2];
+	$totalsssec = $myrow71[3];
+	$totalsss = $myrow71[4];
+
+	echo "<tr><td>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalsssee, 2)."</th><th align=right>".number_format($totalssser, 2)."</th><th align=right>".number_format($totalsssecer, 2)."</th><th align=right>".number_format($totalsssec, 2)."</th><th align=right>".number_format($totalsss, 2)."</th></tr>";
+     }
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+// start philhealth summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>Philhealth Contribution - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"5\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>EE</th><th>ER</th><th>TotalPremium</th></tr>";
+
+     $result8 = mysql_query("SELECT tblconfipayroll.employeeid, tblconfipayroll.philhealthee, tblconfipayroll.philhealther, tblconfipayroll.philhealthtotal, tblconfipayroll.accesslevel FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow8 = mysql_fetch_row($result8))
+     {
+	$found8 = 1;
+	$employeeid = $myrow8[0];
+	$philhealthee = $myrow8[1];
+	$philhealther = $myrow8[2];
+	$philhealthtotal = $myrow8[3];
+	$confiaccesslevel = $myrow8[4];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res16query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result16=""; $found16=0; $ctr16=0;
+	$result16 = mysql_query("$res16query", $dbh);
+	if($result16 != "") {
+		while($myrow16 = mysql_fetch_row($result16)) {
+		$found16 = 1;
+		$name_first = $myrow16[0];
+		$name_middle = $myrow16[1];
+		$name_last = $myrow16[2];
+		}
+	}
+
+	if($philhealthee != 0)
+	{
+	  echo "<tr><td>$empid1</td>";
+		if($empalias!='') {
+		echo "<td>$empaliasfin</td>";
+		} else {
+		echo "<td>$name_last, $name_first $name_middle[0]</td>";
+		} // if
+		echo "<td align=right>".number_format($philhealthee, 2)."<td align=right>".number_format($philhealther, 2)."</td><th align=right>".number_format($philhealthtotal, 2)."</th></tr>";
+	}
+	$found8 = 0;
+
+     }
+
+     $result81 = mysql_query("SELECT totalphilhealthee, totalphilhealther, totalphilhealth FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow81 = mysql_fetch_row($result81))
+     {
+	$found81 = 1;
+	$totalphilhealthee = $myrow81[0];
+	$totalphilhealther = $myrow81[1];
+	$totalphilhealth = $myrow81[2];
+
+	echo "<tr><td>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalphilhealthee, 2)."</th><th align=right>".number_format($totalphilhealther, 2)."</th><th align=right>".number_format($totalphilhealth, 2)."</th></tr>";
+     }
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+// start pagibig summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"5\">";
+     echo "<b>Pag-IBIG Contribution - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"5\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>EE</th><th>ER</th><th>Total</th></tr>";
+
+     $result9 = mysql_query("SELECT tblconfipayroll.employeeid, tblconfipayroll.pagibigee, tblconfipayroll.pagibiger, tblconfipayroll.pagibigtotal, tblconfipayroll.accesslevel FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow9 = mysql_fetch_row($result9))
+     {
+	$found9 = 1;
+	$employeeid = $myrow9[0];
+	$pagibigee = $myrow9[1];
+	$pagibiger = $myrow9[2];
+	$pagibigtotal = $myrow9[3];
+	$confiaccesslevel = $myrow9[4];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res17query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result17=""; $found17=0; $ctr17=0;
+	$result17 = mysql_query("$res17query", $dbh);
+	if($result17 != "") {
+		while($myrow17 = mysql_fetch_row($result17)) {
+		$found17 = 1;
+		$name_first = $myrow17[0];
+		$name_middle = $myrow17[1];
+		$name_last = $myrow17[2];
+		}
+	}
+
+	if($pagibigee != 0)
+	{
+	  echo "<tr><td>$empid1</td>";
+		if($empalias!='') {
+		echo "<td>$empaliasfin</td>";
+		} else {
+		echo "<td>$name_last, $name_first $name_middle[0]</td>";
+		} // if
+		echo "<td align=right>".number_format($pagibigee, 2)."<td align=right>".number_format($pagibiger, 2)."</td><th align=right>".number_format($pagibigtotal, 2)."</th></tr>";
+	}
+	$found9 = 0;
+
+     }
+
+     $result91 = mysql_query("SELECT totalpagibigee, totalpagibiger, totalpagibig FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow91 = mysql_fetch_row($result91))
+     {
+	$found91 = 1;
+	$totalpagibigee = $myrow91[0];
+	$totalpagibiger = $myrow91[1];
+	$totalpagibig = $myrow91[2];
+
+	echo "<tr><td>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalpagibigee, 2)."</th><th align=right>".number_format($totalpagibiger, 2)."</th><th align=right>".number_format($totalpagibig, 2)."</th></tr>";
+     }
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+
+// start other deductions summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>Other Deductions - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"4\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>TypeOfDeduction</th><th>Amount</th></tr>";
+
+    // $result2 = mysql_query("SELECT tblconfipayrolldeduct.confipayrolldeductid, tblconfipayrolldeduct.employeeid, tblconfipayrolldeduct.namededuct, tblconfipayrolldeduct.deductamount FROM tblconfipayrolldeduct WHERE tblconfipayrolldeduct.groupname=\"$groupname\" AND tblconfipayrolldeduct.cutstart=\"$cutstart\" AND tblconfipayrolldeduct.cutend=\"$cutend\"", $dbh);
+		$result2 = mysql_query("SELECT confipayrollid, otherdeductions, employeeid FROM tblconfipayroll WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+     while ($myrow2 = mysql_fetch_row($result2))
+     {
+	$found2 = 1;
+	// $confipayrolldeductid = $myrow2[0];
+	// $employeeid = $myrow2[1];
+	// $namededuct = $myrow2[2];
+	// $deductamount = $myrow2[3];
+	$confipayrollid = $myrow2[0];
+	$otherded = $myrow2[1];
+	$employeeid = $myrow2[2];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res18query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result18=""; $found18=0; $ctr18=0;
+	$result18 = mysql_query("$res18query", $dbh);
+	if($result18 != "") {
+		while($myrow18 = mysql_fetch_row($result18)) {
+		$found18 = 1;
+		$name_first = $myrow18[0];
+		$name_middle = $myrow18[1];
+		$name_last = $myrow18[2];
+		}
+	}
+
+	echo "<tr><td>$empid1</td>";
+	if($empalias!='') {
+	echo "<td>$empaliasfin</td>";
+	} else {
+	echo "<td>$name_last, $name_first $name_middle[0]</td>";
+	} // if
+	echo "<td>$namededuct</td><th align=right>".number_format($otherded, 2)."</th></tr>";
+     } // while
+
+	// query total other deductions
+	$result21 = mysql_query("SELECT totalotherdeductions FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+	while ($myrow21 = mysql_fetch_row($result21))
+	{
+		$found21 = 1;
+		$totalotherdeductions = $myrow21[0];
+
+		echo "<tr><td align=right colspan=2>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totalotherdeductions, 2)."</th></tr>";
+	}
+
+     echo "</table>";
+
+
+     echo "<p><p><br>";
+
+
+// start absent summary here
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>Absences - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"4\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>DaysAbsent</th><th>Amount</th></tr>";
+
+     $result2 = mysql_query("SELECT tblconfipayroll.employeeid, tblconfipayroll.daysabsent, tblconfipayroll.daysabsentamt FROM tblconfipayroll WHERE tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+
+     while ($myrow2 = mysql_fetch_row($result2))
+     {
+	$found2 = 1;
+	$employeeid = $myrow2[0];
+	$daysabsent = $myrow2[1];
+	$daysabsentamt = $myrow2[2];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	$res20query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+	$result20=""; $found20=0; $ctr20=0;
+	$result20 = mysql_query("$res20query", $dbh);
+	if($result20 != "") {
+		while($myrow20 = mysql_fetch_row($result20)) {
+		$found20 = 1;
+		$name_first = $myrow20[0];
+		$name_middle = $myrow20[1];
+		$name_last = $myrow20[2];
+		}
+	}
+
+	if($daysabsent!=0 && $daysabsentamt!=0) {
+	echo "<tr><td>$empid1</td>";
+	if($empalias!='') {
+	echo "<td>$empaliasfin</td>";
+	} else {
+	echo "<td>$name_last, $name_first $name_middle[0]</td>";
+	} // if
+	echo "<td>$daysabsent</td><th align=right>".number_format($daysabsentamt, 2)."</th></tr>";
+	}
+
+     }
+	$result21 = mysql_query("SELECT totaldaysabsentamt FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$cutstart\" AND cutend=\"$cutend\"", $dbh);
+
+	while ($myrow21 = mysql_fetch_row($result21))
+	{
+		$found21 = 1;
+		$totaldaysabsentamt = $myrow21[0];
+
+		echo "<tr><td align=right colspan=2>&nbsp;</td><th align=right>Total</th><th align=right>".number_format($totaldaysabsentamt, 2)."</th></tr>";
+	}
+
+     echo "</table>";
+
+     echo "<p><p><br>";
+
+// start list of projects
+
+     echo "<table class=\"fin\" border=1 spacing=1>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>PHILKOEI INTERNATIONAL, INC.</b>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\">";
+     echo "<b>List of Projects - $grpnm1</b>";
+		echo "</td></tr>";
+     // echo "<b>$cutstart -to- $cutend</b><br>";
+		echo "<tr><td colspan=\"4\">";
+		echo "<b>$cutoffstring</b>";
+		echo "</td></tr>";
+     echo "<tr><th>EmpID</th><th>Name</th><th>Projects</th><th>Remarks</th></tr>";
+
+     $result2 = mysql_query("SELECT tblconfipayrollproj.proj_code, tblconfipayrollproj.proj_name, tblconfipayrollproj.details FROM tblconfipayrollproj WHERE tblconfipayrollproj.groupname=\"$groupname\" AND tblconfipayrollproj.cutstart=\"$cutstart\" AND tblconfipayrollproj.cutend=\"$cutend\" ORDER BY tblcontact.employeeid ASC", $dbh);
+
+     while ($myrow2 = mysql_fetch_row($result2))
+     {
+	$found2 = 1;
+	$proj_code = $myrow2[0];
+	$proj_name = $myrow2[1];
+	$details = $myrow2[2];
+
+	// 20180515
+	// check if empalias exists, else disp full name
+	$res11query="SELECT empalias FROM tblconfipaymeminfo WHERE employeeid=\"$employeeid\" AND groupname=\"$groupname\" LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11 = 1;
+		$empalias = $myrow11['empalias'];
+		} // while
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$empid1 = $employeeid;
+	$empaliasfin = $empalias;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$empid1 = $employeeid;
+	}
+
+	echo "<tr><td>$empid1</td>";
+	if($empalias!='') {
+	echo "<td>$empaliasfin</td>";
+	} else {
+	echo "<td>$name_last, $name_first $name_middle[0]</td>";
+	} // if
+	echo "<td>$proj_name</td><td align=right>$details</td></tr>";
+     }
+
+     echo "</table>";
+
+	// close main table
+	echo "</td></tr></table>";
+
+//     echo "<p><a href=confipay2.php?loginid=$loginid>Back</a><br>";
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

@@ -1,0 +1,94 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$ver = $_POST['ver'];
+
+if ($ver == '')
+{
+  $result10 = mysql_query("SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"", $dbh);
+  if($result10 != '')
+  {
+    while($myrow10 = mysql_fetch_row($result10))
+    {
+      $found10 = 1;
+      $version10 = $myrow10[0];
+    }
+  }
+  $ver = $version10;
+}
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+  echo "<p><font size=1>Manage >> Accounting Modules</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+  echo "<tr><th colspan=\"8\">GAE Ref Codes</th></tr>";
+
+// start contents here...
+
+  echo "<tr><form action=\"mngfingaerefadd.php?loginid=$loginid&ver=$ver\" method=\"post\">";
+  echo "<td colspan=\"8\" align=\"center\"><input type=\"submit\" value=\"Add new\"></td></form></tr>";
+
+  echo "<tr><td colspan=\"8\" align=\"center\">";
+  echo "<table class=\"fin\" width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  echo "<tr><th>Count</th><th>GAE_AcctCode</th><th>GAE_AcctName</th><th>SeqOrder</th><th>GLCodeFrom</th><th>GLCodeTo</th><th>Ver</th><th>Status</th><th colspan=\"2\">Action</th></tr>";
+  $result12=""; $found12=0; $ctr12=0;
+  $result12 = mysql_query("SELECT idfingaeref, gaecd, gaename, glcodefr, glcodeto, seq, version, status, remarks FROM tblfingaeref ORDER BY seq ASC", $dbh);
+  if($result12 != '') {
+    while($myrow12 = mysql_fetch_row($result12)) {
+      $found12 = 1;
+			$gaerefid12 = $myrow12[0];
+			$gaecd12 = $myrow12[1];
+			$gaename12 = $myrow12[2];
+			$glcodefr12 = $myrow12[3];
+			$glcodeto12 = $myrow12[4];
+			$seq12 = $myrow12[5];
+			$version12 = $myrow12[6];
+			$status12 = $myrow12[7];
+			$remarks12 = $myrow12[8];
+
+      $ctr12 = $ctr12 + 1;
+
+      echo "<tr><td align=\"right\">$ctr12</td><td>$gaecd12</td><td>$gaename12</td><td align=\"right\">$seq12</td><td>$glcodefr12</td><td>$glcodeto12</td><td>$version12</td><td>$status12</td>";
+			// echo "<td>$remarks12</td>";
+      if($accesslevel >= 4 && $accesslevel <= 5)
+      {
+				echo "<td><a href=\"mngfingaerefedit.php?loginid=$loginid&gaeid=$gaerefid12\">Edit</a></td>";
+        echo "<td><a href=\"mngfingaerefdel.php?loginid=$loginid&gaeid=$gaerefid12\">Del</a></td></tr>";
+      }
+    }
+  }
+  echo "</table>";
+
+// end contents here...
+
+  echo "</td></tr></table>";
+
+// edit body-footer
+     echo "<p><a href=\"mngfinmods.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

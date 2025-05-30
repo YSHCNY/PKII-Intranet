@@ -1,0 +1,17 @@
+Package: dput
+Priority: optional
+Section: devel
+Installed-Size: 162
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Y Giridhar Appaji Nag <appaji@debian.org>
+Architecture: all
+Version: 0.9.6.2ubuntu2~ubuntu12.04.1
+Depends: python (>= 2.5), gnupg
+Suggests: openssh-client, lintian, mini-dinstall, rsync, python-bzrlib
+Filename: pool/main/d/dput/dput_0.9.6.2ubuntu2~ubuntu12.04.1_all.deb
+Size: 37282
+MD5sum: 7ee23d5e2ade9d81d792fd2050530e82
+SHA1: 14fee7579fd938fa25ba8a4c3952fc82cafae8d0
+SHA256: 789aff09037833cabeee7668ab1cf6137464aa54eff76cb9015ec1898a5336fc
+Description: Debian package upload tool
+Descri

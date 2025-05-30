@@ -1,0 +1,21 @@
+This is only a test...
+
+Please find below details of the Advisory
+
+Project Name:
+C.O.
+test only
+Pay Advisory Type:
+Allowance
+
+Amount: 100.00
+Currency: Philippine Peso
+
+Pay Type: Cash
+
+Additional Details:  
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email,the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+

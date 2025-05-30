@@ -1,0 +1,712 @@
+Package: boinc-amd-opencl
+Priority: optional
+Section: multiverse/net
+Installed-Size: 107
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian BOINC Maintainers <pkg-boinc-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: boinc
+Version: 7.0.27+dfsg-5ubuntu0.12.04.1
+Depends: boinc, fglrx-driver, amd-libopencl1
+Filename: pool/multiverse/b/boinc/boinc-amd-opencl_7.0.27+dfsg-5ubuntu0.12.04.1_amd64.deb
+Size: 15172
+MD5sum: 05e1aa5792a2d04d4dc068b58aec1c5c
+SHA1: 5a8075b44ebbe27105bc7604c5b3fe2bf55de5fe
+SHA256: 7d2f991454c587d54a50671d8502d8f3f938928c4de77bd777b870bbdbc9b5bc
+Description: metapackage for AMD/ATI OpenCL-savvy BOINC client and manager
+Homepage: http://boinc.berkeley.edu/
+Description-md5: a856ee5c7a07345f68047fe521dd927c
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: boinc-nvidia-cuda
+Priority: optional
+Section: multiverse/net
+Installed-Size: 107
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian BOINC Maintainers <pkg-boinc-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: boinc
+Version: 7.0.27+dfsg-5ubuntu0.12.04.1
+Depends: boinc, libcuda1 | nvidia-current, libcuda1-ia32 | nvidia-current, ia32-libs | nvidia-current
+Filename: pool/multiverse/b/boinc/boinc-nvidia-cuda_7.0.27+dfsg-5ubuntu0.12.04.1_amd64.deb
+Size: 15082
+MD5sum: 38c41d285cbce06793ecbffefda1ae31
+SHA1: 6c13e3e7f72d16947154153c2fa6dd82496e1363
+SHA256: b3b5ad63e6ba408c72bddc7c897a7adf77b2346ac0abfcae20083a639321f743
+Description: metapackage for CUDA-savvy BOINC client and manager
+Homepage: http://boinc.berkeley.edu/
+Description-md5: ddf1889572134aee037d999ee62f484a
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: flashplugin-installer
+Priority: optional
+Section: multiverse/web
+Installed-Size: 137
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Bart Martens <bartm@knars.be>
+Architecture: amd64
+Source: flashplugin-nonfree
+Version: 11.2.202.460ubuntu0.12.04.1
+Replaces: flashplugin (<< 6), flashplugin-downloader (<< 11.1.102.55ubuntu3), flashplugin-nonfree (<< 11.0.1.152ubuntu1)
+Provides: flashplugin-nonfree
+Depends: debconf (>= 0.5) | debconf-2.0, wget, libgtk2.0-0, fontconfig, libxt6, libxext6, libatk1.0-0, libc6, libcairo2, libexpat1, libfontconfig1, libfreetype6, libglib2.0-0, libice6, libpango1.0-0, libpng12-0, libsm6, libx11-6, libxau6, libxcursor1, libxdmcp6, libxfixes3, libxi6, libxinerama1, libxrandr2, libxrender1, zlib1g, libnss3-1d, libnspr4-0d, libcurl3 | libcurl3-gnutls, libasound2, update-notifier-common (>= 0.119ubuntu2)
+Recommends: libasound2-plugins (>= 1.0.16)
+Suggests: firefox, x-ttcidfont-conf, ttf-mscorefonts-installer, ttf-bitstream-vera | ttf-dejavu, ttf-xfree86-nonfree, xfs
+Conflicts: flashplayer-mozilla, flashplugin (<< 6), flashplugin-nonfree (<< 11.0.1.152ubuntu1), libflashsupport
+Breaks: flashplugin-downloader (<< 11.1.102.55ubuntu3)
+Filename: pool/multiverse/f/flashplugin-nonfree/flashplugin-installer_11.2.202.460ubuntu0.12.04.1_amd64.deb
+Size: 6994
+MD5sum: b5167ddd0415fa2e00a1ddf7bef87dcb
+SHA1: 77647725e10eb1c8458da1368d09ee7e8665fa19
+SHA256: cde3a237cf62655fd9769c3d88c717176035a481eb76025e99f08f8a953ec630
+Description: Adobe Flash Player plugin installer
+Multi-Arch: foreign
+Homepage: http://www.adobe.com/products/flashplayer.html
+Npp-Applications: ec8030f7-c20a-464f-9b0e-13a3a9e97384, 92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a, aa5ca914-c309-495d-91cf-3141bbb04115
+Npp-Description: Adobe Flash SWF Player (http://www.adobe.com)
+Npp-File: libflashplayer.so
+Npp-Mimetype: application/x-shockwave-flash
+Npp-Name: Adobe Flash Player (installer)
+Description-md5: a03e9ebc20ce82c05567d088e79bf750
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: intel-microcode
+Priority: extra
+Section: multiverse/admin
+Installed-Size: 1854
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Giacomo Catenazzi <cate@debian.org>
+Architecture: amd64
+Version: 0.20140624-p-1ubuntu1
+Depends: microcode.ctl
+Filename: pool/multiverse/i/intel-microcode/intel-microcode_0.20140624-p-1ubuntu1_amd64.deb
+Size: 786700
+MD5sum: 52dc4c0ea57f6f337f857f8e55ddea17
+SHA1: 638e46c8b54e80ef4a5d03149312f097bc3e2bba
+SHA256: 303e62bb8eb8ecff1d82339aa00bd61048d6743ee03a3059dee38ad25ac6a17f
+Description: Processor microcode data file for Intel CPUs
+Homepage: http://feeds.downloadcenter.intel.com/rss/?p=483&lang=eng
+Description-md5: cbcc9fe584a3392576463d76507fb857
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32cublas4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 123494
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32cudart4 (>= 3.2), lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32cublas4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 20913632
+MD5sum: bd12d41481a2305a32f8b289df6b82fc
+SHA1: b342ec69075d951ec9486dbd367358b29f165a5b
+SHA256: 5043fed0af48ae2d0801c2b7b98f4a62b03420fcf89292fe30bf495db1484a8a
+Description: NVIDIA CUDA BLAS runtime library (32-bit)
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: b719dd06ef708f0f48aec667c1f0933e
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32cudart4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 407
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Recommends: nvidia-current (>= 270) | nvidia-current-updates (>= 270) | nvidia-experimental-304 (>= 270) | nvidia-experimental-310 (>= 270)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32cudart4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 105884
+MD5sum: f17819c0e5703c786e08978e6c4c9872
+SHA1: 7b46a962f621d0679b4da4fcb3a1e4091dd1b115
+SHA256: 66ac469a3a30a8991095370c988029ba84b6ff370dda44aaa135911adc3f89e1
+Description: NVIDIA CUDA runtime library (32-bit)
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: cd97101767d6386068f706ed6c9dc63a
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32cufft4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 84150
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32cudart4 (>= 3.1), lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32cufft4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 16651526
+MD5sum: 7323f5794e24bf32e37319ea43aa4222
+SHA1: 2b451aa31f1123d4c1e9f5650d8ddaf9cf6ef2e9
+SHA256: 72fef394bf6541dc84d614a89660b0ab8de20a4de800e3e174bcd3398b6fd757
+Description: NVIDIA CUDA FFT runtime library (32-bit)
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: f5ff7132e62ce77a652f95b4b1a98bff
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32curand4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 24778
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32cudart4 (>= 2.0), lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32curand4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 18268466
+MD5sum: f13805a1b8344bf8aa89ea1956a515e9
+SHA1: 8d228891baf41b00e89407115b8a936f9cc8c264
+SHA256: 7424e9cee986d21138ce425f9bfd8591173e33cb43c8dba6abcf9393be209182
+Description: NVIDIA CUDA Random Numbers Generation runtime library (32-bit)
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: ba9fce43ce21bd2cbe5c83e3d1efe60b
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32cusparse4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 49042
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32cudart4 (>= 3.2), lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32cusparse4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 5996040
+MD5sum: dacbdb600e3928d7368138160601fe57
+SHA1: 2a649ad1c64d4d0a9a71fcd2531e7abbdac02d68
+SHA256: 2aa0a52536410007cb3ee21be6c415b2d2cf4218f154daebd4b0b97beec6a132
+Description: NVIDIA CUDA Sparse Matrix runtime library (32-bit)
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 26e560101b8adb8e25d106fc2605393b
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: lib32npp4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 43059
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: lib32cudart4 (>= 3.2), lib32gcc1 (>= 1:4.1.1), lib32stdc++6 (>= 4.1.1)
+Pre-Depends: libc6-i386 (>= 2.9-18)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/lib32npp4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 4965486
+MD5sum: bf267c807a358843d640e28b23f6f9a6
+SHA1: 6ada0c57e4fc6bc44f84bcd642d476212c87813e
+SHA256: 4126ac5df1e2391f825b5eddda206478769c159f2f72473b956f306e8825405f
+Description: NVIDIA Performance Primitives runtime library (32-bit)
+Homepage: http://developer.nvidia.com/npp
+Description-md5: d45e3737c60e5f97ab3bc6d64d5d9aac
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libcublas4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 126208
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libcudart4 (>= 3.2), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libcublas4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 21153776
+MD5sum: 1b6712410ed7cc8830e5a40bc1bb0378
+SHA1: 8a882262d0c1e9037f146a1df7709a51719b43ab
+SHA256: 4042235a6d63003235d613bf244d1ad227dbd1994dff3c6e97949464c1058351
+Description: NVIDIA CUDA BLAS runtime library
+Multi-Arch: same
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 45db8a0178cd23e2bd983749760ce542
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libcudart4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 389
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Recommends: nvidia-current (>= 270) | nvidia-current-updates (>= 270) | nvidia-experimental-304 (>= 270) | nvidia-experimental-310 (>= 270)
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libcudart4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 121816
+MD5sum: 5cd0884b50a19c35b5fc0e2a7e672616
+SHA1: 83657d5761566a5b8afe1132a188f8ec7e6a1d0e
+SHA256: 12162f675b1b85524aed701ff4165f9f85e59d5df52ef7286c292635bcde9cdd
+Description: NVIDIA CUDA runtime library
+Multi-Arch: same
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 04039fe955d79d6a7643053c7aaffe45
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libcufft4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 85496
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libcudart4 (>= 3.1), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libcufft4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 17045980
+MD5sum: 31db7a0dc53bab0f3850d60d9521430d
+SHA1: 27e908d0040f93e8a49da3e07f72330734870b43
+SHA256: 5e049dfae409edc2be469788dfaa8269e1ffafe63aec96bfa2fbf343d9b9bb93
+Description: NVIDIA CUDA FFT runtime library
+Multi-Arch: same
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 4eef387b908002cd6cf9fa8d945590f0
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libcurand4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 24839
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libcudart4 (>= 2.0), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libcurand4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 18292310
+MD5sum: 569f91fa91f1cd182cf04cea389293aa
+SHA1: d2c68c696a1da2961b41128f11f7fda259586b3e
+SHA256: 609ef1228c0499b28efea59b630cedbd0c05d4a6bef791132f66738f998eb36a
+Description: NVIDIA CUDA Random Numbers Generation runtime library
+Multi-Arch: same
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 65096ad6fa0522e6e5e89fc21e3c9b47
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libcusparse4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 48072
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libcudart4 (>= 3.2), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libcusparse4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 5563084
+MD5sum: 6e50d4a786ff8bfcf610c917a6d965e6
+SHA1: 9b64fee8bd0517f2f9319ddec5635438a2f4831f
+SHA256: 3e04b505fb5ca376d3d601c6bdf76102291f5256ebabc5536db4a6ff9c6a603c
+Description: NVIDIA CUDA Sparse Matrix runtime library
+Multi-Arch: same
+Homepage: http://www.nvidia.com/CUDA
+Description-md5: 8b5c0bc101130280c852b365067b7927
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmotif-dev
+Priority: extra
+Section: multiverse/devel
+Installed-Size: 8457
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Stefan Bauer <stefan.bauer@cubewerk.de>
+Architecture: amd64
+Source: openmotif
+Version: 2.3.3-5ubuntu1.12.04.2
+Depends: libmotif4 (= 2.3.3-5ubuntu1.12.04.2), libc6 (>= 2.14), libxt6, x11proto-print-dev
+Conflicts: lesstif-bin, lesstif-dev, lesstif-doc, lesstif2-dev
+Filename: pool/multiverse/o/openmotif/libmotif-dev_2.3.3-5ubuntu1.12.04.2_amd64.deb
+Size: 3176900
+MD5sum: 62f8da5556c5d62893e6fcae90de987a
+SHA1: b8d09cfdaa742a2b9e59b0d9ad785c75cdf02dc5
+SHA256: 074c9b83731cf032efb049b614eb7571d2f471307535f7ae3f127ccb2239d944
+Description: Open Motif - development files
+Homepage: http://www.motifzone.net/
+Description-md5: b67510730f8a9ccc4aaff83f2c1adcd2
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmotif3
+Priority: extra
+Section: multiverse/oldlibs
+Installed-Size: 32
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Stefan Bauer <stefan.bauer@cubewerk.de>
+Architecture: amd64
+Source: openmotif
+Version: 2.3.3-5ubuntu1.12.04.2
+Depends: libmotif4 (>= 2.3.3-5ubuntu1.12.04.2)
+Filename: pool/multiverse/o/openmotif/libmotif3_2.3.3-5ubuntu1.12.04.2_amd64.deb
+Size: 2988
+MD5sum: 0e6afb0fed09ad827e6396bf74babf8a
+SHA1: dd17936adc33a44f9175f2ed558a1c763ffd2792
+SHA256: 0a687b0404f21e68c3dafa4bd0da5d591e481fd5ce77641e1cb3c85573b08c25
+Description: Open Motif - shared libraries (transitional package)
+Multi-Arch: same
+Homepage: http://www.motifzone.net/
+Description-md5: e32e5ace2a0511d15d09ee6213ff7459
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmotif4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 3588
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Stefan Bauer <stefan.bauer@cubewerk.de>
+Architecture: amd64
+Source: openmotif
+Version: 2.3.3-5ubuntu1.12.04.2
+Replaces: libmotif3 (<< 2.3.3-2)
+Depends: libc6 (>= 2.14), libx11-6, libxext6, libxft2 (>> 2.1.1), libxmu6, libxp6, libxt6
+Pre-Depends: multiarch-support, x11-common (>= 1:7.0.0)
+Breaks: libmotif3 (<< 2.3.3-2)
+Filename: pool/multiverse/o/openmotif/libmotif4_2.3.3-5ubuntu1.12.04.2_amd64.deb
+Size: 1412662
+MD5sum: 129b3e6b1c2089cdf13e4025df3a07e3
+SHA1: 605e63ba420aa5c1aa5af1282f33995e970cf033
+SHA256: a4b90604a76ea7bdb6351589e3345e5a55ba830870c8708211a01ac04068b54e
+Description: Open Motif - shared libraries
+Multi-Arch: same
+Homepage: http://www.motifzone.net/
+Description-md5: bfa9fe6024b03766c52e634f26e25427
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmotif4-dbg
+Priority: extra
+Section: multiverse/debug
+Installed-Size: 11517
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Stefan Bauer <stefan.bauer@cubewerk.de>
+Architecture: amd64
+Source: openmotif
+Version: 2.3.3-5ubuntu1.12.04.2
+Depends: libmotif4 (= 2.3.3-5ubuntu1.12.04.2)
+Conflicts: lesstif2-dbg
+Filename: pool/multiverse/o/openmotif/libmotif4-dbg_2.3.3-5ubuntu1.12.04.2_amd64.deb
+Size: 4109802
+MD5sum: f1abf6ddf3cc2ee42b831db7bc33be6c
+SHA1: ce9a7f037469e5f8ee4ba06653793552863b61f0
+SHA256: 68ab7db5725f9e40d8b6faece60bfa4e3eadb978885ff51a8a3b633541890583
+Description: Open Motif - shared libraries
+Homepage: http://www.motifzone.net/
+Description-md5: 84f9b90288ac2bad8b068ef0bd9d55b3
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmyth-0.25-0
+Priority: optional
+Section: multiverse/libs
+Installed-Size: 27874
+Maintainer: MythTV Ubuntu Maintainers <ubuntu-mythtv@lists.ubuntu.com>
+Architecture: amd64
+Source: mythtv
+Version: 2:0.25.2+fixes.20120802.46cab93-0ubuntu1
+Replaces: libmyth-0.23-0, libmyth-0.24-0, mythtv (<< 0.7-5)
+Depends: libasound2 (>= 1.0.23), libass4 (>= 0.9.11), libavahi-compat-libdnssd1 (>= 0.6.16), libavc1394-0 (>= 0.5.3), libc6 (>= 2.15), libcrystalhd3, libfaac0, libfreetype6 (>= 2.2.1), libgcc1 (>= 1:4.1.1), libgl1-mesa-glx | libgl1, libiec61883-0 (>= 1.2.0), libmp3lame0, libpulse0 (>= 1:0.99.1), libqt4-dbus (>= 4:4.5.3), libqt4-network (>= 4:4.5.3), libqt4-opengl (>= 4:4.7.2), libqt4-script (>= 4:4.5.3), libqt4-sql (>= 4:4.5.3), libqt4-xml (>= 4:4.5.3), libqtcore4 (>= 4:4.7.0~beta1), libqtgui4 (>= 4:4.8.0), libqtwebkit4 (>= 2.2~2011week36), libraw1394-11, libssl1.0.0 (>= 1.0.0), libstdc++6 (>= 4.6), libva-glx1, libva-x11-1 (>> 1.0.15~), libva1 (>> 1.0.15~), libvdpau1 (>= 0.2), libvpx1 (>= 1.0.0), libx11-6 (>= 2:1.4.99.1), libx264-120, libxext6, libxinerama1, libxml2 (>= 2.7.4), libxrandr2 (>= 4.3), libxv1, libxvidcore4 (>= 1.2.2), libxxf86vm1, zlib1g (>= 1:1.1.4), libqt4-sql-mysql
+Conflicts: libmyth-0.23-0, libmyth-0.24-0, mythtv (<< 0.7-5)
+Filename: pool/multiverse/m/mythtv/libmyth-0.25-0_0.25.2+fixes.20120802.46cab93-0ubuntu1_amd64.deb
+Size: 12523580
+MD5sum: a8cd9fa31a3a677b292ede628a2a46d8
+SHA1: 99938cdd00630479842d33ec63c93feba95d485d
+SHA256: 6fad56621cecf6464c30a3efa018a5acb86788e26e779ea5300b7a0567a13437
+Description: Common library code for MythTV and add-on modules (runtime)
+Homepage: http://www.mythtv.org
+Description-md5: 6233f3ed93adc17b7f228bed7bd3b300
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Task: mythbuntu-frontend, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master
+
+Package: libmyth-dev
+Priority: optional
+Section: multiverse/libdevel
+Installed-Size: 2731
+Maintainer: MythTV Ubuntu Maintainers <ubuntu-mythtv@lists.ubuntu.com>
+Architecture: amd64
+Source: mythtv
+Version: 2:0.25.2+fixes.20120802.46cab93-0ubuntu1
+Provides: libmyth-0.25-0-dev
+Depends: libmyth-0.25-0 (= 2:0.25.2+fixes.20120802.46cab93-0ubuntu1)
+Conflicts: libmyth-0.25-0-dev
+Filename: pool/multiverse/m/mythtv/libmyth-dev_0.25.2+fixes.20120802.46cab93-0ubuntu1_amd64.deb
+Size: 649260
+MD5sum: 6de49cf99a3691229d04a1b5bb2e3ab7
+SHA1: c194912e2d8601663d747e7136eedbbb115b1d6c
+SHA256: abf41c7ea59f096f5f607e40842539f58eca74bde5f6becfb09016988667006e
+Description: Common library code for MythTV and add-on modules (development)
+Homepage: http://www.mythtv.org
+Description-md5: cdf4db9954271d33355a9e9377695b78
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libmyth-python
+Priority: optional
+Section: multiverse/libs
+Installed-Size: 1283
+Maintainer: MythTV Ubuntu Maintainers <ubuntu-mythtv@lists.ubuntu.com>
+Architecture: all
+Source: mythtv
+Version: 2:0.25.2+fixes.20120802.46cab93-0ubuntu1
+Replaces: mythtv-common (<< 0.20.98)
+Depends: python-mysqldb, python-lxml, python-urlgrabber
+Conflicts: mythtv-common (<< 0.20.98)
+Filename: pool/multiverse/m/mythtv/libmyth-python_0.25.2+fixes.20120802.46cab93-0ubuntu1_all.deb
+Size: 352670
+MD5sum: 7c51be0e8d1a388cfe1d42ea10595d13
+SHA1: f7f6e75dc59cf3464e36124518c0e0aa7ed96b3a
+SHA256: 8d51949caf869cad50431c45cb3fa0e6d7cf3346b85faae575be71074a59530b
+Description: A python library to access some MythTV features
+Homepage: http://www.mythtv.org
+Description-md5: 99e5b7fdac675ed6cfb57a0a42eb8400
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Task: mythbuntu-frontend, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master
+
+Package: libmythtv-perl
+Priority: optional
+Section: multiverse/libs
+Installed-Size: 202
+Maintainer: MythTV Ubuntu Maintainers <ubuntu-mythtv@lists.ubuntu.com>
+Architecture: all
+Source: mythtv
+Version: 2:0.25.2+fixes.20120802.46cab93-0ubuntu1
+Replaces: libmyth-perl, mythtv-common (<< 0.20.98)
+Depends: perl, libdbi-perl, libdbd-mysql-perl, libnet-upnp-perl, libio-socket-inet6-perl
+Conflicts: libmyth-perl, mythtv-common (<< 0.20.98)
+Filename: pool/multiverse/m/mythtv/libmythtv-perl_0.25.2+fixes.20120802.46cab93-0ubuntu1_all.deb
+Size: 50386
+MD5sum: c1971c683d041296ebb00cf2e72d40a1
+SHA1: 7d7c1a6d9d60eed43de95b510645e2d655d318ec
+SHA256: ad356d6f108197aaf7e32da2ccddf248725e861a0b0cbdf981dee59cc79c7623
+Description: A PERL library to access some MythTV features
+Homepage: http://www.mythtv.org
+Description-md5: 47f252d2997e94bf2a23b14c005706fe
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Task: mythbuntu-frontend, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master
+
+Package: libnpp4
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 44165
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Architecture: amd64
+Source: nvidia-cuda-toolkit
+Version: 4.0.17-3ubuntu0.1
+Depends: libc6 (>= 2.4), libcudart4 (>= 3.2), libgcc1 (>= 1:4.1.1), libstdc++6 (>= 4.1.1)
+Pre-Depends: multiarch-support
+Filename: pool/multiverse/n/nvidia-cuda-toolkit/libnpp4_4.0.17-3ubuntu0.1_amd64.deb
+Size: 5082488
+MD5sum: 63fc6e192326c1c8518bf6e3ff2f883f
+SHA1: 11312875691e4ae1ecf0cdd10b74364a22a0ae7a
+SHA256: e086683a828ebd313fdafff0630a8dafb1734866a0785180e5b0af9e679957a9
+Description: NVIDIA Performance Primitives runtime library
+Multi-Arch: same
+Homepage: http://developer.nvidia.com/npp
+Description-md5: 47dfcf01d27f66c5b47ab2e9fadd00f0
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libstarpu-contrib-dev
+Priority: extra
+Section: multiverse/libdevel
+Installed-Size: 1005
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Samuel Thibault <sthibault@debian.org>
+Architecture: amd64
+Source: starpu-contrib
+Version: 0.9.1-3ubuntu0.1
+Depends: libstarpu-contrib0 (= 0.9.1-3ubuntu0.1), install-info
+Conflicts: libstarpu-dev
+Filename: pool/multiverse/s/starpu-contrib/libstarpu-contrib-dev_0.9.1-3ubuntu0.1_amd64.deb
+Size: 271382
+MD5sum: 7bb015e1bb43e60f005f006449d012f8
+SHA1: 488b415f6c7b70595fc08711339c2731f5346a2f
+SHA256: 009865012813a65ae045d743a0a9010a635d34ce39aa2b918f735cac5dd324dc
+Description: Task scheduler for heterogeneous multicore machines - dev
+Homepage: http://starpu.gforge.inria.fr/
+Description-md5: 967c103c8b3cf3662ee291f422fa5be6
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libstarpu-contrib0
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 296
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Samuel Thibault <sthibault@debian.org>
+Architecture: amd64
+Source: starpu-contrib
+Version: 0.9.1-3ubuntu0.1
+Depends: libc6 (>= 2.14), libglpk0 (>= 4.30), libhwloc4, nvidia-current
+Conflicts: libstarpu0
+Filename: pool/multiverse/s/starpu-contrib/libstarpu-contrib0_0.9.1-3ubuntu0.1_amd64.deb
+Size: 117906
+MD5sum: 887d8f5d17ae3734e93aa70926fd7467
+SHA1: cfff6498495a8471f9f676c2f82862769042128e
+SHA256: 55a22a68667f38228d068185f7f78fc2ff483d3cefdccbe88624884be0ea3fe3
+Description: Task scheduler for heterogeneous multicore machines
+Homepage: http://starpu.gforge.inria.fr/
+Description-md5: 6e4e8db53b47fb942bef212def2a1e22
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libstarpu-contribfft0
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 152
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Samuel Thibault <sthibault@debian.org>
+Architecture: amd64
+Source: starpu-contrib
+Version: 0.9.1-3ubuntu0.1
+Depends: libc6 (>= 2.14), libfftw3-3, libstarpu-contrib0
+Conflicts: libstarpufft0
+Filename: pool/multiverse/s/starpu-contrib/libstarpu-contribfft0_0.9.1-3ubuntu0.1_amd64.deb
+Size: 18510
+MD5sum: 4d9189eaa0e272545b9548b13b7587fa
+SHA1: e349b74a88a5607e9e4d238ce2cd02d5624b5796
+SHA256: 602a3c3d2039ba3008b52d8d192d7f640aca790642b5f744d7d8f9e1032adb6d
+Description: Task scheduler for heterogeneous multicore machines
+Homepage: http://starpu.gforge.inria.fr/
+Description-md5: a1e84fcd5b7aa1a04d6c8089b0a0ecef
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libstarpu-contribmpi0
+Priority: extra
+Section: multiverse/libs
+Installed-Size: 60
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Samuel Thibault <sthibault@debian.org>
+Architecture: amd64
+Source: starpu-contrib
+Version: 0.9.1-3ubuntu0.1
+Depends: libc6 (>= 2.3.4), libstarpu-contrib0
+Conflicts: libstarpumpi0
+Filename: pool/multiverse/s/starpu-contrib/libstarpu-contribmpi0_0.9.1-3ubuntu0.1_amd64.deb
+Size: 14126
+MD5sum: fadb4f7b62608285d160a228afacf097
+SHA1: a550dc40832e04a5ac75c5c6d88c6d3a91d6e31d
+SHA256: 7d48aaeeb14b22d592e1d9694819d8458a616906caa5491d2e47b28f4086fc0a
+Description: Task scheduler for heterogeneous multicore machines
+Homepage: http://starpu.gforge.inria.fr/
+Description-md5: a7034f989f1ae2e40b4db1b5bb58bd47
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libviennacl-dev
+Priority: extra
+Section: multiverse/libdevel
+Installed-Size: 1010
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: all
+Source: viennacl
+Version: 1.1.2-6ubuntu0.1
+Depends: opencl-headers, nvidia-current | libopencl1
+Suggests: libeigen2-dev, libboost-dev, libviennacl-doc
+Filename: pool/multiverse/v/viennacl/libviennacl-dev_1.1.2-6ubuntu0.1_all.deb
+Size: 105474
+MD5sum: 1bb6797f0b1f21827156203544011945
+SHA1: 51e5a3ef3382947d5ae3eddf1ac4b5d12570d7da
+SHA256: 9ce8fb5c4380faf485489a5dbbf3acb838f0825b18ff3c3e7780dfaeeeb1a98d
+Description: Scientific computing library written in C++ based on OpenCL
+Homepage: http://viennacl.sourceforge.net
+Description-md5: a27fa308bc2bf6d90a053f635ae4a276
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: libviennacl-doc
+Priority: extra
+Section: multiverse/doc
+Installed-Size: 7795
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: all
+Source: viennacl
+Version: 1.1.2-6ubuntu0.1
+Suggests: libviennacl-dev
+Filename: pool/multiverse/v/viennacl/libviennacl-doc_1.1.2-6ubuntu0.1_all.deb
+Size: 1212260
+MD5sum: 944688c668103922b4f1aa1b71c5de15
+SHA1: ab33e9f22b6a5dc1034e3bdae6655ecbcb1899ae
+SHA256: d58fceae4f3570cc1cbf77f54453508d31a474161d969775a7745755e1c34bdc
+Description: ViennaCL API and user documentation
+Homepage: http://viennacl.sourceforge.net
+Description-md5: 4293ec3da7d14fb3b2a1c3f988fa1e7a
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: linux-firmware-nonfree
+Priority: optional
+Section: multiverse/kernel
+Installed-Size: 8056
+Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
+Architecture: all
+Version: 1.11ubuntu4
+Replaces: linux-firmware (<< 1.17)
+Conflicts: linux-firmware (<< 1.17)
+Filename: pool/multiverse/l/linux-firmware-nonfree/linux-firmware-nonfree_1.11ubuntu4_all.deb
+Size: 3555330
+MD5sum: 596441e3dfb9a437169af952364768b5
+SHA1: 828692b36a7520764d9005dbc013c17ea5f666c4
+SHA256: ba10b99a7bb90aa7ee39e86b6e271387231d0a620adb54bc3a4cd8d19e7060a1
+Description: Non-free firmware for Linux kernel drivers
+Description-md5: 856ad6fa1547f2b2a3005ee38911321a
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+
+Package: mame
+Priority: optional
+Section: multiverse/games
+Installed-Size: 66485
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Cesare Falco <cesare.falco@gmail.com>
+Architecture: amd64
+Version: 0.145-0ubuntu2
+Replaces: mame-common (<< 0.143), sdlmame (<< 0.137), xmame-common, xmame-gl, xmame-sdl, xmame-svga, xmame-tools, xmame-x
+Provides: sdlmame
+Depends: gconf-service, libatk1.0-0 (>= 1.12.4), libc6 (>= 2.14), libexpat1 (>= 2.0.1), libfontconfig1 (>= 2.8.0), libgcc1 (>= 1:4.1.1), libgconf-2-4 (>= 2.31.1), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.14.0), libgtk2.0-0 (>= 2.8.0), libpango1.0-0 (>= 1.14.0), libsdl-ttf2.0-0, libsdl1.2debian (>= 1.2.13), libstdc++6 (>= 4.6), libx11-6, libxinerama1, zlib1g (>= 1:1.1.4)
+Suggests: joystick, mame-tools
+Breaks: mame-common (<< 0.143), sdlmame (<< 0.137), xmame-common, xmame-gl, xmame-sdl, xmame-svga, xmame-tools, xm

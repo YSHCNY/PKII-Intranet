@@ -1,0 +1,3904 @@
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 007
+Employee Name: Alfredo Serillano
+Project: LIAISON
+
+PAY RATE: P6400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6400.00
+
+Regular Overtime: 2835 (mins) - P3614.62
+Reg.Sun/Sat. OT: 1380 (mins) - P1996.96
+Legal Holiday OT: 690 (mins) - P1536.12
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 575 (mins) - P58.65
+TOTAL OVERTIME: P7206.35
+
+Taxable Income:
+Incentive Allowance: 1250.00
+COLA: 237.50
+Underpaid of Basic: 500.00
+TOTAL Taxable Income: 1987.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P24593.85
+
+Withholding Tax: 3011.49
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Flu : 357.15
+TOTAL Other Deductions: 882.15
+
+TOTAL DEDUCTIONS: P3943.64
+
+NET PAY: P20650.22
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 022
+Employee Name: Tirso Jr. Castañares
+Project: GAE
+
+PAY RATE: P6850.00
+
+Total Late_Absent: 419.65
+NET BASIC PAY: P6430.35
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 750.00
+COLA: 222.00
+Underpaid of Basic: 500.00
+TOTAL Taxable Income: 1472.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16902.35
+
+Withholding Tax: 726.24
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS salary Loan: 575.00
+Pag-Ibig Loan: 1278.25
+TOTAL Other Deductions: 1853.25
+
+TOTAL DEDUCTIONS: P2629.49
+
+NET PAY: P14272.86
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 046
+Employee Name: Ma. Corazon Julian
+Project: LIAISON
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1250.00
+TOTAL Taxable Income: 1250.00
+
+Non-Taxable Income:
+Transporation Allowance: 5000.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 14000.00
+
+GROSS PAY: P25250.00
+
+Withholding Tax: 770.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 575.00
+Pag-Ibig Loan: 157.02
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 1353.75
+
+TOTAL DEDUCTIONS: P2174.52
+
+NET PAY: P23075.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 111
+Employee Name: Aser Bellen
+Project: GAE
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 171.45
+NET BASIC PAY: P7828.55
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: 1000.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17828.55
+
+Withholding Tax: 703.28
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Insular Life: 75.00
+Bowling T-Shirt: 150.00
+Tax Deficit 2010: 691.42
+SSS Salary Loan: 1575.00
+TOTAL Other Deductions: 2491.42
+
+TOTAL DEDUCTIONS: P3244.70
+
+NET PAY: P14583.85
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 112
+Employee Name: Jose Adones Beringuela
+Project: GAE
+
+PAY RATE: P18000.00
+
+Total Late_Absent: 172.2
+NET BASIC PAY: P17827.80
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P26827.80
+
+Withholding Tax: 2431.57
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+NHMFC Housing Loan: 2777.93
+TOTAL Other Deductions: 2777.93
+
+TOTAL DEDUCTIONS: P5259.50
+
+NET PAY: P21568.30
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 135
+Employee Name: Eva Flores
+Project: GAE
+
+PAY RATE: P8250.00
+
+Total Late_Absent: 39.3
+NET BASIC PAY: P8210.70
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17210.70
+
+Withholding Tax: 1010.92
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 1079.33
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1754.33
+
+TOTAL DEDUCTIONS: P2815.25
+
+NET PAY: P14395.44
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 140
+Employee Name: Ferdinand Joselito Bersalona
+Project: VIAP-IRAQ
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 141.61
+NET BASIC PAY: P7358.39
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+COLA: 202.50
+TOTAL Taxable Income: 1202.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17560.89
+
+Withholding Tax: 857.95
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+TOTAL Other Deductions: 525.00
+
+TOTAL DEDUCTIONS: P1432.95
+
+NET PAY: P16127.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 143
+Employee Name: Rosita Narte
+Project: GAE - BUSINESS DEVELOPMENT
+
+PAY RATE: P11750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 2000.00
+TOTAL Taxable Income: 2000.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P22750.00
+
+Withholding Tax: 1875.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 941.93
+SSS Loan: 525.00
+Bowling T-Shirt: 150.00
+Flu : 1415.18
+TOTAL Other Deductions: 3032.11
+
+TOTAL DEDUCTIONS: P4957.11
+
+NET PAY: P17792.89
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 144
+Employee Name: Antonio Maria Dela Torre
+Project: ARISP 3 PHF DESIGN
+
+PAY RATE: P15000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P15000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - PHF Design: 2000.00
+TOTAL Taxable Income: 2000.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P26000.00
+
+Withholding Tax: 2495.83
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P2695.83
+
+NET PAY: P23304.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 145
+Employee Name: Mercedita Aquino
+Project: GAE
+
+PAY RATE: P9250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P18250.00
+
+Withholding Tax: 370.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS salary Loan: 575.00
+Pag-Ibig Loan: 1279.98
+Flu : 714.30
+TOTAL Other Deductions: 2569.28
+
+TOTAL DEDUCTIONS: P2990.05
+
+NET PAY: P15259.95
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 148
+Employee Name: Yolanda Dela Cruz
+Project: GAE
+
+PAY RATE: P10750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+TOTAL Taxable Income: 1500.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P21250.00
+
+Withholding Tax: 979.25
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+Flu : 1415.18
+SSS Salary Loan: 1150.00
+Pag-Ibig Multi-purpose Loan: 2417.12
+TOTAL Other Deductions: 5132.30
+
+TOTAL DEDUCTIONS: P6161.55
+
+NET PAY: P15088.45
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 152
+Employee Name: Mary Ann Castañares
+Project: GAE
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 243.95
+NET BASIC PAY: P7256.05
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+COLA: 202.50
+TOTAL Taxable Income: 1702.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17958.55
+
+Withholding Tax: 1197.89
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS salary Loan: 575.00
+Pag-Ibig Loan: 978.14
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 2174.87
+
+TOTAL DEDUCTIONS: P3422.76
+
+NET PAY: P14535.79
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 153
+Employee Name: Rose Mary Santos
+Project: GAE
+
+PAY RATE: P7750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+TOTAL Taxable Income: 1500.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P18250.00
+
+Withholding Tax: 787.57
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS salary Loan: 575.00
+Pag-Ibig Multi-purpose Loan: 947.58
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 2144.31
+
+TOTAL DEDUCTIONS: P2981.88
+
+NET PAY: P15268.12
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 176
+Employee Name: Orlando Salomon
+Project: GAE
+
+PAY RATE: P14500.00
+
+Total Late_Absent: 2875.95
+NET BASIC PAY: P11624.05
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 933.33
+TOTAL Taxable Income: 933.33
+
+Non-Taxable Income:
+De Minimis: 9000.00
+Refund of Pag-Ibig Loan: 2734.44
+TOTAL Non-Taxable Income: 11734.44
+
+GROSS PAY: P24291.82
+
+Withholding Tax: 1576.85
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Maxicare for 2011: 2570.97
+Tax Deficit for Year 2010: 729.03
+Insular Life: 705.00
+TOTAL Other Deductions: 4005.00
+
+TOTAL DEDUCTIONS: P5631.85
+
+NET PAY: P18659.97
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 186
+Employee Name: Gil Jr. Berdin
+Project: GAE
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 618.05
+NET BASIC PAY: P15881.95
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P24881.95
+
+Withholding Tax: 2473.01
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Multi-purpose Loan: 1013.64
+Short on Liquidation: 2000.00
+Flu : 590.78
+TOTAL Other Deductions: 3604.42
+
+TOTAL DEDUCTIONS: P6127.43
+
+NET PAY: P18754.51
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 189
+Employee Name: Rey Pantino
+Project: PINATUBO 3
+
+PAY RATE: P12250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 5000.00
+TOTAL Taxable Income: 5000.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 10500.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 19500.00
+
+GROSS PAY: P36750.00
+
+Withholding Tax: 2883.43
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P3083.43
+
+NET PAY: P33666.57
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 190
+Employee Name: Enrique Tungol
+Project: ARISP 3
+
+PAY RATE: P10250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - ARISP 3: 6766.67
+TOTAL Taxable Income: 6766.67
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P26016.67
+
+Withholding Tax: 3438.33
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P3488.33
+
+NET PAY: P22528.34
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 198
+Employee Name: Rosalia Punay
+Project: PINATUBO 3
+
+PAY RATE: P17250.00
+
+Total Late_Absent: 206.25
+NET BASIC PAY: P17043.75
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+Per Diem - Sep 07-15: 7200.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 16200.00
+
+GROSS PAY: P33243.75
+
+Withholding Tax: 3446.45
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 621.73
+
+TOTAL DEDUCTIONS: P4118.18
+
+NET PAY: P29125.56
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 208
+Employee Name: Mariano Sartaguda
+Project: VIAP-IRAQ
+
+PAY RATE: P11500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P20500.00
+
+Withholding Tax: 1573.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 675.00
+
+TOTAL DEDUCTIONS: P2298.00
+
+NET PAY: P18202.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 227
+Employee Name: Rogelio Jr. Noleal
+Project: GAE
+
+PAY RATE: P5900.00
+
+Total Late_Absent: 10.34
+NET BASIC PAY: P5889.66
+
+Regular Overtime: 700 (mins) - P822.50
+Reg.Sun/Sat. OT: 653 (mins) - P861.39
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 19 (mins) - P1.79
+TOTAL OVERTIME: P1685.68
+
+Taxable Income:
+Incentive Allowance: 500.00
+COLA: 257.50
+TOTAL Taxable Income: 757.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17332.84
+
+Withholding Tax: 229.10
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+BDO-Salary Loan: 914.50
+SSS salary Loan: 575.00
+Pag-Ibig Loan: 681.68
+Company Loan: 2500.00
+TOTAL Other Deductions: 4671.18
+
+TOTAL DEDUCTIONS: P4950.28
+
+NET PAY: P12382.56
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 229
+Employee Name: Jennifer Torres
+Project: ARISP 3
+
+PAY RATE: P8640.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8640.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 525.00
+TOTAL Taxable Income: 525.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9165.00
+
+Withholding Tax: 1249.50
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 801.28
+SSS Salary Loan: 525.00
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1476.28
+
+TOTAL DEDUCTIONS: P2775.78
+
+NET PAY: P6389.22
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 247
+Employee Name: Yvette Velazco
+Project: GAE
+
+PAY RATE: P6500.00
+
+Total Late_Absent: 71.76
+NET BASIC PAY: P6428.24
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 750.00
+COLA: 234.00
+TOTAL Taxable Income: 984.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16412.24
+
+Withholding Tax: 836.62
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 795.83
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 1417.56
+
+TOTAL DEDUCTIONS: P2304.18
+
+NET PAY: P14108.06
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 248
+Employee Name: Katherine Cruz
+Project: GAE
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 750.00
+COLA: 217.00
+TOTAL Taxable Income: 967.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16967.00
+
+Withholding Tax: 950.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Flu : 471.73
+TOTAL Other Deductions: 996.73
+
+TOTAL DEDUCTIONS: P1996.73
+
+NET PAY: P14970.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 250
+Employee Name: Ma. Joicel Hernando
+Project: PINATUBO 3
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+TOTAL Taxable Income: 1000.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 6000.00
+TOTAL Non-Taxable Income: 6000.00
+
+GROSS PAY: P14000.00
+
+Withholding Tax: 958.25
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P1158.25
+
+NET PAY: P12841.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 251
+Employee Name: Nicanor Ramos
+Project: PINATUBO 3
+
+PAY RATE: P4000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P4000.00
+
+Regular Overtime: 1380 (mins) - P1104.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 420 (mins) - P537.60
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1641.60
+
+Taxable Income:
+COLA: 353.00
+TOTAL Taxable Income: 353.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 2250.00
+TOTAL Non-Taxable Income: 2250.00
+
+GROSS PAY: P8244.60
+
+Withholding Tax: 57.79
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P257.79
+
+NET PAY: P7986.81
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 252
+Employee Name: Rossalie Yalung
+Project: PINATUBO 3
+
+PAY RATE: P5000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 282.50
+TOTAL Taxable Income: 282.50
+
+Non-Taxable Income:
+A/R Others-Per Diem: 2250.00
+TOTAL Non-Taxable Income: 2250.00
+
+GROSS PAY: P7532.50
+
+Withholding Tax: 410.67
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P610.67
+
+NET PAY: P6921.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 265
+Employee Name: Juan Lozano
+Project: GAE
+
+PAY RATE: P6200.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6200.00
+
+Regular Overtime: 1710 (mins) - P2116.12
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P2116.12
+
+Taxable Income:
+COLA: 245.00
+TOTAL Taxable Income: 245.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P17561.12
+
+Withholding Tax: 858.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pagibig Salary Loan: 622.32
+SSS Salary Loan: 525.00
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1297.32
+
+TOTAL DEDUCTIONS: P2205.32
+
+NET PAY: P15355.81
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 268
+Employee Name: Girlie San Miguel
+Project: GAE
+
+PAY RATE: P6750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1750.00
+COLA: 225.00
+TOTAL Taxable Income: 1975.00
+
+Non-Taxable Income:
+A/P-Others Pag-Ibig Loan: 40.00
+A/P-Others SSS Cont: 300.00
+A/P-Others Philhealth Cont: 100.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9440.00
+
+GROSS PAY: P18165.00
+
+Withholding Tax: 1139.50
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Cont Short: 50.00
+Company Loan: 2000.00
+TOTAL Other Deductions: 2050.00
+
+TOTAL DEDUCTIONS: P3239.50
+
+NET PAY: P14925.50
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 269
+Employee Name: Christopher Cartera
+Project: LAND BANK
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2416.67
+TOTAL Taxable Income: 2416.67
+
+Non-Taxable Income:
+Transportation Allowance: 483.33
+TOTAL Non-Taxable Income: 483.33
+
+GROSS PAY: P10900.00
+
+Withholding Tax: 604.10
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P654.10
+
+NET PAY: P10245.90
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 279
+Employee Name: Rudolph Yambot
+Project: GAE - ICG
+
+PAY RATE: P12000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 2500.00
+TOTAL Taxable Income: 2500.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P23500.00
+
+Withholding Tax: 2062.50
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 568.96
+Flu : 828.88
+TOTAL Other Deductions: 1397.84
+
+TOTAL DEDUCTIONS: P3510.34
+
+NET PAY: P19989.66
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 311
+Employee Name: Teresita Dungca
+Project: PINATUBO 3
+
+PAY RATE: P14500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P14500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 2000.00
+TOTAL Taxable Income: 2000.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 10500.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 19500.00
+
+GROSS PAY: P36000.00
+
+Withholding Tax: 2970.73
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P3170.73
+
+NET PAY: P32829.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 325
+Employee Name: Alma Teresa Kojima
+Project: KRI PPP
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2500.00
+COLA: 253.50
+TOTAL Taxable Income: 2753.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8753.50
+
+Withholding Tax: 0.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Flu : 590.78
+TOTAL Other Deductions: 590.78
+
+TOTAL DEDUCTIONS: P640.78
+
+NET PAY: P8112.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 354
+Employee Name: Rene Tamayo
+Project: GAE
+
+PAY RATE: P16500.00
+
+Total Late_Absent: 757.44
+NET BASIC PAY: P15742.56
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P24742.56
+
+Withholding Tax: 1852.39
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P2052.39
+
+NET PAY: P22690.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 373
+Employee Name: Robert Castillo
+Project: ARISP 3
+
+PAY RATE: P8380.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8380.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 525.00
+TOTAL Taxable Income: 525.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8905.00
+
+Withholding Tax: 718.57
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 575.00
+Pag-Ibig Loan: 496.17
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1221.17
+
+TOTAL DEDUCTIONS: P1989.74
+
+NET PAY: P6915.26
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 394
+Employee Name: Crissaliz Decena
+Project: ARISP 3
+
+PAY RATE: P8380.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8380.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1222.67
+TOTAL Taxable Income: 1222.67
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9602.67
+
+Withholding Tax: 649.70
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 381.32
+Flu : 471.73
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1528.05
+
+TOTAL DEDUCTIONS: P2227.75
+
+NET PAY: P7374.92
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 398
+Employee Name: Richard Valic
+Project: ARISP 3
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5286.00
+
+Regular Overtime: 914 (mins) - P959.70
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P959.70
+
+Taxable Income:
+COLA: 287.50
+TOTAL Taxable Income: 287.50
+
+Non-Taxable Income:
+Transpo Allowance: 1000.00
+TOTAL Non-Taxable Income: 1000.00
+
+GROSS PAY: P7533.20
+
+Withholding Tax: 115.45
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 278.91
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 428.91
+
+TOTAL DEDUCTIONS: P594.36
+
+NET PAY: P6938.84
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 407
+Employee Name: Reynante Lorica
+Project: LIAISON
+
+PAY RATE: P5700.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5700.00
+
+Regular Overtime: 1442 (mins) - P1640.28
+Reg.Sun/Sat. OT: 1442 (mins) - P1876.95
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P3517.23
+
+Taxable Income:
+Incentive Allowance: 250.00
+COLA: 266.50
+TOTAL Taxable Income: 516.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P18733.73
+
+Withholding Tax: 884.31
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 575.00
+Pag-Ibig Loan: 422.06
+BDO Salary Loan - Anteng: 939.50
+Flu : 709.83
+TOTAL Other Deductions: 2646.39
+
+TOTAL DEDUCTIONS: P3580.70
+
+NET PAY: P15153.02
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 415
+Employee Name: Gina Reyes
+Project: LIAISON
+
+PAY RATE: P9000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P9000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1250.00
+TOTAL Taxable Income: 1250.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P19250.00
+
+Withholding Tax: 1260.50
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Company Loan: 2000.00
+Tax Deficit for Year 2010: 200.00
+Flu : 590.78
+TOTAL Other Deductions: 3315.78
+
+TOTAL DEDUCTIONS: P4626.28
+
+NET PAY: P14623.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 422
+Employee Name: Anna Liza Flores
+Project: GAE
+
+PAY RATE: P6500.00
+
+Total Late_Absent: 350.48
+NET BASIC PAY: P6149.52
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1250.00
+COLA: 234.00
+TOTAL Taxable Income: 1484.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16633.52
+
+Withholding Tax: 672.47
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Insular Life: 319.33
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 400.69
+Flu : 709.83
+TOTAL Other Deductions: 1954.85
+
+TOTAL DEDUCTIONS: P2677.32
+
+NET PAY: P13956.20
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 425
+Employee Name: Myra Reyes
+Project: ARISP 3
+
+PAY RATE: P11260.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11260.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+Advances for Liq: 7595.00
+TOTAL Non-Taxable Income: 7595.00
+
+GROSS PAY: P18855.00
+
+Withholding Tax: 1513.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 354.30
+Flu : 590.78
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1095.08
+
+TOTAL DEDUCTIONS: P2658.08
+
+NET PAY: P16196.92
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 438
+Employee Name: Bonifacio Pitogo
+Project: GAE
+
+PAY RATE: P5400.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5400.00
+
+Regular Overtime: 1136 (mins) - P1221.20
+Reg.Sun/Sat. OT: 788 (mins) - P984.29
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 12 (mins) - P1.03
+TOTAL OVERTIME: P2206.52
+
+Taxable Income:
+COLA: 281.50
+TOTAL Taxable Income: 281.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+Refund of Pag-Ibig Loan: 623.56
+TOTAL Non-Taxable Income: 9623.56
+
+GROSS PAY: P17511.58
+
+Withholding Tax: 723.37
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 575.00
+Flu : 709.83
+TOTAL Other Deductions: 1284.83
+
+TOTAL DEDUCTIONS: P2058.20
+
+NET PAY: P15453.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 443
+Employee Name: Ma. Victoria Lucasia
+Project: GAE
+
+PAY RATE: P6500.00
+
+Total Late_Absent: 192.4
+NET BASIC PAY: P6307.60
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+COLA: 234.00
+TOTAL Taxable Income: 1234.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16541.60
+
+Withholding Tax: 654.09
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 1014.77
+PLDT Charges: 200.00
+Bowling T-Shirt: 150.00
+Flu : 590.78
+TOTAL Other Deductions: 2480.55
+
+TOTAL DEDUCTIONS: P3184.64
+
+NET PAY: P13356.96
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 445
+Employee Name: Felita Mañacop
+Project: GAE
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 95.92
+NET BASIC PAY: P5404.08
+
+Regular Overtime: 70 (mins) - P77.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P77.00
+
+Taxable Income:
+COLA: 276.50
+TOTAL Taxable Income: 276.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5757.58
+
+Withholding Tax: 311.56
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Flu : 471.73
+TOTAL Other Deductions: 471.73
+
+TOTAL DEDUCTIONS: P833.29
+
+NET PAY: P4924.29
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 451
+Employee Name: Francisco Baltazar
+Project: GAE
+
+PAY RATE: P12500.00
+
+Total Late_Absent: 39.8
+NET BASIC PAY: P12460.20
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P21460.20
+
+Withholding Tax: 2073.30
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P2273.30
+
+NET PAY: P19186.90
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 462
+Employee Name: Frederick Allegado
+Project: GAE
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5500.00
+
+Regular Overtime: 3390 (mins) - P3729.00
+Reg.Sun/Sat. OT: 30 (mins) - P34.32
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 334 (mins) - P29.39
+TOTAL OVERTIME: P3792.71
+
+Taxable Income:
+COLA: 276.50
+TOTAL Taxable Income: 276.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P18569.21
+
+Withholding Tax: 643.01
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 359.38
+Pag-Ibig Loan: 148.23
+Bowling T-Shirt: 150.00
+Adv to O: 200.00
+Flu : 590.78
+TOTAL Other Deductions: 1448.39
+
+TOTAL DEDUCTIONS: P2141.40
+
+NET PAY: P16427.81
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 464
+Employee Name: Sonny Bryan Sanepa
+Project: PINATUBO 3
+
+PAY RATE: P7250.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7250.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 2500.00
+Incentive Allowance: 1000.00
+COLA: 209.50
+TOTAL Taxable Income: 3709.50
+
+Non-Taxable Income:
+A/R Others-Per Diem: 5250.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 14250.00
+
+GROSS PAY: P25209.50
+
+Withholding Tax: 1437.88
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P1637.88
+
+NET PAY: P23571.62
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 473
+Employee Name: Noel Paul Gorospe
+Project: PINATUBO 3
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+Per Diem - Pinatubo3: 4950.00
+TOTAL Non-Taxable Income: 4950.00
+
+GROSS PAY: P11950.00
+
+Withholding Tax: 545.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P595.77
+
+NET PAY: P11354.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 480
+Employee Name: Tolentino Serrano
+Project: PINATUBO 3
+
+PAY RATE: P12500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 6000.00
+TOTAL Non-Taxable Income: 6000.00
+
+GROSS PAY: P18500.00
+
+Withholding Tax: 1302.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P1502.00
+
+NET PAY: P16998.00
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 483
+Employee Name: Brenda Saligumba
+Project: GAE - ICG
+
+PAY RATE: P15000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P15000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P24000.00
+
+Withholding Tax: 2520.73
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P2570.73
+
+NET PAY: P21429.27
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 485
+Employee Name: Jake Quibina
+Project: HYDROPOWER DATABASE
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 196.8
+NET BASIC PAY: P5803.20
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 253.50
+Project Allowance: 2000.00
+TOTAL Taxable Income: 2253.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8056.70
+
+Withholding Tax: 972.42
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 328.13
+Pag-Ibig Loan: 190.79
+TOTAL Other Deductions: 518.92
+
+TOTAL DEDUCTIONS: P1541.34
+
+NET PAY: P6515.35
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 486
+Employee Name: Roberto Alindajao
+Project: GAE
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5500.00
+
+Regular Overtime: 2400 (mins) - P2640.00
+Reg.Sun/Sat. OT: 900 (mins) - P1173.74
+Legal Holiday OT: 1410 (mins) - P2719.20
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 185 (mins) - P16.28
+TOTAL OVERTIME: P6549.22
+
+Taxable Income:
+COLA: 276.50
+TOTAL Taxable Income: 276.50
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P21325.72
+
+Withholding Tax: 1518.93
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 167.37
+SSS Salary Loan: 328.13
+Short on Liquidation: 310.47
+Bowling T-Shirt: 150.00
+Adv to O: 275.00
+Flu : 709.83
+TOTAL Other Deductions: 1940.80
+
+TOTAL DEDUCTIONS: P3509.73
+
+NET PAY: P17815.99
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 495
+Employee Name: Antonio Chew
+Project: AZERBAIJAN
+
+PAY RATE: P25000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P25000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P25000.00
+
+Withholding Tax: 5541.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P5591.77
+
+NET PAY: P19408.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 496
+Employee Name: Jefferson Lorezco
+Project: DOHA STW 2
+
+PAY RATE: P6750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 500.00
+COLA: 225.00
+TOTAL Taxable Income: 725.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P16475.00
+
+Withholding Tax: 640.77
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P690.77
+
+NET PAY: P15784.23
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 503
+Employee Name: Ronaldo Cabarriban
+Project: GAE
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 763.2
+NET BASIC PAY: P9236.80
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9236.80
+
+Withholding Tax: 784.93
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 825.60
+Bowling T-Shirt: 150.00
+Flu : 471.73
+TOTAL Other Deductions: 1447.33
+
+TOTAL DEDUCTIONS: P2282.26
+
+NET PAY: P6954.54
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 504
+Employee Name: Larresa Perez
+Project: GAE - ICG
+
+PAY RATE: P8750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+TOTAL Taxable Income: 1500.00
+
+Non-Taxable Income:
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 9000.00
+
+GROSS PAY: P19250.00
+
+Withholding Tax: 1260.50
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 321.37
+Flu : 709.83
+TOTAL Other Deductions: 1031.20
+
+TOTAL DEDUCTIONS: P2341.70
+
+NET PAY: P16908.30
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 505
+Employee Name: Glenn Mijares
+Project: PINATUBO 3
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1750.00
+COLA: 217.00
+Project Allowance: 2000.00
+TOTAL Taxable Income: 3967.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 6000.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 15000.00
+
+GROSS PAY: P25967.00
+
+Withholding Tax: 1179.25
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Company Loan: 1000.00
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1150.00
+
+TOTAL DEDUCTIONS: P2379.25
+
+NET PAY: P23587.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 508
+Employee Name: Aileen Quizzagan
+Project: VIAP-IRAQ
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 177.8
+NET BASIC PAY: P7822.20
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7822.20
+
+Withholding Tax: 918.61
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P968.61
+
+NET PAY: P6853.59
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 517
+Employee Name: Delia Bernardez
+Project: PINATUBO 3
+
+PAY RATE: P18000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P18000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+A/R Others-Per Diem: 12000.00
+A/P-Others Pag-Ibig Loan: 0.90
+TOTAL Non-Taxable Income: 12000.90
+
+GROSS PAY: P30000.90
+
+Withholding Tax: 3108.43
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Tax Deficit for 2010: 270.18
+TOTAL Other Deductions: 270.18
+
+TOTAL DEDUCTIONS: P3428.61
+
+NET PAY: P26572.29
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 523
+Employee Name: Rechel Macalalad
+Project: ARISP 3
+
+PAY RATE: P6810.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6810.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1570.00
+COLA: 223.00
+TOTAL Taxable Income: 1793.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8603.00
+
+Withholding Tax: 866.37
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 109.46
+Flu : 943.45
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1202.91
+
+TOTAL DEDUCTIONS: P2119.28
+
+NET PAY: P6483.72
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 529
+Employee Name: Anthony Dacasin
+Project: VIAP-IRAQ
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1500.00
+COLA: 202.50
+TOTAL Taxable Income: 1702.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9202.50
+
+Withholding Tax: 998.62
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1048.62
+
+NET PAY: P8153.88
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 532
+Employee Name: Francis Palomique
+Project: MICT NORTHWEST
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 1080 (mins) - P1276.70
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1276.70
+
+Taxable Income:
+Incentive Allowance: 500.00
+Project Allowance: 750.00
+COLA: 276.50
+TOTAL Taxable Income: 1526.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8303.20
+
+Withholding Tax: 1034.05
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 150.00
+
+TOTAL DEDUCTIONS: P1234.05
+
+NET PAY: P7069.15
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 544
+Employee Name: Anthony Quejado
+Project: ARISP 3
+
+PAY RATE: P6285.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6285.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 242.00
+Project Allowance: 1050.00
+TOTAL Taxable Income: 1292.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7577.00
+
+Withholding Tax: 869.57
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P919.57
+
+NET PAY: P6657.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 545
+Employee Name: Maurel Chito Borja
+Project: FFWS-DAM, Year 3
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - FFWS-DAM: 5000.00
+COLA: 202.50
+TOTAL Taxable Income: 5202.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P12702.50
+
+Withholding Tax: 2144.08
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P2194.08
+
+NET PAY: P10508.42
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 546
+Employee Name: Rizalina Cruz
+Project: LAND BANK
+
+PAY RATE: P7000.00
+
+Total Late_Absent: 266.4
+NET BASIC PAY: P6733.60
+
+Regular Overtime: 525 (mins) - P728.44
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 540 (mins) - P1238.76
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1967.20
+
+Taxable Income:
+Project Allowance: 1208.33
+COLA: 209.77
+TOTAL Taxable Income: 1418.10
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10118.90
+
+Withholding Tax: 1227.72
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 459.38
+Flu : 471.73
+TOTAL Other Deductions: 931.11
+
+TOTAL DEDUCTIONS: P2208.83
+
+NET PAY: P7910.06
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 549
+Employee Name: Michelle Ablan
+Project: GAE
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 7.68
+NET BASIC PAY: P5992.32
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 500.00
+COLA: 253.50
+TOTAL Taxable Income: 753.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6745.82
+
+Withholding Tax: 494.93
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Bowling T-Shirt: 150.00
+Flu : 947.93
+TOTAL Other Deductions: 1097.93
+
+TOTAL DEDUCTIONS: P1642.86
+
+NET PAY: P5102.96
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 551
+Employee Name: Arlie Jaromamay
+Project: GAE
+
+PAY RATE: P5750.00
+
+Total Late_Absent: 223.56
+NET BASIC PAY: P5526.44
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 264.50
+TOTAL Taxable Income: 264.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5790.94
+
+Withholding Tax: 512.36
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Flu : 943.45
+TOTAL Other Deductions: 943.45
+
+TOTAL DEDUCTIONS: P1505.81
+
+NET PAY: P4285.13
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 552
+Employee Name: Arlene Ferrer
+Project: GAE - BUSINESS DEVELOPMENT
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 1.76
+NET BASIC PAY: P5498.24
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 276.50
+TOTAL Taxable Income: 276.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5774.74
+
+Withholding Tax: 509.12
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P559.12
+
+NET PAY: P5215.62
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 554
+Employee Name: Mark Tolentino
+Project: ONDOY AND PEPENG
+
+PAY RATE: P5500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 1000.00
+COLA: 276.50
+TOTAL Taxable Income: 1276.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6776.50
+
+Withholding Tax: 709.47
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P759.47
+
+NET PAY: P6017.03
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 555
+Employee Name: Mariano Gregorio Mejia
+Project: GAE - ICG
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 202.50
+TOTAL Taxable Income: 202.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7702.50
+
+Withholding Tax: 894.67
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P944.67
+
+NET PAY: P6757.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 427
+Employee Name: Teddy Viloria
+Project: PINATUBO 3
+
+PAY RATE: P16750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P16750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Project Allowance: 4187.50
+TOTAL Taxable Income: 4187.50
+
+Non-Taxable Income:
+A/R Others-Per Diem: 12000.00
+De Minimis: 9000.00
+TOTAL Non-Taxable Income: 21000.00
+
+GROSS PAY: P41937.50
+
+Withholding Tax: 4301.98
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Tax Deficit 2009: 1662.60
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1812.60
+
+TOTAL DEDUCTIONS: P6164.58
+
+NET PAY: P35772.92
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 571
+Employee Name: Kimberly Claire Inso
+Project: JICA RESEARCH
+
+PAY RATE: P14000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P14000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P14000.00
+
+Withholding Tax: 2533.33
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Flu : 471.73
+TOTAL Other Deductions: 471.73
+
+TOTAL DEDUCTIONS: P3055.06
+
+NET PAY: P10944.94
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 558
+Employee Name: Dorcas Mae Padilla
+Project: LIAISON
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 763.2
+NET BASIC PAY: P9236.80
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9236.80
+
+Withholding Tax: 1007.20
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Loan: 644.34
+Flu : 590.78
+Bowling T-Shirt: 150.00
+TOTAL Other Deductions: 1385.12
+
+TOTAL DEDUCTIONS: P2442.32
+
+NET PAY: P6794.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 557
+Employee Name: Nelson Romero
+Project: LAND BANK
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5286.00
+
+Regular Overtime: 180 (mins) - P189.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P189.00
+
+Taxable Income:
+COLA: 287.50
+TOTAL Taxable Income: 287.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5762.50
+
+Withholding Tax: 506.67
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P556.67
+
+NET PAY: P5205.83
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 556
+Employee Name: Richard Morilla
+Project: LAND BANK
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5286.00
+
+Regular Overtime: 1290 (mins) - P1354.50
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P1354.50
+
+Taxable Income:
+COLA: 287.50
+TOTAL Taxable Income: 287.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6928.00
+
+Withholding Tax: 46.93
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P96.93
+
+NET PAY: P6831.07
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 566
+Employee Name: Junalynne Pamintuan
+Project: FFWS-DAM, Year 3
+
+PAY RATE: P7500.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P7500.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - FFWS-DAM: 2000.00
+COLA: 202.50
+TOTAL Taxable Income: 2202.50
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P9702.50
+
+Withholding Tax: 1383.88
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1433.88
+
+NET PAY: P8268.62
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 575
+Employee Name: Nikko June Maranda
+Project: AUS AID Road
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 50.88
+NET BASIC PAY: P9949.12
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: 1000.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P10949.12
+
+Withholding Tax: 1695.53
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+SSS Salary Loan: 284.38
+TOTAL Other Deductions: 284.38
+
+TOTAL DEDUCTIONS: P2029.91
+
+NET PAY: P8919.21
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 569
+Employee Name: Hermenigildo Silaran
+Project: LAND BANK
+
+PAY RATE: P5286.00
+
+Total Late_Absent: 403.2
+NET BASIC PAY: P4882.80
+
+Regular Overtime: 600 (mins) - P630.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P630.00
+
+Taxable Income:
+COLA: 268.33
+TOTAL Taxable Income: 268.33
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P5781.13
+
+Withholding Tax: 0.00
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P50.00
+
+NET PAY: P5731.13
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 570
+Employee Name: Jerel John Celadiña
+Project: GAE - BUSINESS DEVELOPMENT
+
+PAY RATE: P6250.00
+
+Total Late_Absent: 309
+NET BASIC PAY: P5941.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Allowance: 500.00
+COLA: 243.00
+TOTAL Taxable Income: 743.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P6684.00
+
+Withholding Tax: 690.97
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P740.97
+
+NET PAY: P5943.03
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 574
+Employee Name: Christopher Fausto
+Project: PINATUBO 3
+
+PAY RATE: P5750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P5750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+COLA: 245.50
+Project Allowance: 2500.00
+Adj of Proj Allow: 1700.00
+TOTAL Taxable Income: 4445.50
+
+Non-Taxable Income:
+A/R Others - Per Diem: 5250.00
+Per Diem - Jun25-Aug31: 23100.00
+TOTAL Non-Taxable Income: 28350.00
+
+GROSS PAY: P38545.50
+
+Withholding Tax: 1507.12
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P1557.12
+
+NET PAY: P36988.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period September 01-15, 2011) is now available.
+
+cutoff period: 2011-08-16 -to- 2011-08-31
+
+Employee ID: 576
+Employee Name: Michael Jameslee Mariano
+Project: LAND BANK
+
+PAY RATE: P8500.00
+
+Total Late_Absent: 648
+NET BASIC PAY: P7852.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P7852.00
+
+Withholding Tax: 924.57
+SSS: 0
+Philhealth: 0.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P974.57
+
+NET PAY: P6877.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

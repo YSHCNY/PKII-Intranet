@@ -1,0 +1,88 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$cvnumber = $_GET['cvn'];
+$cvdate = $_GET['cvdt'];
+
+$explanation = $_POST['explanation'];
+$explanation = mysql_real_escape_string($explanation);
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+//     include ("header.php");
+//     include ("sidebar.php");
+
+//  echo "<p><font color=\"red\"><b>Modify CV record date...</b></font></p>";
+
+  if($accesslevel >= 4 && $accesslevel <= 5)
+  {
+
+	$result11=""; $found11=0;
+  $result11 = mysql_query("SELECT disbursementid, disbursementnumber, date, payee FROM tblfindisbursement WHERE disbursementnumber=\"$cvnumber\"", $dbh);
+	if($result11 != "") {
+  	while($myrow11 = mysql_fetch_row($result11)) {
+    $found11 = 1;
+		$disbursementid11 = $myrow11[0];
+		$disbursementnumber11 = $myrow11[1];
+		$date11 = $myrow11[2];
+		$payee11 = $myrow11[3];
+
+		$result12=""; $found12=0;
+		$result12 = mysql_query("UPDATE tblfindisbursement SET explanation=\"$explanation\" WHERE disbursementid=$disbursementid11 AND disbursementnumber=\"$cvnumber\"", $dbh);
+		// $result12 = mysql_query("UPDATE tblfindisbursement SET explanation=\"$explanation\" WHERE disbursementnumber=\"$cvnumber\"", $dbh);
+		// echo "<p>vartest id:$disbursementid11, num:$cvnumber, dt:$date11, pyee:$payee11</p>";
+		}
+	}
+
+	$result14=""; $found14=0;
+	$result14 = mysql_query("SELECT disbursementtotid, disbursementnumber, date FROM tblfindisbursementtot WHERE disbursementnumber=\"$cvnumber\"", $dbh);
+	if($result14 != "") {
+		while($myrow14 = mysql_fetch_row($result14)) {
+		$found14 = 1;
+		$disbursementtotid14 = $myrow14[0];
+		$disbursementnumber14 = $myrow14[1];
+		$date14 = $myrow14[2];
+
+		$result15=""; $found15=0;
+		$result15 = mysql_query("UPDATE tblfindisbursementtot SET explanation=\"$explanation\" WHERE disbursementtotid=$disbursementtotid14 AND disbursementnumber=\"$cvnumber\"", $dbh);
+		// $result15 = mysql_query("UPDATE tblfindisbursementtot SET explanation=\"$explanation\" WHERE disbursementnumber=\"$cvnumber\"", $dbh);
+		}
+	}
+
+	// echo "<p>vartest cvnum:$cvnumber, date:$cvdate, expl:$explanation</p>";
+
+// create log
+    include('datetimenow.php');
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminuid - Modified explanation to:$explanation11 of CV:$cvnumber, payee:$payee11, date:$cvdate";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+  }
+	// echo "<p>vartest $adminlogdetails</p>";
+
+  header("Location: finvouchcvnew.php?loginid=$loginid&cvn=$cvnumber&cvdate=$cvdate");
+  exit;
+
+	// echo "<p><a href=\"finvouchcvnew.php?loginid=$loginid&cvn=$cvnumber&cvdate=$cvdate\">back</a></p>";
+
+  $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh);
+
+//     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

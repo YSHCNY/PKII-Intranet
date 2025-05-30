@@ -1,0 +1,118 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$employeeid = $_GET['eid'];
+$projassignid = $_GET['prjid'];
+$idprojcdassign = $_GET['idprjcdasgn'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Directory >> Manage Personnel >> Edit Project Assignment >> Edit multiple project(s)</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\">";
+     echo "<tr><th colspan=\"2\">Edit project</th></tr>";
+
+     if ($employeeid == '')
+     {
+	echo "<tr><td><font color=red><b>Sorry. No data available</b></font></td></tr>";
+     }
+     else
+     {
+
+	$result = mysql_query("SELECT employeeid, name_last, name_first, name_middle FROM tblcontact WHERE employeeid = '$employeeid'", $dbh);
+	while ($myrow = mysql_fetch_row($result))
+	{
+//	  $employeeid = $myrow[0];
+	  $name_last = $myrow[1];
+	  $name_first = $myrow[2];
+	  $name_middle = $myrow[3];
+	}
+
+	echo "<tr><td colspan=2>For: <b>$employeeid - $name_last, $name_first $name_middle[0].</b></td></tr>";
+
+	echo "<form action=\"personnelprojassigneditproj2.php?loginid=$loginid&eid=$employeeid&prjid=$projassignid&idprjcdasgn=$idprojcdassign\" method=\"post\" name=\"form1\">";
+
+	$result3=""; $found3=0; $ctr3=0;
+	$result3 = mysql_query("SELECT projcode, projname, projassignid, projectid, duration, durationprop FROM tblprojcdassign WHERE idprojcdassign=$idprojcdassign AND empid=\"$employeeid\"", $dbh);
+	if($result3 != "") {
+		while($myrow3 = mysql_fetch_row($result3)) {
+		$found3 = 1;
+		$projcode3 = $myrow3[0];
+		$projname3 = $myrow3[1];
+		$projassignid3 = $myrow3[2];
+		$projectid3 = $myrow3[3];
+		$duration3 = $myrow3[4];
+		$durationprop3 = $myrow3[5];
+		}
+	}
+	echo "<tr><th align=\"right\">project</th><td>";
+
+	echo "<select name=\"projectid\">";
+	echo "<option>Select</option>";
+
+	$result2 = mysql_query("SELECT projectid, proj_code, proj_fname, proj_sname FROM tblproject1 WHERE proj_code=\"$projcode3\" ORDER BY proj_code DESC", $dbh);
+	while ($myrow2 = mysql_fetch_row($result2))
+	{
+	  $found2 = 1;
+		$projectid = $myrow2[0];
+	  $proj_code2 = $myrow2[1];
+	  $proj_fname = $myrow2[2];
+	  $proj_sname = $myrow2[3];
+	  $proj_fname2 = substr("$proj_fname", 0, 50);
+		if($proj_code2 == $projcode3) { $projcdsel="selected"; } else { $projcdsel=""; }
+	  echo "<option value=\"$projectid\" $projcdsel>$proj_code2 - $proj_sname - $proj_fname2</option>";
+	}
+	echo "</select>";
+	echo "</td></tr>";
+
+	echo "<tr><th align=\"right\">work duration</th><td>";
+		echo "<input type=\"number\" name=\"duration\" value=\"$duration3\" step=\"0.5\">";
+	if($durationprop3=="lumpsum") { $durproplumpsum="selected"; $durpropmandays=""; $durpropmanmonths=""; $durpropmanyears=""; $durpropmanothers=""; }
+	else if($durationprop3=="man-days") { $durproplumpsum=""; $durpropmandays="selected"; $durpropmanmonths=""; $durpropmanyears=""; $durpropmanothers=""; $durpropnonesel=""; }
+	else if($durationprop3=="man-months") { $durproplumpsum=""; $durpropmandays=""; $durpropmanmonths="selected"; $durpropmanyears=""; $durpropmanothers=""; $durpropnonesel=""; }
+	else if($durationprop3=="man-years") { $durproplumpsum=""; $durpropmandays=""; $durpropmanmonths=""; $durpropmanyears="selected"; $durpropmanothers=""; $durpropnonesel=""; }
+	else if($durationprop3=="others") { $durproplumpsum=""; $durpropmandays=""; $durpropmanmonths=""; $durpropmanyears=""; $durpropmanothers="selected"; $durpropnonesel=""; }
+	else { $durproplumpsum==""; $durpropmandays=""; $durpropmanmonths=""; $durpropmanyears=""; $durpropmanothers=""; $durpropnonesel="selected"; }
+		echo "<select name=\"durationprop\">";
+	if($durationprop3 == "") {
+	echo "<option value='' $durpropnonesel>Select</option>";
+	}
+	echo "<option value=\"lumpsum\" $durproplumpsum>Lumpsum</option>";
+	echo "<option value=\"man-days\" $durpropmandays>Man-Days</option>";
+	echo "<option value=\"man-months\" $durpropmanmonths>Man-Months</option>";
+	echo "<option value=\"man-years\" $durpropmanyears>Man-Years</option>";
+	echo "<option value=\"others\" $durpropmanothers>Others</option>";
+		echo "</select>";
+	echo "</td></tr>";
+
+     echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\"></td></tr>";
+     echo "</form></td></tr>";
+     }
+
+     echo "</table>";
+ 
+     echo "<p><a href =\"personnelprojassignedit.php?loginid=$loginid&eid=$employeeid&prjid=$projassignid\">Back</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     // include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

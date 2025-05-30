@@ -1,0 +1,104 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Manage >> Accounting Modules >> Link voucher payee/payor</font></p>";
+
+// start contents here...
+  if($accesslevel >= 4)
+  {
+    echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+    echo "<tr><th colspan=\"2\">Link Voucher Payee/Payor to Business Contacts</th></tr>";
+		echo "<form action=\"mngfinvouchpaylnk2.php?loginid=$loginid\" method=\"post\" name=\"form1\" target=\"_self\">";
+		echo "<tr><th align=\"right\">input payee or payor</th><td>";
+		echo "<input name=\"vouchpayname\" size=\"50\">";
+		echo "</td></tr>";
+
+		echo "<tr><th align=\"right\">select business contact</th><td>";
+		echo "<input id=\"radio1\" type=\"radio\" name=\"vouchpaysw\" value=\"company\">";
+		echo "<select name=\"vouchpaycompanyid\" onchange=\"radioselect1()\">";
+		echo "<option value=\"\">select company</option>";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("SELECT companyid, company, branch FROM tblcompany ORDER BY company ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12=1;
+			$companyid12 = $myrow12[0];
+			$company12 = $myrow12[1];
+			$branch12 = $myrow12[2];
+			echo "<option value=\"$companyid12\">$company12";
+			if($branch12 != "") { echo " - $branch12"; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+		echo "<br /><input id=\"radio2\" type=\"radio\" name=\"vouchpaysw\" value=\"contactperson\">";
+		echo "<select name=\"vouchpaycontactid\" onchange=\"radioselect2()\">";
+		echo "<option value=\"\">select individual person</option>";
+		$result14=""; $found14=0; $ctr14=0;
+		$result14 = mysql_query("SELECT contactid, companyid, employeeid, name_last, name_first, name_middle FROM tblcontact ORDER BY name_first ASC, name_last ASC", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+			$found14=1;
+			$contactid14 = $myrow14[0];
+			$companyid14 = $myrow14[1];
+			$employeeid14 = $myrow14[2];
+			$name_last14 = $myrow14[3];
+			$name_first14 = $myrow14[4];
+			$name_middle14 = $myrow14[5];
+			echo "<option value=\"$contactid14\">$name_first14";
+			if($name_middle14 != "") { echo "&nbsp;$name_middle14[0]."; }
+			echo "&nbsp;$name_last14";
+			if($employeeid14 != "") { echo "&nbsp;$employeeid14"; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Generate\"</td></tr>";
+		echo "</form>";
+    echo "</table>";
+  }
+// end contents here...
+
+
+// edit body-footer
+     echo "<p><a href=\"mngfinmods.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+?>
+<SCRIPT type="text/javascript" language="JavaScript">
+function radioselect2()
+{
+     document.getElementById('radio2').checked = true;
+}
+function radioselect1()
+{
+     document.getElementById('radio1').checked = true;	
+}
+</SCRIPT>
+<?
+mysql_close($dbh);
+?> 

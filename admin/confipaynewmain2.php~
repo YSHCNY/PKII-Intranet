@@ -1,0 +1,106 @@
+<?php
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$employeeid = $_GET['eid'];
+$groupname = $_GET['gn'];
+
+$netbasicpay = $_POST['netbasicpay'];
+
+$projallow = $_POST['projallow'];
+if($projallow == "") { $projallow = 0.00; }
+
+$perdiem = $_POST['perdiem'];
+if($perdiem == "") { $perdiem = 0.00; }
+
+$transpoallow = $_POST['transpoallow'];
+if($transpoallow == "") { $transpoallow = 0.00; }
+
+$withholdingtax = $_POST['withholdingtax'];
+
+$wtaxopt2 = $_POST['wtaxopt2'];
+if($wtaxopt2 == "") { $wtaxopt2 = 10; }
+
+$sssee = $_POST['sssee'];
+$ssser = $_POST['ssser'];
+$sssec = $_POST['sssec'];
+$philhealthee = $_POST['philhealthee'];
+$philhealther = $_POST['philhealther'];
+$pagibigee = $_POST['pagibigee'];
+$pagibiger = $_POST['pagibiger'];
+$status = $_POST['status'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+?>
+	<html><head><STYLE TYPE="text/css">
+	<!--
+	  TD {
+	    font-family: Helvetica; font-size: 10pt
+	  }
+	  body {
+	    font-family: Helvetica; font-size: 10pt
+	  }
+	  h1 {
+	    font-size: 120%
+	  }
+	  h2 {
+	    font-size: 100%
+	  }
+	  a {
+	    text-decoration: none
+	  }
+	  p {
+	    font-family: Helvetica; font-size: 10pt
+	  }
+	--->
+	</STYLE></head>
+	<body>
+<?php
+
+//  echo "filename:confipaynewmain2.php<br>";
+//  echo "vartest: loginid:$loginid, employeeid:$employeeid, groupname:$groupname<br>";
+
+  echo "<p><b>New salary info created</b></p>";
+  echo "netbasicpay:$netbasicpay<br>";
+  echo "projallow:$projallow<br>";
+  echo "perdiem:$perdiem<br>";
+  echo "transpoallow:$transpoallow<br>";
+  echo "withholdingtax:$withholdingtax<br>";
+  echo "wtaxopt2:<br>";
+  echo "sssee:$sssee<br>";
+  echo "ssser:$ssser<br>";
+  echo "sssec:$sssec<br>";
+  echo "philhealthee:$philhealthee<br>";
+  echo "philhealther:$philhealther<br>";
+  echo "pagibigee:$pagibigee<br>";
+  echo "pagibiger:$pagibiger<br>";
+  echo "status:$status<br>";
+
+  if ($status == "on")
+     {
+	$result11 = mysql_query("INSERT INTO tblconfipaymeminfo (employeeid, groupname, netbasicpay, projallow, perdiem, transpoallow, withholdingtax, wtaxopt2, sssee, ssser, sssec, philhealthee, philhealther, pagibigee, pagibiger, status) VALUES (\"$employeeid\", \"$groupname\", $netbasicpay, $projallow, $perdiem, $transpoallow, $withholdingtax, $wtaxopt2, $sssee, $ssser, $sssec, $philhealthee, $philhealther, $pagibigee, $pagibiger, \"active\")", $dbh);
+     }
+     else
+     {
+	$result12 = mysql_query("INSERT INTO tblconfipaymeminfo (employeeid, groupname, netbasicpay, projallow, perdiem, transpoallow, withholdingtax, wtaxopt2, sssee, ssser, sssec, philhealthee, philhealther, pagibigee, pagibiger, status) VALUES (\"$employeeid\", \"$groupname\", $netbasicpay, $projallow, $perdiem, $transpoallow, $withholdingtax, $wtaxopt2, $sssee, $ssser, $sssec, $philhealthee, $philhealther, $pagibigee, $pagibiger, \"inactive\")", $dbh);
+     }
+
+  echo "</body></html>";
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 
+

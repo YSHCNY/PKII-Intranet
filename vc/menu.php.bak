@@ -1,0 +1,114 @@
+<?php
+//
+// menu.php
+// fr: vc/index.php
+
+?>
+
+
+<!--Main Navigation-->
+    
+    	<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+					
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button> 
+					 <?php echo "<a class=\"navbar-brand\" height=\"4\" href=\"index.php?lst=1&lid=$loginid&sess=$session\">"; ?>
+					<!--<-<img style="max-width:100px; margin-top: -7px;" src="/img/logo.jpg"></a>--></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+					
+				<li><?php echo "<a class=\"glyphicon glyphicon-home\" href=\"index.php?lst=1&lid=$loginid&sess=$session\"></a>"; ?></li>
+					<ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Details <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=11\">My Info</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=12\">My Time Log</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=14\">My Activity Log</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=15\">My Payslip Summary</a>"; ?></li>
+          </ul>
+        </li>
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Directory <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=21\">Projects</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=22\">Personnel</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=23\">Business Contacts</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=24\">Guides and Policies</a>"; ?></li>
+          </ul>
+        </li>
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=31\">File(s) Uploader</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=32\">E-Mail Notifier</a>"; ?></li>
+<?php
+	if($emppositionlevel0>=3) {
+?>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=33\">Supplies Request</a>"; ?></li>
+<?php
+	} // if
+?>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=34\">IT Support Request</a>"; ?></li>
+<?php
+	if($emppositionlevel0>=3) {
+?>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=35\">HR Personnel Request</a>"; ?></li>
+<?php
+	} // if
+
+	// start OT/Leave Form
+	// query tblhrtapaygrpemplst
+	include '../m/qryhrtapaygrpemplst.php';
+	if($activesw11==1) {
+?>
+		<li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=36\">O.T./Leave Form</a>"; ?></li>
+<?php
+	} // if
+?>
+		<li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=37\">C.A./Liquidation Form</a>"; ?></li>
+          </ul>
+        </li>
+	
+	
+	
+    
+
+	
+<?php
+	if($picfn0!='') {
+		$picfnfin="<img height='25' class='img-circle'  src='$pathavatar/$picfn0' id='picfnfin'/>";
+	} else {
+		$picfnfin="<img height='25' class='img-circle' src='$pathavatar/default.gif' id='picfnfin' />";
+	} // if
+?>
+	<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo "$name_first0&nbsp;$name_last0&nbsp;$picfnfin"; ?><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=41\">Change password</a>"; ?></li>
+		        <li><?php echo "<a href=\"logout.php?lst=1&lid=$loginid&sess=$session&pn\">Logout</a>"; ?></li>            
+          </ul>
+        </li>
+
+
+		<!-- <li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><?php echo "<a href=\"logout.php?lst=1&lid=$loginid&sess=$session&pn\">Logout</a>"; ?></li>
+      </ul>
+		</li> -->
+						
+					</ul>
+				</div>
+			</div>
+		</nav>
+    
+       <br><br><br>

@@ -1,0 +1,348 @@
+<?php 
+
+require("db1.php");
+include './datetimenow.php';
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$pid = (isset($_GET['pid'])) ? $_GET['pid'] :'';
+
+$proj_num = (isset($_POST['proj_num'])) ? $_POST['proj_num'] :'';
+$proj_code = (isset($_POST['proj_code'])) ? $_POST['proj_code'] :'';
+$proj_fname0 = (isset($_POST['proj_fname'])) ? $_POST['proj_fname'] :'';
+$proj_fname = mysql_real_escape_string($proj_fname0);
+$proj_sname = (isset($_POST['proj_sname'])) ? $_POST['proj_sname'] :'';
+$proj_period = (isset($_POST['proj_period'])) ? $_POST['proj_period'] :'';
+$proj_desc0 = (isset($_POST['proj_desc'])) ? $_POST['proj_desc'] :'';
+$proj_desc = mysql_real_escape_string($proj_desc0);
+
+// 20181104
+// $proj_services = $_POST['proj_services'];
+$projservices = (isset($_POST['prjsvc'])) ? $_POST['prjsvc'] :'';
+$ctr=0; $prjsvctyp='';
+foreach ($_POST['prjsvc'] as $key => $value) {
+	$ctr=$ctr+1;
+} // foreach
+if($ctr>1) {
+	foreach ($_POST['prjsvc'] as $key => $value) {
+	$ctr=$ctr+1;
+	$proj_services .= $value . ",";
+	$prjsvctyp='multi';
+	} // foreach
+} else {
+	foreach ($_POST['prjsvc'] as $key => $value) {
+	$proj_services .= $value;
+	$prjsvctyp='single';
+	} // foreach
+} // if-else
+if($prjsvctyp=="multi") { $proj_services=rtrim("$proj_services", ","); }
+$proj_duty = (isset($_POST['proj_duty'])) ? $_POST['proj_duty'] :'';
+// $date_start0 = $_POST['date_start0'];
+// $date_end0 = $_POST['date_end0'];
+// $date_start = $_POST['year_start'] . "-" . $_POST['month_start'] . "-" . $_POST['day_start'];
+// $date_end = $_POST['year_end'] . "-" . $_POST['month_end'] . "-" . $_POST['day_end'];
+$projstatus = (isset($_POST['projstatus'])) ? $_POST['projstatus'] :'';
+$proj_remarks0 = (isset($_POST['proj_remarks'])) ? $_POST['proj_remarks'] :'';
+$proj_remarks = mysql_real_escape_string($proj_remarks0);
+
+/* $clientsw = $_POST['clientsw'];
+$companyid = $_POST['companyid'];
+$contactid = $_POST['contactid'];
+
+if($clientsw=="company") {
+	$contactid=0;
+} else if($clientsw=="contactperson") {
+	$companyid=0;
+} */
+
+$employeeid = (isset($_POST['employeeid'])) ? $_POST['employeeid'] :'';
+$sw_nk = (isset($_POST['sw_nk'])) ? $_POST['sw_nk'] :'';
+$sw_jica = (isset($_POST['sw_jica'])) ? $_POST['sw_jica'] :'';
+$sw_icg = (isset($_POST['sw_icg'])) ? $_POST['sw_icg'] :'';
+
+if($sw_nk == "on") { $sw_nk=1; } else { $sw_nk=0; }
+if($sw_jica == "on") { $sw_jica=1; } else { $sw_jica=0; }
+if($sw_icg == "on") { $sw_icg=1; } else { $sw_icg=0; }
+
+// 20180509
+$nkotherrel = (isset($_POST['nkotherrel'])) ? $_POST['nkotherrel'] :'';
+$proj_relation1a = (isset($_POST['proj_relation1a'])) ? $_POST['proj_relation1a'] :'';
+$proj_relation1b = (isset($_POST['proj_relation1b'])) ? $_POST['proj_relation1b'] :'';
+$proj_relation2a = (isset($_POST['proj_relation2a'])) ? $_POST['proj_relation2a'] :'';
+$proj_relation2b = (isset($_POST['proj_relation2b'])) ? $_POST['proj_relation2b'] :'';
+$proj_relation3a = (isset($_POST['proj_relation3a'])) ? $_POST['proj_relation3a'] :'';
+
+$proj_relation0 = (isset($_POST['proj_relation0'])) ? $_POST['proj_relation0'] :'';
+$proj_relation1 = (isset($_POST['proj_relation1'])) ? $_POST['proj_relation1'] :'';
+$proj_relation2 = (isset($_POST['proj_relation2'])) ? $_POST['proj_relation2'] :'';
+$proj_relation3 = (isset($_POST['proj_relation3'])) ? $_POST['proj_relation3'] :'';
+
+// 20180509
+if($nkotherrel=="nk") {
+	$proj_relation0="nk";
+	$proj_relation1=$proj_relation1a;
+	$proj_relation1b='';
+	if($proj_relation1=="nkgroup") {
+		$proj_relation3=""; $proj_relation3a='';
+	} // if
+	if($proj_relation2a!='') {
+		$proj_relation2=$proj_relation2a;
+		$proj_relation2b='';
+	} else if($proj_relation2b!='') {
+		$proj_relation2=$proj_relation2b;
+		$proj_relation2a='';
+	} // if
+	if($proj_relation3a!='') {
+		$proj_relation3=$proj_relation3a;
+	} // if
+} else if($nkotherrel=="others") {
+	$proj_relation0="others";
+	$proj_relation1=$proj_relation1b;
+	$proj_relation1a='';
+	$proj_relation2=''; $proj_relation2a=''; $proj_relation2b='';
+	$proj_relation3=''; $proj_relation3a='';
+} else if($nkotherrel=="") {
+	$proj_relation0='';
+	$proj_relation1='';
+	$proj_relation2='';
+	$proj_relation3='';
+} // if
+
+//
+//20181128
+//
+$date_mob = (isset($_POST['date_mob'])) ? $_POST['date_mob'] :'';
+
+$clientsw = (isset($_POST['clientsw'])) ? $_POST['clientsw'] :'';
+$client_companyid = (isset($_POST['client_companyid'])) ? $_POST['client_companyid'] :'';
+$client_contactid = (isset($_POST['client_contactid'])) ? $_POST['client_contactid'] :'';
+if($clientsw=='company') {
+// get companyid
+$client_companyid_fin=$client_companyid; $client_contactid_fin=0;
+} else if($clientsw=='contactperson') {
+// get contactid
+$client_companyid_fin=0; $client_contactid_fin=$client_contactid;
+} else {
+$client_companyid_fin=0; $client_contactid_fin=0;
+} // if-else
+$companyid=0; $contactid=0;
+
+$fundingagencysw = (isset($_POST['fundingagencysw'])) ? $_POST['fundingagencysw'] :'';
+$fundingagency_companyid = (isset($_POST['fundingagency_companyid'])) ? $_POST['fundingagency_companyid'] :'';
+$fundingagency_contactid = (isset($_POST['fundingagency_contactid'])) ? $_POST['fundingagency_contactid'] :'';
+if($fundingagencysw=='company') {
+// get companyid
+$fundingagency_companyid_fin=$fundingagency_companyid; $fundingagency_contactid_fin=0;
+} else if($fundingagencysw=='contactperson') {
+// get contactid
+$fundingagency_companyid_fin=0; $fundingagency_contactid_fin=$fundingagency_contactid;
+} else {
+$fundingagency_companyid_fin=0; $fundingagency_contactid_fin=0;
+} // if-else
+
+$implementingagencysw = (isset($_POST['implementingagencysw'])) ? $_POST['implementingagencysw'] :'';
+$implementingagency_companyid = (isset($_POST['implementingagency_companyid'])) ? $_POST['implementingagency_companyid'] :'';
+$implementingagency_contactid = (isset($_POST['implementingagency_contactid'])) ? $_POST['implementingagency_contactid'] :'';
+if($implementingagencysw=='company') {
+// get companyid
+$implementingagency_companyid_fin=$implementingagency_companyid; $implementingagency_contactid_fin=0;
+} else if($implementingagencysw=='contactperson') {
+// get contactid
+$implementingagency_companyid_fin=0; $implementingagency_contactid_fin=$implementingagency_contactid;
+} else {
+$implementingagency_companyid_fin=0; $implementingagency_contactid_fin=0;
+} // if-else
+
+	// echo "<p>0:$proj_relation0,1:$proj_relation1,1a:$proj_relation1a,1b:$proj_relation1b,2:$proj_relation2,2a:$proj_relation2a,2b:$proj_relation2b,3:$proj_relation3,3a:$proj_relation3a</p>";
+
+	$res11query="SELECT proj_relation0, proj_relation1, proj_relation2, proj_relation3 FROM tblproject1 WHERE projectid=$pid AND proj_code=\"$proj_code\" LIMIT 1";
+	$result11=""; $found11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$proj_relation011 = $myrow11['proj_relation0'];
+		$proj_relation111 = $myrow11['proj_relation1'];
+		$proj_relation211 = $myrow11['proj_relation2'];
+		$proj_relation311 = $myrow11['proj_relation3'];
+		} // while
+	} // if
+
+	if(($proj_relation0 != "") || ($proj_relation0 != "-")) {
+		$proj_relation0fin=$proj_relation0;
+	} else if(($proj_relation0 == "") && (($proj_relation011 != "-") || ($proj_relation011 != ""))) {
+		$proj_relation0fin=$proj_relation011;
+	} else { $proj_relation0fin=""; }
+
+	if(($proj_relation1 != "") || ($proj_relation1 != "-")) {
+		$proj_relation1fin=$proj_relation1;
+	} else if(($proj_relation1 == "") && (($proj_relation111 != "-") || ($proj_relation111 != ""))) {
+		$proj_relation1fin=$proj_relation111;
+	} else { $proj_relation1fin=""; }
+
+	if(($proj_relation2 != "") || ($proj_relation2 != "-")) {
+		$proj_relation2fin=$proj_relation2;
+	} else if(($proj_relation2 == "") && (($proj_relation211 != "-") || ($proj_relation211 != ""))) {
+		$proj_relation2fin=$proj_relation211;
+	} else { $proj_relation2fin=""; }
+
+	if(($proj_relation3 != "") || ($proj_relation3 != "-")) {
+		$proj_relation3fin=$proj_relation3;
+	} else if(($proj_relation3 == "") && (($proj_relation311 != "-") || ($proj_relation311 != ""))) {
+		$proj_relation3fin=$proj_relation311;
+	} else { $proj_relation3fin=""; }
+
+	if($proj_relation0fin=="others") { $proj_relation2fin=""; $proj_relation3fin=""; }
+
+$proj_class = (isset($_POST['proj_class'])) ? $_POST['proj_class'] :'';
+
+$countrycd = (isset($_POST['countrycd'])) ? $_POST['countrycd'] :'';
+$divisioncd = (isset($_POST['divisioncd'])) ? $_POST['divisioncd'] :'';
+$jobtypcd = (isset($_POST['jobtypcd'])) ? $_POST['jobtypcd'] :'';
+
+// 20180509
+$pkiictgcd = (isset($_POST['pkiictgcd'])) ? $_POST['pkiictgcd'] :'';
+
+// 20190904
+// add'l vars based on mam AAR's MoReportonNK spreadsheet.
+// insert the following (in any order):
+// - original currency
+// - region
+// - ENR
+
+// 20190920
+$projctgenr = (isset($_POST['projctgenr'])) ? $_POST['projctgenr'] :'';
+
+// 20190924
+/*
+$uploadedfile = trim($_POST['uploadedfile']);
+$target_path0 = "./uploads/projdocs";
+// $target_path1 = $target_path0 . "/" . $proj_code . "_PDS_";
+$filename = basename( $_FILES['uploadedfile']['name'] );
+$filename1 = str_replace(' ', '_', $filename);
+if($filename1 != "") { $filename2 = $proj_code . "_PDS_" . $datenow . "_" . $filename1; }
+*/
+
+// 20210728
+$empidtl = trim((isset($_POST['empidtl'])) ? $_POST['empidtl'] :'');
+$empiddtl = trim((isset($_POST['empiddtl'])) ? $_POST['empiddtl'] :'');
+$empidpc = trim((isset($_POST['empidpc'])) ? $_POST['empidpc']: '');
+
+$found = 0;
+$found2 = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+  //   include ("header.php");
+
+	/*
+  echo "<font face=Helvetica size=2>";
+  echo "Your inputs: ";
+  echo "$proj_code $proj_sname<br>";
+	*/
+/*
+if($filename1!='') {
+
+  // start upload
+  // start file upload if exists
+  $target_path = $target_path0 . "/" . $filename1;
+  if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    $imagefile = $target_path0 . "/" . $filename1;
+    $newimagefile = $target_path0 . "/" . $filename2;
+    rename($imagefile, $newimagefile);
+    echo "$target_path\n";
+  } else {
+    echo "There was an error uploading the file, please try again!<br>";
+  } // if-else
+  $filename1=$filename2;
+  $filepath1=$target_path0;
+
+} else {
+
+  // query filename1 & filepath1 if exists, then disregard upload file
+  $res12query=""; $result12=""; $found12=0;
+  $res12query="SELECT filename1, filepath1 FROM tblproject1 WHERE proj_code=\"$proj_code\" LIMIT 1";
+  $result12=$dbh2->query($res12query);
+  if($result12->num_rows>0) {
+    while($myrow12=$result12->fetch_assoc()) {
+    $found12=1;
+    $filename112 = $myrow12['filename1'];
+    $filepath112 = $myrow12['filepath1'];
+    } // while
+  } // if
+  if($found12==1) {
+    $filename1=$filename112;
+    $filepath1=$filepath112;
+  } else {
+    $filename1='';
+    $filepath1='';
+  } // if
+
+} // if-else
+*/
+
+    $resquery="UPDATE tblproject1 SET proj_num = \"$proj_num\", proj_fname=\"$proj_fname\", proj_sname=\"$proj_sname\", proj_desc=\"$proj_desc\", proj_services=\"$proj_services\", proj_duty = \"$proj_duty\", proj_period = \"$proj_period\", projstatus=\"$projstatus\", proj_remarks=\"$proj_remarks\", companyid=$companyid, contactid=$contactid, employeeid = \"$employeeid\", sw_nk=$sw_nk, sw_jica=$sw_jica, sw_icg=$sw_icg, proj_relation0=\"$proj_relation0fin\", proj_relation1=\"$proj_relation1fin\", proj_relation2=\"$proj_relation2fin\", proj_relation3=\"$proj_relation3fin\", proj_class=\"$proj_class\", countrycd=\"$countrycd\", jobtypcd=\"$jobtypcd\", divisioncd=\"$divisioncd\", pkiictgcd=\"$pkiictgcd\", date_mob=\"$date_mob\", fk_companyid_client=$client_companyid_fin, fk_companyid_funding_agency=$fundingagency_companyid_fin, fk_companyid_implementing_agency=$implementingagency_companyid_fin, fk_contactid_client=$client_contactid_fin, fk_contactid_funding_agency=$fundingagency_contactid_fin, fk_contactid_implementing_agency=$implementingagency_contactid_fin, enrctg=\"$projctgenr\", empidtl=\"$empidtl\", empiddtl=\"$empiddtl\", empidpc=\"$empidpc\" WHERE projectid=$pid";
+	// $result = mysql_query("$resquery", $dbh) or die ("Couldn't execute query.".mysql_error());
+	$result=$dbh2->query($resquery);
+/*
+  echo "Data inserted -<br>";
+  echo "Project No.: $proj_num<br>";
+  echo "Project Code: $proj_code<br>";
+  echo "Acronym: $proj_sname<br>";
+  echo "Project Name: $proj_fname<br>";
+  echo "Description: $proj_desc<br>";
+  echo "Services: $proj_services<br>";
+	echo "prjsvc:$projservices|$proj_services<br>";
+  echo "c/o: $proj_duty<br>";
+  echo "Period: $proj_period<br>";
+  echo "Status: $projstatus<br>";
+  echo "Remarks: $proj_remarks<br>";
+  echo "ContactID: $contactid<br>";
+  echo "Personnel: $employeeid<br>";
+	echo "Relations: $proj_relation0fin - $proj_relation1fin - $proj_relation2fin - $proj_relation3fin<br>";
+	// echo "NK-related: $sw_nk<br>";
+	// echo "JICA-related: $sw_jica<br>";
+	// echo "ICG-related: $sw_icg<br>";
+	echo "f12:$found12|res12query:$res12query|fn1:$filename1|file+path:$newimagefile<br>fn112:$filename112|target_path0:$target_path0|filename2:$filename2";
+*/
+ // echo "<p>";
+  echo "<h3><font color='green'>Update Record - OK!</font></h3><br>";
+
+  echo "<a href=editproj.php?loginid=$loginid&pid=$pid>Back to Edit Project</a><br>";
+	echo "</p>";
+  $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh);
+
+	// echo "<p>rel:$nkotherrel<br>proj0:$proj_relation0fin<br>proj1:$proj_relation1|$proj_relation1fin<br>proj2:$proj_relation2|$proj_relation2fin<br>proj3:$proj_relation3|$proj_relation3fin<br>qry:$resquery<br>pkctgcd:$pkiictgcd</p>";
+
+  // insert log
+    // get adminuid first
+	$res17query=""; $result17=""; $found17=0;
+	$res17query="SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid";
+	$result17=$dbh2->query($res17query);
+	if($result17->num_rows>0) {
+	    while($myrow17=$result17->fetch_assoc()) {
+        $found17=1;
+		$adminuid17 = $myrow17['adminuid'];
+        }			
+	}
+  $logdetails="loginid:$loginid Updated project information categories projid:$pid, proj_code:$proj_code";
+	$res16query="INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp='$now', adminuid='$adminuid17', adminlogdetails='$logdetails'";
+	$result16=$dbh2->query($res16query);
+
+	// echo "<p><a href=\"editproj.php?loginid=$loginid&pid=$pid\">back</a></p>";
+
+	// redirect
+	// header("Location: editproj.php?loginid=$loginid&pid=$pid");
+  // exit;
+
+  //   include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 
+

@@ -1,0 +1,69 @@
+<?php
+//
+// vpersinfo.php
+// fr: vc/index.php
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>Personal Info</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+<table class="table table-striped">
+	<tbody>
+<?php
+	// query tblemployee, tblcontact
+	include("../m/qryvpersinfo.php");
+	if($found11==1) {
+	// display results
+	echo "<tr><td align=\"right\">Employee no.</td><th>$employeeid0</th></tr>";
+	if($picfn11!='') {
+	echo "<tr><td colspan=\"2\" align=\"center\"><img src=\"$pathavatar/$picfn11\" height=\"150\"></td></tr>";
+	} // if
+	echo "<tr><td align=\"right\">Full name</td><th>".strtoupper($name_last11).", ".strtoupper($name_first11)." ".strtoupper($name_middle11)."</th></tr>";
+	echo "<tr><td align=\"right\">Gender</td><th>$contact_gender11</th></tr>";
+	echo "<tr><td align=\"right\">Address</td><th>";
+		if($contact_address111!='') {
+		echo "$contact_address111";
+			if($contact_address211!='') {
+			echo ",&nbsp;$contact_address211";
+			} // if
+			if($contact_city11!='') {
+			echo ",&nbsp;";
+			} // if
+		} // if
+		if($contact_city11!='') {
+		echo "$contact_city11";
+		} // if
+		if($contact_province11!='') {
+			if($contact_city11!='') {
+			echo ",&nbsp;";
+			} // if
+			echo "$contact_province11";
+		} // if
+		if($contact_zipcode11!='') {
+			echo "&nbsp;$contact_zipcode11&nbsp;";
+		} // if
+	echo "</th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	echo "<tr><td align=\"right\"></td><th></th></tr>";
+	} // if
+?>
+		<tr>
+			<td align="right"></td>
+			<th>name</th>
+		</tr>
+	</tbody>
+</table>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+

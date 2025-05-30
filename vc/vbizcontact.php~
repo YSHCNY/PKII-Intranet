@@ -1,0 +1,148 @@
+<?php
+//
+// vbizcontact.php
+// fr: vc/index.php
+//page 23
+
+// get variables
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$disptyp = (isset($_POST['disptyp'])) ? $_POST['disptyp'] :'';
+
+if($page=='') { $page=23; }
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>Business Contacts List</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+<?php
+	echo "<form action=\"index.php?lst=$lst&lid=$loginid&sess=$session&p=$page\" method=\"POST\" name=\"vpersonnel\">";
+?>
+	<tr><td class="text-right">
+<?php
+	if($disptyp=='' || $disptyp=='all') {
+		$disptypallsel="selected"; $disptypprojsel=""; $disptypclientsel=""; $disptypassocsel=""; $disptypsuppliersel=""; $disptypuncategsel="";
+	} else if($disptyp=='project') {
+		$disptypallsel=""; $disptypprojsel="selected"; $disptypclientsel=""; $disptypassocsel=""; $disptypsuppliersel=""; $disptypuncategsel="";
+	} else if($disptyp=='client') {
+		$disptypallsel=""; $disptypprojsel=""; $disptypclientsel="selected"; $disptypassocsel=""; $disptypsuppliersel=""; $disptypuncategsel="";
+	} else if($disptyp=='associate') {
+		$disptypallsel=""; $disptypprojsel=""; $disptypclientsel=""; $disptypassocsel="selected"; $disptypsuppliersel=""; $disptypuncategsel="";
+	} else if($disptyp=='supplier') {
+		$disptypallsel=""; $disptypprojsel=""; $disptypclientsel=""; $disptypassocsel=""; $disptypsuppliersel="selected"; $disptypuncategsel="";
+	} else if($disptyp=='uncategorized') {
+		$disptypallsel=""; $disptypprojsel=""; $disptypclientsel=""; $disptypassocsel=""; $disptypsuppliersel=""; $disptypuncategsel="selected";
+	} // if
+	echo "<select name=\"disptyp\">";
+	echo "<option value='all' $disptypallsel>All</option>";
+	echo "<option value='project' $disptypprojsel>Projects</option>";
+	echo "<option value='client' $disptypclientsel>Clients</option>";
+	echo "<option value='associate' $disptypassocsel>Associate</option>";
+	echo "<option value='supplier' $disptypsuppliersel>Suppliers</option>";
+	echo "<option value='uncategorized' $disptypuncategsel>Uncategorized</option>";
+	echo "</select>";
+?>
+	</td><td class="text-left">
+	<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+	</td></tr>
+<?php
+	echo "</form>";
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<thead>
+	<tr><th class="text-center">Count</th><th class="text-center">Company name</th><th class="text-center">Address</th><th class="text-center">Contact details</th><th class="text-center">E-mail</th><th class="text-center">Website</th>
+<?php
+	if($disptyp=='project') { echo "<th>Project</th>"; }
+?>
+	</tr>
+</thead>
+<tbody>
+
+<?php 
+
+	include '../m/qrybizcontact.php';
+
+	$param11=count($companyidArr);
+	for($x11 = 0; $x11 < $param11; $x11++) {
+		$found11=1;
+		$ctr11=$x11+1;
+		echo "<tr><td>$ctr11</td>";
+		if($ofc_urlArr[$x11]!='') {
+		echo "<td><a href=\"http://".$ofc_urlArr[$x11]."\" target=\"_blank\" class=\"text-primary\">".$companyArr[$x11]."</a></td>";
+		} else {
+		echo "<td>".$companyArr[$x11]."</td>";
+		} // if
+		echo "<td><address>";
+		echo "".$ofc_address1Arr[$x11]."";
+		if($ofc_address2Arr[$x11]!='') {
+			echo ",&nbsp;".$ofc_address2Arr[$x11]."";
+		} // if
+		if($ofc_cityArr[$x11]!='') {
+			echo ",&nbsp;".$ofc_cityArr[$x11]."";
+		} // if
+		if($ofc_provinceArr[$x11]!='') {
+			echo ",&nbsp;".$ofc_provinceArr[$x11]."";
+		} // if
+		if($ofc_zipcodeArr[$x11]!='') {
+			echo "&nbsp;".$ofc_zipcodeArr[$x11]."";
+		} // if
+		if($ofc_countryArr[$x11]!='') {
+			echo "&nbsp;".$ofc_countryArr[$x11]."";
+		} // if
+		echo "</address></td>";
+		echo "<td>";
+		if($ofc_num1Arr[$x11]!='') {
+		echo "Landline:&nbsp;";
+		if($ofc_num1_ccArrArr[$x11]!='') { echo "+".$ofc_num1_ccArr[$x11]."&nbsp;"; }
+		if($ofc_num1_acArr[$x11]!='') { echo "".$ofc_num1_acArr[$x11]."&nbsp;"; }
+		echo "".$ofc_num1Arr[$x11]."";
+		if($ofc_num1_extArr[$x11]!='') { echo "&nbsp;Ext.&nbsp;".$ofc_num1_extArr[$x11].""; }
+		} // if
+		if($ofc_faxArr[$x11]!='') {
+		echo "<br>Fax:&nbsp;";
+		if($ofc_fax_ccArr[$x11]!='') { echo "+".$ofc_fax_ccArr[$x11]."&nbsp;"; }
+		if($ofc_fax_acArr[$x11]!='') { echo "$ofc_fax_acArr&nbsp;"; }
+		echo "".$ofc_faxArr[$x11]."";
+		} // if
+		if($ofc_mobileArr[$x11]!='') {
+		echo "<br>Mobile:&nbsp;";
+		if($ofc_mobile_ccArr[$x11]!='') { echo "+".$ofc_mobile_ccArr[$x11].""; }
+		if($ofc_mobile_acArr[$x11]!='') { echo "".$ofc_mobile_acArr[$x11]."&nbsp;"; }
+		echo "".$ofc_mobileArr[$x11]."";
+		} // if
+		echo "</td>";
+		echo "<td><address><a href='mailto:".$ofc_emailArr[$x11]."' class=\"text-primary\">".$ofc_emailArr[$x11]."</a></address></td>";
+		echo "<td>".$ofc_urlArr[$x11]."</td>";
+		if($disptyp=='project') {
+			$projcode=$proj_codeArr[$x11];
+			include '../m/qryproj2.php';
+			echo "<td>$proj_sname11</td>";
+		} // if
+		echo "</tr>";
+	} // for
+
+$dbh->close();
+?> 
+</table>
+</tbody>
+		</div><!--  class="col-md-6" -->
+		<div class="col-md-1"></div>
+	</div><!-- class="row" -->
+

@@ -1,0 +1,1768 @@
+<?php 
+session_start();
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$idpaygroup0 = (isset($_GET['idpg'])) ? $_GET['idpg'] :'';
+$idcutoff0 = (isset($_GET['idct'])) ? $_GET['idct'] :'';
+$employeeid0 = (isset($_GET['eid'])) ? $_GET['eid'] :'';
+
+$idpaygroup = (isset($_POST['idpaygroup'])) ? $_POST['idpaygroup'] :'';
+$idcutoff =  (isset($_POST['idcutoff'])) ? $_POST['idcutoff'] :'';
+$employeeid = (isset($_POST['empid'])) ? $_POST['empid'] :'';
+
+if($idpaygroup0 != "") { $idpaygroup=$idpaygroup0; }
+if($idcutoff0 != "") { $idcutoff=$idcutoff0; }
+if($employeeid0 != "") { $employeeid=$employeeid0; }
+
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+if($found == 1) {
+?>
+<script type="text/javascript" language="JavaScript">
+function toggle(source) {
+  checkboxesnf = document.getElementsByName('nofindings[]');
+  for(var i=0, n=checkboxesnf.length; i<n; i++) {
+    checkboxesnf[i].checked = source.checked;
+  }
+}
+
+
+
+/* function enableDisableAll() {
+	// var myStringArray = ["Hello","World"];
+	var cbm = [];
+	var checkboxManual = [];
+	var timetotal = [];
+	var otutval = [];
+	var nightdiffval = [];
+	var arrayLength = cbm.length;
+	var i2;
+	for (i2 = 0; i2 < arrayLength; i2++) {
+    // alert(myStringArray[i]);
+		cbm = document.getElementById('checkboxManual').checked;
+	  document.getElementById('timetotal').disabled = !cbm;
+	  document.getElementById('otutval').disabled = !cbm;
+	  document.getElementById('nightdiffval').disabled = !cbm;
+    //Do something
+	}
+	// cbm = document.getElementById('checkboxManual').checked;
+  // document.getElementById('timetotal').disabled = !cbm;
+  // document.getElementById('valotut').disabled = !cbm;
+  // document.getElementById('valnightdiff').disabled = !cbm;
+} */
+
+// function toggle(checkboxmanID, inputfieldsID) {
+//      var checkboxman = document.getElementById('checkboxmanID');
+//      var inputfields = document.getElementById('inputfieldsID');
+//      updateToggle = checkboxman.checked ? toggle.disabled=false : toggle.disabled=true;
+// }
+
+/* function active()
+{
+	var checkboxManual = [];
+	var timetotal = [];
+	var otutval = [];
+	var nightdiffval = [];
+	// checkboxman = document.getElementById('checkboxManual[]');
+	// for(var i=0, n=document.getElementById('checkboxManual[]').length; i<n; i++) {
+  if(document.getElementById('checkboxManual').checked) {
+     document.getElementById('timetotal').disabled=false;
+     document.getElementById('otutval').disabled=false;
+     document.getElementById('nightdiffval').disabled=false;
+  } else {
+     document.getElementById('timetotal').disabled=true;
+     document.getElementById('otutval').disabled=true;
+     document.getElementById('nightdiffval').disabled=true;
+	}
+	// }
+} */
+</script>
+<?php
+     include ("header.php");
+     include ("sidebarforTAL.php");
+
+	 echo "<div class = 'mb-4'>";
+	 include 'timeattmenu.php';
+	echo "</div>";
+	 
+	 echo "<div class = 'container'>";
+// edit body-header
+    //  echo "<p><font size=1>Modules >> Time and Attendance >> Time log</font></p>";
+	// echo "<button type=\"button\" class=\"btn mainbtnclr my-3 \"><a href=\"hrtimeatt.php?loginid=$loginid\" class = 'text-white text-decoration-none'>Back</a></button>";
+   
+
+// start contents here...
+
+
+  if($accesslevel >= 3)
+  {
+	echo "<div class=\"shadow p-5 mb-3 \" >";
+	echo "<div class = 'mb-5 mt-3 mx-3'>";
+	echo "<h5 class = 'fw-bold mb-0 pb-0'>Timelogs</h5>";
+	echo "<p class = 'text-secondary'>Manage employee's attendance log</p>";
+	echo "</div>";
+	
+	
+		echo "<form action=\"hrtimeatttimelogs.php?loginid=$loginid\" method=\"post\" name=\"modhrtatimelog\">";
+
+		// pay group name dropdown
+		echo "";
+
+		echo "<div class = 'px-5 row'>";
+		echo "";
+
+		echo "<div class = 'col'>";
+		echo "<p class = 'text-secondary'>Paygroup:</p>";
+		echo "<select name=\"idpaygroup\" class ='GlobalSelectWx w-100' onchange=\"this.form.submit()\">";
+		if($idpaygroup == "") {
+		echo "<option value=''>select paygroup</option>";
+		}
+		$res11query = "SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY timestamp DESC";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11['idtblhrtapaygrp'];
+			$paygroupname11 = $myrow11['paygroupname'];
+			if($idtblhrtapaygrp11 == $idpaygroup) { $idpaygrpsel="selected"; } else { $idpaygrpsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idpaygrpsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select></div>";
+
+		// cut-off period dropdown
+		echo "<div class = 'col'>";
+		echo "<p class = 'text-secondary'>Cutoff Date:</p>";
+		echo "<select name=\"idcutoff\" class ='GlobalSelectWx w-100' onchange=\"this.form.submit()\">";
+		if($idcutoff == "") {
+		echo "<option value=''>select cutoff</option>";
+		}
+		$res15query = "SELECT idhrtacutoff, cutstart, cutend, paygroupname, remarks FROM tblhrtacutoff WHERE idhrtapaygrp=$idpaygroup AND status=1 ORDER BY cutstart DESC";
+		$result15=""; $found15=0; $ctr15=0;
+		$result15 = $dbh2->query($res15query);
+		if($result15->num_rows>0) {
+			while($myrow15 = $result15->fetch_assoc()) {
+			$found15 = 1;
+			$idhrtacutoff15 = $myrow15['idhrtacutoff'];
+			$cutstart15 = $myrow15['cutstart'];
+			$cutend15 = $myrow15['cutend'];
+			$paygroupname15 = $myrow15['paygroupname'];
+			$remarks15 = $myrow15['remarks'];
+			$ctr15 = $ctr15 + 1;
+			$cutstartFormatted = DateTime::createFromFormat('Y-m-d', $cutstart15)->format('F j, Y');
+		$cutendFormatted = DateTime::createFromFormat('Y-m-d', $cutend15)->format('F j, Y');
+			if($idhrtacutoff15 == $idcutoff) { $idcutoffsel="selected"; } else { $idcutoffsel=""; }
+			echo "<option value=\"$idhrtacutoff15\" $idcutoffsel>$cutstartFormatted - $cutendFormatted</option>";
+			}
+		}
+		echo "</select></div>";
+
+		// individual personnel dropdown
+		if($idpaygroup != "" && $idcutoff != "") {
+		echo "<div class = 'col'>";
+		echo "<p class = 'text-secondary'>Personnel:</p>";
+		echo "<select name=\"empid\" class ='GlobalSelectWx w-100' onchange=\"this.form.submit()\">";
+		echo "<option value=''>select personnel</option>";
+		// $res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblhrtaemptimelog.employeeid ASC";
+		$res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblcontact.name_last ASC, tblcontact.name_first ASC";
+		$result12=""; $found12=0;
+		$result12 = $dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12 = $result12->fetch_assoc()) {
+			$found12 = 1;
+			$employeeid12 = $myrow12['employeeid'];
+			$name_last12 = $myrow12['name_last'];
+			$name_first12 = $myrow12['name_first'];
+			$name_middle12 = $myrow12['name_middle'];
+			if($employeeid12 == $employeeid) { $empidsel="selected"; } else { $empidsel=""; }
+			echo "<option value=\"$employeeid12\" $empidsel>$employeeid12 - $name_last12, $name_first12 $name_middle12[0]</option>";
+			}
+		}
+		echo "</select>";
+		echo "</div>";
+
+		} // if($idpaygroup != "" && $idcutoff != "")
+
+		// submit button
+	
+		// echo "<input type=\"submit\">";
+		
+		echo "</div>";
+		echo "<div class = 'text-end px-3'>";
+		echo "<button type=\"submit\" class=\"btn bg-success text-white mt-3 mx-3 w-25\">Submit</button>";
+		echo "</div>";
+		echo "</form>";
+		
+	echo "</div>";
+  } // endif accesslevel >= 4
+
+// END FILTER LEVEL ////////////////////////
+
+
+
+
+
+
+
+	//
+	// display individual info based on selected dropdown personnel
+	//
+	if($employeeid != "") {
+
+	// query tblemppaycutoff for processed cutoff if exists, provide warning and redirect button to summary page of TA
+	$res17query="SELECT idemppaycutoff FROM tblemppaycutoff WHERE idhrtapaygrp=$idpaygroup AND idhrtacutoff=$idcutoff";
+	$result17=""; $found17=0; $ctr17=0;
+	$result17=$dbh2->query($res17query);
+	if($result17->num_rows>0) {
+		while($myrow17=$result17->fetch_assoc()) {
+		$found17=1;
+		$idemppaycutoff=$myrow17['idemppaycutoff'];
+		} // while
+	} // if
+
+	//
+	if($found17==1) {
+
+	// redirect button
+	echo "<form action=\"hrtimeattsumm.php?loginid=$loginid\" method=\"POST\" name=\"hrtimattsumm.php\">";
+	$disptyp="summary";
+	echo "<input type=\"hidden\" name=\"idpaygroup\" value=\"$idpaygroup\">";
+	echo "<input type=\"hidden\" name=\"idcutoff\" value=\"$idcutoff\">";
+	echo "<input type=\"hidden\" name=\"disptyp\" value=\"$disptyp\">";
+	echo "<tr><td colspan=\"2\">";
+	echo "<h3 class='text-danger'>This cut-off period is already processed. Please click the 'Show summary' button for you to be redirected.</h3>";
+	echo "<p><button type=\"submit\" class=\"btn btn-primary\">Show summary</button></p>";
+	echo "</td></tr>";
+	echo "</form>";
+
+	//
+	} else {
+	// continue display time logs
+
+	echo "";
+	
+	// query cutstart and cutend
+	$res16query = "SELECT cutstart, cutend FROM tblhrtacutoff WHERE idhrtacutoff=$idcutoff";
+	$result16=""; $found16=0; $ctr16=0;
+	$result16 = $dbh2->query($res16query);
+	if($result16->num_rows>0) {
+		while($myrow16 = $result16->fetch_assoc()) {
+		$found16 = 1;
+		$cutstart16 = $myrow16['cutstart'];
+		$cutend16 = $myrow16['cutend'];
+		$cutstart = $cutstart16;
+		$cutend = $cutend16;
+		} // while($myrow16 = $result16->fetch_assoc())
+	} // if($result16->num_rows>0)
+	// query personnel
+	$res14query = "SELECT tblhrtapaygrpemplst.idhrtapaygrpemplst, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblhrtapayshiftctg.shiftin, tblhrtapayshiftctg.shiftout, tblhrtapaygrpemplst.restday, tblhrtapaygrpemplst.allowotdflt, tblhrtapaygrpemplst.flexitime FROM tblhrtapaygrpemplst LEFT JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid LEFT JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idhrtapayshiftctg=tblhrtapayshiftctg.idhrtapayshiftctg WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid\" AND tblcontact.contact_type=\"personnel\"";
+	$result14=""; $found14=0;
+	$result14 = $dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14 = $result14->fetch_assoc()) {
+		$found14 = 1;
+		$idhrtapaygrpemplst14 = $myrow14['idhrtapaygrpemplst'];
+		$name_last14 = $myrow14['name_last'];
+		$name_first14 = $myrow14['name_first'];
+		$name_middle14 = $myrow14['name_middle'];
+		$shiftin14 = $myrow14['shiftin'];
+		$shiftout14 = $myrow14['shiftout'];
+		$restday14 = $myrow14['restday'];
+		$allowotdflt14 = $myrow14['allowotdflt'];
+		$flexitime14 = $myrow14['flexitime'];
+		} // while($myrow14 = $result14->fetch_assoc())
+	} // if($result14->num_rows>0)
+
+	if ($flexitime14 == 1 ){
+		$displaythis  = 'FLEXIBLE TIME';
+	} else {
+		$displaythis = 'FIX TIME';
+	}
+	echo "<div class = 'my-2 shadow border px-3 py-2'>";
+	echo "<h5><span class = 'text-secondary'>Personnel:</span> <b>".strtoupper($name_last14).",&nbsp;".strtoupper($name_first14)." ".strtoupper($name_middle14)." ($employeeid) </b></h5>";
+	echo "<h5><span class = 'text-secondary'>Preferred Schedule:</span> <b>$displaythis </b></h5>";
+	
+	echo "</div>";
+	
+	echo "<form action=\"hrtimeatttimelogupd2.php?loginid=$loginid&idpg=$idpaygroup&idct=$idcutoff\" method=\"post\" id=\"modhrtatimelogUpd\" name=\"modhrtatimelogupd\">";
+	echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
+	echo "<input type=\"hidden\" name=\"idhrtapaygrpemplst\" value=\"$idhrtapaygrpemplst14\">";
+
+
+	if (isset($_SESSION['message'])) {
+		// Display the alert using Bootstrap
+		echo '<div id="alertsuccess" class="alert alert-success mt-5 " role="alert">';
+		echo $_SESSION['message'];
+		echo '</div>';
+  
+	  
+		unset($_SESSION['message']);
+	}
+
+
+	echo "</div>";
+	?>
+
+  
+  <script>
+	// JavaScript to hide the alert after 1 second
+	$(document).ready(function(){
+		setTimeout(function(){
+			$("#alertsuccess").fadeOut("slow", function(){
+				$(this).remove();
+			});
+		}, 5000); 
+	});
+  </script>
+
+
+<?php
+$thcol = 'text-light';
+	echo "<div class = 'my-5  '><table id='tbltimelogs'  class=\" table table-bordered table-sm table-hover\">";
+	// display labels
+	echo "<thead class='thead-light '>";
+	echo "<tr>";
+	echo "<th class = '$thcol h5'>Date</th>";
+	echo "<th class = '$thcol h5'>Day</th>";
+	echo "<th class = '$thcol h5'>Day type</th>";
+/*	if($flexitime14==1) {
+	echo "<th>wfh?</th>";
+	} else {
+	echo "<th>pref. time</th>";		
+	} //if-else
+*/
+if($flexitime14==0) {
+	echo "<th class = '$thcol h5'>Early Overtime</th>";
+} 
+	echo "<th class = '$thcol h5' >Time in</th>";
+	echo "<th class = '$thcol h5' >Time out</th>";
+	echo "<th class = '$thcol h5'>Next day</th>";
+	echo "<th class = '$thcol h5'>Overtime</th>";
+
+
+	echo "<th class = '$thcol h5'></th>";
+
+	echo "<th class = '$thcol h5'>Scheduled Shift</th>";		
+	 //if-else
+
+           // 2nd set of timelog
+        echo "<th class = '$thcol h5' colspan = '2'>Next-Day Time In</th>";
+		// echo "<th class = '$thcol h5' ></th>";
+		// echo "<th class = '$thcol h5'></th>";
+		echo "<th class = '$thcol h5' colspan = '2' >Next-Day Time Out</th>";
+        echo "<th class = '$thcol h5'>Meal <br> Allowance</th>";
+        echo "<th class = '$thcol h5'>Transport <br> Allowance</th>";
+
+		echo "<th class = '$thcol h5'>Leave Type</th>";
+		echo "<th class = '$thcol h5'>Leave <br> Duration</th>";
+	// query projchgtyp if daily then display column header
+	$res24query = "SELECT tblhrtapaygrpemplst.projchgtyp FROM tblhrtapaygrpemplst LEFT JOIN tblhrtaemptimelog ON  tblhrtapaygrpemplst.employeeid=tblhrtaemptimelog.employeeid WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid\" AND tblhrtaemptimelog.idpaygroup=$idpaygroup";
+	$result24=""; $found24=0; $ctr24=0;
+	$result24 = $dbh2->query($res24query);
+	if($result24->num_rows>0) {
+		while($myrow24 = $result24->fetch_assoc()) {
+		$found24 = 1;
+		$projchgtyp24 = $myrow24['projchgtyp'];
+		} // while($myrow24 = $result24->fetch_assoc())
+	} // if($result24->num_rows>0)
+	
+	echo "<th class = '$thcol h5'>Project Charge</th>";
+	 // if($projchgtyp24 == "daily")
+	// echo "<th>project charge</th>";
+
+	echo "<th class = '$thcol h5'>Manual</th>";
+	echo "<th class = '$thcol h5'>Total Time</th>";
+	echo "<th class = '$thcol h5'>Overtime</th>";
+	echo "<th class = '$thcol h5'>Undertime</th>";
+	// echo "<th class = 'text-secondary h5'>OT/(UT)</th>";
+	echo "<th class = '$thcol h5'>Night <br> Differential</th>";
+	echo "<th class = '$thcol h5'>No findings<br><input type=\"checkbox\" name=\"nofindings\" onClick=\"toggle(this)\"></th>";
+	echo "<th class = '$thcol h5'>Remarks</th>
+	</tr></thead>";
+
+	// generate dates
+	while(strtotime($cutstart16) <= strtotime($cutend16)) {
+		echo "<input type=\"hidden\" name=\"cutstart[]\" value=\"$cutstart16\">";
+		$mycut = $cutstart16;
+
+	
+		// query emptimelog details if exists
+		// $res20query = "SELECT tblhrtaemptimelog.idhrtaemptimelog, tblhrtaemptimelog.cutstart, tblhrtaemptimelog.cutend, tblhrtaemptimelog.timein, tblhrtaemptimelog.timeout, tblhrtaemptimelog.otbeforeinsw, tblhrtaemptimelog.otafteroutsw, tblhrtaemptimelog.restdaysw, tblhrtaemptimelog.nextdaysw, tblhrtaemptimelog.mealallowsw, tblhrtaemptimelog.leavetype, tblhrtaemptimelog.leaveduration, tblhrtaemptimelog.manualcompsw, tblhrtaemptimelog.totaltime, tblhrtaemptimelog.otval, tblhrtaemptimelog.utval, tblhrtaemptimelog.otutval, tblhrtaemptimelog.nightdiffval, tblhrtaemptimelog.nootsw, tblhrtaemptimelog.noutsw, tblhrtaemptimelog.projcharge, tblhrtaemptimelog.projpercent, tblhrtaemptimelog.remarks, tblhrtaemptimelog.nofindings, tblhrtapaygrpemplst.idhrtapayshiftctg, tblhrtapaygrpemplst.projcode, tblhrtapaygrpemplst.projchgtyp, tblhrtapayshiftctg.shiftin, tblhrtapayshiftctg.shiftout FROM tblhrtaemptimelog INNER JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid INNER JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idtblhrtapaygrp=tblhrtapayshiftctg.idhrtapayshiftctg WHERE tblhrtaemptimelog.employeeid=\"$employeeid\" AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.logdate=\"$cutstart16\"";
+		$res20query = "SELECT * FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid WHERE tblhrtaemptimelog.employeeid=\"$employeeid\" AND tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.logdate=\"$cutstart16\"";
+		$result20=""; $found20=0; $ctr20=0;
+		$result20 = $dbh2->query($res20query);
+		if($result20->num_rows>0) {
+			while($myrow20 = $result20->fetch_assoc()) {
+			$found20 = 1;
+			$idhrtaemptimelog20 = $myrow20['idhrtaemptimelog'];
+			$idpaygroup20 = $myrow20['idpaygroup'];
+			$cutstart20 = $myrow20['cutstart'];
+			$cutend20 = $myrow20['cutend'];
+			$timein20 = $myrow20['timein'];
+			$timeout20 = $myrow20['timeout'];
+			$otbeforeinsw20 = $myrow20['otbeforeinsw'];
+			$otafteroutsw20 = $myrow20['otafteroutsw'];
+			$restdaysw20 = $myrow20['restdaysw'];
+			$nextdaysw20 = $myrow20['nextdaysw'];
+			$mealallowsw20 = $myrow20['mealallowsw'];
+			$leavtype20 = $myrow20['leavetype'];
+			$leaveduration20 = $myrow20['leaveduration'];
+			$manualcompsw20 = $myrow20['manualcompsw'];
+			$totaltime20 = $myrow20['totaltime'];
+			$otval20 = $myrow20['otval'];
+			$utval20 = $myrow20['utval'];
+			$otutval20 = $myrow20['otutval'];
+			$nightdiffval20 = $myrow20['nightdiffval'];
+			$new = $myrow20['nightdiffval'];
+			$transpo = $myrow20['transpo'];
+
+			$nootsw20 = $myrow20['nootsw'];
+			$noutsw20 = $myrow20['noutsw'];
+			$projcharge20 = $myrow20['projcharge'];
+			$projpercent20 = $myrow20['projpercent'];
+			$nofindings20 = $myrow20['nofindings'];
+			$remarks20 = $myrow20['remarks'];
+			// 20240916
+			$leaveid20 = $myrow20['leaveid'];
+			$holiday20 = $myrow20['holiday'];
+                        // 20240802
+                        $timein220 = $myrow20['timein2'];
+                        $timeout220 = $myrow20['timeout2'];
+                        $nextday2in20 = $myrow20['nextday2insw'];
+                        $nextday2out20 = $myrow20['nextday2outsw'];
+			// 20240916
+			$otordval20 = $myrow20['otordval'];
+			$otrestspval20 = $myrow20['otrestspval'];
+			$otlegalval20 = $myrow20['otlegalval'];
+			$otrestsp8val20 = $myrow20['otrestsp8val'];
+			$otspsunval20 = $myrow20['otspsunval'];
+			$otspsun8val20 = $myrow20['otspsun8val'];
+			$otlegal8val20 = $myrow20['otlegal8val'];
+			$otlegalsunval20 = $myrow20['otlegalsunval'];
+			$otlegalsun8val20 = $myrow20['otlegalsun8val'];
+
+			$idhrtapayshiftctg20 = $myrow20['idhrtapayshiftctg'];
+			$projcode20 = $myrow20['projcode'];
+			$projchgtyp20 = $myrow20['projchgtyp'];
+			$shiftin20 = $myrow20['shiftin'];
+			$shiftout20 = $myrow20['shiftout'];
+                        $flexitime20 = $myrow20['flexitime'];
+			$noform = $myrow20['coltrack'];
+			$cityinclude = $myrow20['cityinclude'];
+			echo "<input type=\"hidden\" name=\"idhtlog[]\" value=\"$idhrtaemptimelog20\">";
+			} // while($myrow20 = $result20->fetch_assoc())
+		} // if($result20->num_rows>0)
+		if ($noform != 0){
+			$noformat = '<br> (NO LEAVE FORM SUBMITTED)';
+		} else {
+			$noformat = '';
+		}
+
+
+		// query preferred time shift
+		if($idhrtapayshiftctg20!='') {
+		$res20bquery="SELECT shiftin, shiftout FROM tblhrtapayshiftctg WHERE idhrtapayshiftctg=$idhrtapayshiftctg20";
+		$result20b=""; $found20b=1; $ctr20b=0;
+		$result20b=$dbh2->query($res20bquery);
+		if($result20b->num_rows>0) {
+			while($myrow20b=$result20b->fetch_assoc()) {
+			$found20b=1;
+			$shiftin20=$myrow20b['shiftin'];
+			$shiftout20=$myrow20b['shiftout'];
+			} // while
+		} // if
+		} else { // if($idhrtapayshiftctg20!='')
+		$shiftin20="";
+		$shiftout20="";
+		} // if($idhrtapayshiftctg20!='')
+
+		// below lines for testing only
+		// echo "<tr><td colspan=\"19\">";
+		// echo "res20qry:$res20query";
+		// echo "<br>";
+		// echo "res20bqry:$idhrtapayshiftctg20|$res20bquery";
+		// echo "</td></tr>";
+		echo"<tbody class = ''>";
+
+
+		// check for holidays
+		$cutstartfin=$cutstart16;
+		
+		include './hrtimeattqryholiday.php';
+	
+		$dateval=date("M d Y", strtotime($cutstart16));
+		$datevalue1=date("M d Y 00:00:00", strtotime($cutstart16));
+		$dateday=date("D", strtotime($cutstart16));
+		$datevalNew = date("Y-m-d", strtotime($cutstart16));
+
+
+
+		$leave = 0;
+		$leavedate1001 = '';
+		$leavetype1001 = '';
+		$otreqdate = '';
+		$resquery1001 = "SELECT * FROM tblhrtalvreq LEFT JOIN tblhrtaleavectg ON tblhrtalvreq.idhrtaleavectg = tblhrtaleavectg.idhrtaleavectg WHERE employeeid = '".$employeeid."' AND '".$datevalue1."' BETWEEN durationfrom AND durationto AND statusta = 3";
+		$result1001 = $dbh2->query($resquery1001);
+		if($result1001->num_rows>0) {
+			while($myrow1001 = $result1001->fetch_assoc()) {
+				$leavetype1001 = $myrow1001['name'];
+				$leavedate1001 = $dateval;
+			}
+		}
+
+		$resquery1002 = "SELECT * FROM tblhrtaotreq WHERE employeeid = '".$employeeid."' AND dateotreq = '".$datevalue1."' AND statusta = 3";
+		$result1002 = $dbh2->query($resquery1002);
+		if($result1002->num_rows>0) {
+			while($myrow1002 = $result1002->fetch_assoc()) {
+				$otreqdate = $dateval;
+			}
+		}
+
+
+		if($dateday == "Sun" || $dateday == "Sat") {
+		
+				echo "<tr class = 'danger border'>";
+				echo "<td class = '$thcol'><font color=\"\"><i>$dateval</i></font></td>";
+				echo "<td class = '$thcol' align=\"center\"><font color=\"\"><i>$dateday</i></font></td>";
+		
+
+			
+		} else if ($holidaytype21 === "special" || $holidaytype21 === "legal"){
+			echo "<tr class = 'info border'>";
+				echo "<td class = '$thcol'><i>$dateval</i></td>";
+				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i></td>";
+				
+			
+		} else if ($holidaytype21 === "city"){
+			echo "<tr class = 'success border'>";
+				echo "<td class = '$thcol'><i>$dateval</i></td>";
+				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i></td>";
+				
+			
+		} else if ($holidaytype21 === "shortened" ){
+				echo "<tr class = 'warning border'>";
+				echo "<td class = '$thcol'><i>$dateval</i></td>";
+				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i></td>";
+				
+			
+		} 
+		
+		else {
+				echo "<td>$dateval</td>";
+				echo "<td align=\"center\">$dateday</td>";
+				
+		} // if($found21 == 1 || $dateday == "Sun")
+
+		
+		// rest day
+		include './hrtimeattqryrestday.php';
+		// display day type
+		if ($dateday == $restdaymonfin || $dateday == $restdaytuefin || $dateday == $restdaywedfin || $dateday == $restdaythufin || $dateday == $restdayfrifin) {
+			// restday weekdays
+				if ($found21 == 1 ){
+					echo "<td class=' text-uppercase'><span class = 'text-uppercase'>$holidayname21</span> <br> <span class = 'text-capitalize'>($holidaytype21 Holiday)</span>";
+				} else {
+					echo "<td class='text-secondary'>Rest Day";
+				}
+			echo "<input type='hidden' name='restdaysw[]' value='1'>";
+			echo "<input type='hidden' name='holidate[]' value='$holidaytype21' class=''></td>";
+		} elseif ($dateday == $restdaysatfin) {
+			// sat value
+				if ($found21 == 1 ){
+					echo "<td class=' text-uppercase'><span class = 'text-uppercase'>$holidayname21</span> <br> <span class = 'text-capitalize'>($holidaytype21 Holiday)</span>";
+				} else {
+					echo "<td class='text-danger font-italic'>Rest Day";
+				}
+
+			echo "<input type='hidden' name='restdaysw[]' value='2'>";
+			echo "<input type='hidden' name='holidate[]' value='$holidaytype21' class=''></td>";
+		}  elseif ( $dateday == $restdaysunfin) {
+			// sun value
+			if ($found21 == 1 ){
+				echo "<td class=' text-uppercase'><span class = 'text-uppercase'>$holidayname21</span> <br> <span class = 'text-capitalize'>($holidaytype21 Holiday)</span>";
+				} else {
+					echo "<td class='text-danger font-italic'>Rest Day";
+				}
+			echo "<input type='hidden' name='restdaysw[]' value='3'>";
+			echo "<input type='hidden' name='holidate[]' value='$holidaytype21' class=''></td>";
+		} else {
+			// regular day
+			if ($found21 == 1 ){
+					echo "<td class=' '><span class = 'text-uppercase'>$holidayname21</span> <br> <span class = 'text-capitalize'>($holidaytype21 Holiday)</span>";
+				} else {
+					echo "<td class='text-secondary'>Regular Day";
+				}
+			echo "<input type='hidden' name='restdaysw[]' value='0'>";
+			echo "<input type='hidden' name='holidate[]' value='$holidaytype21' class=''></td>";
+		}
+
+		//
+		// timeshift1
+		//
+	
+		if($found20 == 1) {
+
+			$shiftin1arr = explode(":", date("G:i", strtotime($timein20)));
+			$shiftout1arr = explode(":", date("G:i", strtotime($timeout20)));
+			
+		} else if($found20 == 0) {
+
+		// query office biometrics time log
+		$res22query=""; $result22=""; $found22=0; $ctr22=0; $att_checktime22="";
+		$res22query = "SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime, tblhrattcheckinout.att_userid FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart16 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart16 23:59:59\") AND tblhrattcheckinout.att_checktype=\"I\" ORDER BY tblhrattcheckinout.att_checktime ASC LIMIT 1";
+		$result22 = $dbh2->query($res22query);
+		if($result22->num_rows>0) {
+			while($myrow22 = $result22->fetch_assoc()) {
+			$found22 = 1;
+			$hrattcheckinoutid22 = $myrow22['hrattcheckinoutid'];
+			$att_checktime22 = date("G:i", strtotime($myrow22['att_checktime']));
+			$att_userid22 = $myrow22['att_userid'];
+			}
+		}
+		if($found22 == 1) {
+		// split or explode shift category
+		$shiftin1arr = explode(":", $att_checktime22);
+		} else {
+			if($holidaytype21 == "shortened") {
+			// split or explode shift category
+			$shiftin1arr = explode(":", $shiftin21);
+			} else {
+				if($dateday==$restdaysunfin || $dateday==$restdaymonfin || $dateday==$restdaytuefin || $dateday==$restdaywedfin || $dateday==$restdaythufin || $dateday==$restdayfrifin || $dateday==$restdaysatfin) {
+				// split or explode shift category
+				$shiftin1arr = explode(":", "00:00");
+				} else {
+				// split or explode shift category
+				$shiftin1arr = explode(":", $shiftin14);
+				}
+			} // if($holidaytype21 == "shortened")
+		} // if($found22 == 1)
+		$res23query=""; $result23=""; $found23=0; $ctr23=0; $att_checktime23="";
+		$res23query = "SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime, tblhrattcheckinout.att_userid FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart16 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart16 23:59:59\") AND tblhrattcheckinout.att_checktype=\"o\" ORDER BY tblhrattcheckinout.att_checktime DESC LIMIT 1";
+		$result23 = $dbh2->query($res23query);
+		if($result23->num_rows>0) {
+			while($myrow23 = $result23->fetch_assoc()) {
+			$found23 = 1;
+			$hrattcheckinoutid23 = $myrow23['hrattcheckinoutid'];
+			$att_checktime23 = date("G:i", strtotime($myrow23['att_checktime']));
+			$att_userid23 = $myrow23['att_userid'];
+			}
+		}   
+
+
+		if($found23 == 1) {
+		// split or explode shift category
+		$shiftout1arr = explode(":", $att_checktime23);
+		} else {
+			if($holidaytype21 == "shortened") {
+			// split or explode shift category
+			$shiftout1arr = explode(":", $shiftout21);
+			}
+			if($dateday==$restdaysunfin || $dateday==$restdaymonfin || $dateday==$restdaytuefin || $dateday==$restdaywedfin || $dateday==$restdaythufin || $dateday==$restdayfrifin || $dateday==$restdaysatfin) {
+			// split or explode shift category
+			$restdayout = "00:00";
+			$shiftout1arr = explode(":", $restdayout);
+			}
+			if($shiftout1arr == "") {
+			// split or explode shift category
+			$shiftout1arr = explode(":", $shiftout14);
+			}
+		} // end if($found23 == 1)
+
+		} // end if($found20 == 1)
+		
+
+
+		// [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[query time from actlog]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+		$res14bquery="";
+		$res14bquery="SELECT hractlogid, timestart, timeend FROM tblhractlog WHERE `date`='$cutstart16' AND employeeid = '$employeeid' ORDER BY timestart ASC LIMIT 1";
+		$result14b=""; $found14b=0; $ctr14b=0;
+		$result14b=$dbh2->query($res14bquery);
+		if($result14b->num_rows>0) {
+			while($myrow14b=$result14b->fetch_assoc()) {
+			$found14b=1;
+			$hractlogid14b = $myrow14b['hractlogid'];
+			$timestart14b = $myrow14b['timestart'];
+			$timeend14b = $myrow14b['timeend'];
+
+			} //while
+		} //if
+
+	if ( $found14b==1){
+		$shiftinwfharr = explode(":", date("H:i", strtotime($timestart14b)));
+$shiftoutnwfharr = explode(":", date("H:i", strtotime($timeend14b)));
+
+
+$shiftin1hhwfh = $shiftinwfharr[0]; // Hour for timestart
+	$shiftin1mmwfh = $shiftinwfharr[1]; // Minute for timestart
+	
+	$shiftout1hhwfh = $shiftoutnwfharr[0]; // Hour for timeend
+	$shiftout1mmwfh = $shiftoutnwfharr[1]; // Minute for timeend
+
+
+	} else {
+		$shiftin1hhwfh = '00'; // Hour for timestart
+	$shiftin1mmwfh ='00'; // Minute for timestart
+	
+	$shiftout1hhwfh = '00'; // Hour for timeend
+	$shiftout1mmwfh = '00'; // Minute for timeend
+		if($holidaytype21 == "shortened") {
+		// split or explode shift category
+		$shiftoutnwfharr = explode(":", $shiftout21);
+		}
+		if($dateday==$restdaysunfin || $dateday==$restdaymonfin || $dateday==$restdaytuefin || $dateday==$restdaywedfin || $dateday==$restdaythufin || $dateday==$restdayfrifin || $dateday==$restdaysatfin) {
+		// split or explode shift category
+		$restdayout = "00:00";
+		$shiftoutnwfharr = explode(":", $restdayout);
+		}
+		if($shiftoutnwfharr == "") {
+		// split or explode shift category
+		$shiftoutnwfharr = explode(":", $shiftout14);
+		}
+	} 
+
+	
+	
+
+
+
+		$shiftin1hh = sprintf("%02d", $shiftin1arr[0]);
+		$shiftin1mm = sprintf("%02d", $shiftin1arr[1]);
+		$shiftout1hh = sprintf("%02d", $shiftout1arr[0]);
+		$shiftout1mm = sprintf("%02d", $shiftout1arr[1]);
+
+	
+		if($flexitime14==0) {
+			// echo "<td><i>Felxible Time</i></td>";
+			// } else {
+
+	echo "<td><select  class = 'form-control text-center p-0' name=\"otbeforeinsw[]\">";
+	if($found20 == 1) {
+		if($otbeforeinsw20 == "0") {
+			 $otbin0sel="selected"; 
+			 $otbin1sel=""; 
+			}
+		else if($otbeforeinsw20 == "1") {
+			 $otbin1sel="selected";
+			  $otbin0sel=""; 
+			}
+	} else {
+		$otbin0sel="selected"; 
+		$otbin1sel="";
+	} // end if($found20 == 1)
+	echo "<option value=\"0\" $otbin0sel>Forbid</option>";
+	echo "<option value=\"1\" $otbin1sel> Authorized</option>";
+	echo "</select></td>";
+			} 
+?>
+			<style>
+				.bgnotime{
+					background-color: F7FFB4 !important
+				}
+			</style>
+<?php
+			if (($shiftin1hh == '00' && $shiftin1mm == '00') || ($shiftout1hh == '00' && $shiftout1mm == '00') ) {
+				
+					$bg = 'bg-warning';
+					$bgs = 'bg-warning';
+
+					if (($shiftin1hhwfh == '00' && $shiftin1mmwfh == '00') || ($shiftout1hhwfh == '00' && $shiftout1mmwfh == '00')){
+						$bg = 'bg-warning';
+						$bgs = 'bg-warning';
+					}
+					
+
+					if ($dateday == 'Sun' || $dateday == 'Sat' || $holidaytype21 == 'special' || $holidaytype21 == 'legal' || $holidaytype21 == 'city'){
+						$bg = '';
+						$bgs = '';
+					} else {
+						$bg = 'bg-warning';
+						$bgs = 'bg-warning';
+					}
+			
+			} else  {
+				$bg = '';
+				$bgs = '';
+
+			}
+			
+			
+			
+			// if ( $dateday === 'Sun' || $dateday === 'Sat') {
+				
+			// 	$bgs = '';
+				
+			// } else {
+			// 	if ($shiftout1hh ===''){
+			// 		$bgs = 'bgnotime';
+			// 	}
+			// }
+			
+			
+
+				// timein
+		// echo "<td><input type=\"time\" name=\"time_in1_hh[]\" size=\"2\" value=\"$shiftin1hh\"></td><td>:</td><td><input type=\"time\" name=\"time_in1_mm[]\" size=\"2\" value=\"$shiftin1mm\">";
+
+	
+		// if($shiftin1hh != '00' && $shiftin1mm != '00'){
+		// 	$shiftin1hh = $shiftin1hh;
+		// 	$shiftin1mm = $shiftin1mm;
+		// } else {
+		// 	$shiftin1hh = $shiftin1hhwfh;
+		// 	$shiftin1mm = $shiftin1mmwfh;
+
+		// }
+
+		// if ($shiftout1hh != '00' && $shiftout1mm != '00'){
+
+
+		// 	$shiftout1hh = $shiftout1hh;
+		// 	$shiftout1mm = $shiftout1mm;
+		// }else {
+		// 	$shiftout1hh = $shiftout1hhwfh;
+		// 	$shiftout1mm = $shiftout1mmwfh;
+		// }
+
+
+
+		if($shiftin1hh == '00' && $shiftin1mm == '00'){
+			$shiftin1hh = $shiftin1hhwfh;
+			$shiftin1mm = $shiftin1mmwfh;
+		}
+
+		if ($shiftout1hh == '00' && $shiftout1mm == '00'){
+			$shiftout1hh = $shiftout1hhwfh;
+			$shiftout1mm = $shiftout1mmwfh;
+		}
+		
+		echo "<td class = ''>  <input class ='form-control $bg px-2 m-1' name=\"time_in1_hh[]\" size=\"2\" value=\"$shiftin1hh\"> <input name=\"time_in1_mm[]\"  class ='form-control $bg px-2 m-1' size=\"2\" value=\"$shiftin1mm\"></td>";
+		
+		echo "<td class = ''><input name=\"time_out1_hh[]\" size=\"2\" class ='form-control $bgs px-2 m-1' value=\"$shiftout1hh\"> <input name=\"time_out1_mm[]\" size=\"2\" class ='form-control $bgs px-2 m-1' value=\"$shiftout1mm\"></td>";
+		// echo "|$found29|$timeend29";
+		// echo "f20:$found20|f21:$found21|f22:$found22,attchktm22:$att_checktime22|f23:$found23,attchktm23:$att_checktime23,$restdayout";
+		// echo "|$found28|$timestart28";
+		
+
+		// allow OT before preferred timein
+   //if-else
+
+		// divider
+		// echo "&nbsp;&nbsp;&nbsp;";
+
+		// timeout
+		// echo "<td><input type=\"time\" name=\"time_out1_hh[]\" size=\"2\" value=\"$shiftout1hh\"></td><td>:</td><td><input type=\"time\" name=\"time_out1_mm[]\" size=\"2\" value=\"$shiftout1mm\"></td>";
+
+		// display next day dropdown for 1st SET
+		echo "<td align=\"center\">";
+		// echo "<input type=\"hidden\" name=\"nextday0[]\" value=\"0\" />";
+		// echo "<input type=\"checkbox\" name=\"nextday1[]\" value=\"1\" /><br>next day";
+		if($found20 == 1) {
+			if($nextdaysw20 == "1") { $nxtdayyessel="selected"; $nxtdaynosel=""; }
+			else if($nextdaysw20 == "0") { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		} else { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		echo "<select class = 'form-control text-center p-0' name=\"nextday[]\">";
+		echo "<option value=\"0\" $nxtdaynosel>no</option>";
+		echo "<option value=\"1\" $nxtdayyessel>yes</option>";
+		echo "</select>";
+		echo "</td>";
+
+
+
+
+		// allow OT after timeout
+		echo "<td><select class = 'form-control text-center p-0' name=\"otafteroutsw[]\">";
+		if($otreqdate == $dateval){
+ 			$otaout1sel="selected";
+			 $otaout0sel="";
+		}
+		else{
+			if($found20 == 1) {
+			if($otafteroutsw20 == "0") {
+				 $otaout0sel="selected";
+				  $otaout1sel=""; 
+				}
+			else if($otafteroutsw20 == "1") { 
+				$otaout1sel="selected"; 
+				$otaout0sel=""; 
+			}
+			} else {
+				if($allowotdflt14==1) {
+					 $otaout0sel=""; $otaout1sel="selected"; 
+					} else if($allowotdflt14==0) {
+						 $otaout0sel="selected";
+						  $otaout1sel=""; 
+						}
+			} // if($found20 == 1)
+		}
+		echo "<option value=\"0\" $otaout0sel>no</option>";
+		echo "<option value=\"1\" $otaout1sel>yes</option>";
+		echo "</select>";
+		
+		// flash if hoiliday is city
+
+		if ($holidaytype21 == 'city'){
+			$cityincludeChecked = ($cityinclude == 1 ) ? 'checked' : '';
+			echo "<p class = 'mt-3 pb-0 mb-0 text-success'>Incl. to Holiday</p>";
+			echo "<input type = 'checkbox' value = '$cutstart16' name = 'cityinclude[]' $cityincludeChecked>";
+		
+		} 
+		
+		
+		echo "</td>";
+
+        //
+        // prep WFH flag
+		//
+		// chk WFH status and get ActivityLog timelogs
+		if($found20==1) {
+			// query office biometrics time log
+		    $res22bquery=""; $result22b=""; $found22b=0; $ctr22b=0; $att_checktime22b="";
+		    $res22bquery = "SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime, tblhrattcheckinout.att_userid FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart16 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart16 23:59:59\") AND tblhrattcheckinout.att_checktype=\"I\" ORDER BY tblhrattcheckinout.att_checktime ASC LIMIT 1";
+			$result22b=$dbh2->query($res22bquery);
+			if($result22b->num_rows>0) {
+				while($myrow22b=$result22b->fetch_assoc()) {
+					$found22b=1;
+					$hrattcheckinoutid22b = $myrow22b['hrattcheckinoutid'];
+					$att_checktime22b = date("G:i", strtotime($myrow22b['att_checktime']));
+					$att_userid22b = $myrow22b['att_userid'];
+				} //while
+			} //if
+		    if($found22b==1) {
+		        // split or explode shift category
+		        $shiftin1arr = explode(":", $att_checktime22b);
+		    } //if
+		    $result23b=""; $found23b=0; $ctr23b=0; $att_checktime23b="";
+			$res23bquery = "SELECT tblhrattcheckinout.hrattcheckinoutid, tblhrattcheckinout.att_checktime, tblhrattcheckinout.att_userid FROM tblhrattcheckinout LEFT JOIN tblhrattuserinfo ON tblhrattcheckinout.att_userid=tblhrattuserinfo.att_userid WHERE tblhrattuserinfo.employeeid=\"$employeeid\" AND (tblhrattcheckinout.att_checktime>=\"$cutstart16 00:00:00\" AND tblhrattcheckinout.att_checktime<=\"$cutstart16 23:59:59\") AND tblhrattcheckinout.att_checktype=\"o\" ORDER BY tblhrattcheckinout.att_checktime DESC LIMIT 1";
+		    $result23b = $dbh2->query($res23bquery);
+		    if($result23b->num_rows>0) {
+			    while($myrow23b = $result23b->fetch_assoc()) {
+			    $found23b = 1;
+			    $hrattcheckinoutid23b = $myrow23b['hrattcheckinoutid'];
+			    $att_checktime23b = date("G:i", strtotime($myrow23b['att_checktime']));
+			    $att_userid23b = $myrow23b['att_userid'];
+			    } //while
+		    } //if
+		    if($found23b==1) {
+		    // split or explode shift category
+		    $shiftout1arr = explode(":", $att_checktime23b);
+		    } //if
+		} //if($found20==0)
+
+		if($found22b==0 && $found23b==0) {
+		    // query tblactlog for user entries of time logs fr activity log Modules
+			$res28query=""; $result28=""; $found28=0; $ctr28=0; $timestart28="";
+			$res28query="SELECT `hractlogid`, `timestart` FROM `tblhractlog` WHERE `date`=\"$cutstart16\" AND `employeeid`=\"$employeeid\" ORDER BY `timestart` ASC LIMIT 1";
+			$result28=$dbh2->query($res28query);
+			if($result28->num_rows>0) {
+				while($myrow28=$result28->fetch_assoc()) {
+				$found28=1; $ctr28++;
+				$hractlogid28 = $myrow28['hractlogid'];
+				$timestart28 = date("G:i", strtotime($myrow28['timestart']));
+				} //while
+			} //if
+			if($found28==1) {
+			    // explode timestart28
+				$shiftin1arr = explode(":", $timestart28);
+				$shiftin1hh = sprintf("%02d", $shiftin1arr[0]);
+				$shiftout1hh = sprintf("%02d", $shiftin1arr[1]);
+				// pass variables
+				// $shiftin1hh = $timestart28hh; $shiftin1mm = $timestart28mm;
+			} //if
+			
+			$res29query=""; $result29=""; $found29=0; $ctr29=0; $timeend29="";
+			$res29query="SELECT `hractlogid`, `timeend` FROM `tblhractlog` WHERE `date`=\"$cutstart16\" AND `employeeid`=\"$employeeid\" ORDER BY `timeend` DESC LIMIT 1";
+			$result29=$dbh2->query($res29query);
+			if($result29->num_rows>0) {
+				while($myrow29=$result29->fetch_assoc()) {
+				$found29=1; $ctr29++;
+				$hractlogid29 = $myrow29['hractlogid'];
+				$timeend29 = date("G:i", strtotime($myrow29['timeend']));
+				} //while
+			} //if
+			if($found29==1) {
+			    // explode timeend29
+				$shiftout1arr = explode(":", $timeend29);
+				$shiftout1hh = sprintf("%02d", $shiftout1arr[0]);
+				$shiftout1mm = sprintf("%02d", $shiftout1arr[1]);
+				// $shiftout1hh = $timeend29hh; $shiftout1mm = $timeend29mm;
+			} //if
+			
+		} //if($found22b==0 && $found23b==0)
+
+		$wfh="";
+		if(($found22b==0 && $found23b==0) && ($found28==1 || $found29==1)) {
+		    $wfh=1;
+		} else {
+			$wfh=0;
+		} //if-else
+
+		// display preferred time-in or flexi-time/WFH
+        if($flexitime14==1 || $flexitime14==0 ) {
+
+            $wfhval="";
+			if (($wfh==1 || $wfh==0) && (($shiftin1hh == '00' && $shiftin1mm == '00') || ($shiftout1hh == '00' && $shiftout1mm == '00')) && ($dateday != 'Sun' && $dateday != 'Sat')) {
+				$wfhval="<span class = 'text-center text-danger'>---</span>";
+				$realval = '';
+
+			
+			} else if ((($shiftin1hh != '00' && $shiftin1mm != '00') || ($shiftout1hh != '00' && $shiftout1mm != '00')) && ($dateday == 'Sun' || $dateday == 'Sat')) {
+				$wfhval="<span class = 'text-center'>OVER TIME</span>";
+				$realval = '';
+
+				
+
+			}else if($wfh==1 && $dateday != 'Sun' && $dateday != 'Sat') {
+				$wfhval="<span class = 'text-center '>WFH</span>";
+				$realval = 'WFH';
+			} else if($wfh==0 && $dateday != 'Sun' && $dateday != 'Sat') {
+				$wfhval="<span class = 'text-center'>ON SITE</span>";
+				$realval = '';
+			}
+			
+		echo "<td ><input name = 'realvalwfh[]' type = 'hidden' value = '$realval'><i>$wfhval</i>";
+	    // echo "<br>f20:$found20|flx14:$flexitime14|i:$att_checktime22b";
+	    // echo "<br>$res22bquery";
+		// echo "<br>o:$att_checktime23b";
+		// echo "<br>$res23bquery";
+		// echo "<br>f22b:$found22b|f23b:$found23b|f28:$found28|f29:$found29";
+		echo "</td>";
+
+     
+			if($flexitime14==0){
+		    if($idhrtapayshiftctg20!="") {
+
+		        echo "<td><input name = 'shiftin20' class = 'hidden' value = '$shiftin20' > ".date('g:i', strtotime($shiftin20))." <span class = 'h6'>-</span> <input name = 'shiftout20' class = 'hidden' value = '$shiftout20' >".date('g:i', strtotime($shiftout20))."</td>";
+            } else { 
+                echo "<td><font color=\"red\"><i>not_set</i></font></td>"; 
+            } //if-else
+		}else {
+			echo "<td><font color=\"\"><i>FLEXI TIME</i></font></td>"; 
+
+		}
+						
+		} //if-else
+
+
+		//
+		// timeshift2
+		//
+		
+
+                if($timein220!="") {
+					$timein220 = date("G:i", strtotime($timein220));
+					$timein220arr = explode(":", $timein220);
+					$timein2hh = sprintf("%02d", $timein220arr[0]);
+					$timein2mm = sprintf("%02d", $timein220arr[1]);
+                } else {
+               		 $timein2hh="00"; $timein2mm="00";
+                } //if-else
+					
+                if($timeout220!="") {
+					$timeout220 = date("G:i", strtotime($timeout220));
+					$timeout220arr = explode(":", $timeout220);
+					$timeout2hh = sprintf("%02d", $timeout220arr[0]);
+					$timeout2mm = sprintf("%02d", $timeout220arr[1]);
+                } else {
+                	$timeout2hh="00"; $timeout2mm="00";
+                } //if-else
+
+		// display timein timeout
+		echo "<td><input name=\"time_in2_hh[]\" class = 'form-control text-center p-0 m-1' size=\"2\" value=\"$timein2hh\"> <input name=\"time_in2_mm[]\" class = 'form-control text-center p-0 m-1' size=\"2\" value=\"$timein2mm\"></td>";
+
+		// echo "<script>";
+		// echo "console.log('" . $shiftin20 . " " . $shiftout20 . "');";
+		// echo "</script>";
+	
+		// display next day dropdown for 2nd set time-in
+		echo "<td>";
+		if($found20 == 1) {
+			if($nextday2in20 == "1") { $nxtdayyessel="selected"; $nxtdaynosel=""; }
+			else if($nextday2in20 == "0") { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		} else { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		echo "<select name=\"nextday2insw[]\" class = 'form-control text-center p-0 m-1'>";
+		echo "<option value=\"0\" $nxtdaynosel>no</option>";
+		echo "<option value=\"1\" $nxtdayyessel>yes</option>";
+		echo "</select>";
+		echo "</td>";
+
+		echo "<td><input name=\"time_out2_hh[]\" class = 'form-control text-center p-0 m-1' size=\"2\" value=\"$timeout2hh\"><input name=\"time_out2_mm[]\" class = 'form-control text-center p-0 m-1' size=\"2\" value=\"$timeout2mm\"></td>";
+
+		// display next day dropdown for 2nd set time-out
+		echo "<td>";
+		if($found20 == 1) {
+			if($nextday2out20 == "1") { $nxtdayyessel="selected"; $nxtdaynosel=""; }
+			else if($nextday2out20 == "0") { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		} else { $nxtdayyessel=""; $nxtdaynosel="selected"; }
+		echo "<select class = 'form-control text-center p-0 m-1' name=\"nextday2outsw[]\">";
+		echo "<option value=\"0\" $nxtdaynosel>no</option>";
+		echo "<option value=\"1\" $nxtdayyessel>yes</option>";
+		echo "</select>";
+		echo "</td>";
+
+		/*
+		// display next day checkbox
+		echo "<td align=\"center\">";
+		echo "<input type=\"checkbox\" name=\"nextday2\"><br>next day";
+		echo "</td>";
+		*/
+
+		// meal allowance checkbox
+		echo "<td>";
+		// echo "<input type=\"hidden\" name=\"mealallow0[]\" value=\"0\" />";
+		// echo "<input type=\"checkbox\" name=\"mealallow1[]\" value=\"1\" /><br>meal<br>allowance";
+		$mealallowyessel = $mealallowyessel2 = $mealallowyessel3 = $mealallownosel = '';
+
+
+			if ($found20 == 1) {
+				$selected = ['0' => '', '1' => '', '2' => '', '3' => ''];
+
+				if ($mealallowsw20 !== "" && isset($selected[$mealallowsw20])) {
+					$selected[$mealallowsw20] = 'selected';
+				} else {
+					$selected['0'] = 'selected'; 
+				}
+			} else {
+
+				$selected = ['0' => 'selected', '1' => '', '2' => '', '3' => ''];
+			}
+
+
+			echo '<select name="mealallow[]" class="form-control text-center p-0 m-1">';
+			foreach ($selected as $value => $isSelected) {
+				echo "<option value=\"$value\" $isSelected>$value</option>";
+			}
+			echo '</select>';
+		echo "</td>";
+
+
+
+		echo "<td>";
+		// echo "<input type=\"hidden\" name=\"mealallow0[]\" value=\"0\" />";
+		// echo "<input type=\"checkbox\" name=\"mealallow1[]\" value=\"1\" /><br>meal<br>allowance";
+	
+		if ($transpo == 1){
+			$selected = 'selected';
+			$selectedNone = '';
+		} else if ($transpo == 0) {
+			$selectedNone = 'selected';
+			$selected = '';
+		} 
+		echo "<select name=\"transpo[]\" class = 'form-control text-center p-0 m-1'>";
+		
+		echo "<option value=\"0\" $selectedNone>0</option>";
+		echo "<option value=\"1\" $selected>1</option>";
+		echo "</select>";
+		echo "</td>";
+		
+
+		// check gender
+		$res25query = "SELECT contact_gender FROM tblcontact WHERE employeeid=\"$employeeid\" AND contact_type=\"personnel\"";
+		$result25=""; $found25=0; $ctr25=0;
+		$result25 = $dbh2->query($res25query);
+		if($result25->num_rows>0) {
+			while($myrow25 = $result25->fetch_assoc()) {
+			$found25 = 1;
+			$contact_gender25 = $myrow25['contact_gender'];
+			} // while($myrow25 = $result25->fetch_assoc())
+		} // if($result25->num_rows>0)
+
+		//
+		// query tblhrtaempleavechglog
+		// $res27query="SELECT idhrtaempleavechglog, leavename, leaveduration, idhrtaleavectg FROM tblhrtaempleavechglog WHERE employeeid=\"$employeeid\" AND idhrtacutoff=$idcutoff AND leavedate=\"$cutstart16\"";
+		// $result27=""; $found27=0; $ctr27=0;
+		// $result27=$dbh2->query($res27query);
+		// if($result27->num_rows>0) {
+		// 	while($myrow27=$result27->fetch_assoc()) {
+		// 	$found27=1;
+		// 	$idhrtaempleavechglog27 = $myrow27['idhrtaempleavechglog'];
+		// 	$leavename27 = $myrow27['leavename'];
+		// 	$leaveduration27 = $myrow27['leaveduration'];
+		// 	$idhrtaleavectg27 = $myrow27['idhrtaleavectg'];
+		// 	} // while
+		// } // if
+		?>
+		<style>
+			.flickerleave {
+		  animation: flicker 2.5s infinite;
+		}
+		
+		@keyframes flicker {
+		  0% {
+			opacity: 1;
+		  }
+		  50% {
+			opacity: 0.1;
+		  }
+		  100% {
+			opacity: 1;
+		  }
+		}
+		</style>
+		
+		<?php
+
+
+		$res27query="SELECT * FROM leavesaver WHERE empid=\"$employeeid\" AND leavedays=\"$cutstart16\"";
+		$result27=""; $found27=0; $ctr27=0;
+		$result27=$dbh2->query($res27query);
+		if($result27->num_rows>0) {
+			while($myrow27=$result27->fetch_assoc()) {
+			$found27=1;
+			// $idhrtaempleavechglog27 = $myrow27['idhrtaempleavechglog'];
+			$leavename27 = $myrow27['leavecode'];
+
+			$leaveduration27 = $myrow27['count'];
+			$idhrtaleavectg27 = $myrow27['leaveid'];
+			} // while
+		} // if
+		//
+
+	
+		// display leavename
+		if($found27==1) {
+		
+			
+		$res16query="SELECT * FROM tblhrtaleavectg WHERE idhrtaleavectg = $idhrtaleavectg27 ";
+		$result16=""; $found16=0; $ctr16=0;
+		$result16=$dbh2->query($res16query);
+				if($result16->num_rows>0) {
+					while($myrow16=$result16->fetch_assoc()) {
+					$leavename272 = $myrow16['name'];
+						
+					}}
+		//
+
+		
+		echo "<td><div class = 'text-center'><h5 class = 'flicker fw-semibold text-danger text-capitalize'>On $leavename272 $noformat <input type=\"hidden\" name=\"leavecd[]\" value='$leavename27'></h5></div></td>";
+		// echo "<input type=\"hidden\" name=\"leaveid[]\" value=\"$idhrtaempleavechglog27\">"; 
+		echo "";
+		//
+		} else {
+ 
+		// leave type dropdown <div class = 'text-center'><h5>No Leave filed</h5></div>
+		echo "<td> "; 
+		// echo "<select name=\"leavecd[]\" class = '  '>";
+		
+		// echo "<option value='' $leavetypnasel>NO LEAVE FILED</option>";
+		// $res26query = "SELECT idhrtaleavectg, code, name, quota FROM tblhrtaleavectg";
+		// $result26=""; $found26=0; $ctr26=0;
+		// $result26 = $dbh2->query($res26query);
+		// if($result26->num_rows>0) {
+		// 	while($myrow26 = $result26->fetch_assoc()) {
+		// 	$found26 = 1;
+		// 	$idhrtaleavectg26 = $myrow26['idhrtaleavectg'];
+		// 	$code26 = $myrow26['code'];
+		// 	$name26 = $myrow26['name'];
+		// 	$quota26 = $myrow26['quota'];
+		// 	if($code26 == $leavtype20) { $leavtypsel="selected"; } else { $leavtypsel=""; }
+		// 	if($contact_gender25 == "Male") {
+		// 		if($code26 == "paternity") { echo "<option value=\"$code26\" $leavtypsel>$name26</option>"; }
+		// 	} else if($contact_gender25 == "Female") {
+		// 		if($code26 == "maternityn" || $code26 == "maternityc") { echo "<option value=\"$code26\" $leavtypsel>$name26</option>"; }
+		// 	}
+		// 	if($code26 == "paternity" || $code26 == "maternityn" || $code26 == "maternityc" || $code26 == "sick" || $code26 == "vacation" || $code26 == "special") {
+		// 	} else {
+		// 		echo "<option value=\"$code26\" $leavtypsel>$name26</option>";
+		// 	}
+		// 	} // while($myrow26 = $result26->fetch_assoc())
+		// } // if($result26->num_rows>0) <
+		// echo "</td> </select>";
+		echo "<div class = 'text-center'><h5 class = ' text-capitalize'>No Leave Filed<input type=\"hidden\" name=\"leavecd[]\" value=''></h5></div></td>";
+		echo "<input type=\"hidden\" name=\"leaveid[]\" value=0>";
+		//
+		} // if-else
+
+		
+
+
+
+
+
+
+
+		
+		// display leaveduration
+		if($found27==1) {
+
+		// 	echo "<td><select class = 'form-control text-center p-0 m-1'> name=\"leavedaydur[]\">";
+		// 	echo"<option value = '$leaveduration27' selected><span class = 'text-danger'>$leaveduration27 Day</span></option>";
+		// echo "<option value=\"1.00\" >1.0 Day</option>";
+		// echo "<option value=\"0.50a\" >0.5 Day (am)</option>";
+		// echo "<option value=\"0.50p\" >0.5 Day (pm)</option>";
+		// echo "</select></td>";
+		echo "<td class = ''><div class = 'text-center'><h5 class = 'flicker fw-semibold text-danger'>$leaveduration27</h5> <input type = 'hidden' value = '$leaveduration27' name=\"leavedaydur[]\"> 
+	</div></td>";
+		
+		//
+		} else {
+			echo "<td class = ''><div class = 'text-center'><h5 class = ''>NLF </h5> <input type = 'hidden' value = '0' name=\"leavedaydur[]\"> 
+			</div></td>";
+		//
+		// leave day duration
+
+		// if($leavedate1001 == $dateval){
+		// 	$leavedur1sel="selected"; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="";
+		// }
+		// else{
+ 		// 	$leavedur1sel=""; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="selected";
+ 		// 	if($found20 == 1) {
+		// 	if($leaveduration20 == "1.00") { $leavedur1sel="selected"; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel=""; }
+		// 		else if($leaveduration20 == "0.50a") { $leavedur1sel=""; $leavedur5asel="selected"; $leavedur5psel=""; $leavedurnonesel=""; }
+		// 		else if($leaveduration20 == "0.50p") { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel="selected"; $leavedurnonesel=""; }
+		// 		else if($leaveduration20 == "") { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel; $leavedurnonesel="selected"; }
+		// 	} else { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="selected"; }
+		// }
+
+		
+		// echo "<td><select class = 'form-control text-center p-0 m-1'> name=\"leavedaydur[]\">";
+		// echo "<option value=\"0.00\" $leavedurnonesel>n/a</option>";
+		// echo "<option value=\"1.00\" $leavedur1sel>1.0 day</option>";
+		// echo "<option value=\"0.50a\" $leavedur5asel>0.5 day (am)</option>";
+		// echo "<option value=\"0.50p\" $leavedur5psel>0.5 day (pm)</option>";
+		// echo "</select></td>";
+		
+
+		//
+		} // if-else
+
+		
+		// updated 20161106
+
+		// if($projchgtyp24 == "daily") {
+
+			
+
+		$res16query="SELECT tblhractlog.hractlogid, tblhractlog.activity, tblhractlog.remarks, tblhractlog.remarksby, tblhractlog.projcode, tblhractlog.timestart, tblhractlog.timeend, tblhractlog.timeval, tblproject1.proj_fname, tblproject1.proj_sname FROM tblhractlog LEFT JOIN tblproject1 ON tblhractlog.projcode=tblproject1.proj_code WHERE tblhractlog.date=\"$datevalNew\" AND tblhractlog.employeeid=\"$employeeid\" ORDER BY tblhractlog.timestamp DESC";
+	
+		$result16=""; $found16=0; $ctr16=0;
+		$result16=$dbh2->query($res16query);
+		$hractlogid16Arr=array();	
+		$projcode16Arr=array();
+		if($result16->num_rows>0) {
+			while($myrow16=$result16->fetch_assoc()) {
+			array_push($hractlogid16Arr, $myrow16['hractlogid']);
+			array_push($projcode16Arr, $myrow16['projcode']);
+			} // while
+		} // if
+			$param16 = count($hractlogid16Arr);
+			
+				
+			
+			if($param16>0) {
+				
+			for($x = 0; $x < $param16; $x++) {
+
+			if($projcode16Arr[$x]!="") {	
+				echo "<td class = 'maintext'><input type = 'hidden' name=\"projcharge[]\" value = '$projcode16Arr[$x]'><p>$projcode16Arr[$x]</p>  ";
+				echo "</td>";
+		
+					
+
+			
+			} else {
+					echo "<td class = 'maintext'><input type = 'hidden' name=\"projcharge[]\" value = 'NPL'><p>No Project Listed</p>  ";
+			echo "</td>";
+			}
+		
+		
+		}
+	} else {
+		echo "<td class = 'maintext'><input type = 'hidden' name=\"projcharge[]\" value = 'NPL'><p>No Project Listed</p>  ";
+			echo "</td>";
+	}
+
+
+
+
+
+		
+		
+		// } // if($projchgtyp20 == "daily") {
+
+		// 20170621 start checkbox for manual entry of values
+		if($manualcompsw20==1) {
+		$checkboxmanval="checked"; $tottimedisval=""; $nightdiffdisval=""; $otutdisval="";
+		$otvalman=$otval20; $utvalman=$utval20; $otutvalman=$otutval20; $nightdiffvalman=$new;
+		} else if($manualcompsw20==0) {
+		$checkboxmanval=""; $tottimedisval="disabled"; $nightdiffdisval="disabled"; $otutdisval="disabled";
+		}
+		// echo "<td><input type=\"checkbox\" id=\"checkboxManual\" name=\"checkboxman[]\" onclick=\"active();\" value=\"$cutstart16\" $checkboxmanval></td>";
+                echo "<td class = ''><input class = '' type=\"checkbox\" name=\"checkboxman[]\"  value=\"$cutstart16\" $checkboxmanval></td>";
+		// 20170703 note: enable below and disable above if js function works
+		// echo "<td><input type=\"checkbox\" name=\"checkboxman[]\" value=\"$cutstart16\" id=\"checkboxManual\" onclick=\"enableDisableAll();\" $checkboxmanval></td>";
+
+		//
+		// total time
+                // display total time
+		if($totaltime20 == "") {
+			 $totaltime20=0; 
+			}
+
+				echo "<td><input class = ' px-2 m-1' size = '5' id=\"timetotal\" name=\"totaltime[]\" value=\"$totaltime20\">";
+		
+			
+		echo "</td>";
+		// 20170703 note: enable below and disable above if js function works
+		// echo "<td><input size=\"5\" type=\"text\" id=\"timetotal\" name=\"totaltime[]\" placeholder=\"totaltime\" value=\"$totaltime20\" $tottimedisval></td>";
+
+    // chk 1st if record exists based on id
+
+
+// SOLVINGS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+    if($found20==1) {
+	
+		if ($otafteroutsw20 == 1 ){
+			$otvalfin = $otval20;	
+		} else {
+			// $totaltime20 =$totaltime20 - $otval20;
+			$otvalfin = 0.00;
+		}
+		
+	
+    } else { //if($found20==1)
+
+		//
+		// ut/ot
+		if($otafteroutsw20 == 0) {
+			if($totaltime20 > 0 && $totaltime20 < 8){
+				if($utval20 == 0){
+					$utval20 = $totaltime20 - 8;
+				}
+				else{
+					$utval20 = $utval20;
+				}	
+			}
+			else{
+				$utval20 = 0;
+			}
+
+			$otutval20 = 0;
+
+		}else{
+			
+			// if ($cityinclude == 1 && $holidaytype21 == 'city'){
+			// 	echo "<h1>NICE</h1>";
+			// } else {
+			// 	echo "<h2>no</h2>";
+			// }
+
+			if($dateday == "Sun" || $dateday == "Sat" || $holidaytype21 == 'legal' || $holidaytype21 == 'special' || $holidaytype21 == 'city') {
+				$otval = $totaltime20;
+				$utval20 = 0;
+
+			} else {
+				$utval20 = 0;
+				if($totaltime20 > 8){
+					if($otval == 0){
+						$otval = $totaltime20 - 8;
+					}
+					else{
+						$otval = $otval;
+					}	
+				}
+
+			} // if($found21 == 1 || $dateday == "Sun"
+		}
+		if($otutval20 == 0){
+			$otutval20 = $otval + $utval20;
+		}
+		else{
+			$otutval20 = $otutval20;
+		}
+
+		// echo "<input type=\"hidden\" name=\"otval[]\" value=\"$otval20\">";
+		// echo "<input type=\"hidden\" name=\"utval[]\" value=\"$utval20\">";
+		if($manualcompsw20==1) {
+		$otval=$otvalman;	
+		} // if
+
+    // set final vars
+    $otvalfin=$otval;
+
+    } //if($found20==1) 
+
+
+		echo "<td>";
+		// echo "<input size=\"5\" id=\"valot\" name=\"otval[]\" value=\"$otvalfin\">";
+		echo "<input size=\"5\" name=\"otval[]\" value=\"$otvalfin\">";
+		echo "</td>";
+
+		if($manualcompsw20==1) {
+		$utval20=$utvalman;	
+		} // if
+		if($utval20 != 0){
+			$text = 'text-danger';
+		} else {
+			$text = '';
+			
+		} // if-else
+
+		
+		echo "<td>";
+
+		echo "<input class = '$text' size=\"5\" id=\"valut\" name=\"utval[]\" value=\"$utval20\">";
+		echo "</td>";
+		// if($manualcompsw20==1) {
+		// $otutval20=$otutvalman;	
+		// } // if
+		// if($otutval20 < 0){
+		// 	echo "<td><input style='color:red' size=\"5\" id=\"valotut\" name=\"otutval[]\" value=\"$otutval20\"></td>";
+		// } else {
+		// 	echo "<td><input size=\"5\" id=\"valotut\" name=\"otutval[]\" value=\"$otutval20\"></td>";
+		// } // if-else
+		// 20170703 note: enable below and disable above if js function works
+		// echo "<td><input size=\"5\" type=\"text\" id=\"otutval\" name=\"otutval[]\" placeholder=\"Otutval\" value=\"$otutval20\" $otutdisval></td>";
+
+		//
+		// nightdiff
+		if($new == "") {
+			 $new=0; 
+			}
+			
+
+		if($otafteroutsw20 == 0) {
+			$new = 0.00;
+		} else {
+			$new = $new;
+		} 
+
+
+		if($manualcompsw20==1) {
+			$new=$nightdiffvalman;	
+		} // if
+
+		echo "<td><input size=\"5\" id=\"valnightdiff\" name=\"nightdiffval[]\" value=\"$new\"></td>";
+		// 20170703 note: enable below and disable above if js function works
+		// echo "<td><input size=\"5\" type=\"text\" id=\"nightdiffval\" name=\"nightdiffval[]\" placeholder=\"Nightdiffval\" value=\"$nightdiffval20\" $nightdiffdisval></td>";
+
+		// 20170621 end checkbox for manual entry of values
+
+		//
+		// no findings
+		if($nofindings20==1) { $nofindingssel="checked"; } else { $nofindingssel=""; }
+		echo "<td><input type=\"checkbox\" name=\"nofindings[]\" value=\"$cutstart16\" $nofindingssel></td>";
+
+		//
+		// remarks
+		echo "<td><textarea placeholder='remarks' name=\"remarks[]\" value = '$remarks20' rows='3'>$remarks20</textarea></td>";
+
+		// increment date
+		$cutstart16 = date("Y-m-d", strtotime("+1 day", strtotime($cutstart16)));
+		echo "</tr>";
+
+		// compute subtotals
+		$totaltimesubtot = $totaltimesubtot + $totaltime20;
+		$utvalsubtot = $utvalsubtot + $utval20;
+		$otvalsubtot = $otvalsubtot + $otvalfin;
+		// $otutvalsubtot = $otutvalsubtot + $otutval20;
+
+		$nightdiffvalsubtot = $nightdiffvalsubtot + $new;
+
+	// test display of subtotals, pls comment on prod env
+
+		// reset variables
+		$dateval=""; $dateday=""; $holidaytype21=""; $contact_gender=""; $restdayfin=""; $otutval="";
+		$otbin0sel=""; $otbin1sel="";
+		$otaout0sel=""; $otaout1sel="";
+		$nxtdayyessel=""; $nxtdaynosel="";
+		$mealallowyessel=""; $mealallownosel="";
+		$leavtypsel="";
+		$leavedur1sel=""; $leavedur5sel=""; $leavedurnonesel="";
+		$leavedur1sel=""; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="";
+	}
+
+	
+     echo "</table></div>";
+
+	 echo "<div class = 'container'>";
+
+	// display subtotals
+	echo "<div class = 'shadow border rounded-3 p-5 '>";
+	// if($projchgtyp24=='daily') {
+	
+	// }
+
+	echo "<h4 class = 'mb-5 text-secondary'>Sub-total</h4>";
+	echo "<div class = 'row px-4 text-center'>";
+
+
+
+
+	echo "<div class = 'col'>";
+	echo "<p class = 'text-secondary pb-0 mb-0'>Total Time: </p>";
+	echo "<h4 class=''>".number_format($totaltimesubtot, 2)."</h4>";
+	echo "</div>";
+
+	// echo "<th colspan='4'></th>";
+	echo "<div class = 'col'>";
+	echo "<p class = 'text-secondary pb-0 mb-0'>Overtime Value: </p>";
+
+	echo "<h4 class=''> ".number_format($otvalsubtot, 2)."</h4>";
+	echo "</div>";
+
+
+
+	echo "<div class = 'col'>";
+	echo "<p class = 'text-secondary pb-0 mb-0'>Undertime Value: </p>";
+
+	if($utvalsubtot < 0){
+		echo "<h4 class='text-danger'><span style='color:red'>".number_format($utvalsubtot, 2)."</span></h4>";
+	}
+	else{
+		echo "<h4 class='text-danger'><span style='color:red'> ".number_format($utvalsubtot, 2)."</span></h4>";
+	}
+	echo "</div>";
+
+
+	// echo "<div class = 'col'>";
+	// echo "<p class = 'text-secondary pb-0 mb-0'>OT/UT Value: </p>";
+
+	// if($otutvalsubtot < 0){
+	// 	echo "<h4 class=''><span style='color:red'> ".number_format($otutvalsubtot, 2)."</span></h4>";
+	// }
+	// else{
+	// 	echo "<h4 class=''> ".number_format($otutvalsubtot, 2)."</h4>";
+	// }
+	// echo "</div>";
+
+
+	echo "<div class = 'col'>";
+	echo "<p class = 'text-secondary pb-0 mb-0'>Night Differential: </p>";
+	echo "<h4 class=''> ".number_format($nightdiffvalsubtot, 2)."</h4>";
+	// echo "<th colspan='2'></th>";
+	echo "</div>";
+
+	// reset subtotal variables
+	echo "</div>";
+
+
+	echo "<div class = 'mt-5 mb-3 px-5 text-center'>";
+	// echo "<input type=\"submit\" value=\"Save\">";
+	echo "<button type=\"submit\" class=\"btn-lg border-0 bg-success px-3 py-2 text-white\">Save</button>";
+	echo "</div>";
+	
+	echo "</div>";
+
+	
+	
+
+
+	} // if-else
+
+	} // if($employeeid!='')
+
+// end contents here...
+
+	 echo "</form>";
+	 echo "</div>";
+// edit body-footer
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.projectChargeSelect').chosen();
+	});
+</script>
+
+<style type="text/css">
+
+
+
+table th {
+	width: 10px !important;
+	
+	position: sticky !important;
+	top: 6rem !important;
+	background-color: #6f6f6f !important;
+	
+	border-bottom: 1px solid gray !important;
+	z-index: 2;
+
+	text-align: center !important;
+	font-weight: bolder !important;
+
+	flex: 1; /* Distribute space evenly */
+	white-space: nowrap; /* Prevent wrapping */
+	
+}
+
+
+
+table {
+	padding: 2px !important;
+	border-collapse: separate !important; 
+  border-radius: 5px !important; 
+
+  border: 3px solid #6f6f6f !important; 
+	z-index: -1;
+}
+
+
+tbody td {
+  text-align: center; /* Horizontally center */
+  vertical-align: middle; /* Vertically center */
+}
+
+        tbody td:first-child,
+        tbody td:nth-child(2) {
+            position: sticky;
+            left: 40;
+            font-weight: bolder;
+			background-color: #a5a5a5 !important;
+			color: #FFFFFF;
+            z-index: 1;
+        }
+
+        tbody td:nth-child(2) {
+            left: 87; 
+        }
+
+
+		@media (max-width: 985px) {
+			tbody td:first-child,
+        tbody td:nth-child(2) {
+            position: sticky;
+            left: -1;
+            font-weight: bolder;
+			background-color: #a5a5a5 !important;
+			color: #FFFFFF;
+            z-index: 1;
+        }
+
+        tbody td:nth-child(2) {
+            left: 46; 
+        }
+		table th {z-index: 1;}
+		table tbody{
+			position: relative;
+			z-index: -1; }
+}
+
+</style>
+
+
+
+<!-- echo "<script>";
+		echo "console.log('" . $shiftin20 . "');";
+		echo "</script>"; -->

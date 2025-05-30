@@ -1,0 +1,31 @@
+Confidential (test smtp only)
+
+Please find below details of the Advisory (pls disregard this email)
+
+Project Name/s:
+C.O.
+Clark
+Others
+
+Pay Advisory Type:
+Professional Fee
+
+Amount: 60000.00
+Currency: Philippine Peso
+
+Pay Type: Bank Acct
+
+Bank Name: BPI Pacific Star
+Bank Branch: Ayala Paseo
+Acct Number: 0039239639
+Acct Name: Brian Fuertes
+Acct Type: Savings
+Date Deposited: 2020-8-1
+
+Additional Details:
+ this is a test only to validate if email sender postfix still working after changing password as requested by developer JohnErazo of consultants.philkoei.com.ph system
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email,the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+

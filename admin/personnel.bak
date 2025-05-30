@@ -1,0 +1,154 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$employeetype = $_POST['employeetype'];
+$employeeorder = $_POST['employeeorder'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Directory >> Personnel</font></p>";
+
+     echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><td bgcolor=blue colspan=12><font color=white><b>PKII Personnel Directory</b></font></td></tr>";
+
+     echo "<tr><td colspan=12>";
+
+     echo "<form action=personnel.php?loginid=$loginid method=POST>";
+     echo "<table border=0 spacing=0 cellspacing=0 cellpadding=0><tr>";
+
+     echo "<td valign=bottom><font size=1>Choose criteria</font><br>";
+     echo "<select name=employeetype>";
+     echo "<option value=active-employees>Active Employees</option>";
+     echo "<option value=active-consultants>Active Consultants</option>";
+     echo "<option value=active-employees-consultants selected>Active Employees & Consultants</option>";
+     echo "<option value=inactive-employees>Inactive Employees</option>";
+     echo "<option value=inactive-consultants>Inactive Consultants</option>";
+     echo "<option value=inactive-employees-consultants>Inactive Employees & Consultants</option>";
+     echo "<option>------------------</option>";
+     echo "<option value=all-employees>All Employees</option>";
+     echo "<option value=all-consultants>All Consultants</option>";
+     echo "<option value=all-personnel>ALL</option>";
+     echo "</select></td>";
+
+     echo "<td valign=bottom><font size=1>Sort by</font><br>";
+     echo "<select name=employeeorder>";
+     echo "<option value=tblcontact.employeeid>Employee Number</option>";
+     echo "<option value=tblcontact.name_last selected>Last Name</option>";
+     echo "<option value=tblcontact.name_first>First Name</option>";
+     echo "<option value=tblcontact.email1>E-mail</option>";
+     echo "</select></td>";
+
+     echo "<td valign=bottom><input type=submit value=Go></td>";
+     echo "</tr></table>";
+     echo "</form>";
+
+     echo "</td></tr>";
+
+     if($employeetype == 'active-employees')
+     {
+          $result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.num_res1, tblcontact.num_mobile1, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'inactive-employees')
+     {
+          $result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.num_res1, tblcontact.num_mobile1, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'inactive' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'all-employees')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.num_res1, tblcontact.num_mobile1, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'active-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.num_res1, tblcontact.num_mobile1, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' AND tblemployee.emp_record = 'active' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'inactive-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' AND tblemployee.emp_record = 'inactive' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'all-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'all-personnel')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'active-employees-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.emp_record = 'active' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'inactive-employees-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2 FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.emp_record = 'inactive' ORDER BY $employeeorder", $dbh);
+     }
+
+     echo "<tr><td colspan=12>Displaying list: <b>$employeetype</b> in <b>$employeeorder</b> order</td></tr>";
+     echo "<tr bgcolor=yellow><td>Count</td><td>EmpID</td><td>LastName</td><td>FirstName</td><td>M.I.</td><td>Address</td><td>Landline</td><td>Mobile1</td><td>Mobile2</td><td>Email1</td><td>Email2</td><td>Action</td></tr>";
+
+     $count = 0;
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+	$count = $count + 1;
+	$pid = $myrow[0];
+	$employeeid = $pid;
+	$namefirst = $myrow[1];
+	$namelast = $myrow[2];
+	$namemiddle = $myrow[3];
+	$email1 = $myrow[4];
+	$email2 = $myrow[5];
+	$contact_address1 = $myrow[6];
+	$contact_address2 = $myrow[7];
+	$contact_city = $myrow[8];
+	$contact_province = $myrow[9];
+	$contact_zipcode = $myrow[10];
+	$contact_country = $myrow[11];
+	$num_res1_cc = $myrow[12];
+	$num_res1_ac = $myrow[13];
+	$num_res1 = $myrow[14];
+	$num_res2_cc = $myrow[15];
+	$num_res2_ac = $myrow[16];
+	$num_res2 = $myrow[17];
+	$num_mobile1_cc = $myrow[18];
+	$num_mobile1_ac = $myrow[19];
+	$num_mobile1 = $myrow[20];
+	$num_mobile2_cc = $myrow[21];
+	$num_mobile2_ac = $myrow[22];
+	$num_mobile2 = $myrow[23];
+
+	echo "<tr><td>$count</td><td>$employeeid</td><td>$namelast</td><td>$namefirst</td><td>$namemiddle[0]</td>";
+
+	echo "<td>$contact_address1 $contact_address2 $contact_city $contact_province $contact_country</td><td>$num_res1_cc $num_res1_ac $num_res1</td><td>$num_mobile1_cc $num_mobile1_ac $num_mobile1</td><td>$num_mobile2_cc $num_mobile2_ac $num_mobile2</td>";
+
+	echo "<td><a href=mailto:$email1>$email1</a></td>";
+	echo "<td><a href=mailto:$email2>$email2</a></td>";
+	echo "<td><a href = personnelmoreinfo.php?pid=$pid&loginid=$loginid target=_blank>More Info</a></td></tr>";
+     }
+
+     echo "</table>"; 
+   
+     echo "<p><a href=index2.php?loginid=$loginid>Back</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

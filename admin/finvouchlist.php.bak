@@ -1,0 +1,139 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+echo "<table class=\"fin\" border=\"1\">";
+
+?>
+<script type="text/javascript">
+function get_radio_value(val)
+{
+  val = val - 1;
+  for (var i=0; i < document.voucher.type.length; i++){
+    if(i==val){
+      document.voucher.type[i].checked = true;
+    }
+  }
+  for (var i=0; i < document.voucher.type.length; i++){
+    if (document.voucher.type[i].checked)
+    {
+      var rad_val = document.voucher.type[i].value;
+      document.getElementById(rad_val).style.display = "block";
+    }
+    else {
+      var rad_val = document.voucher.type[i].value;
+      document.getElementById(rad_val).style.display = "none";
+    }
+  }
+}
+</script>
+<form name='voucher'>
+  <tr><th colspan='3'>PKII Voucher - List</th></tr>
+  <tr><td><input type='radio' name='type' value='checkvoucher' onClick="get_radio_value(1);" checked>Check Voucher</td>
+  <td><input type='radio' name='type' value='cashreceipt' onClick="get_radio_value(2);">Cash Receipt</td>
+  <td><input type='radio' name='type' value='journal' onClick="get_radio_value(3);">Journal</td></tr>
+</form>
+
+<tr><td colspan='3'>
+<div id='checkvoucher'>
+<?php
+  echo "<table class=\"fin\" border=\"1\">";
+  echo "<tr><th>Date</th><th>CV Number</th><th>Payee</th><th>Type</th><th>DebitTotal</th><th>CreditTotal</th><th colspan=\"2\">Action</th></tr>";
+  $result11 = mysql_query("SELECT DISTINCT disbursementnumber, disbursementtype, payee, date FROM tblfindisbursement WHERE disbursementid<>'' ORDER BY date DESC LIMIT 0, 100", $dbh);
+  while($myrow11 = mysql_fetch_row($result11))
+  {
+    $found11 = 1;
+    $disbursementnumber11 = $myrow11[0];
+    $disbursementtype11 = $myrow11[1];
+    $payee11 = $myrow11[2];
+    $date11 = $myrow11[3];
+
+    $result12 = mysql_query("SELECT debittot, credittot FROM tblfindisbursementtot WHERE disbursementnumber=\"$disbursementnumber11\"", $dbh);
+    while($myrow12 = mysql_fetch_row($result12))
+    {
+      $found12 = 1;
+      $debittot12 = $myrow12[0];
+      $credittot12 = $myrow12[1];
+    }
+
+    echo "<tr><td>$date11</td><td>$disbursementnumber11</td><td>$payee11</td><td>$disbursementtype11</td>";
+    if($debittot12 != $credittot12)
+    {
+      echo "<td align=\"right\"><font color=\"red\">$debittot12</font></td><td align=\"right\"><font color=\"red\">$credittot12</font></td>";
+    }
+    else
+    {
+      echo "<td align=\"right\">$debittot12</td><td align=\"right\">$credittot12</td>";
+    }
+    if($accesslevel >= 4 && $accesslevel <= 5)
+    {
+      echo "<td><a href=\"finvouchcvdel.php?loginid=$loginid&cvn=$disbursementnumber11\">Del</td>";
+    }
+    if($accesslevel >= 3 && $accesslevel <= 5)
+    {
+      echo "<td><a href=\"finvouchcvnew.php?loginid=$loginid&cvn=$disbursementnumber11\">Edit</td></tr>";
+    }
+  }
+  echo "<form action=\"finvouchlistcv.php?loginid=$loginid\" method=\"post\">";
+  echo "<tr><td colspan=\"8\" align=\"center\"><input type=\"submit\" value=\"Display\"></form></td></tr>";
+  echo "</table>";
+?>
+</div>
+<div id='cashreceipt' style='display:none;'>
+<?php
+  echo "<table class=\"fin\" border=\"1\">";
+  echo "<tr><th>Date</th><th>Cash Receipt No.</th><th>Payee</th><th>Type</th><th>DebitTotal</th><th>CreditTotal</th></tr>";
+  echo "<form action=\"finvouchlistcrv.php?loginid=$loginid\" method=\"post\">";
+  echo "<tr><td colspan=\"6\" align=\"center\"><input type=\"submit\" value=\"Display\"></form></td></tr>";
+  echo "</table>";
+?>
+</div>
+<div id='journal' style='display:none;'>
+<?php
+  echo "<table class=\"fin\" border=\"1\">";
+  echo "<tr><th>Date</th><th>JV No.</th><th>Payee</th><th>Type</th><th>DebitTotal</th><th>CreditTotal</th></tr>";
+  echo "<form action=\"finvouchlistjv.php?loginid=$loginid\" method=\"post\">";
+  echo "<tr><td colspan=\"6\" align=\"center\"><input type=\"submit\" value=\"Display\"></form></td></tr>";
+  echo "</table>";
+?>
+</div>
+</td></tr>
+<?php
+echo "</table>";
+
+echo "<p><a href=\"finvouchmain.php?loginid=$loginid\">Back</a></p>";
+
+
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

@@ -1,0 +1,541 @@
+<?php
+//
+// visodocs.php
+// fr: vc/index.php
+//page 24
+
+// get variables
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$disptyp = (isset($_POST['disptyp'])) ? $_POST['disptyp'] :'';
+
+if($page=='') { $page=24; }
+
+$filepath="../admin/transfers/iso";
+$filepath2="../admin/transfers/iso/forms";
+$filepath3="../admin/transfers/others";
+$file1="isomanual.PDF";
+$file2="isosysproc.PDF";
+$file3="isojobdesc.PDF";
+$file4="isoworkinst.PDF";
+$file5="";
+$file6="docempmanual.PDF";
+$file7="docitpolicy.PDF";
+$file8="docssemanual.PDF";
+// $file8="";
+// 20200129
+$file9="Att-1_NKcode_of_conduct_English.pdf";
+$file10="NKCMGV1.0.pdf";
+// 20200706
+$file11="PKIIRegnAllocDuties07012020.PDF";
+// 20200720
+$file12 = "PKIIRisk&CrisisMgmtRegn.PDF";
+// 20210701
+$file13 = "PKIIBasicPoliciesDevtICSystem_20210128.PDF";
+$file14 = "IOMRiskReportingtoClients30June2021rev1002.PDF";
+// 20210804
+$file15 = "PKIIBriberyPreventionRegn_20210530.PDF";
+// 20220202
+$file16 = "20220202PKIIWBR.PDF";
+$file17 = "PKII_ITD_InfoSecDLP_V1.00.PDF";
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>Guides and Policies</h3></div>
+	</div>
+
+	<div class="row">
+		<!-- <div class="col-md-1"></div> -->
+		<div class="col-md-12">
+
+<!-- start tabs -->
+<ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
+	<li role="presentation" class="active"><a href="#isomanual" class="text-primary" id="isomanual-tab" role="tab" data-toggle="tab" aria-controls="isomanual" aria-expanded="true">ISO Manual</a></li>
+	<li role="presentation" class=""><a href="#isoproc" class="text-primary" role="tab" id="isoproc-tab" data-toggle="tab" aria-controls="isoproc" aria-expanded="false">ISO Procedures</a></li>
+	<li role="presentation" class=""><a href="#isojobdesc" class="text-primary" role="tab" id="isojobdesc-tab" data-toggle="tab" aria-controls="isojobdesc" aria-expanded="false">Job Description</a></li>
+	<li role="presentation" class=""><a href="#workinst" class="text-primary" role="tab" id="workinst-tab" data-toggle="tab" aria-controls="workinst" aria-expanded="false">Work Instructions</a></li>
+	
+	<li role="presentation" class=""><a href="#isoforms" class="text-primary" role="tab" id="isoforms-tab" data-toggle="tab" aria-controls="isoforms" aria-expanded="false">Office Forms</a></li>
+	
+	<li role="presentation" class=""><a href="#empmanual" class="text-primary" role="tab" id="empmanual-tab" data-toggle="tab" aria-controls="empmanual" aria-expanded="false">Employees' Manual</a></li>
+
+	<li role="presentation" class=""><a href="#itpolicy" class="text-primary" role="tab" id="itpolicy-tab" data-toggle="tab" aria-controls="itpolicy" aria-expanded="false">IT Policy</a></li>
+
+<!-- 20190215 updated below to remove sse manual doc as requested thru telegram by mmacadangdanga, as instructed by sir pss -->
+<!-- 20190308 activate sse manual based on the latest pdf file from mmacadangdang -->
+	<li role="presentation" class=""><a href="#ssemanual" class="text-primary" role="tab" id="ssemanual-tab" data-toggle="tab" aria-controls="ssemanual" aria-expanded="false">SSE Manual</a></li>
+
+<!-- 20200129 req fr bdd thru mmcarpio for the ongoing nk mgmt audit -->
+	<li role="presentation" class=""><a href="#nkcodeoc" class="text-primary" role="tab" id="nkcodeoc-tab" data-toggle="tab" aria-controls="nkcodeoc" aria-expanded="false">NK Code of Conduct</a></li>
+
+<!-- 20200218 NK corp mgmt guideline v1.0 as req by HRD IPSanAntonio thru email:support@philkoei -->
+	<li role="presentation" class=""><a href="#nkcorpmg" class="text-primary" role="tab" id="nkcorpmg-tab" data-toggle="tab" aria-controls="nkcorpmg" aria-expanded="false">NK Corp. Mgmt. Guideline</a></li>
+
+<!-- 20200706 PKII Regulations on the Allocation of Duties as req by HRD CDVitug -->
+	<li role="presentation" class=""><a href="#pkregnallocdts" class="text-primary" role="tab" id="pkregnallocdts-tab" data-toggle="tab" aria-controls="pkregnallocdts" aria-expanded="false">Reg'n. on Allocation of Duties</a></li>
+
+<!-- 20200720 PKII Risk & Crisis Mgmt Reg'n. as req by HRD JSanAntonio & CDVitug based on the IT support request with same date, PDF file thru PDSalvador in Telegram PKII support grp -->
+    <li role="presentation" class=""><a href="#pkriskcrisismgtregn" class="text-primary" role="tab" id="pkriskcrisismgtregn-tab" data-toggle="tab" aria-controls="pkriskcrisismgtregn" aria-expanded="false">Risk & Crisis Mgmt. Reg'n.</a></li>
+
+<!-- 20210701 PKII Basic Policies on the Development of Internal Control System -->
+    <li role="presentation" class=""><a href="#pkbasicpoldevics" class="text-primary" role="tab" id="pkbasicpoldevics-tab" data-toggle="tab" aria-controls="pkbasicpoldevics" aria-expanded="false">Basic Policies on the Dev't of Internal Control System</a></li>
+
+<!-- 20210701 PKII -->
+    <li role="presentation" class=""><a href="#pkiomriskrptcli" class="text-primary" role="tab" id="pkiomriskrptcli-tab" data-toggle="tab" aria-controls="pkiomriskrptcli" aria-expanded="false">Risk Reporting to Clients</a></li>
+
+<!-- 20210804 PKII Bribery Prevention REgulation as req'd by HRD MCC -->
+    <li role="presentation" class=""><a href="#pkbriberypreventregn" class="text-primary" role="tab" id="pkbriberypreventregn-tab" data-toggle="tab" aria-controls="pkbriberypreventregn" aria-expanded="false">Bribery Prevention Reg'n.</a></li>
+
+<!-- 20210202 PKII Regulations relating to Consultation and Whistleblowing System as req'd by HRD MCC -->
+    <li role="presentation" class=""><a href="#pkregnconswhistleblowing" class="text-primary" role="tab" id="pkregnconswhistleblowing-tab" data-toggle="tab" aria-controls="pkregnconswhistleblowing" aria-expanded="false">Whistleblowing Consultation and Reporting Reg'n.</a></li>
+
+<!-- 20220822 PKII ITD InfoSec Reg'n + DLP -->
+    <li role="presentation" class=""><a href="#pkinfosecdlp" class="text-primary" role="tab" id="pkinfosecdlp-tab" data-toggle="tab" aria-controls="pkinfosecdlp" aria-expanded="false">Information Security Guidelines and Data Loss/Leak Prevention</a></li>
+
+</ul>
+	<!-- <li role="presentation" class="dropdown"> <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="-false">Dropdown <span class="caret"></span></a>
+		<ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+			<li class=""><a href="#dropdown1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Dropdown1</a></li>
+			<li><a href="#dropdown2" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Dropdown2</a></li>
+		</ul>
+	</li> -->
+
+<div id="myTabContent" class="tab-content">
+	<div role="tabpanel" class="tab-pane fade in active" id="isomanual" aria-labelledby="isomanual-tab">
+	<p>ISO Manual</p>
+	<p>
+<?php
+	if($file1!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath/$file1?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath/$file1#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath/$file1#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="isoproc" aria-labelledby="isoproc-tab">
+	<p>ISO Procedures</p>
+	<p>
+<?php
+	if($file2!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath/$file2?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath/$file2#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath/$file2#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="isojobdesc" aria-labelledby="isojobdesc-tab">
+	<p>ISO Job Descriptions</p>
+	<p>
+<?php
+	if($file3!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath/$file3?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath/$file3#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath/$file3#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="workinst" aria-labelledby="workinst-tab">
+	<p>ISO Work Instructions</p>
+	<p>
+<?php
+	if($file4!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath/$file4?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath/$file4#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath/$file4#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+
+	<div role="tabpanel" class="tab-pane fade" id="isoforms" aria-labelledby="isoforms-tab">
+	<p>Office forms</p>
+	<p>
+<?php
+  // display folders
+  $dirArray = ReadFolderDirectory0("$filepath2");
+  $ctr0 = 0; 
+  foreach ($dirArray as $value0) {
+    $dirname = urlencode($value0);
+    echo "".$dirname."<br>";
+  }
+  
+  // display files
+  $fileArray = ReadFolderDirectory("$filepath2");
+  sort($fileArray);
+  $ctr = 0; 
+  foreach ($fileArray as $value) {
+    $filename = urlencode($value);
+      if($filename != "index.htm") {
+        echo "<a href=\"$filepath2/$value\" target=\"_blank\" class='text text-primary'>$value</a><br>";
+      }
+  }
+?>
+	</p>
+	</div>
+
+	<div role="tabpanel" class="tab-pane fade" id="empmanual" aria-labelledby="empmanual-tab">
+	<p>Employees' Manual</p>
+	<p>
+<?php
+	if($file6!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file6?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file6#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file6#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="itpolicy" aria-labelledby="itpolicy-tab">
+	<p>IT Policy</p>
+	<p>
+<?php
+	if($file7!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file7?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file7#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file7#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+?>
+	</p>
+	</div>
+
+	<!-- 20190130 updated below to include safety, security and environment manual -->
+<!-- 20190215 updated below to remove sse manual doc as requested thru telegram by mmacadangdanga, as instructed by sir pss -->
+<!-- 20190308 activate sse manual based on latest uploaded pdf file from mmacadangdang -->
+	<div role="tabpanel" class="tab-pane fade" id="ssemanual" aria-labelledby="ssemanual-tab">
+	<p>Safety, Security and Environment (SSE) Manual</p>
+	<p>
+<?php
+	if($file8!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file8?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file8#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file8#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+	
+<!-- 20200129 nk code of conduct as required bdd/hrd for nk mgmt audit -->
+	<div role="tabpanel" class="tab-pane fade" id="nkcodeoc" aria-labelledby="nkcodeoc-tab">
+	<p>NK Code of Conduct</p>
+	<p>
+<?php
+	if($file9!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file9?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file9#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file9#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20200218 nk corp mgmt guideline as req by hrd (ipsanantonio) -->
+	<div role="tabpanel" class="tab-pane fade" id="nkcorpmg" aria-labelledby="nkcorpmg-tab">
+	<p>NK Corp. Mgmt. Guideline</p>
+	<p>
+<?php
+	if($file10!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file10?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file10#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file10#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20200706 PKII regulations on the allocation of duties as req thru email by hrd (cdvitug) -->
+	<div role="tabpanel" class="tab-pane fade" id="pkregnallocdts" aria-labelledby="pkregnallocdts-tab">
+	<p>PKII Regulations on the Allocation of Duties</p>
+	<p>
+<?php
+	if($file11!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file11?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file11#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file11#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+	
+<!-- 20200720 PKII Risk & Crisis Mgmt Reg'n -->
+	<div role="tabpanel" class="tab-pane fade" id="pkriskcrisismgtregn" aria-labelledby="pkriskcrisismgtregn-tab">
+	<p>PKII Risk & Crisis Management Regulations</p>
+	<p>
+<?php
+	if($file12!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file12?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file12#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file12#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20200701 PKII Basic Policies on the Development of Internal Control System -->
+	<div role="tabpanel" class="tab-pane fade" id="pkbasicpoldevics" aria-labelledby="pkbasicpoldevics-tab">
+	<p>PKII Basic Policies on the Development of Internal Control System</p>
+	<p>
+<?php
+	if($file13!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file13?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file13#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file13#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20210701 PKII Memo - Risk Reporting to Clients -->
+	<div role="tabpanel" class="tab-pane fade" id="pkiomriskrptcli" aria-labelledby="pkiomriskrptcli-tab">
+	<p>PKII Memo - Risk Reporting to Clients</p>
+	<p>
+<?php
+	if($file14!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file14?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file14#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file14#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20210804 PKII Bribery PRevention Regulations -->
+	<div role="tabpanel" class="tab-pane fade" id="pkbriberypreventregn" aria-labelledby="pkbriberypreventregn-tab">
+	<p>PKII Bribery Prevention Regulations</p>
+	<p>
+<?php
+	if($file15!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file15?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file15#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file15#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 20220202 PKII Regulations relating to Consultation and Whistleblowing System  -->
+	<div role="tabpanel" class="tab-pane fade" id="pkregnconswhistleblowing" aria-labelledby="pkregnconswhistleblowing-tab">
+	<p>Whistleblowing Consultation and Reporting Regulation</p>
+	<p>
+<?php
+	if($file15!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file16?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file16#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file16#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+<!-- 2022822 PKII ITD InfoSec Regulations and Data Loss/Leak Prevention -->
+	<div role="tabpanel" class="tab-pane fade" id="pkinfosecdlp" aria-labelledby="pkinfosecdlp-tab">
+	<p>Information Security Guidelines and Data Loss/Leak Prevention</p>
+	<p>
+<?php
+	if($file17!='') {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath3/$file17?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath3/$file17#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath3/$file17#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+
+	echo "</object>";
+	echo "<![endif]>";
+	} // if
+ ?>
+	</p>
+	</div>
+
+</div>
+	<!-- <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+		Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney’s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven’t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+		Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.
+	</div> -- >
+<!-- end tabs -->
+		</div>
+		<!-- <div class="col-md-1"></div> -->
+	</div>
+
+<?php
+function ReadFolderDirectory0($dir0)
+{
+        $listDir0 = array();
+
+        if($handler0 = opendir($dir0))
+        {
+            while (($sub0 = readdir($handler0)) !== FALSE)
+            {
+                if ($sub0 != "." && $sub0 != ".." && $sub0 != "Thumb.db")
+                {
+                    if(is_file($dir0."/".$sub0))
+                    {
+//                        $listDir[] = $sub0;
+                    }
+                    elseif(is_dir($dir0."/".$sub0))
+                    {
+                        $listDir0[] = $sub0;
+		    }
+                }
+            }   
+            closedir($handler0);
+        }
+        return $listDir0;   
+} 
+
+function ReadFolderDirectory($dir)
+{
+        $listDir = array();
+
+        if($handler = opendir($dir))
+        {
+            while (($sub = readdir($handler)) !== FALSE)
+            {
+                if ($sub != "." && $sub != ".." && $sub != "Thumb.db")
+                {
+                    if(is_file($dir."/".$sub))
+                    {
+                        $listDir[] = $sub;
+                    }
+                    elseif(is_dir($dir."/".$sub))
+                    {
+//                        $listDir[$sub] = $this->ReadFolderDirectory($dir."/".$sub);
+//                        $listDir[] = $sub;
+		    }
+                }
+            }   
+            closedir($handler);
+        }
+        return $listDir;   
+}
+?>

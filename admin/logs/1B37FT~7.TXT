@@ -1,0 +1,46 @@
+Please find below details of your payroll salary (payroll period May 16-31, 2012) is now available.
+
+cutoff period: 2012-05-01 -to- 2012-05-15
+
+Employee ID: 267
+Employee Name: Janelle Vallejo
+Project: ARISP 3
+
+PAY RATE: P10000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P10000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+Transpo Allowance: 2500.00
+TOTAL Non-Taxable Income: 2500.00
+
+GROSS PAY: P12500.00
+
+Withholding Tax: 1458.25
+SSS: 500
+Philhealth: 150.00
+Pag-ibig: 50
+
+Other Deductions:
+TOTAL Other Deductions: 0.00
+
+TOTAL DEDUCTIONS: P2158.25
+
+NET PAY: P10341.75
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

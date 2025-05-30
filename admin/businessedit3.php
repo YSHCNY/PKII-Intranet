@@ -1,0 +1,154 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$companyid = $_GET['cid'];
+
+$company = $_POST['company'];
+$branch = $_POST['branch'];
+$ofc_address1 = $_POST['ofc_address1'];
+$ofc_address2 = $_POST['ofc_address2'];
+$ofc_city = $_POST['ofc_city'];
+$ofc_province = $_POST['ofc_province'];
+$ofc_zipcode = $_POST['ofc_zipcode'];
+$ofc_country = $_POST['ofc_country'];
+
+$ofc_num1_cc = $_POST['ofc_num1_cc'];
+$ofc_num1_ac = $_POST['ofc_num1_ac'];
+$ofc_num1 = $_POST['ofc_num1'];
+$ofc_num1_ext = $_POST['ofc_num1_ext'];
+
+$ofc_num2_cc = $_POST['ofc_num2_cc'];
+$ofc_num2_ac = $_POST['ofc_num2_ac'];
+$ofc_num2 = $_POST['ofc_num2'];
+$ofc_num2_ext = $_POST['ofc_num2_ext'];
+
+$ofc_num3_cc = $_POST['ofc_num3_cc'];
+$ofc_num3_ac = $_POST['ofc_num3_ac'];
+$ofc_num3 = $_POST['ofc_num3'];
+$ofc_num3_ext = $_POST['ofc_num3_ext'];
+
+$ofc_fax_cc = $_POST['ofc_fax_cc'];
+$ofc_fax_ac = $_POST['ofc_fax_ac'];
+$ofc_fax = $_POST['ofc_fax'];
+$ofc_fax_ext = $_POST['ofc_fax_ext'];
+
+$ofc_fax2_cc = $_POST['ofc_fax2_cc'];
+$ofc_fax2_ac = $_POST['ofc_fax2_ac'];
+$ofc_fax2 = $_POST['ofc_fax2'];
+$ofc_fax2_ext = $_POST['ofc_fax2_ext'];
+
+$ofc_mobile_cc = $_POST['ofc_mobile_cc'];
+$ofc_mobile_ac = $_POST['ofc_mobile_ac'];
+$ofc_mobile = $_POST['ofc_mobile'];
+
+$ofc_email = $_POST['ofc_email'];
+$ofc_url = $_POST['ofc_url'];
+$products = $_POST['products'];
+$services = $_POST['services'];
+$remarks_company = $_POST['remarks_company'];
+$company_type = $_POST['company_type'];
+
+$supplierid = $_POST['supplierid'];
+$contactid = $_POST['contactid'];
+
+// $proj_code = $_POST['proj_code'];
+// $employeeid = $_POST['employeeid'];
+
+$comptypassocrel = $_POST['assoc_relation'];
+
+$tin_number = $_POST['tin_number'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+  include ("header.php");
+  include ("sidebar.php");
+
+  if($accesslevel >= 4 && $accesslevel <= 5)
+  {
+    echo "<p><font size=1>Directory >> Business Contacts</font></p>";
+
+    echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0>";
+    echo "<tr><th colspan=\"2\">PKII Business Directory - Edit</th><tr>";
+
+    // check company and branch if exists
+    $result11 = '';
+    $found11 = 0;
+    $result11 = mysql_query("SELECT supplierid, companyid, company, branch FROM tblcompany WHERE companyid=\"$companyid\"", $dbh);
+    if ($result11 != '')
+    {
+      while($myrow11 = mysql_fetch_row($result11))
+      {
+	$found11 = 1;
+	$companyid11 = $myrow11[0];
+	$company11 = $myrow11[1];
+	$branch11 = $myrow11[2];
+      }
+    }
+
+    if($found11 != 1)
+    {
+      echo "<tr><td>Warning</td><td><font color=\"red\">Sorry, company record is missing. Please try again.</font></td></tr>";
+    }
+    else
+    {
+      $result12 = mysql_query("UPDATE tblcompany SET company=\"$company\", branch=\"$branch\", ofc_address1=\"$ofc_address1\", ofc_address2=\"$ofc_address2\", ofc_city=\"$ofc_city\", ofc_province=\"$ofc_province\", ofc_zipcode=\"$ofc_zipcode\", ofc_country=\"$ofc_country\", ofc_num1_cc=\"$ofc_num1_cc\", ofc_num1_ac=\"$ofc_num1_ac\", ofc_num1=\"$ofc_num1\", ofc_num1_ext=\"$ofc_num1_ext\", ofc_num2_cc=\"$ofc_num2_cc\", ofc_num2_ac=\"$ofc_num2_ac\", ofc_num2=\"$ofc_num2\", ofc_num2_ext=\"$ofc_num2_ext\", ofc_num3_cc=\"$ofc_num3_cc\", ofc_num3_ac=\"$ofc_num3_ac\", ofc_num3=\"$ofc_num3\", ofc_num3_ext=\"$ofc_num3_ext\", ofc_fax_cc=\"$ofc_fax_cc\", ofc_fax_ac=\"$ofc_fax_ac\", ofc_fax=\"$ofc_fax\", ofc_fax2_cc=\"$ofc_fax2_cc\", ofc_fax2_ac=\"$ofc_fax2_ac\", ofc_fax2=\"$ofc_fax2\", ofc_mobile_cc=\"$ofc_mobile_cc\", ofc_mobile_ac=\"$ofc_mobile_ac\", ofc_mobile=\"$ofc_mobile\", ofc_email=\"$ofc_email\", ofc_url=\"$ofc_url\", products=\"$products\", services=\"$services\", remarks_company=\"$remarks_company\", company_type=\"$company_type\", supplierid=\"$supplierid\", comptypassocrel=\"$comptypassocrel\", tin_number=\"$tin_number\" WHERE companyid=\"$companyid\"", $dbh);
+
+      echo "<tr><td>details</td><td>";
+      echo "Updating...<br>";
+      echo "name: $company br: $branch<br>";
+			echo "tin: $tin_number<br>";
+      echo "address: $ofc_address1, $ofc_address2<br>";
+      echo "$ofc_city, $ofc_province<br>";
+      echo "$ofc_zipcode $ofc_country<br>";
+      echo "ofcnum1: $ofc_num1_cc $ofc_num1_ac $ofc_num1 $ofc_num1_ext<br>";
+      echo "ofcnum2: $ofc_num2_cc $ofc_num2_ac $ofc_num2 $ofc_num2_ext<br>";
+      echo "ofcnum3: $ofc_num3_cc $ofc_num3_ac $ofc_num3 $ofc_num3_ext<br>";
+      echo "ofcfax1: $ofc_fax_cc $ofc_fax_ac $ofc_fax<br>";
+      echo "ofcfax2: $ofc_fax2_cc $ofc_fax2_ac $ofc_fax2<br>";
+      echo "mobile: $ofc_mobile_cc $ofc_mobile_ac $ofc_mobile<br>";
+      echo "email:$ofc_email url:$ofc_url<br>";
+      echo "prod:$products<br>";
+      echo "svcs:$services<br>";
+      echo "rem:$remarks_company<br>";
+      echo "type=$company_type<br>";
+			echo "assoc_rel=$comptypassocrel<br>";
+      echo "</td></tr>";
+
+      echo "<tr><td>status</td><td>";
+      echo "<b>Saved.</b>";
+      echo "</td></tr>";
+
+      // create log
+      include('datetimenow.php');
+      $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+      while($myrow16 = mysql_fetch_row($result16))
+      { $adminuid16=$myrow16[0]; }
+      $adminlogdetails = "$loginid:$adminloginuid - edit company record:$company $branch $company_type";
+      $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid16\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+    }
+
+    echo "</table>"; 
+  }
+
+  echo "<p><a href=\"businessedit.php?loginid=$loginid\">Back</a><br>";
+   
+  $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+  include ("footer.php");
+}
+else
+{
+  include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

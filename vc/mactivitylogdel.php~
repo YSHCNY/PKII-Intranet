@@ -1,0 +1,31 @@
+<?php
+// set get vars
+$loginstat = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = trim((isset($_GET['sess'])) ? $_GET['sess'] :'');
+$page = trim((isset($_GET['p'])) ? $_GET['p'] :'');
+
+$hractlogid = $_POST['aid'];
+$monsel = $_POST['ms'];
+$cutmonth = $_POST['cm'];
+echo "<h4>lst:$loginstat, lid:$loginid, sess:$session, p:$page, hractlogid:$hractlogid<br>$monsel,$cutmonth</h4>";
+if($hractlogid!='') {
+	include '../m/qrymactlogdel.php';
+} // if
+
+if($result11) {
+
+	// echo '<h4 class="modal-title" id="myModalLabel"><font color="green">Activity log saved</font></h4>';
+
+	// create log
+	$logdetails = "delete activity log with id:$hractlogid for date:$actdate";
+	// include '../m/qryinslog.php';
+
+} else {
+
+	// echo '<h4 class="modal-title" id="myModalLabel"><font color="red">Error in saving activity log</font></h4>';
+
+} // if 
+
+// header("location:index.php?lst=1&lid=$loginid&sess=$session&p=14&ms=$monsel&cm=$cutmonth");
+?>

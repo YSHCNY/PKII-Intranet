@@ -1,0 +1,124 @@
+<?php
+//
+// fr: ../views/loginverify.php
+// ../models/qrylogin2.php
+require("../includes/dbh.php");
+include("../includes/genranchars.php");
+
+	// generate randomstring for session
+	$genranchars = genRandomString();
+
+	// set user var for tblloginstatus
+	$logintype=1; // 1:non-admin, 2:admin
+	// $disabled=0; // 0:enabled, 1:disabled
+	$loginstatus=1; // 0:logged-out, 1:logged-in
+	$session=$genranchars;
+
+    // update tbllogin set login_status=1
+    $res6query=""; $result6="";
+    $res6query="UPDATE tbllogin SET time_login=\"$now\", login_status=1 WHERE loginid=$loginid0";
+    $result6=$dbh->query($res6query);
+
+	// start query verification
+	$res1query="SELECT idloginstatus FROM tblloginstatus WHERE loginid=$loginid0 AND logintype=$logintype LIMIT 1";
+	$result1=""; $found1=0;
+	$result1=$dbh->query($res1query);
+	if($result1->num_rows>0) {
+		while($myrow1=$result1->fetch_assoc()) {
+		$found1=1;
+		$idloginstatus1 = $myrow1['idloginstatus'];
+		} // while
+	} // if
+
+	if($found1==1) {
+		// update query for tblloginstatus
+		$res3query="UPDATE tblloginstatus SET timestamp=\"$now\", loginid=$loginid0, session=\"$genranchars\", status=$loginstatus WHERE idloginstatus=$idloginstatus1";
+	} else {
+    // chk user's loginid of non-admin if exists and get employeeid, then check if status is disabled
+    $res8query=""; $result8=""; $found8=0;
+    $res8query="SELECT tbladminlogin.adminloginid FROM tbladminlogin WHERE tbladminlogin.employeeid=\"$employeeid0\"";
+    $result8=$dbh->query($res8query);
+    if($result8->num_rows>0) {
+        while($myrow8=$result8->fetch_assoc()) {
+        $found8=1;
+        $adminloginid8=$myrow8['adminloginid'];
+        } //while
+    } //if 
+    if($found8==1) {
+        $res9query=""; $result9=""; $found9=0;
+        $res9query="SELECT idloginstatus, disabled FROM tblloginstatus WHERE admloginid=$adminloginid8 AND logintype=2 LIMIT 1";
+        $result9=$dbh->query($res9query);
+        if($result9->num_rows>0) {
+            while($myrow9=$result9->fetch_assoc()) {
+            $found9=1;
+            $idloginstatus9 = $myrow9['idloginstatus'];
+            $disabled9 = $myrow9['disabled'];
+            } //while
+        } //if
+    } //if
+    if($disabled9=='') { $disabled9=0; }
+		// insert query for tblloginstatus
+		$res3query="INSERT INTO tblloginstatus SET timestamp=\"$now\", loginid=$loginid0, logintype=$logintype, session=\"$genranchars\", status=$loginstatus, disabled=$disabled9";
+	} // if
+	$result3=$dbh->query($res3query);
+	// echo "<p>r1q:$res1query<br>f1:$found1<br>r3q:$res3query</p>";
+
+    // chk user from tblloginstatus if disabled and block access
+    $res7query=""; $result7=""; $found7=0;
+    $res7query="SELECT idloginstatus, disabled FROM tblloginstatus WHERE loginid=$loginid0 AND logintype=$logintype LIMIT 1";
+    $result7=$dbh->query($res7query);
+    if($result7->num_rows>0) {
+        while($myrow7=$result7->fetch_assoc()) {
+        $found7=1;
+        $idloginstatus7 = $myrow7['idloginstatus'];
+        $disabled7 = $myrow7['disabled'];
+        } //while
+    } //if
+
+    if($found7==1) {
+    //allow but check if user acct is not disabled
+
+        if($disabled7!=1) {
+        // allow
+
+    // 20221011 update tblsysusracctmgt
+    $res5query=""; $result5=""; $found5=0;
+    $res5query="SELECT idtblsysusracctmgt, pwchangedt, skippwctr, skiplastdt FROM tblsysusracctmgt WHERE loginid=$loginid0 AND admloginid=0";
+    $result5=$dbh->query($res5query);
+    if($result5->num_rows>0) {
+        while($myrow5=$result5->fetch_assoc()) {
+        $found5=1;
+        $idtblsysusracctmgt5=$myrow5['idtblsysusracctmgt'];
+        $pwchangedt5 = $myrow5['pwchangedt'];
+        $skippwctr5 = $myrow5['skippwctr'];
+        $skiplastdt5 = $myrow5['skiplastdt'];
+        } //while
+    } //if
+
+    if($found5==1) {
+        // update query tblsysusracctmgt
+        $res5bquery="UPDATE tblsysusracctmgt SET timestamp=\"$now\", loginstamp=\"$now\", attempt=0, attemptstamp=NULL WHERE idtblsysusracctmgt=$idtblsysusracctmgt5";
+    } else {
+        // insert query tblsysusracctmgt
+        $res5bquery="INSERT INTO tblsysusracctmgt SET timestamp=\"$now\", loginid=$loginid0, admloginid=0, employeeid=\"$employeeid0\", loginstamp=\"$now\", logoutstamp=NULL, attempt=0, attemptstamp=NULL, pwchangedt=NULL, pwlast=md5(\"$password\"), skippwctr=0, skiplastdt=NULL";
+    } //if-else
+    $result5b=$dbh->query($res5bquery);
+
+        $loginstat=1;
+
+        } else {
+        // deny
+        $loginstat=0;
+
+        } //if-else
+   
+
+    } else {
+    //deny
+    $loginstat=0;
+
+    } //if-else
+
+// close db conn
+$dbh->close();
+?>

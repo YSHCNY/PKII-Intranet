@@ -1,0 +1,50 @@
+Please find below details of your payroll salary (payroll period January 16-31, 2014) is now available.
+
+cutoff period: 2014-01-01 -to- 2014-01-15
+
+Employee ID: 462
+Employee Name: Frederick Allegado
+Project: GAE
+
+PAY RATE: P6000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P6000.00
+
+Regular Overtime: 2180 (mins) - P2616.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 5 (mins) - P0.48
+TOTAL OVERTIME: P2616.48
+
+Taxable Income:
+Incentive Allowance: 250.00
+TOTAL Taxable Income: P250.00
+
+Non-Taxable Income:
+TOTAL Non-Taxable Income: 0.00
+
+GROSS PAY: P8866.48
+
+Withholding Tax: P502.47
+SSS: P581.30
+Philhealth: P150.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Pag-Ibig 2: 250.00
+Short on Liquidation: 500.00
+Tax Deficit for 2013: 474.80
+Pag-Ibig Loan: 333.17
+TOTAL Other Deductions: P2450.00
+
+TOTAL DEDUCTIONS: P3733.77
+
+NET PAY: P5132.71
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

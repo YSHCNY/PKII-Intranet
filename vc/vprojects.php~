@@ -1,0 +1,57 @@
+<?php
+//
+// vprojects.php
+// fr: vc/index.php
+//page 21
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>PKII Projects Listing</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<thead>
+	<tr><th>Proj code</th><th>Proj Acronym</th><th>Project Name</th><th colspan="2" class="text-center">Coverage</th><th>Action</th></tr>
+</thead>
+<tbody>
+
+<?php 
+
+	include '../m/qryproj.php';
+
+	$param11=count($projectidArr);
+	for($x11 = 0; $x11 < $param11; $x11++) {
+		$found11=1;
+		$ctr11=$ctr11+1;
+		echo "<tr><td>".$proj_codeArr[$x11]."</td><td>".$proj_snameArr[$x11]."</td><td>".$proj_fnameArr[$x11]."</td>";
+		if($date_startArr[$x11]!='0000-00-00') {
+	  echo "<td>".date("Y-M-d", strtotime($date_startArr[$x11]))."</td>";
+		} else {
+	  echo "<td></td>";
+		} // if
+		if($date_endArr[$x11]!='0000-00-00') {
+		echo "<td>".date("Y-M-d", strtotime($date_endArr[$x11]))."</td>";
+		} else {
+		echo "<td></td>";
+		} // if
+		echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=211\" method=\"POST\" name=\"vprojmore\">";
+		// echo "<td><a href=\"moreinfoproj.php?loginid=$loginid&prjcd=$proj_code\" target=\"_blank\"><font color=black>More</a></td>";
+		echo "<input type=\"hidden\" name=\"projectid\" value=\"".$projectidArr[$x11]."\">";
+		echo "<input type=\"hidden\" name=\"projcode\" value=\"".$proj_codeArr[$x11]."\">";
+		echo "<td><button class='btn btn-primary' type=\"submit\">MoreInfo</button></td>";
+		echo "</form>";
+		echo "</tr>";
+	} // for
+
+$dbh->close();
+?> 
+</table>
+</tbody>
+
+		</div><!--  class="col-md-6" -->
+		<div class="col-md-1"></div>
+	</div><!-- class="row" -->
+

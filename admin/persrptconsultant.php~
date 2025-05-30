@@ -1,0 +1,229 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$employeetype = $_POST['employeetype'];
+$employeeorder = $_POST['employeeorder'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Modules >> <a href=\"persrptmnu.php?loginid=$loginid\">HR Reports</a> >> List of Consultants</font></p>";
+
+     echo "<table class=\"fin\" border=1>";
+     echo "<tr><th colspan=12>List of Consultants</th></tr>";
+
+     echo "<tr><td colspan=12>";
+
+     echo "<form action=persrptconsultant.php?loginid=$loginid method=POST>";
+     echo "<table><tr>";
+
+     echo "<td valign=bottom><font size=1>Choose criteria</font><br>";
+     echo "<select name=employeetype>";
+     echo "<option value=active-consultants selected>Active Consultants</option>";
+     echo "<option value=inactive-consultants>Inactive Consultants</option>";
+     echo "<option value=all-consultants>All Consultants</option>";
+     echo "</select></td>";
+
+     echo "<td valign=bottom><font size=1>Sort by</font><br>";
+     echo "<select name=employeeorder>";
+     echo "<option value=tblcontact.employeeid>Employee Number</option>";
+     echo "<option value=tblcontact.name_last selected>Last Name</option>";
+     echo "<option value=tblcontact.name_first>First Name</option>";
+     echo "<option value=tblemployee.emp_birthdate>Birthdate</option>";
+     echo "<option value=tblemployee.date_hired>DateHired</option>";
+     echo "</select></td>";
+
+     echo "<td valign=bottom><input type=submit value=Go></td>";
+     echo "</tr></table>";
+     echo "</form>";
+
+     echo "</td></tr>";
+
+     if($employeetype == 'active-consultants')
+     {
+          $result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.contact_gender, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2, tblcontact.num_mobile3_cc, tblcontact.num_mobile3_ac, tblcontact.num_mobile3, tblcontact.email1, tblcontact.email2, tblempdetails.empposition, tblempdetails.emppositionlevel, tblempdetails.empsalarygrade, tblemployee.emp_birthdate, tblemployee.date_hired, tblemployee.emp_status, tblemployee.term_resign FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' AND tblemployee.emp_record = 'active' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'inactive-consultants')
+     {
+          $result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.contact_gender, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2, tblcontact.num_mobile3_cc, tblcontact.num_mobile3_ac, tblcontact.num_mobile3, tblcontact.email1, tblcontact.email2, tblempdetails.empposition, tblempdetails.emppositionlevel, tblempdetails.empsalarygrade, tblemployee.emp_birthdate, tblemployee.date_hired, tblemployee.emp_status, tblemployee.term_resign FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' AND tblemployee.emp_record = 'inactive' ORDER BY $employeeorder", $dbh);
+     }
+     else if($employeetype == 'all-consultants')
+     {
+	$result = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.contact_gender, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2, tblcontact.num_mobile3_cc, tblcontact.num_mobile3_ac, tblcontact.num_mobile3, tblcontact.email1, tblcontact.email2, tblempdetails.empposition, tblempdetails.emppositionlevel, tblempdetails.empsalarygrade, tblemployee.emp_birthdate, tblemployee.date_hired, tblemployee.emp_status, tblemployee.term_resign FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type = 'consultant' ORDER BY $employeeorder", $dbh);
+     }
+
+     echo "<tr><th colspan=12>Displaying list: <b>$employeetype</b> in <b>$employeeorder</b> order</th></tr>";
+     echo "<tr><th>Count</th><th>EmpNum</th><th>LastName</th><th>FirstName</th><th>Middle</th><th>Gender</th><th>Address</th><th>Birthdate</th>";
+     echo "<th>Landline(s)</th><th>Mobile(s)</th><th>e-mail(s)</th>";
+     echo "<th>Position</th><th>Level</th><th>Salary Grade</th><th>Date Hired</th><th>Date Resigned</th><th>Status</th>";
+     echo "<th>RefNum</th><th>Project</th><th>Position</th><th>Salary</th><th>Currency-Type</th><th>Incentives Allowance</th><th>Currency-Type</th><th>Project Allowance</th><th>Currency-Type</th><th>ECola1</th><th>Currency</th><th>ECola2</th><th>Currency</th><th>Field Allowance</th><th>Currency-Type</th><th>Accommodation Allowance</th><th>Currency-Type</th><th>Transportation Allowance</th><th>Currency-Type</th><th>Per diem</th><th>Currency</th><th>From</th><th>To</th>";
+//     echo "<th>From2</th><th>To2</th>";
+     echo "<th>Action</th></tr>";
+
+     $count = 0;
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+	$count = $count + 1;
+	$pid = $myrow[0];
+	$employeeid = $pid;
+
+	$name_first = $myrow[1];
+	$name_last = $myrow[2];
+	$name_middle = $myrow[3];
+	$contact_gender = $myrow[4];
+	$contact_address1 = $myrow[5];
+	$contact_address2 = $myrow[6];
+	$contact_city = $myrow[7];
+	$contact_province = $myrow[8];
+	$contact_zipcode = $myrow[9];
+	$contact_country = $myrow[10];
+
+	$num_res1_cc = $myrow[11];
+	$num_res1_ac = $myrow[12];
+	$num_res1 = $myrow[13];
+	$num_res2_cc = $myrow[14];
+	$num_res2_ac = $myrow[15];
+	$num_res2 = $myrow[16];
+	$num_mobile1_cc = $myrow[17];
+	$num_mobile1_ac = $myrow[18];
+	$num_mobile1 = $myrow[19];
+	$num_mobile2_cc = $myrow[20];
+	$num_mobile2_ac = $myrow[21];
+	$num_mobile2 = $myrow[22];
+	$num_mobile3_cc = $myrow[23];
+	$num_mobile3_ac = $myrow[24];
+	$num_mobile3 = $myrow[25];
+	$email1 = $myrow[26];
+	$email2 = $myrow[27];
+
+	$empposition = $myrow[28];
+	$emppositionlevel = $myrow[29];
+	$empsalarygrade = $myrow[30];
+
+	$emp_birthdate = $myrow[31];
+	$date_hired = $myrow[32];
+	$emp_status = $myrow[33];
+	$term_resign = $myrow[34];
+
+	$found2 = 0;
+
+	$result2 = mysql_query ("SELECT DISTINCT employeeid, projdate, ref_no, proj_name, position, salary, salarycurrency, salarytype, allow_inc, allow_inc_currency, allow_inc_paytype, allow_proj, allow_proj_currency, allow_proj_paytype, ecola1, ecola1_currency, ecola2, ecola2_currency, allow_field_currency, allow_field_paytype, allow_field, allow_accomm, allow_accomm_currency, allow_accomm_paytype, allow_transpo, allow_transpo_currency, allow_transpo_paytype, perdiem, perdiem_currency, durationfrom, durationto, durationtotal, durationtotprop, durationfrom2, durationto2, duration2total, duration2totprop FROM tblprojassign WHERE employeeid = '$pid' ORDER BY durationto ASC", $dbh);
+
+	while ($myrow2 = mysql_fetch_row($result2))
+	{
+	  $found2 = 1;
+	  $employeeid = $myrow2[0];
+	  $projdate = $myrow2[1];
+	  $ref_no = $myrow2[2];
+	  $proj_name = $myrow2[3];
+	  $position = $myrow2[4];
+	  $salary = $myrow2[5];
+	  $salarycurrency = $myrow2[6];
+	  $salarytype = $myrow2[7];
+	  $allow_inc = $myrow2[8];
+	  $allow_inc_currency = $myrow2[9];
+	  $allow_inc_paytype = $myrow2[10];
+	  $allow_proj = $myrow2[11];
+	  $allow_proj_currency = $myrow2[12];
+	  $allow_proj_paytype = $myrow2[13];
+	  $ecola1 = $myrow2[14];
+	  $ecola1_currency = $myrow2[15];
+	  $ecola2 = $myrow2[16];
+	  $ecola2_currency = $myrow2[17];
+	  $allow_field_currency = $myrow2[18];
+	  $allow_field_paytype = $myrow2[19];
+	  $allow_field = $myrow2[20];
+	  $allow_accomm = $myrow2[21];
+	  $allow_accomm_currency = $myrow2[22];
+	  $allow_accomm_paytype = $myrow2[23];
+	  $allow_transpo = $myrow2[24];
+	  $allow_transpo_currency = $myrow2[25];
+	  $allow_transpo_paytype = $myrow2[26];
+	  $perdiem = $myrow2[27];
+	  $perdiem_currency = $myrow2[28];
+	  $durationfrom = $myrow2[29];
+	  $durationto = $myrow2[30];
+	  $durationtotal = $myrow2[31];
+	  $durationtotprop = $myrow2[32];
+	  $durationfrom2 = $myrow2[33];
+	  $durationto2 = $myrow2[34];
+	  $duration2total = $myrow2[35];
+	  $duration2totprop = $myrow2[36];
+	}
+
+	echo "<tr><td>$count</td><td><a href=\"personnelmoreinfo.php?pid=$pid&loginid=$loginid\" target=\"_blank\">$employeeid</a></td>";
+	echo "<td><a href=\"personnelmoreinfo.php?pid=$pid&loginid=$loginid\" target=\"_blank\"><b>$name_last</b></a></td><td><a href=\"personnelmoreinfo.php?pid=$pid&loginid=$loginid\" target=\"_blank\"><b>$name_first</b></a></td><td><a href=\"personnelmoreinfo.php?pid=$pid&loginid=$loginid\" target=\"_blank\">$name_middle</a></td><td>$contact_gender</td>";
+	echo "<td>$contact_address1";
+	if($contact_address2 <> '') { echo ", $contact_address2"; }
+	if($contact_city <> '') { echo ", $contact_city"; }
+	if($contact_province <> '') { echo ", $contact_province"; }
+	if($contact_zipcode <> '') { echo ", $contact_zipcode"; }
+	if($contact_country <> '') { echo ", $contact_country"; }
+	echo "<td>".date("Y-M-d", strtotime($emp_birthdate))."</td>";
+	echo "<td>";
+	if($num_res1<>'') { echo "$num_res1_cc $num_res1_ac $num_res1"; }
+	if(($num_res2<>'') && ($num_res1<>'')) { echo "<br>$num_res2_cc $num_res2_ac $num_res2"; }
+	else if(($num_res2<>'') && ($num_res1=='')) { echo "$num_res2_cc $num_res2_ac $num_res2"; }
+	echo "</td><td>";
+	if($num_mobile1<>'') { echo "$num_mobile1_cc $num_mobile1_ac $num_mobile1"; }
+	if(($num_mobile2<>'') && ($num_mobile1<>'')) { echo "<br>$num_mobile2_cc $num_mobile2_ac $num_mobile2"; }
+	else if(($num_mobile2<>'') && ($num_mobile1=='')) { echo "$num_mobile2_cc $num_mobile2_ac $num_mobile2"; }
+	echo "</td>";
+	echo "<td>";
+	if($email1<>'') { echo "<a href=mailto:$email1>$email1</a>"; }
+	if(($email2<>'') && ($email1<>'')) { echo "<br><a href=mailto:$email2>$email2</a>"; }
+	else if(($email2<>'') && ($email1=='')) { echo "<a href=mailto:$email2>$email2</a>"; }
+	echo "</td>";
+	echo "<td>$empposition</td><td>$emppositionlevel</td><td>$empsalarygrade</td><td>$date_hired</td>";
+	echo "<td>";
+	if($term_resign <> '0000-00-00') { echo "$term_resign"; }
+	echo "</td><td>$emp_status</td>";
+// display latest proj assign details
+      if ($found2 == 1)
+      {
+	if($accesslevel>=5) {
+	echo "<td>$ref_no</td><td>$proj_name</td><td>$position</td>";
+	echo "<td>$salary</td><td>$salarycurrency $salarytype</td><td>$allow_inc</td><td>$allow_inc_currency $allow_inc_paytype</td><td>$allow_proj</td><td>$allow_proj_currency $allow_proj_paytype</td><td>$ecola1</td><td>$ecola1_currency</td><td>$ecola2</td><td>$ecola2_currency</td><td>$allow_field</td><td>$allow_field_currency $allow_field_paytype</td><td>$allow_accomm</td><td>$allow_accomm_currency $allow_accomm_paytype</td><td>$allow_transpo</td><td>$allow_transpo_currency $allow_transpo_paytype</td><td>$perdiem</td><td>$perdiem_currency</td>";
+	echo "<td>$durationfrom</td><td>$durationto</td>";
+	} else {
+	echo "<td>$ref_no</td><td>$proj_name</td><td>$position</td>";
+	echo "<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+	echo "<td>$durationfrom</td><td>$durationto</td>";
+	} // if($accesslevel>=5)
+      }
+      else
+      {
+	echo "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
+      }
+	echo "<td><a href = personnelmoreinfo.php?pid=$pid&loginid=$loginid target=_blank>More</a></td></tr>";
+
+     }
+
+     echo "</table>"; 
+   
+     echo "<p><a href=persrptmnu.php?loginid=$loginid>Back to HR Reports Menu</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

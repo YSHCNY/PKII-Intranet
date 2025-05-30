@@ -1,0 +1,50 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2013-07-01 -to- 2013-07-15
+
+Employee ID: 046
+Employee Name: Ma. Corazon Julian
+Project: LIAISON
+
+PAY RATE: P11000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P11000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Incentive Allowance: 1250.00
+TOTAL Taxable Income: 1250.00
+
+Non-Taxable Income:
+Refund of SSS Loan: 525.00
+Transporation Allowance: 5000.00
+TOTAL Non-Taxable Income: 5525.00
+
+GROSS PAY: P17775.00
+
+Withholding Tax: 1239.50
+SSS: 500
+Philhealth: 275.00
+Pag-ibig: 50
+
+Other Deductions:
+Short on Liquidation: 500.00
+Pag-Ibig Loan: 286.83
+TOTAL Other Deductions: 786.83
+
+TOTAL DEDUCTIONS: P2851.33
+
+NET PAY: P14923.67
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

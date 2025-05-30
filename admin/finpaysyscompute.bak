@@ -1,0 +1,167 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$idpaygroup = (isset($_POST['idpaygroup'])) ? $_POST['idpaygroup'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Payroll System >> Compute</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"2\">";
+	echo "<table class=\"fin\" border=\"0\">";
+	echo "<tr><th colspan=\"5\">Process payroll</th></tr>";
+
+	echo "<form method=\"post\" action=\"finpaysyscompute.php?loginid=$loginid\" name=\"finpaysyscompute\">";
+
+		// pay group name dropdown
+    echo "<td><select name=\"idpaygroup\" onchange=\"this.form.submit()\">";
+		echo "<option value=''>select paygroup</option>";
+		$res11query = "SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY timestamp DESC";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11['idtblhrtapaygrp'];
+			$paygroupname11 = $myrow11['paygroupname'];
+			if($idtblhrtapaygrp11 == $idpaygroup) { $idpaygrpsel="selected"; } else { $idpaygrpsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idpaygrpsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select>";
+		echo "</td>";
+
+		if($idpaygroup!='') {
+		// query cutoff dropdown (based on pay group), still not processed
+		echo "<td><select name=\"idcutoff\" onchange=\"this.form.submit()\">";
+		echo "<option value=''>cut-off period</option>";
+		$res12query="";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12=$dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12=$result12->fetch_assoc()) {
+			$found12=1;
+			$ctr12=$ctr12+1;
+			} // while
+		} // if
+		echo "</select></td>";
+		} // if
+
+		// submit button
+		echo "<td>";
+		echo "<input type=\"submit\" value=\"Go\">";
+    echo "</td>";
+
+		echo "</form>";
+
+	if($idpaygroup!="") {
+	/*
+	echo "<form method=\"post\" action=\"finpaysyscomp2.php?loginid=$loginid\" name=\"finpaysyscomp2\">";
+
+	echo "<tr><th>Define cut-off</th>";
+
+	if($monthnow=="1") {
+		$cutmonth01sel="selected"; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="2") {
+		$cutmonth01sel=""; $cutmonth02sel="selected"; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="3") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel="selected"; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="4") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel="selected"; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="5") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel="selected"; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="6") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel="selected"; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="7") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel="selected"; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="8") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel="selected"; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="9") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel="selected"; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="10") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel="selected"; $cutmonth11sel=""; $cutmonth12sel="";
+	} else if($monthnow=="11") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel="selected"; $cutmonth12sel="";
+	} else if($monthnow=="12") {
+		$cutmonth01sel=""; $cutmonth02sel=""; $cutmonth03sel=""; $cutmonth04sel=""; $cutmonth05sel=""; $cutmonth06sel=""; $cutmonth07sel=""; $cutmonth08sel=""; $cutmonth09sel=""; $cutmonth10sel=""; $cutmonth11sel=""; $cutmonth12sel="selected";
+	}
+	echo "<td><select name=\"cutmonth\">";
+	echo "<option value=\"01\" $cutmonth01sel>January</option>";
+	echo "<option value=\"02\" $cutmonth02sel>February</option>";
+	echo "<option value=\"03\" $cutmonth03sel>March</option>";
+	echo "<option value=\"04\" $cutmonth04sel>April</option>";
+	echo "<option value=\"05\" $cutmonth05sel>May</option>";
+	echo "<option value=\"06\" $cutmonth06sel>June</option>";
+	echo "<option value=\"07\" $cutmonth07sel>July</option>";
+	echo "<option value=\"08\" $cutmonth08sel>August</option>";
+	echo "<option value=\"09\" $cutmonth09sel>September</option>";
+	echo "<option value=\"10\" $cutmonth10sel>October</option>";
+	echo "<option value=\"11\" $cutmonth11sel>November</option>";
+	echo "<option value=\"12\" $cutmonth12sel>December</option>";
+	echo "</select></td>";
+
+	echo "<td><select name=\"cutday\">";
+	echo "<option value=\"15\">1st half (1-15)</option>";
+	echo "<option value=\"30\">2nd half (16-31)</option>";
+	echo "<select></td>";
+
+	echo "<td><input name=\"cutyear\" value=\"$yearnow\"></td>";
+
+	echo "<td><input type=\"submit\" value=\"Proceed\"></td></tr>";
+	echo "</form>";
+	*/
+
+	echo "<tr><th colspan=\"5\">Processed cut-off periods</th></tr>";
+	// query processed cutoff periods from selected pay group
+	$res14query="SELECT FROM";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14=$dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
+		$found14=1;
+		$ctr14=$ctr14+1;
+		
+		} // while
+	} // if
+	echo "<tr>";
+	echo "</tr>";
+
+	} // if($idpaygroup!="")
+
+	echo "</table>";
+  echo "</td></tr>";
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"finpaysys.php?loginid=$loginid\">Back</a></p>";
+
+		$resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

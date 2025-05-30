@@ -1,0 +1,799 @@
+<?php 
+//test
+session_start();
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$idpaygroup0 = (isset($_GET['idpg'])) ? $_GET['idpg'] :'';
+$idcutoff0 = (isset($_GET['idct'])) ? $_GET['idct'] :'';
+$employeeid0 = (isset($_GET['eid'])) ? $_GET['eid'] :'';
+
+$idpaygroup = (isset($_POST['idpaygroup'])) ? $_POST['idpaygroup'] :'';
+$idcutoff =  (isset($_POST['idcutoff'])) ? $_POST['idcutoff'] :'';
+$employeeid = (isset($_POST['empid'])) ? $_POST['empid'] :'';
+
+if($idpaygroup0 != "") { $idpaygroup=$idpaygroup0; }
+if($idcutoff0 != "") { $idcutoff=$idcutoff0; }
+if($employeeid0 != "") { $employeeid=$employeeid0; }
+
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+// echo "<p>vartest idpg:$idpaygroup, empid:$employeeid</p>";
+
+if ($found == 1) {
+?>
+<script type="text/javascript" language="JavaScript">
+function toggle(source) {
+  checkboxesnf = document.getElementsByName('nofindings[]');
+  for(var i=0, n=checkboxesnf.length; i<n; i++) {
+    checkboxesnf[i].checked = source.checked;
+  } // for
+} // function
+</script>
+<?php
+     include ("header.php");
+     include ("sidebar.php");
+
+	if (isset($_SESSION['success_message'])) {
+	?>
+		<div id="successMessage" class="position-absolute" style="top: 100px; left: 50%; transform: translate(-50%, -50%);">
+			<div class="bg-white d-flex align-items-center rounded-4 shadow px-4 gap-4" style="width: 500px; height: 70px; border: 3.5px solid #00c04b;">
+				<span style="color: #00c04b; font-size: 35px;"><i class="bi bi-check-circle"></i></span>
+				<span>
+					<h4 class="poppins m-0" style="color: #00c04b;">Edited Successfully</h4>
+					<h6 class="poppins m-0 text-muted">Records has been updated successfully.</h6>
+				</span>
+			</div>
+		</div>
+	<?php
+		unset($_SESSION['success_message']);
+	}
+	?>
+		<script>
+		setTimeout(function() {
+			var successMessage = document.getElementById('successMessage');
+			if (successMessage) {
+				successMessage.remove();
+			}
+		}, 3000);
+		</script>
+	<?php
+// edit body-header
+    //  echo "<p><font size=1>Modules >> Time and Attendance >> Leave entry</font></p>";
+
+   
+
+// start contents here...
+
+
+
+  if($accesslevel >= 3) {
+
+		echo "<form action=\"hrtimeattcutleave.php?loginid=$loginid\" method=\"post\" name=\"hrtimeattcutleave\">";
+?>
+
+<div class="text-end mb-4">
+<a href="<?php echo 'hrtimeatt.php?loginid=' . $loginid ?>" class="text-white  text-decoration-none mainbtnclr btn">
+		Back
+	</a>
+	</div>
+<?php
+		echo "<div class = 'shadow p-3'>";
+		?>
+			<div class = 'px-5 py-2'>
+				<h3 class = 'mb-0 pb-0 fw-bold'>Leave Entries</h3>
+				<p class = 'text-secondary'>Manage leave entries of personnel per paygroup</p>
+			</div>
+		<?php
+		// pay group name dropdown
+		echo"<div class = 'row  p-4'>";
+    echo "<div class='col px-5'> <p class = 'px-2 text-secondary'>Paygroup: </p> <select class='form-control' name=\"idpaygroup\" onchange=\"this.form.submit()\">";
+		if($idpaygroup == "") {
+		echo "<option value=''>Select Paygroup</option>";
+		}
+		$res11query = "SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY timestamp DESC";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$idtblhrtapaygrp11 = $myrow11['idtblhrtapaygrp'];
+			$paygroupname11 = $myrow11['paygroupname'];
+			if($idtblhrtapaygrp11 == $idpaygroup) { $idpaygrpsel="selected"; } else { $idpaygrpsel=""; }
+			echo "<option value=\"$idtblhrtapaygrp11\" $idpaygrpsel>$paygroupname11</option>";
+			}
+		}
+		echo "</select></div>";
+
+		// cut-off period dropdown
+		// echo "<div class='col px-5'><p class = 'px-2 text-secondary'>Cutoff Period: </p><select class='form-control' name=\"idcutoff\" onchange=\"this.form.submit()\">";
+		// if($idcutoff == "") {
+		// echo "<option value=''>select cutoff</option>";
+		// }
+		// $res15query = "SELECT idhrtacutoff, cutstart, cutend, paygroupname, remarks FROM tblhrtacutoff WHERE idhrtapaygrp=$idpaygroup ORDER BY cutstart DESC";
+		// $result15=""; $found15=0; $ctr15=0;
+		// $result15 = $dbh2->query($res15query);
+		// if($result15->num_rows>0) {
+		// 	while($myrow15 = $result15->fetch_assoc()) {
+		// 	$found15 = 1;
+		// 	$idhrtacutoff15 = $myrow15['idhrtacutoff'];
+		// 	$cutstart15 = $myrow15['cutstart'];
+		// 	$cutend15 = $myrow15['cutend'];
+		// 	$paygroupname15 = $myrow15['paygroupname'];
+		// 	$remarks15 = $myrow15['remarks'];
+		// 	$ctr15 = $ctr15 + 1;
+		// 	if($idhrtacutoff15 == $idcutoff) { $idcutoffsel="selected"; } else { $idcutoffsel=""; }
+		// 	echo "<option value=\"$idhrtacutoff15\" $idcutoffsel>$cutstart15-to-$cutend15</option>";
+		// 	}
+		// }
+		// echo "</select></div>";
+
+		// individual personnel dropdown && $idcutoff != "" tblhrtaemptimelog.idcutoff=$idcutoff
+		if($idpaygroup != ""  ) {
+		echo "<div class='col px-5'> <p class = 'px-2 text-secondary'>Personnel: </p> ";
+		echo "<select class='form-control' name=\"empid\" onchange=\"this.form.submit()\">";
+		echo "<option value=''>select personnel</option>";
+		// $res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblhrtaemptimelog.employeeid ASC";
+		$res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblcontact.name_last ASC, tblcontact.name_first ASC";
+		$result12=""; $found12=0;
+		$result12 = $dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12 = $result12->fetch_assoc()) {
+			$found12 = 1;
+			$employeeid12 = $myrow12['employeeid'];
+			$name_last12 = $myrow12['name_last'];
+			$name_first12 = $myrow12['name_first'];
+			$name_middle12 = $myrow12['name_middle'];
+			if($employeeid12 == $employeeid) { $empidsel="selected"; } else { $empidsel=""; }
+			echo "<option value=\"$employeeid12\" $empidsel>$employeeid12 - $name_last12, $name_first12 $name_middle12[0]</option>";
+			}
+		}
+		echo "</select>";
+		echo "</div></div>";
+		
+		} // if($idpaygroup != "" && $idcutoff != "")
+
+		// submit button
+	// 	echo "<td class='align-middle'>";
+	// 	echo "<button type=\"submit\" class=\"btn btn-success poppins\">Submit</button>";
+    // echo "</td>";
+
+		echo "</form>";
+// FILTER AND TITLE LEVEL ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  } // endif accesslevel >= 4
+
+
+	// display add button and leave entries tblhrtaemptimelog.idcutoff=$idcutoff AND
+	if($employeeid!='') {
+		
+		// displaay employee name and date hired
+		$res14query="SELECT * FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid LEFT JOIN tblemployee ON tblemployee.employeeid=tblcontact.employeeid LEFT JOIN tblhrtaempleavesumm ON tblhrtaemptimelog.idpaygroup=tblhrtaempleavesumm.idhrtaempleavesumm LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.idpaygroup=tblhrtapaygrpemplst.idtblhrtapaygrp WHERE tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" AND tblcontact.employeeid=\"$employeeid\" LIMIT 1";
+		$result14=""; $found14=0; $ctr14=0;
+		$result14=$dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14=$result14->fetch_assoc()) {
+			$found14=1;
+			$name_last14 = $myrow14['name_last'];
+			$name_first14 = $myrow14['name_first'];
+			$name_middle14 = $myrow14['name_middle'];
+			$contact_gender14 = $myrow14['contact_gender'];
+			$date_hired14 = $myrow14['date_hired'];
+			$restday14 = $myrow14['restday'];
+			$vl = $myrow14['vacationLeave'];
+			$sl = $myrow14['sickLeave'];
+			$pl = $myrow14['paternityLeave'];
+			$mc = $myrow14['maternityLeaveC'];
+			$mn = $myrow14['maternityLeaveN'];
+			$spl = $myrow14['specialLeave'];
+			$asl = $myrow14['additionalSpecialLeave'];
+			} // while
+		} // if
+
+	// query VL balance
+	// query tblhrtaempleavesumm for bal
+	// $where17="tblhrtaempleavesumm.employeeid=\"$employeeid\" AND tblhrtaempleavesumm.idpaygroup=$idpaygroup AND (tblhrtaleavectg.idhrtaleavectg=2 AND tblhrtaleavectg.code=\"vacation\")";
+	// $orderby17="tblhrtaempleavesumm.datestart DESC";
+	// include './hrtimeattqrylvsumm.php';
+	// if($found17==1) {
+	// $vlbal17=$bal17;
+	// // echo "<input name=\"vlbal\" size=\"3\" value=\"$vlbal17\">";
+	// } else {
+	// // query tblhrtaleavectg for quota
+	// $where18="tblhrtaleavectg.idhrtaleavectg=2 AND tblhrtaleavectg.code=\"vacation\"";
+	// include './hrtimeattqrylvctg.php';
+	// // echo "<input name=\"vlbal\" size=\"3\" value=\"$quota18\">";
+	// $vlbal17=$quota18;
+	// } // if
+	// $vldur=0; $vlbalfin=0;
+	// // query tblhrtaempleavechglog, deduct duration
+	// $res17aquery="SELECT tblhrtaempleavechglog.leaveduration FROM tblhrtaempleavechglog WHERE tblhrtaempleavechglog.employeeid=\"$employeeid\" AND tblhrtaempleavechglog.idhrtaleavectg=2";
+	// $result17a=""; $found17a=0; $ctr17a=0;
+	// $result17a=$dbh2->query($res17aquery);
+	// if($result17a->num_rows>0) {
+	// 	while($myrow17a=$result17a->fetch_assoc()) {
+	// 	$found17a=1;
+	// 	$leaveduration17a=$myrow17a['leaveduration'];
+	// 	$vldur=$vldur+$leaveduration17a;
+	// 	} // while
+	// } // if
+	// $vlbalfin=$vlbal17-$vldur;
+
+
+
+
+
+	// query SL balance
+	// query tblhrtaempleavesumm for bal
+	// $where17="tblhrtaempleavesumm.employeeid=\"$employeeid\" AND tblhrtaempleavesumm.idpaygroup=$idpaygroup AND (tblhrtaleavectg.idhrtaleavectg=1 AND tblhrtaleavectg.code=\"sick\")";
+	// $orderby17="tblhrtaempleavesumm.datestart DESC";
+	// include './hrtimeattqrylvsumm.php';
+	// if($found17==1) {
+	// $slbal17=$bal17;
+	// // echo "<input name=\"slbal\" size=\"3\" value=\"$slbal17\">";
+	// } else {
+	// // query tblhrtaleavectg for quota
+	// $where18="tblhrtaleavectg.idhrtaleavectg=1 AND tblhrtaleavectg.code=\"sick\"";
+	// include './hrtimeattqrylvctg.php';
+	// // echo "<input name=\"slbal\" size=\"3\" value=\"$quota18\">";
+	// $slbal17=$quota18;
+	// } // if
+	// $sldur=0; $slbalfin=0;
+	// // query tblhrtaempleavechglog, deduct duration
+	// $res17bquery="SELECT tblhrtaempleavechglog.leaveduration FROM tblhrtaempleavechglog WHERE tblhrtaempleavechglog.employeeid=\"$employeeid\" AND tblhrtaempleavechglog.idhrtaleavectg=1";
+	// $result17b=""; $found17b=0; $ctr17b=0;
+	// $result17b=$dbh2->query($res17bquery);
+	// if($result17b->num_rows>0) {
+	// 	while($myrow17b=$result17b->fetch_assoc()) {
+	// 	$found17b=1;
+	// 	$leaveduration17b=$myrow17b['leaveduration'];
+	// 	$sldur=$sldur+$leaveduration17b;
+	// 	} // while
+	// } // if
+	// $slbalfin=$slbal17-$sldur;
+
+
+
+// paternity hehe /////////////////////////////////////
+
+	// $where17="tblhrtaempleavesumm.employeeid=\"$employeeid\" AND tblhrtaempleavesumm.idpaygroup=$idpaygroup AND (tblhrtaleavectg.idhrtaleavectg=3 AND tblhrtaleavectg.code=\"paternity\")";
+	// $orderby17="tblhrtaempleavesumm.datestart DESC";
+	// include './hrtimeattqrylvsumm.php';
+	// if($found17==1) {
+	// $patbal17=$bal17;
+	// // echo "<input name=\"slbal\" size=\"3\" value=\"$slbal17\">";
+	// } else {
+	// // query tblhrtaleavectg for quota
+	// $where18="tblhrtaleavectg.idhrtaleavectg=1 AND tblhrtaleavectg.code=\"paternity\"";
+	// include './hrtimeattqrylvctg.php';
+	// // echo "<input name=\"slbal\" size=\"3\" value=\"$quota18\">";
+	// $patbal17=$quota18;
+	// } // if
+	// $patdur=0; $patbalfin=0;
+	// // query tblhrtaempleavechglog, deduct duration
+	// $res17bquery="SELECT tblhrtaempleavechglog.leaveduration FROM tblhrtaempleavechglog WHERE tblhrtaempleavechglog.employeeid=\"$employeeid\" AND tblhrtaempleavechglog.idhrtaleavectg=3";
+	// $result17b=""; $found17b=0; $ctr17b=0;
+	// $result17b=$dbh2->query($res17bquery);
+	// if($result17b->num_rows>0) {
+	// 	while($myrow17b=$result17b->fetch_assoc()) {
+	// 	$found17b=1;
+	// 	$leaveduration17b=$myrow17b['leaveduration'];
+	// 	$patdur=$patdur+$leaveduration17b;
+	// 	} // while
+	// } // if
+	// $patbalfin=$patbal17-$patdur;
+
+
+
+
+	// maternity (N) heheh //////////////////
+
+	
+// 	$where17="tblhrtaempleavesumm.employeeid=\"$employeeid\" AND tblhrtaempleavesumm.idpaygroup=$idpaygroup AND (tblhrtaleavectg.idhrtaleavectg=4 AND tblhrtaleavectg.code=\"maternityn\")";
+// 	$orderby17="tblhrtaempleavesumm.datestart DESC";
+// 	include './hrtimeattqrylvsumm.php';
+// 	if($found17==1) {
+// 	$matnbal17=$bal17;
+// 	// echo "<input name=\"slbal\" size=\"3\" value=\"$slbal17\">";
+// 	} else {
+// 	// query tblhrtaleavectg for quota
+// 	$where18="tblhrtaleavectg.idhrtaleavectg=1 AND tblhrtaleavectg.code=\"maternityn\"";
+// 	include './hrtimeattqrylvctg.php';
+// 	// echo "<input name=\"slbal\" size=\"3\" value=\"$quota18\">";
+// 	$matnbal17=$quota18;
+// 	} // if
+// 	$matndur=0; $matnbalfin=0;
+// 	// query tblhrtaempleavechglog, deduct duration
+// 	$res17bquery="SELECT tblhrtaempleavechglog.leaveduration FROM tblhrtaempleavechglog WHERE tblhrtaempleavechglog.employeeid=\"$employeeid\" AND tblhrtaempleavechglog.idhrtaleavectg=4";
+// 	$result17b=""; $found17b=0; $ctr17b=0;
+// 	$result17b=$dbh2->query($res17bquery);
+// 	if($result17b->num_rows>0) {
+// 		while($myrow17b=$result17b->fetch_assoc()) {
+// 		$found17b=1;
+// 		$leaveduration17b=$myrow17b['leaveduration'];
+// 		$matndur=$matndur+$leaveduration17b;
+// 		} // while
+// 	} // if
+// 	$matnbalfin=$matnbal17-$matndur;
+
+
+
+
+
+
+// // maternity (C) ehhe //////////////////////////////////////
+// 	$where17="tblhrtaempleavesumm.employeeid=\"$employeeid\" AND tblhrtaempleavesumm.idpaygroup=$idpaygroup AND (tblhrtaleavectg.idhrtaleavectg=5 AND tblhrtaleavectg.code=\"maternityc\")";
+// 	$orderby17="tblhrtaempleavesumm.datestart DESC";
+// 	include './hrtimeattqrylvsumm.php';
+// 	if($found17==1) {
+// 	$matcbal17=$bal17;
+// 	// echo "<input name=\"slbal\" size=\"3\" value=\"$slbal17\">";
+// 	} else {
+// 	// query tblhrtaleavectg for quota
+// 	$where18="tblhrtaleavectg.idhrtaleavectg=1 AND tblhrtaleavectg.code=\"maternityc\"";
+// 	include './hrtimeattqrylvctg.php';
+// 	// echo "<input name=\"slbal\" size=\"3\" value=\"$quota18\">";
+// 	$matcbal17=$quota18;
+// 	} // if
+// 	$matcdur=0; $matcbalfin=0;
+// 	// query tblhrtaempleavechglog, deduct duration
+// 	$res17bquery="SELECT tblhrtaempleavechglog.leaveduration FROM tblhrtaempleavechglog WHERE tblhrtaempleavechglog.employeeid=\"$employeeid\" AND tblhrtaempleavechglog.idhrtaleavectg=5";
+// 	$result17b=""; $found17b=0; $ctr17b=0;
+// 	$result17b=$dbh2->query($res17bquery);
+// 	if($result17b->num_rows>0) {
+// 		while($myrow17b=$result17b->fetch_assoc()) {
+// 		$found17b=1;
+// 		$leaveduration17b=$myrow17b['leaveduration'];
+// 		$matcdur=$matcdur+$leaveduration17b;
+// 		} // while
+// 	} // if
+// 	$matcbalfin=$matcbal17-$matcdur;
+// 	?>
+
+
+
+		
+	
+		<div class="row border p-4 mx-5 mb-3">
+			
+			<div class="col">
+			<div class="px-5">
+
+			<div class="text-left">
+				<h5 class=""><span class="fw-semibold">Personnel:</span> <?php echo "$name_last14, $name_first14 $name_middle14[0].($employeeid)"; ?></h5>
+				
+				<h5><span class="fw-semibold">Anniversary Date:</span>
+				<?php echo  date("M d, Y (D)", strtotime($date_hired14)); ?></h5>
+				</div>
+				</div>
+			</div>
+
+
+			<div class="col">
+			<div class="px-5">
+					<div class=" text-left">
+						<h5  class=''><span class = 'fw-semibold'>Vacation Leave Remaining:</span> <span class="text-danger"><?php if ($vl <= 0) { ?> <?php echo 'No Credits'; ?> <?php } else { ?><?php echo $vl; ?><?php } ?></span> </h5>
+
+						<h5  class=''><span class = 'fw-semibold'>Sick Leave Remaining:</span>  <span class="text-danger"><?php if ($sl <= 0) { ?> <?php echo 'No Credits'; ?> <?php } else { ?><?php echo $sl; ?><?php } ?></span></h5>
+
+
+						<?php if($contact_gender14=='Male') { ?>
+						<h5  class=''><span class = 'fw-semibold'>Paternity Leave Remaining:</span> <span class="text-danger"><?php if ($pl <= 0) { ?> <?php echo 'No Credits'; ?> <?php } else { ?><?php echo $pl; ?><?php } ?></span> </h5> <?php }?>
+
+
+						<?php if($contact_gender14=='Female') { ?>
+							<h5  class=''><span class = 'fw-semibold'>Maternity (N) Leave Remaining:</span> <span class="text-danger"><?php if ($mn <= 0) { ?> <?php echo 'No Credits'; ?> <?php } else { ?><?php echo $mn; ?><?php } ?></span> </h5> 
+							
+							<h5  class=''><span class = 'fw-semibold'>Maternity (C) Leave Remaining:</span> <span class="text-danger"><?php if ($mc <= 0) { ?> <?php echo 'No Credits'; ?> <?php } else { ?><?php echo $mc; ?><?php } ?></span> </h5> 
+							
+							<?php }?>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+		
+
+			<script>
+				
+
+		var slbalfin = <?php echo $sl; ?>;
+		var vlbalfin = <?php echo $vl; ?>;
+
+			
+			</script>
+		
+			</div>
+	<?php
+		// display add leave form if no payroll processed
+		$res15query="SELECT idemppaycutoff FROM tblemppaycutoff WHERE idhrtapaygrp=$idpaygroup";
+		$result15=""; $found15=0; $ctr15=0;
+		$result15=$dbh2->query($res15query);
+		if($result15->num_rows>0) {
+			while($myrow15=$result15->fetch_assoc()) {
+			$found15=1;
+			$idemppaycutoff15=$myrow15['idemppaycutoff'];
+			} // while
+		} // if
+		echo "<tr class='align-middle'><td class='align-middle'>";
+		if($found15!=1 && $idemppaycutoff15=='') {
+		echo "<form action=\"hrtimeattcutleaveadd.php?loginid=$loginid&leave=leavedate\" method=\"POST\" name=\"hrtimeattcutleaveadd\">";
+		echo "<input type=\"hidden\" name=\"idpaygroup\" value=\"$idpaygroup\">";
+		// echo "<input type=\"hidden\" name=\"idcutoff\" value=\"$idcutoff\">";
+		echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
+		// echo "<table class='table table-hover shadow poppins'>";
+		//
+		// generate leave date
+		include './hrtimeattqryrestday.php';
+		// query again custart to cutend based on idcutoff
+		// include './hrtimeattqrycutoff.php';
+	?>
+
+		<div class="shadow 	border p-4">
+		<p  class='text-center   fs-2 fw-semibold'><span class="">New Leave Form</span></p>
+
+		
+		<h5 class="fw-medium mx-5"><span class="text-secondary">Leave date</span></h5>
+		
+		<div class="row mx-5">
+			<div class="col mx-2">
+				<div class="row">
+					<div class="col-2 text-end"><h5>Start</h5></div>
+					<div class="col"><input name="leavedate" class = 'form-control' id = "leavedate" type = "date" onchange="countWeekdays()"></input> </div>
+				</div>
+			
+			</div>
+
+			<div class="col mx-2">
+				<div class="row">
+				<div class="col-2 text-end"><h5>End</h5></div>
+				<div class="col">
+				<input name="endleave" class = 'form-control' id = "endleave" type = "date" onchange="countWeekdays()"></input>
+				</div>
+				</div>
+			</div>
+		</div>
+
+
+		
+
+
+		<?php
+		// while(strtotime($cutstart18) <= strtotime($cutend18)) {
+		// 	$cutstartfin=$cutstart18;
+		// 	include './hrtimeattqryholiday.php';
+		// 	$dateday=date("D", strtotime($cutstartfin));
+		// 	// display cutoff dates w/o rest day
+		// 	if($found21==1) {
+		// 	} else if($dateday==$restdaysunfin || $dateday==$restdaymonfin || $dateday==$restdaytuefin || $dateday==$restdaywedfin || $dateday==$restdaythufin || $dateday==$restdayfrifin || $dateday==$restdaysatfin) {
+		// 	} else {
+		// 		?>
+			<!-- <option value="<?php // echo $cutstart18; ?>"><?php ///echo date("Y-M-d D", strtotime($cutstart18)); ?></option> -->
+		
+	<?php
+		// 	}
+		// 	// increment date
+		// 	$cutstart18 = date("Y-m-d", strtotime("+1 day", strtotime($cutstart18)));
+		// } // while
+		?>
+		
+	
+	
+	
+	
+		<!-- leave type -->
+		 <div class = 'mt-5'>
+		<h5 class="fw-medium mx-5"><span class="text-secondary">Leave Type</span></h5>
+		<div class = 'mx-5'>
+		<select id = 'selectctg' name="idleavectg" class='form-control'>
+			<option value="" selected disabled>Leave Type</option>
+		<?php
+	$res16query="SELECT idhrtaleavectg, code, name FROM tblhrtaleavectg";
+		$result16=""; $found16=0; $ctr16=0;
+		$result16=$dbh2->query($res16query);
+		if($result16->num_rows>0) {
+			while($myrow16=$result16->fetch_assoc()) {
+				$found16=1;
+				$idhrtaleavectg16 = $myrow16['idhrtaleavectg'];
+				$code16 = $myrow16['code'];
+				$name16 = $myrow16['name'];
+				if($contact_gender14=='Male') {
+					if($code16=='paternity') { ?><option value="<?php echo $idhrtaleavectg16; ?>"><?php echo $name16; ?></option><?php }
+				} else if($contact_gender14=='Female') {
+					if($code16=='maternityn' || $code16=='maternityc') { ?><option value="<?php echo $idhrtaleavectg16; ?>"><?php echo $name16; ?></option><?php }
+				}
+				if($code16!='paternity' && $code16!='maternityn' && $code16!='maternityc' && $code16!='sd' && $code16!='ob') { ?><option value="<?php echo $idhrtaleavectg16; ?>"><?php echo $name16; ?></option><?php }
+			}
+		}
+		?>
+		</select>
+		</div>
+		</div>
+
+
+		<!-- <option value="1">Sick Leave</option>
+			<option value="2">Vacation Leave</option>
+			
+
+			<?php if($contact_gender14 =='Male') { ?>
+				<option value="3">Paternity</option>
+			<?php } else if ($contact_gender14 =='Female'){ ?>
+				<option value="">Maternity Normal</option>
+				<option value="">Maternity Cesarian</option>
+			<?php } ?>
+
+			<option value="">Additional Leave</option>
+			<option value="">Special Leave</option> -->
+
+	
+		<!-- leave duration -->
+		 <div class="mt-5">
+		<h5 class="fw-medium mx-5"><span class="text-secondary">Leave Duration</span></h5>
+<div class="mx-5">
+		<input name="leavedur" width = '50%' id = "leavedur" class='form-control' placeholder = '0.00'></input>
+		</div>
+		</div>
+<?php
+	
+		// $res16query="SELECT idhrtaleavectg, code, name FROM tblhrtaleavectg";
+		// $result16=""; $found16=0; $ctr16=0;
+		// $result16=$dbh2->query($res16query);
+		// if($result16->num_rows>0) {
+		// 	while($myrow16=$result16->fetch_assoc()) {
+		// 		$found16=1;
+		// 		$idhrtaleavectg16 = $myrow16['idhrtaleavectg'];
+		// 		$code16 = $myrow16['code'];
+		// 		$name16 = $myrow16['name'];
+		// 		if($contact_gender14=='Male') {
+		// 			if($code16=='paternity') { ?><option value="<?php echo $idhrtaleavectg16; ?>"><?php echo $name16; ?></option><?php }
+		// 		} else if($contact_gender14=='Female') {
+					// if($code16=='maternityn' || $code16=='maternityc') { ?><option value="<?php echo $idhrtaleavectg16; ?>"><?php echo $name16; ?></option><?php }
+		// 		}
+				// if($code16!='paternity' && $code16!='maternityn' && $code16!='maternityc' && $code16!='sd' && $code16!='ob') { ?><option value="<?php //echo $idhrtaleavectg16; ?>"><?php //echo $name16; ?></option><?php }
+		// 	}
+		// }
+
+?>
+		<!-- reason/remarks (optional) -->
+		 <div class="mt-5">
+		<h5 class="fw-medium mx-5"><span class="text-secondary">Remarks <i>(optional)</i></span></h5>
+		
+		<div class="mx-5">
+		<textarea rows="3" cols="40" name="reason" placeholder="Remarks here..." class='form-control'></textarea>
+		</div>
+		</div>
+
+
+		<!-- display note/s -->
+		<h6 class = 'flickerleave text-danger text-center px-5 '><i>Note:</i> Please make sure leave is approved before clicking Add leave button, <b><u>Holidays not included in counting.</u></b></span></h6>
+
+
+
+		
+		<!-- add leave button -->
+		 <div class="text-end mt-5 mx-5">
+	<button type="submit" id = 'myButton' class="btn bg-success text-white ">Add leave</button>
+	</div>
+	
+	</form>
+	<?php
+	
+		echo "";
+		} // if
+		
+
+		//
+		// list leave entries
+		echo "<td>";
+	?>
+</div>
+
+	<div class = 'px-5 py-4 mt-5 shadow'>
+
+	<div class = 'mb-5'>
+		<h4 class = ''>Approved Leaves</h4>
+	</div>
+	<div class="table-responsive">
+		<table class='table p-5' width = '100%' id = 'LEAVETBL'>
+
+		<thead>
+		<tr class="">
+			<th class=" fw-medium">Leave Date</th>
+			<th class=" fw-medium">Leave Type</th>
+			<th class=" fw-medium">Duration</th>
+			<th class=" fw-medium">Reason</th>
+			<th class=" fw-medium" >Action</th>
+		
+
+		</tr>
+		</thead>
+		<tbody>
+	<?php
+	
+		// $employeeid = isset($_POST['empid']) ? $_POST['empid'] : '';
+		$res17query = "SELECT *
+                	   FROM tblhrtalvreq
+                	   INNER JOIN tblhrtaleavectg ON tblhrtalvreq.idhrtaleavectg = tblhrtaleavectg.idhrtaleavectg WHERE statusta = 1 AND employeeid = $employeeid ORDER BY datecreated DESC";
+		$result17 = "";
+		$found17 = 0;
+		$ctr17 = 0;
+		$result17 = $dbh2->query($res17query);
+		if ($result17->num_rows > 0) {
+			while ($myrow17 = $result17->fetch_assoc()) {
+				$found17 = 1;
+				$idhrtaempleavechglog17 = $myrow17['idhrtaempleavechglog'];
+				$idhrtaleavectg = $myrow17['idhrtaleavectg'];
+				$idhrtalvreq = $myrow17['idhrtalvreq'];
+
+				$durationfrom = strtotime($myrow17['durationfrom']);
+				$durationto = strtotime($myrow17['durationto']);
+				$froms = date("Y-m-d", strtotime($myrow17['durationfrom']));
+				$tos = date("Y-m-d", strtotime($myrow17['durationto']));
+				$total_days = ceil(abs($durationto - $durationfrom) / (60 * 60 * 24));
+
+
+				$from = $myrow17['durationfrom'];
+				$to = $myrow17['durationto'];
+				$difference_seconds = abs($durationto - $durationfrom);
+				$days = floor($difference_seconds / (60 * 60 * 24));
+        		$hours = floor(($difference_seconds - ($days * 60 * 60 * 24)) / (60 * 60));
+
+				// $leavedate = $myrow17['datecreated'];
+				$reason = $myrow17['reason'];
+				$logid = $myrow17['employeeid'];
+				$approve = $myrow17['approvectr'];
+				$leavetype = $myrow17['name'];
+	?>
+        <tr>
+	
+            <td class=" "><?php echo "$froms - $tos";//echo date("M d, Y (D)", strtotime($to)); ?> </td>
+            <td class=" "><?php echo $leavetype; ?></td>
+			<td class=" ">
+				<?php 
+				echo "$total_days Days";
+				// if ($days == 0 || $days == 1) {
+				// 	if ($hours == 0) {
+				// 		echo "$days day";
+				// 	} else {
+				// 		echo "$days day & $hours hour ";
+				// 	}
+				// } else {
+				// 	if ($hours == 0) {
+				// 		echo "$days days";
+				// 	} else {
+				// 		echo "$days days & $hours hours";
+				// 	}
+				// }
+				
+				?>
+			</td>
+            <td class=' '><?php echo $reason; ?></td>
+            <td class=''>
+				
+					<a href="hrtimeattcutleaveedt.php?loginid=<?php echo $loginid; ?>&idhrtalvreq=<?php echo urlencode($idhrtalvreq); ?>&idhrtaleavectg=<?php echo urlencode($idhrtaleavectg); ?>&leavetype=<?php echo urlencode($leavetype); ?>&leaveduration=<?php echo urlencode($days); ?>&leavedurationh=<?php echo urlencode($hours); ?>&reason=<?php echo urlencode($reason); ?>&durationfrom=<?php echo urlencode($from); ?>&durationto=<?php echo urlencode($to); ?>" class="btn text-white bg-success ">
+						Edit
+					</a> 
+					<!-- </td>
+					<td> -->
+					<a href="hrtimeattcutleavedlt.php?loginid=<?php echo $loginid; ?>&idhrtalvreq=<?php echo $idhrtalvreq; ?>&idhrtaleavectg=<?php echo $idhrtaleavectg; ?>" class="btn  text-white bg-danger">
+						Delete
+					</a>
+				
+					</td>
+  
+        </tr>
+		</tbody>
+	<?php	  
+			} // while
+		} // if
+		// echo "<tr><td colspan=5>list leave entries here<br>$res17query</td></tr>";
+		echo "</table>";
+	
+		
+		echo "</div>";
+	} // if($employeeid!='')
+
+// end contents here...
+
+     echo "</table></div>";
+
+// edit body-footer
+?>
+<!-- <div class="d-flex justify-content-end pt-5">
+	<a href="<?php echo 'hrtimeatt.php?loginid=' . $loginid ?>" class="text-white text-decoration-none poppins fw-medium fs-4">
+		<button class="border-0 rounded-3" style="width: 170px; height: 40px; background-color: #0a1d44;">Back</button>
+	</a>
+</div> -->
+<?php
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?>
+
+<script>
+	document.getElementById('selectctg').addEventListener('change', function() {
+    const selectedValue = this.value;
+    const button = document.getElementById('myButton');
+
+    // Remove existing classes
+
+
+    // Add new class based on selection
+    if (selectedValue === '1' && slbalfin <= 0) { //sick leave
+        button.disabled = true;
+    } else if (selectedValue === '2' && vlbalfin <= 0) { //vacation leave
+        button.disabled = true;
+    }else if (selectedValue === '3' && patbalfin <= 0) { //vacation leave
+        button.disabled = true;
+    } else if (selectedValue === '4' && matnbalfin <= 0) { //vacation leave
+        button.disabled = true;
+    } else if (selectedValue === '5' && matcbalfin <= 0) { //vacation leave
+        button.disabled = true;
+    } else {
+		button.disabled = false;
+	}
+
+	// if (selectedValue == '2' && vlbalfin == 0) { //vacation leave
+    //     button.disabled = 'true';
+    // } else {
+	// 	button.disabled = 'false';
+	// }
+
+	// console.log(selectedValue, slbalfin);
+
+		});
+
+
+
+
+
+        function countWeekdays() {
+            const startDate = new Date(document.getElementById('leavedate').value);
+            const endDate = new Date(document.getElementById('endleave').value);
+            let count = 0;
+
+            // Ensure startDate is before endDate
+            if (startDate > endDate || isNaN(startDate) || isNaN(endDate)) {
+                document.getElementById('leavedur').value = '';
+                return;
+            }
+
+            // Loop through the dates
+            for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                const day = d.getDay();
+                // Count only Monday to Friday (1-5)
+                if (day !== 0 && day !== 6) {
+                    count++;
+                }
+            }
+
+            // Display the count in the input field
+            document.getElementById('leavedur').value = count.toFixed(2);
+        }
+
+
+
+
+
+
+
+
+
+
+
+	
+    </script>

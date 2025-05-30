@@ -1,0 +1,39 @@
+<?php
+//
+// mhrpkcpdlnk02refmats.php
+// fr: vc/index.php, mhrpkcpd.php
+// indexlinks: $page==382
+
+require '../includes/config.inc';
+require '../includes/dbh.php';
+require 'addons.php';
+
+// get variables
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+?>
+  <div class="row">
+    <div class="col-md-12"><h2 style="color:#003479;">PKII-CPD</h2>
+    <!-- <br><p style="color:#003479;">Continuing Professional Development Program</p> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-2"><?php echo "<a href=\"./index.php?lst=1&lid=$loginid&sess=$session&p=381.php\"><img src=\"./images/Icon_blue_latest_announcements.png\" alt=\"Latest_announcement\" width=\"80\" height=\"80\"><br><p style=\"color:#003479;\">Latest Announcements</p></a>"; ?></div>
+
+    <div class="col-md-2"><img src="./images/Icon_gray_CPD_101.png" alt="Reference_materials" width="80" height="80"><br><p style="color:#727880;">CPD 101: Reference Materials</p><?php // echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=382.php\"></a>"; ?></div>
+
+    <div class="col-md-2"><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=383.php\"><img src=\"./images/Icon_blue_CPD_Program_Catalogue.png\" alt=\"Program_catalogue\" width=\"80\" height=\"80\"><br><p style=\"color:#003479;\">CPD Program Cataloque</p></a>"; ?></div>
+
+    <div class="col-md-2"><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=384.php\"><img src=\"./images/Icon_blue_apply_for_programs.png\" alt=\"Apply_cpd_programs\" width=\"80\" height=\"80\"><br><p style=\"color:#003479;\">Apply for CPD Programs</p>"; ?></div>
+
+    <div class="col-md-2"><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=385.php\"><img src=\"./images/Icon_blue_Contact_team.png\" alt=\"Contact_zen_team\" width=\"80\" height=\"80\"><br><p style=\"color:#003479;\">Contact PKIIzen Team</p>"; ?></div>
+
+    <div class="col-md-1"></div>
+  </div>
+

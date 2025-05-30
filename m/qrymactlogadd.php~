@@ -1,0 +1,16 @@
+<?php
+//
+// qrymactlogadd.php
+// fr: ./vc/mactivitylogadd.php
+
+// db conn string
+require '../includes/dbh.php';
+
+	// insert query
+	$res11query="INSERT INTO tblhractlog SET timestamp=\"$now\", loginid=$loginid, date=\"$actdate\", employeeid=\"$employeeid\", activity=\"$actdetails\"";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh->query($res11query);
+
+// close database
+$dbh->close();
+?>

@@ -1,0 +1,95 @@
+Please find below details of your payroll salary (payroll period April 16-30, 2011) is now available.
+
+cutoff period: 2011-04-01 -to- 2011-04-15
+
+Employee ID: 262
+Employee Name: Enerito Cunanan
+Project: AGNO 2
+
+PAY RATE: P3550.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P3550.00
+
+Regular Overtime: 830 (mins) - P591.38
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P591.38
+
+Taxable Income:
+TOTAL Taxable Income: 0.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 3750.00
+TOTAL Non-Taxable Income: 3750.00
+
+GROSS PAY: P7891.38
+
+Withholding Tax: 0.00
+SSS: 500
+Philhealth: 87.50
+Pag-ibig: 50
+
+Other Deductions:
+Pag-Ibig Multi-purpose Loan: 645.83
+TOTAL Other Deductions: 645.83
+
+TOTAL DEDUCTIONS: P1283.33
+
+NET PAY: P6608.05
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary (payroll period April 16-30, 2011) is now available.
+
+cutoff period: 2011-04-01 -to- 2011-04-15
+
+Employee ID: 361
+Employee Name: Marlyn Marcelo
+Project: AGNO 2
+
+PAY RATE: P4750.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P4750.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Proj Allow - Agno2: 750.00
+TOTAL Taxable Income: 750.00
+
+Non-Taxable Income:
+A/R Others - Per Diem: 5250.00
+TOTAL Non-Taxable Income: 5250.00
+
+GROSS PAY: P10750.00
+
+Withholding Tax: 454.17
+SSS: 500
+Philhealth: 112.50
+Pag-ibig: 50
+
+Other Deductions:
+Tax Deficit for Year 2010: 285.85
+TOTAL Other Deductions: 285.85
+
+TOTAL DEDUCTIONS: P1402.52
+
+NET PAY: P9347.48
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

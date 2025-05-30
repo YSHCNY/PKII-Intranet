@@ -1,0 +1,51 @@
+Please find below details of your payroll salary for period August 01-15, 2022 withdrawable on August 12, 2022 (Friday).
+
+cutoff period: 2022-07-16 -to- 2022-07-31
+
+Employee ID: 462
+Employee Name: Frederick Allegado
+Project: GAE
+
+PAY RATE: P8105.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8105.00
+
+Regular Overtime: P3576.59
+Reg.Sun/Sat. OT: 0 (mins) - P2472.22
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P6048.81
+
+Additional Income:
+Taxable Income:
+Overtime adjustment; Jun 04-Jun 30: 291.25
+TOTAL Taxable Income: P291.25
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P15195.06
+
+Withholding Tax: P795.61
+SSS: P0.00
+Philhealth: P0.00
+Pag-ibig: P50.00
+
+Other Deductions:
+Additional Pag-IBIG 1: 500.00
+Pag-IBIG Multi-purpose Loan: 1581.12
+SSS Salary Loan: 922.90
+TOTAL Other Deductions: P3004.02
+
+TOTAL DEDUCTIONS: P3849.63
+
+NET PAY: P11345.43
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

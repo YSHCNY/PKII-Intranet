@@ -1,0 +1,383 @@
+<?php
+//
+// mhrpersreqdtl.php
+// fr: vc/mhrpersreq.php
+// indexlinks: $page==352
+
+require '../includes/config.inc';
+
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$idhrpersreq0 = $_GET['prid']; // redirect fr: mhrpersreqadd2.php
+$actor0 = $_GET['act'];
+$dispsumm0 = $_GET['d'];
+
+$idhrpersreq = (isset($_POST['idpr'])) ? $_POST['idpr'] :'';
+$actor = (isset($_POST['ctgactor'])) ? $_POST['ctgactor'] :'';
+$dispsumm = (isset($_POST['ds'])) ? $_POST['ds'] :'';
+
+if($idhrpersreq0!='') { $idhrpersreq=$idhrpersreq0; }
+if($actor0!='') { $actor=$actor0; }
+if($dispsumm0!='') { $dispsumm=$dispsumm0; }
+
+// var_dump($lst.$loginid.$session.$page.$idhrpersreq.$actor.$dispsumm);
+
+//
+// notes on actors
+// REQ - requestor
+// END - endorser (HR mngr)
+// REC - recommending approver (VP)
+// APP - approver (Pres)
+// 
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>HR Personnel Requisition Form</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+	<thead>
+		<tr><th colspan="2" class="text-center">Personnel Requisition Form (HRD-F-01)</th></tr>
+	</thead>
+	<tbody>
+<?php
+	// query tblhrpersreq based on id
+	include '../m/qryhrpersreqid.php';
+
+?>
+	<tr><th class="text-right">Request date</th><td class="text-left">
+<?php
+	echo "<strong>".date("D Y-M-d", strtotime($requestdate11))."</strong>";
+	echo "<input type=\"hidden\" size=\"5\" name=\"requestdate\" value=\"$requestdate11\" readonly>";
+?>
+	</td></tr>
+
+	<tr><th class="text-right">Employee type</th><td class="text-left">
+<?php
+	echo "$emptyp11";
+	if($emptyp11=="Others") { echo " - $emptypothr11"; }
+?>
+	</td></tr>
+
+	<tr><th colspan="2" class="text-center">Position information</th></tr>
+
+	<tr><th class="text-right">Position title</th><td class="text-left">
+<?php echo "$position11"; ?>
+	</td></tr>
+
+	<tr><th class="text-right">Department</th><td class="text-left">
+<?php echo "$deptcd11"; ?>
+	</td></tr>
+
+	<tr><th class="text-right">Reports to</th><td class="text-left">
+<?php echo "$reportstoposcd11"; ?>
+	</td></tr>	
+
+	<tr><th class="text-right">Position details</th><td class="text-left">
+<?php
+	if($posfilltyp11=="newposition") {
+		$posdetailsfin="New Position";
+	} else if($posfilltyp11=="replacement") {
+		// query tblcontact
+		$actorempid = $posfilltypempid11;
+		include '../m/qryhrpersreqactor.php';
+		$actorempid="";
+		$posdetailsfin = "Replacement for $name_last12, $name_first12 $name_middle12[0]";
+	} else if($possfilltyp11=="others") {
+		$posdetailsfin = "Others:&nbsp;$posfilltypothr11";
+	} // if
+	echo "$posdetailsfin";
+?>
+	</td></tr>	
+
+	<tr><th class="text-right">No. of staff needed</th><td class="text-left">
+<?php echo "$staffneeded11"; ?>
+	</td></tr>
+
+	<tr><th colspan="2" class="text-center">Job description (overview)</th></tr>
+
+	<tr><th class="text-right">Main responsibilities</th><td class="text-left">
+<?php echo "".nl2br($jobdescresp11).""; ?>
+	</td></tr>
+
+	<tr><th class="text-right">Specific duties</th><td class="text-left">
+<?php echo "".nl2br($jobdescduties12).""; ?>
+	</td></tr>
+
+	<tr><th colspan="2" class="text-center">Timeframe</th></tr>
+
+	<tr><th class="text-right">Date needed</th><td class="text-left">
+<?php
+	if($dateneedasap11=="asap") {
+		$dateneedfin="ASAP";
+	} else if($dateneedasap11=="date") {
+		if($dateneeded11!='' || $dateneeded11!='0000-00-00') {
+		$dateneedfin="".date("Y-M-d", strtotime($dateneeded11))."";
+		} // if
+	} // if
+	echo "$dateneedfin";
+?>
+	</td></tr>	
+
+	<tr><th class="text-right">Remarks</th><td class="text-left">
+<?php echo "".nl2br($remarks11).""; ?>
+	</td></tr>	
+
+	<tr><th class="text-right">Requested by</th><td class="text-left">
+<?php
+	$actorempid = $requestedbyempid11;
+	include '../m/qryhrpersreqactor2.php';
+	$actorempid="";
+	echo "<strong>$name_last14, $name_first14 $name_middle14[0]</strong>";
+	if($empposition14!='') { echo "&nbsp;-&nbsp;$empposition14"; }
+	if($empdepartment14!='') { echo ",&nbsp;$empdepartment14"; }
+	echo "&nbsp;on&nbsp;".date("Y-M-d", strtotime($requestdate11))."";
+	if($requestedbyempid11==$employeeid0) {
+		if($endorsectr11==0 && $requestctr11>=1) {
+		// display re-submit button
+		echo "<form action=\"mhrpersreqrerequest.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqendors2\">";
+		echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+		echo "<input type=\"hidden\" name=\"actor\" value=\"REQ\">";
+		echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+		echo "<br><button type='submit' class='btn btn-primary'>Re-submit for endorsement</button>";
+		echo "</form>";
+		} // if
+	} // if
+?>
+	</td></tr>	
+
+	<tr><th class="text-right">Endorsed by</th><td class="text-left">
+<?php
+	$actorempid=$endorseempid11;
+	include("../m/qryhrpersreqactor.php");
+	$actorempid="";
+	if($actor=="END" && $endorseempid11==$employeeid0) {
+		if($endorsectr11==0) {
+			// display endorse button
+			echo "<form action=\"mhrpersreqendorse.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqendorse\">";
+			echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+			echo "<input type=\"hidden\" name=\"actor\" value=\"END\">";
+			echo "<input type=\"hidden\" name=\"endorseempid\" value=\"$employeeid0\">";
+			echo "<input type=\"hidden\" name=\"endorsectr\" value=\"1\">";
+			echo "<input type=\"hidden\" name=\"requestedbyempid\" value=\"$requestedbyempid11\">";
+			echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+			echo "<br><button type='submit' class='btn btn-primary'>Endorse this request</button>";
+			echo "</form>";
+		} else if($endorsectr11>=1) {
+			$endorsefin="<strong>$name_last12, $name_first12 $name_middle12[0]</strong>";
+			if($endorsedate11!='' || $endorsedate11!='0000-00-00') {
+				$endorsefin .= "&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($endorsedate11))."";
+			} // if
+		} // if
+	} else {
+		if($endorsectr11==0) {
+			$endorsefin = "PENDING, for endorsement by:<br>$name_last12, $name_first12 $name_middle12[0]";
+		} else if($endorsectr11>=1) {
+			$endorsefin="<strong>$name_last12, $name_first12 $name_middle12[0]</strong>";
+			if($endorsedate11!='' || $endorsedate11!='0000-00-00') {
+				$endorsefin .= "&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($endorsedate11))."";
+			} // if
+		} // if
+	} // if
+	echo "$endorsefin";
+?>
+	</td></tr>
+
+	<tr><th class="text-right">Recommending approval</th><td class="text-left">
+<?php
+	// prep ICG recoappr
+	if($recoappricgempid11!='') {
+	// query recoappricgempid
+	$actorempid=$recoappricgempid11;
+	include '../m/qryhrpersreqactor.php';
+	$actorempid="";
+	} // if
+	if($result11==1 && $recoappricgempid11!='') {
+	$recoappricgempidsw=1;
+	} else { $recoappricgempidsw=0; } // if
+	// prep DCG recoappr
+	if($recoapprdcgempid11!='') {
+	// query recoapprdcgempid
+	$actorempid=$recoapprdcgempid11;
+	include '../m/qryhrpersreqactor2.php';
+	$actorempid="";
+	} // if
+	if($result11==1 && $recoapprdcgempid11!='') {
+	$recoapprdcgempidsw=1;
+	} else { $recoapprdcgempidsw=0; } // if
+	// start display
+	if($actor=="REC") {
+		// ICG
+		if($recoappricgctr11==0) {
+			if($endorsectr11>=1) {
+				if($recoappricgempid11==$employeeid0) {
+				// display form button
+				echo "<form action=\"mhrpersreqrecoappr.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqrecoappr\">";
+				echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+				echo "<input type=\"hidden\" name=\"actor\" value=\"$actor\">";
+				echo "<input type=\"hidden\" name=\"recoapprempid\" value=\"$recoappricgempid11\">";
+				echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsummmhrpersreqrecoappr\">";
+				echo "<input type=\"hidden\" name=\"recoapprtyp\" value=\"ICG\">";
+				echo "<button type=\"submit\" class=\"btn btn-primary\">Recommend (ICG)</button>";
+				echo "</form>";
+				} else {
+				$recoappricgfin="ICG: PENDING<br>$name_last12, $name_first12 $name_middle12[0] ($recoappricgempid11)";
+				} // if
+			} else {
+				$recoappricgfin="";
+			} // if
+		} else if($recoappricgctr11>=1) {
+			$recoappricgfin="<strong>ICG: OK<br>$name_last12, $name_first12 $name_middle12[0]</strong>&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($recoappricgdate11))."";
+		} // if
+		// DCG
+		if($recoapprdcgctr11==0) {
+			if($endorsectr11>=1) {
+				if($recoapprdcgempid11==$employeeid0) {
+				// display form button
+				echo "<form action=\"mhrpersreqrecoappr.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqrecoappr\">";
+				echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+				echo "<input type=\"hidden\" name=\"actor\" value=\"$actor\">";
+				echo "<input type=\"hidden\" name=\"actorempid\" value=\"$recoapprdcgempid11\">";
+				echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+				echo "<input type=\"hidden\" name=\"recoapprtyp\" value=\"DCG\">";
+				echo "<button type=\"submit\" class=\"btn btn-primary\">Recommend (DCG)</button>";
+				echo "</form>";
+				} else {
+				$recoapprdcgfin="DCG: PENDING<br>$name_last14, $name_first14 $name_middle14[0] ($recoapprdcgempid11)";
+				} // if
+			} else {
+				$recoapprdcgfin="";
+			} // if
+		} else if($recoapprdcgctr11>=1) {
+			$recoapprdcgfin="<strong>DCG: OK<br>$name_last14, $name_first14 $name_middle14[0]</strong>&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($recoapprdcgdate11))."";
+		} // if
+
+	} else { // if($actor=="REC")
+		// ICG
+		if($recoappricgctr11==0) {
+			if($recoappricgempid11!='') {
+			$recoappricgfin="ICG: PENDING<br>$name_last12, $name_first12 $name_middle12[0] ($recoappricgempid11)";
+			} else {
+			$recoappricgfin="";
+			} // if
+		} else if($recoappricgctr11>=1) {
+			$recoappricgfin="<strong>ICG: OK<br>$name_last12, $name_first12 $name_middle12[0]</strong>";
+			if($recoappricgdate11!='' || $recoappricgdate11!='0000-00-00') {
+			$recoappricgfin .= "&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($recoappricgdate11))."";
+			} // if
+		} // if
+		// DCG
+		if($recoapprdcgctr11==0) {
+			if($recoapprdcgempid11!='') {
+			$recoapprdcgfin="DCG: PENDING<br>$name_last14, $name_first14 $name_middle14[0] ($recoapprdcgempid11)";
+			} else {
+			$recoapprdcgfin="";
+			} // if
+		} else if($recoapprdcgctr11>=1) {
+			$recoapprdcgfin="<strong>DCG: OK<br>$name_last14, $name_first14 $name_middle14[0]</strong>";
+			if($recoapprdcgdate11!='' || $recoapprdcgdate11!='0000-00-00') {
+			$recoapprdcgfin .= "&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($recoapprdcgdate11))."";
+			} // if
+		} // if
+	} // if($actor=="REC")
+	// display recommending approval
+	if($recoappricgempidsw==1) {
+	echo "$recoappricgfin";
+	} // if
+	if($recoappricgempidsw==1 && $recoapprdcgempidsw==1) {
+	echo "<br>";
+	} // if
+	if($recoapprdcgempidsw==1) {
+	echo "$recoapprdcgfin";
+	} // if
+?>
+	</td></tr>
+
+	<tr><th class="text-right">Approved by</th><td class="text-left">
+<?php
+	if($approveempid11!='') {
+		// query approver
+		$actorempid=$approveempid11;
+		include '../m/qryhrpersreqactor.php';
+		$actorempid="";
+	} // if
+	if($actor=="APP") {
+		if($approveempid11==$employeeid0) {
+			if($approvectr11==0) {
+				if(($recoappricgctr11>=1 || $recoapprdcgctr11>=1) && $endorsectr11>=1) {
+				// display approve button
+				echo "<form action=\"mhrpersreqapprove.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqappr\">";
+				echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+				echo "<input type=\"hidden\" name=\"actor\" value=\"$actor\">";
+				echo "<input type=\"hidden\" name=\"actorempid\" value=\"$approveempid11\">";
+				echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+				echo "<button type=\"submit\" class=\"btn btn-primary\">Approve</button>";
+				echo "</form>";
+				} else {
+				$approvefin="";
+				} // if
+			} else if($approvectr11>=1) {
+				$approvefin="<strong>OK! $name_last12, $name_first12 $name_middle12[0]</strong>";
+				if($approvedate11!='' || $approvedate11!='0000-00-00') {
+				$approvefin .= "&nbsp;on ".date('Y-M-d H:i', strtotime($approvedate11))."";
+				} // if
+			} // if
+		} // if($approveempid11==$employeeid0)
+	} else { // if($actor=="APP")
+		if($approvectr11==0) {
+			if(($recoappricgctr11>=1 || $recoapprdcgctr11>=1) && $endorsectr11>=1) {
+			$approvefin="PENDING, for approval by:<br>$name_last12, $name_first12 $name_middle12[0]";
+			} else {
+			$approvefin="";
+			} // if
+		} else if($approvectr11>=1) {
+			$approvefin="<strong>OK! $name_last12, $name_first12 $name_middle12[0]</strong>";
+			if($approvedate11!='' || $approvedate11!='0000-00-00') {
+			$approvefin .= "&nbsp;on&nbsp;".date('Y-M-d H:i', strtotime($approvedate11))."";
+			} // if
+		} // if
+	} // if($actor=="APP")
+	// display approver
+	echo "$approvefin";
+?>
+	</td></tr>	
+
+	<tr><th colspan="2" class="text-center">comments/clarifications</th></tr>
+<?php
+	echo "<form action=\"mhrpersreqcomments.php?lst=1&lid=$loginid&sess=$session&p=352\" method=\"POST\" name=\"mhrpersreqcomments\">";
+	echo "<input type=\"hidden\" name=\"idpr\" value=\"$idhrpersreq\">";
+	echo "<input type=\"hidden\" name=\"actor\" value=\"$actor\">";
+	echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+	echo "<input type=\"hidden\" name=\"actorempid\" value=\"$employeeid0\">";
+
+?>
+	<tr><td colspan="2" class="text-left">
+<?php
+	echo "$name_last0, $name_first0 $name_middle0[0]:<br>";
+	echo "<textarea rows=\"3\" cols=\"80\" name=\"comments\"></textarea>";
+?>
+	</td></tr>
+	<tr><td colspan="2" class="text-center">
+	<button type="submit" class="btn btn-primary">Submit comment/clarification</button>
+	</td></tr>
+<?php echo "</form>"; ?>
+	<tr><td colspan="2" class="text-left">
+<?php echo "".nl2br($comments11).""; ?>
+	</td></tr>
+	</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+<?php
+	//
+	// recruitment steps
+
+?>

@@ -1,0 +1,19 @@
+<?php
+//
+// sysloginsqry.php
+// 20210428
+// req: $logdtl string
+
+// require './dbh.php';
+// include './datetimenow.php';
+
+$resquery=""; $result="";
+$resquery="";
+$result=$dbh2->query($resquery);
+if($result!='') {
+
+} else {
+
+}
+
+?>

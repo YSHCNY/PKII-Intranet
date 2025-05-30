@@ -1,0 +1,38 @@
+<?php
+//
+// fr: ../vc/mchgpassskip.php
+// ../m/qryupdtblsysacctmgt2.php
+
+require("../includes/dbh.php");
+
+    if($loginid0!=0) {
+
+    // query tblsysusracctmgt
+    $res7query=""; $result7=""; $found7=0;
+    $res7query="SELECT idtblsysusracctmgt, employeeid, skippwctr FROM tblsysusracctmgt WHERE loginid=$loginid0 AND admloginid=0 LIMIT 1";
+    $result7=$dbh->query($res7query);
+    if($result7->num_rows>0) {
+        while($myrow7=$result7->fetch_assoc()) {
+        $found7=1;
+        $idtblsysusracctmgt7 = $myrow7['idtblsysusracctmgt'];
+        $employeeid7 = $myrow7['employeeid'];
+        $skippwctr7 = $myrow7['skippwctr'];
+        } //while
+    } //if
+    if($found7==1) {
+    $skippwctr = $skippwctr7 + 1;
+    } else {
+    $skippwctr=1;
+    } //if
+
+    // update tblsysusracctmgt.php pwchangedt to $now
+    $res8query=""; $result8=""; $found8=0;
+    $res8query="UPDATE tblsysusracctmgt SET timestamp=\"$now\", skippwctr=$skippwctr, $skiplastdt=\"$now\" WHERE loginid=$loginid0 AND admloginid=0";
+    $result8=$dbh->query($res8query);
+
+    } //if
+// var_dump($loginid0,$res8query);
+
+// close db conn
+// $dbh->close();
+?>

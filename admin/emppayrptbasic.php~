@@ -1,0 +1,204 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$submitsw = $_GET['submitsw'];
+
+$datefrom = $_POST['datefrom'];
+$dateto = $_POST['dateto'];
+
+if(($datefrom == '') && ($dateto == '')) {
+	// query tblemppayroll cutstart & cutend
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("SELECT cut_start, cut_end FROM tblemppayroll ORDER BY cut_start ASC LIMIT 1", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$cut_start11 = $myrow11[0];
+		$cut_end11 = $myrow11[1];
+		}
+	}
+	$result12=""; $found12=0; $ctr12=0;
+	$result12 = mysql_query("SELECT cut_end, cut_end FROM tblemppayroll ORDER BY cut_start DESC LIMIT 1", $dbh);
+	if($result12 != "") {
+		while($myrow12 = mysql_fetch_row($result12)) {
+		$found12 = 1;
+		$cut_start12 = $myrow12[0];
+		$cut_end12 = $myrow12[1];
+		}
+	}
+	$datefrom = $cut_start11; $dateto = $cut_end12;
+}
+
+$found = 0;
+
+$secsubtotarr = array();
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+?>
+
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script language="JavaScript" src="ts_picker.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+
+<?
+// start contents here
+
+    echo "<table class=\"fin2\" border=\"1\">";
+    echo "<tr>";
+    echo "<form action=\"emppayrptbasic.php?loginid=$loginid&submitsw=1\" method=\"post\" name=\"emppayrptbasic\">";
+    echo "<td colspan=\"2\" nowrap>";
+
+		echo "From<input type=\"date\" size=\"8\" name=\"datefrom\" value=\"$datefrom\">";
+		?>
+  	<a href="javascript:show_calendar('document.emppayrptbasic.datefrom', document.emppayrptbasic.datefrom.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+  	<?
+		echo "To<input type=\"date\" size=\"8\" name=\"dateto\" value=\"$dateto\">";
+		?>
+  	<a href="javascript:show_calendar('document.emppayrptbasic.dateto', document.emppayrptbasic.dateto.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+  	<?
+
+    echo "<input type=\"submit\" value=\"Submit\" id=\"myOrder1\"></td></form>";
+    echo "</tr>";
+
+
+	echo "<tr><td colspan=\"2\">";
+
+	// if(($datefrom <= $dateto) && (($datefrom != '') && ($dateto != ''))) {
+
+		if($submitsw == 1) {
+
+		echo "<table id=\"ReportTable\" class=\"fin2\">";
+		echo "<tr><th colspan=\"2\" align=\"left\">Employees Payroll - Basic&nbsp;<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a></th></tr>";
+		// echo "<tr><th colspan=\"2\" align=\"left\">Employees Payroll - Basic</th></tr>";
+		// echo "<tr><th colspan=\"2\" align=\"left\">Duration from ".date("Y-M-d", strtotime($datefrom))." to ".date("Y-M-d", strtotime($dateto))."</th></tr>";
+		echo "<tr><th colspan=\"2\" align=\"left\">Philkoei International Inc.</th></tr>";
+
+    echo "<tr><td colspan=\"2\">";
+		echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+		echo "<tr><th>Count</th><th>EmpName</th><th>EmpID</th>";
+
+		// query cutoffs for label
+		$result12=""; $found12=0; $ctr12=0;
+		$result12 = mysql_query("SELECT DISTINCT cut_start, cut_end FROM tblemppayroll WHERE cut_start >= '$datefrom' AND cut_end <= '$dateto' ORDER BY cut_start ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12 = 1;
+			$cut_start12 = $myrow12[0];
+			$cut_end12 = $myrow12[1];
+			$ctr12 = $ctr12 + 1;
+			$arrcutstart = split("-", $cut_start12);
+			$arrcutstartyyyy = $arrcutstart[0];
+			$arrcutstartmm = $arrcutstart[1];
+			$arrcutstartdd = $arrcutstart[2];
+			$arrcutend = split("-", $cut_end12);
+			$arrcutendyyyy = $arrcutend[0];
+			$arrcutendmm = $arrcutend[1];
+			$arrcutenddd = $arrcutend[2];
+			echo "<th>" . date("Y-M-d", strtotime($cut_start12));
+			echo "&nbsp;-to-&nbsp;";
+			if(($arrcutendyyyy == $arrcutstartyyyy) && ($arrcutendmm == $arrcutstartmm)) {
+				echo "$arrcutenddd";
+			} else {
+  			echo "".date("Y-M-d", strtotime($cut_end12));
+			}
+			echo "</th>";
+			}
+		}
+		echo "<th>Total</th></tr>";
+
+		// start query of empid joined with names
+		$result14=""; $found14=0; $ctr14=0;
+		$result14 = mysql_query("SELECT DISTINCT tblemppayroll.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblemppayroll INNER JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid WHERE tblcontact.contact_type=\"personnel\" AND tblemppayroll.cut_start>=\"$datefrom\" AND tblemppayroll.cut_end<=\"$dateto\" ORDER BY tblcontact.name_last ASC, tblcontact.name_first, tblemppayroll.cut_start ASC", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+			$found14 = 1;
+			$employeeid14 = $myrow14[0];
+			$name_last14 = $myrow14[1];
+			$name_first14 = $myrow14[2];
+			$name_middle14 = $myrow14[3];
+			$ctr14 = $ctr14 + 1;
+			echo "<tr><td align=\"center\">$ctr14</td><th>$name_last14, $name_first14 $name_middle14[0]</th><td align=\"center\">$employeeid14</td>";
+
+			// query cutoff coverage
+			$result15=""; $found15=0; $ctr15=0;
+			$result15 = mysql_query("SELECT DISTINCT cut_start, cut_end FROM tblemppayroll WHERE cut_start>=\"$datefrom\" AND cut_end<=\"$dateto\" ORDER BY cut_start ASC", $dbh);
+			if($result15 != "") {
+				while($myrow15 = mysql_fetch_row($result15)) {
+				$found15=1;
+				$cut_start15 = $myrow15[0];
+				$cut_end15 = $myrow15[1];
+
+				$result16=""; $found16=0; $ctr16=0;
+				$result16 = mysql_query("SELECT emp_salary FROM tblemppayroll WHERE employeeid=\"$employeeid14\" AND cut_start=\"$cut_start15\" AND cut_end=\"$cut_end15\"", $dbh);
+				if($result16 != "") {
+					while($myrow16 = mysql_fetch_row($result16)) {
+					$found16 = 1;
+					$emp_salary16 = $myrow16[0];
+					$empbasic = $emp_salary16 / 2;
+					}
+				}
+
+				$empbasictot = $empbasictot + $empbasic;
+
+				if($found16 == 1) {
+					echo "<td align=\"right\">".number_format($empbasic, 2)."</td>";
+				} else {
+					echo "<td></td>";
+				}
+				$empbasic=0;
+				}
+			}
+
+			echo "<th>".number_format($empbasictot, 2)."</th></tr>";
+			$empidtmp = $employeeid14;
+			$empbasictot=0;
+			}
+		}
+
+		echo "</table>";
+    echo "</td></tr>";
+
+    echo "</table>";
+
+		}
+
+	// }
+
+	echo "</td></tr>";
+	echo "</table>";
+
+    echo "<p><a href=\"cutoff.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

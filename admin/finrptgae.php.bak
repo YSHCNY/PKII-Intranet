@@ -1,0 +1,220 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+
+$datefrom = $_POST['datefrom'];
+$dateto = $_POST['dateto'];
+
+// if($datefrom == '') { $datefrom="2014-01-01"; }
+if($datefrom == '') { $datefrom="$yearnow" . "-" . "$monthnow" . "-" . "1"; }
+if($dateto == '') { $dateto=$datenow; }
+
+if($nkconso == '') { $nkconso=1; }
+
+// echo "<p>vartest projgrpcrit:$projgrpcrit duration:$datefrom-to-$dateto</p>";
+
+$found = 0;
+
+$secsubtotarr = array();
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+?>
+
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script language="JavaScript" src="ts_picker.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+
+<?
+// start contents here
+
+    echo "<table class=\"fin2\" border=\"1\">";
+    echo "<tr>";
+    echo "<form action=\"finrptgae.php?loginid=$loginid\" method=\"post\" name=\"form1\">";
+    echo "<td colspan=\"2\" nowrap>";
+
+		echo "From<input type=\"date\" size=\"8\" name=\"datefrom\" value=\"$datefrom\">";
+		?>
+  	<a href="javascript:show_calendar('document.form1.datefrom', document.form1.datefrom.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+  	<?
+		echo "To<input type=\"date\" size=\"8\" name=\"dateto\" value=\"$dateto\">";
+		?>
+  	<a href="javascript:show_calendar('document.form1.dateto', document.form1.dateto.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+  	<?
+
+    echo "<input type=\"submit\" value=\"Submit\" id=\"myOrder1\"></td></form>";
+    echo "</tr>";
+
+
+	echo "<tr><td colspan=\"2\">";
+
+	if(($datefrom <= $dateto) && (($datefrom != '') && ($dateto != ''))) {
+
+		echo "<table id=\"ReportTable\" class=\"fin2\">";
+		echo "<tr><th colspan=\"2\" align=\"left\">Philkoei International Inc.</th></tr>";
+		// echo "<tr><th colspan=\"2\" align=\"left\">General and Administrative Expenses&nbsp;<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a></th></tr>";
+		echo "<tr><th colspan=\"2\" align=\"left\">General and Administrative Expenses</th></tr>";
+		echo "<tr><th colspan=\"2\" align=\"left\">Duration from ".date("Y-M-d", strtotime($datefrom))." to ".date("Y-M-d", strtotime($dateto))."</th></tr>";
+
+    echo "<tr><td colspan=\"2\">";
+		echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+		echo "<tr><th>Count</th><th>Account Name (PKII)</th><th>Account Name (NK)</th><th>Debit</th><th>Credit</th></tr>";
+
+		// query tblfingaeref
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("SELECT DISTINCT gaecd, gaename FROM tblfingaeref ORDER BY seq ASC", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$gaecd11 = $myrow11[0];
+			$gaename11 = $myrow11[1];
+			$ctr11 = $ctr11 + 1;
+
+			echo "<tr><td>$ctr11</td><td>$gaename11</td><td></td>";
+
+			$result11b=""; $found11b=0; $ctr11b=0;
+			$result11b = mysql_query("SELECT glcodefr, glcodeto FROM tblfingaeref WHERE gaecd=\"$gaecd11\" AND gaename=\"$gaename11\"", $dbh);
+			if($result11b != "") {
+				while($myrow11b = mysql_fetch_row($result11b)) {
+				$found11b = 1;
+				$glcodefr11b = $myrow11b[0];
+				$glcodeto11b = $myrow11b[1];
+
+				$ctr11b = $ctr11b + 1;
+
+				echo "<td colspan=\"4\">";
+
+				$result12=""; $found12=0; $ctr12=0;
+				$result12 = mysql_query("SELECT disbursementid, disbursementnumber, debitamt, creditamt FROM tblfindisbursement WHERE (date>=\"$datefrom\" AND date<=\"$dateto\") AND (glcode>=\"$glcodefr11b\" AND glcode<=\"$glcodeto11b\") ORDER BY date ASC", $dbh);
+				if($result12 != "") {
+					while($myrow12 = mysql_fetch_row($result12)) {
+					$found12 = 1;
+					$disbursementid12 = $myrow12[0];
+					$disbursementnumber12 = $myrow12[1];
+					$debitamt12 = $myrow12[2];
+					$creditamt12 = $myrow12[3];
+					$ctr12 = $ctr12 + 1;
+
+					$disbursementdebit = $disbursementdebit + $debitamt12;
+					$disbursementcredit = $disbursementcredit + $creditamt12;
+					echo "disbno:$disbursementnumber12 | $glcodefr11b-to-$glcodeto11b || disbdebitamt:$debitamt12 | disbdebitsub:$disbursementdebit || disbcreditamt:$creditamt12 | disbcreditsub:$disbursementcredit<br>";
+					}
+				}
+
+				$result14=""; $found14=0; $ctr14=0;
+				$result14 = mysql_query("SELECT DISTINCT cashreceiptid, cashreceiptnumber, debitamt, creditamt FROM tblfincashreceipt WHERE (date>=\"$datefrom\" AND date<=\"$dateto\") AND (glcode>=\"$glcodefr11b\" AND glcode<=\"$glcodeto11b\") ORDER BY date ASC", $dbh);
+				if($result14 != "") {
+					while($myrow14 = mysql_fetch_row($result14)) {
+					$found14 = 1;
+					$cashreceiptid14 = $myrow14[0];
+					$cashreceiptnumber14 = $myrow14[1];
+					$debitamt14 = $myrow14[2];
+					$creditamt14 = $myrow14[3];
+					$ctr14 = $ctr14 + 1;
+	
+					$cashreceiptdebit = $cashreceiptdebit + $debitamt14;
+					$cashreceiptcredit = $cashreceiptcredit + $creditamt14;
+					echo "cshrcptno:$cashreceiptnumber14 | $glcodefr11b-to-$glcodeto11b || cshrdebitamt:$debitamt14 | cshrdebitsub:$cashreceiptdebit || cshrcreditamt:$creditamt14 | cshrcreditsub:$cashreceiptcredit<br>";
+					}
+				}
+
+				$result15=""; $found15=0; $ctr15=0;
+				$result15 = mysql_query("SELECT journalid, journalnumber, debitamt, creditamt FROM tblfinjournal WHERE (date>=\"$datefrom\" AND date<=\"$dateto\") AND (glcode>=\"$glcodefr11b\" AND glcode<=\"$glcodeto11b\") ORDER BY date ASC", $dbh);
+				if($result15 != "") {
+					while($myrow15 = mysql_fetch_row($result15)) {
+					$found15 = 1;
+					$journalid15 = $myrow15[0];
+					$journalnumber15 = $myrow15[1];
+					$debitamt15 = $myrow15[2];
+					$creditamt15 = $myrow15[4];
+					$ctr15 = $ctr15 + 1;
+
+					$journaldebit = $journaldebit + $debitamt15;
+					$journalcredit = $journalcredit + $credit15;
+					echo "jrnlno:$journalnumber15 | $glcodefr11b-to-$glcodeto11b || jrnldebitamt:$debitamt15 | jrnldebitsub:$journaldebit || jrnlcreditamt:$creditamt15 | jrnlcreditsub:$journalcredit<br>";
+					}
+				}
+
+				// compute total debit and credit
+				$debitamt = $disbursementdebit + $cashreceiptdebit + $journaldebit;
+				$creditamt = $disbursementcredit + $cashreceiptcredit + $journalcredit;
+
+				// compute total of disb, cshrcpt & jrnl
+				$disbdrtot = $disbdrtot+$disbursementdebit;
+				$disbcrtot = $disbcrtot+$disbursementcredit;
+				$cshrcptdrtot = $cshrcptdrtot+$cashreceiptdebit;
+				$cshrcptcrtot = $cshrcptcrtot+$cashreceiptcredit;
+				$jrnldrtot = $jrnldrtot+$journaldebit;
+				$jrnlcrtot = $jrnlcrtot+$journalcredit;
+
+				echo "</td>";
+
+				}
+			}
+
+			echo "<td align=\"right\">".number_format($debitamt, 2)."</td>";
+			echo "<td align=\"right\">".number_format($creditamt, 2)."</td>";
+			echo "</tr>";
+
+			// compute grand total
+			$debittot = $debittot + $debitamt;
+			// $debittot = $disbdrtot + $cshrcptdrtot + $jrnldrtot;
+			$credittot = $credittot + $creditamt;
+			// $credittot = $disbcrtot + $cshrcptcrtot + $jrnlcrtot;
+
+			echo "<td colspan=\"4\">disbdrtot:$disbdrtot | disbcrtot:$disbcrtot || cshrcptdrtot:$cshrcptdrtot | cshrcptcrtot:$cshrcptcrtot || jrnldrtot:$jrnldrtot | jrnlcrtot:$jrnlcrtot<br>";
+			echo "debit:$debitamt | debittot:$debittot || credit:$creditamt | credittot:$credittot</td>";
+
+			// reset variables
+			$debitamt=0; $creditamt=0;
+			$disbursementdebit=0; $disbursementcredit=0;
+			$cashreceiptdebit=0; $cashreceiptcredit=0;
+			$journaldebit=0; $journalcredit=0;
+
+			}
+		}
+
+		echo "<tr><th colspan=\"3\">TOTAL</th><th align=\"right\">".number_format($debittot, 2)."</th><th align=\"right\">".number_format($credittot, 2)."</th></tr>";
+
+		echo "</table>";
+    echo "</td></tr>";
+
+    echo "</table>";
+	}
+
+	echo "</td></tr>";
+	echo "</table>";
+
+    echo "<p><a href=\"finrptmnu.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

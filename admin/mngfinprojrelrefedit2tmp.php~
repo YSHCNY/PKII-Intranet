@@ -1,0 +1,63 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$projrelrefid = $_GET['prrid'];
+
+$code = $_POST['code'];
+$name = $_POST['name'];
+$companyid = $_POST['companyid'];
+$level = $_POST['level'];
+$seq = $_POST['seq'];
+$nkconso = $_POST['nkconso'];
+$codeprev = $_POST['codeprev'];
+$strvssht = $_POST['strvssht'];
+$remarks = $_POST['remarks'];
+
+echo "<p>vartest $loginid:$adminloginuid - Project relationship item EDITED with details: $code - $name, compid:$companyid, level:$level, seq:$seq, nkconso:$nkconso, codeprev:$codeprev, strvssht:$strvssht, remarks:$remarks</p>";
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+/*
+  // $result12 = mysql_query("UPDATE tblprojrelref SET timestamp=\"$now\", loginid=$loginid, code=\"$code\", name=\"$name\", companyid=$companyid, level=$level, seq=$seq, nkconso=$nkconso, codeprev=\"$codeprev\", strvssht=\"$strvssht\", remarks=\"$remarks\" WHERE projrelrefid=$projrelrefid", $dbh);
+
+
+// create log
+    // include('datetimenow.php');
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminloginuid - Project relationship item EDITED with details: $code - $name, compid:$companyid, level:$level, seq:$seq, nkconso:$nkconso, codeprev:$codeprev, strvssht:$strvssht, remarks:$remarks";
+    // $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+}
+
+  // header("Location: mngfinprojrelref.php?loginid=$loginid");
+  // exit;
+*/
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+//     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

@@ -1,0 +1,52 @@
+Please find below details of your payroll salary is now available.
+
+cutoff period: 2012-08-01 -to- 2012-08-15
+
+Employee ID: 248
+Employee Name: Katherine Cruz
+Project: GAE
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: 0 (mins) - P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: 0 (mins) - P0.00
+Special Holiday OT: 0 (mins) - P0.00
+Night Differential: 0 (mins) - P0.00
+TOTAL OVERTIME: P0.00
+
+Taxable Income:
+Overtime adj - Apr-Jul: 118.43
+Incentive Allowance: 1000.00
+TOTAL Taxable Income: 1118.43
+
+Non-Taxable Income:
+Incentive adj - Apr -Jul: 2000.00
+Salary adj - Apr-Jul: 8000.00
+TOTAL Non-Taxable Income: 10000.00
+
+GROSS PAY: P19118.43
+
+Withholding Tax: 1237.86
+SSS: 500
+Philhealth: 175.00
+Pag-ibig: 50
+
+Other Deductions:
+COLA - Apr to Jul: 1736.00
+SSS Salary Loan: 525.00
+Pag-Ibig Loan: 714.19
+TOTAL Other Deductions: 2975.19
+
+TOTAL DEDUCTIONS: P4938.05
+
+NET PAY: P14180.38
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------

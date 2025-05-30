@@ -1,0 +1,523 @@
+<?php 
+
+     echo "<p><font size=1>Directory >> Manage Personnel >> Change Employee Number</font></p>";
+
+     echo "<table border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><td bgcolor=blue colspan=2><font color=white><b>Change Employee Number</b</font></td></tr>";
+
+     $result0 = mysql_query("SELECT name_last, name_first, name_middle FROM tblcontact WHERE employeeid = '$pid'", $dbh);
+     while($myrow0 = mysql_fetch_row($result0))
+     {
+	$name_last = $myrow0[0];
+	$name_first = $myrow0[1];
+	$name_middle = $myrow0[2];
+     }
+
+     echo "<tr><td colspan=\"2\"><b>$name_last, $name_first $name_middle[0].</b></td></tr>";
+     echo "<tr><td>Old Employee Number</td><td><b>$pid</b></td></tr>";
+     echo "<tr><td>New Employee Number</td><td><b>$newemployeeid</b></td></tr>";
+
+     if (substr($newemployeeid, 0, 1) == "C")
+     {
+	$employeetype = 'consultant';
+     }
+     else
+     {
+	$employeetype = 'employee';
+     }
+
+// check if newemployeeid is already used
+
+     $result1 = mysql_query("SELECT employeeid FROM tblemployee WHERE employeeid = \"$newemployeeid\"", $dbh);
+     while($myrow1 = mysql_fetch_row($result1))
+     {
+	$found1 = 1;
+	$employeeid = $myrow1[0];
+     }
+
+     if ($found1 == 1)
+     {
+	$result2 = mysql_query("SELECT employeeid, name_last, name_first, name_middle FROM tblcontact WHERE employeeid = \"$employeeid\"", $dbh);
+	while($myrow2 = mysql_fetch_row($result2))
+	{
+	  $employeeid2 = $myrow2[0];
+	  $name_last2 = $myrow2[1];
+	  $name_first2 = $myrow2[2];
+	  $name_middle2 = $myrow2[3];
+	}
+	echo "<tr><td colspan=\"2\"><font color=\"red\"><b>Sorry Employee Number $newemployeeid is already issued to $name_last2, $name_first2 $name_middle2[0].<br>Please try again.</b></font></td></tr>";
+	$flagchanged = 0;
+     }
+     else
+     {
+// start changing employeeid on all tables
+
+	echo "<tr><td>EmployeeType</td><td>$employeetype</td></tr>";
+
+	echo "<tr><td colspan=\"2\">Updating details:</td></tr>";
+
+//  tbllogin
+	$result3 = mysql_query("SELECT employeeid FROM tbllogin WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow3 = mysql_fetch_row($result3))
+	{ $found3 = 1; }
+	if ($found3 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tbllogin from $pid to $newemployeeid</td>";
+	  $result4 = mysql_query("UPDATE tbllogin SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tbladminlogin
+	$result5 = mysql_query("SELECT employeeid FROM tbladminlogin WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow5 = mysql_fetch_row($result5))
+	{ $found5 = 1; }
+	if ($found5 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tbladminlogin from $pid to $newemployeeid</td>";
+	  $result6 = mysql_query("UPDATE tbladminlogin SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblcontact
+	$result7 = mysql_query("SELECT employeeid FROM tblcontact WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow7 = mysql_fetch_row($result7))
+	{ $found7 = 1; }
+	if ($found7 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblcontact from $pid to $newemployeeid</td>";
+	  $result8 = mysql_query("UPDATE tblcontact SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemployee
+	$result9 = mysql_query("SELECT employeeid FROM tblemployee WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow9 = mysql_fetch_row($result9))
+	{ $found9 = 1; }
+	if ($found9 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemployee from $pid to $newemployeeid<br>and employee_type to $employeetype</td>";
+	  $result10 = mysql_query("UPDATE tblemployee SET employeeid = \"$newemployeeid\", employee_type = \"$employeetype\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemployeestatus
+	$result63 = mysql_query("SELECT employeeid FROM tblemployeestatus WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow63 = mysql_fetch_row($result63))
+	{ $found63 = 1; }
+	if ($found63 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemployeestatus from $pid to $newemployeeid</td>";
+	  $result64 = mysql_query("UPDATE tblemployeestatus SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemployeetype
+	$result65 = mysql_query("SELECT employeeid FROM tblemployeetype WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow65 = mysql_fetch_row($result65))
+	{ $found65 = 1; }
+	if ($found65 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemployeetype from $pid to $newemployeeid</td>";
+	  $result66 = mysql_query("UPDATE tblemployeetype SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempdetails
+	$result11 = mysql_query("SELECT employeeid FROM tblempdetails WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow11 = mysql_fetch_row($result11))
+	{ $found11 = 1; }
+	if ($found11 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempdetails from $pid to $newemployeeid</td>";
+	  $result12 = mysql_query("UPDATE tblempdetails SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblinsurance
+	$result14 = mysql_query("SELECT employeeid FROM tblinsurance WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow14 = mysql_fetch_row($result14))
+	{ $found14 = 1; }
+	if ($found14 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblinsurance from $pid to $newemployeeid</td>";
+	  $result15 = mysql_query("UPDATE tblinsurance SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblinsuranceemp
+	$result16 = mysql_query("SELECT employeeid FROM tblinsuranceemp WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow16 = mysql_fetch_row($result16))
+	{ $found16 = 1; }
+	if ($found16 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblinsuranceemp from $pid to $newemployeeid</td>";
+	  $result17 = mysql_query("UPDATE tblinsuranceemp SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempeducation
+	$result20 = mysql_query("SELECT employeeid FROM tblempeducation WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow20 = mysql_fetch_row($result20))
+	{ $found20 = 1; }
+	if ($found20 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempeducation from $pid to $newemployeeid</td>";
+	  $result21 = mysql_query("UPDATE tblempeducation SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempspouse
+	$result22 = mysql_query("SELECT employeeid FROM tblempspouse WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow22 = mysql_fetch_row($result22))
+	{ $found22 = 1; }
+	if ($found22 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempspouse from $pid to $newemployeeid</td>";
+	  $result23 = mysql_query("UPDATE tblempspouse SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempdependent
+	$result24 = mysql_query("SELECT employeeid FROM tblempdependent WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow24 = mysql_fetch_row($result24))
+	{ $found24 = 1; }
+	if ($found24 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempdependent from $pid to $newemployeeid</td>";
+	  $result25 = mysql_query("UPDATE tblempdependent SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemergency
+	$result61 = mysql_query("SELECT employeeid FROM tblemergency WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow61 = mysql_fetch_row($result61))
+	{ $found61 = 1; }
+	if ($found61 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemergency from $pid to $newemployeeid</td>";
+	  $result62 = mysql_query("UPDATE tblemergency SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemployeelog
+	$result26 = mysql_query("SELECT employeeid FROM tblemployeelog WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow26 = mysql_fetch_row($result26))
+	{ $found26 = 1; }
+	if ($found26 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemployeelog from $pid to $newemployeeid</td>";
+	  $result27 = mysql_query("UPDATE tblemployeelog SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempsalary
+	$result28 = mysql_query("SELECT employeeid FROM tblempsalary WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow28 = mysql_fetch_row($result28))
+	{ $found28 = 1; }
+	if ($found28 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempsalary from $pid to $newemployeeid</td>";
+	  $result29 = mysql_query("UPDATE tblempsalary SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblbankacct
+	$result30 = mysql_query("SELECT employeeid FROM tblbankacct WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow30 = mysql_fetch_row($result30))
+	{ $found30 = 1; }
+	if ($found30 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblbankacct from $pid to $newemployeeid</td>";
+	  $result31 = mysql_query("UPDATE tblbankacct SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblbank
+	$result32 = mysql_query("SELECT employeeid FROM tblbank WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow32 = mysql_fetch_row($result32))
+	{ $found32 = 1; }
+	if ($found32 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblbank from $pid to $newemployeeid</td>";
+	  $result33 = mysql_query("UPDATE tblbank SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblprojassign
+	$result34 = mysql_query("SELECT employeeid FROM tblprojassign WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow34 = mysql_fetch_row($result34))
+	{ $found34 = 1; }
+	if ($found34 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblprojassign from $pid to $newemployeeid</td>";
+	  $result35 = mysql_query("UPDATE tblprojassign SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblprojassign0
+	$result36 = mysql_query("SELECT employeeid1 FROM tblprojassign0 WHERE employeeid1 = \"$pid\"", $dbh);
+	while($myrow36 = mysql_fetch_row($result36))
+	{ $found36 = 1; }
+	if ($found36 == 1)
+	{
+	  echo "<tr><td>Updating employeeid1 of tblprojassign0 from $pid to $newemployeeid</td>";
+	  $result37 = mysql_query("UPDATE tblprojassign0 SET employeeid1 = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblproject
+	$result77 = mysql_query("SELECT employeeid FROM tblproject WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow77 = mysql_fetch_row($result77))
+	{ $found77 = 1; }
+	if ($found77 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblproject from $pid to $newemployeeid</td>";
+	  $result78 = mysql_query("UPDATE tblproject SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+ 
+//  tblproject1
+	$result38 = mysql_query("SELECT employeeid FROM tblproject1 WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow38 = mysql_fetch_row($result38))
+	{ $found38 = 1; }
+	if ($found38 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblproject1 from $pid to $newemployeeid</td>";
+	  $result39 = mysql_query("UPDATE tblproject1 SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblcustompayadvise
+	$result40 = mysql_query("SELECT employeeid FROM tblcustompayadvise WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow40 = mysql_fetch_row($result40))
+	{ $found40 = 1; }
+	if ($found40 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblcustompayadvise from $pid to $newemployeeid</td>";
+	  $result41 = mysql_query("UPDATE tblcustompayadvise SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipayroll
+	$result42 = mysql_query("SELECT employeeid FROM tblconfipayroll WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow42 = mysql_fetch_row($result42))
+	{ $found42 = 1; }
+	if ($found42 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipayroll from $pid to $newemployeeid</td>";
+	  $result43 = mysql_query("UPDATE tblconfipayroll SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipaygrp
+	$result44 = mysql_query("SELECT employeeid FROM tblconfipayroll WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow44 = mysql_fetch_row($result44))
+	{ $found44 = 1; }
+	if ($found44 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipaygrp from $pid to $newemployeeid</td>";
+	  $result45 = mysql_query("UPDATE tblconfipaygrp SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipaymemadd
+	$result47 = mysql_query("SELECT employeeid FROM tblconfipaymemadd WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow47 = mysql_fetch_row($result47))
+	{ $found47 = 1; }
+	if ($found47 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipaymemadd from $pid to $newemployeeid</td>";
+	  $result48 = mysql_query("UPDATE tblconfipaymemadd SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipaymemdeduct
+	$result49 = mysql_query("SELECT employeeid FROM tblconfipaymemdeduct WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow49 = mysql_fetch_row($result49))
+	{ $found49 = 1; }
+	if ($found49 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipaymemdeduct from $pid to $newemployeeid</td>";
+	  $result50 = mysql_query("UPDATE tblconfipaymemdeduct SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipayrolladd
+	$result51 = mysql_query("SELECT employeeid FROM tblconfipayrolladd WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow51 = mysql_fetch_row($result51))
+	{ $found51 = 1; }
+	if ($found51 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipayrolladd from $pid to $newemployeeid</td>";
+	  $result52 = mysql_query("UPDATE tblconfipayrolladd SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblconfipayrolldeduct
+	$result53 = mysql_query("SELECT employeeid FROM tblconfipayrolldeduct WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow53 = mysql_fetch_row($result53))
+	{ $found53 = 1; }
+	if ($found53 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblconfipayrolldeduct from $pid to $newemployeeid</td>";
+	  $result54 = mysql_query("UPDATE tblconfipayrolldeduct SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblprojassignexpiring
+	$result55 = mysql_query("SELECT employeeid FROM tblprojassignexpiring WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow55 = mysql_fetch_row($result55))
+	{ $found55 = 1; }
+	if ($found55 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblprojassignexpiring from $pid to $newemployeeid</td>";
+	  $result56 = mysql_query("UPDATE tblprojassignexpiring SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemppaybongrp
+	$result57 = mysql_query("SELECT employeeid FROM tblemppaybongrp WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow57 = mysql_fetch_row($result57))
+	{ $found57 = 1; }
+	if ($found57 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppaybongrp from $pid to $newemployeeid</td>";
+	  $result58 = mysql_query("UPDATE tblemppaybongrp SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemppaybonus
+	$result59 = mysql_query("SELECT employeeid FROM tblemppaybonus WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow59 = mysql_fetch_row($result59))
+	{ $found59 = 1; }
+	if ($found59 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppaybonus from $pid to $newemployeeid</td>";
+	  $result60 = mysql_query("UPDATE tblemppaybonus SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemppayroll
+	$result67 = mysql_query("SELECT employeeid FROM tblemppayroll WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow67 = mysql_fetch_row($result67))
+	{ $found67 = 1; }
+	if ($found67 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppayroll from $pid to $newemployeeid</td>";
+	  $result68 = mysql_query("UPDATE tblemppayroll SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+ 
+//  tblemppayincomenontaxable
+	$result69 = mysql_query("SELECT employeeid FROM tblemppayincomenontaxable WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow69 = mysql_fetch_row($result69))
+	{ $found69 = 1; }
+	if ($found69 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppayincomenontaxable from $pid to $newemployeeid</td>";
+	  $result70 = mysql_query("UPDATE tblemppayincomenontaxable SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblemppayincometaxable
+	$result71 = mysql_query("SELECT employeeid FROM tblemppayincometaxable WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow71 = mysql_fetch_row($result71))
+	{ $found71 = 1; }
+	if ($found71 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppayincomeaxable from $pid to $newemployeeid</td>";
+	  $result72 = mysql_query("UPDATE tblemppayincometaxable SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+ 
+//  tblemppayotherdeductions
+	$result73 = mysql_query("SELECT employeeid FROM tblemppayotherdeductions WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow73 = mysql_fetch_row($result73))
+	{ $found73 = 1; }
+	if ($found73 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblemppayotherdeductions from $pid to $newemployeeid</td>";
+	  $result74 = mysql_query("UPDATE tblemppayotherdeductions SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//  tblempproflicense
+	$result75 = mysql_query("SELECT employeeid FROM tblempproflicense WHERE employeeid = \"$pid\"", $dbh);
+	while($myrow75 = mysql_fetch_row($result75))
+	{ $found75 = 1; }
+	if ($found75 == 1)
+	{
+	  echo "<tr><td>Updating employeeid of tblempproflicense from $pid to $newemployeeid</td>";
+	  $result76 = mysql_query("UPDATE tblempproflicense SET employeeid = \"$newemployeeid\" WHERE employeeid = \"$pid\"", $dbh);
+	  echo "<td>Ok!</td></tr>";
+	}
+
+//
+// start - added 20151116
+//
+// tblhractlog
+	$result81sel="SELECT employeeid FROM tblhractlog WHERE employeeid=\"$pid\"";
+	$result81=""; $found81=0; $ctr81=0;
+	$result81 = mysql_query("$result81sel", $dbh);
+	if($result81 != "") {
+		while($myrow81 = mysql_fetch_row($result81)) {
+		$found81 = 1;
+		}
+	}
+	if($found81 == 1) {
+		echo "<tr><td>Updating employeeid in tblhractlog from $pid to $newemployeeid</td>";
+		$result82 = mysql_query("UPDATE tblhractlog SET employeeid=\"$newemployeeid\" WHERE employeeid=\"$pid\"", $dbh);
+		echo "<td>Ok!</td></tr>";
+	}
+
+// tblhrattuserinfo
+
+// tblhrtaempincome
+
+// tblhrtaempleavesumm
+
+// tblhrtaemptimelog
+
+// tblhrtapaygrpemplst
+
+// tblhrusertimelog
+
+//
+// end - added 20151116
+
+// if newemployeeid has 'C%' update employeetype=consultant
+// change all tables which has $pid to $newemployeeid
+// insert details on tblemployeelog
+
+     include("datetimenow.php");
+
+     $result79 = mysql_query("SELECT username FROM tbladminlogin WHERE loginid=$loginid", $dbh);
+     while($myrow79 = mysql_fetch_row($result79))
+     {
+	$found79 = 1;
+	$username = $myrow79[0];
+     }
+
+     $details = "Changed Employee Number for $name_last, $name_first $name_middle[0]. from $pid to $newemployeeid";
+	 $flagchanged = 1;
+     $result80 = mysql_query("INSERT INTO tblemployeelog (datestamp, employeeid, date, username, details) VALUES (\"$now\", \"$newemployeeid\", \"$datenow\", \"$username\", \"$details\")", $dbh);
+
+     echo "<tr><td colspan=\"2\">Processed log in tblemployeelog with details:</td></tr>";
+     echo "<tr><td>datestamp</td><td>$now</td></tr>";
+     echo "<tr><td>employeeid</td><td>$newemployeeid</td></tr>";
+     echo "<tr><td>date</td><td>$datenow</td></tr>";
+     echo "<tr><td>username</td><td>$username</td></tr>";
+     echo "<tr><td colspan=2>details=$details</td></tr>";
+
+	echo "<tr><td colspan=\"2\">update finished.</td></tr>";
+     }
+
+     echo "</table>";
+ 
+     echo "<p><a href=personneledit.php?loginid=$loginid>Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+
+
+?> 

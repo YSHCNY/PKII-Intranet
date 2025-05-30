@@ -1,0 +1,97 @@
+Please find below details of your payroll salary for period April 16-30, 2021 (Revised; Actual).
+
+cutoff period: 2021-04-01 -to- 2021-04-15
+
+Employee ID: 750
+Employee Name: Christsaac Jacob Esmilla
+Project: NLEX HARBOR LINK
+
+PAY RATE: P8000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P8000.00
+
+Regular Overtime: P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P0.00
+
+Additional Income:
+Taxable Income:
+Project Allowance: 1990.67
+TOTAL Taxable Income: P1990.67
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+TOTAL Non-Taxable Income: 750.00
+
+GROSS PAY: P10740.67
+
+Withholding Tax: P0.00
+SSS: P877.50
+Philhealth: P240.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P1167.50
+
+NET PAY: P9573.17
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
+Please find below details of your payroll salary for period April 16-30, 2021 (Revised; Actual).
+
+cutoff period: 2021-04-01 -to- 2021-04-15
+
+Employee ID: 762
+Employee Name: Jamaica Rose Gueco
+Project: NLEX HARBOR LINK
+
+PAY RATE: P12000.00
+
+Total Late_Absent: 0
+NET BASIC PAY: P12000.00
+
+Regular Overtime: P0.00
+Reg.Sun/Sat. OT: 0 (mins) - P0.00
+Legal Holiday OT: P0.00
+Special Holiday OT: P0.00
+Night Differential: P0.00
+TOTAL OVERTIME: P0.00
+
+Additional Income:
+Taxable Income:
+Project Allowance: 3500.00
+TOTAL Taxable Income: P3500.00
+
+Non-Taxable Income:
+Employment Benefits: 750.00
+VL Cash Conversion (7.81 days): 7163.31
+TOTAL Non-Taxable Income: 7913.31
+
+GROSS PAY: P23413.31
+
+Withholding Tax: P1016.60
+SSS: P1125.00
+Philhealth: P360.00
+Pag-ibig: P50.00
+
+Other Deductions:
+TOTAL Other Deductions: P0.00
+
+TOTAL DEDUCTIONS: P2551.60
+
+NET PAY: P20861.71
+
+This is a system-generated email from Philkoei International Inc.
+
+Note: Please do not reply to this email, the sender will not be able to retrieve your message. Please email your queries to the personnel concerned. Thank you.
+
+------------------------------------------------------------------------------------------------------------
