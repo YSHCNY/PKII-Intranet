@@ -20,9 +20,14 @@
 <script>
   function exportToExcel() {
     const table = document.getElementById("ReportTable");
+     const tableClone = table.cloneNode(true);
+  
 
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.table_to_sheet(table, { raw: true });
+  tableClone.deleteRow(2);
+  
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.table_to_sheet(tableClone, { raw: true });
+
 
 
     const range = XLSX.utils.decode_range(ws["!ref"]);
@@ -43,7 +48,7 @@
     }
 
     // Set column widths (A: 20 chars, B: 30 chars)
-    ws["!cols"] = [{ wch: 30 }, { wch: 15 }, { wch: 15 }, { wch: 10 }, { wch: 10 }];
+    ws["!cols"] = [{ wch: 3 }, { wch: 25 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 8 }, { wch: 15 }, { wch: 11 }];
 
     XLSX.utils.book_append_sheet(wb, ws, "StyledSheet");
     XLSX.writeFile(wb, "PayrollSummary(<?php echo $payrollDate?>).xlsx");
@@ -56,10 +61,12 @@ echo "<table id=\"ReportTable\" border='1' class=\"table table-bordered table-st
 
 echo "<thead>";
 echo "<tr>";
-// echo "<th>H</th>";
+echo "<th>H</th>";
 echo "<th>Payroll Date</th>";
 echo "<td>".date('m/d/Y', strtotime($payrollDatefin))."</td>";
 echo "<th>Payroll Time</th>";
+echo "<th></th>";
+
 
 // query total Amount & Total count
 $res19query=""; $result19=""; $found19=0; $ctr19=0; $net_pay19=0; $totalAmount=0;
@@ -89,7 +96,7 @@ echo "$totalAmount</td>";
 echo "<th>Total Count</th>";
 echo "<td>$ctr19</td>";
 
-// query PKII's BPI payroll acct
+
 $res20query=""; $result20=""; $found20=0; $ctr20=0;
 $res20query="SELECT compacctnumber FROM tblbpipayrollfilespec WHERE bpipayrollfilespecid=1 LIMIT 1";
 $result20=$dbh2->query($res20query);
@@ -108,8 +115,8 @@ echo "</thead>";
 
 echo "<body>";
 // insert blank line
-echo "<tr><td colspan = '9'></tr>";
-echo "<tr><th>Name</th>
+echo "<tr class='exclude-from-export'><td colspan = '9'></tr>";
+echo "<tr><th></th><th>Name</th>
 <th>Account Number</th>
 <th>Net Pay</th>
 </tr>";
@@ -138,7 +145,7 @@ if($result18->num_rows>0) {
 	$name_last18 = $myrow18['name_last'];
 	$name_first18 = $myrow18['name_first'];
 	echo "<tr>";
-	// echo "<td>D</td>";
+	echo "<td>D</td>";
 	echo "<td>".htmlspecialchars($name_first18)." ".htmlspecialchars($name_last18)."</td>";
 	echo "<td class='text-center'>";
 	// echo "<td class='text-center'>".strval(str_replace("-", "", str_replace(" ", "", $acct_num18)))."</td>";
