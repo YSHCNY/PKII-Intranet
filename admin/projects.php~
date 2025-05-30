@@ -1,0 +1,167 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$company_type = (isset($_POST['company_type'])) ? $_POST['company_type'] :'';
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Directory >> Projects</font></p>";
+
+     echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><th colspan=\"9\">PKII Projects List</th></tr>";
+
+     echo "<tr><th>Count</th><th>Project Code</th><th>Acronym</th><th>Project Name</th><th>Services</th><th>Period</th><th>Relationship</th><th>Classification</th><th>Action</th></tr>";
+
+	// $result = mysql_query("SELECT tblproject1.projectid, tblproject1.proj_num, tblproject1.proj_code, tblproject1.proj_fname, tblproject1.proj_sname, tblproject1.proj_services, tblproject1.proj_period, tblproject1.proj_duty, proj_relation0, proj_relation1, proj_relation2, proj_relation3, proj_class FROM tblproject1 ORDER BY tblproject1.proj_code DESC, tblproject1.proj_period DESC, tblproject1.proj_code DESC", $dbh);
+	/*
+   while ($myrow = mysql_fetch_row($result)) {
+          $pid = $myrow[0];
+	  $proj_num = $myrow[1];
+          $proj_code = $myrow[2];
+	  $proj_fname = $myrow[3];
+	  $proj_sname = $myrow[4];
+	  $proj_services = $myrow[5];
+	  $proj_period = $myrow[6];
+	  $proj_duty = $myrow[7];
+		$proj_relation0 = $myrow[8];
+		$proj_relation1 = $myrow[9];
+		$proj_relation2 = $myrow[10];
+		$proj_relation3 = $myrow[11];
+		$proj_class = $myrow[12];
+	*/
+
+	$res11query="SELECT tblproject1.projectid, tblproject1.proj_num, tblproject1.proj_code, tblproject1.proj_fname, tblproject1.proj_sname, tblproject1.proj_services, tblproject1.proj_period, tblproject1.proj_duty, tblproject1.proj_relation0, tblproject1.proj_relation1, tblproject1.proj_relation2, tblproject1.proj_relation3, tblproject1.proj_class FROM tblproject1 ORDER BY tblproject1.proj_code DESC, tblproject1.proj_period DESC, tblproject1.proj_code DESC";
+	$result11 = $dbh2->query($res11query);
+	if($result11->num_rows > 0) {
+		while($myrow11 = $result11->fetch_assoc()) {
+		$pid = $myrow11['projectid'];
+	  $proj_num = $myrow11['proj_num'];
+    $proj_code = $myrow11['proj_code'];
+	  $proj_fname = $myrow11['proj_fname'];
+	  $proj_sname = $myrow11['proj_sname'];
+	  $proj_services = $myrow11['proj_services'];
+	  $proj_period = $myrow11['proj_period'];
+	  $proj_duty = $myrow11['proj_duty'];
+		$proj_relation0 = $myrow11['proj_relation0'];
+		$proj_relation1 = $myrow11['proj_relation1'];
+		$proj_relation2 = $myrow11['proj_relation2'];
+		$proj_relation3 = $myrow11['proj_relation3'];
+		$proj_class = $myrow11['proj_class'];
+
+          echo "<tr><td>$proj_num</td><td>$proj_code</td>";
+	  echo "<td><a href=moreinfoproj.php?pid=$pid&loginid=$loginid target=_blank>$proj_sname</a></td><td>$proj_fname</td>";
+	  echo "<td>$proj_services</td><td>$proj_period</td>";
+		echo "<td>";
+		if(($proj_relation0 != "") || ($proj_relation0 != "-")) {
+			if(($proj_relation1 != "") || ($proj_relation1 != "-")) {
+				/*
+				$result6 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation1\" AND level=1", $dbh);
+				if($result6 != "") {
+					while($myrow6 = mysql_fetch_row($result6)) {
+					$found6 = 1;
+					$name6 = $myrow6[0];
+					}
+				}
+				*/
+				$res6query="SELECT name FROM tblprojrelref WHERE code=\"$proj_relation1\" AND level=1";
+				$result6=""; $found6=0;
+				$result6 = $dbh2->query($res6query);
+				if($result6->num_rows > 0) {
+					while($myrow6 = $result6->fetch_assoc()) {
+					$found6 = 1;
+					$name6 = $myrow6['name'];
+					}
+				}
+
+				if($proj_relation0 == "others") { echo "$name6"; }
+
+				if(($proj_relation2 != "") || ($proj_relation2 != "-")) {
+					/*
+					$result7 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation2\" AND level=2 LIMIT 1", $dbh);
+					if($result7 != "") {
+						while($myrow7 = mysql_fetch_row($result7)) {
+						$found7=1;
+						$name7 = $myrow7[0];
+						echo "$name7";
+						}
+					}
+					*/
+					$res7query="SELECT name FROM tblprojrelref WHERE code=\"$proj_relation2\" AND level=2 LIMIT 1";
+					$result7=""; $found7=0;
+					$result7 = $dbh2->query($res7query);
+					if($result7->num_rows>0) {
+						while($myrow7 = $result7->fetch_assoc()) {
+						$found7=1;
+						$name7 = $myrow7['name'];
+						echo "$name7";
+						}
+					}
+
+					if(($proj_relation3 != "") || ($proj_relation3 != "-")) {
+						/*
+						$result8 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation3\" AND level=3 LIMIT 1", $dbh);
+						if($result8 != "") {
+							while($myrow8 = mysql_fetch_row($result8)) {
+							$found8 = 1;
+							$name8 = $myrow8[0];
+							echo " - $name8";
+							}
+						} // if($result8 != "")
+						*/
+						$res8query="SELECT name FROM tblprojrelref WHERE code=\"$proj_relation3\" AND level=3 LIMIT 1";
+						$result8=""; $found8=0;
+						$result8 = $dbh2->query($res8query);
+						if($result8->num_rows>0) {
+							while($myrow8 = $result8->fetch_assoc()) {
+							$found8 = 1;
+							$name8 = $myrow8['name'];
+							echo " - $name8";
+							}
+						}
+					} // if(($proj_relation3 != "") || ($proj_relation3 != "-"))
+				} // if(($proj_relation2 != "") || ($proj_relation2 != "-"))
+			} // if(($proj_relation1 != "") || ($proj_relation1 != "-"))
+ 		} // if(($proj_relation0 != "") || ($proj_relation0 != "-"))
+		echo "</td>";
+		echo "<td>$proj_class</td>";
+
+          echo "<td><a href = moreinfoproj.php?pid=$pid&loginid=$loginid target=_blank>More</a></td>";
+//	  echo "<td><a href = editproj.php?pid=$pid&loginid=$loginid>Edit</a></td>";
+          echo "</tr>";
+//      } // while ($myrow = mysql_fetch_row($result))
+
+		} // while($myrow11 = $result11->fetch_assoc())
+	} // if($result11->num_rows > 0)
+
+     echo "</table>";
+
+//     echo "<p><a href=addproject.php?loginid=$loginid><b>ADD new project</b></a>";
+
+     // $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh);
+		$res12query="UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result12 = $dbh2->query($res12query);
+
+     echo "<p><a href=index2.php?loginid=$loginid>Back</a><br>";
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

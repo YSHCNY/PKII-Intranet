@@ -1,0 +1,308 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$proj_code = (isset($_POST['proj_code'])) ? $_POST['proj_code'] :'';
+$contract_title = stripslashes((isset($_POST['contract_title'])) ? $_POST['contract_title'] :'');
+$contract_number = stripslashes((isset($_POST['contract_number'])) ? $_POST['contract_number'] :'');
+$contract_type = (isset($_POST['contract_type'])) ? $_POST['contract_type'] :'';
+$date_start = (isset($_POST['date_start'])) ? $_POST['date_start'] :'';
+$date_end = (isset($_POST['date_end'])) ? $_POST['date_end'] :'';
+$date_mob = (isset($_POST['date_mob'])) ? $_POST['date_mob'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+
+if($found == 1 && substr($level, -33, 1) == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Billing >> Add new contract</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+?>
+<script language="JavaScript" src="./js/auto_search.js"></script>
+<?php
+// start contents here...
+
+if($proj_code!='') {
+
+	// query proj_code
+	$res11query="SELECT projectid, proj_code, proj_fname, proj_sname, proj_services FROM tblproject1 WHERE proj_code='$proj_code'";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$projectid11 = $myrow11['projectid'];
+		$proj_code11 = $myrow11['proj_code'];
+		$proj_fname11 = $myrow11['proj_fname'];
+		$proj_sname11 = $myrow11['proj_sname'];
+		$proj_services11 = $myrow11['proj_services'];
+		} // while
+	} // if
+
+	// date start <= date end
+	if(strtotime($date_start)<=strtotime($date_end)) {
+	$proceed=1;
+	} else {
+	$proceed=0;
+	} // if-else
+
+	if($found11==1 && $proceed==1) {
+	// query tblcontract if exists
+	echo "<tr><th colspan=\"2\"><font color='green'>New contract confirmed.</font> Please fill-up details and click 'Save' button.</th></tr>";
+	
+  echo "<tr><td colspan=\"2\">";
+	echo "<table>";
+	echo "<form action='projbillcontradd.php?loginid=$loginid' method='POST' name='projbillcontradd'>";
+	// for encoders
+  if($accesslevel >= 3) {
+		// proj_code
+		echo "<tr><th class='text-right'>Project code<font color='red'>*</font></th><td>$proj_code</td></tr>";
+		echo "<input type='hidden' name='proj_code' value='$proj_code'>";
+		if($contract_title!='') {
+		$contract_titlefin=$contract_title;
+		} else {
+		if($proj_fname11!='') { $contract_titlefin=$proj_fname11; } else if($proj_sname11!='') { $contract_titlefin=$proj_sname11; }
+		} // if-else
+		// contract_title
+		echo "<tr><th class='text-right'>Contract title<font color='red'>*</font></th><td><input size='100' name='contract_title' value='$contract_titlefin'></td></tr>";
+		// contract_number
+		if($contract_number=='') { $contract_numberfin=$proj_code; }
+		echo "<tr><th class='text-right'>Contract number<font color='red'>*</font></th><td>";
+		echo "<input size='25' name='contract_number' value='$contract_numberfin'>";
+		echo "</td></tr>";
+		echo "<tr><th class='text-right'>Contract type</th><td>";
+		if($contract_type=='lump_sum') {
+		$lumpsumsel="selected"; $timebasedsel="";
+		} else if($contract_type=='time-based') {
+		$lumpsumsel=""; $timebasedsel="selected";
+		} // if-else
+		echo "<select name='contract_type'>";
+		echo "<option value='time-based' $timebasedsel>Time-based</option>";
+		echo "<option value='lump_sum' $lumpsumsel>Lump_sum</option>";
+		echo "</select>";
+		echo "</td></tr>";
+		echo "<tr><th class='text-right'>Date start</th><td><input type='date' name='date_start' value='$date_start'></td></tr>";
+		echo "<tr><th class='text-right'>Date end</th><td><input type='date' name='date_end' value='$date_end'></td></tr>";
+		echo "<tr><th class='text-right'>Mobilization date</th><td><input type='date' name='date_mob' value='$date_mob'></td></tr>";
+		echo "<tr><th class='text-left' colspan='2'>Project cost</th></tr>";
+		echo "<tr><th class='text-right'>Direct cost</th><td><input type='number' name='projcostdirect' step='0.01' value='0.00'></td></tr>";
+		echo "<tr><th class='text-right'>Tax</th><td><input type='number' name='projcosttaxpct' step='0.1' value='12.0'>%</td></tr>";
+		echo "<tr><th class='text-right'>Remuneration</th><td><input type='number' name='projcostremuneration' step='0.01' value='0.00'>amount</td></tr>";
+		echo "<tr><th class='text-right'>Recoupment</th><td><input type='number' name='recoupamt' step='0.01' value='0.00'><br><input type='number' name='recouppct' step='0.1' value='0.0'>%</td></tr>";
+		echo "<tr><th class='text-right'>Client</th><td>";
+		echo "<input type='radio' id='radioa1' name='clientsw' value='company'>";
+		echo "<select name='client_companyid' onchange='radioselecta1()'>";
+		echo "<option value=''>select company</option>";
+		// query tblcompany
+		$res12query="SELECT companyid, company, branch FROM tblcompany WHERE company<>'' ORDER BY company ASC";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12=$dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12=$result12->fetch_assoc()) {
+			$found12=1;
+			$ctr12=$ctr12+1;
+			$companyid12 = $myrow12['companyid'];
+			$company12 = $myrow12['company'];
+			$branch12 = $myrow12['branch'];
+			echo "<option value='$companyid12'>$company12";
+			if($branch12!='') { echo "&nbsp;-&nbsp;$branch12"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "<br>";
+		echo "<input type='radio' id='radioa2' name='clientsw' value='contactperson'>";
+		echo "<select name='client_contactid' onchange='radioselecta2()'>";
+		echo "<option value=''>select person</option>";
+		// query tblcontact
+		$res14query="SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC";
+		$result14=""; $found14=0; $ctr14=0;
+		$result14=$dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14=$result14->fetch_assoc()) {
+			$found14=1;
+			$ctr14=$ctr14+1;
+			$contactid14 = $myrow14['contactid'];
+			$companyid14 = $myrow14['companyid'];
+			$employeeid14 = $myrow14['employeeid'];
+			$name_last14 = $myrow14['name_last'];
+			$name_first14 = $myrow14['name_first'];
+			$name_middle14 = $myrow14['name_middle'];
+			echo "<option value='$contactid14'>$name_first14&nbsp;";
+			if($name_middle14!='') { echo "$name_middle14[0].&nbsp;"; }
+			if($name_last14!='') { echo "$name_last14"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "</td></tr>";
+		echo "<tr><th class='text-right'>Funding agency</th><td>";
+		echo "<input type='radio' id='radiob1' name='fundingagencysw' value='company'>";
+		echo "<select name='fundingagency_companyid' onchange='radioselectb1()'>";
+		echo "<option value=''>select company</option>";
+		// query tblcompany
+		$res15query="SELECT companyid, company, branch FROM tblcompany WHERE company<>'' ORDER BY company ASC";
+		$result15=""; $found15=0; $ctr15=0;
+		$result15=$dbh2->query($res15query);
+		if($result15->num_rows>0) {
+			while($myrow15=$result15->fetch_assoc()) {
+			$found15=1;
+			$ctr15=$ctr15+1;
+			$companyid15 = $myrow15['companyid'];
+			$company15 = $myrow15['company'];
+			$branch15 = $myrow15['branch'];
+			echo "<option value='$companyid15'>$company15";
+			if($branch15!='') { echo "&nbsp;-&nbsp;$branch15"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "<br>";
+		echo "<input type='radio' id='radiob2' name='fundingagencysw' value='contactperson'>";
+		echo "<select name='fundingagency_contactid' onchange='radioselectb2()'>";
+		echo "<option value=''>select person</option>";
+		// query tblcontact
+		$res16query="SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC";
+		$result16=""; $found16=0; $ctr16=0;
+		$result16=$dbh2->query($res16query);
+		if($result16->num_rows>0) {
+			while($myrow16=$result16->fetch_assoc()) {
+			$found16=1;
+			$ctr16=$ctr16+1;
+			$contactid16 = $myrow16['contactid'];
+			$companyid16 = $myrow16['companyid'];
+			$employeeid16 = $myrow16['employeeid'];
+			$name_last16 = $myrow16['name_last'];
+			$name_first16 = $myrow16['name_first'];
+			$name_middle16 = $myrow16['name_middle'];
+			echo "<option value='$contactid16'>$name_first16&nbsp;";
+			if($name_middle16!='') { echo "$name_middle16[0].&nbsp;"; }
+			if($name_last16!='') { echo "$name_last16"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "</td></tr>";
+		echo "<tr><th class='text-right'>Implementing agency</th><td>";
+		echo "<input type='radio' id='radioc1' name='implementingagencysw' value='company'>";
+		echo "<select name='implementingagency_companyid' onchange='radioselectc1()'>";
+		echo "<option value=''>select company</option>";
+		// query tblcompany
+		$res17query="SELECT companyid, company, branch FROM tblcompany WHERE company<>'' ORDER BY company ASC";
+		$result17=""; $found17=0; $ctr17=0;
+		$result17=$dbh2->query($res17query);
+		if($result17->num_rows>0) {
+			while($myrow17=$result17->fetch_assoc()) {
+			$found17=1;
+			$ctr17=$ctr17+1;
+			$companyid17 = $myrow17['companyid'];
+			$company17 = $myrow17['company'];
+			$branch17 = $myrow17['branch'];
+			echo "<option value='$companyid17'>$company17";
+			if($branch17!='') { echo "&nbsp;-&nbsp;$branch17"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "<br>";
+		echo "<input type='radio' id='radioc2' name='implementingagencysw' value='contactperson'>";
+		echo "<select name='implementingagency_contactid' onchange='radioselectc2()'>";
+		echo "<option value=''>select person</option>";
+		// query tblcontact
+		$res18query="SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC";
+		$result18=""; $found18=0; $ctr18=0;
+		$result18=$dbh2->query($res18query);
+		if($result18->num_rows>0) {
+			while($myrow18=$result18->fetch_assoc()) {
+			$found18=1;
+			$ctr18=$ctr18+1;
+			$contactid18 = $myrow18['contactid'];
+			$companyid18 = $myrow18['companyid'];
+			$employeeid18 = $myrow18['employeeid'];
+			$name_last18 = $myrow18['name_last'];
+			$name_first18 = $myrow18['name_first'];
+			$name_middle18 = $myrow18['name_middle'];
+			echo "<option value='$contactid18'>$name_first18&nbsp;";
+			if($name_middle18!='') { echo "$name_middle18[0].&nbsp;"; }
+			if($name_last18!='') { echo "$name_last18"; }
+			echo "</option>";
+			} // while
+		} // if
+		echo "</select>";
+		echo "</td></tr>";
+		echo "<tr><th class='text-right'></th><td><button type='submit' class='btn btn-success'>Save details</button></td></tr>";
+		echo "</form>";
+  } // (if accesslevel >= 3)
+
+	// for supervisors+
+	if($accesslevel >= 4) {
+
+	} // (if accesslevel >= 4)
+	echo "</table>";
+  echo "</td></tr>";
+
+	} else { // if($found11==1)
+	echo "<tr><th colspan=\"2\"><font color='red'>Failed to create contract</font></th></tr>";
+	
+  echo "<tr><td colspan=\"2\">";
+echo "<p>f:$found11 p:$proceed prjcd:$proj_code ".strtotime($date_start)." ".strtotime($date_end)."<br>$res11query</p>";
+  echo "</td></tr>";
+
+	} // if-else
+
+} // if
+
+// end contents here...
+
+     echo "</table>";
+
+     echo "<p><div id='redir_projbilling'><a href='projbilling.php?loginid=$loginid' class='btn btn-primary'>Back</a></div></p>";
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+?>
+<SCRIPT type="text/javascript" language="JavaScript">
+function radioselecta1()
+{
+     document.getElementById('radioa1').checked = true;	
+}
+function radioselecta2()
+{
+     document.getElementById('radioa2').checked = true;	
+}
+function radioselectb1()
+{
+     document.getElementById('radiob1').checked = true;	
+}
+function radioselectb2()
+{
+     document.getElementById('radiob2').checked = true;	
+}
+function radioselectc1()
+{
+     document.getElementById('radioc1').checked = true;	
+}
+function radioselectc2()
+{
+     document.getElementById('radioc2').checked = true;	
+}
+
+</SCRIPT>
+<?php
+$dbh2->close();
+?>
+

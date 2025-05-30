@@ -1,0 +1,93 @@
+<?php
+//
+// mactivitylogedt.php
+// fr: vc/index.php
+
+// get variables
+$lst=1;
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page=143;
+$hractlogid = (isset($_GET['aid'])) ? $_GET['aid'] :'';
+
+// query activity log based on id
+include '../m/qrymactivitylog7.php';
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>My Activity Log</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+	<tr><th class="text-right">Date</th><td class="text-left"><input type="date" name="actdate" id='actdate' value="<?php echo $date16; ?>"></td>
+	<tr><th class="text-right">Details</th><td class="text-left"><textarea rows="5" cols="50" name="actdetails" id='actdetails'><?php echo "$activity16"; ?></textarea></td>
+	</tr>
+	<input type="hidden" name="idlogin" id='idlogin' value="<?php echo $loginid; ?>">
+	<input type="hidden" name="employeeid" id='employeeid' value="<?php echo $employeeid0; ?>">
+	<tr><td></td><td class="text-left">
+<?php
+	echo "<button class=\"btn btn-primary\" id='btnActdtlSubmit'>Submit</button>";
+?>
+	</td></tr>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+<div class="modal fade" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Activity log</h5>
+        
+      </div>
+      <div class="modal-body" id='myModalBody'>
+    
+      </div>
+      <div class="modal-footer">
+<?php
+        echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" id='btnCloseRedir' onclick=\"javascript:window.location='index.php?lst=1&lid=$loginid&sess=$session&p=14'\">Close</button>";
+?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+	$('#btnActdtlSubmit').on('click',function(){
+			var actlogid = $('#actlogid').val();
+			var loginid = $('#logID').val();
+			var session = $('#sessionID').val();			
+			var actdate = $('#actdate').val();
+			var actdetails = $('#actdetails').val();
+			var idlogin = $('#idlogin').val();
+			var employeeid = $('#employeeid').val();
+			$.ajax({
+				url: "mactivitylogedt2.php?lst=1&lid="+loginid+"&sess="+session+"&p=143",
+				type: 'POST',
+				data: {
+					actlogid: actlogid,
+					idlogin: idlogin,
+					employeeid: employeeid,
+					actdate: actdate,
+					actdetails: actdetails,
+				},
+				success: function(returnResult) {
+					$('#myModalBody').html(returnResult);
+					$('#myModal').modal('show');
+				}
+			});		
+	});	
+
+});
+
+</script>
+
+

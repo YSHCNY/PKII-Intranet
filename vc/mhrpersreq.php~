@@ -1,0 +1,243 @@
+<?php
+//
+// mhrpersreq.php
+// fr: vc/index.php
+// indexlinks: $page==35
+
+require '../includes/config.inc';
+
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>HR Personnel Requisition Form</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+	<tbody>
+<?php
+	// display new request button for non-admin
+	if($logintype==1) {
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=351\" method=\"POST\" name=\"mhrpersreqadd\">";
+	echo "<tr><td colspan=\"2\" class=\"text-center\"><button type=\"submit\" class=\"btn btn-primary\" value=\"New request\">New request</button></td></tr>";
+	echo "</form>";
+	} // if
+?>
+		<tr><th colspan="2" class="text-center">Personnel Request Details</th></tr>
+		<tr><td colspan="2">
+			<table class="table table-striped">
+			<thead>
+				<tr><th>Request date</th><th>Position</th><th>Department</th><th>Employee type</th><th>No. of staff needed</th><th>Date needed</th><th>Requested by</th><th>Endorsed by</th><th>Recommended by</th><th>Approved by</th><th>Action</th></tr>
+			</thead>
+			<tbody>
+<?php
+	include ''.$pathmodel.'/qryhrpersreqsumm.php';
+	$param11=count($idhrpersreq11Arr);
+	for($x11=0; $x11<$param11; $x11++) {
+	//
+	// notes on actors
+	// REQ - requestor (tblempdetails.emppositionlevel>=3)
+	// END - endorser (HR mngr)
+	// REC - recommending approver (VP)
+	// APP - approver (Pres)
+	//
+		if($requestedbyempid11Arr[$x11]==$employeeid0) {
+			$actor = "REQ"; $dispsumm=1;
+		} else if($endorseempid11Arr[$x11]==$employeeid0) {
+			$actor = "END"; $dispsumm=1;
+		} else if($recoappricgempid11Arr[$x11]==$employeeid0) {
+			$actor = "REC"; $dispsumm=1;
+		} else if($recoapprdcgempid11Arr[$x11]==$employeeid0) {
+			$actor = "REC"; $dispsumm=1;
+		} else if($approveempid11Arr[$x11]==$employeeid0) {
+			$actor = "APP"; $dispsumm=1;
+		} else {
+			$actor = ""; $dispsumm=0;
+		} // if($requestedbyempid11Arr[$x11]==$employeeid0)
+
+		echo "<tr>";
+		// request date
+		echo "<td>".date("Y-M-d", strtotime($requestdate11Arr[$x11]))."</td>";
+
+		// position
+		echo "<td><strong>".$position11Arr[$x11]."</strong></td>";
+
+		// deptcd
+		echo "<td>".$deptcd11Arr[$x11]."</td>";
+
+		// employee status
+		echo "<td>".$emptyp11Arr[$x11]."";
+		if($emptype11[$x11]=="Others") {
+			echo ":&nbsp;".$emptypothr11Arr[$x11]."";
+		} // if($emptype11Arr[$x11]=="Others")
+		echo "</td>";
+
+		// no. of staff needed
+		echo "<td>".$staffneeded11Arr[$x11]."</td>";
+
+		// date needed
+		echo "<td>";
+		if($dateneeded11Arr[$x11]=="0000-00-00" && $dateneedasap11Arr[$x11]=="asap") { echo "ASAP"; } else { echo "".date("Y-M-d", strtotime($dateneeded11Arr[$x11])).""; }
+		echo "</td>";
+
+		// requested by
+		if($requestedbyempid11Arr[$x11]!='') {
+		$actorempid=$requestedbyempid11Arr[$x11];
+		include ''.$pathmodel.'/qryhrpersreqactor.php';
+		if($found12==1)
+		echo "<td>$name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($requestdate11Arr[$x11]))."</td>";
+		$actorempid="";
+		} else {
+		echo "<td></td>";
+		} // if($requestedbyempid11Arr[$x11]!='')
+
+		// endorsed
+		if($endorsectr11Arr[$x11]==0) {
+			$endorsestatus="Pending";
+		} else if($endorsectr11Arr[$x11]>=1) {
+			if($endorseempid11Arr[$x11]!='') {
+			$actorempid=$endorseempid11Arr[$x11];
+			include ''.$pathmodel.'/qryhrpersreqactor.php';
+			$actorempid="";
+			} // if($endorsebyempid11Arr[$x11]!='')
+			$endorsestatus="Endorsed by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($endorsedate11Arr[$x11]))."";
+		} // if($endorsectr15==0)
+		echo "<td>$endorsestatus</td>";
+
+		// recommending approval
+		if($recoappricgempid11Arr[$x11]!='' && $recoapprdcgempid11Arr[$x11]!='') {
+			$recoapprempsstat="both";
+		} else { $recoapprempsstat=""; } // if($recoappricgempid11Arr[$x11]!='' || $recoapprdcgempid11Arr[$x11]!='')
+		echo "<td>";
+		if($recoapprempsstat=="both") {
+		// ICG
+		if($recoappricgempid11Arr[$x11]!='') {
+			if($recoappricgctr11Arr[$x11]==0) {
+				if($endorsectr11Arr[$x11]==0) {
+				$recoappricgstatus="";
+				} else if($endorsectr11Arr[$x11]>=1) {
+				$recoappricgstatus="ICG: Pending";
+				} // if($endorsectr11Arr[$x11]==0)
+			} else if($recoappricgctr11Arr[$x11]>=1) {
+				$actorempid=$recoappricgempid11Arr[$x11];
+				include ''.$pathmodel.'/qryhrpersreqactor.php';
+				$actorempid="";
+				$recoappricgstatus="ICG recommended by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($recoappricgdate11Arr[$x11]))."";
+			} // if($recoappricgctr11Arr[$x11]==0)
+		if($found12==1) { echo "$recoappricgstatus"; }
+		} // if($recoappricgempid11Arr[$x11]!='')
+		echo "<br>";
+		// DCG
+		if($recoapprdcgempid11Arr[$x11]!='') {
+			if($recoapprdcgctr11Arr[$x11]==0) {
+				if($endorsectr11Arr[$x11]==0) {
+				$recoapprdcgstatus="";
+				} else if($endorsectr11Arr[$x11]>=1) {
+				$recoapprdcgstatus="DCG: Pending";
+				} // if($endorsectr15==0)
+			} else if($recoapprdcgctr11Arr[$x11]>=1) {
+				$actorempid=$recoapprdcgempid11Arr[$x11];
+				include ''.$pathmodel.'/qryhrpersreqactor.php';
+				$actorempid="";
+				$recoapprdcgstatus="DCG recommended by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($recoapprdcgdate11Arr[$x11]))."";
+			} // if($recoapprdcgctr11Arr[$x11]==0)
+		if($found12==1) { echo "$recoapprdcgstatus"; }
+		} // if($recoapprdcgempid11Arr[$x11]!='')
+		} else if($recoapprempsstat=='') {
+		if($recoappricgempid11Arr[$x11]!='' && $recoapprempsstat=='') {
+			// ICG	
+			if($recoappricgctr11Arr[$x11]==0) {
+				if($endorsectr11Arr[$x11]==0) {
+				$recoappricgstatus="";
+				} else if($endorsectr11Arr[$x11]>=1) {
+				$recoappricgstatus="ICG: Pending";
+				} // if($endorsectr11Arr[$x11]==0)
+			} else if($recoappricgctr11Arr[$x11]>=1) {
+				$actorempid=$recoappricgempid11Arr[$x11];
+				include ''.$pathmodel.'/qryhrpersreqactor.php';
+				$actorempid="";
+				$recoappricgstatus="ICG recommended by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($recoappricgdate11Arr[$x11]))."";
+			} // if($recoappricgctr11Arr[$x11]==0)
+		if($found12==1) { echo "$recoappricgstatus"; }
+		} // if($recoappricgempid11Arr[$x11]!='')
+		if($recoapprdcgempid11Arr[$x11]!='' && $recoapprempsstat=='') {
+			// DCG
+			if($recoapprdcgctr11Arr[$x11]==0) {
+				if($endorsectr11Arr[$x11]==0) {
+				$recoapprdcgstatus="";
+				} else if($endorsectr11Arr[$x11]>=1) {
+				$recoapprdcgstatus="DCG: Pending";
+				} // if($endorsectr11Arr[$x11]==0)
+			} else if($recoapprdcgctr11Arr[$x11]>=1) {
+				$actorempid=$recoapprdcgempid11Arr[$x11];
+				include ''.$pathmodel.'/qryhrpersreqactor.php';
+				$actorempid="";
+				$recoapprdcgstatus="DCG recommended by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($recoapprdcgdate11Arr[$x11]))."";
+			} // if($recoapprdcgctr11Arr[$x11]==0)
+		if($found12==1) { echo "$recoapprdcgstatus"; }
+		} // if($recoappricgempid11Arr[$x11]!='')
+		} // if($recoapprempsstat=="both")
+		echo "</td>";
+
+		// approved by
+		if($approveempid11Arr[$x11]!='') {
+		$actorempid=$approveempid11Arr[$x11];
+		include ''.$pathmodel.'/qryhrpersreqactor.php';
+		$actorempid="";
+		} // if($approveempid11Arr[$x11]!='')
+		if($approvectr11Arr[$x11]==0) {
+			if($recoappricgctr11Arr[$x11]==0 && $recoapprdcgctr11Arr[$x11]==0) {
+			$apprstatus="";
+			} else if($recoappricgctr11Arr[$x11]>=1 || $recoapprdcgctr11Arr[$x11]>=1) {
+			$apprstatus="Pending";
+			} // if($recoapprctr11Arr[$x11]==0)
+		} else if($approvectr11Arr[$x11]>=1) {
+			$apprstatus="Approved by: $name_last12, $name_first12 $name_middle12[0] on ".date("Y-M-d H:i", strtotime($approvedate11Arr[$x11]))."";
+		} // if($approvectr11Arr[$x11]==0)
+		echo "<td>$apprstatus</td>";
+
+/*/////////////////////////////
+notes for $logintype
+1: non-admin /pkii
+2: admin /pkii/admin
+/////////////////////////////*/
+
+if($logintype==1) {
+	if($dispsumm==1) {
+		echo "<form method=\"post\" action=\"index.php?lst=1&lid=$loginid&sess=$session&p=352\" name=\"hrpersreqdtl\">";
+		echo "<input type=\"hidden\" name=\"idpr\" value=\"".$idhrpersreq11Arr[$x11]."\">";
+		echo "<input type=\"hidden\" name=\"ctgactor\" value=\"$actor\">";
+		echo "<input type=\"hidden\" name=\"ds\" value=\"$dispsumm\">";
+		echo "<td><button type=\"submit\" class=\"btn btn-primary\" value=\"Details\">Details</button></td>";
+		echo "</form>";
+	} else {
+		echo "<td></td>";
+	} // if($dispsumm==1)
+} else if($logintype==2) {
+	echo "<form method=\"POST\" action=\"hrpersreqdtl.php?loginid=$loginid&idhpr=".$idhrpersreq11Arr[$x11]."\" name=\"hrpersreqdtl\">";
+	echo "<input type=\"hidden\" name=\"idpr\" value=\"".$idhrpersreq11Arr[$x11]."\">";
+		echo "<td><button type=\"submit\" class=\"btn btn-primary\" value=\"Details\">Details</button></td>";
+	echo "</form>";
+} // if($logintyp==1)
+
+	// reset variables
+	$endorsestatus=''; $recoappricgstatus=''; $recoapprdcgstatus=''; $apprstatus='';
+
+	echo "</tr>";
+	} // for
+?>
+			</tbody>
+			</table>
+		</td></tr>
+	</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+

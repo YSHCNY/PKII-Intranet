@@ -1,0 +1,79 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$groupname = $_POST['groupname'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     echo "<html><head><STYLE TYPE=\"text/css\">";
+     echo "<!--";
+     echo "p{font-family: Helvetica; font-size: 10pt;}";
+     echo "B{font-family: Helvetica; font-size: 10pt;}";
+     echo "TD{font-family: Helvetica; font-size: 10pt;}";
+     echo "--->";
+     echo "</STYLE></head>";
+     echo "<b>Custom Payroll System - Pay Period Process</b>";
+
+     echo "<form action=\"confipayrun3.php?loginid=$loginid&gn=$groupname\" method=\"POST\" name=\"myform\">";
+
+     echo "<table>";
+     echo "<tr><td>Cutoff-Start</td>";
+   
+     echo "<td><select name=month>";
+     echo "<option value=1>Jan</option>";
+     echo "<option value=2>Feb</option>";
+     echo "<option value=3>Mar</option>";
+     echo "<option value=4>Apr</option>";
+     echo "<option value=5>May</option>";
+     echo "<option value=6>Jun</option>";
+     echo "<option value=7>Jul</option>";
+     echo "<option value=8>Aug</option>";
+     echo "<option value=9>Sep</option>";
+     echo "<option value=10>Oct</option>";
+     echo "<option value=11>Nov</option>";
+     echo "<option value=12>Dec</option>";
+     echo "</select></td>";
+
+     echo "<td><select name=daystart>";
+     echo "<option value=1>1</option>";
+     echo "<option value=16>16</option>";
+     echo "</select></td>";
+
+     echo "<td><input name=\"year\" size=\"4\" value=\"$yearnow\"></td></tr>";
+
+     echo "<tr><td>Cutoff-End</td>";
+   
+     echo "<td>&nbsp;</td>";
+
+     echo "<td><select name=dayend>";
+     echo "<option value=15>15</option>";
+     echo "<option value=28>28</option>";
+     echo "<option value=29>29</option>";
+     echo "<option value=30>30</option>";
+     echo "<option value=31>31</option>";
+     echo "</select></td>";
+
+     echo "<td>&nbsp;</td></tr>";
+
+     echo "<tr><td>&nbsp;</td><td colspan=3 align=center><input type=\"submit\" value=\"Prepare Payroll\">";
+     echo "</form></td></tr></table>";
+
+//     echo "<p><a href=confipay2.php?loginid=$loginid>Back</a><br>";
+     echo "</html>";
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

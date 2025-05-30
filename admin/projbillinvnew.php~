@@ -1,0 +1,274 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$contract_id = $_POST['contract_id'];
+$proj_code = $_POST['proj_code'];
+
+$date0 = '0000-00-00 00:00:00';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+
+if($found == 1 && substr($level, -33, 1) == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Billing >> Contract >> Add invoice</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+	// title head
+	echo "<tr><th colspan=\"2\">Project Billing > Contract > Add new invoice</th></tr>";
+	
+ // echo "<tr><td colspan=\"2\">";
+if($contract_id!='' && $proj_code!='') {
+
+	// query tblcontract
+	$res11query="SELECT contract_title, contract_num, contract_start, contract_end, contract_type, contract_totcost_directcost, contract_totcost_remuneration, contract_totcost_tax, contract_recoupment_pct, contract_recoupment_amt FROM tblcontract WHERE contract_id=$contract_id AND fk_projcode='$proj_code' LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$contract_title11 = $myrow11['contract_title'];
+		$contract_num11 = $myrow11['contract_num'];
+		$contract_start11 = $myrow11['contract_start'];
+		$contract_end11 = $myrow11['contract_end'];
+		$contract_type11 = $myrow11['contract_type'];
+		$contract_totcost_directcost11 = $myrow11['contract_totcost_directcost'];
+		$contract_totcost_remuneration11 = $myrow11['contract_totcost_remuneration'];
+		$contract_totcost_tax11 = $myrow11['contract_totcost_tax'];
+		$contract_recoupment_pct11 = $myrow11['contract_recoupment_pct'];
+		$contract_recoupment_amt11 = $myrow11['contract_recoupment_amt'];
+		$contract_totcost = $contract_totcost_directcost11 + (($contract_totcost_directcost11*$contract_totcost_tax11)/100) + $contract_totcost_remuneration11;
+		} // while
+	} // if
+	echo "<tr><th class='text-right'>Project code</th><td>$proj_code</td></tr>";
+	echo "<tr><th class='text-right'>Contract title</th><td>$contract_title11</td></tr>";
+	echo "<tr><th class='text-right'>Contract number</th><td>$contract_num11</td></tr>";
+	echo "<tr><th class='text-right'>Type</th><td>$contract_type11</td></tr>";
+	echo "<tr><th class='text-right'>Contract amount</th><td>".number_format($contract_totcost, 2)."</td></tr>";
+	if($contract_recoupment_pct11!=0 || $contract_recoupment_amt11!=0) {
+	echo "<tr><th class='text-right'>Recoupment</th><td>".number_format($contract_recoupment_amt11, 2)."&nbsp;(".number_format($contract_recoupment_pct11)."%)</td></tr>";
+	} // if
+	// for encoders
+  if($accesslevel >= 3) {
+	// query tblcontractinvoice get last invoicenumber
+	$res12query="SELECT contractinvoice_id, contractinvoice_num FROM tblcontractinvoice ORDER BY contractinvoice_num DESC LIMIT 1";
+	$result12=""; $found12=0;
+	$result12=$dbh2->query($res12query);
+	if($result12->num_rows>0) {
+		while($myrow12=$result12->fetch_assoc()) {
+		$found12=1;
+		$contractinvoice_id12 = $myrow12['contractinvoice_id'];
+		$contractinvoice_num12 = $myrow12['contractinvoice_num'];
+		} // while
+	} // if
+	if($found12==1) {
+	// increment invoice
+	$contractinvoice_numfin = $contractinvoice_num12 + 1;
+	} else {
+	$contractinvoice_numfin = $yearnow."00"."1";
+	} // if-else
+	echo "<form action='projbillinvnewadd.php?loginid=$loginid' method='POST' name='projbillinvnewadd'>";
+	echo "<input type='hidden' name='contract_id' value='$contract_id'>";
+	echo "<input type='hidden' name='contract_totcost' value='$contract_totcost'>";
+	echo "<tr><th class='text-right'>Invoice number</th><td><input name='contractinvoice_num' value='$contractinvoice_numfin'></td></tr>";
+	echo "<tr><th class='text-right'>Ref. no.</th><td><input name='refno'></td></tr>";
+	echo "<tr><th class='text-right'>Period covered</th><td>";
+	// echo "".date('Y-M-d', strtotime($contract_start11))."&nbsp;-to-&nbsp;".date('Y-M-d', strtotime($contract_end11))."";
+	echo "From<input type='date' name='periodcov_start' value='$datenow'>&nbsp;To:<input type='date' name='periodcov_end' value='$datenow'>";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Milestone</th><td>";
+	echo "<select name='contractinvoice_milestone'>";
+	// query tblprojctgmilestone
+	$res14query="SELECT idprojctgmilestone, code, name FROM tblprojctgmilestone ORDER BY seq ASC";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14=$dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
+		$found14=1;
+		$ctr14=$ctr14+1;
+		$idprojctgmilestone14 = $myrow14['idprojctgmilestone'];
+		$code14 = $myrow14['code'];
+		$name14 = $myrow14['name'];
+		echo "<option value='$code14'>$name14</option>";
+		} // while
+	} // if
+	echo "</select>";
+	echo "</td></tr>";
+
+	echo "<tr><td colspan='2'>";
+
+	echo "<table class='fin'>";
+	echo "<tr><td>";
+	// col1
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Planned</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_plan_inv_date' value='$datenow'></td></tr>";
+	echo "<tr><th class='text-right'>Invoice amount</th><td>";
+	echo "<input type='radio' id='radioa1' name='invplanchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_plan_inv_amt' value='0.00' onchange='rdiosela1()'>";
+	echo "<br>or</td></tr>";
+	echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	echo "<input type='radio' id='radioa2' name='invplanchksw' value='percent'>";
+	echo "<input type='number' step='0.1' name='contractinvoice_plan_inv_pct' value='0.0' onchange='rdiosela2()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	echo "<input type='radio' id='radioa3' name='invvatplanchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_plan_vat_amt' value='0.00' onchange='rdiosela3()'>";
+	echo "<br>or</td></tr>";
+	echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	echo "<input type='radio' id='radioa4' name='invvatplanchksw' value='percent'>";
+	echo "<input type='number' step='0.1' name='contractinvoice_plan_vat_pct' value='0.0' onchange='rdiosela4()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_plan_subm_date' value='$date0'></td></tr>";
+		echo "</table>";
+	echo "</td><td>";
+	// col2
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Actual</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_actl_inv_date' value='$date0'></td></tr>";
+	echo "<tr><th class='text-right'>Invoice amount</th><td>";
+	echo "<input type='radio' id='radiob1' name='invactlchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_actl_inv_amt' value='0.00' onchange='rdioselb1()'><br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	echo "<input type='radio' id='radiob2' name='invactlchksw' value='percent'>";
+	echo "<input type='number' step='0.1' name='contractinvoice_actl_inv_pct' value='0.0' onchange='rdioselb2()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	echo "<input type='radio' id='radiob3' name='invvatactlchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_actl_vat_amt' value='0.00' onchange='rdioselb3()'><br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	echo "<input type='radio' id='radiob4' name='invvatactlchksw' value='percent'>";
+	echo "<input type='number' step='0.1' name='contractinvoice_actl_vat_pct' value='0.0' onchange='rdioselb4()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_actl_subm_date' value='$date0'></td></tr>";
+		echo "</table>";
+	echo "</td><td>";
+	// col3
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Revised</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_revised_inv_date' value='$date0'></td></tr>";
+	echo "<tr><th class='text-right'>Invoice amount</th><td>";
+	echo "<input type='radio' id='radioc1' name='invrevchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_amt' value='0.00' onchange='rdioselc1()'><br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	echo "<input type='radio' id='radioc2' name='invrevchksw' value='percent'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_pct' value='0.00' onchange='rdioselc2()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	echo "<input type='radio' id='radioc3' name='invvatrevchksw' value='amount'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_vat_amt' value='0.00' onchange='rdioselc3()'><br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	echo "<input type='radio' id='radioc4' name='invvatrevchksw' value='percent'>";
+	echo "<input type='number' step='0.1' name='contractinvoice_revised_vat_pct' value='0.0' onchange='rdioselc4()'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_revised_subm_date' value='$date0'></td></tr>";
+		echo "</table>";
+	echo "</td></tr>";
+	echo "</table>";
+
+	echo "</td></tr>";
+	echo "<tr><td colspan='2' class='text-center'><button type='submit' class='btn btn-success'>Save details</button></td></tr>";
+	echo "</form>";
+	// dropdowns
+
+  } // (if accesslevel >= 3)
+
+	// for supervisors+
+	if($accesslevel >= 4) {
+
+	} // (if accesslevel >= 4)
+
+} // if
+
+  echo "</td></tr>";
+
+// end contents here...
+
+     echo "</table>";
+
+		echo "<form action='projbilldtls.php?loginid=$loginid' method='POST' name='projbilldtls'>";
+		echo "<input type='hidden' name='contractid' value='$contract_id'>";
+		echo "<input type='hidden' name='projcode' value='$proj_code'>";
+     echo "<p><button type='submit' class='btn btn-primary'>Back</button></p>";
+		echo "</form>";
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+?>
+<SCRIPT type="text/javascript" language="JavaScript">
+function rdiosela1()
+{
+     document.getElementById('radioa1').checked = true;	
+}
+function rdiosela2()
+{
+     document.getElementById('radioa2').checked = true;	
+}
+function rdiosela3()
+{
+     document.getElementById('radioa3').checked = true;	
+}
+function rdiosela4()
+{
+     document.getElementById('radioa4').checked = true;	
+}
+function rdioselb1()
+{
+     document.getElementById('radiob1').checked = true;	
+}
+function rdioselb2()
+{
+     document.getElementById('radiob2').checked = true;	
+}
+function rdioselb3()
+{
+     document.getElementById('radiob3').checked = true;	
+}
+function rdioselb4()
+{
+     document.getElementById('radiob4').checked = true;	
+}
+function rdioselc1()
+{
+     document.getElementById('radioc1').checked = true;	
+}
+function rdioselc2()
+{
+     document.getElementById('radioc2').checked = true;	
+}
+function rdioselc3()
+{
+     document.getElementById('radioc3').checked = true;	
+}
+function rdioselc4()
+{
+     document.getElementById('radioc4').checked = true;	
+}
+
+</SCRIPT>
+<?php
+$dbh2->close();
+?>
+

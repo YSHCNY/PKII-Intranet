@@ -1,0 +1,79 @@
+<?php 
+
+require './db1.php';
+include './datetimenow.php';
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$fr_file = trim((isset($_POST['frfile'])) ? $_POST['frfile'] :'');
+$grpnmnew = trim((isset($_POST['grpnmnew'])) ? $_POST['grpnmnew'] :'');
+$grpdesc = trim((isset($_POST['grpdesc'])) ? $_POST['grpdesc'] :'');
+$dfltcoladdinc = (isset($_POST['dfltcoladdinc'])) ? $_POST['dfltcoladdinc'] :'';
+$dfltcoldeduct = (isset($_POST['dfltcoldeduct'])) ? $_POST['dfltcoldeduct'] :'';
+$submnewgrp = (isset($_POST['submnewgrp'])) ? $_POST['submnewgrp'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+
+    if($submnewgrp==1 && $grpnmnew!='') {
+
+    // query if grpname exists, else insert new grp
+    $res11query=""; $result11=""; $found11=0; $ctr11=0;
+    $res11query="SELECT idpay2notifref FROM tblfinpay2notifref WHERE groupname=\"$grpnmnew\" LIMIT 1";
+    $result11=$dbh2->query($res11query);
+    if($result11->num_rows>0) {
+        while($myrow11=$result11->fetch_assoc()) {
+        $found11=1;
+        $idpay2notifref11 = $myrow11['idpay2notifref'];
+        } //while
+    } //if
+
+    if($found11==1) {
+        // disp warn grpname exists, redirect to create grpname page
+        alert("Error: Groupname exists. Pls try a different group name.");
+        // redirect
+        header("Location: $fr_file?loginid=$loginid");
+        exit;
+
+    } else {
+
+        $activesw=1;
+        // insert new grpname record, redirect to menu
+        $res12query=""; $result12="";
+        $res12query="INSERT INTO tblfinpay2notifref SET loginid=$loginid, timestamp=\"$now\", createdby=$loginid, dt_created=\"$now\", groupname=\"$grpnmnew\", description=\"$grpdesc\", dfltcol_addlincome=$dfltcoladdinc, dfltcol_deduction=$dfltcoldeduct, userlevel=$accesslevel, activesw=$activesw";
+        $result12=$dbh2->query($res12query);
+
+        if($result12!='') {
+        // insert logs
+        $logdtl="Created new groupname:$grpnmnew in Pay Notifier V2.00";
+        include './sysloginsqry.php';
+        } //if
+
+        // redirect
+        header("Location: emppaybonV2mng.php?loginid=$loginid");
+        exit;
+        // echo "<p>r12q: $res12query<br>log: $logdtl</p>";
+
+    } //if-else
+
+    } else { //if($submnewgrp==1 && $grpnmnew!='')
+        // disp warn grpname exists, redirect to create grpname page
+        alert("Error: Groupname entered may be blank. Pls try again.");
+        // redirect
+        header("Location: emppaybonV2mng.php?loginid=$loginid");
+        exit;
+
+    } //if($submnewgrp==1 && $grpnmnew!='')
+
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

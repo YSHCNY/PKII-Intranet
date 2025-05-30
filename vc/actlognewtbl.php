@@ -1,0 +1,575 @@
+
+
+<div id="thisistbl">
+
+<?php
+	// query att_userid if exists
+	include("../m/qrymactivitylog2.php");
+	if($att_userid12!='' && $att_userid12!=0) {
+	
+	} else {
+            if($fk_uc_UserID12!='' && $fk_uc_UserID12!=0) {
+        
+            } else {
+
+            } //if-else
+        } // if-else
+?>
+	
+
+<?php
+	// generate dates
+
+				
+if ($yyyymm == ""){
+	$yyyymm = date('Y-m');
+} 
+
+	echo "<form action='./mactivitylogupdtvd.php?lst=1&lid=$loginid&sess=$session&p=14' method='POST' name='mactivitylogupdtvd'>";
+	echo "<input type='hidden' name='monsel' value='$yyyymm'>";
+	echo "<input type='hidden' name='cutmonth' value='$cutmonth'>";
+	echo "<input type='hidden' name='eid' value='$employeeid0'>";
+?>
+<style>
+    th {
+        white-space: nowrap !important;
+        text-align: center !important;
+		
+
+    
+    }
+
+    td{
+        padding: 2rem 1rem 2rem 1rem !important;
+        white-space:  pre-line !important;
+
+    }
+
+</style>
+<table class ='table table-lg table-hover <?php echo $tableinfo?> table-striped table-bordered my-5' width = '100%'>
+
+<thead class = '<?php echo $theadof ?>'>
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Workplace</th>
+                <th>Details</th>
+				<th>Projects</th>
+                <th>Workhours</th>
+                <th>Actions</th>
+            
+            </tr>
+        </thead>
+<?php
+		$actrowctr=0;
+		// while(strtotime($cutstart) <= strtotime($cutend)) {
+		while($cutstart <= $cutend) {
+		$dateval = date("Y-M-d", strtotime($cutstart));
+
+		$currentDate = date("Y-M-d");
+		if ($dateval == $currentDate) {
+			$bg = " border-2  border-primary $currentday";
+		} else {
+			$bg = " border";
+		}
+	
+		?>
+
+
+        <tbody>
+
+
+
+
+		
+		
+		
+<tr>
+
+		<?php
+		// echo "$dateval<br>";
+		// 20200506 get rowspan value based on no of task activities
+		include '../m/qrymactivitylog6a.php';
+		$param16a = count($actrowctr16aArr);
+		for($x16a = 0; $x16a < $param16a; $x16a++) {
+			$actrowctr=$actrowctr16aArr[$x16a];
+		} //for
+		if($actrowctr>1) {
+			$actrowspan="rowspan='$actrowctr'";
+		} else {
+			$actrowspan="";	
+		} //if-else
+		if(date("D", strtotime($dateval)) == "Sun") {
+			echo "<tr $actrowspan class = ' $bg  maincards'>
+			<td class = '$subtext text-center  ' $actrowspan> <span class = 'fs-4  text-danger'>".date("d M Y", strtotime($dateval))."</span></td>
+			<td class = '$subtext text-center' $actrowspan ><span class = 'fs-4 text-danger'>".date("D", strtotime($dateval))."</span></td>";
+		} else {
+    // 20210726 chk if holiday, then font color=red
+    include '../m/qrymactivitylog1.php';
+    if($found11b==1 && $yyyymmdd11b==$cutstart) {
+		echo "<tr $actrowspan>
+			
+		<td class = '$subtext text-center   ' $actrowspan> <span class = 'fs-4  text-danger'>".date("d M Y", strtotime($dateval))."</span></td>
+		<td class = '$subtext text-center ' $actrowspan><span class = 'text-danger'>".date("D", strtotime($dateval))."</span></td>";
+    } else {
+		echo "<tr $actrowspan class = ' $bg maincards'>
+		<td class = '$subtext text-center   ' $actrowspan> <span class = 'fs-4  $maintext'>".date("d M Y", strtotime($dateval))."</span></td>
+		<td class = '$subtext text-center ' $actrowspan ><span class = 'fs-4 $maintext'>".date("D", strtotime($dateval))."</span></td>";
+    } //if-else
+		} // if(date("D", strtotime($dateval)) == "Sun")
+		// display time log if exist
+
+
+		
+		?>
+	
+		
+<?php	
+
+
+$timein14val=""; $timeout15val="";
+		if($att_userid12!='' && $att_userid12!=0) {
+			echo "<td $actrowspan class=' $subtext text-center'> <span class = '$maintext'>";
+			include("../m/qrymactivitylog4.php");
+			$param14 = count($hrattcheckinoutid14Arr);
+			for($x=0; $x<$param14; $x++) {
+				if($timein14Arr[$x] != "") {
+$timein14val=$timein14Arr[$x];
+				echo date("G:i", strtotime($timein14Arr[$x]));
+		
+				// $timein14Arr[$x]="";
+                                } // if
+			} // for
+                        if($found14==0) {
+                            if($found14b==1 && date("G:i", strtotime($timestart14b))!="0:00") {
+                            echo "<i><font color=grey>".date("G:i", strtotime($timestart14b))."</font></i>";
+                          
+			// echo "|$found14|$found14b<br>$dateval|$cutstart|$timestart14b<br>$res14bquery";
+                            } //if
+                        } //if
+						echo "</span></td>"; 
+						
+						$timein14Arr[$x]=""; $timestart14b=""; $res14query=""; $res14bquery="";
+
+                        echo "<td $actrowspan class=' $subtext text-center'><span class = '$maintext'>";
+			include("../m/qrymactivitylog5.php");
+			$param15 = count($hrattcheckinoutid15Arr);
+			for($x=0; $x<$param15; $x++) {
+				if($timeout15Arr[$x] != "") {
+$timeout15val=$timeout15Arr[$x];
+				echo date("G:i", strtotime($timeout15Arr[$x]));
+			
+				// $timeout15Arr[$x]="";
+				} // if
+			} // for
+                        if($found15==0) {
+                        if($found15b==1 && date("G:i", strtotime($timeend15b))!="0:00") {
+                            echo "<i><font color=grey>".date("G:i", strtotime($timeend15b))."</font></i>";
+                        
+                        } //if
+			// echo "$found15|$found15b|$timeend15b<br>$res15bquery";
+                        } //if
+						echo "</span></td>";
+						$timeout15Arr[$x]=""; $timeend15b=""; $res15query=""; $res15bquery="";
+		} else {
+                    if($fk_uc_UserID12!='' && $fk_uc_UserID12!=0) {
+						echo "<td $actrowspan class=' $subtext text-center'><span class = '$maintext'>";
+
+			include("../m/qrymactivitylog4.php");
+			$param14 = count($hrattcheckinoutid14Arr);
+			for($x=0; $x<$param14; $x++) {
+				if($timein14Arr[$x] != "") {
+$timein14val=$timein14Arr[$x];
+				echo date("G:i", strtotime($timein14Arr[$x]));
+			
+				$timein14Arr[$x]="";
+				echo "</span></td>"; 
+				} // if
+			} // for
+			echo "<td $actrowspan class=' $subtext text-center'><span class = '$maintext'>";
+
+			include("../m/qrymactivitylog5.php");
+			$param15 = count($hrattcheckinoutid15Arr);
+			for($x=0; $x<$param15; $x++) {
+				if($timeout15Arr[$x] != "") {
+$timeout15val=$timeout15Arr[$x];
+				echo date("G:i", strtotime($timeout15Arr[$x]));
+				echo "<br>";
+				$timeout15Arr[$x]="";
+				} // if
+			} // for
+			echo "</span></td>"; 
+                    } else {
+						echo "<td $actrowspan ></td><td $actrowspan ></td>";
+                    } //if-else
+                } // if-else
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 20210710 wfh column
+    $wfhflag="";
+    if($timein14val!="" || $timeout15val!="") {
+    $wfhflag="On Site";
+	$cs = 'secondarybgc text-white px-3 py-2 rounded-3';
+    } else {
+        // chk if activity log has entries else blank
+        if($actrowctr!=0) {
+        $wfhflag="WFH";
+		$cs = 'secondarybgc text-white px-3 py-2 rounded-3';
+      
+        } else {
+        $wfhflag="No Entries";
+		$cs = '';
+
+        } //if-else
+    } //if-else
+
+    if ($wfhflag=="No Entries"){
+        $hide = 'hidden d-none';
+        
+    } else {
+        $hide = '';
+        
+    }
+    echo "<td $actrowspan class='text-center'><span class = '$cs'>$wfhflag</span></td>";
+
+    // 20210709 compute timeduration from e-door logs
+    $timein14aval=0; $timein14a=""; $timeout15aval=0; $timeout15a=""; $timeduredr=0;
+    include '../m/qrymactivitylog4a.php';
+    $timein14aval=$timein14a;
+    include '../m/qrymactivitylog5a.php';
+    $timeout15aval=$timeout15a;
+    if(strtotime($timein14aval)!=0 && strtotime($timeout15aval)!=0) {
+        if(strtotime($timeout15aval)>strtotime($timein14aval)) {
+        $timeduredr = number_format(((strtotime($timeout15aval) - strtotime($timein14aval)) / 3600), 2);
+        $tottimeduredr = number_format(($tottimeduredr + $timeduredr), 2);
+        } //if
+    } //if
+			
+                include './mactivitylogqrywfhtimelog.php';
+
+		// display activity log
+		// echo "<table border='1' spacing='0' cellspacing='0' cellpadding='0'>";
+		include("../m/qrymactivitylog6.php");
+		$param16 = count($hractlogid16Arr);
+		
+			
+		
+		if($param16>0) {
+			
+		for($x = 0; $x < $param16; $x++) {
+			
+			$timedur=0;
+
+		// echo "<tr><td>";
+		if($actrowctr>1) {
+			if($x>=1) {
+				
+			} //if
+		} //if
+		
+			$aid[$x]=$hractlogid16Arr[$x];
+			echo "
+	
+			<td class = '$maintext fs-4'>".nl2br($activity16Arr[$x])." <br></td> ";
+		
+			echo "<td class = 'sub$maintext'>";
+			if($projcode16Arr[$x]!='') {				
+				echo "<strong>".$projcode16Arr[$x]." </strong><br>";
+			// if($proj_sname16Arr[$x]=='') {
+			// 	echo "".substr($proj_fname16Arr[$x], 0 ,16)."";
+			// } else {
+			// 	echo "<strong><br>".$proj_sname16Arr[$x]."</strong> </td>";
+			// } //if-else
+			} //if
+			echo "</td>";
+            echo "<td>";
+			if($timestart16Arr[$x]!='' && $timeend16Arr[$x]!='') {
+				if($timestart16Arr[$x]!='0000-00-00 00:00:00' && $timeend16Arr[$x]!='0000-00-00 00:00:00') {
+				$timedur = (strtotime($timeend16Arr[$x]) - strtotime($timestart16Arr[$x]))/3600;
+				echo " <div class = 'mt-3'>Duration: <br><span class = '$maintext'>".date('H:i', strtotime($timestart16Arr[$x]))."-".date('H:i', strtotime($timeend16Arr[$x]))."</span></div>";
+				} //if
+			}
+            
+            // if
+			// // echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."\"><font color=\"blue\">Edit</font></a></i></font>";
+			// echo "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-warning btn-sm\" onclick=\"javascript:window.location='index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."'\">Edit</button>";
+			// // echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=144&aid=".$hractlogid16Arr[$x]."\"><font color=\"red\">Del</font></a></i></font>";
+			// echo "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-danger btn-sm btnActlogDelete\" data-toggle=\"modal\" data-target=\"#myModal\" data-id='".$hractlogid16Arr[$x]."'> Del</button>";
+
+		
+			if($timestart16Arr[$x]!='' && $timeend16Arr[$x]!='') {
+				if($timestart16Arr[$x]!='0000-00-00 00:00:00' && $timeend16Arr[$x]!='0000-00-00 00:00:00') {
+				// echo "<strong>".number_format($timedur, 2)."</strong><br>man-hrs/task";
+				echo "<br><div class = 'mt-3'>Work Hours: <br><span class = '$maintext'><strong>".number_format($timedur, 2)."</strong> </span></div>";
+				} //if e
+
+                
+			} // if
+
+
+          
+            
+       
+ 
+
+    
+			require '../includes/dbh.php';
+			// query earliest timein14
+			$res16bqry=""; $result16b=""; $found16b=0;
+			$res16bqry="SELECT timestart FROM tblhractlog WHERE date='$arrcutdate0' AND employeeid='$employeeid0' AND (timestart<>'' OR timestart<>'0000-00-00 00:00:00') ORDER BY timestart ASC LIMIT 1";
+			$result16b=$dbh->query($res16bqry);
+			if($result16b->num_rows>0) {
+				while($myrow16b=$result16b->fetch_assoc()) {
+					$found16b=1;
+					$timestart16b=$myrow16b['timestart'];
+				} //while
+			} //if
+			// query latest timeout
+			$res16cqry=""; $result16c=""; $found16c=0;
+			$res16cqry="SELECT `timeend` FROM `tblhractlog` WHERE `date`='$arrcutdate0' AND `employeeid`='$employeeid0' AND (`timeend`<>'' OR `timeend`<>'0000-00-00 00:00:00') ORDER BY `timeend` DESC LIMIT 1";
+			$result16c=$dbh->query($res16cqry);
+			if($result16c->num_rows>0) {
+				while($myrow16c=$result16c->fetch_assoc()) {
+					$found16c=1;
+					$timeend16c=$myrow16c['timeend'];
+				} //while
+			} //if
+			$timevaldlyactlog2=number_format(0, 2);
+			if($found16b==1 && $found16c==1) {
+				if($timestart16b!='' && $timeend16c!='') {
+					if(strtotime($timestart16b)<=strtotime($timeend16c)) {
+						
+					$timevaldlyactlog2 = number_format(((strtotime($timeend16c) - strtotime($timestart16b)) / 3600), 2);
+					} //if
+				} //if
+			} //if
+			
+			// finalize computation of timevaldaily
+			if($timein14Arr[$x]!='' && $timeout15Arr[$x]!='') {
+			// reference: based on tblhrattcheckinout
+				if(strtotime($timein14Arr[$x])<=strtotime($timeout15Arr[$x])) {
+				$timevaldaily = number_format(((strtotime($timeout15Arr[$x]) - strtotime($timein14Arr[$x])) / 3600), 2);									
+				} else {
+				$timevaldaily = number_format(0, 2);
+				} //if-else
+			} else {
+			// ref: based on tblhractlog
+				if($timevaldlyactlog<$timevaldlyactlog2) {
+				$timevaldaily = $timevaldlyactlog;
+				} else {
+				$timevaldaily = $timevaldlyactlog2;
+				} //if-else
+			} //if-else
+			if($timeval16Arr[$x]!=0) {
+				
+				$timevaldaily=number_format($timeval16Arr[$x], 2);
+			} //if
+
+
+		if($x==0 && $actrowctr>1) {
+			echo "<div class = 'mt-3'><span class = 'mt-3'>Hours Rendered: </span><input style='width: 80px !important;' class = 'px-2 border-0 bg-transparent form-control' ype='number'  step='any' name='timeval[]' value='$timevaldaily' ></div>";
+
+        // 20210709 disp time duration from e-door log if exists
+        if($timeduredr!=0) {
+			echo "<div class = 'mt-3'><span class = 'mt-3 '>e-Door sum: </span>(<strong>$timeduredr</strong>&nbsp;fr&nbsp;office e-door log)</div>";
+        } //if
+        echo "";
+		// echo "<button type='submit' class='btn btn-success btn-sm' name='submtimeval' value='1'>update</button>";
+		// echo "|".$x.": ".$param16.", ".$found17.", ".$timevaldlyactlog.", f16b:".$found16b.", f16c:".$found16c."";
+		// echo "<br>id:".$hractlogid17.", in:".$timestart17.", out:".$timeend17."";
+		// echo "<br>r17q: ".$res17qry."";
+		// echo "<br>r16bq: $res16bqry";
+	
+	
+		} //if
+
+		if($actrowctr>1) {
+			if($x>=1) {
+				echo "";
+			} //if
+		} //if-else
+			echo "<input value = '$hractlogid16Arr[$x]' type = 'hidden' name = 'logid[]'>";
+
+		if($actrowctr<=1) {	
+			if($timevaldaily=='') { $timevaldaily = number_format(0, 2); }
+			echo "<div class = 'mt-3'><span class = 'mt-3'>Hours Rendered: </span><input style='width: 80px !important;' class = 'px-2 border-0 bg-transparent form-control' ype='number'  step='any' name='timeval[]' value='$timevaldaily' ></div>";
+
+			// 20210709 disp time duration from e-door log if exists
+			if($timeduredr!=0) {
+			echo "<div class = 'mt-3'><span class = 'mt-3 '>e-Door sum: </span>(<strong>$timeduredr</strong>&nbsp;fr&nbsp;office e-door log)</div>";
+				
+			} //if
+			// echo "<button type='submit' class='btn btn-success btn-sm' name='submtimeval' value='1'>update</button>";
+			// echo "|".$x.": ".$param16.", ".$found17.", ".$timevaldlyactlog.", f16b:".$found16b.", f16c:".$found16c."";
+			// echo "<br>id:".$hractlogid17.", in:".$timestart17.", out:".$timeend17."";
+			// echo "<br>r17q: ".$res17qry."";
+			// echo "<br>r16bq: $res16bqry";
+			echo "</td>";
+		
+		} 
+
+		
+		     // echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."\"><font color=\"blue\">Edit</font></a></i></font>";
+		
+
+		
+
+
+		echo "<td class = 'text-center'>  <button type=\"button\" class=\"$hide btn text-white border-0 px-3 py-2 m-1   \"  style = 'background-color: #327134 !important;' onclick=\"javascript:window.location='index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."'\"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pen-fill' viewBox='0 0 16 16'>
+		<path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001'/>
+		</svg>
+					</button>";
+					
+					// echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=144&aid=".$hractlogid16Arr[$x]."\"><font color=\"red\">Del</font></a></i></font>";
+					echo "<button type=\"button\" class=\"$hide btn text-white btnActlogDelete border-0  px-3 py-2 m-1 \" style = 'background-color: #712A2A !important;' data-toggle=\"modal\" data-target=\"#myModal\" data-id='".$hractlogid16Arr[$x]."'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-trash3-fill' viewBox='0 0 16 16'>
+		<path d='M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5'/>
+		</svg>
+					</button> </td>";
+		// if($)
+		} 
+		
+		} else { //if($param16>0)
+			echo "<td></td>";
+		} //if($param16>0)
+
+
+
+    
+            
+					
+			?>
+			
+			
+						<?php
+
+	?>
+	
+	</tr>
+    </tbody>
+	<?php
+	
+
+	    // compute total man hrs based on timevaldaily
+		$tottimevaldaily = number_format(($tottimevaldaily + $timevaldaily), 2);
+		
+		// increment date
+		$cutstart = date("Y-m-d", strtotime($cutstart. " + 1 days"));
+		
+		// reset vars
+		$timevaldlyactlog=0; $timevaldaily=0;
+
+		} // while(strtotime($cutstart) <= strtotime($cutend))
+	 // if($yyyymm != "")
+
+	?>
+
+    </table>
+
+    </div>
+    
+	<?php
+		if($arrcutdate0!='') {
+			?>
+	<div class = '<?php echo $mainbg?> px-5 py-3 mx-5 mb-5 border'>
+		<p class = ' <?php echo $subtext?>'>Summary of Total Redered Hours</p>
+			<?php
+		echo "<p class='text-center $maintext mb-0 fs-1 mt-2'>".$tottimevaldaily."</p>
+		<p class='text-center $subtext fs-5'>Total man-hours</p>";
+				if($tottimeduredr!=0) {
+			echo "<p class='text-center $maintext mb-0 fs-1 mt-2'>".$tottimeduredr."</p>
+			<p class='text-center $subtext fs-5'>Total hours from ofc e-door log</p>";
+				} //if
+		echo "<div class = 'mx-auto text-center '><button type='submit' class='btn text-center rounded-3 text-white my-4 border-0 px-4 py-3 bg-success' name='submtmvaldly' value='1'>Save</button></div>";
+		echo "</form>";
+	
+		?>
+	</div>
+		<?php
+	} //if
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="scrollToCurrentDayButton" title = 'Scroll to current Day' class="floating-button"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+  <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z"/>
+</svg></button>
+	
+	
+	<style>
+		.floating-button {
+		position: fixed;
+		bottom: 140px;
+		right: 20px;
+		padding: 10px 10px;
+		background-color: #007bff;
+		color: #fff;
+		border: none;
+	  	border-radius: 50%;
+	  	width: 50px;
+	  	height: 50px;
+	  	font-size: 18px;
+		cursor: pointer;
+	 
+	}
+
+	table thead th {
+		position: sticky !important;
+		top: 6.5rem !important;
+		z-index: 1 !important;
+		
+		
+	
+
+	}
+	</style>
+	
+	
+	<script>
+		// JavaScript code to get content of maincards and display it in Duplicatemaincards
+	
+	
+
+	
+		document.getElementById("scrollToCurrentDayButton").addEventListener("click", function() {
+		// Get the current day card
+		var currentDayCard = document.querySelector(".border-primary");
+		if (currentDayCard) {
+			// Scroll to the current day card
+			currentDayCard.scrollIntoView({ behavior: "smooth", block: "center" });
+		}
+	});
+	
+	
+	
+	window.addEventListener('DOMContentLoaded', function() {
+			var maincards = document.querySelectorAll('.maincards');
+			var duplicatemaincards = document.querySelector('.Duplicatemaincards');
+			
+			maincards.forEach(function(card) {
+				var content = card.innerHTML;
+				duplicatemaincards.insertAdjacentHTML('beforeend', content);
+			});
+		});
+	
+	</script>

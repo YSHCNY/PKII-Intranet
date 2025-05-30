@@ -1,0 +1,220 @@
+
+
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$fromDate = date('Y-m-d',strtotime($_POST['fromDate']));
+$d = new DateTime($fromDate);
+
+$toDate = date('Y-m-d',strtotime($_POST['toDate']));
+$lastMonth =$d->modify('first day of last month');
+$workingPaperDate = $lastMonth->format('Y-m-d');
+
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+     
+     $accountCodes = "SELECT * FROM tblfinglref where version = 2";
+     $acctResult = $dbh2->query($accountCodes);
+     $identifier = '';
+// edit body-header
+     echo "<div class='mainContainer'>";
+     echo "<div class='container-fluid'>";
+     echo "<input type='hidden' id='loginid' value='".$loginid."'/>";
+     echo "<p><font size=1>Manage >> Subsidiary - Ledgers</font></p>";
+     echo '<form method="post" action="requestedbymamcathy.php?loginid='.$loginid.'">';
+     ?>
+      <script type="text/javascript">
+        $(function() {
+          $("#exportToExcel").click(function() {
+            var data='<table>' + $("#tblName").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+            $('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+            $('#ReportTableData').submit().remove();
+        });
+      });
+      </script>
+      <?php
+        echo "<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a>";
+        if (isset($_POST["fromDate"]))
+          {
+            echo "<input type='hidden' id='placeholderFromDate' value='".$_POST['fromDate']."'/>";
+            echo "<input type='hidden' id='placeholderToDate' value='".$_POST['toDate']."'/>";
+            echo "<input type='hidden' id='placeholderIndex' value='1'/>";
+          }
+          else{
+            echo "<input type='hidden' id='placeholderIndex' value='0'/>";
+          }
+
+      ?>
+
+      <script type="text/javascript">
+        $(function() {
+
+          var placeholderIndex = $('#placeholderIndex').val();
+          if(placeholderIndex == '1' || placeholderIndex == 1)
+          {
+            $('#fromDate').val($('#placeholderFromDate').val());
+            $('#toDate').val($('#placeholderToDate').val());
+          }
+        });
+      </script>
+
+      <input class='btn form-control' type="text" id="fromDate" name='fromDate' placeholder="from" style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <input class='btn form-control' type="text" id="toDate" name="toDate" placeholder="To"  style='width:20%; text-align: left; border: 1px solid #ddd;' />
+       <button type="submit" class="btn btnConfirm btn-default" id="btnConfirm">Submit</button>
+       </form>
+
+     <table id="tblName" class='table table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+      <thead>
+        <th colspan="8" style="text-align: center;">Disbursement Book Requested by Mam Cathy</th>
+      </thead>
+     <tbody>
+     <?php 
+     if (isset($_POST["fromDate"]))
+     {
+
+     $grandTotalCredit = 0;
+     $grandTotalDebit = 0;
+        $sumDisbursementDebit = 0;
+        $sumDisbursementCredit = 0;
+        $totalSubDebit = 0;
+        $totalSubCredit = 0;
+
+        //disbursement
+        $companyid15 = '';
+        $contactid15 = '';
+        $subDisbursement = "SELECT * FROM tblfindisbursement WHERE date BETWEEN '".$fromDate."' AND '".$toDate."'";
+        $subDisbursementResult = $dbh2->query($subDisbursement);
+        while($rowDisbursement = $subDisbursementResult->fetch_assoc()) 
+        {
+          $companyid15 = $rowDisbursement['companyid'];
+          $contactid15 = $rowDisbursement['contactid'];
+          if($identifier != $rowDisbursement['disbursementnumber'])
+          {
+          echo "<tr>";
+            echo "<td colspan='2'>Ref No: <b><u>".$rowDisbursement['disbursementnumber']."</b></u></td>";
+            echo "<td colspan='3'>Payee: ";
+            if((($companyid15!="") || ($companyid15!=0)) && (($contactid15=="") || ($contactid15==0))) {
+            $result15a=""; $found15a=0; $ctr15a=0;
+            $result15a = mysql_query("SELECT company, branch FROM tblcompany WHERE companyid=$companyid15", $dbh);
+            if($result15a != "") {
+              while($myrow15a = mysql_fetch_row($result15a)) {
+              $found15a = 1;
+              $company15a = $myrow15a[0];
+              $branch15a = $myrow15a[1];
+              }
+            }
+            $company15afin = $company15a;
+            if($branch15a!="") { $company15afin = $company15a . " - " . $branch15a; }
+		$company15afin2 = str_replace("'", "", $company15afin);
+            echo "<b><u>$company15afin2</u></b>";
+          }
+          if((($contactid15!="") || ($contactid15!=0)) && (($companyid15=="") || ($companyid15==0))) {
+            $result15b=""; $found15b=0; $ctr15b=0;
+            $result15b = mysql_query("SELECT companyid, employeeid, name_last, name_first, name_middle FROM tblcontact WHERE contactid=$contactid15", $dbh);
+            if($result15b != "") {
+              while($myrow15b = mysql_fetch_row($result15b)) { 
+              $found15b = 1;
+              $companyid15b = $myrow15b[0];
+              $employeeid15b = $myrow15b[1];
+              $name_last15b = $myrow15b[2];
+              $name_first15b = $myrow15b[3];
+              $name_middle15b = $myrow15b[4];
+              }
+            }
+            $contactname15bfin = $name_first15b;
+            if($name_middle15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_middle15b[0] . "."; }
+            if($name_last15b != "") { $contactname15bfin = $contactname15bfin . "&nbsp;" . $name_last15b; }
+		$contactname15bfin2 = str_replace("'", "", $contactname15bfin);
+            echo "<b><u>$contactname15bfin2</u></b>";
+          }
+          if((($companyid15=="") && ($contactid15=="")) || (($companyid15==0) && ($contactid15==0))) {
+		$payor15b = str_replace("'", "", $payor15);
+            echo "<b><u>$payor15b</u></b>";
+          }
+          echo "</td>";
+            echo "<td colspan='2'>Date: <b><u>".$rowDisbursement['date']."</b></u></td>";
+
+          echo "</tr>";
+          echo "<tr>";
+		echo "<td colspan='1'>Ref No</td>";
+            echo "<td colspan='1'>Acct Code</td>";
+            echo "<td colspan='2'>Particulars</td>";
+		echo "<td colspan='2'>Explanation</td>";
+            echo "<td colspan='2'>Debit</td>";
+            echo "<td colspan='2'>Credit</td>";
+          echo "</tr>";
+          }
+          else{
+            echo "</tr>";
+// $company15afin = str_replace("'", "", $company15a);
+$particularsfin = str_replace("'", "", $rowDisbursement['particulars']);
+$explanationfin = str_replace("'", "", $rowDisbursement['explanation']);
+            echo "<td colspan='1'>".$rowDisbursement['disbursementnumber'] ."</td>";
+            echo "<td colspan='1'>".$rowDisbursement['glcode'] ."</td>";
+            // echo "<td colspan='3'>".$rowDisbursement['particulars'] .' - '.$rowDisbursement['explanation'] ."</td>";
+	echo "<td colspan='2'>".$particularsfin ."</td>";
+	echo "<td colspan='2'>".$explanationfin."</td>";
+            echo "<td colspan='2'>".number_format($rowDisbursement['debitamt'],2) ."</td>";
+            echo "<td colspan='2'>".number_format($rowDisbursement['creditamt'],2) ."</td>";
+            echo "</tr>";
+
+          }
+
+	$particularsfin=""; $explanationfin="";            
+
+            $identifier = $rowDisbursement['disbursementnumber'];
+            
+          $sumDisbursementDebit = $sumDisbursementDebit + $rowDisbursement['debitamt'];
+          $sumDisbursementCredit = $sumDisbursementCredit + $rowDisbursement['creditamt'];
+        }
+        //enddisbursement
+          $allTotalDebit = $sumCashReceiptDebit+$sumDisbursementDebit+$sumJournalDebit;
+          $allTotalCredit = $sumCashReceiptCredit+$sumDisbursementCredit+$sumJournalCredit;
+          
+          $grandTotalDebit = $allTotalDebit;
+          $grandTotalCredit = $allTotalCredit;
+          $pinakaTotalDebit += $allTotalDebit;
+          $pinakaTotalCredit += $allTotalCredit;
+
+
+       echo "<tr>";
+       echo "<td colspan='5'><h3 style='font-size:18px; font-weight:700;'>GRAND TOTAL: DEBIT/CREDIT</h3></td>";
+       echo "<td colspan='2'><h3 style='font-size:18px; font-weight:700;'>".number_format($pinakaTotalDebit,2)."</h3></td>";
+       echo "<td colspan='2'><h3 style='font-size:18px; font-weight:700;'>".number_format($pinakaTotalCredit,2)."</h3></td>";
+       echo "</tr>";
+      }
+
+      ?>
+      </tbody>
+      </table>
+      <script>
+        $(document).ready(function(){
+            $('#fromDate').datepicker();
+            $('#toDate').datepicker();
+        });
+      </script>
+      </div>
+      </div>
+      <?php 
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

@@ -1,0 +1,80 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$oldpassword = trim($_POST['oldpassword']);
+$newpassword1 = trim($_POST['newpassword1']);
+$newpassword2 = trim($_POST['newpassword2']);
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+		$found2 = 0;
+     // $result2 = mysql_query("SELECT adminuid, adminpw FROM tbladminlogin WHERE adminloginid=$loginid", $dbh); 
+		$result2 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid AND adminpw=md5('$oldpassword')", $dbh); 
+     while ($myrow2 = mysql_fetch_row($result2))
+     {
+	$found2 = 1;
+	$username = $myrow2[0];
+	// $password = $myrow2[1];
+     }
+
+     if ($found2 == 1)
+     {
+       if($newpassword2 == $newpassword1)
+       {
+          $result = mysql_query("UPDATE tbladminlogin SET adminpw=md5('$newpassword1') WHERE adminloginid=$loginid AND adminuid='$username'", $dbh);
+
+					// query non-admin login if username exists
+					$result3=""; $found3=0; $ctr3=0;
+					$result3 = mysql_query("SELECT loginid, employeeid, contactid FROM tbllogin WHERE username=\"$username\"", $dbh);
+					if($result3 != "") {
+						while($myrow3 = mysql_fetch_row($result3)) {
+						$found3 = 1;
+						$loginid3 = $myrow3[0];
+						$employeeid3 = $myrow3[1];
+						$contactid3 = $myrow3[2];
+						}
+					}
+
+					// if found, update tbladminlogin to new password
+					if($found3 == 1) {
+						$result3b = mysql_query("UPDATE tbllogin SET password=md5('$newpassword1') WHERE loginid=$loginid3 AND username=\"$username\"", $dbh);
+					}
+
+
+
+          echo "<p><font color=green>Password updated!</font></p>";
+          echo "<p><a href=admlogin.php?loginid=$loginid>Back</a></p>";
+       }
+       else 
+       {
+          echo "<p><font color=red>New password and confirm new password does not match pls. press back button</font></p>";
+          echo "<p><a href=admchgpw.php?loginid=$loginid>Back to Change Password</a></p>";
+       }
+     }
+     else
+     {
+	echo "<p><font color=red>Passwords do not match pls. press back button</font></p>";
+        echo "<p><a href=admchgpw.php?loginid=$loginid>Back to Change Password</a></p>";
+     }
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

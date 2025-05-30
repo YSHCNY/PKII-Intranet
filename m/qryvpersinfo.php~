@@ -1,0 +1,74 @@
+<?php
+//
+// qryvpersinfo.php
+// fr: ./vc/ddash.php
+
+// db conn string
+include '../includes/dbh.php';
+
+	$res11query="SELECT tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.contact_gender, tblcontact.picture, tblcontact.position, tblcontact.contact_address1, tblcontact.contact_address2, tblcontact.contact_city, tblcontact.contact_province, tblcontact.contact_zipcode, tblcontact.contact_country, tblcontact.num_res1_cc, tblcontact.num_res1_ac, tblcontact.num_res1, tblcontact.num_res2_cc, tblcontact.num_res2_ac, tblcontact.num_res2, tblcontact.num_mobile1_cc, tblcontact.num_mobile1_ac, tblcontact.num_mobile1, tblcontact.num_mobile2_cc, tblcontact.num_mobile2_ac, tblcontact.num_mobile2, tblcontact.num_mobile3_cc, tblcontact.num_mobile3_ac, tblcontact.num_mobile3, tblcontact.email1, tblcontact.email2, tblcontact.url, tblcontact.remarks_contact, tblcontact.picfn, tblemployee.emp_ref_num, tblemployee.date, tblemployee.date_hired, tblemployee.date_expired, tblemployee.emp_birthdate, tblemployee.emp_birthplace, tblemployee.emp_civilstatus, tblemployee.empeducationid, tblemployee.emp_num1, tblemployee.emp_tin, tblemployee.emp_sss, tblemployee.emp_philhealth, tblemployee.emp_pagibig, tblemployee.emp_pagibig2, tblemployee.emp_gsis, tblemployee.emp_insuranceid, tblemployee.emp_emergencyid, tblemployee.emp_skills, tblemployee.emp_status, tblemployee.emp_remarks, tblemployee.employee_type, tblemployee.term_resign FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.employeeid=\"$employeeid0\" AND tblcontact.contactid=$contactid0";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$name_last11=$myrow11['name_last'];
+		$name_first11=$myrow11['name_first'];
+		$name_middle11=$myrow11['name_middle'];
+		$contact_gender11=$myrow11['contact_gender'];
+		$picture11=$myrow11['picture'];
+		$position11=$myrow11['position'];
+		$contact_address111=$myrow11['contact_address1'];
+		$contact_address211=$myrow11['contact_address2'];
+		$contact_city11=$myrow11['contact_city'];
+		$contact_province11=$myrow11['contact_province'];
+		$contact_zipcode11=$myrow11['contact_zipcode'];
+		$contact_country11=$myrow11['contact_country'];
+		$num_res1_cc11=$myrow11['num_res1_cc'];
+		$num_res1_ac11=$myrow11['num_res1_ac'];
+		$num_res111=$myrow11['num_res1'];
+		$num_res2_cc11=$myrow11['num_res2_cc'];
+		$num_res2_ac11=$myrow11['num_res2_ac'];
+		$num_res211=$myrow11['num_res2'];
+		$num_mobile1_cc11=$myrow11['num_mobile1_cc'];
+		$num_mobile1_ac11=$myrow11['num_mobile1_ac'];
+		$num_mobile111=$myrow11['num_mobile1'];
+		$num_mobile2_cc11=$myrow11['num_mobile2_cc'];
+		$num_mobile2_ac11=$myrow11['num_mobile2_ac'];
+		$num_mobile211=$myrow11['num_mobile2'];
+		$num_mobile3_cc11=$myrow11['num_mobile3_cc'];
+		$num_mobile3_ac11=$myrow11['num_mobile3_ac'];
+		$num_mobile311=$myrow11['num_mobile3'];
+		$email111=$myrow11['email1'];
+		$email211=$myrow11['email2'];
+		$url11=$myrow11['url'];
+		$remarks_contact11=$myrow11['remarks_contact'];
+		$picfn11=$myrow11['picfn'];
+		$emp_ref_num11=$myrow11['emp_ref_num'];
+		$date11=$myrow11['date'];
+		$date_hired11=$myrow11['date_hired'];
+		$date_expired11=$myrow11['date_expired'];
+		$emp_birthdate11=$myrow11['emp_birthdate'];
+		$emp_birthplace11=$myrow11['emp_birthplace'];
+		$emp_civilstatus11=$myrow11['emp_civilstatus'];
+		$empeducationid11=$myrow11['empeducationid'];
+		$emp_num111=$myrow11['emp_num1'];
+		$emp_tin11=$myrow11['emp_tin'];
+		$emp_sss11=$myrow11['emp_sss'];
+		$emp_philhealth11=$myrow11['emp_philhealth'];
+		$emp_pagibig11=$myrow11['emp_pagibig'];
+		$emp_pagibig211=$myrow11['emp_pagibig2'];
+		$emp_gsis11=$myrow11['emp_gsis'];
+		$emp_insuranceid11=$myrow11['emp_insuranceid'];
+		$emp_emergencyid11=$myrow11['emp_emergencyid'];
+		$emp_skills11=$myrow11['emp_skills'];
+		$emp_status11=$myrow11['emp_status'];
+		$emp_remarks11=$myrow11['emp_remarks'];
+		$employee_type11=$myrow11['employee_type'];
+		$term_resign11=$myrow11['term_resign']
+		} // while
+	} // if
+
+// close database
+$dbh->close();
+?>

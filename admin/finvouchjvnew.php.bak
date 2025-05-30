@@ -1,0 +1,488 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$jvnumber0 = trim((isset($_GET['jvn'])) ? $_GET['jvn'] :'');
+
+// $yyyyjv = (isset($_POST['yyyyjv'])) ? $_POST['yyyyjv'] :'';
+// $mmmjv = (isset($_POST['mmmjv'])) ? $_POST['mmmjv'] :'';
+// $ddjv = (isset($_POST['ddjv'])) ? $_POST['ddjv'] :'';
+// $jvdate = $yyyyjv."-".$mmmjv."-".$ddjv;
+$jvdate = (isset($_POST['jvdate'])) ? $_POST['jvdate'] :'';
+
+$jvnumber = trim((isset($_POST['jvnumber'])) ? $_POST['jvnumber'] :'');
+$explanation = (isset($_POST['explanation'])) ? $_POST['explanation'] :'';
+
+// if($crvnumber == '') { $crvnumber = $crvnumber0; }
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}  
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+      echo "<table class=\"fin\" border=\"0\">";
+      echo "<tr><th colspan=\"2\">Journal Voucher - Add new entry</th></tr>";
+
+// get default version of glcode
+    $res20query=""; $result20=""; $found20=0;
+    $res20query = "SELECT version FROM tblfinglrefdefault WHERE defaultval=\"on\"";
+    $result20=$dbh2->query($res20query);
+    if($result20->num_rows>0) {
+        while($myrow20=$result20->fetch_assoc()) {
+	$version20 = $myrow20['version'];
+        } //while
+    } //if
+
+      if($version20 == 1) { $dynselglcode="20.10.208"; }
+      else if($version20 == 2) { $dynselglcode="20.10.210"; }
+
+// define approvers 2022014
+  $res21query=""; $result21=""; $found21=0;
+  $res21query="SELECT iditsupportapprover, approver1empid, approver2empid FROM tblitsupportapprover WHERE deptcd=\"FIN\"";
+  $result21=$dbh2->query($res21query);
+  if($result21->num_rows>0) {
+    while($myrow21=$result21->fetch_assoc()) {
+    $found21=1;
+    $iditsupportapprover21 = $myrow21['iditsupportapprover'];
+    $approver1empid21 = $myrow21['approver1empid'];
+    $approver2empid21 = $myrow21['approver2empid'];
+    } //while
+  } //if
+
+if($jvnumber0 != '') {
+    $res15query=""; $resul15=""; $found15=0;
+    $res15query = "SELECT journalnumber, date, explanation, debitamt, creditamt FROM tblfinjournal WHERE journalnumber = \"$jvnumber0\"";
+    $result15=$dbh2->query($res15query);
+    if($result15->num_rows>0) {
+        while($myrow15=$result15->fetch_assoc()) {
+        $found15 = 1;
+        $journalnumber15 = $myrow15['journalnumber'];
+        $date15 = $myrow15['date'];
+        $explanation15 = $myrow15['explanation'];
+        $debitamt15 = $myrow15['debitamt'];
+        $creditamt15 = $myrow15['creditamt'];
+	// $debitamttot = round($debitamttot+$debitamt15, 2);
+	// $creditamttot = round($creditamttot+$creditamt15, 2);
+	// reset vars
+	$debitamt15=0; $creditamt15=0;
+        } //while
+    } //if
+
+    $res16query=""; $result16=""; $found16=0;
+    $res16query = "SELECT journaltotid, journalnumber, date, explanation, debittot, credittot FROM tblfinjournaltot WHERE journalnumber=\"$jvnumber0\"";
+    $result16=$dbh2->query($res16query);
+    if($result16->num_rows>0) {
+        while($myrow16=$result16->fetch_assoc()) {
+        $found16 = 1;
+        $journaltotid16 = $myrow16['journaltotid'];
+        $journalnumber16 = $myrow16['journalnumber'];
+        $date16 = $myrow16['date'];
+        $explanation16 = $myrow16['explanation'];
+        // $debittot16 = $myrow16[4];
+        // $credittot16 = $myrow16[5];
+        } //while
+    } //if
+
+  if ($explanation16 != '') { $explanationfin = $explanation16; }
+  else if ($explanation15 != '') { $explanationfin = $explanation15; }
+
+    echo "<form action=\"finvouchjvadd.php?loginid=$loginid\" method=\"post\" name=\"myForm\">";
+    echo "<tr><td>Date:&nbsp;<b><input name=\"jvdate\" value=\"$date15\" size=\"12\" readonly></b><a href=\"finvouchjvchgdate.php?loginid=$loginid&jvn=$jvnumber0&jvdt=$date15\"><font size=\"1\"><i>Change</i></font></a></td><td>J.V. No.:&nbsp;<b><input name=\"jvnumber\" value=\"$journalnumber15\" size=\"12\" readonly></b><a href=\"finvouchjvchgnum.php?loginid=$loginid&jvn=$jvnumber0&jvdt=$date15\"><font size=\"1\"><i>Change</i></font></a></td></tr>";
+    echo "<tr><td colspan=\"2\"><table class=\"fin\" width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr><td>Acct Code</td><td>Project Code</td><td>Particulars</td><td>Debit</td><td>Credit</td><td colspan=\"2\">Action</td></tr>";
+
+    $res17query=""; $result17=""; $found17=0;
+    $res17query = "SELECT journalid, glcode, glrefver, glnamedetails, projcode, particulars, debitamt, creditamt FROM tblfinjournal WHERE journalnumber = \"$jvnumber0\" ORDER BY journalid ASC";
+    $result17=$dbh2->query($res17query);
+    if($result17->num_rows>0) {
+        while($myrow17=$result17->fetch_assoc()) {
+	$found17 = 1;
+	$journalid17 = $myrow17['journalid'];
+	$glcode17 = $myrow17['glcode'];
+	$glrefver17 = $myrow17['glrefver'];
+	$glnamedetails17 = $myrow17['glnamedetails'];
+	$projcode17 = $myrow17['projcode'];
+	$particulars17 = $myrow17['particulars'];
+	$debitamt17 = $myrow17['debitamt'];
+	$creditamt17 = $myrow17['creditamt'];
+	$debitamttot = round($debitamttot+$debitamt17, 2);
+	$creditamttot = round($creditamttot+$creditamt17, 2);
+
+        $res18query=""; $result18=""; $found18=0;
+	$res18query = "SELECT glname FROM tblfinglref WHERE glcode=\"$glcode17\" AND version=$glrefver17";
+        $result18=$dbh2->query($res18query);
+        if($result18->num_rows>0) {
+            while($myrow18=$result18->fetch_assoc()) {
+	  $found18 = 1;
+	  $glname18 = $myrow18['glname'];
+            } //while
+        } //if
+
+	echo "<tr><td>$glcode17</td>";
+	echo "<td>$projcode17</td>";
+	echo "<td>$particulars17</td><td align=\"right\">".number_format($debitamt17, 2)."</td><td align=\"right\">".number_format($creditamt17, 2)."</td>";
+	echo "<td><a href=\"finvouchjvpartdel.php?loginid=$loginid&jid=$journalid17&jvn=$journalnumber15\" role='button' class='btn btn-danger btn-sm'>Del</a></td>";
+	echo "<td><a href=\"finvouchjvpartedit.php?loginid=$loginid&jid=$journalid17&jvn=$journalnumber15\" role='button' class='btn btn-warning btn-sm'>Edit</a></td>";
+	echo "</tr>";
+
+	// reset vars
+	$debitamt17=0; $creditamt17=0;
+        } //while
+    } //if
+
+      echo "<tr><td colspan=\"2\">&nbsp;</td><td><b>Total</b></td><td align=\"right\"><b>".number_format($debitamttot, 2)."</b></td><td align=\"right\"><b>".number_format($creditamttot, 2)."</b></td></tr>";
+    echo "</td></tr></table>";
+    echo "<tr><td colspan=\"2\">Explanation<br>";
+    echo "<textarea rows=\"4\" cols=\"60\" name=\"explanation\">$explanationfin</textarea><font size=\"1\"><i><a href=\"finvouchjvchgexpla.php?loginid=$loginid&jvn=$journalnumber15&jvdt=$date15\">Change</a></i></font></td></tr>";
+    echo "<tr><th colspan=\"2\">Add new particulars</th></tr>";
+    echo "<tr><td colspan=\"2\">Acct Code<br>";
+    echo "<select name=\"glcode\" onchange=\"dynamicpulldown()\" id=\"myGlCode\">";
+    $res12query=""; $result12=""; $found12=0;
+    $res12query = "SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 ORDER BY glcode ASC";
+    $result12=$dbh2->query($res12query);
+    if($result12->num_rows>0) {
+        while($myrow12=$result12->fetch_assoc()) {
+      $glcode12 = $myrow12['glcode'];
+      $glname12 = $myrow12['glname'];
+      echo "<option value=\"$glcode12\">$glcode12 - $glname12</option>";
+        } //while
+    } //if
+    echo "</select><br>";
+
+    //
+    // dynamic pulldown
+    //
+
+    echo "<div id=myDynamicPullDown>";
+
+    echo "</div>";
+
+    echo "<input name=\"aepglcode\" type=\"Hidden\">";
+
+    echo "Add'l.Details&nbsp<input name=\"glnamedetails\" size=\"35\">";
+    echo "</td></tr>";
+
+    echo "</td></tr>";
+
+    echo "<tr><td colspan=\"2\">Project Code<br>";
+    echo "<select name=\"projcode\">";
+    echo "<option value=\"-\">-</option>";
+    $res14query=""; $result14=""; $found14=0;
+    $res14query = "SELECT projectid, proj_code, proj_fname, proj_sname FROM tblproject1 WHERE projectid<>0 ORDER BY proj_code DESC";
+    $result14=$dbh2->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $projectid14 = $myrow14['projectid'];
+        $proj_code14 = $myrow14['proj_code'];
+        $proj_fname14 = $myrow14['proj_fname'];
+        $proj_sname14 = $myrow14['proj_sname'];
+        $proj_fname142 = substr("$proj_fname14", 0, 47); 
+        if($proj_sname14 <> '') { 
+            echo "<option value=\"$proj_code14\">$proj_code14 - $proj_sname14</option>";
+        } else { 
+            echo "<option value=\"$proj_code14\">$proj_code14 - $proj_fname142</option>";
+        } //if-else
+        } //while
+    } //if
+    echo "</select>";
+    echo "</td></tr>";
+    echo "<tr><td colspan=\"2\">Particulars<br>";
+    echo "<textarea rows=\"3\" cols=\"60\" name=\"particulars\"></textarea></td></tr>";
+    echo "<tr><td>Debit Amount<br><input name=\"debitamt\" size=\"12\"></td>";
+    echo "<td>Credit Amount<br><input name=\"creditamt\" size=\"12\"></td></tr>";
+    echo "<tr><td colspan=\"2\" align=\"center\"><table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr align=\"center\"><td><input type=\"submit\" value=\"Add new entry\" role='button' class='btn btn-success'></form></td>";
+
+      if(($accesslevel >= 4 && $accesslevel <= 5) && (($employeeid0 == $approver1empid21 || $employeeid0 == $approver2empid21))) {
+        echo "<td><form action=\"finvouchjvaddfin.php?loginid=$loginid&jvn=$jvnumber0\" method=\"post\">";
+        echo "<input type=\"submit\" value=\"Finalize JV\" role='button' class='btn btn-primary'></form></td>";
+        echo "<td><form action=\"finvouchjvcancel.php?loginid=$loginid&jvn=$jvnumber0\" method=\"post\">";
+        echo "<input type=\"submit\" value=\"Cancel JV\" role='button' class='btn btn-danger'></form></td>";
+      }
+      echo "</tr></table>";
+    echo "</td></tr>";
+    echo "</form>";
+
+} else if($jvnumber == '') {
+
+  echo "<tr><td colspan=\"2\"><font color=\"red\">Sorry, Journal Number should not be blank. Please try again.</font></td></tr>";
+
+} else {
+
+    $res11query=""; $result11=""; $found11 = 0;
+    $res11query = "SELECT journalnumber FROM tblfinjournal WHERE journalnumber = \"$jvnumber\"";
+    $result11=$dbh2->query($res11query);
+    if($result11->num_rows>0) {
+        while($myrow11=$result11->fetch_assoc()) {
+        $found11 = 1;
+        $journalnumber11 = $myrow11['journalnumber'];
+        } //while
+    } //if
+
+    if($found11 == 1) {
+
+    echo "<tr><td colspan=\"2\"><font color=\"red\"><b>Warning: Journal Number:$journalnumber11</b> already used. Please try again.</font></td></tr>";
+
+    } else {
+
+    echo "<form action=\"finvouchjvadd.php?loginid=$loginid\" method=\"post\" name=\"myForm\">";
+    echo "<tr><td>Date:&nbsp;<b><input name=\"jvdate\" value=\"$jvdate\" size=\"12\" readonly></b></td><td>J.V. No.:&nbsp;<b><input name=\"jvnumber\" value=\"$jvnumber\" size=\"12\" readonly></b></td></tr>";
+    echo "<tr><td colspan=\"2\"><table class=\"fin\" width=\"100%\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr><td>Acct Code</td><td>Project Code</td><td>Particulars</td><td>Debit</td><td>Credit</td><td colspan=\"2\">Action</td></tr>";
+
+    $res17query=""; $result17=""; $found17=0;
+    $res17query = "SELECT journalid, glcode, glrefver, glnamedetails, projcode, particulars, debitamt, creditamt FROM tblfinjournal WHERE journalnumber = \"$jvnumber\" ORDER BY journalid ASC";
+    $result17=$dbh2->query($res17query);
+    if($result17->num_rows>0) {
+        while($myrow17=$result17->fetch_assoc()) {
+	$found17 = 1;
+	$journalid17 = $myrow17['journalid'];
+	$glcode17 = $myrow17['glcode'];
+	$glrefver17 = $myrow17['glrefver'];
+	$glnamedetails17 = $myrow17['glnamedetails'];
+	$projcode17 = $myrow17['projcode'];
+	$particulars17 = $myrow17['particulars'];
+	$debitamt17 = $myrow17['debitamt'];
+	$creditamt17 = $myrow17['creditamt'];
+	$debitamttot = round($debitamttot+$debitamt17, 2);
+	$creditamttot = round($creditamttot+$creditamt17, 2);
+
+        $res18query=""; $result18=""; $found18=0;
+	$res18query = "SELECT glname FROM tblfinglref WHERE glcode=\"$glcode17\" AND version=$glrefver17";
+        $result18=$dbh2->query($res18query);
+        if($result18->num_rows>0) {
+            while($myrow18=$result18->fetch_assoc()) {
+	  $found18 = 1;
+	  $glname18 = $myrow18['glname'];
+            } //while
+        } //if
+
+	echo "<tr><td>$glcode17</td>";
+	echo "<td>$projcode17</td>";
+	echo "<td>$particulars17</td><td align=\"right\">".number_format($debitamt17, 2)."</td><td align=\"right\">".number_format($creditamt17, 2)."</td>";
+	echo "<td><a href=\"finvouchjvpartdel.php?loginid=$loginid&jvid=$journalid17&jvn=$journalnumber\" role='button' class='btn btn-danger btn-sm'>Del</a></td>";
+	echo "<td><a href=\"finvouchjvpartedit.php?loginid=$loginid&jvid=$journalid17&jvn=$journalnumber\" role='button' class='btn btn-warning btn-sm'>Edit</a></td>";
+	echo "</tr>";
+
+	// reset vars
+	$debitamt17=0; $creditamt17=0;
+
+        } //while
+    } //if
+
+    $res16query=""; $result16=""; $found16=0;
+    $res16query = "SELECT journaltotid, journalnumber, date, explanation, debittot, credittot FROM tblfinjournaltot WHERE journalnumber=\"$jvnumber\"";
+    $result16=$dbh2->query($res16query);
+    if($result16->num_rows>0) {
+        while($myrow16=$result16->fetch_assoc()) {
+        $found16 = 1;
+        $journaltotid16 = $myrow16['journaltotid'];
+        $journalnumber16 = $myrow16['journalnumber'];
+        $date16 = $myrow16['date'];
+        $explanation16 = $myrow16['explanation'];
+        // $debittot16 = $myrow16[4];
+        // $credittot16 = $myrow16[5];
+        } //while
+    } //if
+
+      echo "<tr><td colspan=\"2\">&nbsp;</td><td><b>Total</b></td><td align=\"right\"><b>".number_format($debitamttot, 2)."</b></td><td align=\"right\"><b>".number_format($creditamttot, 2)."</b></td></tr>";
+    echo "</td></tr></table>";
+    echo "<tr><td colspan=\"2\">Explanation<br>";
+    echo "<textarea rows=\"4\" cols=\"60\" name=\"explanation\">$explanation</textarea></td></tr>";
+    echo "<tr><th colspan=\"2\">Add new particulars</th></tr>";
+    echo "<tr><td colspan=\"2\">Acct Code<br>";
+    echo "<select name=\"glcode\" onchange=\"dynamicpulldown()\" id=\"myGlCode\">";
+    $res12query=""; $result12=""; $found12=0;
+    $res12query = "SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 ORDER BY glcode ASC";
+    $result12=$dbh2->query($res12query);
+    if($result12->num_rows>0) {
+        while($myrow12=$result12->fetch_assoc()) {
+        $glcode12 = $myrow12['glcode'];
+        $glname12 = $myrow12['glname'];
+         echo "<option value=\"$glcode12\">$glcode12 - $glname12</option>";
+        } //while
+    } //if
+    echo "</select><br>";
+
+    //
+    // dynamic pulldown
+    //
+
+    echo "<div id=myDynamicPullDown>";
+
+    echo "</div>";
+
+    echo "<input name=\"aepglcode\" type=\"Hidden\">";
+
+    echo "Add'l.Details&nbsp<input name=\"glnamedetails\" size=\"35\">";
+    echo "</td></tr>";
+
+    echo "<tr><td colspan=\"2\">Project Code<br>";
+    echo "<select name=\"projcode\">";
+    echo "<option value=\"-\">-</option>";
+    $res14query=""; $result14=""; $found14=0;
+    $res14query = "SELECT projectid, proj_code, proj_fname, proj_sname FROM tblproject1 WHERE projectid<>0 ORDER BY date_start DESC";
+    $result14=$dbh2->query($res14query);
+    if($result14->num_rows>0) {
+        while($myrow14=$result14->fetch_assoc()) {
+        $projectid14 = $myrow14['projectid'];
+        $proj_code14 = $myrow14['proj_code'];
+        $proj_fname14 = $myrow14['proj_fname'];
+        $proj_sname14 = $myrow14['proj_sname'];
+        $proj_fname142 = substr("$proj_fname14", 0, 47); 
+        if($proj_sname14 <> '') { 
+            echo "<option value=\"$proj_code14\">$proj_code14 - $proj_sname14</option>"; 
+        } else { 
+            echo "<option value=\"$proj_code14\">$proj_code14 - $proj_fname142</option>"; 
+        } //if-else
+        } //while
+    } //if
+    echo "</select>";
+    echo "</td></tr>";
+    echo "<tr><td colspan=\"2\">Particulars<br>";
+    echo "<textarea rows=\"3\" cols=\"60\" name=\"particulars\"></textarea></td></tr>";
+    echo "<tr><td>Debit Amount<br><input name=\"debitamt\" size=\"12\"></td>";
+    echo "<td>Credit Amount<br><input name=\"creditamt\" size=\"12\"></td></tr>";
+    echo "<tr><td>";
+    echo "</td></tr>";
+    echo "<tr><td colspan=\"2\" align=\"center\"><table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+      echo "<tr align=\"center\"><td><input type=\"submit\" value=\"Add new entry\" role='button' class='btn btn-success'></form></td>";
+
+      if(($accesslevel >= 4 && $accesslevel <= 5) && (($employeeid0 == $approver1empid21 || $employeeid0 == $approver2empid21))) {
+        echo "<td><form action=\"finvouchjvaddfin.php?loginid=$loginid&jvn=$jvnumber0\" method=\"post\">";
+        echo "<input type=\"submit\" value=\"Finalize JV\" role='button' class='btn btn-primary'></form></td>";
+        echo "<td><form action=\"finvouchjvcancel.php?loginid=$loginid&jvn=$jvnumber0\" method=\"post\">";
+        echo "<input type=\"submit\" value=\"Cancel JV\" role='button' class='btn btn-danger'></form></td>";
+      }
+      echo "</tr></table>";
+    echo "</td></tr>";
+    echo "</form>";
+  }
+}
+      echo "</table>";
+
+    echo "<p><a href=\"finvouchlist.php?loginid=$loginid&rs=jv\" role='button' class='btn btn-default'>Back</a></p>";
+
+// end contents here
+
+     $resquery = "UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'";
+    $result=$dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+?>
+
+<script language="javascript">
+
+// This function goes through the options for the given
+// drop down box and removes them in preparation for
+// a new set of values
+
+function emptyList( box ) {
+	// Set each option to null thus removing it
+	while ( box.options.length ) box.options[0] = null;
+}
+
+// This function assigns new drop down options to the given
+// drop down box from the list of lists specified
+
+function fillList( box, arr ) {
+	// arr[0] holds the display text
+	// arr[1] are the values
+
+	for ( i = 0; i < arr[0].length; i++ ) {
+
+		// Create a new drop down option with the
+		// display text and value from arr
+
+		option = new Option( arr[0][i], arr[1][i] );
+
+		// Add to the end of the existing options
+
+		box.options[box.length] = option;
+	}
+
+	// Preselect option 0
+
+	box.selectedIndex=0;
+}
+
+// This function performs a drop down list option change by first
+// emptying the existing option list and then assigning a new set
+
+function changeList( box ) {
+	// Isolate the appropriate list by using the value
+	// of the currently selected option
+
+	list = lists[box.options[box.selectedIndex].value];
+
+	// Next empty the slave list
+
+	emptyList( box.form.slave );
+
+	// Then assign the new list values
+
+	fillList( box.form.slave, list );
+}
+
+//
+// dynamic pulldown
+//
+
+function dynamicpulldown()
+{
+    var htmlStr = "";
+
+    var selectedGlCode = document.getElementById('myGlCode').value;
+
+//    alert(selectedGlCode);
+
+    if(selectedGlCode == '<?=$dynselglcode?>')
+    {
+         htmlStr = htmlStr + "<select id=\"aepglcodelist\" onclick=\"getSelected()\">";
+
+         <?php
+         $result = mysql_query("SELECT DISTINCT glcode, glname FROM tblfinglref WHERE version=$version20 AND glcode >= '60.00.00' AND glcode <= '70.80.199' ORDER BY glcode ASC", $dbh);
+	 ?>
+		htmlStr = htmlStr + "<option value=\"-\">-</option>";
+	 <?php
+         while($myrow = mysql_fetch_row($result))
+         {
+             $glcode = $myrow[0];
+             $glname = $myrow[1];
+             ?>
+                  htmlStr = htmlStr + "<option value=\"<?=$glcode?>\"><?=$glcode?> - <?=$glname?></option>";
+             <?php
+         }
+         ?>
+
+         htmlStr = htmlStr + "</select>";
+    }
+
+    document.getElementById('myDynamicPullDown').innerHTML = htmlStr;
+}
+
+function getSelected()
+{
+     document.myForm.aepglcode.value = document.getElementById('aepglcodelist').value;
+}
+
+</script>
+
+<?php
+mysql_close($dbh);
+$dbh2->close();
+?>
+

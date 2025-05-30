@@ -1,0 +1,28 @@
+
+<?php
+include '../includes/dbh.php';
+
+$res11query="SELECT tblproject1.projectid, tblproject1.proj_code, tblproject1.proj_fname, tblproject1.proj_sname, tblproject1.date_start, tblproject1.date_end FROM tblproject1 ORDER BY tblproject1.proj_code DESC, tblproject1.proj_period DESC, tblproject1.proj_code DESC";
+     //echo "<form action=vprojects.php?loginid=$loginid method=POST>";
+
+    // echo "<tr><th>Project Code</th><th>Acronym</th><th>Project Name</th><th>From</th><th>To</th><th>Action</th></tr>";
+	$result11=""; $found11=0; $ctr11=0; $data="";
+	$result11=$dbh->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		  $found11=1;
+		  
+          //$pid = $myrow11['projectid'];
+          $proj_code = $myrow11['proj_code'];
+          $proj_fname = $myrow11['proj_fname'];
+          $proj_sname = $myrow11['proj_sname'];
+          $date_start = $myrow11['date_start'];
+          $date_end = $myrow11['date_end'];
+		  
+
+    
+	}
+	}
+		
+$dbh->close();
+?> 

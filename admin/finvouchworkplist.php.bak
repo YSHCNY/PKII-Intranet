@@ -1,0 +1,218 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$yrmonthavlbl = $_POST['yrmonthavlbl'];
+
+if($yrmonthavlbl == '')
+{
+  $selyear = $yearnow;
+  $selmonth = date("F", mktime(0, 0, 0, $monthnow));
+  $yrmonthavlbl = $selyear." ".$selmonth;
+}
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+echo "<table class=\"fin\" border=\"1\">";
+echo "<tr><td colspan=\"4\">";
+?>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $("#exportToExcel").click(function() {
+      var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+      $('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+      $('#ReportTableData').submit().remove();
+  });
+});
+</script>
+<?php
+  echo "<table id=\"ReportTable\" class=\"fin\" border=\"1\">";
+
+  echo "<tr><td colspan=\"16\" align=\"center\">";
+    echo "<form action=\"finvouchworkplist.php?loginid=$loginid\" method=\"post\" target=\"_self\">";
+    echo "<select name=\"yrmonthavlbl\">";
+    echo "<option>Year-Month</option>";
+
+    $result11 = mysql_query("SELECT DISTINCT DATE_FORMAT(month, '%Y %M') as yyyymonth FROM tblfinworkpaper WHERE workpaperid <> '' ORDER BY month DESC;", $dbh);
+    while($myrow11 = mysql_fetch_row($result11))
+    {
+      $found11 = 1;
+      $yyyymonth = $myrow11[0];
+
+      if($yrmonthavlbl == "$yyyymonth") { $yrmonthsel = "selected"; }
+      else { $yrmonthsel = ""; }
+
+      echo "<option value=\"$yyyymonth\" $yrmonthsel>$yyyymonth</option>";
+    }
+    echo "</select>";
+
+    echo "<input type=\"submit\" value=\"Submit\"></form>";
+  echo "</td></tr>";
+
+  echo "<tr><th colspan=\"16\"><a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a>&nbsp;PKII Working Paper</th></tr>";
+  echo "<tr><th colspan=\"16\">For the month of $yrmonthavlbl</th></tr>";
+
+  $debitmonthtot = 0; $creditmonthtot = 0;
+
+  echo "<tr><th colspan=\"2\">Account</th><th colspan=\"2\">Beginning Balance</th><th colspan=\"2\">Cash Disbursement</th><th colspan=\"2\">Cash Receipt</th><th colspan=\"2\">Journal Book</th><th colspan=\"2\">Trial Balance</th><th colspan=\"2\">Balance Sheet</th><th colspan=\"2\">Income Statement</th></tr>";
+  echo "<tr><td align=\"center\">GL Code</td><td align=\"center\">GL Name</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td><td align=\"center\">Debit</td><td align=\"center\">Credit</td></tr>";
+
+  $result11 = mysql_query("SELECT DISTINCT workpaperid, month, glcode, glrefver, begbalancedr, begbalancecr, cashdisbursementdr, cashdisbursementcr, cashreceiptdr, cashreceiptcr, journaldr, journalcr, trialbalancedr, trialbalancecr, balancesheetdr, balancesheetcr, incomestatementdr, incomestatementcr FROM tblfinworkpaper WHERE workpaperid<>'' AND DATE_FORMAT(month, '%Y %M') = \"$yrmonthavlbl\" ORDER BY workpaperid ASC", $dbh);
+
+ if($result11 != '')
+ {
+  while($myrow11 = mysql_fetch_row($result11))
+  {
+    $found11 = 1;
+    $workpaperid11 = $myrow11[0];
+    $month11 = $myrow11[1];
+    $glcode11 = $myrow11[2];
+    $glrefver11 = $myrow11[3];
+    $begbalancedr11 = $myrow11[4];
+    $begbalancecr11 = $myrow11[5];
+    $cashdisbursementdr11 = $myrow11[6];
+    $cashdisbursementcr11 = $myrow11[7];
+    $cashreceiptdr11 = $myrow11[8];
+    $cashreceiptcr11 = $myrow11[9];
+    $journaldr11 = $myrow11[10];
+    $journalcr11 = $myrow11[11];
+    $trialbalancedr11 = $myrow11[12];
+    $trialbalancecr11 = $myrow11[13];
+    $balancesheetdr11 = $myrow11[14];
+    $balancesheetcr11 = $myrow11[15];
+    $incomestatementdr11 = $myrow11[16];
+    $incomestatementcr11 = $myrow11[17];
+
+    $count1 = $count1 + 1;
+/*
+    $begbalancedrtot = $begbalancedrtot + $begbalancedr11;
+    $begbalancecrtot = $begbalancecrtot + $begbalancecr11;
+    $cashdisbursementdrtot = $cashdisbursementdrtot + $cashdisbursementdr11;
+    $cashdisbursementcrtot = $cashdisbursementcrtot + $cashdisbursementcr11;
+    $cashreceiptdrtot = $cashreceiptdrtot + $cashreceiptdr11;
+    $cashreceiptcrtot = $cashreceiptcrtot + $cashreceiptcr11;
+    $journaldrtot = $journaldrtot + $journaldr11;
+    $journalcrtot = $journalcrtot + $journalcr11;
+    $trialbalancedrtot = $trialbalancedrtot + $trialbalancedr11;
+    $trialbalancecrtot = $trialbalancecrtot + $trialbalancecr11;
+    $balancesheetdrtot = $balancesheetdrtot + $balancesheetdr11;
+    $balancesheetcrtot = $balancesheetcrtot + $balancesheetcr11;
+    $incomestatementdrtot = $incomestatementdrtot + $incomestatementdr11;
+    $incomestatementcrtot = $incomestatementcrtot + $incomestatementcr11;
+*/
+    echo "<tr><td>$glcode11</td>";
+    $result12 = mysql_query("SELECT glname FROM tblfinglref WHERE glcode=\"$glcode11\" AND version=\"$glrefver11\"", $dbh);
+    if($result12 != '')
+    {
+      while($myrow12 = mysql_fetch_row($result12))
+      {
+  $found12 = 1;
+  $glname12 = $myrow12[0];
+      }
+    }
+    echo "<td>$glname12</td><td align=\"right\">".number_format($begbalancedr11,2)."</td><td align=\"right\">".number_format($begbalancecr11,2)."</td><td align=\"right\">".number_format($cashdisbursementdr11,2)."</td><td align=\"right\">".number_format($cashdisbursementcr11,2)."</td><td align=\"right\">".number_format($cashreceiptdr11,2)."</td><td align=\"right\">".number_format($cashreceiptcr11,2)."</td><td align=\"right\">".number_format($journaldr11,2)."</td><td align=\"right\">".number_format($journalcr11,2)."</td><td align=\"right\">".number_format($trialbalancedr11,2)."</td><td align=\"right\">".number_format($trialbalancecr11,2)."</td><td align=\"right\">".number_format($balancesheetdr11,2)."</td><td align=\"right\">".number_format($balancesheetcr11,2)."</td><td align=\"right\">".number_format($incomestatementdr11,2)."</td><td align=\"right\">".number_format($incomestatementcr11,2)."</td></tr>";
+  }
+
+  $result14 = mysql_query("SELECT begbalancedr, begbalancecr, cashdisbursementdr, cashdisbursementcr, cashreceiptdr, cashreceiptcr, journaldr, journalcr, trialbalancedr, trialbalancecr, balancesheetdr, balancesheetcr, incomestatementdr, incomestatementcr, balancesheetdrdiff, balancesheetcrdiff, incomestatementdrdiff, incomestatementcrdiff, balancesheetdrgrandtot, balancesheetcrgrandtot, incomestatementdrgrandtot, incomestatementcrgrandtot, status, remarks FROM tblfinworkpapertot WHERE DATE_FORMAT(month, '%Y %M') = \"$yrmonthavlbl\"", $dbh);
+  if($result14 != '') {
+  while($myrow14 = mysql_fetch_row($result14)) {
+    $found14 = 1;
+    $begbalancedrtot = $myrow14[0];
+    $begbalancecrtot = $myrow14[1];
+    $cashdisbursementdrtot = $myrow14[2];
+    $cashdisbursementcrtot = $myrow14[3];
+    $cashreceiptdrtot = $myrow14[4];
+    $cashreceiptcrtot = $myrow14[5];
+    $journaldrtot = $myrow14[6];
+    $journalcrtot = $myrow14[7];
+    $trialbalancedrtot = $myrow14[8];
+    $trialbalancecrtot = $myrow14[9];
+    $balancesheetdrtot = $myrow14[10];
+    $balancesheetcrtot = $myrow14[11];
+    $incomestatementdrtot = $myrow14[12];
+    $incomestatementcrtot = $myrow14[13];
+    $balancesheetdrdiff = $myrow14[14];
+    $balancesheetcrdiff = $myrow14[15];
+    $incomestatementdrdiff = $myrow14[16];
+    $incomestatementcrdiff = $myrow14[17];
+    $balancesheetdrgrandtot = $myrow14[18];
+    $balancesheetcrgrandtot = $myrow14[19];
+    $incomestatementdrgrandtot = $myrow14[20];
+    $incomestatementcrgrandtot = $myrow14[21];
+    $status14 = $myrow14[22];
+    $remarks14 = $myrow14[23];
+  } }
+
+  echo "<tr>
+  <th colspan=\"2\" align=\"right\">Total</th>
+  <th align=\"right\">".number_format($begbalancedrtot,2)."</th>
+  <th align=\"right\">".number_format($begbalancecrtot,2)."</th>
+  <th align=\"right\">".number_format($cashdisbursementdrtot,2)."</th>
+  <th align=\"right\">".number_format($cashdisbursementcrtot,2)."</th>
+  <th align=\"right\">".number_format($cashreceiptdrtot,2)."</th>
+  <th align=\"right\">".number_format($cashreceiptcrtot,2)."</th>
+  <th align=\"right\">".number_format($journaldrtot,2)."</th>
+  <th align=\"right\">".number_format($journalcrtot,2)."</th>
+  <th align=\"right\">".number_format($trialbalancedrtot,2)."</th>
+  <th align=\"right\">".number_format($trialbalancecrtot,2)."</th>
+    <td align=\"right\">".number_format($balancesheetdrtot,2)."</td>
+    <td align=\"right\">".number_format($balancesheetcrtot,2)."</td>
+    <td align=\"right\">".number_format($incomestatementdrtot,2)."</td>
+    <td align=\"right\">".number_format($incomestatementcrtot,2)."</td></tr>";
+
+  echo "<tr><td colspan=\"12\">&nbsp;</td>
+  <th align=\"right\">".number_format($balancesheetcrdiff,2)."</th>
+  <th align=\"right\">".number_format($balancesheetdrdiff,2)."</th>
+  <th align=\"right\">".number_format($incomestatementcrdiff,2)."</th>
+  <th>".number_format($incomestatementdrdiff,2)."</th></tr>";
+
+  echo "<tr><td colspan=\"12\"></td>
+  <th align=\"right\">".number_format($balancesheetdrtot - $balancesheetcrdiff,2)."</th>
+  <th align=\"right\">".number_format($balancesheetcrtot + $balancesheetdrdiff,2)."</th>
+  <th align=\"right\">".number_format($incomestatementdrtot + $incomestatementcrdiff,2)."</th>
+  <th align=\"right\">".number_format($incomestatementcrtot - $incomestatementdrdiff ,2)."</th></tr>";
+ }
+
+  echo "</table>";
+?>
+
+</td></tr>
+
+<?php
+echo "</table>";
+
+echo "<p><a href=\"finvouchmain.php?loginid=$loginid\">Back</a></p>";
+
+
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

@@ -1,0 +1,109 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$idhrtaholidays = $_GET['idhrtahld'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+?>
+<script language="JavaScript" src="ts_picker.js"></script>
+<?php
+// edit body-header
+  echo "<p><font size=1>Modules >> Time and Attendance >> Holidays - edit</font></p>";
+
+  echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+  echo "<tr><td colspan=\"2\">";
+
+  if($accesslevel >= 4)
+  {
+	echo "<table class=\"fin\" border=\"0\">";
+	echo "<form action=\"hrtimeattholidaysedt2.php?loginid=$loginid&idhrtahld=$idhrtaholidays\" method=\"post\" name=\"modhrtaholiedt\">";
+	//
+	// query holiday
+	//
+	$res11query="SELECT applic_date, holidayname, holidaytype, shiftin, shiftout, remarks FROM tblhrtaholidays WHERE idhrtaholidays=$idhrtaholidays";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("$res11query", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$ctr11 = $ctr11 + 1;
+		$applic_date11 = $myrow11[0];
+		$holidayname11 = $myrow11[1];
+		$holidaytype11 = $myrow11[2];
+		$shiftin11 = $myrow11[3];
+		$shiftout11 = $myrow11[4];
+		$remarks11 = $myrow11[5];
+		}
+	}
+	//
+	// edit form
+	//
+	echo "<form action=\"hrtimeattholidaysadd.php?loginid=$loginid\" method=\"post\" name=\"modhrtaholiadd\">";
+	echo "<tr><td colspan=\"2\" align=\"center\">";
+	echo "<input type=\"date\" name=\"holidate\" size=\"10\" value=\"$applic_date11\">";
+	// get year of selected holiday
+	$applicdatearr = explode("-", $applic_date11);
+	$applicdateyyyy = $applicdatearr[0];
+	?>
+  <a href="javascript:show_calendar('document.modhrtaholiedt.holidate', document.modhrtaholiedt.holidate.value);"><img src="./images/cal.gif" width="16" height="16" border="0" alt="Click Here to Pick up the timestamp"></a>
+  <?php
+	echo "<input name=\"holidayname\" size=\"40\" value=\"$holidayname11\">";
+	echo "<select name=\"holitype\">";
+	if($holidaytype11 == "special") { $hdtypselspecial="selected"; $hdtypsellegal=""; $hdtypselshortened=""; $hdtypselall=""; $hdtypeselnone=""; }
+	else if($holidaytype11 == "legal") { $hdtypselspecial=""; $hdtypsellegal="selected"; $hdtypselshortened=""; $hdtypselall=""; $hdtypeselnone=""; }
+	else if($holidaytype11 == "shortened") { $hdtypselspecial=""; $hdtypsellegal=""; $hdtypselshortened="selected"; $hdtypselall=""; $hdtypeselnone=""; }
+	else if($holidaytype11 == "all") { $hdtypselspecial=""; $hdtypsellegal=""; $hdtypselshortened=""; $hdtypselall="selected"; $hdtypeselnone=""; }
+	else { $hdtypselspecial=""; $hdtypsellegal=""; $hdtypselshortened=""; $hdtypselall=""; $hdtypeselnone="selected"; }
+	echo "<option value='' $hdtypeselnone>select type</option>";
+	echo "<option value=\"special\" $hdtypselspecial>Special holiday</option>";
+	echo "<option value=\"legal\" $hdtypsellegal>Legal holiday</option>";
+	echo "<option value=\"shortened\" $hdtypselshortened>Shortened period</option>";
+	echo "</select>";
+	echo "<br><i>for shortened period pls fill up below...</i>";
+	echo "<br>start_time:<input type=\"time\" name=\"starttime\" size=\"10\" value=\"$shiftin11\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end_time:<input type=\"time\" name=\"endtime\" size=\"10\" value=\"$shiftout11\">";
+	echo "<br><input type=\"submit\" value=\"Save details\">";
+	echo "</td></tr>";
+	echo "</form>";
+	echo "</table>";
+	}
+
+	echo "</td></tr>";
+
+// end contents here...
+
+  echo "</table>";
+
+// edit body-footer
+	echo "<form action=\"hrtimeattholidays.php?loginid=$loginid\" method=\"post\" name=\"hrtimeatttimelogs\">";
+	echo "<input type=\"hidden\" name=\"holidaytype\" value=\"all\">";
+	echo "<input type=\"hidden\" name=\"yyyy\" value=\"$applicdateyyyy\">";
+  echo "<p><input type=\"submit\" value=\"Back\"></p>";
+	echo "</form>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

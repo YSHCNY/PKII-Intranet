@@ -1,0 +1,113 @@
+<?php
+//
+// dpersinfo.php
+// fr: vc/index.php
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>Personal Info</h3></div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-4"><h4>Birthdays</h4>
+	<div class="row">
+		<div class="col-md-4">
+<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td></td>
+			<td>name</td>
+			<td>birthday</td>
+		</tr>
+<?php
+	// query birthdays <5d to >30d of curr_date
+	include("../m/qryddashbday.php");
+	// display results
+	$param11 = count($employeeid11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		echo "<tr><td><img src=\"../uploads/".$picfn11Arr[$x]."\" height=\"40\"></td>";
+		if(date("M-d", strtotime($emp_birthdate11Arr[$x]))==date("M-d", strtotime($datenow))) {
+    echo "<th>".$name_first11Arr[$x]."";
+		// if($name_middle11Arr[$x]!='') {
+			// echo "&nbsp;".$name_middle11Arr[$x][0].".";
+		// } // if
+		echo "&nbsp;".$name_last11Arr[$x]."</th>";
+		echo "<th>".date("D M-d", strtotime($emp_birthdate11Arr[$x]))."</th></tr>";
+		} else {
+    echo "<td>".$name_first11Arr[$x]."";
+		// if($name_middle11Arr[$x]!='') {
+			// echo "&nbsp;".$name_middle11Arr[$x][0].".";
+		// } // if
+		echo "&nbsp;".$name_last11Arr[$x]."</td>";
+		echo "<td>".date("D M-d", strtotime($emp_birthdate11Arr[$x]))."</td></tr>";
+		} // if
+	} // for
+?>
+		
+	</tbody>
+</table>
+		</div>
+	</div>
+		</div>
+
+		<div class="col-md-4"><h4>Holidays</h4>
+	<div class="row">
+		<div class="col-md-4">
+<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td>holiday</td>
+			<td>date</td>
+		</tr>
+<?php
+	// query holidays of curr_year
+	include("../m/qryddashhday.php");
+	// display results
+	$param12 = count($applic_date12Arr);
+	for($x = 0; $x < $param12; $x++) {
+		if(date("Y-m-d", strtotime($applic_date12Arr[$x]))==date("Y-m-d", strtotime($datenow))) {
+		echo "<tr><th><font color=\"red\">".$holidayname12Arr[$x]."</font></th><th><font color=\"red\">".date("D Y-M-d", strtotime($applic_date12Arr[$x]))."</font></th></tr>";
+		} else {
+		echo "<tr><td><font color=\"red\">".$holidayname12Arr[$x]."</font></td><td><font color=\"red\">".date("D Y-M-d", strtotime($applic_date12Arr[$x]))."</font></td></tr>";
+		} // if
+	} // for
+?>
+	</tbody>
+</table>
+		</div>
+	</div>
+		</div>
+
+		<div class="col-md-4"><h4><?php echo "$empdepartment"; ?> schedule</h4>
+	<div class="row">
+		<div class="col-md-4">
+<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td>date</td>
+			<td>particulars</td>
+		</tr>
+<?php
+	// query
+	include("../m/qryddashdsched.php");
+	// echo "<tr><td colspan=\"2\">qry:$res14query</td></tr>";
+	// display
+	$param14 = count($idscheduler14Arr);
+	for($x = 0; $x < $param14; $x++) {
+		echo "<tr><td>";
+		if(date("Y-m-d", strtotime($datefrom14Arr[$x]))==date("Y-m-d", strtotime($dateto14Arr[$x]))) {
+		echo "".date("D Y-M-d", strtotime($datefrom14Arr[$x]))."";
+		} else {
+		echo "".date("D Y-M-d", strtotime($datefrom14Arr[$x]))."<br>-to-<br>".date("D Y-M-d", strtotime($dateto14Arr[$x]))."";
+		} // if
+		echo "</td><td>".$schedname14Arr[$x]."</td></tr>";
+	} // for
+?>
+	</tbody>
+</table>
+		</div>
+	</div>
+		</div>
+	</div>
+

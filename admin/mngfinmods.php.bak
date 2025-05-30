@@ -1,0 +1,129 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Manage >> Accounting Modules</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+     echo "<tr><th colspan=\"2\">Accounting Modules Configuration</th></tr>";
+
+// start contents here...
+  if($accesslevel >= 4)
+  {
+    echo "<tr>";
+    echo "<td><form action=\"mngfinglref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Account Codes\"></form></td>";
+    echo "<td>Manage Chart of Accounts</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinwpref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Working Paper Acct Codes\"></form></td>";
+    echo "<td>Manage Chart of Accounts for Working Paper</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>";
+		echo "<form action=\"mngfinbalshtref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Balance Sheet Acct Codes\"></form>";
+		echo "<form action=\"mngfinbalshtsecref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Balance Sheet Categories\"></form>";
+		echo "</td>";
+    echo "<td>Lead Accounts for Balance Sheet</td>";
+    echo "</tr>";
+		/*
+    echo "<tr>";
+    echo "<td><form action=\"mngfinnkcdref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"NK (Stravis) Code References\"></form></td>";
+    echo "<td>Manage reference codes for NK's Stravis reports</td>";
+    echo "</tr>";
+		*/
+    echo "<tr>";
+    echo "<td><form action=\"mngfingaeref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"GAE Ref Codes\"></form></td>";
+    echo "<td>Manage GAE Reference Codes</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinpayrates.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"Payroll rates\"></form></td>";
+    echo "<td>Manage Payroll rates</td>";
+    echo "</tr>";
+  }
+
+  if($accesslevel >= 3)
+  {
+    echo "<tr>";
+    echo "<td colspan=\"2\" align=\"center\">REPORT TEMPLATES</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinrptdisbursement.php?loginid=$loginid\" method=\"post\"><input type=\"submit\" value=\"Check Voucher Template\"></form></td>";
+    echo "<td>Configure signatories of Check Voucher</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"#\" method=\"post\"><input type=\"submit\" value=\"Accts Payable Template\"></form></td>";
+    echo "<td>Configure signatories of Cash Receipt</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinrptcashreceipt.php?loginid=$loginid\" method=\"post\"><input type=\"submit\" value=\"Cash Receipt Template\"></form></td>";
+    echo "<td>Configure signatories of Cash Receipt</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinrptjournal.php?loginid=$loginid\" method=\"post\"><input type=\"submit\" value=\"Journal Voucher Template\"></form></td>";
+    echo "<td>Configure signatories of Journal Voucher</td>";
+    echo "</tr>";
+  }
+
+  if($accesslevel >= 4)
+  {
+    echo "<tr>";
+    echo "<td colspan=\"2\" align=\"center\">OTHER REFERENCES and TOOLS</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinvouchpaylnk.php?loginid=$loginid\" method=\"post\" target=\"_blank\"><input type=submit value=\"Link Voucher Payee/Payor\"></form></td>";
+    echo "<td>Link voucher payee or payor to business contacts</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinsyncdb24.php?loginid=$loginid\" method=\"post\" target=\"_blank\"><input type=submit value=\"Sync db24 payroll\"></form></td>";
+    echo "<td>Synchronize db24.mdb payroll tables</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<td colspan=\"2\" align=\"center\">NK-RELATED REFERENCES</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinnkstrvscdref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"NK-Stravis Account Codes\"></form></td>";
+    echo "<td>Manage NK-Stravis Account Codes</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><form action=\"mngfinnkgaecdref.php?loginid=$loginid\" method=\"post\"><input type=submit value=\"GAE (NK) Ref Codes\"></form></td>";
+    echo "<td>Manage GAE (NK) Acct Codes</td>";
+    echo "</tr>";
+
+  }
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+// mysql_close($dbh);
+$dbh2->close();
+?> 

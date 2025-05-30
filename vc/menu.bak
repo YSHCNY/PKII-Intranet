@@ -1,0 +1,73 @@
+<?php
+//
+// menu.php
+// fr: vc/index.php
+
+?>
+
+
+<!--Main Navigation-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="#">PKII</a> -->
+			<?php echo "<a class=\"navbar-brand\" href=\"index.php?lst=1&lid=$loginid&sess=$session&p=0\">"; ?>
+        <img alt="Brand" src="./img/pkiilogo1.png" width="90">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Details <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=11\">My Info</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=12\">My Time Log</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=14\">My Activity Log</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=15\">My Payslip Summary</a>"; ?></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Directory <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=21\">Projects</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=22\">Personnel</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=23\">Business Contacts</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=24\">ISO Documents</a>"; ?></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modules <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=31\">File(s) Uploader</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=32\">E-Mail Notifier</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=33\">Inventory Request</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=34\">IT Support Request</a>"; ?></li>
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=35\">HR Personnel Request</a>"; ?></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><?php echo "<a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=41\">Change Password</a>"; ?></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><?php echo "<a href=\"logout.php?lid=$loginid&sess=$session\">Logout</a>"; ?></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!--Main Navigation-->
+

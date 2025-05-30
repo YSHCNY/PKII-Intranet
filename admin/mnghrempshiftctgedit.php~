@@ -1,0 +1,124 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$idhrtapayshiftctg = $_GET['idsc'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Manage >> HR Modules >> Payroll system - shift categories</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+		echo "<tr><th colspan=\"2\">Payroll system - edit shift category</th></tr>";
+
+  if($accesslevel >= 4)
+  {
+
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("SELECT shiftin, shiftout FROM tblhrtapayshiftctg WHERE idhrtapayshiftctg=$idhrtapayshiftctg", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$shiftin11 = $myrow11[0];
+			$shiftout11 = $myrow11[1];
+			}
+		}
+
+		$shiftinarr = explode(":", $shiftin11);
+		$shiftinhh = $shiftinarr[0];
+		$shiftinmm = $shiftinarr[1];
+		$shiftoutarr = explode(":", $shiftout11);
+		$shiftouthh = $shiftoutarr[0];
+		$shiftoutmm = $shiftoutarr[1];
+
+		echo "<form action=\"mnghrempshiftctgedit2?loginid=$loginid&idsc=$idhrtapayshiftctg\" method=\"post\">";
+    echo "<tr>";
+		echo "<th align=\"right\">IN</th>";
+		echo "<td>";
+		echo "<table>";
+		// dropdown for IN:hh
+		echo "<tr><td align=\"center\">";
+		echo "<select name=\"inhh\">";
+		for($ih=00; $ih<=23; $ih++) {
+			// if($ih == $shiftinhh) { $shiftinhhsel="selected"; } else { $shiftinhhsel=""; }
+			echo "<option value=\"$ih\" $shiftinhhsel>$ih</option>";
+		}
+		echo "</select>";
+		echo "<br><font size=\"1\"><i>hour</i></font></td>";
+		// divider
+		echo "<td>:</td>";
+		// dropdown for IN:mm
+		echo "<td align=\"center\">";
+		echo "<select name=\"inmm\">";
+		for($im=00; $im<=59; $im++) {
+			// if($im == $shiftinmm) { $shiftinmmsel="selected"; } else { $shiftinmmsel=""; }
+			echo "<option value=\"$im\" $shiftinmmsel>$im</option>";
+		}
+		echo "</select>";
+		echo "<br><font size=\"1\"><i>minute</i></font></td></tr>";
+		echo "</table>";
+		echo "</td>";
+    echo "</tr>";
+    echo "<tr>";
+		echo "<th align=\"right\">OUT</th>";
+		echo "<td>";
+		echo "<table>";
+		// dropdown for OUT:hh
+		echo "<tr><td align=\"center\">";
+		echo "<select name=\"outhh\">";
+		for($oh=00; $oh<=23; $oh++) {
+			// if($oh == $shiftouthh) { $shiftouthhsel="selected"; } else { $shiftouthhsel=""; }
+			echo "<option value=\"$oh\" $shiftouthhsel>$oh</option>";
+		}
+		echo "</select>";
+		echo "<br><font size=\"1\"><i>hour</i></font></td>";
+		// divider
+		echo "<td>:</td>";
+		// dropdown for OUT:mm
+		echo "<td align=\"center\">";
+		echo "<select name=\"outmm\">";
+		for($om=00; $om<=59; $om++) {
+			// if($om == $shiftoutmm) { $shiftoutmmsel="selected"; } else { $shiftoutmmsel=""; }
+			echo "<option value=\"$om\" $shiftoutmmsel>$om</option>";
+		}
+		echo "</select>";
+		echo "<br><font size=\"1\"><i>minute</i></font></td></tr>";
+		echo "</table>";
+		echo "</td>";
+    echo "</tr>";
+		echo "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"Update\"></td></tr>";
+		echo "</form>";
+  }
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"mnghrempshiftctg.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

@@ -1,0 +1,36 @@
+<?php
+
+/////////////////////////
+// database conn details
+/////////////////////////
+$hostname = 'localhost';
+$dbname = 'maindb';
+$dbuser = 'root';
+$dbuserpass = 'sysad';
+
+////////////////////////
+// set timezone and other date/time variables
+////////////////////////
+	date_default_timezone_set('Asia/Manila');
+	$now = date("Y-m-d H:i:s", time());
+	$datenow = date("Y-m-d");
+	$yearnow = date("Y");
+	$monthnow = date("n");
+
+////////////////////////
+// set paths
+////////////////////////
+	$pathavatar="./images"; // path of tblcontact.picfn
+	$pathuserfileupload="../uploads";
+	$pathmodel="../m";
+	$pathtraining="../transfers/training";
+
+////////////////////////
+// set other default values
+////////////////////////
+    // 20220930 for user login acct mgmt
+    $usrpwexpiry = 30; // (in days) login user password expiry
+    $usrpwretries = 5; // user login retry attempts
+    $usrpwretryresume = 2; // (in hours) user login resumption after reaching max failed retries
+
+?>

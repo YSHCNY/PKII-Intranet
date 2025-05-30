@@ -1,0 +1,189 @@
+
+
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<div class='mainContainer'>";
+     echo "<div class='container-fluid'>";
+     echo "<input type='hidden' id='loginid' value='".$loginid."'/>";
+     echo "<p><font size=1>Manage >> Ledgers</font></p>";
+     echo '<form method="post" action="reportledger.php?loginid='.$loginid.'">';
+     $accountCodes = "SELECT * FROM tblfinglref where version = 2";
+     $acctResult = $dbh2->query($accountCodes);
+
+     ?>
+     <select id="glcode" name="glcode" class="form-control btn" style='width:20%; text-align: left; border: 1px solid #ddd;'>
+          <option value="All">All</option>
+          <?php 
+            while($row = $acctResult->fetch_assoc()) 
+              {
+                echo "<option value='".$row['glcode']."'>".$row['glcode']. ' - '.$row['glname']."</option>";
+              }
+          ?>
+       </select>
+
+       <input type="submit" name="submit" value="Submit" />
+
+     </form>
+
+     <?php 
+      if(isset($_POST['glcode']))
+      {
+
+        $glcodeName = '';
+        $accountCodes = "SELECT * FROM tblfinglref where version = 2 AND glcode = '".$_POST['glcode']."'";
+       $acctResult = $dbh2->query($accountCodes);
+
+       while($row = $acctResult->fetch_assoc()) 
+      {
+        $glcodeName = $_POST['glcode'] . ' '. $row['glname'];
+      }
+
+
+     ?>
+     <table id="tblName" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+      <thead>
+        <th colspan="6" style="text-align: center; font-size: 18px;">
+          <?php 
+            echo $glcodeName;
+          ?>
+        </th>
+      </thead>
+     <tbody>
+      <td class='tblNameTD' style="padding:0;" colspan="3">
+        <table style="margin-top:0 !important;" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+     <?php
+     $getWorkingPaper = "SELECT * from tblfinworkpaper where glcode = '".$_POST['glcode']."' AND year(month) = '".date('Y')."' ORDER by month ASC";
+     $getWorkingPaperRows = $dbh2->query($getWorkingPaper);
+echo "<tr><td colspan='3'>$getWorkingPaper</td></tr>";
+      while($rowTotal = $getWorkingPaperRows->fetch_assoc()) 
+        {
+
+          if($rowTotal['begbalancedr'] != 0 && $rowTotal['month'] == '2018-01-01'){
+            echo "<tr>";
+            echo '<td>'.date('M d',strtotime($rowTotal['month'])).'</td>';
+            echo '<td>Beg Balance</td>';
+            echo '<td>'.number_format($rowTotal['begbalancedr'],2).'</td>';
+            echo "</tr>";
+          }
+
+          if($rowTotal['cashdisbursementdr'] != 0){
+            echo "<tr>";
+            echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+            echo '<td>CDB</td>';
+            echo '<td>'.number_format($rowTotal['cashdisbursementdr'],2).'</td>';
+            echo "</tr>";
+          }
+
+          if($rowTotal['cashreceiptdr'] != 0 ){
+            echo "<tr>";
+            echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+            echo '<td>CRB</td>';
+            echo '<td>'.number_format($rowTotal['cashreceiptdr'],2).'</td>';
+            echo "</tr>";
+          }
+
+          if($rowTotal['journaldr'] != 0){
+            echo "<tr>";
+            echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+            echo '<td>JB</td>';
+            echo '<td>'.number_format($rowTotal['journaldr'],2).'</td>';
+
+            if($rowTotal['trialbalancedr'] != 0){
+                  echo '<td>'.number_format($rowTotal['trialbalancedr'],2).'</td>';
+            }
+            echo "</tr>";
+            
+          }
+        }
+      ?>
+      </table>
+      </td>
+      <td class='tblNameTD' style="padding:0;" colspan="3">
+        <table style="margin-top:0 !important;" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+         <?php
+         $getWorkingPaper = "SELECT * from tblfinworkpaper where glcode = '".$_POST['glcode']."' AND year(month) = '".date('Y')."' ORDER by month ASC";
+         $getWorkingPaperRows = $dbh2->query($getWorkingPaper);
+echo "<tr><td colspan='3'>$getWorkingPaper</td></tr>";
+         $totalDebit = 0;
+         $totalCredit = 0;
+          while($rowTotal = $getWorkingPaperRows->fetch_assoc()) 
+            {
+               if($rowTotal['begbalancecr'] != 0 && $rowTotal['month'] == '2018-01-01'){
+                  echo "<tr>";
+                  echo '<td>'.date('M d',strtotime($rowTotal['month'])).'</td>';
+                  echo '<td>Beg Balance</td>';
+                  echo '<td>'.number_format($rowTotal['begbalancecr'],2).'</td>';
+                  echo "</tr>";
+                }
+
+                if($rowTotal['cashdisbursementcr'] != 0){
+                  echo "<tr>";
+                  echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+                  echo '<td>CDB</td>';
+                  echo '<td>'.number_format($rowTotal['cashdisbursementcr'],2).'</td>';
+                  echo "</tr>";
+                }
+
+                if($rowTotal['cashreceiptcr']  != 0){
+                  echo "<tr>";
+                  echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+                  echo '<td>CRB</td>';
+                  echo '<td>'.number_format($rowTotal['cashreceiptcr'],2).'</td>';
+                  echo "</tr>";
+                }
+
+                if($rowTotal['journalcr'] != 0){
+                  echo "<tr>";
+                  echo '<td>'.date('M t',strtotime($rowTotal['month'])).'</td>';
+                  echo '<td>JB</td>';
+                  echo '<td>'.number_format($rowTotal['journalcr'],2).'</td>';
+
+                  if($rowTotal['trialbalancecr'] != 0){
+                  echo '<td>'.number_format($rowTotal['trialbalancecr'],2).'</td>';
+                }
+                  echo "</tr>";
+                }
+
+                
+              
+            }
+          ?>
+          </table>
+          </td>
+      </tbody>
+      </table>
+
+      <?php 
+      }
+      ?>
+      </div>
+      </div>
+      <?php 
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

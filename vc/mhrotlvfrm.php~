@@ -1,0 +1,375 @@
+<?php
+//
+// mhrotlvfrm.php
+// fr: vc/index.php
+// indexlinks: $page==36
+
+require '../includes/config.inc';
+require '../includes/dbh.php';
+require 'addons.php';
+
+$tabpaneot=''; $tabpanelv='';
+if($pgsrc=='ot') {
+$tabpaneot="fade active in"; $ptclsot="active"; $tabpanelv=""; $ptclslv="";
+} else if($pgsrc=='lv') {
+$tabpaneot=""; $ptclsot=""; $tabpanelv="fade active in"; $ptclslv="active";
+} else {
+$tabpaneot="fade active in"; $ptclsot="active"; $tabpanelv=""; $ptclslv="";
+}
+?>
+  <div class="row">
+    <div class="col-md-12"><h3>Overtime/Leave Form</h3></div>
+  </div>
+
+<!-- <div class="row">
+    <div class="col-md-12"><?php echo "ps:$pgsrc, tpot:$tabpaneot, tplv:$tabpanelv"; ?></div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+  <tr><td>
+<!-- start main tabs here -->
+  <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="<?php echo $ptclsot; ?>"><a href="#overtimeReq" class="text-primary" id="hrot-tab" role="tab" data-toggle="tab" aria-controls="" aria-expanded="true">Overtime request</a></li>
+    <li role="presentation" class="<?php echo $ptclslv; ?>"><a href="#leaveReq" class="text-primary" id="hrlv-tab" role="tab" data-toggle="tab" aria-controls="" aria-expanded="false">Leave request</a></li>
+  </ul>
+
+  <div id="myTabContent" class="tab-content">
+
+<?php
+    echo "<div role=\"tabpanel\" class=\"tab-pane $tabpaneot\" id=\"overtimeReq\" aria-labelledby=\"hrot-tab\">";
+    echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=361\" method=\"POST\" name=\"frmhrotreq\" id=\"hrotreq\">";
+?>
+    <p><button class="btn btn-primary">Add new OT request</button></p>
+    </form>
+
+    <?php 
+
+  $res18bquery="SELECT * FROM tblitsupportapprover WHERE approver1empid='".$employeeid0."' OR approver2empid = '".$employeeid0."'";
+  $result18b=""; $found18b=0; $ctr18b=0;
+  $result18b=$dbh->query($res18bquery);
+
+
+
+   $resquery1 = "SELECT *, tblcontact.employeeid as employee_id from tblhrtaotreq LEFT JOIN tblcontact ON tblcontact.employeeid=tblhrtaotreq.employeeid WHERE tblhrtaotreq.approverempid = ".$employeeid0." ORDER BY tblhrtaotreq.durationfrom DESC";
+     $result1 = $dbh->query($resquery1);
+
+    $resquery = "SELECT *, tblcontact.employeeid as employee_id from tblhrtaotreq LEFT JOIN tblcontact ON tblcontact.employeeid=tblhrtaotreq.employeeid WHERE tblhrtaotreq.employeeid = ".$employeeid0." ORDER BY tblhrtaotreq.durationfrom DESC";
+
+     $result = $dbh->query($resquery);
+
+  // echo "<p>qry:$resquery</p>";
+
+    ?>
+
+    <table id="tblName" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+     <thead>
+         <tr>
+             <td>Employee ID</td>
+             <td>Requestor</td>
+             <td>Duration From</td>
+             <td>Duration To</td>
+             <td>Total Hours</td>
+             <td>Reason</td>
+             <td>Status</td>
+             <td>Actions</td>
+         </tr>
+     </thead>
+     <tbody>
+     <?php 
+echo "<tr><th colspan='8'>Below list for requestors...</th></tr>"; // this->label for devenv only
+          while($myrow = $result->fetch_assoc()) {
+            $try = strtotime($myrow['durationto']) - strtotime($myrow['durationfrom']);
+            $hrs = $try/60/60;
+            if($myrow['statusta'] == 0){
+              $status = 'Pending';
+            }elseif($myrow['statusta'] == 1){
+              $status = 'Approved';
+            }
+            elseif($myrow['statusta'] == 2){
+              $status = 'Disapproved';
+            }
+            elseif($myrow['statusta'] == 3){
+              $status = 'Noted';
+            }
+            $btn = '';
+            if($status == 'Pending'){
+                $btn = "<button class='btn btn-success btn-approve' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Approve</button>";
+                $btn .= "<button class='btn btn-danger btn-disapprove' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Disapprove</button>";
+            }
+
+            echo "<tr>";
+            echo "<td>".$myrow['employee_id']."</td>";
+            echo "<td>".$myrow['name_first']." ".$myrow['name_last']."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationfrom']))."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationto']))."</td>";
+            echo "<td>".number_format($hrs,2)."</td>";
+            echo "<td>".$myrow['reason']."</td>";
+            echo "<td>".$status."</td>";
+            // echo "<td>".$myrow['approverid']."</td>";
+
+            if($myrow['approverid'] == $employeeid0){
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=364&otid=".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Details</a>".$btn."</td>";
+            }
+            else{
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=364&otid=".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Details</a></td>"; 
+            }
+            echo "</tr>";
+            
+          }
+
+echo "<tr><th colspan='8'>Below list, for approvers only...</th></tr>"; // this->label for devenv only
+          while($myrow = $result1->fetch_assoc()) {
+            $try = strtotime($myrow['durationto']) - strtotime($myrow['durationfrom']);
+            $hrs = $try/60/60;
+            if($myrow['statusta'] == 0){
+              $status = 'Pending';
+            }elseif($myrow['statusta'] == 1){
+              $status = 'Approved';
+            }
+            elseif($myrow['statusta'] == 2){
+              $status = 'Disapproved';
+            }
+            elseif($myrow['statusta'] == 3){
+              $status = 'Noted';
+            }
+            $btn = '';
+            if($status == 'Pending'){
+                $btn = "<button class='btn btn-success btn-approve' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Approve</button>";
+                $btn .= "<button class='btn btn-danger btn-disapprove' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Disapprove</button>";
+            }
+
+            echo "<tr>";
+            echo "<td>".$myrow['employee_id']."</td>";
+            echo "<td>".$myrow['name_first']." ".$myrow['name_last']."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationfrom']))."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationto']))."</td>";
+            echo "<td>".number_format($hrs,2)."</td>";
+            echo "<td>".$myrow['reason']."</td>";
+            echo "<td>".$status."</td>";
+            // echo "<td>".$myrow['approverid']."</td>";
+
+            if($myrow['approverid'] == $employeeid0){
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=364&otid=".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Details</a>".$btn."</td>";
+            }
+            else{
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=364&otid=".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Details</a></td>"; 
+            }
+            echo "</tr>";
+          }
+          ?>
+     </tbody>
+     </table>
+    <hr>
+    </div>
+
+<?php
+    echo "<div role=\"tabpanel\" class=\"tab-pane $tabpanelv\" id=\"leaveReq\" aria-labelledby=\"hrlv-tab\">";
+    echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=366\" method=\"POST\" name=\"frmhrlvreq\" id=\"hrlvreq\">";
+?>
+    <p><button class="btn btn-primary">Add new Leave request</button></p>
+    </form>
+
+     <?php 
+
+  $res18bquery="SELECT * FROM tblitsupportapprover WHERE approver1empid='".$employeeid0."' OR approver2empid = '".$employeeid0."'";
+  $result18b=""; $found18b=0; $ctr18b=0;
+  $result18b=$dbh->query($res18bquery);
+
+
+
+   $resquery1 = "SELECT *, tblcontact.employeeid as employee_id from tblhrtalvreq LEFT JOIN tblcontact ON tblcontact.employeeid=tblhrtalvreq.employeeid WHERE tblhrtalvreq.approverempid = ".$employeeid0." ORDER BY tblhrtalvreq.durationfrom DESC";
+     $result1 = $dbh->query($resquery1);
+
+    $resquery = "SELECT *, tblcontact.employeeid as employee_id from tblhrtalvreq LEFT JOIN tblcontact ON tblcontact.employeeid=tblhrtalvreq.employeeid WHERE tblhrtalvreq.employeeid = ".$employeeid0." ORDER BY tblhrtalvreq.durationfrom DESC";
+
+     $result = $dbh->query($resquery);
+
+  // echo "<p>qry:$resquery</p>";
+
+    ?>
+
+    <table id="tblName" class='table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+     <thead>
+         <tr>
+             <td>Employee ID</td>
+             <td>Requestor</td>
+             <td>Duration From</td>
+             <td>Duration To</td>
+             <!-- <td>Total Days</td> -->
+             <td>Reason</td>
+             <td>Status</td>
+             <td>Actions</td>
+         </tr>
+     </thead>
+     <tbody>
+     <?php 
+echo "<tr><th colspan='7'>Below list for requestors...</th></tr>"; // this->label for devenv only
+
+          while($myrow = $result->fetch_assoc()) {
+            $try = strtotime($myrow['durationto']) - strtotime($myrow['durationfrom']);
+            $days = $try/60/60/24;
+            // $status = ($myrow['statusta'] == 0 ? 'Pending' : 'Approved');
+            if($myrow['statusta'] == 0){
+              $status = 'Pending'; $statclr='text-dark';
+            }elseif($myrow['statusta'] == 1){
+              $status = 'Approved'; $statclr='text-success';
+            }
+            elseif($myrow['statusta'] == 2){
+              $status = 'Disapproved'; $statclr='text-danger';
+            }
+            elseif($myrow['statusta'] == 3){
+              $status = 'Noted'; $statclr='text-success';
+            }
+            $btn = '';
+            if($status == 'Pending'){
+                $btn = "<button class='btn btn-success btn-approve' data-id='".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Approve</button>";
+                $btn .= "<button class='btn btn-danger btn-disapprove' data-id='".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Disapprove</button>";
+            }
+
+            echo "<tr>";
+            echo "<td>".$myrow['employee_id']."</td>";
+            echo "<td>".$myrow['name_first']." ".$myrow['name_last']."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationfrom']))."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationto']))."</td>";
+            // echo "<td>".number_format($days,2)."</td>";
+            echo "<td>".$myrow['reason']."</td>";
+            echo "<td class='$statclr'>".$status."</td>";
+            // echo "<td>".$myrow['approverid']."</td>";
+
+            if($myrow['approverid'] == $employeeid0){
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=368&lvid=".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Details</a>".$btn."</td>";
+            }
+            else{
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=368&lvid=".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Details</a></td>"; 
+            }
+            echo "</tr>";
+            
+          }
+
+          // for approvers display only
+          $res2query=""; $result2=""; $found2=0;
+          $res2query="SELECT iditsupportapprover FROM tblitsupportapprover WHERE approver1empid='$employeeid0' OR approver2empid='$employeeid0' LIMIT 1";
+          $result2=$dbh->query($res2query);
+          if($result2->num_rows>0) {
+            while($myrow2=$result2->fetch_assoc()) {
+            $found2=1;
+            $iditsupportapprover=$myrow2['iditsupportapprover'];
+            } // while
+          } // if
+          // if($myrow['approverid'] == $employeeid0) {
+          if($found2==1) {
+
+echo "<tr><th colspan='7'>Below list, for approvers only...</th></tr>"; // this->label for devenv only
+
+          while($myrow = $result1->fetch_assoc()) {
+            $try = strtotime($myrow['durationto']) - strtotime($myrow['durationfrom']);
+            $days = $try/60/60/24;
+            // $status = ($myrow['statusta'] == 0 ? 'Pending' : 'Approved');
+            if($myrow['statusta'] == 0){
+              $status = 'Pending'; $statclr='text-dark';
+            }elseif($myrow['statusta'] == 1){
+              $status = 'Approved'; $statclr='text-success';
+            }
+            elseif($myrow['statusta'] == 2){
+              $status = 'Disapproved'; $statclr='text-danger';
+            }
+            elseif($myrow['statusta'] == 3){
+              $status = 'Noted'; $statclr='text-success';
+            }
+            $btn = '';
+            if($status == 'Pending'){
+                $btn = "<button class='btn btn-success btn-approve' data-id='".$myrow['tblhrtalvreq']."' style='margin-right:5px;'>Approve</button>";
+                $btn .= "<button class='btn btn-danger btn-disapprove' data-id='".$myrow['tblhrtalvreq']."' style='margin-right:5px;'>Disapprove</button>";
+            }
+
+            echo "<tr>";
+            echo "<td>".$myrow['employee_id']."</td>";
+            echo "<td>".$myrow['name_first']." ".$myrow['name_last']."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationfrom']))."</td>";
+            echo "<td>".date('F d, Y - h:i A', strtotime($myrow['durationto']))."</td>";
+            // echo "<td>".number_format($days,2)."</td>";
+            echo "<td>".$myrow['reason']."</td>";
+            echo "<td class='$statclr'>".$status."</td>";
+            // echo "<td>".$myrow['approverid']."</td>";
+
+            if($myrow['approverid'] == $employeeid0){
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=368&lvid=".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Details</a>".$btn."</td>";
+            }
+            else{
+              echo "<td><a class='btn btn-info btn-view' href='index.php?lst=1&lid=".$loginid."&sess=".$session."&p=368&lvid=".$myrow['idhrtalvreq']."' style='margin-right:5px;'>Details</a></td>"; 
+            }
+            echo "</tr>";
+          } // if
+
+          }
+          echo '</div>';
+          ?>
+
+
+
+    
+    </div>
+
+
+
+    </div>
+  </div>
+
+
+
+<script>
+  $(document).ready(function(){
+    $('body').delegate('.btn-approve','click',function(){
+                var id = $(this).data('id');
+                swal({   
+                    title: "Are you sure?", 
+                    text: "You want to approve this request.",   
+                    type: "info",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes!",   
+                    closeOnConfirm: false }, 
+                    function(){
+                          $.ajax({
+                            url : 'tjfunctions/approveotrequest.php',
+                            type : 'POST',
+                            data : {id: id},
+                            success : function(data){
+                            swal("Approved!", "Your request has been approved.", "success"); 
+                            loadDatatable();
+
+                            }
+                        }); 
+                    }
+                );
+            });
+
+
+            $('body').delegate('.btn-disapprove','click',function(){
+                var id = $(this).data('id');
+                swal({   
+                    title: "Are you sure?", 
+                    text: "You want to disapprove this request.",   
+                    type: "info",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes!",   
+                    closeOnConfirm: false }, 
+                    function(){
+                          $.ajax({
+                            url : 'tjfunctions/disapproveotrequest.php',
+                            type : 'POST',
+                            data : {id: id},
+                            success : function(data){
+                            swal("Cancelled!", "Your request has been disapproved.", "success"); 
+                            loadDatatable();
+
+                            }
+                        }); 
+                    }
+                );
+            });
+  });
+</script>

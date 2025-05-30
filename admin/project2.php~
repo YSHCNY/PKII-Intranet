@@ -1,0 +1,121 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$company_type = $_POST['company_type'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Directory >> Manage Projects</font></p>";
+
+     echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><th colspan=\"11\">PKII Projects Listing</th></tr>";
+
+     echo "<tr><td colspan=11><form action=addproject.php?loginid=$loginid method=POST><input type=submit value=\"Add new project\"></form></td></tr>";
+
+	$result = mysql_query("SELECT tblproject1.projectid, tblproject1.proj_num, tblproject1.proj_code, tblproject1.proj_fname, tblproject1.proj_sname, tblproject1.proj_services, tblproject1.proj_period, tblproject1.proj_duty, tblproject1.sw_nk, tblproject1.sw_jica, tblproject1.sw_icg, tblproject1.proj_relation0, tblproject1.proj_relation1, tblproject1.proj_relation2, tblproject1.proj_relation3, tblproject1.proj_class FROM tblproject1 ORDER BY tblproject1.proj_code DESC, tblproject1.proj_period DESC, tblproject1.date_start DESC", $dbh);
+
+     echo "<form action=projects.php?loginid=$loginid method=POST>";
+
+     echo "<tr><th>Count</th><th>Project Code</th><th>Acronym</th><th>Project Name</th><th>Services</th><th>Period</th><th>Relation</th><th>Classification</th><th colspan=\"2\">Action</th></tr>";
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $pid = $myrow[0];
+          $proj_num = $myrow[1];
+          $proj_code = $myrow[2];
+	  $proj_fname = $myrow[3];
+	  $proj_sname = $myrow[4];
+	  $proj_services = $myrow[5];
+	  $proj_period = $myrow[6];
+	  $proj_duty = $myrow[7];
+		$sw_nk = $myrow[8];
+		$sw_jica = $myrow[9];
+		$sw_icg = $myrow[10];
+		$proj_relation0 = $myrow[11];
+		$proj_relation1 = $myrow[12];
+		$proj_relation2 = $myrow[13];
+		$proj_relation3 = $myrow[14];
+		$proj_class = $myrow[15];
+
+          echo "<tr><td>$proj_num</td><td>$proj_code</td>";
+	  echo "<td><a href=moreinfoproj.php?pid=$pid&loginid=$loginid target=_blank>$proj_sname</a></td><td>$proj_fname</td>";
+	  echo "<td>$proj_services</td><td>$proj_period</td>";
+		// echo "<td>$proj_duty</td>";
+		echo "<td>";
+		/*
+		if($sw_nk == 1) { echo "NK&nbsp;&nbsp;"; } 
+		if($sw_jica == 1) { echo "JICA&nbsp;&nbsp;"; }
+		if($sw_icg == 1) { echo "ICG"; }
+		*/
+
+		if(($proj_relation0 != "") || ($proj_relation0 != "-")) {
+			if(($proj_relation1 != "") || ($proj_relation1 != "-")) {
+				$result6=""; $found6=0;
+				$result6 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation1\" AND level=1", $dbh);
+				if($result6 != "") {
+					while($myrow6 = mysql_fetch_row($result6)) {
+					$found6 = 1;
+					$name6 = $myrow6[0];
+					}
+				}
+				if($proj_relation0 == "others") { echo "$name6"; }
+
+				if(($proj_relation2 != "") || ($proj_relation2 != "-")) {
+					$result7=""; $found7=0;
+					$result7 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation2\" AND level=2 LIMIT 1", $dbh);
+					if($result7 != "") {
+						while($myrow7 = mysql_fetch_row($result7)) {
+						$found7=1;
+						$name7 = $myrow7[0];
+						echo "$name7";
+						}
+					}
+
+					if(($proj_relation3 != "") || ($proj_relation3 != "-")) {
+						$result8=""; $found8=0;
+						$result8 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation3\" AND level=3 LIMIT 1", $dbh);
+						if($result8 != "") {
+							while($myrow8 = mysql_fetch_row($result8)) {
+							$found8 = 1;
+							$name8 = $myrow8[0];
+							echo " - $name8";
+							}
+						}
+					}
+				}
+			}
+		}
+		echo "</td>";
+
+		echo "<td>$proj_class</td>";
+
+          echo "<td><a href = moreinfoproj.php?pid=$pid&loginid=$loginid target=_blank>More</a></td>";
+	  echo "<td><a href = editproj.php?pid=$pid&loginid=$loginid>Edit</a></td></tr>";
+     }
+     echo "</table>";
+
+     echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminloginid=$loginid", $dbh);
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

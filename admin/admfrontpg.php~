@@ -1,0 +1,71 @@
+<?php
+//
+// admfrontpage.php 20221019
+// fr:admlogin.php
+
+     include ("header.php");
+     include ("sidebar.php");
+    include('datetimenow.php');
+
+// start contents here
+
+     echo "<p>Welcome <b>$username</b> to Philkoei International Inc.'s Intranet Admin Access<br>";
+     echo "Note: Only authorized PKII personnel with admin access are allowed to use this site.<br>";
+
+    $usrip=$_SERVER['REMOTE_ADDR'];
+    $usrosbrowserver=$_SERVER['HTTP_USER_AGENT'];
+
+    echo "Logged-in from $usrip using $usrosbrowserver on $now<br /><br />";
+
+    $logdetails = "loginid:". $loginid . " logged-in from ip:$usrip using:$usrosbrowserver<br /><br />";
+
+    // set pw chg counter
+    $chgdtpw="";
+    // echo "pw dtlastchg: $pwchangedt5&nbsp;|<br />";
+    // echo "pw skip dtlast: $skiplastdt5&nbsp;|<br />";
+    // echo "pw skip dtlast: $chgdtpw&nbsp;|<br />";
+    // echo "chgdtpw: $chgdtpw<br />";
+    // echo "now: $now<br />";
+    // echo "usrpwexpiry2: $usrpwexpiry2<br />";
+    // echo "pwchangedt5:$pwchangedt5<br />";
+    // echo "pwchgdtplus30d:";
+    // echo "$pwchgdtplus30d<br />";
+    // echo "datenow:$datenow<br />";
+    // echo "skippwctr5:$skippwctr5<br />";
+    // echo "skiplastdt5:$skiplastdt5<br />";
+    if($pwchangedt5!="" || $skiplastdt5!="") {
+        if($pwchangedt5!="0000-00-00 00:00:00" || $skiplastdt5!="0000-00-00 00:00:00") {
+
+        if(strtotime($skiplastdt5) > strtotime($pwchangedt5)) {
+    $daystochgpwprompt = round((strtotime($skiplastdt5) - strtotime($now)) / (60 * 60 * 24));
+        // $chgdtpw = $pwchangedt5;
+        } else {
+    $daystochgpwprompt = round($usrpwexpiry2 - ((strtotime($now) - strtotime($pwchangedt5)) / (60 * 60 * 24)));
+        // $chgdtpw = $skiplastdt5;
+        } //if-else
+
+    // echo "test pwchgdt5:$pwchangedt5, skiplastdt5:$skiplastdt5, now:$now<br />";
+
+    echo "Days left to change your intranet login password:&nbsp;<strong>";
+
+        if($daystochgpwprompt<=5) {
+    echo "<font color='red'>$daystochgpwprompt</font>";
+        } else {
+    echo "$daystochgpwprompt";
+        } //if-else
+
+    echo "</strong><br /><br />";
+        } //if
+
+    } //if($chgdtpw!="")
+    // echo "Days left to change your password: <strong>".round($usrpwexpiry2 - ($daystochgpwprompt / (60 * 60 * 24)))."</strong><br /><br />";
+    // echo "your dept: $empdepartment0<br />";
+    // echo "r5bq: $res5bquery <br />";
+
+    echo "</p>";
+// echo "<p>f1:$found1, f8:$found8, f9:$found9, f7:$found7, dis7:$disabled7, f5:$found5, pwchgdt5:$pwchangedt5, lid0:$loginid0<br>r8q: $res8query</p>";
+    echo "<p><<< please choose a link on the left</p>";
+
+		include('ddash.php');
+
+?>

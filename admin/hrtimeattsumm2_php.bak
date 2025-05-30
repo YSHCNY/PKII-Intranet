@@ -1,0 +1,469 @@
+<?php
+// hrtimeattsumm2.php
+// fr hrtimeattsumm.php & finpaysystasumm.php // updated 20241008
+
+	if($disptyp=="detailed") {
+	//
+	// start display of detailed list
+	//
+	echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+	echo "<tr><th colspan='9'></th><th colspan='5'>Overtime</th><th colspan='9'></th></tr>";
+	echo "<tr><th>Ctr</th><th>EmpID</th><th>Name</th><th>PrefTime</th><th colspan=\"2\">Date</th><th>TimeIN</th><th>TimeOUT</th><th>Hrs</th>";
+	// echo "<th>Regular</th><th>Rest day</th><th>OT holi.</th><th>Night diff</th>";
+	echo "<th>Ordinary</th><th>Rest Day</th><th>Special holi.</th><th>Legal holi.</th><th>Night diff</th><th>Total</th>";
+	echo "<th>UT</th><th>Meal allow.</th>";
+	echo "<th>Trans allow.</th>";
+	echo "<th>Proj/Dept</th><th>VL</th><th>SL</th><th>SD</th><th>CC</th><th>OB</th><th>SPL</th><th>Remarks</th></tr>";
+
+	// $dbq21="SELECT tblhrtaemptimelog.idhrtaemptimelog, tblhrtaemptimelog.employeeid, tblhrtaemptimelog.logdate, tblhrtaemptimelog.timein, tblhrtaemptimelog.timeout, tblhrtaemptimelog.otbeforeinsw, tblhrtaemptimelog.otafteroutsw, tblhrtaemptimelog.restdaysw, tblhrtaemptimelog.nextdaysw, tblhrtaemptimelog.mealallowsw, tblhrtaemptimelog.leavetype, tblhrtaemptimelog.leaveduration, tblhrtaemptimelog.totaltime, tblhrtaemptimelog.otval, tblhrtaemptimelog.utval, tblhrtaemptimelog.otutval, tblhrtaemptimelog.nightdiffval, tblhrtaemptimelog.nootsw, tblhrtaemptimelog.noutsw, tblhrtaemptimelog.projcharge, tblhrtaemptimelog.projpercent, tblhrtaemptimelog.nofindings, tblhrtaemptimelog.remarks, tblhrtapaygrpemplst.contactid, tblhrtapaygrpemplst.bankacctid, tblhrtapaygrpemplst.restday, tblhrtapaygrpemplst.projcode, tblhrtapaygrpemplst.activesw, tblhrtapayshiftctg.shiftin, tblhrtaholidays.holidaytype, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid LEFT JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idhrtapayshiftctg=tblhrtapayshiftctg.idhrtapayshiftctg LEFT JOIN tblhrtaholidays ON tblhrtaemptimelog.logdate=tblhrtaholidays.applic_date LEFT JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.employeeid=tblcontact.employeeid GROUP BY idhrtaemptimelog ORDER BY tblhrtaemptimelog.employeeid ASC, tblhrtaemptimelog.timein ASC";
+	$dbq21="SELECT tblhrtaemptimelog.idhrtaemptimelog, tblhrtaemptimelog.employeeid, tblhrtaemptimelog.logdate, tblhrtaemptimelog.timein, tblhrtaemptimelog.timeout, tblhrtaemptimelog.otbeforeinsw, tblhrtaemptimelog.otafteroutsw, tblhrtaemptimelog.restdaysw, tblhrtaemptimelog.nextdaysw, tblhrtaemptimelog.mealallowsw, tblhrtaemptimelog.leavetype, tblhrtaemptimelog.leaveduration, tblhrtaemptimelog.totaltime, tblhrtaemptimelog.otval, tblhrtaemptimelog.utval, tblhrtaemptimelog.otutval, tblhrtaemptimelog.nightdiffval, tblhrtaemptimelog.nootsw, tblhrtaemptimelog.noutsw, tblhrtaemptimelog.projcharge, tblhrtaemptimelog.projpercent, tblhrtaemptimelog.nofindings, tblhrtaemptimelog.remarks, tblhrtaemptimelog.leaveid, tblhrtaemptimelog.holiday, tblhrtaemptimelog.timein2, tblhrtaemptimelog.timeout2, tblhrtaemptimelog.nextday2insw, tblhrtaemptimelog.nextday2outsw, tblhrtaemptimelog.otordval, tblhrtaemptimelog.otrestspval, tblhrtaemptimelog.otlegalval, tblhrtaemptimelog.otrestsp8val, tblhrtaemptimelog.otspsunval, tblhrtaemptimelog.otspsun8val, tblhrtaemptimelog.otlegal8val, tblhrtaemptimelog.otlegalsunval, tblhrtaemptimelog.otlegalsun8val, tblhrtapaygrpemplst.contactid, tblhrtapaygrpemplst.bankacctid, tblhrtapaygrpemplst.restday, tblhrtapaygrpemplst.projcode, tblhrtapaygrpemplst.activesw, tblhrtapayshiftctg.shiftin, tblhrtaholidays.holidaytype, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid LEFT JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idhrtapayshiftctg=tblhrtapayshiftctg.idhrtapayshiftctg LEFT JOIN tblhrtaholidays ON tblhrtaemptimelog.logdate=tblhrtaholidays.applic_date LEFT JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.employeeid=tblcontact.employeeid GROUP BY idhrtaemptimelog ORDER BY tblcontact.name_last ASC, tblcontact.name_first ASC, tblhrtaemptimelog.timein ASC";
+	$result21=""; $found21=0; $ctr21=0;
+	/*
+	$result21 = mysql_query("$dbq21", $dbh);
+	if($result21 != "") {
+		while($myrow21 = mysql_fetch_row($result21)) {
+	*/
+
+	$result21 = $dbh2->query($dbq21);
+	if($result21->num_rows>0) {
+		while($myrow21 = $result21->fetch_assoc()) {
+		$found21 = 1;
+		$idhrtaemptimelog21 = $myrow21['idhrtaemptimelog'];
+		$employeeid21 = $myrow21['employeeid'];
+		$logdate21 = $myrow21['logdate'];
+		$timein21 = $myrow21['timein'];
+		$timeout21 = $myrow21['timeout'];
+		$otbeforeinsw21 = $myrow21['otbeforeinsw'];
+		$otafteroutsw21 = $myrow21['otafteroutsw'];
+		$restdaysw21 = $myrow21['restdaysw'];
+		$nextdaysw21 = $myrow21['nextdaysw'];
+		$mealallowsw21 = $myrow21['mealallowsw'];
+		$leavetype21 = $myrow21['leavetype'];
+		$leaveduration21 = number_format($myrow21['leaveduration'], 1);
+		$totaltime21 = $myrow21['totaltime'];
+		$otval21 = $myrow21['otval'];
+		$utval21 = $myrow21['utval'];
+		$otutval21 = $myrow21['otutval'];
+		$nightdiffval21 = $myrow21['nightdiffval'];
+		$nootsw21 = $myrow21['nootsw'];
+		$noutsw21 = $myrow21['noutsw'];
+		$projcharge21 = $myrow21['projcharge'];
+		$projpercent21 = $myrow21['projpercent'];
+		$nofindings21 = $myrow21['nofindings'];
+		$remarks21 = $myrow21['remarks'];
+		// 20240916 <!--start-->
+		$leaveid21 = $myrow21['leaveid'];
+		$holiday21 = $myrow21['holiday'];
+        $timein221 = $myrow21['timein2'];
+        $timeout221 = $myrow21['timeout2'];
+        $nextday2in21 = $myrow21['nextday2insw'];
+        $nextday2out21 = $myrow21['nextday2outsw'];
+		$otordval21 = $myrow21['otordval'];
+		$otrestspval21 = $myrow21['otrestspval'];
+		$otlegalval21 = $myrow21['otlegalval'];
+		$otrestsp8val21 = $myrow21['otrestsp8val'];
+		$otspsunval21 = $myrow21['otspsunval'];
+		$otspsun8val21 = $myrow21['otspsun8val'];
+		$otlegal8val21 = $myrow21['otlegal8val'];
+		$otlegalsunval21 = $myrow21['otlegalsunval'];
+		$otlegalsun8val21 = $myrow21['otlegalsun8val'];
+		// 20240916 <!--end-->		
+		$contactid21 = $myrow21['contactid'];
+		$bankacctid21 = $myrow21['bankacctid'];
+		$restday21 = $myrow21['restday'];
+		$projcode21 = $myrow21['projcode'];
+		$activesw21 = $myrow21['activesw'];
+		$shiftin21 = $myrow21['shiftin'];
+		$holidaytype21 = $myrow21['holidaytype'];
+		$name_last21 = $myrow21['name_last'];
+		$name_first21 = $myrow21['name_first'];
+		$name_middle21 = $myrow21['name_middle'];
+
+		$ctr21 = $ctr21 + 1;
+
+		echo "<tr>";
+		echo "<td>$ctr21</td><td>$employeeid21</td>";
+
+		// name
+		echo "<td>$name_last21, $name_first21 ";
+		if($name_middle21 != "") { echo "$name_middle21[0]."; }
+		echo "</td>";
+
+		// shiftin
+		echo "<td align=\"center\">".date('g:i', strtotime($shiftin21))."</td>";
+
+		// date
+		$dateday = date("D", strtotime($logdate21));
+		echo "<td>".date("d-M", strtotime($logdate21))."</td><td>$dateday</td>";
+
+		// timein/timeout
+		echo "<td align=\"right\">".date("G:i", strtotime($timein21))."</td>";
+		echo "<td align=\"right\">".date("G:i", strtotime($timeout21))."</td>";
+
+		// totaltime
+		if($totaltime21!=0) {
+		echo "<td align=\"right\">$totaltime21</td>";
+		// compute subtotal
+		$subtotaltime=round($subtotaltime+$totaltime21, 2);
+		} else {
+		echo "<td>&nbsp;</td>";
+		}
+
+
+
+		// overtime/undertime
+		if($nofindings21!=1) {
+			if($otutval21!=0 && $restdaysw21!=1 && $holidaytype21=='') {
+				if($otutval21<0) {
+				echo "<td align=\"right\"><font color=\"red\">$otutval21</font></td>";
+				} else {
+				echo "<td align=\"right\">$otutval21</td>";
+				}
+			// compute subtotal
+			$subotutval=round($subotutval+$otutval21, 2);
+			} else { echo "<td>&nbsp;</td>"; }
+		} else {
+			echo "<td>&nbsp;</td>";
+		}
+
+		// rest day
+		if($nofindings21!=1) {
+			if($restdaysw21==1 && $otutval21!=0) {
+				if($otutval21<0) {
+				echo "<td align=\"right\"><font color=\"red\">$otutval21</font></td>";
+				} else {
+				echo "<td align=\"right\">$otutval21</td>";
+				}
+				// compute subtotal
+				$subrestdayval=round($subrestdayval+$otutval21, 2);
+			} else { echo "<td>&nbsp;</td>"; }
+		} else {
+			echo "<td>&nbsp;</td>";
+		}
+
+		
+		// undertime
+
+	
+		// holiday
+		if($nofindings21!=1) {
+			if($holidaytype21!='' && $holidaytype21!='shortened') {
+				if($otutval21!=0) {
+					if($otutval21<0) {
+				echo "<td align=\"right\"><font color=\"red\">$otutval21</font></td>";
+					} else {
+				echo "<td align=\"right\">$otutval21</td>";
+					}
+				// compute subtotal
+				$subholival=round($subholival+$otutval21, 2);
+				}
+			} else { echo "<td>&nbsp;</td>"; }
+		} else {
+			echo "<td>&nbsp;</td>";
+		}
+
+		// night differential
+		if($nightdiffval21!=0) {
+		echo "<td align=\"center\">$nightdiffval21</td>";
+		// compute subtotal
+		$subnightdiffval=round($subnightdiffval+$nightdiffval21, 2);
+		} else {
+		echo "<td>&nbsp;</td>";
+		}
+
+		// meal allowance
+		if($mealallowsw21!=0) {
+		echo "<td align=\"center\">$mealallowsw21</td>";
+		$submeal=round($submeal+$mealallowsw21, 0);
+		} else {
+		echo "<td></td>";
+		}
+
+		if($utval21 != 0){
+			echo "<td class = 'text-danger'>$utval21</td>";
+		} else {
+			echo"<td></td> ";
+		}
+		// transpo allowance
+		// echo "<td></td>";
+
+		// project/dept
+		if($projcharge21!="") {
+		$res22query="SELECT proj_fname, proj_sname FROM tblproject1 WHERE proj_code=\"$projcharge21\"";
+		$result22=""; $found22=0; $ctr22=0;
+		$result22 = mysql_query("$res22query", $dbh);
+		if($result22 != "") {
+			while($myrow22 = mysql_fetch_row($result22)) {
+			$found22 = 1;
+			$proj_fname22 = $myrow22[0];
+			$proj_sname22 = $myrow22[1];
+			}
+		}
+		if($proj_sname22!="") {
+		echo "<td>$proj_sname22</td>";
+		} else {
+		echo "".strpos("$proj_fname22", 20, 0)."";
+		}
+		} else {
+		echo "<td></td>";
+		}
+
+		// vacation leave
+		if($leavetype21=="vacation") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtypv=round($sublvtypv+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+
+		// sick leave
+		if($leavetype21=="sick") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtyps=round($sublvtyps+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+		// salary deduction
+		if($leavetype21=="sd") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtypsd=round($sublvtypsd+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+
+		// cash conversion
+		if($leavetype21=="cc") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtypcc=round($sublvtypcc+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+
+		// official business
+		if($leavetype21=="ob") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtypob=round($sublvtypob+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+
+		// special leave
+		if($leavetype21=="special") {
+		echo "<td>$leaveduration21</td>";
+		$sublvtypsp=round($sublvtypsp+$leaveduration21, 1);
+		} else {
+		echo "<td></td>";
+		}
+
+		// remarks
+		echo "<td>";
+		if($nofindings21==1) { echo "No&nbsp;findings&nbsp;"; }
+		if($nofindings21==1 && $remarks21!="") { echo "<br>"; }
+		if($remarks21!="") { echo "$remarks21"; }
+		echo "</td>";
+		echo "</tr>";
+		}
+	}
+	// display sub-totals
+	echo "<tr><th colspan=\"8\" align=\"right\">Total</th><th align=\"right\">".number_format($subtotaltime, 2)."</th><th align=\"right\">".number_format($subotutval, 2)."</th><th>".number_format($subrestdayval, 2)."</th><th>".number_format($subholival, 2)."</th><th align=\"right\">".number_format($subnightdiffval, 2)."</th><th>$submeal</th><th></th>";
+	echo "<th>".number_format($sublvtypv, 1)."</th><th>".number_format($sublvtyps, 1)."</th><th>".number_format($sublvtypsd, 1)."</th><th>".number_format($sublvtypcc, 1)."</th><th>".number_format($sublvtypob, 1)."</th><th>".number_format($sublvtypsp, 1)."</th>";
+	echo "</tr>";
+	echo "</table>";
+	//
+	// end display of detailed list
+
+	} else if($disptyp=="summary") {
+	//
+	// start display of summarized list
+	//
+echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+	echo "<tr><th>Ctr</th><th>EmpID</th><th>Name</th>";
+	// echo "<th>PrefTime</th><th colspan=\"2\">Date</th><th>TimeIN</th><th>TimeOUT</th>";
+	echo "<th>Hrs</th><th>OT</th><th>UT</th><th>OT/UT</th><th>Night diff</th><th>Meal allow.</th>";
+	// echo "<th>Trans allow.</th><th>Proj/Dept</th>";
+	echo "<th>VL</th><th>SL</th><th>SD</th><th>CC</th><th>OB</th><th>SPL</th><th>Remarks</th></tr>";
+	$res23query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid LEFT JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.employeeid=tblcontact.employeeid ORDER BY tblhrtaemptimelog.employeeid ASC";
+	$result23=""; $found23=0; $ctr23=0; $empidcurr=""; $empidnxt="";
+	/*
+	$result23 = mysql_query("$res23query", $dbh);
+	if($result23 != "") {
+		while($myrow23 = mysql_fetch_row($result23)) {
+	*/
+	$result23 = $dbh2->query($res23query);
+	if($result23->num_rows>0) {
+		while($myrow23 = $result23->fetch_assoc()) {
+		$found23 = 1;
+		$ctr23 += 1;
+		$employeeid23 = $myrow23['employeeid'];
+		$name_last23 = $myrow23['name_last'];
+		$name_first23 = $myrow23['name_first'];
+		$name_middle23 = $myrow23['name_middle'];
+
+		$res24query="SELECT tblhrtaemptimelog.idhrtaemptimelog, tblhrtaemptimelog.logdate, tblhrtaemptimelog.timein, tblhrtaemptimelog.timeout, tblhrtaemptimelog.otbeforeinsw, tblhrtaemptimelog.otafteroutsw, tblhrtaemptimelog.restdaysw, tblhrtaemptimelog.nextdaysw, tblhrtaemptimelog.mealallowsw, tblhrtaemptimelog.leavetype, tblhrtaemptimelog.leaveduration, tblhrtaemptimelog.totaltime, tblhrtaemptimelog.otval, tblhrtaemptimelog.utval, tblhrtaemptimelog.otutval, tblhrtaemptimelog.nightdiffval, tblhrtaemptimelog.nootsw, tblhrtaemptimelog.noutsw, tblhrtaemptimelog.projcharge, tblhrtaemptimelog.projpercent, tblhrtaemptimelog.nofindings, tblhrtaemptimelog.remarks, tblhrtapaygrpemplst.contactid, tblhrtapaygrpemplst.bankacctid, tblhrtapaygrpemplst.restday, tblhrtapaygrpemplst.projcode, tblhrtapaygrpemplst.activesw, tblhrtapayshiftctg.shiftin, tblhrtaholidays.holidaytype FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid LEFT JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idhrtapayshiftctg=tblhrtapayshiftctg.idhrtapayshiftctg LEFT JOIN tblhrtaholidays ON tblhrtaemptimelog.logdate=tblhrtaholidays.applic_date LEFT JOIN tblcontact ON tblhrtapaygrpemplst.contactid=tblcontact.contactid WHERE tblhrtaemptimelog.employeeid=\"$employeeid23\" AND  tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.employeeid=tblcontact.employeeid GROUP BY idhrtaemptimelog ORDER BY tblhrtaemptimelog.employeeid ASC";
+		$result24=""; $found24=0; $ctr24=0;
+		$result24 = $dbh2->query($res24query);
+		if($result24->num_rows>0) {
+			while($myrow24 = $result24->fetch_assoc()) {
+			$found24=1;
+			$logdate24 = $myrow24['logdate'];
+			$timein24 = $myrow24['timein'];
+			$timeout24 = $myrow24['timeout'];
+			$otbeforeinsw24 = $myrow24['otbeforeinsw'];
+			$otafteroutsw24 = $myrow24['otafteroutsw'];
+			$restdaysw24 = $myrow24['restdaysw'];
+			$nextdaysw24 = $myrow24['nextdaysw'];
+			$mealallowsw24 = $myrow24['mealallowsw'];
+			$leavetype24 = $myrow24['leavetype'];
+			$leaveduration24 = $myrow24['leaveduration'];
+			$totaltime24 = $myrow24['totaltime'];
+			$otval24 = $myrow24['otval'];
+			$utval24 = $myrow24['utval'];
+			$otutval24 = $myrow24['otutval'];
+			$nightdiffval24 = $myrow24['nightdiffval'];
+			$nootsw24 = $myrow24['nootsw'];
+			$noutsw24 = $myrow24['noutsw'];
+			$projcharge24 = $myrow24['projcharge'];
+			$projpercent24 = $myrow24['projpercent'];
+			$nofindings24 = $myrow24['nofindings'];
+			$remarks24 = $myrow24['remarks'];
+			$contactid24 = $myrow24['contactid'];
+			$bankacctid24 = $myrow24['bankacctid'];
+			$restday23 = $myrow24['restday'];
+			$projcode24 = $myrow24['projcode'];
+			$activesw24 = $myrow24['activesw'];
+			$shiftin24 = $myrow24['shiftin'];
+			$holidaytype24 = $myrow24['holidaytype'];
+
+		// compute
+		// echo "<tr><td colspan=\"5\">compute eid:$employeeid23, curr:$empidcurr, nxt:$empidnxt</td></tr>";
+		// compute total
+			$tot_totaltime += $totaltime24;
+			$tot_otval += $otval24;
+			$tot_utval += $utval24;
+			$tot_otutval += $otutval24;
+			$tot_ndval += $nightdiffval24;
+			$tot_meal += $mealallowsw24;
+			if($leavetype24!="" && $leaveduration24!=0) {
+				if($leavetype24=="sick") {
+					$tot_lvtyp_sick = $tot_lvtyp_sick + $leaveduration24;
+				} else if($leavetype24=="vacation") {
+					$tot_lvtyp_vacation = $tot_lvtyp_vacation + $leaveduration24;
+				} else if($leavetype24=="paternity") {
+					$tot_lvtyp_paternity = $tot_lvtyp_paternity + $leaveduration24;
+				} else if($leavetype24=="maternityn") {
+					$tot_lvtyp_maternityn = $tot_lvtyp_maternityn + $leaveduration24;
+				} else if($leavetype24=="maternityc") {
+					$tot_lvtyp_maternityc = $tot_lvtyp_maternityc + $leaveduration24;
+				} else if($leavetype24=="special") {
+					$tot_lvtyp_special = $tot_lvtyp_special + $leaveduration24;
+				} else if($leavetype24=="accumulated") {
+					$tot_lvtyp_accumulated = $tot_lvtyp_accumulated + $leaveduration24;
+				} else if($leavetype24=="absent") {
+					$tot_lvtyp_absent = $tot_lvtyp_absent + $leaveduration24;
+				} else if($leavetype24=="sd") {
+					$tot_lvtyp_sd = $tot_lvtyp_sd + $leaveduration24;
+				} else if($leavetype24=="cc") {
+					$tot_lvtyp_cc = $tot_lvtyp_cc + $leaveduration24;
+				} else if($leavetype24=="ob") {
+					$tot_lvtyp_ob = $tot_lvtyp_ob + $leaveduration24;
+				} // if($leavetype23=="sick")
+			} // if($leavetype23!="" && $leaveduration23!=0)
+
+			} // while($myrow24 = $result24->fetch_assoc())
+		} // if($result24->num_rows>0)
+
+		// echo "<tr><td colspan=\"5\">display summary eid:$employeeid23, curr:$empidcurr, nxt:$empidnxt</td></tr>";
+		// display total
+			$ctr23b += 1;
+			echo "<tr><td>$ctr23b</td><td>$employeeid23</td><td>$name_last23, $name_first23 $name_middle23[0]</td>";
+			if($tot_totaltime!=0) {
+			echo "<td align=\"right\">".number_format($tot_totaltime, 2)."</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_otval!=0) {
+			echo "<td align=\"right\">".number_format($tot_otval, 2)."</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_utval!=0) {
+				if($tot_utval<0) {
+				echo "<td align=\"right\"><font color=\"red\">".number_format($tot_utval, 2)."</font></td>";
+				} else {
+				echo "<td align=\"right\">".number_format($tot_utval, 2)."</td>";
+				}
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_otutval!=0) {
+				if($tot_otutval<0) {
+				echo "<td align=\"right\"><font color=\"red\">".number_format($tot_otutval, 2)."</font></td>";
+				} else {
+				echo "<td align=\"right\">".number_format($tot_otutval, 2)."</td>";
+				}
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_ndval!=0) {
+			echo "<td align=\"right\">".number_format($tot_ndval, 2)."</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_meal!=0) {
+			echo "<td align=\"center\">$tot_meal</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_vacation!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_vacation</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_sick!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_sick</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_sd!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_sd</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_cc!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_cc</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_ob!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_ob</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			if($tot_lvtyp_special!=0) {
+			echo "<td align=\"center\">$tot_lvtyp_special</td>";
+			} else {
+			echo "<td align=\"center\">-</td>";
+			}
+			echo "</tr>";
+			// reset totals
+			$tot_totaltime=0; $tot_otval=0; $tot_utval=0; $tot_otutval=0; $tot_ndval=0; $tot_meal=0; $tot_lvtyp_sick=0; $tot_lvtyp_vacation=0; $tot_lvtyp_paternity=0; $tot_lvtyp_maternityn=0; $tot_lvtyp_maternityc=0; $tot_lvtyp_special=0; $tot_lvtyp_accumulated=0; $tot_lvtyp_absent=0; $tot_lvtyp_sd=0; $tot_lvtyp_cc=0; $tot_lvtyp_ob=0; $fintxtlvtyp=""; $fintotlvdur=0;
+
+		} // while($myrow23 = mysql_fetch_row($result23))
+	} // if($result23 != "")
+
+	// echo "<tr>";
+	// echo "<td colspan='15'>";
+	// echo "<form method='POST' action='payrollProcess.php?loginid=$loginid' name='processPayrollForm'>";
+	// echo "<input type='hidden' name='idpaygroup' value='".$idpaygroup."' />";
+	// echo "<input type='hidden' name='idcutoff' value='".$idcutoff."' />";
+ //    echo "<button class='btn btn-success'>Process Payroll</button>";
+ //    echo "</form>";
+	// echo "</td>";
+	// echo "</tr>";
+	echo "</table>";
+	//
+	// end display of summarized list
+
+	} // if($disptyp=="detailed")
+
+?>

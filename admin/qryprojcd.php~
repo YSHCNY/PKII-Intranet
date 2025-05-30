@@ -1,0 +1,26 @@
+<?php
+//
+// qryprojcd.php
+// req: 
+// fr projbillcontrnew.php
+//
+	$res11query="SELECT projectid, proj_code, proj_fname, proj_sname, proj_services FROM tblproject1 WHERE proj_code != '' ORDER BY proj_code DESC";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = $dbh2->query($res11query);
+	$projectid11Arr=array();
+	$proj_code11Arr=array();
+	$proj_fname11Arr=array();
+	$proj_sname11Arr=array();
+	$proj_services11Arr=array();
+	if($result11->num_rows>0) {
+		while($myrow11 = $result11->fetch_assoc()) {
+		$found11=1;
+		$ctr11=$ctr11+1;
+		array_push($projectid11Arr, $myrow11['projectid']);
+		array_push($proj_code11Arr, $myrow11['proj_code']);
+		array_push($proj_fname11Arr, $myrow11['proj_fname']);
+		array_push($proj_sname11Arr, $myrow11['proj_sname']);
+		array_push($proj_services11Arr, $myrow11['proj_services'];
+		} // while
+	} // if
+?>

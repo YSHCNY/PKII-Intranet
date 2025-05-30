@@ -1,0 +1,724 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$submitsw = (isset($_GET['submitsw'])) ? $_GET['submitsw'] :'';
+$cutoff = (isset($_POST['cutoff'])) ? $_POST['cutoff'] :'';
+
+// check day to determine if 1st or 2nd half
+$cutwhat=date("d", strtotime($cutoff));
+
+if($submitsw==1) {
+	$cutstart=$cutoff;
+	// query cutoff periods
+	$res11query="SELECT cut_end FROM tblemppayroll WHERE cut_start=\"$cutoff\"";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$ctr11=$ctr11+1;
+		$cutend=$myrow11['cut_end'];
+		} // while($myrow11=$result11->fetch_assoc())
+	} // if($result11->num_rows>0)
+} // if($submitsw==1)
+
+$found = 0;
+
+$secsubtotarr = array();
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+?>
+
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script language="JavaScript" src="ts_picker.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#exportToExcel").click(function() {
+			var data='<table>' + $("#ReportTable").html().replace(/<a\/?[^>]+>/gi,'')+'</table>';
+			$('body').prepend("<form method='post' action='exportexcel.php' style='display:none' id='ReportTableData'><input type='text' name='tableData' value='"+data+"'></form>");
+			$('#ReportTableData').submit().remove();
+	});
+});
+</script>
+
+<?php
+// start contents here
+
+	echo "<p><font size=1>Modules >> Employees' payslip email notifier >> Re-compute for 2018 wtax+philhealth tables</font></p>";
+
+    echo "<table class=\"fin2\" border=\"1\">";
+		// echo "<tr><th colspan=\"2\">Employees' Payroll Summary&nbsp;";
+		// if($submitsw==1) { echo "$cutstart -to- $cutend"; } // if($submitsw==1)
+		// echo "</th></tr>";
+    echo "<tr>";
+    echo "<form action=\"emppaycmpwtaxphlhlth2018.php?loginid=$loginid&submitsw=1\" method=\"POST\" name=\"emppaycmpwtaxphlhlth2018\">";
+    echo "<td colspan=\"2\" nowrap>";
+		echo "<select name=\"cutoff\">";
+		// disp dropdown avlbl cutoff periods
+		$res11query="SELECT DISTINCT cut_start, cut_end FROM tblemppayroll ORDER BY cut_start DESC";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11=$dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11=$result11->fetch_assoc()) {
+			$found11=1;
+			$ctr11=$ctr11+1;
+			$cutstart11 = $myrow11['cut_start'];
+			$cutend11 = $myrow11['cut_end'];
+			if($cutoff==$cutstart11) { $cutoffsel="selected"; } else { $cutoffsel=""; }
+			echo "<option value=\"$cutstart11\" $cutoffsel>$cutstart11 -to- $cutend11</option>";
+			} // while($myrow11=$result11->fetch_assoc())
+		} // if($result11->num_rows>0)
+		echo "</select>";
+    echo "<input type=\"submit\" value=\"Go\" id=\"myOrder1\"></td></form>";
+    echo "</tr>";
+
+
+	echo "<tr><td colspan=\"2\">";
+
+	// if(($datefrom <= $dateto) && (($datefrom != '') && ($dateto != ''))) {
+
+	if($submitsw == 1) {
+
+		echo "<table id=\"ReportTable\" class=\"fin2\">";
+		echo "<tr><th colspan=\"2\" align=\"left\">Employees Payroll Summary for $cutstart -to- $cutend&nbsp;(re-computation)<a href=\"#\" id=\"exportToExcel\"><img src=\"./images/sheet.gif\"></a></th></tr>";
+		// echo "<tr><th colspan=\"2\" align=\"left\">Employees Payroll - Basic</th></tr>";
+		// echo "<tr><th colspan=\"2\" align=\"left\">Duration from ".date("Y-M-d", strtotime($datefrom))." to ".date("Y-M-d", strtotime($dateto))."</th></tr>";
+		echo "<tr><th colspan=\"2\" align=\"left\">Philkoei International Inc.</th></tr>";
+
+    echo "<tr><td colspan=\"2\">";
+		echo "<table width=\"100%\" class=\"fin\" border=\"1\">";
+		echo "<tr><th>Count</th><th>EmpID</th><th>EmpName</th>";
+		echo "<th>emp_salary</th>";
+
+		echo "<th>salaryhalfmo</th>";
+		echo "<th>totaltardy</th>";
+		echo "<th>absentamt</th>";
+		echo "<th>netbasicpay</th>";
+
+		echo "<th>otherincometaxable</th>";
+		echo "<th>otherincome</th>";
+
+		echo "<th>regholidayamt</th>";
+		echo "<th>speholidayamt</th>";
+		echo "<th>otsundayamt</th>";
+		echo "<th>overamt</th>";
+		echo "<th>nightdiffamt</th>";
+		echo "<th>totalovertime</th>";
+
+		echo "<th>grosspay</th>";
+
+		echo "<th>comprate</th>";
+
+		echo "<th>tax(prev)</th>";
+		echo "<th>wtax(new train2)</th>";
+
+		echo "<th>deduction(ss)</th>";
+		echo "<th>deduction(ss2019)</th>";
+		
+		echo "<th>pagibig</th>";
+		echo "<th>philemp(old)</th>";
+		echo "<th>phlhealth2018</th>";
+		echo "<th>otherdeduction</th>";
+		echo "<th>totaldeductions(old)</th>";
+		echo "<th>totaldeductions(new)</th>";
+
+		echo "<th>net_pay(old)</th>";
+		echo "<th>NetPay(new)</th>";
+
+		// echo "<th>phil_ded</th>";
+		// echo "<th>emp_over_duration</th>";
+		// echo "<th>net_pay</th>";
+		// echo "<th>emp_date_wrk</th>";
+		// echo "<th>regholiday</th>";
+		// echo "<th>speholiday</th>";
+		// echo "<th>emp_late_duration</th>";
+		// echo "<th>otsunday</th>";
+		// echo "<th>nightdiffminutes</th>";
+		// echo "<th>emp_dep</th>";
+		// echo "<th>ss</th>";
+		// echo "<th>ec</th>";
+		// echo "<th>bracket</th>";
+		// echo "</tr>";
+
+		// query cutoffs for label
+		$res12query = "SELECT tblemppayroll.emppayrollid, tblemppayroll.employeeid, tblemppayroll.emp_salary, tblemppayroll.deduction, tblemppayroll.phil_ded, tblemppayroll.tax, tblemppayroll.emp_over_duration, tblemppayroll.net_pay, tblemppayroll.emp_date_wrk, tblemppayroll.cut_start, tblemppayroll.cut_end, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.emp_late_duration, tblemppayroll.otsunday, tblemppayroll.regholidayamt, tblemppayroll.speholidayamt, tblemppayroll.otsundayamt, tblemppayroll.overamt, tblemppayroll.nightdiffminutes, tblemppayroll.nightdiffamt, tblemppayroll.totaltardy, tblemppayroll.otherincome, tblemppayroll.otherincometaxable, tblemppayroll.otherdeduction, tblemppayroll.emp_dep, tblemppayroll.pagibig, tblemppayroll.philemp, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.bracket, tblemppayroll.absentamt, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblemppayroll LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid WHERE tblemppayroll.cut_start=\"$cutstart\" AND tblemppayroll.cut_end=\"$cutend\" AND tblcontact.contact_type=\"personnel\" ORDER BY tblemppayroll.employeeid ASC";
+		$result12=""; $found12=0; $ctr12=0;
+		$result12=$dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12=$result12->fetch_assoc()) {
+			$found12=1;
+			$ctr12=$ctr12+1;
+			$emppayrollid12 = $myrow12['emppayrollid'];
+			$employeeid12 = $myrow12['employeeid'];
+			$emp_salary12 = $myrow12['emp_salary'];
+			$deduction12 = $myrow12['deduction'];
+			$phil_ded12 = $myrow12['phil_ded'];
+			$tax12 = $myrow12['tax'];
+			$emp_over_duration12 = $myrow12['emp_over_duration'];
+			$net_pay12 = $myrow12['net_pay'];
+			$emp_date_wrk12 = $myrow12['emp_date_wrk'];
+			$cut_start12 = $myrow12['cut_start'];
+			$cut_end12 = $myrow12['cut_end'];
+			$regholiday12 = $myrow12['regholiday'];
+			$speholiday12 = $myrow12['speholiday'];
+			$emp_late_duration12 = $myrow12['emp_late_duration'];
+			$otsunday12 = $myrow12['otsunday'];
+			$regholidayamt12 = $myrow12['regholidayamt'];
+			$speholidayamt12 = $myrow12['speholidayamt'];
+			$otsundayamt12 = $myrow12['otsundayamt'];
+			$overamt12 = $myrow12['overamt'];
+			$nightdiffminutes12 = $myrow12['nightdiffminutes'];
+			$nightdiffamt12 = $myrow12['nightdiffamt'];
+			$totaltardy12 = $myrow12['totaltardy'];
+			$otherincome12 = $myrow12['otherincome'];
+			$otherincometaxable12 = $myrow12['otherincometaxable'];
+			$otherdeduction12 = $myrow12['otherdeduction'];
+			$emp_dep12 = $myrow12['emp_dep'];
+			$pagibig12 = $myrow12['pagibig'];
+			$philemp12 = $myrow12['philemp'];
+			$ss12 = $myrow12['ss'];
+			$ec12 = $myrow12['ec'];
+			$bracket12 = $myrow12['bracket'];
+			$absentamt12 = $myrow12['absentamt'];
+			$name_last12 = $myrow12['name_last'];
+			$name_first12 = $myrow12['name_first'];
+			$name_middle12 = $myrow12['name_middle'];
+
+			// compute required fields
+			$empsalaryhf = $emp_salary12 / 2;
+			// $netbasicpay = $empsalaryhf - ($totaltardy12 + $absentamt12);
+			$payrate = $emp_salary12 / 2;
+			$totallateabsent = $totaltardy12 + $absentamt12;
+			$netbasicpay = $payrate - $totallateabsent;
+			// 20180213 modified w/o nontaxable income
+			// $comprate = $netbasicpay + $otherincometaxable12 + $otherincome12;
+			$comprate = $netbasicpay + $otherincometaxable12;
+			// $overtimesubtot = $regholidayamt12 + $speholidayamt12 + $otsundayamt12 + $overamt12 + $nightdiffamt12;
+			// $grosspay = $comprate + $overtimesubtot + $otherincome12;
+			$totalovertime = $nightdiffamt12 + $overamt12 + $otsundayamt12 + $speholidayamt12 + $regholidayamt12;
+			$grosspay = $netbasicpay + $totalovertime + $otherincometaxable12 + $otherincome12;
+			$deductionstotal = $tax12 + $deduction12 + $philemp12 + $pagibig12 + $otherdeduction12;
+			
+		  // 20200226 determine type of philhealth table based on year
+			$cutyear = date("Y", strtotime($cutstart));
+			$cutwhat = date("d", strtotime($cutstart));
+
+/*			// get new wtax based on comprate
+			$wtaxsched='sm';
+			$res14query="SELECT idwtax2018, crmin, crmax, percent, prescramt FROM tblwtax2018 WHERE sched='sm' AND (crmin<=$comprate AND crmax>=$comprate) LIMIT 1";
+			$result14=""; $found14=0;
+			$result14=$dbh2->query($res14query);
+			if($result14->num_rows>0) {
+				while($myrow14=$result14->fetch_assoc()) {
+				$found14=1;
+				$idwtax201814 = $myrow14['idwtax2018'];
+				$crmin14 = $myrow14['crmin'];
+				$crmax14 = $myrow14['crmax'];
+				$percent14 = $myrow14['percent'];
+				$prescramt14 = $myrow14['prescramt'];
+				} // while($myrow14=$resul14->fetch_assoc())
+			} // if($result14->num_rows>0)
+			if($found14==1) {
+				if($percent14!=0) {
+				// include overtime in comprate
+				$comprate2 = $comprate + $overtimesubtot;
+				$wtax2018 = ((($comprate2 - $crmin14) * ($percent14/100)) + $prescramt14);
+				$flg='wpct';
+				} else { // if($percent14==0)
+				// $wtax2018 = round((($comprate - $crmin14) + $prescramt14), 2);
+				$wtax2018 = ((($comprate2 - $crmin14) * ($percent14/100)) + $prescramt14);
+				$flg='0pct';
+				} // if($percent14==0)
+			} // if($found14==1)
+*/
+			// check first if 1st half then apply philhealth computation and sss2019apr else 0
+			if($cutwhat=='01') {
+
+			// get new philhealth based on monthly basic salary
+			// query previous cutoff and get netbasicpay, then add in current netbasicpay
+			$res18query="SELECT DISTINCT cut_start, cut_end, net_pay, emp_salary, totaltardy, absentamt FROM tblemppayroll WHERE cut_start<\"$cutstart\" AND cut_end<\"$cutend\" AND employeeid=\"$employeeid12\" ORDER BY cut_start DESC LIMIT 1";
+			$result18=""; $found18=0; $ctr18=0;
+			$result18=$dbh2->query($res18query);
+			if($result18->num_rows>0) {
+				while($myrow18=$result18->fetch_assoc()) {
+				$found18=1;
+				$ctr18=$ctr18+1;
+				$cut_start18 = $myrow18['cut_start'];
+				$cut_end18 = $myrow18['cut_end'];
+				$net_pay18 = $myrow18['net_pay'];
+				$emp_salary18 = $myrow18['emp_salary'];
+				$totaltardy18 = $myrow18['totaltardy'];
+				$absentamt18 = $myrow18['absentamt'];
+				} // while($myrow18=$result18->fetch_assoc())
+			} // if($result18->num_rows>0)
+			if($found18!=0) {
+			// compute required fields
+			$prevempsalaryhf = $emp_salary18 / 2;
+			$prevnetbasicpay = $prevempsalaryhf - ($totaltardy18 + $absentamt18);
+			$subtotnetbasicpay = $prevnetbasicpay + $netbasicpay;
+			$fullempsalary = $emp_salary18;
+			} else {
+			$subtotnetbasicpay = $netbasicpay;
+			$fullempsalary = $emp_salary12;
+			} // if($found18!=0)
+
+		if($cutyear<'2019') {
+			
+			// $res15query="SELECT idphlhealth2018, mbsmin, mbsmax, pct, maxpremium FROM tblphlhealth2018 WHERE mbsmin<=$emp_salary12 AND mbsmax>=$emp_salary12";
+			$res15aquery="SELECT idphlhealth2018, mbsmin, mbsmax, pct, maxpremium FROM tblphlhealth2018 WHERE mbsmin<=$subtotnetbasicpay AND mbsmax>=$subtotnetbasicpay";
+			$result15=""; $found15=0;
+			$result15=$dbh2->query($res15aquery);
+			if($result15->num_rows>0) {
+				while($myrow15=$result15->fetch_assoc()) {
+				$found15a=1;
+				$idphlhealth201815 = $myrow15['idphlhealth2018'];
+				$mbsmin15 = $myrow15['mbsmin'];
+				$mbsmax15 = $myrow15['mbsmax'];
+				$pct15 = $myrow15['pct'];
+				$maxpremium15 = $myrow15['maxpremium'];
+				} // while($myrow15=$result15->fetch_assoc())
+			} // if($result15->num_rows>0)
+			if($found15==1) {
+				if($pct15!=0) {
+				// $phlhealth2018 = round(($emp_salary12 * ($pct15/100)), 2);
+				$phlhealth2018 = round(($subtotnetbasicpay * ($pct15/100)), 2);
+				$phlhlthee = $phlhealth2018 / 2;
+				$phlhlther = $phlhealth2018 / 2;
+				} else { // if($pct15!=0)
+				$phlhealth2018 = $maxpremium15;
+				$phlhlthee = $phlhealth2018 / 2;
+				$phlhlther = $phlhealth2018 / 2;
+				} // if($pct15!=0)
+			} // if($found15==1)
+				
+		} else if($cutyear>='2019') {
+				
+            // philhealth 2020
+            $res15bquery=""; $result15=""; $found15=0; $ctr15=0;
+			$res15bquery="SELECT idphilhealth2020, compyear, mbsmin, mbsmax, prrate FROM tblphilhealth2020 WHERE mbsmin<=$subtotnetbasicpay AND mbsmax>=$subtotnetbasicpay AND compyear='$cutyear-01-01' LIMIT 1";
+			$result15=$dbh2->query($res15bquery);
+			if($result15->num_rows>0) {
+				while($myrow15=$result15->fetch_assoc()) {
+					$found15b=1;
+					$idphilhealth202015 = $myrow15['idphilhealth2020'];
+					$compyear15 = $myrow15['compyear'];
+					$mbsmin15 = $myrow15['mbsmin'];
+					$mbsmax15 = $myrow15['mbsmax'];
+					$prrate15 = $myrow15['prrate'];
+					// get maxpremium
+					$maxpremium = round($mbsmax15 * ($prrate15/100), 2);
+				} // while
+			} // if
+			if($found15b==1) {
+				if($subtotnetbasicpay>$mbsmax15) {
+				$philhealth2020 = $maxpremium;
+				$found152a=1; $found152b=0;
+				} else if($subtotnetbasicpay<=$mbsmax15){
+				$philhealth2020 = round($subtotnetbasicpay * ($prrate15/100), 2);
+				$found152a=0; $found152b=1;
+				}
+				$phlhlthee = $philhealth2020 / 2;
+				$phlhlther = $philhealth2020 / 2;
+			} else {
+				$phlhlthee = 0;
+				$phlhlther = 0;				
+			} // if($found15==1)
+
+		} // if-else
+
+			// get new sss201904 based on grosspay from last cutoff and latest cutoff
+			// query previous cutoff and get netbasicpay, then add in current netbasicpay
+			$res20query="SELECT cut_start, cut_end, emp_salary, totaltardy, absentamt, otherincometaxable, regholidayamt, speholidayamt, otsundayamt, overamt, nightdiffamt, otherincome FROM tblemppayroll WHERE cut_start<\"$cut_start12\" AND cut_end<\"$cut_end12\" AND employeeid=\"$employeeid12\" ORDER BY cut_start DESC, cut_end DESC LIMIT 1";
+			$result20=""; $found20=0;
+			$result20=$dbh2->query($res20query);
+			if($result20->num_rows>0) {
+				while($myrow20=$result20->fetch_assoc()) {
+					$found20=1;
+					$cut_start20 = $myrow20['cut_start'];
+					$cut_end20 = $myrow20['cut_end'];
+					$emp_salary20 = $myrow20['emp_salary'];
+					$totaltardy20 = $myrow20['totaltardy'];
+					$absentamt20 = $myrow20['absentamt'];
+					$otherincometaxable20 = $myrow20['otherincometaxable'];
+					$regholidayamt20 = $myrow20['regholidayamt'];
+					$speholidayamt20 = $myrow20['speholidayamt'];
+					$otsundayamt20 = $myrow20['otsundayamt'];
+					$overamt20 = $myrow20['overamt'];
+					$nightdiffamt20 = $myrow20['nightdiffamt'];
+					$otherincome20 = $myrow20['otherincome'];
+				} // while
+			} // if
+			if($found20==1) {
+			// compute previous grosspay
+			$prevempsalaryhf = $emp_salary20 / 2;
+			$prevnetbasicpay = $prevempsalaryhf - ($totaltardy20 + $absentamt20);
+			$prevcomprate = $prevnetbasicpay + $otherincometaxable20;
+			$prevovertimesubtot = $regholidayamt20 + $speholidayamt20 + $otsundayamt20 + $overamt20 + $nightdiffamt20;
+			$prevgrosspay = $prevcomprate + $prevovertimesubtot + $otherincome20;
+			$grosspayjoined = $prevgrosspay + $grosspay;
+			$res19query="SELECT idsss201904, salcredit, sscer, sscee, ssctotal, eccer, tcer, tcee, tctotal FROM tblsss201904 WHERE compfrom<=$grosspayjoined AND compto>=$grosspayjoined";
+			$result19=""; $found19=0; $ctr19=0;
+			$result19=$dbh2->query($res19query);
+			if($result19->num_rows>0) {
+				while($myrow19=$result19->fetch_assoc()) {
+				$found19=1;
+				$idsss201904 = $myrow19['idsss201904'];
+				$salcredit = $myrow19['salcredit'];
+				$sscer = $myrow19['sscer'];
+				$sscee = $myrow19['sscee'];
+				$ssctotal = $myrow19['ssctotal'];
+				$eccer = $myrow19['eccer'];
+				$tcer = $myrow19['tcer'];
+				$tcee = $myrow19['tcee'];
+				$tctotal = $myrow19['tctotal'];
+				} // while
+			} // if
+			if($found19==1) {
+			$deductionfin=$tcee;
+			$ecfin=$eccer;
+			$ssfin=$sscer;
+			} else {
+			$deductionfin=0;
+			$ecfin=0;
+			$ssfin=0;
+			} // if
+			} else {
+			$prevempsalaryhf = 0;
+			$prevnetbasicpay = 0;
+			$prevcomprate = 0;
+			$prevovertimesubtot = 0;
+			$prevgrosspay = 0;
+			$grosspayjoined = 0;
+			$deductionfin=0;
+			$ecfin=0;
+			$ssfin=0;
+
+			} //  if($found20==1)
+
+			} else { //if($cutwhat=='01')
+				$phlhealth2018 = 0;
+				$phlhlthee = 0;
+				$phlhlther = 0;
+			$deductionfin=0;
+			$ecfin=0;
+			$ssfin=0;
+
+			} //if($cutwhat=='01')
+
+//
+// 20200304 new wtax bir train law computations
+//
+    // query emppayrollctg for current dmwrate and compare vs basic_salary before computing wtax if above min.wage
+		$res16qry=""; $result16=""; $found16=0;
+		$res16qry="SELECT name, amount FROM tblemppayrollctg WHERE code=\"dmwrate\"";
+		$result16=$dbh2->query($res16qry);
+		if($result16->num_rows>0) {
+		  while($myrow16=$result16->fetch_assoc()) {
+		  $found16=1;
+		  $name16 = $myrow16['name'];
+		  $amount16 = $myrow16['amount'];
+		  } // while
+		} // if
+		
+		if($found16==1) {
+			// compute basic salary to daily rate
+			$dbsalary = ($emp_salary12 * 12) / 314;
+			// compare dwmrate with basic salary daily rate if need to compute wtax
+			if($dbsalary>$amount16) {
+				$gowtaxcompute=1;
+			} else {
+				$gowtaxcompute=0;
+			} // if-else
+		}
+
+    if($gowtaxcompute==1) {			
+      // try 2018wtax computation but modify to new formulas
+			// $comprate = $netbasicpay + ($otherincometaxable12 - $otherincome12);
+			$comprate = $netbasicpay + $otherincometaxable12;
+      $comprate2 = $comprate + $totalovertime;
+			$wtaxsched='sm';
+			$res14query="SELECT idwtax2018, crmin, crmax, percent, prescramt FROM tblwtax2018 WHERE sched='$wtaxsched' AND (crmin<=$comprate2 AND crmax>=$comprate2) LIMIT 1";
+			$result14=""; $found14=0;
+			$result14=$dbh2->query($res14query);
+			if($result14->num_rows>0) {
+				while($myrow14=$result14->fetch_assoc()) {
+				$found14=1;
+				$idwtax201814 = $myrow14['idwtax2018'];
+				$crmin14 = $myrow14['crmin'];
+				$crmax14 = $myrow14['crmax'];
+				$percent14 = $myrow14['percent'];
+				$prescramt14 = $myrow14['prescramt'];
+				} // while($myrow14=$resul14->fetch_assoc())
+			} // if($result14->num_rows>0)
+			if($found14==1) {
+				if($percent14!=0) {
+				// include overtime in comprate
+				$flg='wpct';
+        $pct = ($comprate2 - $crmin14) * ($percent14/100);
+        $wtax2020 = $pct + $prescramt14;
+				} else { // if($percent14==0)
+				$flg='0pct';
+        $wtax2020=0;
+				} // if($percent14==0)
+			} // if($found14==1)
+		} else {
+		$wtax2020=0;
+		} // if($gowtaxcompute==1)
+ 
+
+			// disregard below amtdeduct value is same as $otherdeduction12
+			// compute deductions to get net pay
+			$res16query="SELECT ded_desc, amountdeduct FROM tblemppayotherdeductions WHERE employeeid=\"$employeeid12\" AND start<=\"$cutstart\" AND end>=\"$cutend\"";
+			$result16=""; $found16=0; $ctr16=0;
+			$result16=$dbh2->query($res16query);
+			if($result16->num_rows>0) {
+				while($myrow16=$result16->fetch_assoc()) {
+				$found16=1;
+				$ded_desc16 = $myrow16['ded_desc'];
+				$amountdeduct16 = $myrow16['amountdeduct'];
+				$amtdeduct = $amtdeduct + $amountdeduct16;
+				} // while($myrow16=$result16->fetch_assoc())
+			} // if($result16->num_rows>0)
+
+			// compute deductions (old)
+			$deductsubtotold = $tax12 + $deduction12 + $philemp12 + $pagibig12 + $otherdeduction12;
+			// compute deductions (new)
+			// $deductsubtotnew = $wtax2018 + $deduction12 + $phlhlther + $pagibig12 + $otherdeduction12 + $deductionfin;
+			// $deductsubtotnew = $wtax2018 + $phlhlther + $pagibig12 + $otherdeduction12 + $deductionfin;
+			$deductsubtotnew = $wtax2020 + $phlhlther + $pagibig12 + $otherdeduction12 + $deductionfin;
+
+			// compute new netpay
+			$netpaynew = $grosspay - $deductsubtotnew;
+
+			// display results
+			echo "<tr><td>$ctr12</td>";
+			echo "<td>$employeeid12</td><td>$name_last12, $name_first12 $name_middle12[0]</td>";
+			echo "<td align=\"right\">".number_format($emp_salary12, 2)."</td>";
+
+			echo "<td align=\"right\">".number_format($empsalaryhf, 2)."</td>";
+			echo "<td align=\"right\">".number_format($totaltardy12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($absentamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($netbasicpay, 2)."</td>";
+
+			echo "<td align=\"right\">".number_format($otherincometaxable12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($otherincome12, 2)."</td>";
+
+			echo "<td align=\"right\">".number_format($regholidayamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($speholidayamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($otsundayamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($overamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($nightdiffamt12, 2)."</td>";
+			echo "<td align=\"right\">".number_format($overtimesubtot, 2)."</td>";
+
+			echo "<td align=\"right\">".number_format($grosspay, 2)."<br>prev:$prevgrosspay<br>total:$grosspayjoined</td>";
+
+			if($comprate2>0) {
+			echo "<td align=\"right\">".number_format($comprate2, 2)."</td>";
+			} else { // if($comprate>0)
+			echo "<td align=\"right\">".number_format($comprate, 2)."</td>";
+			} // if($comprate>0)
+
+			echo "<td align=\"right\"><i>".number_format($tax12, 2)."</i></td>";
+			// echo "<td align=\"right\"><b>".number_format($wtax2018, 2)."</b></td>";
+			echo "<td align=\"right\"><b>".number_format($wtax2020, 2)."</b></td>";
+
+			echo "<td align=\"right\"><i>".number_format($deduction12, 2)."</i></td>";
+			echo "<td align=\"right\"><b>".number_format($deductionfin, 2)."</b></td>";
+			echo "<td align=\"right\">$pagibig12</td>";
+			echo "<td align=\"right\"><i>".number_format($philemp12, 2)."</i></td>";
+			echo "<td align=\"right\">";
+			// echo "$found18|$cut_start18,$cut_end18|$idphlhealth201815|$prevnetbasicpay,$netbasicpay|$subtotnetbasicpay<br>";
+			// echo "$phlhealth2018|$phlhlthee|$phlhlther<br>";
+			echo "<b>".number_format($phlhlther, 2)."</b></td>";
+			echo "<td align=\"right\">".number_format($otherdeduction12, 2)."</td>";
+			// echo "<td align=\"right\">res20query:$res20query<br>f20:$found20,prev:$cut_start20-to-$cut_end20<br>".number_format($otherdeduction12, 2)."</td>";
+			echo "<td align=\"right\"><i>".number_format($deductsubtotold, 2)."</i></td>";
+			echo "<td align=\"right\"><b>".number_format($deductsubtotnew, 2)."</b></td>";
+
+			echo "<td align=\"right\"><i>".number_format($net_pay12, 2)."</i></td>";
+
+			// echo "<td align=\"right\">$phil_ded12</td>";
+			// echo "<td align=\"right\">$emp_over_duration12</td>";
+			// echo "<td align=\"right\">$emp_date_wrk12</td>";
+			// echo "<td align=\"right\">$regholiday12</td>";
+			// echo "<td align=\"right\">$speholiday12</td>";
+			// echo "<td align=\"right\">$emp_late_duration12</td>";
+			// echo "<td align=\"right\">$otsunday12</td>";
+			// echo "<td align=\"right\">$nightdiffminutes12</td>";
+
+			// echo "<td>$emp_dep12</td>";
+			// echo "<td align=\"right\">".number_format($ss12, 2)."</td>";
+			// echo "<td align=\"right\">$ec12</td>";
+			// echo "<td align=\"right\">$bracket12</td>";
+
+			//
+			// update query here...
+			//
+			$res17query="UPDATE tblemppayroll SET phil_ded=$phlhlthee, tax=$wtax2020, net_pay=$netpaynew, philemp=$phlhlther, deduction=$deductionfin, ec=$ecfin, ss=$ssfin WHERE emppayrollid=$emppayrollid12 AND employeeid=\"$employeeid12\" AND cut_start=\"$cutstart\" AND cut_end=\"$cutend\"";
+			$result17="";
+			$result17=$dbh2->query($res17query);
+			if($result17) {
+			$statusupdqry=1;
+			} else {
+			$statusupdqry=0;
+			} // if-else
+
+			// echo "<td align=\"right\"><b>".number_format($netpaynew, 2)."</b><br>".$wtax2018." + ".$phlhlther." + ".$pagibig12." + ".$otherdeduction12." + ".$deductionfin."</td>";
+			echo "<td align=\"right\"><b>".number_format($netpaynew, 2)."</b><br>update:$statusupdqry</td>";
+
+			echo "</tr>";
+
+			// compute totals
+			$totdeduction = $totdeduction+$deduction12;
+			$totphilded = $totphilded + $phil_ded12;
+			$tottax = $tottax + $tax12;
+			$totempoverduration = $totempoverduration + $emp_over_duration12;
+			$totnetpay = $totnetpay + $net_pay12;
+			$totempdate = $totempdate + $emp_date_wrk12;
+			$totregholiday = $totregholiday + $regholiday12;
+			$totspeholiday = $totspeholiday + $speholiday12;
+			$totemplateduration = $totemplateduration + $emp_late_duration12;
+			$tototsunday = $tototsunday + $otsunday12;
+			$totregholiday = $totregholiday + $regholidayamt12;
+			$totspeholidayamt = $totspeholidayamt + $speholidayamt12;
+			$tototsundayamt = $tototsundayamt + $otsundayamt12;
+			$totoveramt = $totoveramt + $overamt12;
+			$totnightdiffminutes = $totnightdiffminutes + $nightdiffminutes12;
+			$totnightdiffamt = $totnightdiffamt + $nightdiffamt12;
+			$tottotaltardy = $tottotaltardy + $totaltardy12;
+			$tototherincome = $tototherincome + $otherincome12;
+			$tototherincometaxable = $tototherincometaxable + $otherincometaxable12;
+			$tototherdeduction = $tototherdeduction + $otherdeduction12;
+
+			$totpagibig = $totpagibig + $pagibig12;
+			// $totphilemp = $totphilemp + $philemp12;
+			$totss = $totss + $ss12;
+			$totec = $totec + $ec12;
+			$totbracket = $totbracket + $bracket12;
+			$totabsentamt = $totabsentamt + $absentamt12;
+
+			$totnetbasicpay = $totnetbasicpay + $netbasicpay;
+			// $totwtax2018 = $totwtax2018 + $wtax2018;
+			$totwtax2020 = $totwtax2020 + $wtax2020;
+			$totphilemp = $totphilemp + $philemp12;
+			// $totphlhealth2018 = $totphlhealth2018 + $phlhealth2018;
+			$totphlhlthee = $totphlhlthee + $phlhlthee;
+			$totphlhlther = $totphlhlther + $phlhlther;
+			$totdeductsubtotold = $totdeductsubtotold + $deductsubtotold;
+			$totdeductsubtotnew = $totdeductsubtotnew + $deductsubtotnew;
+			$totnetpaynew = $totnetpaynew + $netpaynew;
+
+			// reset variables
+			$empsalaryhf=0; $netbasicpay=0; $comprate=0; $overtimesubtot=0; $grosspay=0; $comprate2=0; $wtax2018=0; $phlhealth2018=0; $deductsubtotold=0; $deductsubtotnew=0; $netpaynew=0; $phlhlthee=0; $phlhlther=0; $prevnetbasicpay=0; $prevempsalaryhf=0; $subtotnetbasicpay=0; $philemp12=0; $wtax2020=0;
+			} // while($myrow12=$result12->fetch_assoc())
+		} // if($result12->num_rows>0)
+
+		// display totals
+		echo "<tr><th colspan=\"4\"></th>";
+
+		echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\">".number_format($totnetbasicpay, 2)."</td>";
+
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+
+			echo "<td align=\"right\"></td>";
+
+			echo "<td align=\"right\"></td>";
+
+			echo "<td align=\"right\"><i>".number_format($tottax, 2)."</i></td>";
+			// echo "<td align=\"right\"><b>".number_format($totwtax2018, 2)."</b></td>";
+			echo "<td align=\"right\"><b>".number_format($totwtax2020, 2)."</b></td>";
+
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"><i>".number_format($totphilemp, 2)."</i></td>";
+			echo "<td align=\"right\"><b>".number_format($totphlhlther, 2)."</b></td>";
+			echo "<td align=\"right\"></td>";
+			echo "<td align=\"right\"><i>".number_format($totdeductsubtotold, 2)."</i></td>";
+			echo "<td align=\"right\"><b>".number_format($totdeductsubtotnew, 2)."</b></td>";
+
+			echo "<td align=\"right\"><i>".number_format($totnetpay, 2)."</i></td>";
+			echo "<td align=\"right\"><b>".number_format($totnetpaynew, 2)."</b></td>";
+
+		echo "</tr>";
+
+		// re-display headers
+		echo "<tr><th>Count</th><th>EmpID</th><th>EmpName</th>";
+		echo "<th>emp_salary</th>";
+
+		echo "<th>salaryhalfmo</th>";
+		echo "<th>totaltardy</th>";
+		echo "<th>absentamt</th>";
+		echo "<th>netbasicpay</th>";
+
+		echo "<th>otherincometaxable</th>";
+		echo "<th>otherincome</th>";
+
+		echo "<th>regholidayamt</th>";
+		echo "<th>speholidayamt</th>";
+		echo "<th>otsundayamt</th>";
+		echo "<th>overamt</th>";
+		echo "<th>nightdiffamt</th>";
+		echo "<th>totalovertime</th>";
+
+		echo "<th>grosspay</th>";
+
+		echo "<th>comprate</th>";
+
+		echo "<th>tax(prev)</th>";
+		echo "<th>wtax2018</th>";
+
+		echo "<th>deduction(ss)</th>";
+		echo "<th>pagibig</th>";
+		echo "<th>philemp(old)</th>";
+		echo "<th>phlhealth2018</th>";
+		echo "<th>otherdeduction</th>";
+		echo "<th>totaldeductions(old)</th>";
+		echo "<th>totaldeductions(new)</th>";
+
+		echo "<th>net_pay(old)</th>";
+		echo "<th>NetPay(new)</th>";
+		echo "</tr>";
+		echo "</table>";
+    echo "</td></tr>";
+
+    echo "</table>";
+
+	} // if($submitsw == 1)
+
+	echo "</td></tr>";
+	echo "</table>";
+
+    echo "<p><a href=\"cutoff.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+$dbh2->close();
+?>

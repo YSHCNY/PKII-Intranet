@@ -1,0 +1,158 @@
+<?php
+//
+// mhrpersreqadd.php
+// fr: vc/mhrpersreq.php
+// indexlinks: $page==351
+
+require '../includes/config.inc';
+
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>HR Personnel Requisition Form</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+	<thead>
+		<tr><th colspan="2" class="text-center">Personnel Requisition Form (HRD-F-01)</th></tr>
+	</thead>
+	<tbody>
+<?php
+	// display add new request form
+	echo "<form action=\"mhrpersreqadd2.php?lst=1&lid=$loginid&sess=$session&p=35\" method=\"POST\" name=\"mhrpersreqadd2\">";
+?>
+	<tr><th class="text-right">Request date</th><td class="text-left">
+<?php
+	echo "<strong>".date("D Y-M-d", strtotime($datenow))."</strong>";
+	echo "<input type=\"hidden\" size=\"5\" name=\"requestdate\" value=\"$datenow\" readonly>";
+?>
+	</td></tr>";
+
+	<tr><th class="text-right">Employee type</th><td class="text-left">
+	<input type="radio" name="emptyp" value="Probationary" checked>Probationary<br />
+	<input type="radio" name="emptyp" value="Contractual">Contractual<br />
+	<input type="radio" name="emptyp" value="Consultant">Consultant<br />
+	<input type="radio" name="emptyp" value="Others">Others (pls. specify)<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="emptypothr">
+	</td></tr>";
+
+	<tr><th colspan="2" class="text-center">Position information</th></tr>
+
+	<tr><th class="text-right">Position title</th><td class="text-left"><select name="positioncd">
+<?php
+	include("../m/qryhrpositionctg.php");
+	$param11=count($idhrpositionctg11Arr);
+	for($x11=0; $x11<$param11; $x11++) {
+		echo "<option value=\"".$idhrpositionctg11Arr[$x11]."\">".$name11Arr[$x11]."</option>";
+	} // for($x11=0; $x11<$param11; $x11++)
+?>
+	</select></td></tr>
+
+	<tr><th class="text-right">Department</th><td class="text-left"><select name="deptcd">
+<?php
+	include("../m/qryhrdeptcd.php");
+	$param12=count($code12Arr);
+	for($x12=0; $x12<$param12; $x12++) {
+		echo "<option value=\"".$code12Arr[$x12]."\">".$name12Arr[$x12]."</option>";
+	} // for
+?>
+	</select></td></tr>
+
+	<tr><th class="text-right">Reports to</th><td class="text-left"><select name="reportstoposcd">
+<?php
+	$param11b=count($idhrpositionctg11Arr);
+	for($x11b=0; $x11b<$param11b; $x11b++) {
+		echo "<option value=\"".$idhrpositionctg11Arr[$x11b]."\">".$name11Arr[$x11b]."</option>";
+	} // for
+?>
+	</select></td></tr>	
+
+	<tr><th class="text-right">Position details</th><td class="text-left">
+	<input type="radio" name="posfilltyp" value="newposition" checked>New position<br>
+	<input type="radio" name="posfilltyp" value="replacement">Replacement for (pls select personnel)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="posfillempid">
+	<option value=''>-</option>
+<?php
+	include("../m/qryhremployee.php");
+	$param14=count($employeeid14Arr);
+	for($x14=0; $x14<$param14; $x14++) {
+		echo "<option value=\"".$employeeid14Arr[$x14]."\">".$name_last14Arr[$x14].", ".$name_first14Arr[$x14]." ".substr($name_middle14Arr[$x14],0,1).".";
+		// if($empposition14Arr[$x14]!='') { echo " - ".$empposition14Arr[$x14].""; }
+		if($empdepartment14Arr[$x14]!='') { echo " - ".$empdepartment14Arr[$x14].""; }
+		echo "</option>";
+	} // for
+?>
+	</select><br>
+	<input type="radio" name="posfilltyp" value="others">Others (pls specify)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="posfillothr">
+	</td></tr>	
+
+	<tr><th class="text-right">No. of staff needed</th><td class="text-left">
+	<input type="number" min="1" max="50" name="staffneeded" value="1">
+	</td></tr>
+
+	<tr><th colspan="2" class="text-center">Job description (overview)</th></tr>
+
+	<tr><th class="text-right">Main responsibilities</th><td class="text-left">
+	<textarea rows="3" cols="70" name="jobdescresp"></textarea>
+	</td></tr>
+
+	<tr><th class="text-right">Specific duties</th><td class="text-left">
+	<textarea rows="3" cols="70" name="jobdescduties"></textarea>
+	</td></tr>
+
+	<tr><th colspan="2" class="text-center">Timeframe</th></tr>
+
+	<tr><th class="text-right">Date needed</th><td class="text-left">
+<?php
+	// compute date needed + 15 days
+	$dateneeded = date("Y-m-d", strtotime($datenow . '+ 15 days'));
+	echo "<input type=\"radio\" name=\"dateneedtyp\" value=\"asap\" checked>ASAP<br>";
+	echo "<input type=\"radio\" name=\"dateneedtyp\" value=\"date\"><input type=\"date\" name=\"dateneeded\" value=\"$dateneeded\">";
+?>
+	</td></tr>	
+
+	<tr><th class="text-right">Remarks</th><td class="text-left">
+	<textarea rows="3" cols="70" name="remarks"></textarea>
+	</td></tr>	
+
+	<tr><th class="text-right">Requested by</th><td class="text-left">
+<?php
+	echo "<strong>$name_last0, $name_first0, $name_middle0[0].</strong>";
+	if($empposition0!='') { echo " - $empposition0"; }
+	if($empdepartment0!='') { echo ", $empdepartment0"; }
+	echo "<input type=\"hidden\" name=\"requestorempid\" value=\"$employeeid0\">";
+?>
+	</td></tr>	
+
+	<tr><th class="text-right">Endorsed by</th><td class="text-left">
+<?php
+	// query other actors
+	include("../m/qryhrpersreqctg.php");
+	if($found15==1 && $endorsedempid15!='') {
+		$actorempid=$endorsedempid15;
+		include("../m/qryhrpersreqactor.php");
+		$actorempid="";
+		echo "<strong>$name_last12, $name_first12 $name_middle12[0].</strong>";
+		echo "<input type=\"hidden\" name=\"endorseempid\" value=\"$endorsedempid15\">";
+		echo "<input type=\"hidden\" name=\"actor\" value=\"REQ\">";
+	} // if
+?>
+	</td></tr>
+
+	<tr><td colspan="2"><button type="submit" class="btn btn-primary" value="Submit for endorsement">Submit for endorsement</button></td></tr>
+
+	</form>
+	</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+

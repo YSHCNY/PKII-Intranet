@@ -1,0 +1,64 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$ver0 = $_GET['ver'];
+
+$glcode0 = $_POST['glcode'];
+
+$status = "active";
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if($found == 1)
+{
+//     include ("header.php");
+//     include ("sidebar.php");
+
+// check if glcode is existing in tblfinworkpaperref
+  $result11 = mysql_query("SELECT wprefid, glcode, glrefver FROM tblfinworkpaperref WHERE glcode=\"$glcode0\" AND glrefver=$ver0", $dbh);
+  if($result11 != "")
+  {
+    while($myrow11 = mysql_fetch_row($result11))
+    {
+      $found11 = 1;
+      $wprefid11 = $myrow11[0];
+      $glcode11 = $myrow11[1];
+      $glrefver11 = $myrow11[2];
+    }
+  }
+
+  if($found11 != 1)
+  {
+// insert glcode
+    $result12 = mysql_query("INSERT INTO tblfinworkpaperref (glcode, glrefver, status) VALUES (\"$glcode0\", $ver0, \"$status\")", $dbh);
+  }
+
+// create log
+    $result16 = mysql_query("SELECT adminuid FROM tbladminlogin WHERE adminloginid=$loginid", $dbh);
+    while($myrow16 = mysql_fetch_row($result16))
+    { $adminuid=$myrow16[0]; }
+    $adminlogdetails = "$loginid:$adminloginuid - Add glcode:$glcode0 ver:$ver0 to working paper config for PKII Voucher module";
+    $result17 = mysql_query("INSERT INTO tbladminlogs SET adminloginid=$loginid, timestamp=\"$now\", adminuid=\"$adminuid\", adminlogdetails=\"$adminlogdetails\"", $dbh);
+
+  header("Location: mngfinwpref.php?loginid=$loginid");
+  exit;
+
+//echo "<a href=\"mngfinwpref.php?loginid=$loginid\">Back</a>";
+//     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 
+

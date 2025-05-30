@@ -1,0 +1,21 @@
+<?php
+//
+// fr: ../views/loginverify.php
+// ../models/qrylogin.php
+
+$res11query="SELECT loginid, employeeid, contactid FROM tbllogin WHERE username=\"$username\" AND password=md5('$password') LIMIT 1";
+$result11=""; $found11=0; $ctr11=0;
+$result11=$dbh->query($res11query);
+if($result11->num_rows>0) {
+	while($myrow11=$result11->fetch_assoc()) {
+	$found11=1;
+	$loginid11 = $myrow11['loginid'];
+	$employeeid11 = $myrow11['employeeid'];
+	$contactid11 = $myrow11['contactid'];
+	} // while
+} // if
+
+// close db conn
+$dbh->close();
+
+?>

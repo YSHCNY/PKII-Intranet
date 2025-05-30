@@ -1,0 +1,62 @@
+
+
+<!-- <div class="row"> -->
+
+<?php
+	// display header
+	include("header.php");
+
+	// temp var replace with $_POST['loginstat']
+	// $loginstat = $_POST['loginstat'];
+	// $loginstat=0;
+	$loginstat = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+	$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+	$session = trim((isset($_GET['sess'])) ? $_GET['sess'] :'');
+	$page = trim((isset($_GET['p'])) ? $_GET['p'] :'');
+
+  // get page source (from what page?) if exists
+  $pgsrc = (isset($_GET['ps']) ? $_GET['ps'] :'';
+
+	if($loginstat=='') { $loginstat=0; }
+
+	// check if logged-in else display login form
+	if($loginstat==1) {
+
+		// check loginid and session is valid
+		include("../m/qryloginverify.php");
+
+		if($found0==1) {
+
+		// display main navigation based on selected menu
+		include("menu.php");
+			// var_dump($found0, $logdetails, $res12query);
+
+?>
+
+<!--Main layout-->
+<div class="container">
+	<div class="row">
+<?php
+	include("indexlinks.php");
+
+		} else { // if($found==1)
+			// deny login and redirect to login page
+			// include("login.php");
+
+			echo "<p class='text-danger'>login denied. found=0.";
+			echo "f0:$found0, f1:$found1, uid:$username, pw:$password, loginstat:$loginstat<br>r6q:$res6query<br>r0q:$res0query";
+			echo "<br><a href='index.php' class='text-danger'>back</a></p>";
+		} // if($found==1)
+
+	} else { // if($loginstat==1)
+		include("login.php");
+	} // if($loginstat==1)
+?>
+
+	</div> <!-- div class="row" -->
+</div> <!-- div class="container" -->
+
+<?php
+	// display footer
+	include("footer.php");
+?>

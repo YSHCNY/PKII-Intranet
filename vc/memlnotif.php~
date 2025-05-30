@@ -1,0 +1,141 @@
+<?php
+//
+// memlnotif.php
+// fr: vc/index.php
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>E-Mail Notifier</h3></div>
+	</div>
+
+<?php
+	if($email10!='') {
+?>
+
+	<div class="row">
+
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+<table class="table">
+	<thead>
+	<tr><th colspan="2">Compose Message</th></tr>
+	</thead>
+	<tbody>
+<?php
+	echo '<input type="hidden" id="logID" value="'.$loginid.'" />';
+	echo '<input type="hidden" id="sessionID" value="'.$session.'" />';
+?>
+	<tr><th class="text-right">From</th>
+<?php
+	// query user's email
+	include '../m/qryemlsender.php';
+?>
+	<td class="text-left">
+<?php
+	echo "<input name=\"emlsender\" id='emlsender' value=\"$email10\" readonly>";
+?>
+	</td></tr>
+	<tr><th class="text-right">To</th>
+	<td class="text-left">
+<?php
+	// query recipients
+	include '../m/qryemlrecipient.php';
+?>
+<?php
+	echo "<select name=\"emlrecipient\">  id='emlrecipent'";
+	// display results
+	$param11 = count($name_last11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		echo "<option value='".$email111Arr[$x]."'>".$name_last11Arr[$x].",&nbsp;".$name_first11Arr[$x]."&nbsp;&lt".$email111Arr[$x]."&gt</option>";
+	} // for
+	echo "</select>";
+?>
+	</td></tr>
+	<tr><th class="text-right">Subject</th>
+	<td class="text-left">
+<?php
+	echo "<input size=\"60\" name=\"emlsubject\" id='emlsubject' placeholder=\"E-Mail Subject\">";
+?>
+	</td></tr>
+	<tr><th class="text-right">Message</th>
+	<td class="text-left">
+<?php
+	echo "<textarea rows=\"5\" cols=\"60\" name=\"emlmessage\" id='emlmessage' placeholder=\"Write your message here...\"></textarea>";
+?>
+	</td></tr>
+	<tr><td colspan="2" align="center">
+<?php
+	// echo "<input type=\"submit\" class=\"btn btn-success\" value=\"Send E-Mail\">";
+	// <!-- Button trigger modal -->
+	echo "<button class=\"btn btn-primary btn-lg\" id='btnEmailSubmit'>
+Send E-Mail</button>";
+?>
+	</td></tr>
+	</tbody>
+</table>
+		</div><!-- div class="col-md-10" -->
+
+		<div class="col-md-1"></div>
+	</div><!-- div class="row" -->
+
+<?php
+} else { // if($email10!='')
+?>
+	<div class="row">
+		<div class="col-md-12">
+		<h2><font color="red">Sorry, you have no valid e-mail address on record.</font></h2>
+		</div>
+	</div>
+<?php
+} // if($email10!='')
+?>
+<div class="modal fade" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">E-mail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id='myModalBody'>
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+
+	$('#btnEmailSubmit').on('click',function(){
+			var loginid = $('#logID').val();
+			var session = $('#sessionID').val();			
+			var emlsender = $('#emlsender').val();
+			var emlrecipent = $('#emlrecipent').val();
+			var emlsubject = $('#emlsubject').val();
+			var emlmessage = $('#emlmessage').val();
+			
+			$.ajax({
+				url: "memlnotifsnd.php?lst=1&lid="+loginid+"&sess="+session+"&p=32",
+				type: 'POST',
+				data: {
+					emlsender: emlsender,
+					emlrecipent: emlrecipent,
+					emlsubject: emlsubject,
+					emlmessage: emlmessage,
+				},
+				success: function(returnResult){
+					$('#myModalBody').html(returnResult);
+					$('#myModal').modal('show');
+				}
+			});		
+	});	
+
+});
+</script>
+
+

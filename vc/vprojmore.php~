@@ -1,0 +1,83 @@
+<?php
+//
+// vprojmore.php
+// fr: vc/vprojects.php
+// page 211 of index.php
+
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$projectid = (isset($_POST['projectid'])) ? $_POST['projectid'] :'';
+$projcode = (isset($_POST['projcode'])) ? $_POST['projcode'] :'';
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>PKII Project Details</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+
+<?php 
+
+	include '../m/qryproj2.php';
+
+	if($found11==1) {
+  echo "<tr><th class='text-right'>Project Code</th><td class='text-left'>$proj_code11</td></tr>";
+  echo "<tr><th class='text-right'>Acronym</th><td class='text-left'><strong>$proj_sname11</strong></td></tr>";
+  echo "<tr><th class='text-right'>Project Name</th><td class='text-left'><strong>$proj_fname11</strong></td></tr>";
+  echo "<tr><th class='text-right'>Description</th><td class='text-left'>$proj_desc11</td></tr>";
+  echo "<tr><th class='text-right'>Status</th><td class='text-left'>$projstatus11</td></tr>";
+  echo "<tr><th class='text-right'>Date Started</th>";
+	if($date_start11!='0000-00-00') {
+	echo "<td class='text-left'>".date("Y-M-d", strtotime($date_start11))."</td>";
+	} else {
+	echo "<td class='text-left'>$date_start11</td>";
+	} // if
+	echo "</tr>";
+  echo "<tr><th class='text-right'>Date Finished</th>";
+	if($date_end11!='0000-00-00') {
+	echo "<td class='text-left'>".date("Y-M-d", strtotime($date_end11))."</td>";
+	} else {
+	echo "<td class='text-left'>$date_end11</td>";
+	} // if
+	echo "</tr>";
+  echo "<tr><th class='text-right'>Services</th><td class='text-left'>$proj_services11</td></tr>";
+  echo "<tr><th class='text-right'>Remarks</th><td class='text-left'>$projremarks11</td></tr>";
+
+	echo "<tr><td colspan='2'></td></tr>";
+
+	// query assigned personnel
+	include '../m/qryproj2b.php';
+	if($found12==1 && $employeeid11!='') {
+	echo "<tr><th class='text-right'>Project coordinator</th><td class='text-left'>$name_last12, $name_first12 $name_middle12[0]</td></tr>";
+	} // if
+
+	echo "<tr><td colspan='2'></td></tr>";
+
+	// query personnels involved on this project
+	include '../m/qryproj2c.php';
+	echo "<tr><th class='text-right'>Assigned personnel/s</th><td class='text-left'>";
+	$param14 = count($employeeid14Arr);
+	for($x14 = 0; $x14 < $param14; $x14++) {
+		$ctr14=$ctr14+1;
+		echo "".$name_last14Arr[$x14].", ".$name_first14Arr[$x14]." ".substr($name_middle14Arr[$x14],0,1)."<br>";
+	} // for
+	echo "</td></tr>";
+	} // if
+
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=21\" method=\"POST\" name=\"index\">";
+	echo "<td colspan=\"2\" class='text-center'><button type=\"submit\" class='btn btn-primary'>back</button></td>";
+	echo "<form>";
+?> 
+</table>
+</tbody>
+
+		</div><!--  class="col-md-6" -->
+		<div class="col-md-1"></div>
+	</div><!-- class="row" -->
+

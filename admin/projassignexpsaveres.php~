@@ -1,0 +1,170 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$cutoffdate = $_GET['codate'];
+
+$cutoffname = $cutoffdate;
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Assignments >> List of Expiring Contracts >> Save results</font></p>";
+
+echo "<table border=0 spacing=0 cellspacing=0 cellpadding=0><tr><td>";
+
+     echo "<table width=100% border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><td bgcolor=blue><font color=white><b>List of Expiring Contracts - Saving results</b></font></td></tr>";
+
+// start contents here...
+
+	$result1 = mysql_query("SELECT tblprojassign.projassignid, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.position, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.term_resign, tblprojassign.remarks, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblprojassign JOIN tblcontact ON tblprojassign.employeeid = tblcontact.employeeid WHERE (tblprojassign.durationto2 NOT NULL OR tblprojassign.durationto2 NOT LIKE '0000%') AND tblprojassign.durationto2 <= '$cutoffdate' AND (tblprojassign.term_resign IS NULL OR tblprojassign.term_resign = '0000-00-00') ORDER BY tblprojassign.durationto2 DESC", $dbh);
+
+	$ctr1 = 0;
+	$found1 = 0;
+      if($result1 != '') {
+	while($myrow1 = mysql_fetch_row($result1))
+	{
+	  $found1 = 1;
+	  $ctr1 = $ctr1 + 1;
+	  $projassignid = $myrow1[0];
+	  $ref_no = $myrow1[1];
+	  $employeeid = $myrow1[2];
+	  $proj_code = $myrow1[3];
+	  $proj_name = $myrow1[4];
+	  $position = $myrow1[5];
+	  $durationfrom = $myrow1[6];
+	  $durationto = $myrow1[7];
+	  $durationfrom2 = $myrow1[8];
+	  $durationto2 = $myrow1[9];
+	  $term_resign = $myrow1[10];
+	  $remarks = $myrow1[11];
+	  $name_last = $myrow1[12];
+	  $name_first = $myrow1[13];
+	  $name_middle = $myrow1[14];
+
+	  if ($durationto2 <> '0000-00-00')
+	  {
+	    if ($durationto2 <= "$cutoffdate")
+	    {
+	      $durationto = $durationto2;
+	    }
+	  }
+
+	  if($found1 == 1)
+	  {
+	    $result11 = mysql_query("INSERT INTO tblprojassignexpiring (cutoffdate, cutoffname, projassignid, employeeid) VALUES ('$cutoffdate', '$cutoffname', $projassignid, '$employeeid')", $dbh);
+	echo "<tr><td>$ctr1 - $cutoffdate - $cutoffname - $projassignid - $employeeid - $remarks</td></tr>";
+	  }
+
+	}
+      }
+
+	$result2 = mysql_query("SELECT tblprojassign.projassignid, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.position, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.term_resign, tblprojassign.remarks, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblprojassign JOIN tblcontact ON tblprojassign.employeeid = tblcontact.employeeid WHERE (tblprojassign.durationto2 IS NULL OR tblprojassign.durationto2 LIKE '0000%') AND tblprojassign.durationto NOT LIKE '0000%' AND tblprojassign.durationto <= '$cutoffdate' AND (tblprojassign.term_resign IS NULL OR tblprojassign.term_resign = '0000-00-00') ORDER BY tblprojassign.durationto DESC", $dbh);
+
+	$ctr2 = 0 + $ctr1;
+	$found2 = 0;
+
+	while($myrow2 = mysql_fetch_row($result2))
+	{
+	  $found2 = 1;
+	  $ctr2 = $ctr2 + 1;
+	  $projassignid2 = $myrow2[0];
+	  $ref_no2 = $myrow2[1];
+	  $employeeid2 = $myrow2[2];
+	  $proj_code2 = $myrow2[3];
+	  $proj_name2 = $myrow2[4];
+	  $position2 = $myrow2[5];
+	  $durationfrom2 = $myrow2[6];
+	  $durationto2 = $myrow2[7];
+	  $durationfrom22 = $myrow2[8];
+	  $durationto22 = $myrow2[9];
+	  $term_resign2 = $myrow2[10];
+	  $remarks2 = $myrow2[11];
+	  $name_last2 = $myrow2[12];
+	  $name_first2 = $myrow2[13];
+	  $name_middle2 = $myrow2[14];
+
+	  if($found2 == 1)
+	  {
+	    $result21 = mysql_query("INSERT INTO tblprojassignexpiring (cutoffdate, cutoffname, projassignid, employeeid) VALUES ('$cutoffdate', '$cutoffname', $projassignid2, '$employeeid2')", $dbh);
+	echo "<tr><td>$ctr1 - $cutoffdate - $cutoffname - $projassignid2 - $employeeid2 - $remarks2</td></tr>";
+	  }
+	}
+
+/*
+	$result2 = mysql_query("SELECT tblprojassign0.projectassign0id, tblprojassign0.ref_no, tblprojassign0.employeeid1, tblprojassign0.proj_code, tblprojassign0.proj_name, tblprojassign0.position, tblprojassign0.durationfrom, tblprojassign0.durationto, tblprojassign0.durationfrom2, tblprojassign0.durationto2, tblprojassign0.term_resign, tblprojassign0.remarks, tblprojassign0.name_last, tblprojassign0.name_first, tblprojassign0.name_middle FROM tblprojassign0 WHERE (tblprojassign0.durationto2 <> '' AND tblprojassign0.durationto2 NOT LIKE '0000%' AND tblprojassign0.durationto2 <= \"$cutoffdate\" AND tblprojassign0.term_resign = '0000-00-00') OR (tblprojassign0.durationto <> '' AND tblprojassign0.durationto NOT LIKE '0000%' AND tblprojassign0.durationto <= \"$cutoffdate\" AND tblprojassign0.term_resign = '0000-00-00') ORDER BY tblprojassign0.durationto2 DESC, tblprojassign0.durationto DESC", $dbh);
+
+	echo "<tr><td bgcolor=lightgray colspan=13>Results from tmp.Project Assignment</td></tr>";
+
+	$ctr2 = $ctr1;
+
+	while($myrow2 = mysql_fetch_row($result2))
+	{
+	  $found2 = 1;
+	  $ctr2 = $ctr2 + 1;
+	  $projectassign0id = $myrow2[0];
+	  $ref_no2 = $myrow2[1];
+	  $employeeid2 = $myrow2[2];
+	  $proj_code2 = $myrow2[3];
+	  $proj_name2 = $myrow2[4];
+	  $position2 = $myrow2[5];
+	  $durationfrom2 = $myrow2[6];
+	  $durationto2 = $myrow2[7];
+	  $durationfrom22 = $myrow2[8];
+	  $durationto22 = $myrow2[9];
+	  $term_resign2 = $myrow2[10];
+	  $remarks2 = $myrow2[11];
+	  $name_last2 = $myrow2[12];
+	  $name_first2 = $myrow2[13];
+	  $name_middle2 = $myrow2[14];
+
+	  if ($durationto212 <> '')
+	  {
+	    if ($durationto212 <> '0000-00-00')
+	    {
+	      if ($durationto212 <= "$cutoffdate")
+	      {
+//	        echo "vartest cutoffdate:$cutoffdate|durationto12:$durationto12|durationto212:$durationto212<br>";
+	        $durationto12 = $durationto212;
+	      }
+	    }
+	  }
+
+	$result21 = mysql_query("INSERT INTO tblprojassignexpiring (cutoffdate, cutoffname, projassign0id, employeeid) VALUES ('$cutoffdate', '$cutoffname', $projectassign0id, '$employeeid2')", $dbh);
+
+	echo "<tr><td>$ctr2 - $cutoffdate - $cutoffname - $projectassign0id - $employeeid2 - $remarks2</td></tr>";
+	}
+*/
+
+// end contents here...
+
+     echo "<tr><td align=center>OK - eof</td></tr>";
+     echo "<tr><td align=center>Results saved</td></tr>";
+     echo "</table></td></tr></table>";
+
+// edit body-footer
+     echo "<p><a href=projassignexpiring.php?loginid=$loginid>Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

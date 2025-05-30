@@ -1,0 +1,231 @@
+<?php
+//
+// mactivitylog.php
+// fr: vc/index.php
+
+$yyyymm0 = (isset($_GET['ms'])) ? $_GET['ms'] :'';
+$cutmonth0 = (isset($_GET['cm'])) ? $_GET['cm'] :'';
+
+$yyyymm = (isset($_POST['monsel'])) ? $_POST['monsel'] :'';
+$cutmonth = (isset($_POST['cutmonth'])) ? $_POST['cutmonth'] :'';
+
+if($yyyymm0!='') { $yyyymm=$yyyymm0; }
+if($cutmonth0!='') { $cutmonth=$cutmonth0; }
+
+if(($yyyymm == "") || ($yyyymm == "")) {
+	$cutstart = date("Y-m-01", strtotime($datenow));
+} else {
+	$cutstart = $yyyymm."-"."01";
+} // if
+
+if($cutmonth == "") { $cutmonth="0"; }
+
+if($cutmonth == "0") {
+  $cutend = date("Y-m-t", strtotime("$cutstart"));
+} else if($cutmonth == "1") {
+	$cutstartarr = explode("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutend = $cutstartyyyy . "-" . $cutstartmm . "-" . "15";
+} else if($cutmonth == "2") {
+  $cutend = date("Y-m-t", strtotime("$cutstart"));
+	$cutstartarr = explode("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutstart = $cutstartyyyy . "-" . $cutstartmm . "-" . "16";
+} // if
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>My Activity Log</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+	<tr>
+<?php 
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=141\" method=\"POST\" name=\"mactivitylogfrm\">";
+?>
+	<td><button class="btn btn-primary">Add activity</button></td>
+	</form>
+<?php
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=14\" method=\"POST\" name=\"mactivitylog\">";
+	include("../m/qrymactivitylog.php");
+?>
+	<td>Display:
+	<select name="monsel" id='monsel'>
+<?php
+	$param11 = count($yyyymm11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		if($yyyymm11Arr[$x]==$yyyymm) { $yyyymmsel="selected"; } else { $yyyymmsel=""; }
+		echo "<option value=\"".$yyyymm11Arr[$x]."\" $yyyymmsel>".date("Y-M", strtotime($yyyymm11Arr[$x]))."</option>";
+	} // for
+?>
+	</select>
+	<select name="cutmonth" id='cutmonth'>
+<?php
+	if($cutmonth == "0") { $cutmo0sel="selected"; $cutmo1sel=""; $cutmo2sel=""; }
+	else if($cutmonth == "1") { $cutmo0sel=""; $cutmo1sel="selected"; $cutmo2sel=""; }
+	else if($cutmonth == "2") { $cutmo0sel=""; $cutmo1sel=""; $cutmo2sel="selected"; }
+	else { $cutmo0sel="selected"; $cutmo1sel=""; $cutmo2sel=""; }
+?>
+	<option value="0" <?php echo $cutmo0sel; ?>>whole month</option>
+	<option value="1" <?php echo $cutmo1sel; ?>>1st half</option>
+	<option value="2" <?php echo $cutmo2sel; ?>>2nd half</option>
+	</select>
+	<button class="btn btn-primary">Submit</button>
+	</td>
+	</form>
+	</td><td>
+<?php
+	// echo "<a href=\"mactivitylogprtvw.php?lst=1&lid=$loginid&sess=$session&p=142&cm=$cutmonth&ms=$monsel\" target=\"_blank\"><i>Printable view</i></a>";
+	// echo "<form action=\"mactivitylogprtvw.php?lst=1&lid=$loginid&sess=$session&p=142&cm=$cutmonth&ms=$monsel\" method=\"get\" name=\"mactivitylogprtvw\">";
+	echo "<form action=\"mactivitylogprtvw.php\" method=\"get\" name=\"mactivitylogprtvw\">";
+		echo "<input type=\"hidden\" name=\"lst\" value=\"1\">";
+		echo "<input type=\"hidden\" name=\"lid\" value=\"$loginid\">";
+		echo "<input type=\"hidden\" name=\"sess\" value=\"$session\">";
+		echo "<input type=\"hidden\" name=\"p\" value=\"142\">";
+		echo "<input type=\"hidden\" name=\"cm\" value=\"$cutmonth\">";
+		echo "<input type=\"hidden\" name=\"ms\" value=\"$yyyymm\">";
+		echo "<button type=\"submit\" class=\"btn btn-primary\" formtarget=\"_blank\">Printable view</button>";
+	echo "</form>";
+?>
+	</td></tr>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table table-striped">
+<thead>
+	<tr><th colspan="2">date</th>
+<?php
+	// query att_userid if exists
+	include("../m/qrymactivitylog2.php");
+	if($att_userid12!='') {
+	echo "<th>time-in</th><th>time-out</th>";
+	} // if
+?>
+	<th>activity</th></tr>
+</thead>
+<tbody>
+<?php
+	// generate dates
+	if($yyyymm != "") {
+		// while(strtotime($cutstart) <= strtotime($cutend)) {
+		while($cutstart <= $cutend) {
+		$dateval = date("Y-M-d", strtotime($cutstart));
+		// echo "$dateval<br>";
+		if(date("D", strtotime($dateval)) == "Sun") {
+		echo "<tr><td><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font></td><td align=\"center\"><font color=\"red\">".date("D", strtotime($dateval))."</font></td>";
+		} else {
+		echo "<tr><td>".date("Y-M-d", strtotime($dateval))."</td><td align=\"center\">".date("D", strtotime($dateval))."</td>";
+		} // if(date("D", strtotime($dateval)) == "Sun")
+		// display time log if exist
+		if($att_userid12!='') {
+			echo "<td>";
+			include("../m/qrymactivitylog4.php");
+			$param14 = count($hrattcheckinoutid14Arr);
+			for($x=0; $x<$param14; $x++) {
+				if($timein14Arr[$x] != "") {
+				echo date("G:i", strtotime($timein14Arr[$x]));
+				echo "<br>";
+				$timein14Arr[$x]="";
+				} // if
+			} // for
+			echo "</td><td>";
+			include("../m/qrymactivitylog5.php");
+			$param15 = count($hrattcheckinoutid15Arr);
+			for($x=0; $x<$param15; $x++) {
+				if($timeout15Arr[$x] != "") {
+				echo date("G:i", strtotime($timeout15Arr[$x]));
+				echo "<br>";
+				$timeout15Arr[$x]="";
+				} // if
+			} // for
+			echo "</td>";
+		} // if 
+
+		// display activity log
+		$arrcutdate = explode(" ", $cutstart);
+		$arrcutdate0 = $arrcutdate[0];
+		echo "<td class='text-left'>";
+		include("../m/qrymactivitylog6.php");
+		$param16 = count($hractlogid16Arr);
+		for($x = 0; $x < $param16; $x++) {
+			if($x>0) {
+			echo "<br /><br />";
+			} // if
+			$aid[$x]=$hractlogid16Arr[$x];
+			echo "".nl2br($activity16Arr[$x])."";
+			// echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."\"><font color=\"blue\">Edit</font></a></i></font>";
+			echo "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-primary\" onclick=\"javascript:window.location='index.php?lst=1&lid=$loginid&sess=$session&p=143&aid=".$hractlogid16Arr[$x]."'\">Edit</button>";
+			// echo "&nbsp;&nbsp;<font size=\"2\"><i><a href=\"index.php?lst=1&lid=$loginid&sess=$session&p=144&aid=".$hractlogid16Arr[$x]."\"><font color=\"red\">Del</font></a></i></font>";
+			echo "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-warning btnActlogDelete\" data-toggle=\"modal\" data-target=\"#myModal\" data-id='".$hractlogid16Arr[$x]."'>Del</button>";
+		} // for
+		echo "</td>";
+		echo "</tr>";
+
+		// increment date
+		$cutstart = date("Y-m-d", strtotime($cutstart. " + 1 days"));
+
+		} // while(strtotime($cutstart) <= strtotime($cutend))
+	} // if($yyyymm != "")
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+<!-- start modal popup window -->
+<div class="modal fade" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><font color="red">Deleting Activity log</font></h5>
+        
+      </div>
+      <!-- <div class="modal-body" id='myModalBody'> -->
+			<div>
+			<h4 class="modal-title" id="myModalLabel">Are you sure?<br></h4>
+    
+      </div>
+      <div class="modal-footer">
+<?php
+		echo "<form action=\"mactivitylogdel.php?lst=1&lid=$loginid&sess=$session&p=144\" method=\"POST\" name=\"mactivitylogdel\">";
+			echo "<button type=\"submit\" class=\"btn btn-success\" id='btnYesDelete'>Yes</button>";
+			echo "<input type=\"hidden\" name=\"aid\" id='recordid' />";
+			echo "<input type=\"hidden\" name=\"ms\" id='ms' />";
+			echo "<input type=\"hidden\" name=\"cm\" id='cm' />";
+			echo "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\" id='btnCloseRedir'>No</button>";
+		echo "</form>";
+?>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal popup window -->
+
+<script>
+$(document).ready(function(){
+
+	$('body').delegate('.btnActlogDelete','click',function(){
+			var recordId = $(this).data('id');
+			$('#recordid').val(recordId);
+			$('#ms').val($('#monsel').val());
+			$('#cm').val($('#cutmonth').val());
+	});
+
+});
+
+</script>

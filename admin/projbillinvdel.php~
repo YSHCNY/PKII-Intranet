@@ -1,0 +1,73 @@
+<?php 
+
+require("db1.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$contractinvoice_id = (isset($_POST['contractinvoiceid'])) ? $_POST['contractinvoiceid'] :'';
+$contract_id = (isset($_POST['contractid'])) ? $_POST['contractid'] :'';
+$proj_code = (isset($_POST['projcode'])) ? $_POST['projcode'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+
+if($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Billing</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+	// title head
+	echo "<tr><th colspan=\"2\"><font color='red'>Deleting invoice</font></th></tr>";
+
+	// Other infos
+	echo "<tr><td colspan='2' align='center'><h3><font color='red'>Are you sure?</font></h3></td></tr>";
+	echo "<tr><td colspan='2' align='center'>ContractInvoiceID: $contractinvoice_id<br>ContractID: $contract_id<br>ProjCd:$proj_code</td></tr>";
+	echo "<tr><td colspan='2' align='center'><font color='red'>WARNING: This invoice will be deleted including its attachment.</font></td></tr>";
+
+  echo "<tr>";
+	echo "<form action='projbillinvdel2.php?loginid=$loginid' method='POST' name='projbillinvdel2'>";
+	echo "<td align='center'>";
+	// column1 ok/yes button
+	echo "<input type='hidden' name='contractid' value='$contract_id'>";
+	echo "<input type='hidden' name='contractinvoiceid' value='$contractinvoice_id'>";
+	echo "<input type='hidden' name='projcode' value='$proj_code'>";
+	echo "<button type='submit' class='btn btn-success'>Yes</button>";
+	echo "</td>";
+	echo "</form>";
+
+	echo "<form action='projbilldtls.php?loginid=$loginid' method='POST' name='projbilldtls'>";
+	echo "<td align='center'>";
+	// column2 cancel/no button
+	echo "<input type='hidden' name='contractid' value='$contract_id'>";
+	echo "<input type='hidden' name='projcode' value='$proj_code'>";
+	echo "<button type='submit' class='btn btn-danger'>No</button>";
+	echo "</td>";
+	echo "</form>";
+	echo "</tr>";
+
+// end contents here...
+
+     echo "</table>";
+
+     // echo "<p><div id='redir_back2'><a href='projbilling.php?loginid=$loginid' class='btn btn-primary'>Back</a></div></p>";
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+
+$dbh2->close();
+?>
+

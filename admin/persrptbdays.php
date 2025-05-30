@@ -1,0 +1,266 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$personneltype = $_POST['personneltype'];
+$employeetype = $_POST['employeetype'];
+$employeeorder = $_POST['employeeorder'];
+// $empactivtyp = $_POST['empactivtyp'];
+$monthsel = $_POST['monthsel'];
+
+if($personneltype == "employees") { $empsel="selected"; $conssel=""; $allempconssel=""; }
+else if($personneltype == "consultants") { $empsel=""; $conssel="selected"; $allempconssel=""; }
+else if($personneltype == "all-personnels") { $empsel=""; $conssel=""; $allempconssel="selected"; }
+// else if($personneltype == "") { $personneltype == "employees"; $empsel="selected"; $conssel=""; $allempconssel=""; }
+
+if($personneltype == "employees") {
+	if($employeetype == "active-employees") { $activeempsel="selected"; $inactiveempsel=""; $allempsel=""; }
+	else if($employeetype == "inactive-employees") { $activeempsel=""; $inactiveempsel="selected"; $allempsel=""; }
+	else if($employeetype == "all-employees") { $activeempsel=""; $inactiveempsel=""; $allempsel="selected"; }
+	// else if($employeetype == "") { $activeempsel="selected"; $inactiveempsel=""; $allempsel=""; }
+} else if($personneltype == "consultants") {
+	if($employeetype == "active-consultants") { $activeconssel="selected"; $inactiveconssel=""; $allconssel=""; }
+	else if($employeetype == "inactive-consultants") { $activeconssel=""; $inactiveconssel="selected"; $allconssel=""; }
+	else if($employeetype == "all-consultants") { $activeconssel=""; $inactiveconssel=""; $allconssel="selected"; }
+	// else if($employeetype == "") { $activeconssel="selected"; $inactiveconssel=""; $allconssel=""; }
+} else if($personneltype == "all-personnels") {
+	if($employeetype == "active-pers") { $activeperssel="selected"; $inactiveperssel=""; $allperssel=""; }
+	else if($employeetype = "inactive-pers") { $activeperssel=""; $inactiveperssel="selected"; $allperssel=""; }
+	else if($employeetype = "all-pers") { $activeperssel=""; $inactiveperssel=""; $allperssel="selected"; }
+	else if($employeetype == "") { $activeperssel="selected"; $inactiveperssel=""; $allperssel=""; }
+}
+
+/*
+if($employeeorder == "tblcontact.employeeid") { $employeeidsel="selected"; $name_lastsel=""; $name_firstsel=""; $emp_birthdatesel=""; $date_hiredsel=""; }
+else if($employeeorder == "tblcontact.name_last") { $employeeidsel=""; $name_lastsel="selected"; $name_firstsel=""; $emp_birthdatesel=""; $date_hiredsel=""; }
+else if($employeeorder == "tblcontact.name_first") { $employeeidsel=""; $name_lastsel=""; $name_firstsel="selected"; $emp_birthdatesel=""; $date_hiredsel=""; }
+else if($employeeorder == "tblemployee.emp_birthdate") { $employeeidsel=""; $name_lastsel=""; $name_firstsel=""; $emp_birthdatesel="selected"; $date_hiredsel=""; }
+else if($employeeorder == "tblemployee.date_hired") { $employeeidsel=""; $name_lastsel=""; $name_firstsel=""; $emp_birthdatesel=""; $date_hiredsel="selected"; }
+else if($employeeorder == "") { $employeeidsel=""; $name_lastsel="selected"; $name_firstsel=""; $emp_birthdatesel=""; $date_hiredsel=""; }
+*/
+
+if($empactivtyp == "regular") {
+	$empactivtypregsel="selected"; $empactivtypprobysel=""; $empactivtyptempsel="";
+} else if($empactivtyp == "probationary") {
+	$empactivtypregsel=""; $empactivtypprobysel="selected"; $empactivtyptempsel="";
+} else if($empactivtyp == "temporary") {
+	$empactivtypregsel=""; $empactivtypprobysel=""; $empactivtyptempsel="selected";
+}
+
+if($monthsel=="1") {
+	$monthjansel="selected"; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="2") {
+	$monthjansel=""; $monthfebsel="selected"; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="3") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel="selected"; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="4") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel="selected"; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="5") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel="selected"; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="6") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel="selected"; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="7") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel="selected"; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="8") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel="selected"; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="9") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel="selected"; $monthoctsel=""; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="10") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel="selected"; $monthnovsel=""; $monthdecsel="";
+} else if($monthsel=="11") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel="selected"; $monthdecsel="";
+} else if($monthsel=="12") {
+	$monthjansel=""; $monthfebsel=""; $monthmarsel=""; $monthaprsel=""; $monthmaysel=""; $monthjunsel=""; $monthjulsel=""; $monthaugsel=""; $monthsepsel=""; $monthoctsel=""; $monthnovsel=""; $monthdecsel="selected";
+}
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<p><font size=1>Modules >> <a href=\"persrptmnu.php?loginid=$loginid\">HR Reports</a> >> List of birthdays</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\">";
+     echo "<tr><th colspan=\"12\">List of birthdays</th></tr>";
+
+     echo "<tr><td colspan=12>";
+
+     echo "<form action=\"persrptbdays.php?loginid=$loginid\" method=\"POST\" name=\"myform\">";
+     echo "<table><tr>";
+
+     echo "<td valign=bottom><font size=1>Choose personnel type</font><br>";
+     echo "<select name=\"personneltype\" onchange=\"this.form.submit()\">";
+		echo "<option value=\"-\">select</option>";
+     echo "<option value=\"employees\" $empsel>Employees</option>";
+     echo "<option value=\"consultants\" $conssel>Consultants</option>";
+     echo "<option value=\"all-personnels\" $allempconssel>All Personnels</option>";
+     echo "</select></td>";
+
+		if($personneltype == "employees") {
+     echo "<td valign=bottom><font size=1>Choose criteria</font><br>";
+     echo "<select name=\"employeetype\" onchange=\"this.form.submit()\">";
+		echo "<option value=\"-\">select</option>";
+     echo "<option value=\"active-employees\" $activeempsel>Active Employees</option>";
+     echo "<option value=\"inactive-employees\" $inactiveempsel>Inactive Employees</option>";
+     echo "<option value=\"all-employees\" $allempsel>All Employees</option>";
+     echo "</select></td>";
+
+			/*
+			if($employeetype == "active-employees") {
+				echo "<td valign=\"bottom\"><font size=\"1\">active type</font><br>";
+				echo "<select name=\"empactivtyp\" onchange=\"this.form.submit()\">";
+				echo "<option value=\"-\">select</option>";
+				echo "<option value=\"regular\" $empactivtypregsel>regular</option>";
+				echo "<option value=\"probationary\"$empactivtypprobysel>probationary</option>";
+				echo "<option value=\"temporary\"$empactivtyptempsel>temporary</option>";
+				echo "</select></td>";
+			}
+			*/
+
+		} else if($personneltype == "consultants") {
+     echo "<td valign=bottom><font size=1>Choose criteria</font><br>";
+     echo "<select name=\"employeetype\" onchange=\"this.form.submit()\">";
+     echo "<option value=\"active-consultants\" $activeconssel>Active Consultants</option>";
+     echo "<option value=\"inactive-consultants\" $inactiveconssel>Inactive Consultants</option>";
+     echo "<option value=\"all-consultants\" $allconssel>All Consultants</option>";
+     echo "</select></td>";
+		} else if($personneltype == "all-personnels") {
+     echo "<td valign=bottom><font size=1>Choose criteria</font><br>";
+     echo "<select name=\"employeetype\" onchange=\"this.form.submit()\">";
+     echo "<option value=\"active-pers\" $activeperssel>Active</option>";
+     echo "<option value=\"inactive-pers\" $inactiveperssel>Inactive</option>";
+     echo "<option value=\"all-pers\" $allperssel>All</option>";
+     echo "</select></td>";
+		}
+
+		/*
+     echo "<td valign=bottom><font size=1>Sort by</font><br>";
+     echo "<select name=\"employeeorder\">";
+     echo "<option value=\"tblcontact.employeeid\" $employeeidsel>Employee Number</option>";
+     echo "<option value=\"tblcontact.name_last\" $name_lastsel>Last Name</option>";
+     echo "<option value=\"tblcontact.name_first\" $name_firstsel>First Name</option>";
+     echo "<option value=\"tblemployee.emp_birthdate\" $emp_birthdatesel>Birthdate</option>";
+     echo "<option value=\"tblemployee.date_hired\" $date_hiredsel>DateHired</option>";
+     echo "</select></td>";
+		*/
+
+		echo "<td valign=\"bottom\"><font size=\"1\">Select month</font><br>";
+    echo "<select name=\"monthsel\" onchange=\"this.form.submit()\">";
+		if($monthsel=='') { echo "<option value=''>Choose month</option>"; }
+		echo "<option value=\"1\" $monthjansel>January</option>";
+		echo "<option value=\"2\" $monthfebsel>February</option>";
+		echo "<option value=\"3\" $monthmarsel>March</option>";
+		echo "<option value=\"4\" $monthaprsel>April</option>";
+		echo "<option value=\"5\" $monthmaysel>May</option>";
+		echo "<option value=\"6\" $monthjunsel>June</option>";
+		echo "<option value=\"7\" $monthjulsel>July</option>";
+		echo "<option value=\"8\" $monthaugsel>August</option>";
+		echo "<option value=\"9\" $monthsepsel>September</option>";
+		echo "<option value=\"10\" $monthoctsel>October</option>";
+		echo "<option value=\"11\" $monthnovsel>November</option>";
+		echo "<option value=\"12\" $monthdecsel>December</option>";
+		echo "</select></td>";
+
+     echo "<td><input type=submit value=Go></td>";
+     echo "</tr></table>";
+     echo "</form>";
+
+     echo "</td></tr>";
+
+		// echo "<tr><th colspan=\"12\">Result | $employeetype | $empactivtyp</th></tr>";
+		echo "<tr><th>EmpID</th><th>Name</th><th>DateHired</th><th>BirthDate</th><th>Age</th></tr>";
+
+		if($personneltype == "employees") {
+			if($employeetype == "active-employees") {
+				/*
+				if($empactivtyp == "regular") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' AND tblemployee.emp_status=\"R\" ORDER BY $employeeorder", $dbh);
+				} else if($empactivtyp == "probationary") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' AND tblemployee.emp_status=\"P\" ORDER BY $employeeorder", $dbh);
+				} else if($empactivtyp == "temporary") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' AND tblemployee.emp_status=\"T\" ORDER BY $employeeorder", $dbh);
+				}
+				*/
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "inactive-employees") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "all-employees") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else {
+				$result11 = "";
+				// $result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid LEFT JOIN tblempdetails ON tblcontact.employeeid = tblempdetails.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.employee_type != 'consultant' AND tblemployee.emp_record = 'active' ORDER BY $employeeorder", $dbh);
+			}
+		} else if($personneltype == "consultants") {
+			if($employeetype == "active-consultants") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type == 'consultant' AND tblemployee.emp_record='active' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "inactive-consultants") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type == 'consultant' AND tblemployee.emp_record='inactive' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "all-consultants") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.employee_type == 'consultant' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else {
+				$result11 = "";
+			}
+		} else if($personneltype == "all-personnels") {
+			if($employeetype == "active-pers") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.emp_record='active' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "inactive-pers") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' AND tblemployee.emp_record='inactive' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else if ($employeetype == "all-pers") {
+				$result11 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, tblcontact.name_middle, tblcontact.email1, tblcontact.email2, tblemployee.date_hired, tblemployee.emp_birthdate, tblemployee.term_resign, TIMESTAMPDIFF(YEAR, tblemployee.emp_birthdate, NOW()) as age FROM tblcontact LEFT JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE MONTH(STR_TO_DATE(tblemployee.emp_birthdate, '%Y-%m-%d'))=$monthsel AND tblcontact.contact_type = 'personnel' ORDER BY DAYOFMONTH(tblemployee.emp_birthdate)", $dbh);
+			} else {
+				$result11 = "";
+			}
+		} else {
+
+		}
+
+		$koei = "koei";
+
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$employeeid11 = $myrow11[0];
+			$name_first11 = $myrow11[1];
+			$name_last11 = $myrow11[2];
+			$name_middle11 = $myrow11[3];
+			$email111 = $myrow11[4];
+			$email211 = $myrow11[5];
+			$date_hired11 = $myrow11[6];
+			$emp_birthdate11 = $myrow11[7];
+			$term_resign11 = $myrow11[8];
+			$age11 = $myrow11[9];
+
+			echo "<tr><td>$employeeid11</td><td>$name_last11, $name_first11 $name_middle11</td>";
+			echo "<td>".date("Y-M-d", strtotime($date_hired11))."</td>";
+			echo "<td>".date("Y-M-d", strtotime($emp_birthdate11))."</td>";
+			echo "<td>$age11</td>";
+			echo "</tr>";
+
+			$email111=""; $email211=""; $date_hired11=""; $emp_birthdate11=""; $term_resign11=""; $age11="";
+			}
+		}
+
+     echo "</table>"; 
+   
+     echo "<p><a href=persrptmnu.php?loginid=$loginid>Back to HR Reports Menu</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

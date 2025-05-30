@@ -1,0 +1,4 @@
+<?php
+$loginid0 = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+include("admfrontpg.php?loginid=$loginid0");
+?>

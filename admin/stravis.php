@@ -1,0 +1,140 @@
+
+<?php 
+include("db1.php");
+$loginid = $_GET['loginid'];
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+    include ("header.php");
+    include ("sidebar.php");
+
+    if(isset($_POST['pk']))
+    {
+    	$pkii = $_POST['pk'];
+    	$nkg = $_POST['nk'];
+
+    	$getSingle = "SELECT * FROM tbljoinnkgandpkiicodes WHERE pkiicode = '".$pkii."' AND nkgcode = '".$nkg."'";
+		$getSingleResult = $dbh2->query($getSingle);
+		if($getSingleResult->num_rows >= 1){
+			echo "<h3>These accounts are already matched.</h3>";
+		}
+		else{
+			$nkgName = '';
+			$NKADD = "SELECT * FROM tblfinnkgacctref where code = ". $nkg;
+			$NKResultADD = $dbh2->query($NKADD);
+
+			$pkiiName ='';
+			$PKADD = "SELECT * FROM tblfinglref WHERE version = 2 AND glcode = '".$pkii."'";
+			$PKResultADD = $dbh2->query($PKADD);
+			while($nkgRowAdd = $NKResultADD->fetch_assoc()) {
+				$nkgName = str_replace("'","",$nkgRowAdd['name_e']); 
+			} 
+			while($pkiiRowAdd = $PKResultADD->fetch_assoc()) {
+				$pkiiName = $pkiiRowAdd['glname'];
+			} 
+
+    		$result=mysql_query("INSERT INTO tbljoinnkgandpkiicodes SET pkiicode='".$pkii."' ,nkgcode='".$nkg ."', pkii='".$pkiiName."', nkg='".$nkgName."'", $dbh);
+    		var_dump("SELECT * FROM tbljoinnkgandpkiicodes WHERE pkii = '".$pkii."' AND nkg = '".$nkg."'");
+		}
+    }
+
+    $NK = "SELECT * FROM tblfinnkgacctref WHERE type='B'";
+	$NKResult = $dbh2->query($NK);
+
+	$PK = "SELECT * FROM tblfinglref WHERE version = 2";
+	$PKResult = $dbh2->query($PK);
+
+	$PKNK = "SELECT * FROM tbljoinnkgandpkiicodes";
+	$PKNKResult = $dbh2->query($PKNK);
+?>
+<!-- <a href="" class="btn btn-success">Generate Stravis Reports</a> -->
+<form method="post" action=''>
+	<div id="projectDetails" class="projectDetailsContainer">
+		<div id="projectDetails" class="projectDetailsWrapper">
+			<div class="col-md-5">
+				<h4>PKII ACCOUNT CODES</h4>
+				<select name='pk' id="pk" class="form-control">
+					<option disabled selected>PKII ACCOUNT CODES</option>
+					<?php 
+						while($rowPKII = $PKResult->fetch_assoc()) {
+							echo "<option value='".$rowPKII['glcode']."'>".$rowPKII['glcode'].' - '.$rowPKII['glname']."</option>";
+						} 
+
+					?>
+				</select>
+			</div>
+			<div class="col-md-5">
+				<h4>NK ACCOUNT CODES</h4>
+				<select name='nk' id="nk" class="form-control">
+					<option disabled selected>NKG ACCOUNT CODES</option>
+					<?php 
+						while($rowNK = $NKResult->fetch_assoc()) {
+							echo "<option value='".$rowNK['code']."'>".$rowNK['code'].' - '.$rowNK['name_j'].' - '.$rowNK['name_e']."</option>";
+						} 
+					?>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button style="margin-top: 38px;" class="btn-success btn" type="submit">Submit</button>
+			</div>
+			<div style="clear:both;"></div>
+
+			<div class="col-md-12" style="margin-top: 30px;">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<th>PKII ACCOUNT CODE</th>
+						<th>PKII ACCOUNT NAME</th>
+						<th>NKG ACCOUNT CODE</th>
+						<th>NKG ACCOUNT NAME</th>
+						<th>Action</th>
+					</thead>
+					<tbody>
+						<?php 
+							while($rowPKNK = $PKNKResult->fetch_assoc()) {
+							echo "<tr>";
+							echo "<td>".$rowPKNK['pkiicode']."</td>";
+							echo "<td>".$rowPKNK['pkii']."</td>";
+							echo "<td>".$rowPKNK['nkgcode']."</td>";
+							echo "<td>".$rowPKNK['nkg']."</td>";
+echo "<form action='stravisdelcd.php?idl=$loginid' method='POST' name='stravisdelcd'>";
+echo "<input type='hidden' name='idpknkcd' value=\"".$rowPKNK['id']."\">";
+							echo "<td><button type='submit' class='btn btn-danger' value='Delete'></td>";
+echo "</form>";
+							echo "</tr>";
+						} 
+
+						?>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+	</div>
+</form>
+<!-- <link rel="stylesheet" type="text/css" href="tjaddons/projectmanagement.css">
+<script src="tjaddons/charts.js"></script>
+<script src="tjaddons/projectmanagement.js"></script>
+ -->
+<?php
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminloginid=$loginid", $dbh);
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pk').chosen();
+		$('#nk').chosen();
+	});
+</script>

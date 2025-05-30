@@ -1,0 +1,233 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+    echo "<table class=\"fin\" border=\"1\">";
+    echo "<tr><th colspan=\"2\">Finance Reports</th></tr>";
+    echo "<tr>";
+    echo "<form action=\"finrptprojdisb.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Project Disbursement</button></td></form>";
+    echo "<td>Displays cash disbursement per project</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<form action=\"finrptprojcrv.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Project Cash Receipts</button></td></form>";
+    echo "<td>Cash receipts per project</td>";
+		echo "</tr>";
+    echo "<tr>";
+    echo "<form action=\"finrptprojjournal.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Project Journal</button></td></form>";
+    echo "<td>Journal entries per project</td>";
+		echo "</tr>";
+    echo "<tr>";
+    echo "<form action=\"finrptcshdisbbk.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Cash Disbursement Book</button></td></form>";
+    echo "<form action=\"finrptotheracctssummcdb.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">CDB: Summary of Other Accounts</button></td></form>";
+    echo "</tr>";
+
+
+    echo "<tr>";
+    echo "<form action=\"finrptacctspayable.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Accounts Payable Book</button></td></form>";
+    echo "<form action=\"finrptotheracctssummcdb.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">APB: Summary of Other Accounts</button></td></form>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptcshrcptbk.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Cash Receipts Book</button></td></form>";
+    echo "<form action=\"finrptotheracctssummcrb.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">CRB: Summary of Other Accounts</button></td></form>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<form action=\"finrptjournalbk.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Journal Book</button></td></form>";
+    echo "<form action=\"finrptotheracctssummjb.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">JB: Summary of Other Accounts</button></td></form>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptbalsht.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Balance Sheet (Main)</button></td></form>";
+    echo "<td>PKII's Balance sheet and Income statement</td>";
+    echo "</tr>";
+
+
+		/*
+    echo "<tr>";
+    echo "<form action=\"finrptbalshtproj.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Balance Sheet (Projects)\"></td></form>";
+    echo "<td>Project-related Balance sheet and Income statements</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptincstmtcomp.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Income Statement (Company-wide)\"></td></form>";
+    echo "<td>Generate income statement reports of Philkoei International Inc.</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptincstmtproj.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Income Statement (by Project)\"></td></form>";
+    echo "<td>Generate income statement reports of individual project</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptincstmtprojgrprel.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Income Statement (by Project group/relation)\"></td></form>";
+    echo "<td>Generate income statement based on project groups or relationship</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptplsumm.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Profit & Loss Statement\"></td></form>";
+    echo "<td></td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptstrvsfrma.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><input type=\"submit\" value=\"Stravis Form-A\"></td></form>";
+    echo "<td></td>";
+    echo "</tr>";
+		*/
+
+    echo "<tr>";
+    echo "<form action=\"finrptdirectprofitproj.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Direct Profit (Projects)</button></td></form>";
+    echo "<td>Statement of Direct Profit / Loss for Each Project</td>";
+    echo "</tr>";
+
+
+    echo "<tr>";
+    echo "<form action=\"finrptgaenk.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Gen. and Admin. Expenses(NK)</button></td></form>";
+    echo "<td>General and Administrative Expenses of Nippon Koei ltd.</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptgae.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Gen. and Admin. Expenses(PKII)</button></td></form>";
+    echo "<td>General and Administrative Expenses of Philkoei International Inc.</td>";
+    echo "</tr>";
+    
+    echo "<tr>";
+    echo "<form action=\"reportsubsidiaryledgers.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Subsidiary - Ledgers</button></td></form>";
+    echo "<td>PKII's Subsidiary Ledgers</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"reportledger.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Ledgers</button></td></form>";
+    echo "<td>PKII's Ledgers</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"finrptdcnk.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Direct Cost (NK)</button></td></form>";
+    echo "<td>Direct Cost of Nippon Koei ltd.</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"reportdirectcost.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Direct Cost</button></td></form>";
+    echo "<td>Statement of Direct Cost</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"directcostsummary.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Direct Cost Summary</button></td></form>";
+    echo "<td>Direct Cost Summarized</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"directcostsummaryproject.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Direct Cost Summary Per Project</button></td></form>";
+    echo "<td>Direct Cost Per Project</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"reportothers.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Other Reports</button></td></form>";
+    echo "<td>Other Reports per project</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"stravis.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Correlate Account Codes</button></td></form>";
+    echo "<td>NK Correlation NK and PKII Account codes</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"projectreports.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Project Reports</button></td></form>";
+    echo "<td>PKII Project Reports </td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"requestedbymamcathy.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Disbursment Book Annual</button></td></form>";
+    echo "<td>Disbursement Book Layout Requested by Ma'am Cathy </td>";
+    echo "</tr>";
+
+     echo "<tr>";
+    echo "<form action=\"requestedbysirian.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Journal Book Annual</button></td></form>";
+    echo "<td>Journal Book Layout Requested by sir Ian </td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"requestedbysirmykel.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Cash Receipt Book Annual</button></td></form>";
+    echo "<td>Cash Receipt Book Layout Requested by sir Michael Auditor </td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<form action=\"companyincomestatement.php?loginid=$loginid\" method=\"post\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Company Income Statement</button></td></form>";
+    echo "<td>Company Budget, Actual and Variance </td>";
+    echo "</tr>";
+
+//// Check Voucher - Add Explanation submodule
+//// For troubleshooting only if voucher has no explanation
+//    echo "<tr><td colspan=\"2\"><form action=\"finvouchcvexpl.php?loginid=$loginid\" method=\"post\"><input type=\"submit\" value=\"Check Voucher - Add Explanation\"></td></tr>";
+
+    //20191104
+    echo "<tr>";
+    echo "<form action=\"finrptstfinpos.php?loginid=$loginid\" method=\"POST\" name=\"finrptstfinpos\">";
+    echo "<td align=\"center\"><button type=\"submit\" class=\"btn btn-primary\" role=\"button\">Statement of Financial Position</button></td></form>";
+    echo "<td>Company Statement of Financial Position</td>";
+    echo "</tr>";
+
+    echo "</table>";
+
+    echo "<p><a href=\"index2.php?loginid=$loginid\" class=\"btn btn-secondary\" role=\"button\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?>

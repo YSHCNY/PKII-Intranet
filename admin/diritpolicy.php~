@@ -1,0 +1,66 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+$loginid = $_GET['loginid'];
+$docsw = $_GET['docsw'];
+
+$doctyp = $_POST['doctyp'];
+
+$filepath = $_POST['fp'];
+$filename = $_POST['fn'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+  echo "<table class=\"fin2\" border=\"1\">";
+	
+	include("dirisodocshead.php");
+
+  echo "<tr><td>";
+
+	if($docsw != 0 || $docsw != "") {
+	echo "<!--[if IE]>";
+	echo "<iframe frameborder=\"0\" height=\"600\" src=\"$filepath$filename?wmode=opaque\" type=\"application/pdf\" width=\"900\">";
+	echo "</iframe>";
+	echo "<![endif]-->";
+
+	echo "<![if !IE]>";
+	echo "<object data=\"$filepath$filename#toolbar=0\" type=\"application/pdf\" WIDTH=\"900\" HEIGHT=\"600\">";
+  echo "<param name=\"WMode\" value=\"transparent\" /></param>";
+  echo "<embed src=\"$filepath$filename#toolbar=0\" wmode=\"transparent\" type=\"application/pdf\" />";
+	echo "</object>";
+	echo "<![endif]>";
+	}
+
+
+  echo "</td></tr>";
+	echo "</table>";
+
+  echo "<p><a href=\"index2.php?loginid=$loginid\">Back</a></p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?>

@@ -1,0 +1,11 @@
+<?php 
+$action = $_POST['id'];
+
+include("../../admin/db1.php");
+$resquery="UPDATE tblhrtalvreq SET statusta = 1 WHERE idhrtalvreq = ".$action"";
+$result=$dbh2->query($resquery);
+$dbh2->close();
+// mysql_close($dbh);
+
+
+?>

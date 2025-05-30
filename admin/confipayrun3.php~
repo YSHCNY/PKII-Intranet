@@ -1,0 +1,666 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+include("clsmcrypt.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$radiochecked = (isset($_GET['rs'])) ? $_GET['rs'] :'';
+$groupname = (isset($_POST['groupname'])) ? $_POST['groupname'] :'';
+
+if($radiochecked == "cutoff") {
+	$month = (isset($_POST['month'])) ? $_POST['month'] :'';
+	$daystart = (isset($_POST['daystart'])) ? $_POST['daystart'] :'';
+	$dayend = (isset($_POST['dayend'])) ? $_POST['dayend'] :'';
+	$year = (isset($_POST['year'])) ? $_POST['year'] :'';
+	$cutstart=date("Y-m-d", strtotime($year."-".$month."-".$daystart));
+	$cutend=date("Y-m-d", strtotime($year."-".$month."-".$dayend));
+
+	$ctstart = (isset($_POST['cutstart'])) ? $_POST['cutstart'] :'';
+	$ctend = (isset($_POST['cutend'])) ? $_POST['cutend'] :'';
+
+	if($ctstart!="" && $ctend!="") {
+	$cutstart = $ctstart;
+	$cutend = $ctend;
+	}
+} else if($radiochecked == "onetime") {
+	$nameotp = (isset($_POST['nameotp'])) ? $_POST['nameotp'] :'';
+	$dateotp = (isset($_POST['dateotp'])) ? $_POST['dateotp'] :'';
+	$dateotp = date("Y-m-d", strtotime($dateotp));
+} // if($radiochecked == "")
+
+// $monthfull = date("F", $month);
+$srcfile = "confipayrun3.php";
+$validatepw = (isset($_POST['vpw'])) ? $_POST['vpw'] :'';
+
+// echo "<p>vartest rs:$radiochecked gn:$groupname dt:$dateotp</p>";
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if($found == 1) {
+     echo "<html><head><STYLE TYPE=\"text/css\">";
+     echo "<!--";
+     echo "p{font-family: Helvetica; font-size: 10pt;}";
+     echo "B{font-family: Helvetica; font-size: 10pt;}";
+     echo "TD{font-family: Helvetica; font-size: 10pt;}";
+     echo "--->";
+     echo "</STYLE></head>";
+		echo "<body>";
+
+		// include required variables for accesslevel5 verification
+		$res11query="SELECT DISTINCT employeeid, accesslevel FROM tblconfipaygrp WHERE groupname=\"$groupname\" ORDER BY employeeid ASC";
+		$result11=""; $found11=0; $ctr11=0;
+		/*
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+		*/
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11 = $result11->fetch_assoc()) {
+			$found11 = 1;
+			$employeeid = $myrow11['employeeid'];
+			$confiaccesslevel = $myrow11['accesslevel'];
+			}
+		}
+
+	// echo "<tr><td colspan=\"4\">test vpw:$validatepw, calvl:$confiaccesslevel</td></tr>";
+
+// validate password if level 5
+if($confiaccesslevel==5 && $validatepw==0) {
+	$srcfile="confipayrun3.php";
+	echo "<table class=\"fin\">";
+	include("confipayvpw.php");
+	echo "</table>";
+} else {
+
+	//
+	// verify selected pay type if payroll cutoff period or onetime payment
+	//
+	if($radiochecked=="cutoff") {
+
+     echo "<b>Custom Payroll System - Pay Period Process</b>";
+     echo "<p>Please check the details below and click '<b>Process Payroll</b>' button.</p>";
+
+		// check if accesslevel of groupname is 5 then decrypt to show real groupname
+		$res11query="SELECT accesslevel FROM tblconfipaygrp WHERE groupname=\"$groupname\"";
+		$result11=""; $found11=0; $ctr11=0;
+		/*
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+		*/
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11=$result11->fetch_assoc()) {
+			$found11 = 1;
+			$confiaccesslevel11 = $myrow11['accesslevel'];
+			} // while
+		} // if
+
+     echo "<table border=0 spacing=1>";
+		echo "<tr><td>Payroll Group</td>";
+		if($confiaccesslevel11==5) {
+		include("mcryptdec.php");
+		echo "<th align=\"left\">$groupname</th>";
+		include("mcryptenc.php");
+		} else if($confiaccesslevel11<=4) {
+		echo "<th align=\"left\">$groupname</th>";
+		}
+		echo "</tr>";
+     echo "<tr><td>Cutoff period</td><td><b>$cutstart -to- $cutend</b></td></tr></table>";
+
+     echo "<p>";
+
+     echo "<form action=\"confipayrun4.php?loginid=$loginid&rs=$radiochecked\" method=\"POST\" name=\"frmconfipayrun4\">";
+		echo "<input type=\"hidden\" name=\"gn\" value=\"$groupname\">";
+		echo "<input type=\"hidden\" name=\"cutstart\" value=\"$cutstart\">";
+		echo "<input type=\"hidden\" name=\"cutend\" value=\"$cutend\">";
+
+     echo "<table border=1 spacing=1>";
+
+     echo "<tr><td colspan=11><b>I. Main</b></td></tr>";
+     echo "<tr><td><i>EmpID</i></td><td><i>Name</i></td><td><i>BasicPay</i></td><td bgcolor=\"yellow\">Days Absent</td><td><i>Proj Allow</i></td><td><i>Per diem</i></td><td><i>Transpo Allow</i></td><td><i>WTax</i></td><td><i>SSS</i></td><td><i>Philhealth</i></td><td><i>PagIBIG</i></td></tr>";
+
+	/*
+     $result1 = mysql_query("", $dbh);
+	if($result1 != "") {
+     while ($myrow1 = mysql_fetch_row($result1))
+	*/
+	$res1query="SELECT tblconfipaygrp.employeeid, tblconfipaygrp.groupname, tblconfipaygrp.accesslevel, tblconfipaygrp.confipaygrpid, tblconfipaymeminfo.netbasicpay, tblconfipaymeminfo.projallow, tblconfipaymeminfo.perdiem, tblconfipaymeminfo.transpoallow, tblconfipaymeminfo.wtaxstatus, tblconfipaymeminfo.exemptstatus, tblconfipaymeminfo.withholdingtax, tblconfipaymeminfo.wtaxopt2, tblconfipaymeminfo.wtaxmode, tblconfipaymeminfo.sssstatus, tblconfipaymeminfo.sssee, tblconfipaymeminfo.ssser, tblconfipaymeminfo.sssec, tblconfipaymeminfo.sssmode, tblconfipaymeminfo.philhealthstatus, tblconfipaymeminfo.philhealthee, tblconfipaymeminfo.philhealther, tblconfipaymeminfo.philhealthmode, tblconfipaymeminfo.pagibigee, tblconfipaymeminfo.pagibiger, tblconfipaymeminfo.pagibigmode, tblconfipaymeminfo.empstatus, tblconfipaymeminfo.dependent, tblconfipaymeminfo.empalias, tblconfipaymeminfo.pagibigee2, tblconfipaymeminfo.pagibiger2, tblconfipaymeminfo.pagibigman1, tblconfipaymeminfo.pagibigman2 FROM tblconfipaygrp LEFT JOIN tblconfipaymeminfo ON tblconfipaygrp.employeeid=tblconfipaymeminfo.employeeid AND tblconfipaygrp.groupname=tblconfipaymeminfo.groupname WHERE tblconfipaygrp.groupname=\"$groupname\" AND tblconfipaymeminfo.empstatus=\"active\" ORDER BY tblconfipaygrp.employeeid ASC";
+	$result1=""; $found1=0; $ctr1=0;
+	$result1 = $dbh2->query($res1query);
+	if($result1->num_rows>0) {
+		while($myrow1=$result1->fetch_assoc()) {
+	$employeeid = $myrow1['employeeid'];
+	$groupname = $myrow1['groupname'];
+	$confiaccesslevel = $myrow1['confiaccesslevel'];
+	$confipaygrpid = $myrow1['confipaygrpid'];
+	$netbasicpay = $myrow1['netbasicpay'];
+	$projallow0 = $myrow1['projallow'];
+	$perdiem = $myrow1['perdiem'];
+	$transpoallow = $myrow1['transpoallow'];
+	$wtaxstatus = $myrow1['wtaxstatus'];
+	$exemptstatus = $myrow1['exemptstatus'];
+	$withholdingtax = $myrow1['withholdingtax'];
+	$wtaxopt2 = $myrow1['wtaxopt2'];
+	$wtaxmode = $myrow1['wtaxmode'];
+	$sssstatus = $myrow1['sssstatus'];
+	$sssee = $myrow1['sssee'];
+	$ssser = $myrow1['ssser'];
+	$sssec = $myrow1['sssec'];
+	$sssmode = $myrow1['sssmode'];
+	$philhealthstatus = $myrow1['philhealthstatus'];
+	$philhealthee = $myrow1['philhealthee'];
+	$philhealther = $myrow1['philhealther'];
+	$philhealthmode = $myrow1['philhealthmode'];
+	$pagibigee = $myrow1['pagibigee'];
+	$pagibiger = $myrow1['pagibiger'];
+	$pagibigmode = $myrow1['pagibigmode'];
+	$empstatus = $myrow1['empstatus'];
+	$dependent = $myrow1['dependent'];
+	$empalias = $myrow1['empalias'];
+	$pagibigee2 = $myrow1['pagibigee2'];
+	$pagibiger2 = $myrow1['pagibiger2'];
+	$pagibigman1 = $myrow1['pagibigman1'];
+	$pagibigman2 = $myrow1['pagibigman2'];
+
+	// $projallow = $projallow0 / 2;
+	$projallow = $projallow0;
+
+	echo "<tr>";
+
+	if($confiaccesslevel11==5 && $accesslevel==5) {
+		if($empalias != "") {
+			echo "<td>***</td>";
+			include("mcryptdec.php");
+			echo "<td>$empalias</td>";
+			include("mcryptenc.php");
+		} else {
+			include("mcryptdec.php");
+			echo "<td>$employeeid</td>";
+			$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14=$result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+			include("mcryptenc.php");
+		}
+	} else if($confiaccesslevel11<=4) {
+		echo "<td>$employeeid</td>";
+		$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+	} // if($confiaccesslevel==5 && $accesslevel==5)
+	echo "<input type=\"hidden\" name=\"employeeid2[]\" value=\"$employeeid\">";
+	echo "<td align=\"right\">$netbasicpay</td>";
+
+	echo "<td bgcolor=\"yellow\"><input name=\"daysabsent[]\" value=\"0\" size=\"3\"></td>";
+
+	echo "<td align=\"right\">$projallow0</td><td align=\"right\">$perdiem</td><td align=\"right\">$transpoallow</td>";
+
+        if($wtaxmode == "auto") { echo "<td>auto</td>"; }
+        else if($wtaxmode == "manual") { echo "<td align=\"right\">$withholdingtax</td>"; }
+        else if($wtaxmode == "percent") { echo "<td>$wtaxopt2%</td>"; }
+        else { echo "<td>&nbsp;</td>"; }
+
+        if($sssmode == "auto") { echo "<td>auto</td>"; }
+        else if($sssmode == "manual") { echo "<td align=\"right\">$sssee</td>"; }
+        else if($sssmode == "off") { echo "<td>off</td>"; }
+        else { echo "<td>&nbsp;</td>"; }
+
+        if($philhealthmode == "auto") { echo "<td>auto</td>"; }
+        else if($philhealthmode == "manual") { echo "<td align=\"right\">$philhealthee</td>"; }
+        else if($philhealthmode == "off") { echo "<td>off</td>"; }
+        else { echo "<td>&nbsp;</td>"; }
+
+	if($pagibigmode == "manual") { echo "<td align=\"right\">$pagibigee|$pagibigee2</td>"; }
+        else if($pagibigmode == "off") { echo "<td>off</td>"; }
+        else { echo "<td>&nbsp;</td>"; }
+
+		// reset variables
+		$name_first=""; $name_middle=""; $name_last=""; $netbasicpay=0;
+     }
+	} // if($result != "") {
+
+     echo "</table>";
+
+     echo "<p>";
+
+     echo "<table border=1 spacing=1>";
+
+     echo "<tr><td colspan=6><b>II. Additional Income</b></td></tr>";
+     echo "<tr><td><i>EmpID</i></td><td><i>Name</i></td><td><i>Add'l. Income</i></td><td><i>Amount</i></td><td><i>VATinclusive</i></td><td><i>NonTaxable</i></td></tr>";
+
+		/*
+    $result2 = mysql_query("", $dbh);
+		while ($myrow2 = mysql_fetch_row($result2)) {
+		*/
+	// $res2query="SELECT tblconfipaygrp.employeeid, tblconfipaygrp.groupname, tblconfipaymemadd.nameadd, tblconfipaymemadd.addamount, tblconfipaymemadd.nontaxable, tblconfipaymemadd.statusadd, tblconfipaymemadd.addincomevatincl, tblconfipaymeminfo.empalias FROM tblconfipaygrp LEFT JOIN tblconfipaymemadd ON tblconfipaygrp.employeeid=tblconfipaymemadd.employeeid AND tblconfipaygrp.groupname=tblconfipaymemadd.groupname LEFT JOIN tblconfipaymeminfo ON tblconfipaygrp.employeeid=tblconfipaymeminfo.employeeid WHERE tblconfipaygrp.groupname=\"$groupname\" AND tblconfipaymemadd.statusadd=\"active\" ORDER BY tblconfipaygrp.employeeid ASC";
+	$res2query="SELECT tblconfipaymemadd.employeeid, tblconfipaymemadd.groupname, tblconfipaymemadd.nameadd, tblconfipaymemadd.addamount, tblconfipaymemadd.nontaxable, tblconfipaymemadd.statusadd, tblconfipaymemadd.addincomevatincl, tblconfipaymeminfo.empalias FROM tblconfipaymemadd LEFT JOIN tblconfipaymeminfo ON tblconfipaymemadd.employeeid=tblconfipaymeminfo.employeeid AND tblconfipaymemadd.groupname=tblconfipaymeminfo.groupname WHERE tblconfipaymemadd.statusadd=\"active\" AND tblconfipaymemadd.groupname=\"$groupname\" ORDER BY tblconfipaymemadd.employeeid ASC";
+	$result2=""; $found2=0; $ctr2=0;
+	$result2 = $dbh2->query($res2query);
+	if($result2->num_rows>0) {
+		while($myrow2 = $result2->fetch_assoc()) {
+	$employeeid = $myrow2['employeeid'];
+	$groupname = $myrow2['groupname'];
+	$nameadd = $myrow2['nameadd'];
+	$addamount = $myrow2['addamount'];
+	$nontaxable = $myrow2['nontaxable'];
+	$statusadd = $myrow2['statusadd'];
+	$addincomevatincl = $myrow2['addincomevatincl'];
+	$empalias = $myrow2['empalias'];
+
+	echo "<tr>";
+
+	if($confiaccesslevel11==5 && $accesslevel==5) {
+		if($empalias != "") {
+			echo "<td>***</td>";
+			include("mcryptdec.php");
+			echo "<td>$empalias</td>";
+			include("mcryptenc.php");
+		} else {
+			include("mcryptdec.php");
+			echo "<td>$employeeid</td>";
+			$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+			include("mcryptenc.php");
+		}
+	} else if($confiaccesslevel11<=4) {
+		echo "<td>$employeeid</td>";
+		$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+	} // if($confiaccesslevel==5 && $accesslevel==5)
+
+	echo "<td>$nameadd</td><td align=\"right\">$addamount</td><td>$addincomevatincl</td><td>$nontaxable</td></tr>";
+
+	// reset variables
+	$name_first=""; $name_middle=""; $name_last=""; $employeeid=""; $empid1=""; $empalias="";
+		} // while($myrow2 = $result2->fetch_assoc())
+	} // if($result2->num_rows>0)
+
+     echo "</table>";
+
+     echo "<p>";
+
+     echo "<table border=1 spacing=1>";
+
+     echo "<tr><td colspan=4><b>III. Other Deductions</b></td></tr>";
+     echo "<tr><td><i>EmpID</i></td><td><i>Name</i></td><td><i>Deductions</i></td><td><i>Amount</i></td></tr>";
+
+		/*
+     $result3 = mysql_query("", $dbh);
+     while ($myrow3 = mysql_fetch_row($result3)) {
+		*/
+	// $res3query="SELECT tblconfipaygrp.employeeid, tblconfipaygrp.groupname, tblconfipaymemdeduct.namededuct, tblconfipaymemdeduct.deductamount, tblconfipaymemdeduct.statusdeduct, tblconfipaymeminfo.empalias FROM tblconfipaygrp LEFT JOIN tblconfipaymemdeduct ON tblconfipaygrp.employeeid=tblconfipaymemdeduct.employeeid AND tblconfipaygrp.groupname=tblconfipaymemdeduct.groupname LEFT JOIN tblconfipaymeminfo ON tblconfipaygrp.employeeid=tblconfipaymeminfo.employeeid WHERE tblconfipaygrp.groupname=\"$groupname\" AND tblconfipaymemdeduct.statusdeduct=\"active\" ORDER BY tblconfipaygrp.employeeid ASC";
+	$res3query="SELECT tblconfipaymemdeduct.employeeid, tblconfipaymemdeduct.groupname, tblconfipaymemdeduct.namededuct, tblconfipaymemdeduct.deductamount, tblconfipaymemdeduct.statusdeduct, tblconfipaymeminfo.empalias FROM tblconfipaymemdeduct LEFT JOIN tblconfipaymeminfo ON tblconfipaymemdeduct.employeeid=tblconfipaymeminfo.employeeid AND tblconfipaymemdeduct.groupname=tblconfipaymeminfo.groupname WHERE tblconfipaymemdeduct.groupname=\"$groupname\" AND tblconfipaymemdeduct.statusdeduct=\"active\" ORDER BY tblconfipaymemdeduct.employeeid ASC";
+	$result3=""; $found3=0; $ctr3=0;
+	$result3 = $dbh2->query($res3query);
+	if($result3->num_rows>0) {
+		while($myrow3 = $result3->fetch_assoc()) {
+	$employeeid = $myrow3['employeeid'];
+	$groupname = $myrow3['groupname'];
+	$namededuct = $myrow3['namededuct'];
+	$deductamount = $myrow3['deductamount'];
+	$statusdeduct = $myrow3['statusdeduct'];
+	$empalias = $myrow3['empalias'];
+
+	echo "<tr>";
+
+	if($confiaccesslevel11==5 && $accesslevel==5) {
+		if($empalias != "") {
+			echo "<td>***</td>";
+			include("mcryptdec.php");
+			echo "<td>$empalias</td>";
+			include("mcryptenc.php");
+		} else {
+			include("mcryptdec.php");
+			echo "<td>$employeeid</td>";
+			$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+			include("mcryptenc.php");
+		}
+	} else if($confiaccesslevel11<=4) {
+		echo "<td>$employeeid</td>";
+		$empid1=$employeeid;
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		/*
+		$result14 = mysql_query("$res14query", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+		*/
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first = $myrow14['name_first'];
+			$name_middle = $myrow14['name_middle'];
+			$name_last = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last, $name_first $name_middle</td>";
+	} // if($confiaccesslevel==5 && $accesslevel==5)
+
+	echo "<td>$namededuct</td><td align=\"right\">$deductamount</td></tr>";
+
+	// reset variables
+	$name_first=""; $name_middle=""; $name_last=""; $employeeid=""; $empid1=""; $empalias="";
+		} // while($myrow3 = $result3->fetch_assoc())
+	} // if($result3->num_rows>0)
+
+     echo "</table>";
+     echo "<p>";
+
+     echo "<input type=\"submit\" value=\"Process Payroll\">";
+     echo "</form>";
+
+	//
+	// verify selected pay type if payroll cutoff period or onetime payment
+	//
+	} else if($radiochecked=="onetime") { // if($radiochecked=='cutoff')
+
+     echo "<b>Custom Payroll System - One-time pay process</b>";
+     echo "<p>Please check the details below and click '<b>Update</b>' button on each item to save.</p>";
+		echo "<p>vartest rs:$radiochecked gn:$groupname dt:$dateotp</p>";
+
+		// check if accesslevel of groupname is 5 then decrypt to show real groupname
+		$res11query="SELECT accesslevel FROM tblconfipaygrp WHERE groupname=\"$groupname\"";
+		$result11=""; $found11=0; $ctr11=0;
+		/*
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+		*/
+		$result11 = $dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11=$result11->fetch_assoc()) {
+			$found11 = 1;
+			$confiaccesslevel11 = $myrow11['accesslevel'];
+			} // while
+		} // if
+
+     echo "<table border=0 spacing=1>";
+		echo "<tr><td>Payroll Group</td>";
+		if($confiaccesslevel11==5) {
+		include("mcryptdec.php");
+		echo "<th align=\"left\">$groupname</th>";
+		include("mcryptenc.php");
+		} else if($confiaccesslevel11<=4) {
+		echo "<th align=\"left\">$groupname</th>";
+		}
+		echo "</tr>";
+     echo "<tr><td>One-time payment date ".date("Y-M-d", strtotime($dateotp))."</td></tr></table>";
+
+     echo "<p>";
+
+		echo "<table border=1 spacing=1>";
+
+     echo "<tr><td><i>Ctr</i></td><td><i>EmpNo.</i></td><td><i>Name</i></td><td><i>GrossPay</i></td>";
+		echo "<td><i>W/Tax</i></td><td><i>OtherDeduction</i></td><td><i>NetPay</i></td><td><i>Status</i></td><td><i>Action</i></td></tr>";
+
+
+	// query tblconfipaygrp
+	$res21query="SELECT tblconfipaygrp.employeeid, tblconfipaygrp.groupname, tblconfipaygrp.accesslevel, tblconfipaygrp.confipaygrpid, tblconfipaymeminfo.netbasicpay, tblconfipaymeminfo.empalias FROM tblconfipaygrp LEFT JOIN tblconfipaymeminfo ON tblconfipaygrp.employeeid=tblconfipaymeminfo.employeeid AND tblconfipaygrp.groupname=tblconfipaymeminfo.groupname WHERE tblconfipaygrp.groupname=\"$groupname\" ORDER BY tblconfipaygrp.employeeid ASC";
+	$result21=""; $found21=0; $ctr21=0;
+	$result21=$dbh2->query($res21query);
+	if($result21->num_rows>0) {
+		while($myrow21=$result21->fetch_assoc()) {
+		$found21=1;
+		$ctr21=$ctr21+1;
+		$employeeid = $myrow21['employeeid'];
+		$groupname = $myrow21['groupname'];
+		$accesslevel = $myrow21['accesslevel'];
+		$confipaygrpid = $myrow21['confipaygrpid'];
+		$netbasicpay = $myrow21['netbasicpay'];
+		$empalias = $myrow21['empalias'];
+
+	// query tblconfipayroll if exists
+	$res22query="SELECT confipayrollid, netbasicpay, netbasicpay2, grosspay, withholdingtax, otherdeductions, totaldeductions, netpay FROM tblconfipayroll WHERE groupname=\"$groupname\" AND cutstart=\"$dateotp\" AND cutend=\"$dateotp\" AND employeeid=\"$employeeid\"";
+	$result22=""; $found22=0; $ctr22=0;
+	$result22=$dbh2->query($res22query);
+	if($result22->num_rows>0) {
+		while($myrow22=$result22->fetch_assoc()) {
+		$found22=1;
+		$confipayrollid22 = $myrow22['confipayrollid'];
+		$netbasicpay = $myrow22['netbasicpay'];
+		$netbasicpay2 = $myrow22['netbasicpay2'];
+		$grosspay = $myrow22['grosspay'];
+		$wtax = $myrow22['withholdingtax'];
+		$otherded = $myrow22['otherdeductions'];
+		$totaldeductions = $myrow22['totaldeductions'];
+		$netpay = $myrow22['netpay'];
+		$netbasicpaytot=$netbasicpay;
+		$netpayfin=$netpay;
+		} // while($myrow22=$result22->fetch_assoc())
+	} // if($result22->num_rows>0)
+	// echo "<p>f22:$found22|$res22query</p>";
+
+	if($found22==0) {
+	// compute whole month of netbasicpay
+	$netbasicpaytot=$netbasicpay*2;
+	$netbasicpay2tot=$netbasicpaytot;
+	$grosspay=$netbasicpaytot;
+	// prepare other variables
+	$wtax=0; $otherded=0; $totaldeductions=0;
+	// compute for netpay
+	$totaldeductions=$wtax+$otherded;
+	} // if($found22=0)
+
+	// compute final net pay
+	$netpayfin=$netbasicpaytot-$wtax-$otherded;
+
+	echo "<tr><td>$ctr21</td>";
+
+	echo "<form action=\"confipayrun4.php?loginid=$loginid&rs=$radiochecked\" method=\"POST\" name=\"frmconfipayrun4\">";
+	echo "<input type=\"hidden\" name=\"gn\" value=\"$groupname\">";
+	echo "<input type=\"hidden\" name=\"nameotp\" value=\"$nameotp\">";
+	echo "<input type=\"hidden\" name=\"dateotp\" value=\"$dateotp\">";
+
+	if($confiaccesslevel11==5 && $accesslevel==5) {
+		if($empalias != "") {
+			echo "<td>***</td>";
+			include("mcryptdec.php");
+			echo "<td>$empalias</td>";
+			$empid1=$employeeid;
+			include("mcryptenc.php");
+		} else {
+			include("mcryptdec.php");
+			$empid1=$employeeid;
+			echo "<td>$empid1</td>";
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$empid1\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14=$result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first14 = $myrow14['name_first'];
+			$name_middle14 = $myrow14['name_middle'];
+			$name_last14 = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last14, $name_first14 $name_middle14</td>";
+			include("mcryptenc.php");
+		}
+	} else if($confiaccesslevel11<=4) {
+		echo "<td>$employeeid</td>";
+		// query employee name
+		$res14query="SELECT name_first, name_middle, name_last FROM tblcontact WHERE employeeid=\"$employeeid\" AND contact_type=\"personnel\"";
+		$result14=""; $found14=0; $ctr14=0;
+		$result14 = $dbh2->query($res14query);
+		if($result14->num_rows>0) {
+			while($myrow14 = $result14->fetch_assoc()) {
+			$found14 = 1;
+			$name_first14 = $myrow14['name_first'];
+			$name_middle14 = $myrow14['name_middle'];
+			$name_last14 = $myrow14['name_last'];
+			}
+		}
+		echo "<td>$name_last14, $name_first14 $name_middle14</td>";
+	} // if($confiaccesslevel==5 && $accesslevel==5)
+
+	// round off values
+	$netbasicpaytot=round($netbasicpaytot,2);
+	$wtax=round($wtax,2);
+	$otherded=round($otherded,2);
+	$netpayfin=round($netpayfin,2);
+	$netbasicpay2tot=round($netbasicpay2tot,2);
+	$grosspay=round($grosspay,2);
+	$totaldeductions=round($totaldeductions,2);
+	$netpayfin=round($netpayfin,2);
+
+	echo "<input type=\"hidden\" name=\"employeeid21\" value=\"$employeeid\">";
+	echo "<td align=\"right\"><input size=\"7\" name=\"amountotp\" value=\"$netbasicpaytot\"></td>";
+	echo "<td align=\"right\"><input size=\"5\" name=\"wtax\" value=\"$wtax\"></td>";
+	echo "<td align=\"right\"><input size=\"5\" name=\"otherded\" value=\"$otherded\"></td>";
+	echo "<td align=\"right\">".number_format($netpayfin, 2)."</td>";
+	echo "<input type=\"hidden\" name=\"netbasicpay2\" value=\"$netbasicpay2tot\">";
+	echo "<input type=\"hidden\" name=\"grosspay\" value=\"$grosspay\">";
+	echo "<input type=\"hidden\" name=\"totaldeductions\" value=\"$totaldeductions\">";
+	echo "<input type=\"hidden\" name=\"netpay\" value=\"$netpayfin\">";
+	// 20180515 start
+	// query tblconfipayroll if record exists
+	if($found22==1 && $confipayrollid22!='') {
+	echo "<td><font color=\"green\"><strong>Updated</strong></font></td>";
+	} else {
+	echo "<td><font color=\"red\"><strong>Not updated</strong></font></td>";
+	} // if
+	// 20180515 end
+	echo "<td align=\"right\"><input type=\"submit\" value=\"Update\"></td>";
+	echo "</form>";
+	echo "</tr>";
+
+		// reset variables
+		$netbasicpaytot=0; $name_first14=""; $name_middle14=""; $name_last14=""; $employeeid21=""; $empalias21="";
+		$employeeid=""; $netbasicpaytot=0; $netbasicpaytot2=0; $grosspay=0; $wtax=0; $otherded=0; $netpay=0; $netpayfin=0;
+
+		} // while($myrow21=$result21->fetch_assoc())
+	} // if($result21->num_rows>0)
+
+	//
+	// display grand total if exist
+	// get id of tblconfipayrolltotal
+	$res15query="SELECT confipaycutoffid, totalnetpay FROM tblconfipayrolltotal WHERE groupname=\"$groupname\" AND cutstart=\"$dateotp\" AND cutend=\"$dateotp\"";
+	$result15=""; $found15=0; $ctr15=0;
+	$result15=$dbh2->query($res15query);
+	if($result15->num_rows>0) {
+		while($myrow15=$result15->fetch_assoc()) {
+		$found15=1;
+		$confipaycutoffid = $myrow15['confipaycutoffid'];
+		$totalnetpay = $myrow15['totalnetpay'];
+		} // while($myrow15=$result15->fetch-assoc())
+	} // if($result15->num_rows>0)
+	// echo "<p>f15:$res15query</p>";
+
+	if($found15==1) {
+	echo "<tr><td colspan=\"6\" align=\"right\"><b>Grand total</b></td><td align=\"right\"><b>".number_format($totalnetpay, 2)."</b></td><td></td></tr>";
+	} // if($found15==1)
+
+	echo "</table>";
+     // echo "<p>";
+     // echo "<input type=\"submit\" value=\"Process Payroll\">";
+	// echo "</form>";
+
+	//
+	// verify selected pay type if payroll cutoff period or onetime payment
+	//
+	} // if($radiochecked=='cutoff')
+
+
+} // if($confiaccesslevel==5 && $validatepw==0) 
+
+//     echo "<p><a href=confipay2.php?loginid=$loginid>Back</a><br>";
+     echo "</body></html>";
+} else {
+     include("logindeny.php");
+}
+
+$dbh2->close();
+?> 

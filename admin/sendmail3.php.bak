@@ -1,0 +1,32 @@
+<html>
+
+<?php
+
+$to = $_POST['to'];
+$subject = $_POST['subject'];
+$message = $_POST['message'];
+$mailheader = $_POST['mailheader'];
+
+// echo "to: $to\n";
+// echo "subj: $subject\n";
+// echo "$message\n";
+// echo "$mailheader\n";
+
+$ok = mail($to, $subject, $message, $mailheader);
+
+if ($ok) {
+  echo "<p>Congratulations your email has been sent</p>";
+
+  $File = "/var/www/admin/logs/". date("y-m-d_H:i:s", time()) . "_" . $to . ".txt";
+  $Handle = fopen($File, 'w');
+  $Data = "$message"; 
+  fwrite($Handle, $Data);
+  fclose($Handle);
+
+} else {
+  echo "<p><font color=red>Sorry, the email was not sent. Pls try again.</font></p>";
+}
+
+?>
+
+</html>

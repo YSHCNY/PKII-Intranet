@@ -1,0 +1,33 @@
+<?php
+// set get vars
+$loginstat = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = trim((isset($_GET['sess'])) ? $_GET['sess'] :'');
+$page = trim((isset($_GET['p'])) ? $_GET['p'] :'');
+
+// set post vars
+$actlogid = (isset($_POST['actlogid'])) ? $_POST['actlogid'] :'';
+$idlogin = (isset($_POST['idlogin'])) ? $_POST['idlogin'] :'';
+$employeeid = (isset($_POST['employeeid'])) ? $_POST['employeeid'] :'';
+$actdate = (isset($_POST['actdate'])) ? $_POST['actdate'] :'';
+$actdetails = (isset($_POST['actdetails'])) ? $_POST['actdetails'] :'';
+
+if($actdetails!='') {
+	include '../m/qrymactlogedt.php';
+} // if
+
+if($result11) {
+
+	echo '<h4 class="modal-title" id="myModalLabel"><font color="green">Activity log saved</font></h4>';
+
+	// create log
+	$logdetails = "modified activity log for date:$actdate";
+	include '../m/qryinslog.php';
+
+} else {
+
+	echo '<h4 class="modal-title" id="myModalLabel"><font color="red">Error in saving activity log</font><br>'.$res11query.'</h4>';
+
+} // if 
+
+?>

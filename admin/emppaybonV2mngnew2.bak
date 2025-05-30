@@ -1,0 +1,75 @@
+<?php 
+
+require './db1.php';
+include './datetimenow.php';
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$fr_file = trim((isset($_POST['frfile'])) ? $_POST['frfile'] :'');
+$grpnmnew = trim((isset($_POST['grpnmnew'])) ? $_POST['grpnmnew'] :'');
+$grpdesc = trim((isset($_POST['grpdesc'])) ? $_POST['grpdesc'] :'');
+$submnewgrp = (isset($_POST['submnewgrp'])) ? $_POST['submnewgrp'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+
+    if($submnewgrp==1 && $grpnmnew!='') {
+
+     include './header.php';
+     include './sidebar.php';
+
+     echo "<p><font size=1>Modules >> Personnel Pay/Bonus Notifier ver. 2.0</font></p>";
+
+     echo "<table class='fin'>";
+     echo "<tr><th colspan='4'>Manage pay group > Add personnel</th></tr>";
+     echo "<tr><th colspan='4'>For new groupname: $grpnmnew</th></tr>";
+     echo "<tr><td colspan='4'>Please check the personnel/s to be included in your newly-created pay group and click on the Save button at the bottom of this page.</td></tr>";
+
+    // form: add personnel
+    echo "<form action=\"./emppaybonV2mngnew3.php?loginid=$loginid\" method=\"POST\" name=\"emppaybonV2mngnew3\">";
+    echo "<input type=\"hidden\" name=\"frfile\" value=\"emppaybonV2mngnew2.php\">";
+    // display labels
+    echo "<tr><td></td><td>Name</td><td>EmpID</td><td>Personnel_type</td></tr>";
+    // query active personnel both employees and consultants
+    $res11query=""; $result11=""; $found11=0; $ctr11=0;
+    $res11query="SELECT tblemployee.employeeid, tblemployee.employee_type, tblcontact.contactid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblemployee LEFT JOIN tblcontact ON tblemployee.employeeid=tblcontact.employeeid WHERE tblemployee.emp_record=\"active\" AND tblcontact.contact_type=\"personnel\" ORDER BY tblemployee.employee_type DESC, tblcontact.name_last ASC, tblcontact.name_first ASC";
+    $result11=$dbh2->query($res11query);
+    if($result11->num_rows>0) {
+        while($myrow11=$result11->fetch_assoc()) {
+        $found11=1;
+        $ctr11++;
+        $employeeid11 = $myrow11['employeeid'];
+        $employee_type11 = $myrow11['employee_type'];
+        $contactid11 = $myrow11['contactid'];
+        $name_last11 = $myrow11['name_last'];
+        $name_first11 = $myrow11['name_first'];
+        $name_middle11 = $myrow11['name_middle'];
+        echo "<tr><td><div class='form-check'><input type='checkbox' class='form-check-input' name=\"employeeid[]\" value=\"$employeeid11\"></div></td><td>$name_last11, $name_first11 $name_middle11[0]</td><td>$employeeid11</td><td>$employee_type11</td></tr>";
+        } //while
+    } //if
+    echo "<tr><td colspan='4' align='center'><button class='btn btn-success' name='submaddpers' value=1>Save checked personnels</button></td></tr>";
+    echo "</form>";
+    echo "</table>";
+
+     include ("footer.php");
+
+    } else {
+        // display error warning
+        alert("Error: no groupname provided.");
+        // redirect
+        header("Location: $fr_file?loginid=$loginid");
+        exit;
+    } //if-else
+
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

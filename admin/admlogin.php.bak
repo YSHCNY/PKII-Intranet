@@ -1,0 +1,74 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     $result = mysql_query("SELECT * FROM tbladminlogin WHERE adminloginid=$loginid AND adminloginstat=1", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $found = 1;
+          
+          $loginid = $myrow[0];
+          $username = $myrow[1];
+          $loginstatus = $myrow[5];
+          $level = $myrow[6];
+     }
+}
+else
+{
+     $result = mysql_query("SELECT * FROM tbladminlogin WHERE adminuid='$username' AND adminpw=md5('$password')", $dbh); 
+
+     while ($myrow = mysql_fetch_row($result))
+     {
+          $found = 1;
+
+          $loginid = $myrow[0];
+          $loginstatus = $myrow[5];
+          $level = $myrow[6];
+     }
+}  
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// start contents here
+
+     echo "<p>Welcome <b>$username</b> to Philkoei International Inc.'s Intranet Admin Access<br>";
+     echo "Note: Only authorized PKII personnel with admin access are allowed to use this site.<br>";
+
+    include('datetimenow.php');
+
+    $usrip=$_SERVER['REMOTE_ADDR'];
+    $usrosbrowserver=$_SERVER['HTTP_USER_AGENT'];
+
+    echo "Logged-in from $usrip using $usrosbrowserver on $now<br /><br />";
+
+    $logdetails = "loginid:". $loginid . " logged-in from ip:$usrip using:$usrosbrowserver";
+
+    $result12 = mysql_query("INSERT INTO tbladminlogs (adminloginid, timestamp, adminuid, adminlogdetails) VALUES ($loginid, '$now', '$username', '$logdetails')", $dbh);
+
+     echo "<< please choose a link on the left</p>";
+
+// end contents here
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminuid='$username'", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

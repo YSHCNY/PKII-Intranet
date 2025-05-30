@@ -1,0 +1,376 @@
+<?php
+
+	$disbdebittot=0; $disbcredittot=0; $disbtot=0; $wpacctcdarr=array(); $wpacctcdarr2=array();
+
+	$res20query=""; $result20=""; $found20=0; $ctr20=0;
+	$res20query="SELECT DISTINCT tblfinbalshtref.acctname, tblfinbalshtref.section FROM tblfinbalshtref INNER JOIN tblfinbalshtsecref ON tblfinbalshtref.section=tblfinbalshtsecref.code WHERE tblfinbalshtsecref.group=\"BS\" ORDER BY tblfinbalshtref.seq ASC, tblfinbalshtref.acctname ASC";
+  $result20=$dbh2->query($res20query);
+  if($result20->num_rows>0) {
+    while($myrow20=$result20->fetch_assoc()) {
+		$found20 = 1;
+    $ctr20++;
+		$acctname20 = $myrow20['acctname'];
+		$section20 = $myrow20['section'];
+
+		$res21query=""; $result21=""; $found21=0; $ctr21=0; $sectmp=0;
+		$res21query="SELECT tblfinbalshtref.finbalshtrefid, tblfinbalshtref.tabpos, tblfinbalshtref.glcodefr, tblfinbalshtref.glcodeto, tblfinbalshtref.glrefver, tblfinbalshtref.visible, tblfinbalshtref.section, tblfinbalshtref.sectotal, tblfinbalshtref.normbal, tblfinbalshtsecref.name FROM tblfinbalshtref INNER JOIN tblfinbalshtsecref ON tblfinbalshtref.section=tblfinbalshtsecref.code WHERE tblfinbalshtref.acctname=\"$acctname20\" ORDER BY tblfinbalshtref.seq ASC";
+    $result21=$dbh2->query($res21query);
+    if($result21->num_rows>0) {
+      while($myrow21=$result21->fetch_assoc()) {
+      $found21=1;
+      $ctr21++;
+
+			$finbalshtrefid21 = $myrow21['finbalshtrefid'];
+			$tabpos21 = $myrow21['tabpos'];
+			$glcodefr21 = $myrow21['glcodefr'];
+			$glcodeto21 = $myrow21['glcodeto'];
+			$glrefver21 = $myrow21['glrefver'];
+			$visible21 = $myrow21['visible'];
+			$section21 = $myrow21['section'];
+			$sectotal21 = $myrow21['sectotal'];
+			$normbal21 = $myrow21['normbal'];
+			$name21 = $myrow21['name'];
+
+			if($glcodefr21 == $glcodeto21) {
+
+				// query beginning balance from tblfinworkpaper
+        $res24query=""; $result24=""; $found24=0; $wpacctcd24="";
+				$res24query="SELECT wpacctcd, glrefver FROM tblfinworkpaperref WHERE glcode=\"$glcodefr21\" LIMIT 1";
+        $result24=$dbh2->query($res24query);
+        if($result24->num_rows>0) {
+          while($myrow24=$result24->fetch_assoc()) {
+					$found24 = 1;
+					$wpacctcd24 = $myrow24['wpacctcd'];
+					$glrefver24 = $myrow24['glrefver'];
+          } //while
+        } //if
+
+				if($wpacctcdarr != $wpacctcd24) {
+				$res24bquery=""; $result24b=""; $found24b=0; $ctr24b=0;
+				$res24bquery="SELECT begbalancedr, begbalancecr FROM tblfinworkpaper WHERE glcode=\"$wpacctcd24\" AND glrefver=$glrefver24 AND month=\"$cutstart\"";
+        $result24b=$dbh2->query($res24bquery);
+        if($result24b->num_rows>0) {
+          while($myrow24b=$result24b->fetch-assoc()) {
+					$found24b = 1;
+          $ctr24b++;
+					$begbalancedr24b = $myrow24b['begbalancedr'];
+					$begbalancecr24b = $myrow24b['begbalancecr'];
+					$begbaldebit = $begbaldebit + $begbalancedr24b;
+					$begbalcredit = $begbalcredit + $begbalancecr24b;
+          } //while
+        } //if
+				} //if($wpacctcdarr != $wpacctcd24)
+
+				// include wpacctcd to array
+				$wpacctcdarr=$wpacctcd24;
+
+				// compute disbursement totals based on acctname and glcode
+				$res22query=""; $result22=""; $found22=0; $ctr22=0;
+				$res22query="SELECT debitamt, creditamt, disbursementnumber, date, glcode FROM tblfindisbursement WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND glcode=\"$glcodefr21\" AND glrefver=$glrefver21";
+        $result22=$dbh2->query($res22query);
+        if($result22->num_rows>0) {
+          while($myrow22=$result22->fetch_assoc()) {
+					$found22 = 1;
+          $ctr22++;
+					$debitamt22 = $myrow22['debitamt'];
+					$creditamt22 = $myrow22['creditamt'];
+					$disbursementnumber22 = $myrow22['disbursementnumber'];
+					$date22 = $myrow22['date'];
+					$glcode22 = $myrow22['glcode'];
+					$disbdebit = $disbdebit + $debitamt22;
+					$disbcredit = $disbcredit + $creditamt22;
+          } //while
+        } //if
+
+        // compute accounts payable totals based on glcode
+        $res22dquery=""; $result22c=""; $found22c=0; $ctr22c=0;
+        $res22dquery="SELECT debitamt, creditamt, date, glcode FROM tblfinacctspayable WHERE date BETWEEN CAST (\"$cutstart\" AS date) AND CAST(\"$cutend\" AS date) AND glcode=\"$glcodefr21\" AND glrefver=$glrefver21 AND trans_status<>\"cancelled\"";
+        $result22d=$dbh2->query($res22dquery);
+        if($result22d->num_rows>0) {
+          while($myrow22d=$result22d->fetch_assoc()) {
+          $found22d=1;
+          $ctr22d++;
+          $debitamt22d = $myrow22d['debitamt'];
+          $creditamt22d = $myrow22d['creditamt'];
+          $date22d = $myrow22d['date'];
+          $glcode22d = $myrow22d['glcode'];
+          $apdebit = $apdebit + $debitamt22d;
+          $apcredit = $apcredit + $creditamt22d;
+          } //while
+        } //if
+
+				// compute cashreceipt totals based on acctname and glcode
+				$res22bquery=""; $result22b=""; $found22b=0; $ctr22b=0;
+				$res22bquery="SELECT debitamt, creditamt, cashreceiptnumber, date, glcode FROM tblfincashreceipt WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND glcode=\"$glcodefr21\" AND glrefver=$glrefver21";
+        $result22b=$dbh2->query($res22bquery);
+        if($result22b->num_rows>0) {
+          while($myrow22b=$result22b->fetch_assoc()) {
+					$found22b = 1;
+          $ctr22b++;
+					$debitamt22b = $myrow22b['debitamt'];
+					$creditamt22b = $myrow22b['creditamt'];
+					$cashreceiptnumber22b = $myrow22b['cashreceiptnumber'];
+					$date22b = $myrow22b['date'];
+					$glcode22b = $myrow22b['glcode'];
+					$cshrcptdebit = $cshrcptdebit + $debitamt22b;
+					$cshrcptcredit = $cshrcptcredit + $creditamt22b;
+          } //while
+        } //if
+				// compute journal totals based on acctname and glcode
+				$res22cquery=""; $result22c=""; $found22c=0; $ctr22c=0;
+				$res22cquery="SELECT debitamt, creditamt, journalnumber, date, glcode FROM tblfinjournal WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND glcode=\"$glcodefr21\" AND glrefver=$glrefver21";
+        $result22c=$dbh2->query($res22cquery);
+        if($result22c->num_rows>0) {
+          while($myrow22c=$result22c->fetch_assoc()) {
+					$found22c = 1;
+          $ctr22c++;
+					$debitamt22c = $myrow22c['debitamt'];
+					$creditamt22c = $myrow22c['creditamt'];
+					$journalnumber22c = $myrow22c['journalnumber'];
+					$date22c = $myrow22c['date'];
+					$glcode22c = $myrow22c['glcode'];
+					$jrnldebit = $jrnldebit + $debitamt22c;
+					$jrnlcredit = $jrnlcredit + $creditamt22c;
+          } //while
+        } //if
+
+			} else { //if($glcodefr21 == $glcodeto21)
+
+				// query beginning balance from tblfinworkpaper
+				$res24query=""; $result24=""; $found24=0; $wpacctcd24="";
+				$res24query="SELECT DISTINCT wpacctcd, glrefver FROM tblfinworkpaperref WHERE glcode>=\"$glcodefr21\" AND glcode<=\"$glcodeto21\"";
+        $result24=$dbh2->query($res24query);
+        if($result24->num_rows>0) {
+          while($myrow24=$result24->fetch_assoc()) {
+					$found24 = 1;
+					$wpacctcd24 = $myrow24['wpacctcd'];
+					$glrefver24 = $myrow24['glrefver'];
+
+  				if($wpacctcdarr != $wpacctcd24) {
+	    			$res24bquery=""; $result24b=""; $found24b=0; $ctr24b=0;
+			    	$res24bquery="SELECT begbalancedr, begbalancecr FROM tblfinworkpaper WHERE glcode=\"$wpacctcd24\" AND glrefver=$glrefver24 AND month=\"$cutstart\"";
+            $result24b=$dbh2->query($res24bquery);
+            if($result24b->num_rows>0) {
+              while($myrow24b=$result24b->fetch_assoc()) {
+					    $found24b = 1;
+              $ctr24b++;
+					    $begbalancedr24b = $myrow24b['begbalancedr'];
+					    $begbalancecr24b = $myrow24b['begbalancecr'];
+					    $begbaldebit = $begbaldebit + $begbalancedr24b;
+					    $begbalcredit = $begbalcredit + $begbalancecr24b;
+              } //while
+            } //if
+				  } //if($wpacctcdarr != $wpacctcd24)
+
+				  // include wpacctcd to array
+				  $wpacctcdarr=$wpacctcd24;
+
+          } //while
+        } //if
+
+				// compute disbursement totals based on glcode durations
+				$res23query=""; $result23=""; $found23=0; $ctr23=0;
+				$res23query="SELECT debitamt, creditamt, disbursementnumber, date, glcode FROM tblfindisbursement WHERE (date>=\"$cutstart\" AND date<=\"$cutend\") AND (glcode>=\"$glcodefr21\" AND glcode<=\"$glcodeto21\") AND glrefver=$glrefver21 ORDER BY date ASC";
+        $result23=$dbh2->query($res23query);
+        if($result23->num_rows>0) {
+          while($myrow23=$result23->fetch_assoc()) {
+					$found23 = 1;
+          $ctr23++;
+					$debitamt23 = $myrow23['debitamt'];
+					$creditamt23 = $myrow23['creditamt'];
+					$disbursementnumber23 = $myrow23['disbursementnumber'];
+					$date23 = $myrow23['date'];
+					$glcode23 = $myrow23['glcode'];
+					$disbdebit = $disbdebit + $debitamt23;
+					$disbcredit = $disbcredit + $creditamt23;
+          } //while
+        } //if
+
+        // compute accts payable total
+        $res23dquery=""; $result23d=""; $found23d=0; $ctr23d=0;
+        $res23dquery="SELECT debitamt, creditamt, acctspayablenumber, date, glcode FROM tblfinacctspayable WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND (glcode>=\"$glcodefr21\" AND glcode<=\"$glcodeto21\") AND glrefver=$glrefver21 AND trans_status<>\"cancelled\"";
+        $result23d=$dbh2->query($res23dquery);
+        if($result23d->num_rows>0) {
+          while($myrow23d=$result23d->fetch_assoc()) {
+          $found23d=1;
+          $ctr23d++;
+          $debitamt23d = $myrow23d['debitamt'];
+          $creditamt23d = $myrow23d['creditamt'];
+          $acctspayablenumber23d = $myrow23d['acctspayablenumber'];
+          $date23d = $myrow23d['date'];
+          $glcode23d = $myrow23d['glcode'];
+          $apdebit = $apdebit + $debitamt23d;
+          $apcredit = $apcredit + $creditamt23d;
+          } //while
+        } //if
+
+				// compute cashreceipt totals based on glcode durations
+				$res2bquery=""; $result23b=""; $found23b=0; $ctr23b=0;
+				$res23bquery="SELECT debitamt, creditamt, cashreceiptnumber, date, glcode FROM tblfincashreceipt WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND (glcode>=\"$glcodefr21\" AND glcode<=\"$glcodeto21\") AND glrefver=$glrefver21";
+        $result23b=$dbh2->query($res23bquery);
+        if($result23b->num_rows>0) {
+          while($myrow23b=$result23b->fetch_assoc()) {
+					$found23b = 1;
+          $ctr23b++;
+					$debitamt23b = $myrow23b['debitamt'];
+					$creditamt23b = $myrow23b['creditamt'];
+					$cashreceiptnumber23b = $myrow23b['cashreceiptnumber'];
+					$date23b = $myrow23b['date'];
+					$glcode23b = $myrow23b['glcode'];
+					$cshrcptdebit = $cshrcptdebit + $debitamt23b;
+					$cshrcptcredit = $cshrcptcredit + $creditamt23b;
+          } //while
+        } //if
+
+				// compute journal totals based on glcode durations
+				$res23cquery=""; $result23c=""; $found23c=0; $ctr23c=0;
+				$res23cquery="SELECT debitamt, creditamt, journalnumber, date, glcode FROM tblfinjournal WHERE date BETWEEN CAST(\"$cutstart\" AS DATE) AND CAST(\"$cutend\" AS DATE) AND (glcode>=\"$glcodefr21\" AND glcode<=\"$glcodeto21\") AND glrefver=$glrefver21";
+        $result23c=$dbh2->query($res23cquery);
+        if($result23c->num_rows>0) {
+          while($myrow23c=$result23c->fetch_assoc()) {
+					$found23c = 1;
+          $ctr23c++;
+					$debitamt23c = $myrow23c['debitamt'];
+					$creditamt23c = $myrow23c['creditamt'];
+					$journalnumber23c = $myrow23c['journalnumber'];
+					$date23c = $myrow23c['date'];
+					$glcode23c = $myrow23c['glcode'];
+					$jrnldebit = $jrnldebit + $debitamt23c;
+					$jrnlcredit = $jrnlcredit + $creditamt23c;
+          } //while
+        } //if
+
+			} //if($glcodefr21 == $glcodeto21)
+
+      } //while
+    } //if
+
+		// prepare beginning balance from work paper
+		if($begbaldebit > $begbalcredit) {
+			$begbaldiffdebit = $begbaldebit - $begbalcredit;
+			$begbalancetot = $begbaldebit;
+			$begbaldebit=0; $begbalcredit=0;
+		} elseif($begbaldebit < $begbalcredit) {
+			$begbaldiffcredit = $begbalcredit - $begbaldebit;
+			$begbalancetot = $begbalcredit;
+			$begbaldebit=0; $begbalcredit=0;
+		} elseif($begbaldebit == $begbalcredit) {
+			$begbaldiffdebit=0; $begbaldiffcredit=0;
+			$begbalancetot = $begbaldebit;
+			$begbaldebit=0; $begbalcredit=0;
+		} //if-elseif
+
+		// prepare disbursement total
+		if($disbdebit > $disbcredit) {
+			$disbdiffdebit = $disbdebit - $disbcredit;
+			$disbtot = $disbdebit;
+			$disbdebit=0; $disbcredit=0;
+		} elseif($disbdebit < $disbcredit) {
+			$disbdiffcredit = $disbcredit - $disbdebit;
+			$disbtot = $disbcredit;
+			$disbdebit=0; $disbcredit=0;
+		} elseif($disbdebit == $disbcredit) {
+			$disbdiffdebit=0; $disbdiffcredit=0;
+			$disbtot = $disbdebit;
+			$disbdebit=0; $disbcredit=0;
+		} //if-elseif
+
+    // prepare accts payable total
+    if($apdebit > $apcredit) {
+      $apdiffdebit = $apdebit - $apcredit;
+      $aptot = $apdebit;
+      $apdebit=0; $apcredit=0;
+    } elseif($apdebit < $apcredit) {
+      $apdiffcredit = $apcredit - $apdebit;
+      $aptot = $apcredit;
+      $apdebit=0; $apcredit=0;
+    } elseif($apdebit == $apcredit) {
+      $apdiffdebit=0; $apdiffcredit=0;
+      $aptot = $apdebit;
+      $apdebit=0; $apcredit=0;
+    } //if-elseif
+
+		// prepare cashreceipt total
+		if($cshrcptdebit > $cshrcptcredit) {
+			$cshrcptdiffdebit = $cshrcptdebit - $cshrcptcredit;
+			$cshrcpttot = $cshrcptdebit;
+			$cshrcptdebit=0; $cshrcptcredit=0;
+		} elseif($cshrcptdebit < $cshrcptcredit) {
+			$cshrcptdiffcredit = $cshrcptcredit - $cshrcptdebit;
+			$cshrcpttot = $cshrcptcredit;
+			$cshrcptdebit=0; $cshrcptcredit=0;
+		} elseif($cshrcptdebit == $cshrcptcredit) {
+			$cshrcptdiffdebit=0; $cshrcptdiffcredit=0;
+			$cshrcpttot = $cshrcptdebit;
+			$cshrcptdebit=0; $cshrcptcredit=0;
+		} //if-elseif
+
+		// prepare journal total
+		if($jrnldebit > $jrnlcredit) {
+			$jrnldiffdebit = $jrnldebit - $jrnlcredit;
+			$jrnltot = $jrnldebit;
+			$jrnldebit=0; $jrnlcredit=0;
+		} elseif($jrnldebit < $jrnlcredit) {
+			$jrnldiffcredit = $jrnlcredit - $jrnldebit;
+			$jrnltot = $jrnlcredit;
+			$jrnldebit=0; $jrnlcredit=0;
+		} elseif($jrnldebit == $jrnlcredit) {
+			$jrnldiffdebit=0; $jrnldiffcredit=0;
+			$jrnltot = $jrnldebit;
+			$jrnldebit=0; $jrnlcredit=0;
+		} //if-elseif
+
+		$balshttot = $begbalancetot + $disbtot + $cshrcpttot + $jrnltot;
+		$secsubtot = $secsubtot + $balshttot;
+
+		// display results
+		if(($cutstart!="") && ($cutend!="")) {
+      echo "<tr>";
+      if(($visible21 == "on") || (($balshttot != 0) || ($balshttot != "") || ($balshttot != "0"))) {
+        if($tabpos21=="1") {
+          $tabindent="";
+        } elseif($tabpos21=="2") {
+          $tabindent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        } elseif($tabpos21=="3") {
+          $tabindent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        } elseif($tabpos21=="4") {
+         $tabindent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        } elseif($tabpos21=="5") {
+      $tabindent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        } //if-elseif
+        if(($tabpos21==1) || ($sectotal21==1)) {
+          echo "<td colspan=\"5\"><b>".$tabindent.$acctname20."</b></td>";
+        } else {
+          echo "<td colspan=\"5\">".$tabindent.$acctname20."</td>";
+        } //if-else
+
+        // compute sub-total
+        if($balshttot != 0) {
+          if(($tabpos21=="1") && (($balshttot != 0) || ($balshttot != "") || ($balshttot != "0"))) {
+            echo "<td align=\"right\"><b>".number_format("$balshttot", 2)."</b></td>";
+          } else {
+            echo "<td align=\"right\">".number_format("$balshttot", 2)."</td>";
+          } //if-else
+        } elseif($sectotal21==1) {
+          echo "<td align=\"right\"><b>".number_format("$secsubtot", 2)."</b></td>";
+          $secsubtotarr[]=$secsubtot;
+          $secsubtot=0;
+        } else {
+          echo "<td></td>";
+        } //if-elseif-else
+      echo "</tr>";
+      } //if(($visible21 == "on") || (($balshttot != 0) || ($balshttot != "") || ($balshttot != "0")))
+
+		  // compute other sub-total with single line entry
+		  if(($tabpos21=="1") && (($balshttot != 0) || ($balshttot != "") || ($balshttot != "0"))) {
+			  $secsubtotarr[]=$balshttot;
+		  } //if(($tabpos21=="1") && (($balshttot != 0) || ($balshttot != "") || ($balshttot != "0")))
+
+		} //if(($cutstart!="") && ($cutend!=""))
+
+		$acctnameprev=$acctname20;
+		$sectionprev=$section21;
+
+    } //while
+  } //if
+?>

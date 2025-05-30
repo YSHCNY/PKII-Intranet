@@ -1,0 +1,780 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+  
+	<link rel="stylesheet" href="css/styled.css">
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="tjaddons/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="tjaddons/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet">
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+    <!-- core ui cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-lBISJVJ49zh34fnUuAaSAyuYzQ2ioGvhm4As4Z1JFde0kVpaC1FFWD3f9adpZrdD" crossorigin="anonymous">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/js/coreui.min.js" integrity="sha384-kiD3MgQ2eSqSjSfkoKS7/ipCvMvkfmpWHk3WRppeqnYxCVF0wQ+7gHzkXfJyvHbQ" crossorigin="anonymous"></script>
+
+ 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+    <script src="tjaddons/bootstrap.min.js"></script>
+    <script src="tjaddons/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#projects').DataTable({
+            "order": [[0, "desc"]],
+              "lengthMenu": [[ 10, 25, 50, -1], [ 10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    }
+            });
+    });
+
+    $(document).ready(function() {
+        $('#users').DataTable({
+            "order": [[0, "asc"]],
+              "lengthMenu": [[ 25, 50, -1], [  25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    }
+            });
+    });
+
+    $(document).ready(function() {
+        $('#admins').DataTable({
+            "order": [[0, "asc"]],
+              "lengthMenu": [[ 25, 50, -1], [  25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+    });
+
+    $(document).ready(function() {
+        $('#project2').DataTable({
+            "order": [[0, "desc"]],
+              "lengthMenu": [[ 25, 50, -1], [  25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+
+    $(document).ready(function() {
+        $('#support').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[ 50, -1], [ 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+    $(document).ready(function() {
+        $('#finance').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[ 5, 10, 25, 50, -1], [ 5, 10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+    $(document).ready(function() {
+        $('#cutieoff').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[ 5, 10, 25, 50, -1], [ 5, 10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+
+    $(document).ready(function() {
+        $('#personelcutie').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+
+    $(document).ready(function() {
+        $('#leavetblid').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+            
+    });
+
+
+
+
+    $(document).ready(function() {
+        $('#asswet').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+
+
+            
+            
+    });
+
+
+    $(document).ready(function() {
+        $('#pigru').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+
+
+            
+            
+    });
+
+    
+    $(document).ready(function() {
+        $('#addedgp').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[-1], ["All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+
+
+            
+            
+    });
+
+
+
+    $(document).ready(function() {
+        $('#edpged').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+
+
+            
+            
+    });
+
+
+    $(document).ready(function() {
+        $('#LEAVETBL').DataTable({
+            "order": [[0, "desc"]],
+            "lengthMenu": [[ 50, -1], [ 50, "All"]],
+              "lengthChange": true,
+              "responsive": true,
+              "language": {
+                "lengthMenu": "Display _MENU_ Entries"
+    },
+   
+            });
+
+
+            
+            
+    });
+
+
+    
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOpen = document.getElementById('sidebarOpen');
+    const sidebarClose = document.getElementById('sidebarClose');
+    
+    const toggleSidebar = (event) => {
+      event.stopPropagation(); // Prevent the event from bubbling up to the window click event
+      sidebar.classList.toggle('sidebar-hidden');
+    };
+
+    sidebarOpen.addEventListener('click', toggleSidebar);
+    sidebarClose.addEventListener('click', toggleSidebar);
+
+    window.addEventListener('click', (event) => {
+      if (!sidebar.contains(event.target) && !sidebarOpen.contains(event.target)) {
+        if (!sidebar.classList.contains('sidebar-hidden')) {
+          sidebar.classList.add('sidebar-hidden');
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+.dataTables_paginate,
+.dataTables_info {
+   font-size: 12px; 
+}
+.dataTables_length select {
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: transparent ;
+}
+.dataTables_wrapper .dataTables_length label {
+   font-weight: normal;
+}
+.dataTables_wrapper .dataTables_filter input {
+   font-weight: normal;
+}
+.sidebar-hidden {
+    transform: translateX(-101%) !important;
+    transition: transform 0.3s ease !important;
+}
+#sidebar {
+	z-index: 999 !important;
+    transition: transform 0.3s ease !important;
+}
+#sidebarOpen{
+    cursor: pointer;
+}
+#sidebarOpen:hover{
+    color: black !important;
+}
+#mdl::-webkit-scrollbar{
+    width: 8px !important;
+}
+#mdl::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+#mdl::-webkit-scrollbar-thumb {
+    background: #0f2c65;
+    border-radius: 5px;
+}
+#mdl::-webkit-scrollbar-thumb:hover {
+    background: #0a1d44;
+}
+#mdl::-webkit-scrollbar-button:single-button {
+    background-color: transparent;
+    display: block;
+    border-style: solid;
+    height: 5px;
+    width: 30px;
+}
+#mdl::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-color: transparent transparent #555 transparent;
+}
+#mdl::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-color: #555 transparent transparent transparent;
+}
+
+#mdl::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    border-color: transparent transparent #888 transparent;
+}
+#mdl::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+    border-color: #888 transparent transparent transparent;
+}
+
+ul .dropdownMenu {
+    background-color: #f5f5f5 !important;
+    padding: 5px 15px 5px;
+}
+</style>
+</head>
+<body>
+
+<?php
+
+
+$sql = "SELECT COUNT(*) AS result FROM tblinventoryrequest WHERE request_status = 'Pending'";
+$rs = $dbh2->query($sql);
+if($rs->num_rows>0) {
+    while($myrow=$rs->fetch_assoc()) {
+    $result=$myrow['result'];
+    } //while
+} //if
+// $result = mysql_fetch_array($rs);
+
+
+if (isset($_POST['accbtn'])) {
+    $sy = $_POST['AccessCode'];
+    $sql2 = "SELECT * FROM accesscodemngmnt";
+    $rs2 = $dbh2->query($sql2);
+    if ($rs2->num_rows > 0) {
+        while ($row = $rs2->fetch_assoc()) {                 
+        $SYY = $row['pass'];
+        }
+
+    if($sy == $SYY){
+        
+        // header("location: assetmngmnt.php?loginid= $loginid");
+        echo "<script> alert('Success! Welcome $loginid'); </script> ";
+        echo "<script>window.location.href='assetmngmnt.php?loginid=$loginid'</script>";
+        
+        exit();
+    }else{
+        echo "<script> alert('Incorrect Access Code'); </script> ";
+       
+        
+    }
+
+
+    }  
+}
+
+
+
+
+?>
+
+
+<div class="wrapper d-flex align-items-stretch">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form method="POST">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asset Management Access Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body">
+      <input type="PASSWORD" name="AccessCode" placeholder="Input Access Code" class=" form-control shadow-none mb-2  mt-3 rounded-3 " id="inputfn">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  class="btn btn-success" name="accbtn" type="submit">Save changes</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+</form>
+<div class="sidebar sidebar-narrow-unfoldable border-end">
+  <div class="sidebar-header border-bottom">
+    <div class="sidebar-brand">CUI</div>
+  </div>
+  <ul class="sidebar-nav">
+    <li class="nav-title">Nav Title</li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="nav-icon cil-speedometer"></i> Nav item
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="nav-icon cil-speedometer"></i> With badge
+        <span class="badge bg-primary ms-auto">NEW</span>
+      </a>
+    </li>
+    <li class="nav-item nav-group show">
+      <a class="nav-link nav-group-toggle" href="#">
+        <i class="nav-icon cil-puzzle"></i> Nav dropdown
+      </a>
+      <ul class="nav-group-items">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nav dropdown item
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nav dropdown item
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item mt-auto">
+      <a class="nav-link" href="https://coreui.io">
+        <i class="nav-icon cil-cloud-download"></i> Download CoreUI</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://coreui.io/pro/">
+        <i class="nav-icon cil-layers"></i> Try CoreUI
+        <strong>PRO</strong>
+      </a>
+    </li>
+  </ul>
+</div>
+
+    <nav id='sidebar' class='shadow bg-white'>
+    <div class="d-flex justify-content-end position-relative">
+        <div class="p-3 position-absolute z-3">
+            <i id="sidebarOpen" class="bi bi-x-lg fs-4 text-secondary"></i>
+        </div>
+        <div class="">
+            <div id='' class=" d-flex justify-content-center align-items-center">
+            <div class="">
+                <img src="pictures/newlogo.png"  width = '300' height = '20' class = 'img-fluid my-5 pt-2' alt="" srcset="">
+            </div>
+            </div>
+        </div>
+    </div>
+
+<?php function generateCleanURL($page, $loginid) {
+    return "https://192.168.0.223/pkii/admin/$page/$loginid";
+}?>
+ 
+     <div class="px-2 ofw">
+        <ul id='menuList' class= 'list-unstyled components '>
+        <a href="index2.php?loginid=<?php echo $loginid; ?>"><li  class="dropdownMenuListsolo fs-4 mt-4 px-3 py-2" ><span><i class="bi bi-windows"></i>Dashboard</span></li></a>
+            <li id="direct" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('direct')" data-id='directory'><span><i class="bi bi-folder-fill"></i>Directory</span><span class="dropdownIcon"></li>
+
+	
+            <ul class="directory dropdownMenu mb-3 ">
+                <?php if(substr($level, -11, 1) == 1): ?>
+                    <a   href="projects.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Projects</li></a>
+                
+                <?php endif; ?>
+                <?php if(substr($level, -9, 1) == 1): ?>
+                    <a   href="personnel.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Personnel</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -7, 1) == 1): ?>
+                    <a   href="directorybiz.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Associates</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -23, 1) == 1): ?>
+                    <a   href="dirisodocs.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>ISO</li></a>
+                <?php endif; ?>
+             </ul>
+    
+            <!-- <li id="module" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('module')" data-id='modules'><span><i class="bi bi-inboxes-fill"></i>Module</span></li>
+            <ul id="mdl" class='modules dropdownMenu mb-3' style="overflow-y: scroll; height: 40%;">
+                <?php if(substr($level, -17, 1) == 1): ?>
+                    <a href="finvouchmain.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Vouchers</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -6, 1) == 1): ?>
+                    <a href="confipay.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Custom Payroll System</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -5, 1) == 1): ?>
+                    <a href="cutoff.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Employees Payslip</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -4, 1) == 1): ?>
+                    <a href="emailnotifier2.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Custom Pay Advisory</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -3, 1) == 1): ?>
+                    <a href="emppaybon00.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Special Pay Notifier</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -26, 1) == 1): ?>
+                    <a href="hrtimeatt.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Time & Attendance</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -27, 1) == 1): ?>
+                    <a href="finpaysys.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Payroll System</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -13, 1) == 1): ?>
+                    <a href="projassign.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Project Assignments</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -14, 1) == 1): ?>
+                    <a href="projassignexpiring.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Expiring Contracts</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -33, 1) == 1): ?>
+                    <a href="projbilling.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Project Billing</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -15, 1) == 1): ?>
+                    <a href="persrptmnu.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>HR Reports</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -20, 1) == 1): ?>
+                    <a href="finrptmnu.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Finance Reports</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -22, 1) == 1): ?>
+                    <a href="hrofctimelog.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Office time log</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -25, 1) == 1): ?>
+                    <a href="docsarchive.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Documents Archiving</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -29, 1) == 1): ?>
+                    <a href="itadmsuppreq.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>IT Support Request</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -42, 1) == 1 || substr($level, -43, 1) == 1): ?>
+                    <a href="mngotrequest.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>OT/Leave Requests</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -41, 1) == 1): ?>
+                    <a href="hrpersreq.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>HR Personnel Request</li></a>
+                <?php endif; ?>
+            </ul> -->
+
+
+            <li id="ITmodule" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('ITmodule')" data-id='ITmodule'><span><i class="bi bi-cpu"></i>IT Module</span></li>
+            <ul id="mdl" class='ITmodule dropdownMenu mb-3' style="overflow-y: scroll; ">
+
+                <?php if(substr($level, -22, 1) == 1): ?>
+                    <a href="hrofctimelog.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Office time log</li></a>
+                <?php endif; ?>
+    
+                <?php if(substr($level, -29, 1) == 1): ?>
+                    <a href="itadmsuppreq.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>IT Support Request</li></a>
+                <?php endif; ?>
+         
+            </ul>
+
+
+            <li id="HRmodule" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('HRmodule')" data-id='HRmodule'><span><i class="bi bi-file-earmark-person"></i>HR Module</span></li>
+            <ul id="mdl" class='HRmodule dropdownMenu mb-3' style="overflow-y: scroll; ">
+               
+                <?php if(substr($level, -26, 1) == 1): ?>
+                    
+                    <a href="hrtimeatt.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Time & Attendance</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -13, 1) == 1): ?>
+                    <a href="projassign.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Project Assignments</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -14, 1) == 1): ?>
+                    <a href="projassignexpiring.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Expiring Contracts</li></a>
+                <?php endif; ?>
+    
+                <?php if(substr($level, -15, 1) == 1): ?>
+                    <a href="persrptmnu.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>HR Reports</li></a>
+                <?php endif; ?>
+    
+                <?php if(substr($level, -22, 1) == 1): ?>
+                    <a href="hrofctimelog.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Office time log</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -25, 1) == 1): ?>
+                    <a href="docsarchive.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Documents Archiving</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -41, 1) == 1): ?>
+                    <a href="hrpersreq.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>HR Personnel Request</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -21, 1) == 1): ?>
+                    <a href="mnghrmod.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>HR Modules</li></a>
+                <?php endif; ?>
+            </ul>
+
+
+
+            <li id="finmodule" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('finmodule')" data-id='finmodule'><span><i class="bi bi-cash-coin"></i>Finance Module</span></li>
+            <ul id="mdl" class='finmodule dropdownMenu mb-3' style="overflow-y: scroll; %;">
+                <?php if(substr($level, -17, 1) == 1): ?>
+                    <a href="finvouchmain.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Vouchers</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -6, 1) == 1): ?>
+                    <a href="confipay.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Custom Payroll System</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -5, 1) == 1): ?>
+                    <a href="cutoff.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Employees Payslip</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -4, 1) == 1): ?>
+                    <a href="emailnotifier2.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Custom Pay Advisory</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -3, 1) == 1): ?>
+                    <a href="emppaybon00.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Special Pay Notifier</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -27, 1) == 1): ?>
+                    <a href="finpaysys.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Payroll System</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -33, 1) == 1): ?>
+                    <a href="projbilling.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Project Billing</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -20, 1) == 1): ?>
+                    <a href="finrptmnu.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Finance Reports</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -18, 1) == 1): ?>
+                    <a href="mngfinmods.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Accounting Modules</li></a>
+                <?php endif; ?>
+            </ul>
+
+
+
+
+            <li id="manage" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('manage')" data-id='manage'><span><i class="bi bi-gear-fill"></i>Manage</span></li>
+            <ul class='manage dropdownMenu mb-3'>
+                <?php if(substr($level, -10, 1) == 1): ?>
+                    <a href="project2.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Manage Projects</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -8, 1) == 1): ?>
+                    <a href="personneledit.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Manage Personnel</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -12, 1) == 1): ?>
+                    <a href="businessedit.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Business Contacts</li></a>
+                <?php endif; ?>
+        
+             
+                <?php if(substr($level, -24, 1) == 1): ?>
+                    <a href="mngcateg.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Manage Categories</li></a>
+                <?php endif; ?>
+                <?php if(substr($level, -28, 1) == 1): ?>
+                    <a href="mngscheduler.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Scheduler</li></a>
+                <?php endif; ?>
+            </ul>
+
+        <div class = 'border-1 border-bottom pb-3'>
+            <li id="tool" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('tool')" data-id='tools'><span><i class="bi bi-tools"></i>Tools</span></li>
+            <ul class='tools dropdownMenu mb-3'>
+                <?php if(substr($level, -1, 1) == 1): ?>
+                    <a href="logping.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Ping Reports</li></a>
+                    <a href="lognotifier.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>Notifier Reports</li></a>
+                  
+                <?php endif; ?>
+                <?php if(substr($level, -16, 1) == 1): ?>
+                    <a href="sysadtools.php?loginid=<?php echo $loginid; ?>"><li class = 'fs-4 fs-sm-6 mb-2'>SysAd Tools</li></a>
+                <?php endif; ?>
+                <a href="#" data-toggle="modal" data-target="#exampleModal"><li class = 'fs-4 fs-sm-6 mb-2' >Asset Management</li></a>
+            </ul>
+        </div>
+
+        <?php if(substr($level, -19, 1) == 1): ?>
+        <li id="userstool" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('userstool')" data-id='userstool'><span><i class="bi bi-people-fill"></i></span>Accounts Management</li>
+        <ul class='userstool dropdownMenu mb-3'>
+            <a href="mngstdusers.php?loginid=<?php echo $loginid; ?>"><li>Users</li></a>
+            <a href="mngadmusers.php?loginid=<?php echo $loginid; ?>"><li>Admin</li></a>
+
+        </ul>
+
+        <li id="logs" class="dropdownMenuList fs-4 mt-4 px-3 py-2" onclick="toggleHover('logs')" data-id='logs'><span><i class="bi bi-clipboard2-pulse-fill"></i></span>Activity Logs</li>
+        <ul class='logs dropdownMenu mb-3'>
+            <a href="logadminuser.php?loginid=<?php echo $loginid; ?>"><li>Admin Logs</li></a>
+            <a href="loguser.php?loginid=<?php echo $loginid; ?> "><li>User Logs</li></a>
+        </ul>
+        <?php endif; ?>
+
+        </ul>
+    </nav>
+    </div>
+    
+    <!-- start main body here -->
+    <div class="mt-5">
+        <br>
+    <div class="container-fluid w-75 p-0 mt-5">
+    <div class="flicker-container text-center">
+        <div class="flicker">
+          <p class="fs-5 text-danger poppins"><i><strong>Note:</strong> Only authorized PKII personnel with admin access are allowed to use this site.</i></p>
+        </div>
+    </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        var previousElementId = null;
+
+        function toggleHover(id) {
+            var currentElement = document.getElementById(id);
+            
+            if (currentElement.classList.contains('stay-hover')) {
+                currentElement.classList.remove('stay-hover');
+                previousElementId = null;
+            } else {
+                if (previousElementId !== null) {
+                    var previousElement = document.getElementById(previousElementId);
+                    previousElement.classList.remove('stay-hover');
+                }
+
+                currentElement.classList.add('stay-hover');
+                previousElementId = id;
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var openDropdown = null;
+
+            $('li.dropdownMenuList').click(function (e) {
+                e.preventDefault();
+                var dropdownClass = "." + $(this).data('id');
+
+                if (openDropdown && openDropdown !== dropdownClass) {
+                    $(openDropdown).slideUp();
+                    $(this).siblings().find('.dropdownIcon').removeClass('rotate');
+                }
+
+                $(dropdownClass).slideToggle();
+
+                $(this).find('.dropdownIcon').toggleClass('rotate');
+
+                openDropdown = openDropdown === dropdownClass ? null : dropdownClass;
+            });
+
+            $('#profname').click(function (e) {
+                e.preventDefault();
+                $('#myDropdown').slideToggle();
+                e.stopPropagation();
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('#profname').length && !$(e.target).closest('.dropdownMenuList').length) {
+                    $('#myDropdown').slideUp();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

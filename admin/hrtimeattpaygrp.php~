@@ -1,0 +1,79 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Time and Attendance >> Pay group</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+	echo "<tr><th colspan=\"4\">Add pay group name</th></tr>";
+
+  if($accesslevel >= 4)
+  {
+		echo "<form action=\"hrtimeattpaygrpadd.php?loginid=$loginid\" method=\"post\" name=\"modhrtapaygrpadd\">";
+	  echo "<tr><td colspan=\"4\" align=\"center\">";
+		echo "<font color=\"red\"><b>*</b></font><input size=\"40\" name=\"paygroupname\">";
+		echo "</td></tr>";
+		echo "<tr><td colspan=\"4\" align=\"center\">";
+		echo "Description<br>";
+		echo "<textarea name=\"remarks\" rows=\"2\" cols=\"40\"></textarea>";
+		echo "</td></tr>";
+	  echo "<tr><td colspan=\"4\" align=\"center\">";
+		echo "<input type=\"submit\" value=\"Add pay group\">";
+		echo "</td></tr>";
+		echo "</form>";
+	}
+
+	echo "<tr><td colspan=\"4\" align=\"center\">Note:&nbsp;<font color=\"red\"><b>*</b></font> - required field</td></tr>";
+
+	// echo "<tr><th colspan=\"4\">Pay group list</th></tr>";
+	echo "<tr><th>pay group name</th><th>description</th><th colspan=\"2\">action</th></tr>";
+
+	$result11=""; $found11=0; $ctr11=0;
+	$result11 = mysql_query("SELECT idtblhrtapaygrp, datecreated, paygroupname, remarks FROM tblhrtapaygrp ORDER BY timestamp DESC", $dbh);
+	if($result11 != "") {
+		while($myrow11 = mysql_fetch_row($result11)) {
+		$found11 = 1;
+		$idtblhrtapaygrp11 = $myrow11[0];
+		$datecreated11 = $myrow11[1];
+		$paygroupname11 = $myrow11[2];
+		$remarks11 = $myrow11[3];
+		echo "<tr><td><a href=\"hrtimeattpaygrpedit.php?loginid=$loginid&idpg=$idtblhrtapaygrp11\">$paygroupname11</a></td><td>$remarks11</td><td><a href=\"hrtimeattpaygrpedit.php?loginid=$loginid&idpg=$idtblhrtapaygrp11\">edit</a></td><td><a href=\"hrtimeattpaygrpdel.php?loginid=$loginid&idpg=$idtblhrtapaygrp11\">del</a></td></tr>";
+		}
+	}
+
+// end contents here...
+
+     echo "</table>";
+
+// edit body-footer
+     echo "<p><a href=\"hrtimeatt.php?loginid=$loginid\">Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

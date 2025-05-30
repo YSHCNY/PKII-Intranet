@@ -1,0 +1,18 @@
+<?php
+//
+// hrtimeattqrylvctg.php
+// fr: hrtimeattindivinfo.php
+// req: where17
+
+	$res17query="SELECT tblhrtaleavectg.name, tblhrtaleavectg.quota FROM tblhrtaleavectg WHERE $where17 LIMIT 1";
+	$result17=""; $foun17=0; $ctr17=0;
+	$result17=$dbh2->query($res17query);
+	if($result17->num_rows>0) {
+		while($myrow17=$result17->fetch_assoc()) {
+		$found17=1;
+		$name17 = $myrow17['name'];
+		$quota17 = $myrow17['quota'];
+		} // while
+	} // if
+
+?>

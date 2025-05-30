@@ -1,0 +1,20 @@
+<?php
+//
+// setmail34.php
+// fr: mitsuppreq2.php
+// indexlinks: $page==342x
+
+	// set addressee
+	if($contact_gender17=='Male') { $directaddr="Sir"; $directaddr2="his"; } else if($contact_gender17=="Female") { $directaddr="Madam"; $directaddr2="her"; }
+
+	// compose message
+	$to = $email114;
+	$subject = "FF-UP: IT support request for approval from $deptcd16 dept";
+	$message = "Dear $directaddr,\r\n\r\n";
+	$message = $message . "A follow-up request for IT technical support from $employeeid16 - $name_last17, $name_first17 - $empposition17 is asking for your approval.\r\n\r\n";
+	$message = $message . "Please login to the PKII Intranet and click the IT support request sidebar link to approve or deny the request.\r\n\r\n";
+	$message = $message . "Thank you very much.\r\n\r\n";
+	$message = $message . "Note:\r\nThis is an auto-generated email from PKII Intranet's IT Support Request module.\r\n";
+	$message = $message . "Please do not reply to this email. The IT support request module has the facility to provide input fields for comments and/or clarifications.";
+
+?>

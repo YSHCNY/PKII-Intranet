@@ -1,0 +1,164 @@
+<?php
+//
+// mitsuppreq.php
+// fr: vc/index.php
+// indexlinks: $page==34
+
+require '../includes/config.inc';
+
+$yyyymm = (isset($_POST['monsel'])) ? $_POST['monsel'] :'';
+
+if($yyyymm=='') { $yyyymm="all"; }
+
+if($yyyymm != "all") {
+	$cutstart = $yyyymm."-"."01";
+	$cutstartarr = split("-", $yyyymm);
+	$cutyear = $cutstartarr[0];
+	$cutmonth = $cutstartarr[1];
+	// $cutstart = date("Y-m-01", strtotime($datenow));
+} // if
+
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>IT Support Request</h3></div>
+	</div>
+<?php
+	if($empdepartment0!='') {
+?>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+	<tr>
+<?php 
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=341\" method=\"POST\" name=\"mitsuppreqadd\">";
+?>
+	<td><button class="btn btn-primary">New request</button></td>
+	</form>
+<?php
+	echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=34\" method=\"POST\" name=\"mitsuppreq\" onclick=\"this.form.submit();\">";
+	// query available months
+	include("../m/qrymitsuppreq.php");
+?>
+	<td>Display:
+	<select name="monsel" id='monsel'>
+<?php
+	$param11 = count($yyyymm11Arr);
+	for($x = 0; $x < $param11; $x++) {
+		if($yyyymm11Arr[$x]==$yyyymm) { $yyyymmsel="selected"; } else { $yyyymmsel=""; }
+		echo "<option value=\"".$yyyymm11Arr[$x]."\" $yyyymmsel>".date("Y-M", strtotime($yyyymm11Arr[$x]))."</option>";
+	} // for
+	if($yyyymm=="all") { $allsel="selected"; } else { $allsel=""; }
+	echo "<option value=\"all\" $allsel>All</option>";
+?>
+	</select>
+	<button type="submit" class="btn btn-primary">Submit</button>
+	</td>
+<?php
+	echo "</form>";
+?>
+	</td></tr>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table table-striped">
+<thead>
+	<tr><th>request date</th><th>ticket no.</th><th>request type</th><th>details</th><th>approval status</th><th class="text-center">action taken</th><th>ticket status</th><th>action</th></tr>
+</thead>
+<tbody>
+<?php
+	// query tblitsupportreq
+	include '../m/qrymitsuppreq2.php';
+	// display list
+	$param12 = count($iditsupportreq12Arr);
+	for($x = 0; $x < $param12; $x++) {
+		$found12=1;
+		$ctr12=$ctr12+1;
+		echo "<tr><td>".date("Y-M-d", strtotime($stamprequest12Arr[$x]))."</td><td>".$ticketnum12Arr[$x]."</td>";
+		echo "<td class=\"text-left\">".$resquestctg12Arr[$x]."";
+		// explode requestctg
+		$arritsrctg = explode("|", $requestctg12Arr[$x]);
+		foreach($arritsrctg as $val => $n) {
+			if($n!='') {
+			// query tblitctgsuppreq
+			include '../m/qrymitsuppreq3.php';
+			// display result
+			$param14=count($name14Arr);
+			for($y=0; $y<$param14; $y++) {
+				$found14=1;
+				$ctr14=$ctr14+1;
+				echo "- ".$name14Arr[$y]."<br>";
+			} // for
+			$param14=''; $name14Arr='';
+			} // if()
+		} // foreach()
+		$arritsrctg="";
+		echo "</td>";
+		echo "<td class=\"text-left\">".nl2br($details12Arr[$x])."</td>";
+		// echo "<td>apprstat</td>";
+		if($approvectr12Arr[$x]==0) {
+			$approvestatstr="Pending approval";
+			echo "<td>$approvestatstr</td>";
+		} else if($approvectr12Arr[$x]==1) {
+			$approvestatstr="Request Approved";
+			echo "<td><font color=\"green\">$approvestatstr</font></td>";
+		} // if($approvectr12Arr==0)
+		// query
+		include '../m/qrymitsuppreq4.php';
+		// display result
+		echo "<td>$name15</td>";
+		if($approvectr12Arr[$x]==0) {
+			echo "<td></td>";
+		} else if($approvectr12Arr[$x]==1) {
+			if($ticketnum12Arr[$x]!=0 || $ticketnum12Arr[$x]!='') {
+				if($closeticketsw12Arr[$x]==1) {
+					$closetickstatstr="Ticket CLOSED";
+				} else if($closeticketsw12Arr[$x]==0) {
+					$closetickstatstr="OPEN ticket";
+				} // if($closeticketsw15==1)
+			} else {
+				$closetickstatstr="";
+			} // if($ticketnum15!=0 || $ticketnum15!='')
+			echo "<td>$closetickstatstr</td>";
+		} // if($approvectr15==0)
+		// define actor
+		// manual ctg for actors
+		// REQ=requestor, APP=approver, ACT=actor
+		if($employeeid12Arr[$x]==$employeeid0) {
+			$actor = "REQ";
+		} else if($approveempid12Arr[$x]==$employeeid0) {
+			$actor = "APP";
+		} else if($actionempid12Arr[$x]==$employeeid0) {
+			$actor = "ACT";
+		} // if($employeeid15==$employeeid)
+		echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=342\" method=\"POST\" name=\"mitsuppreqdtl\">";
+		echo "<input type=\"hidden\" name=\"idsr\" value='".$iditsupportreq12Arr[$x]."'>";
+		echo "<input type=\"hidden\" name=\"ctgactor\" value=\"$actor\">";
+		echo "<td><button type=\"submit\" class=\"btn btn-primary\">Details</button></td>";
+		echo "</form>";
+		echo "</tr>";
+	} // foreach
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div> <!-- div class=row -->
+
+	<div class="col-md-12"><h3 class="text-danger">Sorry. No department defined on your profile.</h3></div>
+
+<?php
+	} else {
+?>
+	<div class="col-md-12"><h3 class="text-danger">Sorry. No department defined on your profile.</h3></div>
+<?php
+	} // if($empdepartment0!='')
+?>
+

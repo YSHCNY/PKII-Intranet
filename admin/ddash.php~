@@ -1,0 +1,33 @@
+<?php
+
+	//
+	// Dashboard
+	//
+
+	echo "<table class=\"fin\" width=\"100%\" border=\"1\">";
+
+  // echo "<tr><td colspan='3' align='center'><img src='./images/merry-christmas-hny.jpg'></td></tr>";
+
+	// row1col1
+	echo "<tr><td>";
+	include('ddbirthdays.php');
+	echo "</td>";
+
+	// row1col2
+	echo "<td>";
+	include('ddholidays.php');
+	echo "</td>";
+
+	// row1col3
+	echo "<td>";
+	// include('ddscheduler.php');
+	echo "</td></tr>";
+
+    //20220105
+    // row2 all 3 columns
+    echo "<tr><td colspan='3'>";
+    include ('ddmeetingrms.php');
+    echo "</td></tr>";
+	echo "</table>";
+
+?>

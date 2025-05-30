@@ -1,0 +1,393 @@
+<?php
+//
+// mhrotlvfrm.php
+// fr: vc/index.php
+// indexlinks: $page==364
+
+require '../includes/config.inc';
+require '../includes/dbh.php';
+require 'addons.php';
+
+$resquery2 = "SELECT * from tbllogin LEFT JOIN tblcontact ON tblcontact.employeeid=tbllogin.employeeid WHERE tbllogin.loginid=".$loginid;
+$result2 = $dbh->query($resquery2);
+
+while($myrow2 = $result2->fetch_assoc()) {
+  echo "<input type='hidden' id='fullname' value='".$myrow2['name_first'].' '. $myrow2['name_last']."' />";
+}
+
+
+$id = $_GET['otid'];
+$resquery = "SELECT *, tblcontact.employeeid as employee_id from tblhrtaotreq LEFT JOIN tblcontact ON tblcontact.employeeid=tblhrtaotreq.employeeid WHERE idhrtaotreq=".$id;
+$result = $dbh->query($resquery);
+?>
+ <!-- <div class="row">
+		<div class="col-md-12"><h3>Overtime ID <span id="otreqid"><?php echo $id; ?></span> </h3></div>
+	</div> -->
+
+	<div class="row">
+		<div class="col-md-12">
+      <h4 style="text-align: left">Overtime Details id: <span id="otreqid"><?php echo $id; ?></span></h4>
+      <table class='table table-bordered dt-responsive nowrap no-footer dtr-inline collapsed dataTable'>
+        <?php 
+        while($myrow = $result->fetch_assoc()) {
+            $try = strtotime($myrow['durationto']) - strtotime($myrow['durationfrom']);
+            $hrs = $try/60/60;
+            $status = ($myrow['statusta'] == 0 ? 'Pending' : 'Approved');
+            $btn = '';
+            if($status == 'Pending'){
+							if($myrow['approverempid']==$employeeid0) {
+                // $btnappr = "<button class='btn btn-success btn-approve' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Approve</button>";
+                $btnappr = "<button class='btn btn-success' data-toggle='modal' data-target='#modalApprove' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Approve</button>";
+                $btndisappr = "<button class='btn btn-danger btn-disapprove' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Disapprove</button>";
+							} // if
+							if($myrow['employeeid']==$employeeid0) {
+								// $btnreq = "<button class='btn btn-primary btn-request' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Re-request for Approval</button>";
+                $btnreq = "<strong>Status: Pending for Approval</strong>";
+							} // if
+							// note: notedby button is accessible in admin pages
+							/* if($myrow['notedbyempid']==$employeeid0) {
+								$btnnote = "<button class='btn btn-success btn-approve' data-id='".$myrow['idhrtaotreq']."' style='margin-right:5px;'>Noted</button>";
+							} // if */
+            }
+
+            echo "<tr>";
+            echo "<th colspan = '2'>Date Requested: </th>";
+            echo "<td colspan = '1'>".date('F d, Y', strtotime($myrow['datecreated']))."</td>";
+            echo "<th colspan = '2'>Date of Overtime: </th>";
+            echo "<td colspan = '1'>".date('F d, Y', strtotime($myrow['dateotreq']))."</td>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<th colspan = '1'>Employee Name: </th>";
+            echo "<td colspan = '3'>".$myrow['name_first']." ".$myrow['name_last']."</span></td>";
+            echo "<th colspan = '1'> EmployeeID: </th>";
+            echo "<td colspan = '1'>".$myrow['employee_id']."</td>";
+            echo "</tr>";
+
+
+            echo "<tr>";
+            echo "<th colspan = '1'>Duration From: </th>";
+            echo "<td colspan = '1'>".date('h:i A', strtotime($myrow['durationfrom']))."</td>";
+            echo "<th colspan = '1'>Duration To</th>";
+            echo "<td colspan = '1'>".date('h:i A', strtotime($myrow['durationto']))."</td>";
+            echo "<th colspan = '1'>Total Hrs: </th>";
+            echo "<td colspan = '1'>".number_format($hrs,2)."</td>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<th colspan = '2'>Reason for Overtime: </th>";
+            echo "<td colspan = '4'>".$myrow['reason']."</td>";
+            echo "</tr>";
+
+					if($myrow['employeeid']==$employeeid0 && $myrow['approverempid']!=$employeeid0) {
+						// echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=363\" method=\"POST\" name=\"mhrotfrmreq3\">";
+						echo "<input type=\"hidden\" name=\"idhrtaotreq\" value=\"".$myrow['idhrtaotreq']."\">";
+						echo "<input type=\"hidden\" name=\"reqctr\" value=\"1\">";
+						echo "<tr><td colspan='4'></td><td colspan='2'style='text-align: center;'>$btnreq</td></tr>";
+						// echo "</form>";
+					} // if
+					if($myrow['approverempid']==$employeeid0) {
+						echo "<tr><td colspan='4'></td><td style='text-align: center;'>";
+						// echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=363\" method=\"POST\" name=\"mhrotfrmreq3\">";
+						echo "<input type=\"hidden\" name=\"idhrtaotreq\" value=\"".$myrow['idhrtaotreq']."\">";
+						echo "<input type=\"hidden\" name=\"apprctr\" value=\"1\">";
+						echo "$btnappr";
+						// echo "</form>";
+						echo "</td><td style='text-align: center;'>";
+						// echo "<form action=\"index.php?lst=1&lid=$loginid&sess=$session&p=363\" method=\"POST\" name=\"mhrotfrmreq3\">";
+						echo "<input type=\"hidden\" name=\"idhrtaotreq\" value=\"".$myrow['idhrtaotreq']."\">";
+						echo "<input type=\"hidden\" name=\"apprctr\" value=\"-1\">";
+						echo "$btndisappr";
+						// echo "</form>";
+						echo "</td></tr>";
+					} // if
+
+					// note: notedby button is accessible in admin pages
+					/* if($myrow['notedbyempid']==$employeeid0) {
+						echo "<form action=\"\" method=\"\" name=\"\">";
+						echo "<tr><td colspan='4'></td><td colspan='2'>$btnnote</td></tr>";
+						echo "</form>";
+					} // if */
+
+            $result1=0; $resquery1=""; $result1="";
+            $resquery1 = "SELECT * from tblcontact WHERE employeeid='".$myrow['approverid']."'";
+            $result1 = $dbh->query($resquery1);
+            while($myrow1 = $result1->fetch_assoc()) {
+              $result1=1;
+              echo "<tr>";
+              echo "<th colspan = '2'>Status: </th>";
+              echo "<td colspan = '1'>".$status."</td>";
+              echo "<th colspan = '2'>Approver: </th>";
+              echo "<td colspan = '1'>".$myrow1['name_first']." ".$myrow1['name_last']."</td>";
+              echo "</tr>";
+            }
+            
+        ?>
+      </table>
+
+        <div id='commentSection'>
+          <h4>Comments and Remarks</h4>
+          <div id="line"></div>
+          <div id="messagecontainer">
+            <div id="messageDiv" class="messageDiv">
+              <?php 
+
+                echo $myrow['comments'];
+              ?>
+            </div>
+          </div>
+          <div id="messagesubmit">
+            <div class="col-md-9">
+              <textarea placeholder="Comment Here...." id="commentTextArea" class="form-control"></textarea>
+            </div>
+            <div class="col-md-3">
+              <button type="button" id="btnSubmit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <?php 
+
+          }
+
+        ?>
+
+    </div>
+	</div> <!-- div class=row -->
+
+  <div class="row">
+    <div class="col-md-12">
+    <p><?php echo "<a href='./index.php?lst=1&lid=$loginid&sess=$session&p=36&ps=ot' class='btn btn-default'>back</a>"; ?></button></p>
+    </div>
+  </div> <!-- div class=row -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApproveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalApproveLabel">Approved!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...insert php with sql update query here
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
+          <form action='' method='' name=''>
+          <button type="button" class="btn btn-success">OK</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+  $('#btnSubmit').on('click',function(){
+      var id = $('#otreqid').text();
+      var fullname = $('#fullname').val();
+      var messageDivHtml = $('#messageDiv').html();
+      var newMessageDivHtml = '<div class="messageItem">';
+      newMessageDivHtml += '<div class="messageFirstRow">';
+      newMessageDivHtml += '<div class="col-md-8">';
+      newMessageDivHtml += '<h6>'+fullname+'</h6>';
+      newMessageDivHtml += '</div>';
+      newMessageDivHtml += '<div class="col-md-4">';
+      newMessageDivHtml += '<span>'+new Date().toLocaleString()+'</span>';
+      newMessageDivHtml += '</div>';
+      newMessageDivHtml += '</div>';
+      newMessageDivHtml += '<div class="messageSecondRow">';
+      newMessageDivHtml += '<div class="col-md-12">';
+      newMessageDivHtml += '<p>'+$('#commentTextArea').val()+'</p>';
+      newMessageDivHtml += '</div>';
+      newMessageDivHtml += '<div style="clear:both;"></div>';
+      newMessageDivHtml += '</div>';
+      newMessageDivHtml += '</div>';
+
+      allMessage = newMessageDivHtml + messageDivHtml;
+      
+      $('#messageDiv').html(allMessage);
+      $('#commentTextArea').val('');
+
+      $.ajax({
+                            url : 'tjfunctions/updateMessage.php',
+                            type : 'POST',
+                            data : {id: id, message: allMessage},
+                            success : function(data){
+                            
+
+                            }
+                        }); 
+
+
+  });
+
+
+   $('body').delegate('.btn-approve','click',function(){
+                var id = $(this).data('id');
+                swal({   
+                    title: "Are you sure?", 
+                    text: "You want to approve this request.",   
+                    type: "info",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes!",   
+                    closeOnConfirm: false }, 
+                    function(){
+                          $.ajax({
+                            url : 'tjfunctions/approveotrequest.php',
+                            type : 'POST',
+                            data : {id: id},
+                            success : function(data){
+                            swal("Approved!", "Your request has been approved.", "success"); 
+                            loadDatatable();
+
+                            }
+                        }); 
+                    }
+                );
+            });
+
+
+            $('body').delegate('.btn-disapprove','click',function(){
+                var id = $(this).data('id');
+                swal({   
+                    title: "Are you sure?", 
+                    text: "You want to disapprove this request.",   
+                    type: "info",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes!",   
+                    closeOnConfirm: false }, 
+                    function(){
+                          $.ajax({
+                            url : 'tjfunctions/disapproveotrequest.php',
+                            type : 'POST',
+                            data : {id: id},
+                            success : function(data){
+                            swal("Cancelled!", "Your request has been disapproved.", "success"); 
+                            loadDatatable();
+
+                            }
+                        }); 
+                    }
+                );
+            });
+
+
+            $('body').delegate('.btn-request','click',function(){
+                var id = $(this).data('id');
+                var buttonRequest = $(this);
+                swal({   
+                    title: "Are you sure?", 
+                    text: "You want to request again.",   
+                    type: "info",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes!",   
+                    closeOnConfirm: false }, 
+                    function(){
+                        swal("Success!", "Your request has been sent.", "success"); 
+                        buttonRequest.prop('disabled', true);
+                    }
+                );
+            });
+
+});
+
+
+</script>
+
+<style>
+table{
+  background: white;
+}
+  table td{
+    text-align: left;
+  }
+
+  #commentSection h1,h2,h3,h4,h5,h6,p{
+    text-align: left;
+  }
+
+  #commentSection{
+  width: 100%;
+  height: 450px;
+  background: #efefef;
+  padding:10px; 
+  border-radius: 10px;
+  border: 1px solid #777777;
+}
+
+#commentSection h4{
+  margin: 0;
+  text-align: left;
+  padding-left: 10px;
+
+}
+#line{
+  width: 100%;
+  margin-top:5px;
+  height: 2px;
+  background: #000000;
+  margin-bottom: 5px;
+}
+
+#messagecontainer{
+  width: 100%;
+  height: 320px;
+  margin-bottom: 5px;
+  border: 1px solid #000000;
+  overflow: auto;
+}
+#messagesubmit{
+  width: 100%;
+  height: 75px;
+  padding:10px;
+  border: 1px solid #000000;
+  border-radius: 0px 0px 10px 10px;
+}
+#messagesubmit .col-md-9{
+  padding: 0;
+}
+#messagesubmit .col-md-3{
+  padding-right: 0;
+}
+
+button#btnSubmit {
+    width: 100%;
+    height: 100%;
+    background: #3d2c7d;
+    text-transform: uppercase;
+    border: 2px solid #3d2c7d;
+    transition: all 0.5s ease;
+}
+
+button#btnSubmit:hover{
+  background: #f7f7f7;
+  color:#3d2c7d;
+}
+
+.messageDiv h6{
+  font-size: 16px;
+  margin-top:5px;
+}
+.messageDiv .col-md-4{
+  margin-top:5px;
+}
+
+.messageSecondRow{
+  border-bottom: 2px solid #000000;
+}
+.borderGray{
+  border:2px solid #efefef;
+}
+
+.secondRowColumn h3{
+  text-align: left;
+  font-size: 16px;
+}
+</style>

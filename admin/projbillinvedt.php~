@@ -1,0 +1,396 @@
+<?php 
+
+require("db1.php");
+include("datetimenow.php");
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+
+$contract_id0 = (isset($_GET['cid'])) ? $_GET['cid'] :'';
+$contractinvoice_id0 = (isset($_GET['ciid'])) ? $_GET['ciid'] :'';
+
+$contractinvoice_id = (isset($_POST['contractinvoiceid'])) ? $_POST['contractinvoiceid'] :'';
+$contract_id = (isset($_POST['contractid'])) ? $_POST['contractid'] :'';
+
+if($contract_id0!='' && $contractinvoice_id0!='') {
+    $contractinvoice_id = $contractinvoice_id0; $contract_id = $contract_id0;
+} //if
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+} // if
+
+if($found == 1 && substr($level, -33, 1) == 1) {
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+     echo "<p><font size=1>Modules >> Project Billing >> Contract >> Edit invoice</font></p>";
+
+     echo "<table class=\"fin\" border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+// start contents here...
+
+	// title head
+	echo "<tr><th colspan=\"2\">Project Billing > Contract > Edit invoice</th></tr>";
+	
+ // echo "<tr><td colspan=\"2\">";
+if($contractinvoice_id!='' && $contract_id!='') {
+
+	// query tblcontractinvoice join tblcontract
+	$res11query="SELECT tblcontractinvoice.contractinvoice_num, tblcontractinvoice.contractinvoice_refnum, tblcontractinvoice.contractinvoice_milestone, tblcontractinvoice.contractinvoice_periodcov_start, tblcontractinvoice.contractinvoice_periodcov_end, tblcontractinvoice.contractinvoice_percent, tblcontractinvoice.contractinvoice_recoup_pct, tblcontractinvoice.contractinvoice_recoup_amt, tblcontractinvoice.contractinvoice_plan_inv_date, tblcontractinvoice.contractinvoice_plan_inv_amt, tblcontractinvoice.contractinvoice_plan_inv_pct, tblcontractinvoice.contractinvoice_plan_vat_pct, tblcontractinvoice.contractinvoice_plan_vat_amt, tblcontractinvoice.contractinvoice_plan_subm_date, tblcontractinvoice.contractinvoice_actl_inv_date, tblcontractinvoice.contractinvoice_actl_inv_amt, tblcontractinvoice.contractinvoice_actl_inv_pct, tblcontractinvoice.contractinvoice_actl_vat_pct, tblcontractinvoice.contractinvoice_actl_vat_amt, tblcontractinvoice.contractinvoice_actl_subm_date, tblcontractinvoice.contractinvoice_revised_inv_date, tblcontractinvoice.contractinvoice_revised_inv_amt, tblcontractinvoice.contractinvoice_revised_inv_pct, tblcontractinvoice.contractinvoice_revised_vat_pct, tblcontractinvoice.contractinvoice_revised_vat_amt, tblcontractinvoice.contractinvoice_revised_subm_date, tblcontractinvoice.contractinvoice_collected_date, tblcontractinvoice.contractinvoice_collected_amt, tblcontractinvoice.contractinvoice_status, tblcontractinvoice.contractinvoice_remarks, tblcontractinvoice.contractinvoice_filepath, tblcontractinvoice.contractinvoice_filename, tblcontractinvoice.fk_contract_id, tblcontractinvoice.billingst_num, tblcontractinvoice.contractinvoice_plan_reimb_amt, tblcontractinvoice.contractinvoice_actl_reimb_amt, tblcontractinvoice.contractinvoice_revised_reimb_amt, tblcontract.contract_title, 
+tblcontract.contract_num, tblcontract.contract_type, tblcontract.contract_totcost_balance, tblcontract.contract_totcost_paid, tblcontract.contract_totcost_directcost, tblcontract.contract_totcost_tax, tblcontract.contract_totcost_remuneration, tblcontract.contract_recoupment_pct, tblcontract.contract_recoupment_amt, tblcontract.contract_recoupment_balance, tblcontract.fk_projcode FROM tblcontractinvoice INNER JOIN tblcontract ON tblcontractinvoice.fk_contract_id=tblcontract.contract_id WHERE tblcontractinvoice.fk_contract_id=$contract_id AND tblcontractinvoice.contractinvoice_id=$contractinvoice_id LIMIT 1";
+	$result11=""; $found11=0; $ctr11=0;
+	$result11=$dbh2->query($res11query);
+	if($result11->num_rows>0) {
+		while($myrow11=$result11->fetch_assoc()) {
+		$found11=1;
+		$contractinvoice_num11 = $myrow11['contractinvoice_num'];
+		$contractinvoice_refnum11 = $myrow11['contractinvoice_refnum'];
+		$contractinvoice_milestone11 = $myrow11['contractinvoice_milestone'];
+		$contractinvoice_periodcov_start11 = $myrow11['contractinvoice_periodcov_start'];
+		if($contractinvoice_periodcov_start11!='0000-00-00 00:00:00') {
+		$contractinvoice_periodcov_start11 = date('Y-m-d', strtotime($myrow11['contractinvoice_periodcov_start']));
+		} // if
+		$contractinvoice_periodcov_end11 = $myrow11['contractinvoice_periodcov_end'];
+		if($contractinvoice_periodcov_end11!='0000-00-00 00:00:00') {
+		$contractinvoice_periodcov_end11 = date('Y-m-d', strtotime($myrow11['contractinvoice_periodcov_end']));
+		} // if
+		$contractinvoice_percent11 = $myrow11['contractinvoice_percent'];
+		$contractinvoice_recoup_pct11 = $myrow11['contractinvoice_recoup_pct'];
+		$contractinvoice_recoup_amt11 = $myrow11['contractinvoice_recoup_amt'];
+		$contractinvoice_plan_inv_date11 = $myrow11['contractinvoice_plan_inv_date'];
+		if($contractinvoice_plan_inv_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_plan_inv_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_plan_inv_date']));
+		} // if
+		$contractinvoice_plan_inv_amt11 = $myrow11['contractinvoice_plan_inv_amt'];
+		$contractinvoice_plan_inv_pct11 = $myrow11['contractinvoice_plan_inv_pct'];
+		$contractinvoice_plan_vat_pct11 = $myrow11['contractinvoice_plan_vat_pct'];
+		$contractinvoice_plan_vat_amt11 = $myrow11['contractinvoice_plan_vat_amt'];
+		$contractinvoice_plan_subm_date11 = $myrow11['contractinvoice_plan_subm_date'];
+		if($contractinvoice_plan_subm_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_plan_subm_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_plan_subm_date']));
+		} // if
+		$contractinvoice_actl_inv_date11 = $myrow11['contractinvoice_actl_inv_date'];
+		if($contractinvoice_actl_inv_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_actl_inv_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_actl_inv_date']));
+		} // if
+		$contractinvoice_actl_inv_amt11 = $myrow11['contractinvoice_actl_inv_amt'];
+		$contractinvoice_actl_inv_pct11 = $myrow11['contractinvoice_actl_inv_pct'];
+		$contractinvoice_actl_vat_pct11 = $myrow11['contractinvoice_actl_vat_pct'];
+		$contractinvoice_actl_vat_amt11 = $myrow11['contractinvoice_actl_vat_amt'];
+		$contractinvoice_actl_subm_date11 = $myrow11['contractinvoice_actl_subm_date'];
+		if($contractinvoice_actl_subm_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_actl_subm_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_actl_subm_date']));
+		} // if
+		$contractinvoice_revised_inv_date11 = $myrow11['contractinvoice_revised_inv_date'];
+		if($contractinvoice_revised_inv_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_revised_inv_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_revised_inv_date']));
+		} // if
+		$contractinvoice_revised_inv_amt11 = $myrow11['contractinvoice_revised_inv_amt'];
+		$contractinvoice_revised_inv_pct11 = $myrow11['contractinvoice_revised_inv_pct'];
+		$contractinvoice_revised_vat_pct11 = $myrow11['contractinvoice_revised_vat_pct'];
+		$contractinvoice_revised_vat_amt11 = $myrow11['contractinvoice_revised_vat_amt'];
+		$contractinvoice_revised_subm_date11 = $myrow11['contractinvoice_revised_subm_date'];
+		if($contractinvoice_revised_subm_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_revised_subm_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_revised_subm_date']));
+		} // if
+		$contractinvoice_collected_date11 = $myrow11['contractinvoice_collected_date'];
+		if($contractinvoice_collected_date11!='0000-00-00 00:00:00') {
+		$contractinvoice_collected_date11 = date('Y-m-d', strtotime($myrow11['contractinvoice_collected_date']));
+		} // if
+		$contractinvoice_collected_amt11 = $myrow11['contractinvoice_collected_amt'];
+		$contractinvoice_status11 = $myrow11['contractinvoice_status'];
+		$contractinvoice_remarks11 = $myrow11['contractinvoice_remarks'];
+		$contractinvoice_filepath11 = $myrow11['contractinvoice_filepath'];
+		$contractinvoice_filename11 = $myrow11['contractinvoice_filename'];
+		$fk_contract_id11 = $myrow11['fk_contract_id'];
+		$contract_title11 = $myrow11['contract_title'];
+		$contract_num11 = $myrow11['contract_num'];
+		$contract_type11 = $myrow11['contract_type'];
+		$contract_totcost_balance11 = $myrow11['contract_totcost_balance'];
+		$contract_totcost_paid11 = $myrow11['contract_totcost_paid'];
+		$contract_totcost_directcost11 = $myrow11['contract_totcost_directcost'];
+		$contract_totcost_tax11 = $myrow11['contract_totcost_tax'];
+		$contract_totcost_remuneration11 = $myrow11['contract_totcost_remuneration'];
+		$contract_recoupment_pct11 = $myrow11['contract_recoupment_pct'];
+		$contract_recoupment_amt11 = $myrow11['contract_recoupment_amt'];
+		$contract_recoupment_balance11 = $myrow11['contract_recoupment_balance'];
+		$fk_projcode11 = $myrow11['fk_projcode'];
+    $billingst_num11 = $myrow11['billingst_num'];
+    $contractinvoice_plan_reimb_amt11 = $myrow11['contractinvoice_plan_reimb_amt'];
+    $contractinvoice_actl_reimb_amt11 = $myrow11['contractinvoice_actl_reimb_amt'];
+    $contractinvoice_revised_reimb_amt11 = $myrow11['contractinvoice_revised_reimb_amt'];
+
+		$proj_code = $fk_projcode11;
+		$contract_totcost = $contract_totcost_directcost11 + (($contract_totcost_directcost11*$contract_totcost_tax11)/100) + $contract_totcost_remuneration11;
+		} // while
+	} // if
+	echo "<tr><th class='text-right'>Project code</th><td>$proj_code</td></tr>";
+	echo "<tr><th class='text-right'>Contract title</th><td>$contract_title11</td></tr>";
+	echo "<tr><th class='text-right'>Contract number</th><td>$contract_num11</td></tr>";
+	echo "<tr><th class='text-right'>Type</th><td>$contract_type11</td></tr>";
+	echo "<tr><th class='text-right'>Contract amount</th><td>".number_format($contract_totcost, 2)."</td></tr>";
+	if($contract_recoupment_pct11!=0 || $contract_recoupment_amt11!=0) {
+	echo "<tr><th class='text-right'>Recoupment</th><td>".number_format($contract_recoupment_amt11, 2)."&nbsp;(".number_format($contract_recoupment_pct11)."%)</td></tr>";
+	} // if
+	echo "<tr><th class='text-right'>Amount paid</th><td>".number_format($contract_totcost_paid11, 2)."</td></tr>";
+	echo "<tr><th class='text-right'>Balance</th><td>".number_format($contract_totcost_balance11, 2)."</td></tr>";
+
+	// for encoders
+  if($accesslevel >= 3) {
+
+	echo "<form enctype='multipart/form-data' action='projbillinvedt2.php?loginid=$loginid' method='POST' name='projbillinvnewadd'>";
+	echo "<input type='hidden' name='contractid' value='$contract_id'>";
+	echo "<input type='hidden' name='contractinvoiceid' value='$contractinvoice_id'>";
+	echo "<input type='hidden' name='projcode' value='$proj_code'>";
+	echo "<tr><th class='text-right'>Invoice number</th><td><input name='contractinvoice_num' value='$contractinvoice_num11'></td></tr>";
+	echo "<tr><th class='text-right'>Ref. no.</th><td><input name='refno' value='$contractinvoice_refnum11'></td></tr>";
+	echo "<tr><th class='text-right'>Period covered</th><td>";
+	echo "From<input type='date' name='periodcov_start' value='$contractinvoice_periodcov_start11'>&nbsp;To:<input type='date' name='periodcov_end' value='$contractinvoice_periodcov_end11'>";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Milestone</th><td>";
+	echo "<select name='contractinvoice_milestone'>";
+	// query tblprojctgmilestone
+	$res14query="SELECT idprojctgmilestone, code, name FROM tblprojctgmilestone ORDER BY seq ASC";
+	$result14=""; $found14=0; $ctr14=0;
+	$result14=$dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
+		$found14=1;
+		$ctr14=$ctr14+1;
+		$idprojctgmilestone14 = $myrow14['idprojctgmilestone'];
+		$code14 = $myrow14['code'];
+		$name14 = $myrow14['name'];
+		if($contractinvoice_milestone11==$code14) { $milestonesel="selected"; } else { $milestonesel=""; }
+		echo "<option value='$code14' $milestonesel>$name14</option>";
+		} // while
+	} // if
+	echo "</select>";
+	echo "</td></tr>";
+
+	echo "<tr><th class='text-right'>File attachment</th><td>";
+		echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"50000000\" />";
+    echo "<input name=\"uploadedfile\" type=\"file\" />";
+    if($contractinvoice_filename11!='') {
+		echo "&nbsp;<a href='./$contractinvoice_filepath11/$contractinvoice_filename11' target='_blank'>$contractinvoice_filename11</a>";
+        if($contractinvoice_filename11!='') {
+        echo "&nbsp;<a href=\"./projbillinvdelfile.php?loginid=$loginid&cid=$contract_id&ciid=$contractinvoice_id\" class='btn btn-danger btn-sm' role='button'>remove</a>";
+        } //if
+    } //if
+	echo "</td></tr>";
+
+	echo "<tr><td colspan='2'>";
+
+	echo "<table class='fin' border='0' spacing='0' cellspacing='0' cellpadding='0'>";
+	echo "<tr><td>";
+	// col1
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Planned</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_plan_inv_date' value='$contractinvoice_plan_inv_date11'></td></tr>";
+	// echo "<tr><th class='text-right'>Invoice amount</th><td>";
+  echo "<tr><th class='text-right'>Remuneration</th><td>";
+	// echo "<input type='radio' id='radioa1' name='invplanchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_plan_inv_amt' value='$contractinvoice_plan_inv_amt11' onchange='rdiosela1()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_plan_inv_amt' value='$contractinvoice_plan_inv_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	// echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	// echo "<input type='radio' id='radioa2' name='invplanchksw' value='percent'>";
+	// echo "<input type='number' step='0.1' name='contractinvoice_plan_inv_pct' value='$contractinvoice_plan_inv_pct11'>%";
+	// echo "<input type='number' step='0.1' name='contractinvoice_plan_inv_pct' value='' onchange='rdiosela2()'>%";
+	// echo "</td></tr>";
+	echo "<tr><th class='text-right'>Reimbursable</th><td>";
+	echo "<input type='number' step='0.01' name='contractinvoice_plan_reimb_amt' value='$contractinvoice_plan_reimb_amt11'>";
+	echo "</td></tr>";
+
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	// echo "<input type='radio' id='radioa3' name='invvatplanchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_plan_vat_amt' value='$contractinvoice_plan_vat_amt11' onchange='rdiosela3()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_plan_vat_amt' value='$contractinvoice_plan_vat_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	// echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	// echo "<input type='radio' id='radioa4' name='invvatplanchksw' value='percent'>";
+	// echo "<input type='number' step='0.1' name='contractinvoice_plan_vat_pct' value='$contractinvoice_plan_vat_pct11' onchange='rdiosela4()'>%";
+	// echo "<input type='number' step='0.1' name='contractinvoice_plan_vat_pct' value='$contractinvoice_plan_vat_pct11'>%";
+	// echo "</td></tr>";
+
+// compute total invoice amount
+    $contractinvoice_plan_totinv_amt=0;
+    $contractinvoice_plan_totinv_amt=$contractinvoice_plan_inv_amt11+$contractinvoice_plan_reimb_amt11+$contractinvoice_plan_vat_amt11;
+	  echo "<tr><th class='text-right'>Total Invoice Amount</th><th class='text-right'>";
+	  echo number_format($contractinvoice_plan_totinv_amt, 2);
+	  echo "</th></tr>";
+
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_plan_subm_date' value='$contractinvoice_plan_subm_date11'></td></tr>";
+		echo "</table>";
+	echo "</td><td>";
+	// col2
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Actual</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_actl_inv_date' value='$contractinvoice_actl_inv_date11'></td></tr>";
+	// echo "<tr><th class='text-right'>Invoice amount</th><td>";
+    echo "<tr><th class='text-right'>Remuneration</th><td>";
+	// echo "<input type='radio' id='radiob1' name='invactlchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_actl_inv_amt' value='$contractinvoice_actl_inv_amt11' onchange='rdioselb1()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_actl_inv_amt' value='$contractinvoice_actl_inv_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	// echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	// echo "<input type='radio' id='radiob2' name='invactlchksw' value='percent'>";
+	// echo "<input type='number' step='0.1' name='contractinvoice_actl_inv_pct' value='0.0' onchange='rdioselb2()'>%";
+	// echo "</td></tr>";
+	echo "<tr><th class='text-right'>Reimbursable</th><td>";
+	echo "<input type='number' step='0.01' name='contractinvoice_actl_reimb_amt' value='$contractinvoice_actl_reimb_amt11'>";
+	echo "</td></tr>";
+
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	// echo "<input type='radio' id='radiob3' name='invvatactlchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_actl_vat_amt' value='$contractinvoice_actl_vat_amt11' onchange='rdioselb3()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_actl_vat_amt' value='$contractinvoice_actl_vat_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	// echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	// echo "<input type='radio' id='radiob4' name='invvatactlchksw' value='percent'>";
+	// echo "<input type='number' step='0.1' name='contractinvoice_actl_vat_pct' value='$contractinvoice_actl_vat_pct11' onchange='rdioselb4()'>%";
+	// echo "<input type='number' step='0.1' name='contractinvoice_actl_vat_pct' value='$contractinvoice_actl_vat_pct11'>%";
+	// echo "</td></tr>";
+
+// compute total invoice amount
+    $contractinvoice_actl_totinv_amt=0;
+    $contractinvoice_actl_totinv_amt=$contractinvoice_actl_inv_amt11+$contractinvoice_actl_reimb_amt11+$contractinvoice_actl_vat_amt11;
+	  echo "<tr><th class='text-right'>Total Invoice Amount</th><th class='text-right'>";
+	  echo number_format($contractinvoice_actl_totinv_amt, 2);
+	  echo "</th></tr>";
+
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_actl_subm_date' value='$contractinvoice_actl_subm_date11'></td></tr>";
+		echo "</table>";
+	echo "</td><td>";
+	// col3
+		echo "<table class='fin'>";
+		echo "<tr><th class='text-center' colspan='2'>Revised</th></tr>";
+	echo "<tr><th class='text-right'>Invoice date</th><td><input type='date' name='contractinvoice_revised_inv_date' value='$contractinvoice_revised_inv_date11'></td></tr>";
+	echo "<tr><th class='text-right'>Invoice amount</th><td>";
+	// echo "<input type='radio' id='radioc1' name='invrevchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_amt' value='$contractinvoice_revised_inv_amt11' onchange='rdioselc1()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_amt' value='$contractinvoice_revised_inv_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Invoice percentage</th><td>";
+	// echo "<input type='radio' id='radioc2' name='invrevchksw' value='percent'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_pct' value='$contractinvoice_revised_inv_amt11' onchange='rdioselc2()'>%";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_inv_pct' value='$contractinvoice_revised_inv_pct11'>%";
+	// echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT amount</th><td>";
+	// echo "<input type='radio' id='radioc3' name='invvatrevchksw' value='amount'>";
+	// echo "<input type='number' step='0.01' name='contractinvoice_revised_vat_amt' value='$contractinvoice_revised_vat_amt11' onchange='rdioselc3()'>";
+	echo "<input type='number' step='0.01' name='contractinvoice_revised_vat_amt' value='$contractinvoice_revised_vat_amt11'>";
+	// echo "<br>or";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>VAT percentage</th><td>";
+	// echo "<input type='radio' id='radioc4' name='invvatrevchksw' value='percent'>";
+	// echo "<input type='number' step='0.1' name='contractinvoice_revised_vat_pct' value='$contractinvoice_revised_vat_pct11' onchange='rdioselc4()'>%";
+	echo "<input type='number' step='0.1' name='contractinvoice_revised_vat_pct' value='$contractinvoice_revised_vat_pct11'>%";
+	echo "</td></tr>";
+	echo "<tr><th class='text-right'>Submission date</th><td><input type='date' name='contractinvoice_revised_subm_date' value='$contractinvoice_revised_subm_date11'></td></tr>";
+		echo "</table>";
+
+	echo "</td></tr>";
+	echo "</table>";
+
+	echo "</td></tr>";
+
+	echo "<tr><th colspan='2'>Collection details</th></tr>";
+	echo "<tr><th class='text-right'>Date collected</th><td><input type='date' name='contractinvoice_collected_date' value='$contractinvoice_collected_date11'></td></tr>";
+	echo "<tr><th class='text-right'>Amount collected</th><td><input type='number' step='.01' name='contractinvoice_collected_amount' value='$contractinvoice_collected_amt11'></td></tr>";
+	echo "<tr><td colspan='2' class='text-center'><button type='submit' class='btn btn-success'>Save details</button></td></tr>";
+	echo "</form>";
+
+  } // (if accesslevel >= 3)
+
+	// for supervisors+
+	if($accesslevel >= 4) {
+
+	} // (if accesslevel >= 4)
+
+} // if
+
+  echo "</td></tr>";
+
+// end contents here...
+
+     echo "</table>";
+
+	// echo "<p>vartest f11:$found11 cid:$contract_id prjcd:$proj_code<br>$res11query</p>";
+
+		echo "<form action='projbilldtls.php?loginid=$loginid' method='POST' name='projbilldtls'>";
+		echo "<input type='hidden' name='contractid' value='$contract_id'>";
+		echo "<input type='hidden' name='projcode' value='$proj_code'>";
+     echo "<p><button type='submit' class='btn btn-primary'>Back</button></p>";
+		echo "</form>";
+
+     $resquery = "UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+		$result = $dbh2->query($resquery); 
+
+     include ("footer.php");
+} else {
+     include("logindeny.php");
+}
+?>
+<SCRIPT type="text/javascript" language="JavaScript">
+function rdiosela1()
+{
+     document.getElementById('radioa1').checked = true;	
+}
+function rdiosela2()
+{
+     document.getElementById('radioa2').checked = true;	
+}
+function rdiosela3()
+{
+     document.getElementById('radioa3').checked = true;	
+}
+function rdiosela4()
+{
+     document.getElementById('radioa4').checked = true;	
+}
+function rdioselb1()
+{
+     document.getElementById('radiob1').checked = true;	
+}
+function rdioselb2()
+{
+     document.getElementById('radiob2').checked = true;	
+}
+function rdioselb3()
+{
+     document.getElementById('radiob3').checked = true;	
+}
+function rdioselb4()
+{
+     document.getElementById('radiob4').checked = true;	
+}
+function rdioselc1()
+{
+     document.getElementById('radioc1').checked = true;	
+}
+function rdioselc2()
+{
+     document.getElementById('radioc2').checked = true;	
+}
+function rdioselc3()
+{
+     document.getElementById('radioc3').checked = true;	
+}
+function rdioselc4()
+{
+     document.getElementById('radioc4').checked = true;	
+}
+
+</SCRIPT>
+<?php
+$dbh2->close();
+?>
+

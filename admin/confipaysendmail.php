@@ -1,0 +1,543 @@
+<?php
+
+require("db1.php");
+include("datetimenow.php");
+include("clsmcrypt.php");
+
+$loginid = $_GET['loginid'];
+
+$groupname = $_POST['groupname'];
+$cutstart = $_POST['cutstart'];
+$cutend = $_POST['cutend'];
+
+$employeeid = $_POST['employeeid'];
+$from = $_POST['from'];
+$cc = $_POST['cc'];
+$bcc = $_POST['bcc'];
+$subject = $_POST['subject'];
+$header = $_POST['header'];
+$mailhead = $_POST['mailhead'];
+$salary = $_POST['salary'];
+$footer = $_POST['footer'];
+$notes = $_POST['notes'];
+
+if($cutstart==$cutend) { $paytype="onetime"; } else { $paytype="cutoff"; }
+
+$found=0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+
+/**
+* start email message format
+*/
+
+// Check single-line inputs: returns false if text contains newline character
+function has_no_newlines($text)
+{
+  return preg_match("/(%0A|%0D|\\n+|\\r+)/i", $text) == 0;
+}
+
+// Check multi-line inputs: returns false if text contains newline followed by email-header specific string
+function has_no_emailheaders($text)
+{
+  return preg_match("/(%0A|%0D|\\n+|\\r+)(content-type:|to:|cc:|bcc:)/i", $text) == 0;
+}
+
+// Check OS type for line breaks
+if (strtoupper(substr(PHP_OS,0,3)=='WIN')) { $eol = "\r\n"; }
+elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) { $eol = "\r"; }
+else { $eol = "\n"; }
+
+
+foreach ($employeeid as $value)
+{
+// Common Headers
+$mailheader = 'From: <noreply@philkoei.com.ph>'.$eol;
+$mailheader .= 'Reply-To: <noreply@philkoei.com.ph>'.$eol;
+$mailheader .= 'Return-Path: <noreply@philkoei.com.ph>'.$eol;
+$mailheader .= "Message-ID:<".$now.$_SERVER['SERVER_NAME'].">".$eol;
+$mailheader .= "X-Mailer: PHP v".phpversion().$eol;
+
+// Set boundaries
+$mime_boundary = md5(time());
+$mailheader .= 'Mime-Version: 1.0'.$eol;
+$mailheader .= "Content-Type: multipart/related; boundary=\"".$mime_boundary."\"".$eol;
+$message = "";
+
+  $result = mysql_query("SELECT tblconfipayroll.confipayrollid, tblconfipayroll.employeeid, tblconfipayroll.accesslevel, tblconfipayroll.netbasicpay, tblconfipayroll.daysabsent, tblconfipayroll.daysabsentamt, tblconfipayroll.netbasicpay2, tblconfipayroll.vatrate, tblconfipayroll.netofvat, tblconfipayroll.otherincome, tblconfipayroll.otherincomenontaxable, tblconfipayroll.grosspay, tblconfipayroll.withholdingtax, tblconfipayroll.sssee,  tblconfipayroll.ssser, tblconfipayroll.philhealthee, tblconfipayroll.philhealther, tblconfipayroll.pagibiger, tblconfipayroll.pagibigee, tblconfipayroll.otherdeductions, tblconfipayroll.totaldeductions, tblconfipayroll.netpay FROM tblconfipayroll WHERE tblconfipayroll.employeeid=\"$value\" AND tblconfipayroll.groupname=\"$groupname\" AND tblconfipayroll.cutstart=\"$cutstart\" AND tblconfipayroll.cutend=\"$cutend\"", $dbh);
+	if($result != "") {
+	  while ($myrow = mysql_fetch_row($result)) {
+    $found = 1;
+    $confipayrollid = $myrow[0];
+    $employeeid = $myrow[1];
+		$confiaccesslevel = $myrow[2];
+    $netbasicpay = $myrow[3];
+    $daysabsent = $myrow[4];
+    $daysabsentamt = $myrow[5];
+    $netbasicpay2 = $myrow[6];
+    $vatrate = $myrow[7];
+    $netofvat = $myrow[8];
+    $otherincome = $myrow[9];
+    $otherincomenontaxable = $myrow[10];
+    $grosspay = $myrow[11];
+    $withholdingtax = $myrow[12];
+    $sssee = $myrow[13];
+    $ssser = $myrow[14];
+    $philhealthee = $myrow[15];
+    $philhealther = $myrow[16];
+    $pagibiger = $myrow[17];
+    $pagibigee = $myrow[18];
+    $otherdeductions = $myrow[19];
+    $totaldeductions = $myrow[20];
+    $netpay = $myrow[21];
+
+		if($confiaccesslevel==5 && $accesslevel==5) {
+		include("mcryptdec.php");
+		$empID = $employeeid;
+		include("mcryptenc.php");
+		} else if($confiaccesslevel<=4) {
+		$empID = $employeeid;
+		}
+		$res11query="SELECT tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.email1 FROM tblcontact WHERE tblcontact.employeeid=\"$empID\" AND tblcontact.contact_type=\"personnel\"";
+		$result11=""; $found11=0; $ctr11=0;
+		$result11 = mysql_query("$res11query", $dbh);
+		if($result11 != "") {
+			while($myrow11 = mysql_fetch_row($result11)) {
+			$found11 = 1;
+			$name_last = $myrow11[0];
+			$name_first = $myrow11[1];
+			$name_middle = $myrow11[2];
+			$email1 = $myrow11[3];
+			}
+		}
+	  }
+	}
+
+  // Text version header
+  $msgtxt = "PHILKOEI INTERNATIONAL INC.".$eol."Pay Advisory - Confidential".$eol.$eol."$header".$eol.$eol;
+
+  $msgtxt .= "Payroll Summary".$eol;
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+  $msgtxt .= "Payroll Group: $groupname".$eol;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+  $msgtxt .= "Payroll Group: $groupname".$eol;
+	}
+  $msgtxt .= "$cutstart -to- $cutend".$eol.$eol;
+
+  // HTML version header
+  $msghtml = "<html><head><title>PKII - Payslip Summary</title>";
+  $msghtml .= "<STYLE TYPE=\"text/css\">";
+  $msghtml .= "<!--";
+  $msghtml .= "BODY{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "p{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "B{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "TD{font-family: Helvetica; font-size: 10pt;}";
+  $msghtml .= "--->";
+  $msghtml .= "</STYLE>";
+  $msghtml .= "</head><body>";
+
+  $msghtml .= "<h2><font color=\"blue\">PHILKOEI INTERNATIONAL, INC.</font></h2>";
+  $msghtml .= "<p><b>Pay Advisory - Confidential</b><br>";
+  $msghtml .= "$header</p>";
+
+	if($paytype=='cutoff') {
+  $msghtml .= "<p><b>Payroll Summary</b></br>";
+	} else if($paytype=='onetime') {
+  $msghtml .= "<p><b>Pay Summary</b></br>";
+	} // if
+
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+  $msghtml .= "Pay Group: $groupname</br>";	
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+  $msghtml .= "Pay Group: $groupname</br>";
+	}
+  $msghtml .= "$cutstart -to- $cutend</p>";
+
+	if($paytype=='cutoff') {
+  $msghtml .= "<b>Payroll Summary</b><br>";
+	} else if($paytype=='onetime') {
+  $msghtml .= "<b>Pay Summary</b><br>";
+	} // if
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+  // Text format main summary
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+  $msgtxt .= "Employee No.: $employeeid".$eol;
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+  $msgtxt .= "Employee No.: $employeeid".$eol;
+	}
+  $msgtxt .= "Fullname: $name_last, $name_first $name_middle".$eol.$eol;
+
+	if($paytype=='cutoff') {
+
+  $msgtxt .= "Prof. Fee: $netbasicpay".$eol;
+  $msgtxt .= "Days Absent: $daysabsent".$eol;
+  $msgtxt .= "Absent Amount: $daysabsentamt".$eol;
+  $msgtxt .= "Net Basic Pay: $netbasicpay2".$eol;
+
+  if($vatrate != 0 && $netofvat != 0) {
+  $msgtxt .= "VAT: $vatrate".$eol;
+  $msgtxt .= "Net of VAT: $netofvat".$eol; }
+
+  $msgtxt .= "Taxable Income: $otherincome".$eol;
+  $msgtxt .= "Non-Taxable Income: $otherincomenontaxable".$eol;
+  $msgtxt .= "GROSS Pay: $grosspay".$eol.$eol;
+
+  $msgtxt .= "Withholding Tax: $withholdingtax".$eol;
+  if($sssee != 0) { $msgtxt .= "SSS: $sssee".$eol; }
+  if($philhealthee != 0) { $msgtxt .= "Philhealth: $philhealthee".$eol; }
+  if($pagibigee != 0) { $msgtxt .= "Pagibig: $pagibigee".$eol; }
+  $msgtxt .= "Other Deductions: $otherdeductions".$eol;
+  $msgtxt .= "TOTAL Deductions: $totaldeductions".$eol.$eol;
+
+  $msgtxt .= "NET PAY: $netpay".$eol;
+
+	} else if($paytype=='onetime') {
+
+  $msgtxt .= "GROSS Pay: $grosspay".$eol.$eol;
+  $msgtxt .= "Less: Withholding Tax: $withholdingtax".$eol;
+  $msgtxt .= "Less: Other Deductions: $otherdeductions".$eol;
+  $msgtxt .= "NET Amount: $netpay".$eol;
+
+	} // if
+
+  // HTML format main summary
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+
+	//
+	if($paytype=='cutoff') {
+	//
+
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>Prof.Fee</td><td>DaysAbsent</td><td>Absent</td><td>NetBasicPay</td>";
+
+  if($vatrate != 0 && $netofvat != 0) {
+  $msghtml .= "<td>VAT</td><td>NetofVAT</td>"; }
+
+  $msghtml .= "<td>OtherIncome</td><td>NonTaxableIncome</td><td>GrossPay</td><td>WithholdingTax</td><td>SSS</td><td>Philhealth</td><td>PagIBIG</td><td>OtherDeductions</td><td>TotalDeductions</td><td><b>NetPay</b></td></tr>";
+
+	//
+	} else if($paytype=='onetime') {
+	//
+
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>Gross amount</td><td>Withholding tax</td><td>Other deductions</td><td>Net Amount</td></tr>";
+
+	//
+	} // if
+	//
+
+  $msghtml .= "<tr>";
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+	$msghtml .= "<td>$employeeid</td>";
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+	$msghtml .= "<td>$employeeid</td>";
+	} // if
+
+	$msghtml .= "<td><b>$name_last, $name_first $name_middle</b></td>";
+
+	//
+	//
+	if($paytype=='cutoff') {
+	//
+	//
+
+	$msghtml .= "<td align=right><b>$netbasicpay</b></td><td align=\"right\">$daysabsent</td><td align=\"right\">$daysabsentamt</td><td align=right><b>$netbasicpay2</b></td>";
+
+  if($vatrate != 0 && $netofvat != 0) {
+  $msghtml .= "<td align=\"right\">$vatrate</td><td align=\"right\"><b>$netofvat</b></td>"; }
+
+  $msghtml .= "<td align=right>$otherincome</td><td align=\"right\">$otherincomenontaxable</td><td align=right><b>$grosspay</b></td><td align=right>$withholdingtax</td><td align=right>$sssee</td><td align=right>$philhealthee</td><td align=right>$pagibigee</td><td align=right>$otherdeductions</td><td align=right>$totaldeductions</td><td align=right><b>$netpay</b></td></tr>";
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+// start additional income summary here taxable
+  $msgtxt .= "List of Additional Income (Taxable)".$eol;
+
+  $msghtml .= "<b>List of Additional Income (Taxable)</b><br>";
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>OtherIncomeType</td><td>Amount</td></tr>";
+
+  $result4 = mysql_query("SELECT confipayrolladdid, employeeid, groupname, cutstart, cutend, nameadd, addamount, nontaxable FROM tblconfipayrolladd WHERE employeeid = \"$employeeid\" AND groupname = '$groupname' AND cutstart = '$cutstart' AND cutend = '$cutend' AND  nontaxable != 'yes'", $dbh);
+
+  while ($myrow4 = mysql_fetch_row($result4))
+  {
+    $found4 = 1;
+    $confipayrolladdid = $myrow4[0];
+//    $employeeid = $myrow4[1];
+//    $groupname = $myrow4[2];
+//    $cutstart = $myrow4[3];
+//    $cutend = $myrow4[4];
+    $nameadd = $myrow4[5];
+    $addamount = $myrow4[6];
+    $nontaxable = $myrow4[7];
+
+    $msgtxt .= "$nameadd: $addamount".$eol;
+
+    $msghtml .= "<tr>";
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+		$msghtml .= "<td>$employeeid</td>";
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+		$msghtml .= "<td>$employeeid</td>";
+	}
+		$msghtml .= "<td><b>$name_last, $name_first $name_middle</b></td><td>$nameadd</td><td align=right><b>$addamount</b></td></tr>";
+  }
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+// start additional income summary here nontaxable
+  $msgtxt .= "List of Non-Taxable Income".$eol;
+
+  $msghtml .= "<b>List of Non-Taxable Income</b><br>";
+
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>OtherIncomeType</td><td>Amount</td><td>NonTaxable</td></tr>";
+
+  $result5 = mysql_query("SELECT confipayrolladdid, employeeid, groupname, cutstart, cutend, nameadd, addamount, nontaxable FROM tblconfipayrolladd WHERE employeeid = \"$employeeid\" AND groupname = '$groupname' AND cutstart = '$cutstart' AND cutend = '$cutend' AND  nontaxable = 'yes'", $dbh);
+
+  while ($myrow5 = mysql_fetch_row($result5))
+  {
+    $found5 = 1;
+    $confipayrolladdid = $myrow5[0];
+//    $employeeid = $myrow5[1];
+//    $groupname = $myrow5[2];
+//    $cutstart = $myrow5[3];
+//    $cutend = $myrow5[4];
+    $nameadd = $myrow5[5];
+    $addamount = $myrow5[6];
+    $nontaxable = $myrow5[7];
+
+    $msgtxt .= "$nameadd: $addamount".$eol;
+
+    $msghtml .= "<tr>";
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+		$msghtml .= "<td>$employeeid</td>";
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+		$msghtml .= "<td>$employeeid</td>";
+	}
+		$msghtml .= "<td><b>$name_last, $name_first $name_middle</b></td><td>$nameadd</td><td align=right><b>$addamount</b></td><td>$nontaxable</td></tr>";
+  }
+
+    $msghtml .= "</table>";
+
+    $msgtxt .= $eol;
+
+    $msghtml .= "<p><p><br>";
+
+
+// start deductions summary here
+  $msgtxt .= "List of Deductions".$eol;
+
+  $msghtml .= "<b>List of Deductions</b><br>";
+
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>TypeOfDeduction</td><td>Amount</td></tr>";
+
+  $result2 = mysql_query("SELECT tblconfipayrolldeduct.confipayrolldeductid, tblconfipayrolldeduct.employeeid, tblconfipayrolldeduct.groupname, tblconfipayrolldeduct.cutstart, tblconfipayrolldeduct.cutend, tblconfipayrolldeduct.namededuct, tblconfipayrolldeduct.deductamount, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblconfipayrolldeduct, tblcontact WHERE tblconfipayrolldeduct.employeeid = \"$employeeid\" AND tblconfipayrolldeduct.groupname = '$groupname' AND tblconfipayrolldeduct.cutstart = '$cutstart' AND tblconfipayrolldeduct.cutend = '$cutend' AND tblconfipayrolldeduct.employeeid = tblcontact.employeeid", $dbh);
+
+  while ($myrow2 = mysql_fetch_row($result2))
+  {
+    $found2 = 1;
+    $confipayrolldeductid = $myrow2[0];
+//    $employeeid = $myrow2[1];
+//    $groupname = $myrow2[2];
+//    $cutstart = $myrow2[3];
+//    $cutend = $myrow2[4];
+    $namededuct = $myrow2[5];
+    $deductamount = $myrow2[6];
+    $employeeid2 = $myrow2[7];
+//    $name_last = $myrow2[8];
+//    $name_first = $myrow2[9];
+//    $name_middle = $myrow2[10];
+
+    $msgtxt .= "$namededuct: $deductamount".$eol;
+
+    $msghtml .= "<tr>";
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+		$msghtml .= "<td>$employeeid</td>";
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+		$msghtml .= "<td>$employeeid</td>";
+	}
+		$msghtml .= "<td><b>$name_last, $name_first $name_middle</b></td><td>$namededuct</td><td align=right><b>$deductamount</b></td></tr>";
+  }
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+// start projects summary here
+  $msgtxt .= "Current Projects".$eol;
+
+  $msghtml .= "<b>Current Projects</b><br>";
+
+  $msghtml .= "<table border=\"1\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+  $msghtml .= "<tr><td>EmpID</td><td>Name</td><td>ProjectName</td><td>Remarks</td></tr>";
+
+  $result2 = mysql_query("SELECT confipayrollprojid, employeeid, groupname, proj_code, proj_name, details FROM tblconfipayrollproj WHERE employeeid = \"$employeeid\" AND groupname = \"$groupname\" AND cutstart = \"$cutstart\" AND cutend = \"$cutend\"", $dbh);
+
+  while ($myrow2 = mysql_fetch_row($result2))
+  {
+    $found2 = 1;
+    $confipayrollprojid2 = $myrow2[0];
+//    $employeeid2 = $myrow2[1];
+    $groupname2 = $myrow2[2];
+    $proj_code2 = $myrow2[3];
+    $proj_name2 = $myrow2[4];
+    $details2 = $myrow2[5];
+
+    $msgtxt .= "$proj_name2 $details2".$eol;
+
+    $msghtml .= "<tr>";
+	if($confiaccesslevel==5 && $accesslevel==5) {
+	include("mcryptdec.php");
+		$msghtml .= "<td>$employeeid</td>";
+	include("mcryptenc.php");
+	} else if($confiaccesslevel<=4) {
+		$msghtml .= "<td>$employeeid</td>";
+	}
+		$msghtml .= "<td><b>$name_last, $name_first $name_middle</b></td><td>$proj_name2</td><td>$details2</td></tr>";
+  }
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+  $msghtml .= "<p><p><br>";
+
+
+	//
+	//
+	} else if($paytype=='onetime') {
+	//
+	//
+
+	$msghtml .= "<td align=right><b>$grosspay</b></td><td align=right>$withholdingtax</td><td align=right>$otherdeductions</td><td align=right><b>$netpay</b></td></tr>";
+
+  $msghtml .= "</table>";
+
+  $msgtxt .= $eol;
+
+	//
+	//
+	} // if
+	//
+	//
+
+// additional details here...
+  $msgtxt .= "$footer".$eol.$eol;
+  $msghtml .= "<p>$footer</p>";
+
+  $msgtxt .= "$notes".$eol.$eol;
+  $msghtml .= "<p>$notes</p>";
+
+  $msghtml .= "</body></html>";
+
+// set content-type to Text
+  $message .= "--".$mime_boundary.$eol;
+  $message .= "Content-Type: text/plain; charset=iso-8859-1".$eol;
+  $message .= "Content-Transfer-Encoding: 8bit".$eol;
+  $message .= "This is a multi-part message in MIME format.".$eol;
+  $message .= "If you are reading this, please update your email-reading software.".$eol;
+  $message .= $msgtxt.$eol.$eol;
+
+// set content-type to HTML
+  $message .= "--".$mime_boundary.$eol;
+  $message .= "Content-Type:text/html;charset=iso-8859-1" . "$eol";
+  $message .= "Content-Transfer-Encoding: 8bit".$eol;
+  $message .= $msghtml.$eol.$eol;
+
+// Finished formatting
+  $message .= "--".$mime_boundary."--".$eol.$eol;
+
+// prepare sendmail
+  echo "$message<br>";
+
+
+
+// process sendmail
+  $ok = "";
+
+  $ok = mail($email1, $subject, $message, $mailheader);
+
+  if ($ok)
+  {
+    echo "Congratulations your email has been processed and will be sent immediately<br>";
+
+    $processed = $processed . $msgheader . "------------------------------------------------------------------------------------------------------------$eol";
+
+  }
+  else
+  {
+    echo "<font color=red>Sorry, the email was not sent. Pls try again.</font><br>";
+  }
+
+  echo "to: $email1<hr>";
+  $text = "";
+  $mailheader = "";
+  $message = "";
+  $msgtxt = "";
+  $msghtml = "";
+}
+
+// write log
+/*
+$File = "/var/www/admin/logs/". date("y-m-d_H:i:s", time()) . "_" . $groupname ."_" . $cutstart . "_" . $cutend . ".txt";
+$Handle = fopen($File, 'w');
+$Data = "$processed";
+fwrite($Handle, $Data);
+fclose($Handle);
+
+echo "logfile saved: $File<br>";
+*/
+
+echo "<p><FORM><INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'></FORM></p>";
+
+	function FormatMoney($number) {
+    $number = preg_replace("/[^0-9\.]/", "", str_replace(',','.',$number));
+    if (substr($number,-3,1)=='.') {
+        $sents = '.'.substr($number,-2);
+        $number = substr($number,0,strlen($number)-3);
+    } elseif (substr($number,-2,1)=='.') {
+        $sents = '.'.substr($number,-1);
+        $number = substr($number,0,strlen($number)-2);
+    } else {
+        $sents = '.00';
+    }
+    $number = preg_replace("/[^0-9]/", "", $number);
+    return 'P' . number_format($number.$sents,2,'.','');
+	}
+
+}
+mysql_close($dbh);
+?>

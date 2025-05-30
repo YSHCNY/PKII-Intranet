@@ -1,0 +1,645 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$pid = $_GET['pid'];
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+     echo "<font size=1>Directory >> Manage Projects >> Edit Project</font><br>";
+
+     echo "<table class=\"fin\" border=1>";
+     echo "<tr><th colspan=\"2\">Edit Project Information</th></tr>";
+
+		$result = mysql_query("SELECT projectid, proj_num, proj_code, proj_fname, proj_sname, proj_period, date_start, date_end, proj_desc, proj_services, proj_duty, companyid, projstatus, proj_remarks, contactid, employeeid, sw_nk, sw_jica, sw_icg, proj_relation0, proj_relation1, proj_relation2, proj_relation3, proj_class, countrycd, jobtypcd, divisioncd FROM tblproject1 WHERE projectid='$pid'", $dbh);
+		while ($myrow = mysql_fetch_row($result)) {
+		$projectid = $myrow[0];
+		$proj_num = $myrow[1];
+		$proj_code = $myrow[2];
+		$proj_fname = $myrow[3];
+		$proj_sname = $myrow[4];
+		$proj_period = $myrow[5];
+		$date_start = $myrow[6];
+		$date_end = $myrow[7];
+		$proj_desc = $myrow[8];
+		$proj_services = $myrow[9];
+		$proj_duty = $myrow[10];
+		$companyid = $myrow[11];
+		$projstatus = $myrow[12];
+		$proj_remarks = $myrow[13];
+		$contactid = $myrow[14];
+		$employeeid = $myrow[15];
+		$sw_nk = $myrow[16];
+		$sw_jica = $myrow[17];
+		$sw_icg = $myrow[18];
+		$proj_relation0 = $myrow[19];
+		$proj_relation1 = $myrow[20];
+		$proj_relation2 = $myrow[21];
+		$proj_relation3 = $myrow[22];
+		$proj_class = $myrow[23];
+		$countrycd = $myrow[24];
+		$jobtypcd = $myrow[25];
+		$divisioncd = $myrow[26];
+		}
+
+		if((($companyid!="") || ($companyid!=0)) && (($contactid=="") || ($contactid==0))) { $rdiocompanyid="checked=\"checked\""; $rdiocontactid=""; }
+		if((($contactid!="") || ($contactid!=0)) && (($companyid=="") || ($companyid==0))) { $rdiocontactid="checked=\"checked\""; $rdiocompanyid=""; }
+		if((($companyid=="") && ($contactid=="")) || (($companyid==0) && ($contactid==0))) { $rdiocompanyid="checked=\"checked\""; $rdiocontactid=""; }
+
+     echo "<tr><td></td><td>";
+     echo "<form action=\"projdelete.php?pid=$pid&loginid=$loginid\" method=\"post\" name=\"delform\"><input type=submit value=\"Delete this record\"></form>";
+     echo "</td></tr>";
+
+     echo "<form action=\"updateproj.php?pid=$pid&loginid=$loginid\" method=\"post\" name=\"updateform\">";
+
+     echo "<tr><th align=\"right\">Project No.</th><td><input name=proj_num value=\"$proj_num\"></td></tr>";
+		if(($accesslevel >= 4) && ($accesslevel <= 5)) {
+     echo "<tr><th align=\"right\">Project Code</th><td><input name=\"proj_code\" value=\"$proj_code\" readonly><a href=\"projchgcd.php?loginid=$loginid&pid=$pid\"><font size=\"1\"><i>Change</i></font></td></tr>";
+		} else if($accesslevel <= 3) {
+     echo "<tr><th align=\"right\">Project Code</th><td><input name=\"proj_code\" value=\"$proj_code\" readonly></td></tr>";
+		}
+     echo "<tr><th align=\"right\">Acronym</th><td><input name=\"proj_sname\" value=\"$proj_sname\"></td></tr>";
+     echo "<tr><th valign=top align=\"right\">Project Name</th><td><textarea name=\"proj_fname\" rows=\"2\", cols=\"50\">$proj_fname</textarea></td></tr>";
+     echo "<tr><th valign=top align=\"right\">Description</th><td><textarea name=\"proj_desc\" rows=\"5\" cols=\"50\">$proj_desc</textarea></td></tr>";
+     echo "<tr><th align=\"right\">c/o</th><td><input name=\"proj_duty\" value=\"$proj_duty\"></td></tr>";
+
+		echo "<tr><th align=\"right\">Relationship</th><td>";
+		if(($proj_relation0 != "") || ($proj_relation0 != "-")) {
+			if(($proj_relation1 != "") || ($proj_relation1 != "-")) {
+				$result6=""; $found6=0;
+				$result6 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation1\" AND level=1", $dbh);
+				if($result6 != "") {
+					while($myrow6 = mysql_fetch_row($result6)) {
+					$found6 = 1;
+					$name6 = $myrow6[0];
+					}
+				}
+				if($proj_relation0 == "others") { echo "$name6"; }
+
+				if(($proj_relation2 != "") || ($proj_relation2 != "-")) {
+					$result7=""; $found7=0;
+					$result7 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation2\" AND level=2 LIMIT 1", $dbh);
+					if($result7 != "") {
+						while($myrow7 = mysql_fetch_row($result7)) {
+						$found7=1;
+						$name7 = $myrow7[0];
+						echo "$name7";
+						}
+					}
+
+					if(($proj_relation3 != "") || ($proj_relation3 != "-")) {
+						$result8=""; $found8=0;
+						$result8 = mysql_query("SELECT name FROM tblprojrelref WHERE code=\"$proj_relation3\" AND level=3 LIMIT 1", $dbh);
+						if($result8 != "") {
+							while($myrow8 = mysql_fetch_row($result8)) {
+							$found8 = 1;
+							$name8 = $myrow8[0];
+							echo " - $name8";
+							}
+						}
+					}
+				}
+			}
+		}
+		echo "<br>";
+		echo "<select name=\"proj_relation0\" onchange=\"dynamicpulldown0()\" id=\"dynprojrel0\">";
+		if(($proj_relation0 == "") || ($proj_relation0 == "-")) { echo "<option value=\"-\">-</option>"; }
+		$result5=""; $found5=0;
+		$result5 = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE level=0", $dbh);
+		if($result5 != "") {
+			while($myrow5 = mysql_fetch_row($result5)) {
+			$found5 = 1;
+			$projrelrefid5 = $myrow5[0];
+			$code5 = $myrow5[1];
+			$name5 = $myrow5[2];
+			if($proj_relation0 == $code5) { $projrel0sel="selected"; } else { $projrel0sel=""; }
+			echo "<option value=\"$code5\" $projrel0sel>$name5</option>";
+			}
+		}
+		echo "</select>";
+
+    //
+    // dynamicpulldown0
+    //
+    echo "<div id=\"myDynamicPullDown0\">";			
+    echo "</div>";
+		echo "<input name=\"proj_relation1\" type=\"Hidden\">";
+
+    //
+    // dynamicpulldown1
+    //
+    echo "<div id=\"myDynamicPullDown1\">";			
+    echo "</div>";
+		echo "<input name=\"proj_relation2\" type=\"Hidden\">";
+
+    //
+    // dynamicpulldown2
+    //
+    echo "<div id=\"myDynamicPullDown2\">";			
+    echo "</div>";
+		echo "<input name=\"proj_relation3\" type=\"Hidden\">";
+
+/*
+		if((($proj_relation1 != "") || ($proj_relation1 != "-")) && ($proj_relation0 == "nk")) {
+		if($proj_relation1 == "nkmain") {
+			// echo "<br>";
+			echo "<select name=\"proj_relation3\">";
+			$result3=""; $found3=0;
+			$result3 = mysql_query("SELECT companyid, company, supplierid FROM tblcompany WHERE company_type=\"associate\" AND comptypassocrel=\"nkmain\"", $dbh);
+			if($result3 != "") {
+				while($myrow3 = mysql_fetch_row($result3)) {
+				$found3 = 1;
+				$companyid3 = $myrow3[0];
+				$company3 = $myrow3[1];
+				$supplierid3 = $myrow3[2];
+				if($companyid3 == $proj_relation3) { $projrel3sel="selected"; }
+				else { $projrel3sel=""; }
+				echo "<option value=\"$companyid3\" $projrel3sel>$company3</option>";
+				}
+			}
+			echo "</select>";
+		} else if($proj_relation1 == "nkgroup") {
+			// echo "<br>";
+			echo "<select name=\"proj_relation3\">";
+			if(($proj_relation3 == "") || ($proj_relation3 == "-")) {
+				echo "<option value=\"-\">-</option>";
+			}
+			$result3=""; $found3=0;
+			$result3 = mysql_query("SELECT companyid, company, supplierid FROM tblcompany WHERE company_type=\"associate\" AND comptypassocrel=\"nkgroup\"", $dbh);
+			if($result3 != "") {
+				while($myrow3 = mysql_fetch_row($result3)) {
+				$found3 = 1;
+				$companyid3 = $myrow3[0];
+				$company3 = $myrow3[1];
+				$supplierid3 = $myrow3[2];
+				if($companyid3 == $proj_relation3) { $projrel3sel="selected"; }
+				else { $projrel3sel=""; }
+				echo "<option value=\"$companyid3\" $projrel3sel>$company3</option>";
+				}
+			}
+			echo "</select>";
+		}
+		}
+*/
+		echo "</td></tr>";
+
+		echo "<tr><th align=\"right\">Classification</th><td>";
+		if($proj_class == "domestic") { $projclassdomsel="selected"; $projclassicgsel=""; $projclassnonesel=""; }
+		else if($proj_class == "icg") { $projclassdomsel=""; $projclassicgsel="selected"; $projclassnonesel=""; }
+		echo "<select name=\"proj_class\">";
+		echo "<option value=\"-\" $projclassnonesel>-</option>";
+		echo "<option value=\"domestic\" $projclassdomsel>Domestic</option>";
+		echo "<option value=\"icg\" $projclassicgsel>ICG</option>";
+		echo "</select>";
+		echo "</td></tr>";
+
+		echo "<tr><th align=\"right\">Country</th><td>";
+		echo "<select name=\"countrycd\">";
+		if($countrycd == "") { echo "<option value=''>choose country</option>"; }
+		$result9=""; $found9=0; $ctr9=0;
+		$result9 = mysql_query("SELECT tblcountrycdid, cname, letter2cd, letter3cd FROM tblcountrycd ORDER BY cname ASC", $dbh);
+		if($result9 != "") {
+			while($myrow9 = mysql_fetch_row($result9)) {
+			$found9 = 1;
+			$tblcountrycdid9 = $myrow9[0];
+			$cname9 = $myrow9[1];
+			$letter2cd9 = $myrow9[2];
+			$letter3cd9 = $myrow9[3];
+			if($letter2cd9 == $countrycd) { $countrycdsel="selected"; } else { $countrycdsel=""; }
+			echo "<option value=\"$letter2cd9\" $countrycdsel>$cname9 ($letter2cd9)</option>";
+			}
+		}
+		echo "</select>";
+		echo "</td></tr>";
+
+		echo "<tr><th align=\"right\">Division</th><td>";
+		echo "<select name=\"divisioncd\">";
+		if($divisioncd == "") { echo "<option value=''>select division</option>"; }
+		$result15=""; $found15=0; $ctr15=0;
+		$result15 = mysql_query("SELECT code, name_j, name_e FROM tblprojdivisionref ORDER BY idtblprojdivisionref ASC", $dbh);
+		if($result15 != "") {
+			while($myrow15 = mysql_fetch_row($result15)) {
+			$found15 = 1;
+			$code15 = $myrow15[0];
+			$name_j15 = $myrow15[1];
+			$name_e15 = $myrow15[2];
+			if($code15 == $divisioncd) { $divisioncdsel="selected"; } else { $divisioncdsel=""; }
+			echo "<option value=\"$code15\" $divisioncdsel>$name_e15</option>";
+			}
+		}
+		echo "</select></td></tr>";
+
+		echo "<tr><th align=\"right\">Job type</th><td>";
+		echo "<select name=\"jobtypcd\">";
+		if($jobtypcd == "") { echo "<option value=''>select job type</option>"; }
+		$result16=""; $found16=0; $ctr16=0;
+		$result16 = mysql_query("SELECT idtblprojjobtypref, code, name_e FROM tblprojjobtypref ORDER BY idtblprojjobtypref ASC", $dbh);
+		if($result16 != "") {
+			while($myrow16 = mysql_fetch_row($result16)) {
+			$found16 = 1;
+			$idtblprojjobtypref16 = $myrow16[0];
+			$code16 = $myrow16[1];
+			$name_e16 = $myrow16[2];
+			if($code16 == $jobtypcd) { $jobtypcdsel="selected"; } else { $jobtypcdsel=""; }
+			echo "<option value=\"$code16\" $jobtypcdsel>$name_e16</option>";
+			}
+		}
+		echo "</select></td></tr>";
+
+		echo "<tr><th align=\"right\">Client</th><td>";
+		echo "<input id=\"radio1\" type=\"radio\" name=\"clientsw\" value=\"company\" $rdiocompanyid>";
+		echo "<select name=\"companyid\" onchange=\"radioselect1()\">";
+		if((($companyid=="") && ($contactid=="")) || (($companyid==0) && ($contactid==0))) {
+			echo "<option value=\"0\">select company</option>";
+		}
+		$result12=""; $found12=0; $ctr12=0;
+
+		$result12 = mysql_query("SELECT companyid, company, branch FROM tblcompany WHERE (company IS NOT NULL OR company != '') ORDER BY company ASC", $dbh);
+		if($result12 != "") {
+			while($myrow12 = mysql_fetch_row($result12)) {
+			$found12=1;
+			$companyid12 = $myrow12[0];
+			$company12 = $myrow12[1];
+			$branch12 = $myrow12[2];
+			if($companyid12 == $companyid) { $clientcompanysel="selected"; } else { $clientcompanysel=""; }
+			echo "<option value=\"$companyid12\" $clientcompanysel>$company12";
+			if($branch12 != "") { echo " - $branch12"; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+	echo "<br /><input id=\"radio2\" type=\"radio\" name=\"clientsw\" value=\"contactperson\" $rdiocontactid>";
+		echo "<select name=\"contactid\" onchange=\"radioselect2()\">";
+		if((($companyid=="") && ($contactid=="")) || (($companyid==0) && ($contactid11==0))) {
+			echo "<option value=\"0\">select individual person</option>";
+		}
+		$result14=""; $found14=0; $ctr14=0;
+		$result14 = mysql_query("SELECT tblcontact.contactid, tblcontact.companyid, tblcontact.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblcontact ORDER BY tblcontact.name_first ASC, tblcontact.name_last ASC", $dbh);
+		if($result14 != "") {
+			while($myrow14 = mysql_fetch_row($result14)) {
+			$found14=1;
+			$contactid14 = $myrow14[0];
+			$companyid14 = $myrow14[1];
+			$employeeid14 = $myrow14[2];
+			$name_last14 = $myrow14[3];
+			$name_first14 = $myrow14[4];
+			$name_middle14 = $myrow14[5];
+			if($contactid14 == $contactid) { $clientcontactsel="selected"; } else { $clientcontactsel=""; }
+			echo "<option value=\"$contactid14\" $clientcontactsel>$name_first14";
+			if($name_middle14 != "") { echo "&nbsp;$name_middle14[0]."; }
+			echo "&nbsp;$name_last14";
+			if($employeeid14 != '') { echo "&nbsp;($employeeid14)"; }
+			echo "</option>";
+			}
+		}
+		echo "</select>";
+		echo "</td></tr>";
+
+     echo "<tr><th align=\"right\">Services</th><td><input name=\"proj_services\" value=\"$proj_services\"></td></tr>";
+     echo "<tr><th align=\"right\">Period</th><td><input name=\"proj_period\" value=\"$proj_period\"></td></tr>";
+
+     echo "<tr><th valign=top align=\"right\">Duration from</th>";
+     echo "<td>Current: $date_start ";
+     echo "<a href=projchgdatefrom.php?loginid=$loginid&pid=$pid&pdfr=$date_start><font size=\"1\"><i>Change</i></font></a>";
+     echo "</td></tr>";
+
+     echo "<tr><th valign=top align=\"right\">Duration to</th>";
+     echo "<td>Current: $date_end ";
+     echo "<a href=projchgdateto.php?loginid=$loginid&pid=$pid&pdto=$date_end><font size=\"1\"><i>Change</i></font></a>";
+     echo "</td></tr>";
+
+     echo "<tr><th valign=top align=\"right\">Status</th><td>";
+
+
+//     echo "Current: $projstatus<br>";
+     if ($projstatus == "On-Going")
+     {  $projstatusongoing = "checked";  }
+     else if ($projstatus == "Finished")
+     {  $projstatusfinished = "checked";  }
+     else if ($projstatus == "Extended")
+     {  $projstatusextended = "checked";  }
+     else if ($projstatus == "Not Started")
+     {  $projstatusnotstarted = "checked";  }
+
+     echo "<input type=radio name=\"projstatus\" value=\"On-Going\" \"$projstatusongoing\">On-Going<br>";
+     echo "<input type=radio name=\"projstatus\" value=\"Finished\" \"$projstatusfinished\">Finished<br>";
+     echo "<input type=radio name=\"projstatus\" value=\"Extended\" \"$projstatusextended\">Extended<br>";
+     echo "<input type=radio name=\"projstatus\" value=\"Not Started\" \"$projstatusnotstarted\">Not Started</td></tr><br>";
+//     echo "vartest projstatus:$projstatus<br>";
+
+     echo "<tr><th valign=top align=\"right\">Remarks</th><td><textarea name=proj_remarks rows=5 cols=50>$proj_remarks</textarea></td></tr>";
+   ?>
+
+     <tr><th valign=top align="right">Assigned Personnel</th>
+
+   <?php
+     $result2 = mysql_query("SELECT employeeid, name_first, name_last, email1 FROM tblcontact WHERE employeeid='$employeeid'", $dbh);
+
+     while ($myrow2 = mysql_fetch_row($result2))
+     {
+	$found2 = 1;    
+       $employeeid = $myrow2[0];
+       $name_first = $myrow2[1];
+       $name_last = $myrow2[2];
+       $email = $myrow2[3];
+     }
+
+     if ($employeeid != '')
+     {
+	echo "<td>Current: $employeeid - $name_first $name_last - $email<br>";
+     }
+     else
+     {
+	echo "<td>Current: n/a<br>";
+     }
+
+
+     $result3 = mysql_query("SELECT tblcontact.employeeid, tblcontact.name_first, tblcontact.name_last, name_middle FROM tblcontact JOIN tblemployee ON tblcontact.employeeid = tblemployee.employeeid WHERE tblcontact.contact_type = 'personnel' AND tblemployee.term_resign = '0000-00-00' ORDER BY tblcontact.name_last", $dbh);
+
+     echo "Change to <select name=employeeid>";
+     echo "<option value=''>n/a</option>";
+
+     while ($myrow3 = mysql_fetch_row($result3))
+     {    
+       $employeeid2 = $myrow3[0];
+       $name_first = $myrow3[1];
+       $name_last = $myrow3[2];
+       $name_middle = $myrow3[3];
+
+       echo "<option value=$employeeid2>$name_last, $name_first $name_middle[0].</option>";
+     }
+  
+     echo "</select></td></tr><tr><td colspan=2>&nbsp;</td></tr>"; 
+
+     echo "<tr><td colspan=\"2\" align=\"center\"><input type=submit value='Update Project'></td></tr>";
+     echo "</table>";
+     echo "</form>";
+     echo "<p>";
+
+     echo "<a href=project2.php?loginid=$loginid>Back</a><br>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET adminloginstat=1 WHERE adminloginid=$loginid", $dbh);
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+?>
+
+<script language="javascript">
+
+// This function goes through the options for the given
+// drop down box and removes them in preparation for
+// a new set of values
+
+function emptyList( box ) {
+	// Set each option to null thus removing it
+	while ( box.options.length ) box.options[0] = null;
+}
+
+// This function assigns new drop down options to the given
+// drop down box from the list of lists specified
+
+function fillList( box, arr ) {
+	// arr[0] holds the display text
+	// arr[1] are the values
+
+	for ( i = 0; i < arr[0].length; i++ ) {
+
+		// Create a new drop down option with the
+		// display text and value from arr
+
+		option = new Option( arr[0][i], arr[1][i] );
+
+		// Add to the end of the existing options
+
+		box.options[box.length] = option;
+	}
+
+	// Preselect option 0
+
+	box.selectedIndex=0;
+}
+
+// This function performs a drop down list option change by first
+// emptying the existing option list and then assigning a new set
+
+function changeList( box ) {
+	// Isolate the appropriate list by using the value
+	// of the currently selected option
+
+	list = lists[box.options[box.selectedIndex].value];
+
+	// Next empty the slave list
+
+	emptyList( box.form.slave );
+
+	// Then assign the new list values
+
+	fillList( box.form.slave, list );
+}
+
+//
+// dynamicpulldown0
+//
+
+function dynamicpulldown0()
+{
+    var htmlStr = "";
+    var selectedprojrel0 = document.getElementById('dynprojrel0').value;
+//    alert(selectedprojrel0);
+    if(selectedprojrel0 == 'nk')
+    {
+      htmlStr = htmlStr + "<select id=\"proj_relation1list\" onclick=\"getSelected()\" onchange=\"dynamicpulldown1()\">";   
+			<?php
+			if(($proj_relation0 == "") || ($proj_relation0 == "-")) {
+			?>
+			htmlStr = htmlStr + "<option value=\"-\">-</option>";
+			<?php
+			}
+			$result12=""; $found12=0;
+			$result12 = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE codeprev='nk' AND level=1", $dbh);
+			if($result12 != "") {
+				while($myrow12 = mysql_fetch_row($result12)) {
+				$found12 = 1;
+				$projrelrefid12 = $myrow12[0];
+				$code12 = $myrow12[1];
+				$name12 = $myrow12[2];
+				if((($proj_relation1 != "") || ($proj_relation != "-")) && ($proj_relation1 == $code12)) { $projrel1sel="selected"; } else { $projrel1sel=""; }
+			?>
+				htmlStr = htmlStr + "<option value=\"<?=$code12?>\" <?=$projrel1sel?>><?=$name12?></option>";
+			<?php			
+				}
+			}
+			?>
+			htmlStr = htmlStr + "</select>";
+    }
+		else if(selectedprojrel0 == 'others')
+		{
+      htmlStr = htmlStr + "<select id=\"proj_relation1list\" onclick=\"getSelected()\">";
+			<?php
+			if(($proj_relation0 == "") || ($proj_relation0 == "-")) {
+			?>
+			htmlStr = htmlStr + "<option value=\"-\">-</option>";
+			<?php
+			}
+			$result12b=""; $found12b=0;
+			$result12b = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE codeprev='others' AND level=1", $dbh);
+			if($result12b != "") {
+				while($myrow12b = mysql_fetch_row($result12b)) {
+				$found12b=1;
+				$projrelrefid12b = $myrow12b[0];
+				$code12b = $myrow12b[1];
+				$name12b = $myrow12b[2];
+				if((($proj_relation1 != "") || ($proj_relation != "-")) && ($proj_relation1 == $code12b)) { $projrel2sel="selected"; } else { $projrel2sel=""; }
+			?>
+				htmlStr = htmlStr + "<option value=\"<?=$code12b?>\" <?=$projrel2sel?>><?=$name12b?></option>";
+			<?php
+				}
+			}
+			?>
+			htmlStr = htmlStr + "</select>";
+		}
+    document.getElementById('myDynamicPullDown0').innerHTML = htmlStr;
+
+}
+
+
+function dynamicpulldown1()
+{
+    var htmlStr = "";
+    var selectedprojrel1 = document.getElementById('proj_relation1list').value;
+ // alert(selectedprojrel1);
+ // alert("this is a test");
+
+    if(selectedprojrel1 == 'nkmain') {
+      htmlStr = htmlStr + "<select id=\"proj_relation2list\" onclick=\"getSelected1()\" onchange=\"dynamicpulldown2()\">";   
+			<?php
+			// if(($proj_relation1 == "") || ($proj_relation1 == "-")) {
+			?>
+			htmlStr = htmlStr + "<option value=\"-\">-</option>";
+			<?php
+			// }
+				$result11 = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE codeprev='nkmain' AND level=2", $dbh);
+			if($result11 != '') {
+				while($myrow11 = mysql_fetch_row($result11)) {
+					$projrelrefid11 = $myrow11[0];
+					$code11 = $myrow11[1];
+					$name11 = $myrow11[2];
+					if((($proj_relation2 != "") || ($proj_relation2 != "-")) && ($proj_relation2 == $code11)) { $projrel2sel="selected"; } else { $projrel2sel=""; }
+			?>
+					htmlStr = htmlStr + "<option value=\"<?=$code11?>\" <?=$projrel2sel?>><?=$name11?></option>";
+			<?php
+				}
+			}
+			?>
+			htmlStr = htmlStr + "</select>";
+
+    } else if(selectedprojrel1 == 'nkgroup') {
+      htmlStr = htmlStr + "<select id=\"proj_relation2list\" onclick=\"getSelected1()\">";   
+			<?php
+			// if(($proj_relation1 == "") || ($proj_relation1 == "-")) {
+			?>
+			htmlStr = htmlStr + "<option value=\"-\">-</option>";
+			<?php
+			// }
+				$result11b = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE codeprev='nkgroup' AND level=2", $dbh);
+			if($result11b != '') {
+				while($myrow11b = mysql_fetch_row($result11b)) {
+					$projrelrefid11b = $myrow11b[0];
+					$code11b = $myrow11b[1];
+					$name11b = $myrow11b[2];
+					if((($proj_relation2 != "") || ($proj_relation2 != "-")) && ($proj_relation2 == $code11b)) { $projrel2bsel="selected"; } else { $projrel2bsel=""; }
+			?>
+					htmlStr = htmlStr + "<option value=\"<?=$code11b?>\" <?=$projrel2bsel?>><?=$name11b?></option>";
+			<?php
+				}
+			}
+			?>
+			htmlStr = htmlStr + "</select>";
+		}
+    document.getElementById('myDynamicPullDown1').innerHTML = htmlStr;
+		// document.forms["updateform"].proj_relation1.options.selected = true;
+		// alert(selectedprojrel1);
+    // document.updateform.submit();
+}
+
+function dynamicpulldown2()
+{
+    var htmlStr = "";
+    var selectedprojrel2 = document.getElementById('proj_relation2list').value;
+ // alert(selectedprojrel2);
+ // alert("this is a test");
+
+    if(selectedprojrel2 == 'nkoei') {
+      htmlStr = htmlStr + "<select id=\"proj_relation3list\" onclick=\"getSelected2()\">";   
+			<?php
+			// if(($proj_relation2 == "") || ($proj_relation2 == "-")) {
+			?>
+			htmlStr = htmlStr + "<option value=\"-\">-</option>";
+			<?php
+			// }
+				$result14 = mysql_query("SELECT projrelrefid, code, name FROM tblprojrelref WHERE codeprev='nkoei' AND level=3", $dbh);
+			if($result14 != '') {
+				while($myrow14 = mysql_fetch_row($result14)) {
+					$projrelrefid14 = $myrow14[0];
+					$code14 = $myrow14[1];
+					$name14 = $myrow14[2];
+					if((($proj_relation3 != "") || ($proj_relation3 != "-")) && ($proj_relation3 == $code14)) { $projrel3sel="selected"; } else { $projrel3sel=""; }
+			?>
+					htmlStr = htmlStr + "<option value=\"<?=$code14?>\" <?=$projrel3sel?>><?=$name14?></option>";
+			<?php
+				}
+			}
+			?>
+			htmlStr = htmlStr + "</select>";
+
+    }
+    document.getElementById('myDynamicPullDown2').innerHTML = htmlStr;
+		// document.forms["updateform"].proj_relation3.options.selected = true;
+		// alert(selectedprojrel1);
+    // document.updateform.submit();
+}
+
+function getSelected()
+{
+     document.updateform.proj_relation1.value = document.getElementById('proj_relation1list').value;
+}
+
+function getSelected1()
+{
+     document.updateform.proj_relation2.value = document.getElementById('proj_relation2list').value;
+}
+
+function getSelected2()
+{
+     document.updateform.proj_relation3.value = document.getElementById('proj_relation3list').value;
+}
+
+function radioselect2()
+{
+     document.getElementById('radio2').checked = true;
+}
+function radioselect1()
+{
+     document.getElementById('radio1').checked = true;	
+}
+
+</script>
+
+<?php
+mysql_close($dbh);
+?>

@@ -1,0 +1,152 @@
+<?php 
+
+$loginstat = (isset($_POST['lst'])) ? $_POST['lst'] :'';
+$loginid = (isset($_POST['lid'])) ? $_POST['lid'] :'';
+$session = (isset($_POST['sess'])) ? $_POST['sess'] :'';
+$page = (isset($_POST['p'])) ? $_POST['p'] :'';
+$cutmonth = (isset($_POST['cm'])) ? $_POST['cm'] :'';
+$yyyymm = (isset($_POST['ms'])) ? $_POST['ms'] :'';
+
+////////////////////////
+// set timezone and other date/time variables
+////////////////////////
+	date_default_timezone_set('Asia/Manila');
+	$now = date("Y-m-d H:i:s", time());
+	$datenow = date("Y-m-d");
+	$yearnow = date("Y");
+	$monthnow = date("n");
+
+if(($yyyymm == " ") || ($yyyymm == "")) {
+	$cutstart = date("Y-m-01", strtotime($datenow));
+} else {
+	$cutstart = $yyyymm."-"."01";
+}
+
+if($cutmonth == "") { $cutmonth="0"; }
+
+if($cutmonth == "0") {
+  $cutend = date("Y-m-t", strtotime("$cutstart"));
+	$cutmonthfin = "whole month";
+} else if($cutmonth == "1") {
+	$cutstartarr = split("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutend = $cutstartyyyy . "-" . $cutstartmm . "-" . "15";
+	$cutmonthfin = "1st half";
+} else if($cutmonth == "2") {
+  $cutend = date("Y-m-t", strtotime("$cutstart"));
+	$cutstartarr = split("-", $cutstart);
+	$cutstartyyyy = $cutstartarr[0];
+	$cutstartmm = $cutstartarr[1];
+	$cutstartdd = $cutstartarr[2];
+	$cutstart = $cutstartyyyy . "-" . $cutstartmm . "-" . "16";
+	$cutmonthfin = "2nd half";
+}
+
+// echo "<p>lst:$loginstat,lid:$loginid,sess:$session,p:$page,cm:$cutmonth,ms:$yyyymm,cs:$cutstart,ce:$cutend,dn:$datenow,</p>";
+
+if($loginstat==1 && $loginid != "") {
+	// check loginid and session is valid
+	include("../m/qryloginverify.php");
+
+	if($found0==1) {
+	include './header2.php';
+
+	// start display contents
+	echo "<table class=\"fin\" border=\"1\">";
+
+	echo "<tr><th colspan=\"6\">Activity log summary - $name_last0, $name_first0 $name_middle0[0]<br>For&nbsp;the&nbsp;$cutmonthfin&nbsp;of&nbsp;".date("Y-M", strtotime($yyyymm))."</td></tr>";
+
+	echo "<tr><th colspan=\"2\">date</th>";
+
+	// check if personnel has records on biometrics device
+	include '../m/qryattuserid.php';
+
+	if($att_userid12 != "") {
+		echo "<th>time-in</th><th>time-out</th>";
+	}
+
+	echo "<th>activity</th>";
+	echo "<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+	echo "</tr>";
+
+	// generate time log
+	if($yyyymm != "") {
+	while(strtotime($cutstart) <= strtotime($cutend)) {
+		$dateval = date("Y-M-d", strtotime($cutstart));
+		// echo "$dateval<br>";
+		if(date("D", strtotime($dateval)) == "Sun") {
+		echo "<tr><td><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font></td><td align=\"center\"><font color=\"red\">".date("D", strtotime($dateval))."</font></td>";
+		} else {
+			echo "<tr><td>".date("Y-M-d", strtotime($dateval))."</td><td align=\"center\">".date("D", strtotime($dateval))."</td>";
+		} // if(date("D", strtotime($dateval)) == "Sun")
+
+		if($att_userid12 != "") { 
+			echo "<td align=\"center\">";
+			// query atttimein
+			include '../m/qrymactivitylog4.php';
+	// echo "<p>qrytimein:$res14query</p>";
+			// for loop
+			$param14 = count($hrattcheckinoutid14Arr);
+			for($x=0; $x<$param14; $x++) {
+				if($timein14Arr[$x] != "") {
+				echo date("G:i", strtotime($timein14Arr[$x]));
+				echo "<br>";
+				$timein14Arr[$x]="";
+				} // if
+			} // for
+
+			echo "</td>";
+			echo "<td align=\"center\">";
+			// query atttimeout
+			include '../m/qrymactivitylog5.php';
+			// for loop
+			$param15 = count($hrattcheckinoutid15Arr);
+			for($x=0; $x<$param15; $x++) {
+				if($timeout15Arr[$x] != "") {
+				echo date("G:i", strtotime($timeout15Arr[$x]));
+				echo "<br>";
+				$timeout15Arr[$x]="";
+				} // if
+			} // for
+			echo "</td>";
+		} // if($att_userid12 != "")
+
+		$arrcutdate = split(" ", $cutstart);
+		$arrcutdate0 = $arrcutdate[0];
+		echo "<td>";
+		// query attactivity
+		include '../m/qrymactivitylog6.php';
+		// for loop
+		$param16 = count($hractlogid16Arr);
+		for($x = 0; $x < $param16; $x++) {
+			if($x > 0) { echo "<br /><br />"; }
+			echo "".nl2br($activity16Arr[$x])."";
+		} // for
+		echo "</td>";
+
+		echo "<td></td>";
+
+		echo "</tr>";
+		$cutstart = date("Y-m-d", strtotime($cutstart. " + 1 days"));
+	} // while(strtotime($cutstart) <= strtotime($cutend))
+
+	echo "<table class=\"fin\" border=\"0\" width=\"100%\">";
+		echo "<tr><td colspan=\"2\">";
+		echo "<table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+			echo "<tr><td align=\"center\">Submitted By:</td><td align=\"center\">Approved By:</td></tr>";
+			echo "<tr><td align=\"center\"><br>_______________________<br/>Personnel</td><td align=\"center\"><br>_______________________</td></tr>";
+		echo "</table>";
+		echo "</td>";
+	} // if
+
+	echo "</table>";
+
+	// end display contents
+
+	include './footer2.php';
+	} // if($found0==1)
+
+} // if($loginstat==1...
+?>

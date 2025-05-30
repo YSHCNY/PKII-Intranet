@@ -1,0 +1,522 @@
+<?php 
+
+include("db1.php");
+
+$loginid = $_GET['loginid'];
+$cutoffdate0 = $_GET['codate'];
+$cutoffname = $_GET['coname'];
+
+$month = $_POST['month'];
+$day = $_POST['day'];
+$year = $_POST['year'];
+
+$cutoffdate = $year . "-" . $month . "-" . $day;
+
+$found = 0;
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+     include ("header.php");
+     include ("sidebar.php");
+
+// edit body-header
+
+  include ("datetimenow.php");
+
+     echo "<p><font size=1>Modules >> Project Assignments >> List of Expiring Contracts</font></p>";
+
+echo "<table class=\"fin\" border=1 spacing=0 cellspacing=0 cellpadding=0><tr><td>";
+
+     echo "<table width=100% border=1 spacing=0 cellspacing=0 cellpadding=0>";
+     echo "<tr><th colspan=\"38\">List of Expiring Contracts</th></tr>";
+
+// start contents here...
+
+     echo "<tr><td colspan=\"38\"><table width=100% border=1 spacing=0 cellspaing=0 cellpadding=0><tr>";
+
+     echo "<td><table border=0 spacing=0>";
+
+     echo "<tr><form action=projassignexpgenerate.php?loginid=$loginid method=POST>";
+
+     echo "<td>Assign cutoff date</td>";
+   
+     echo "<td><input name=year size=4 value=\"$yearnow\"></td>";
+
+     if($month=='01') { $selectjan="selected"; }
+     else if($month=='02') { $selectfeb="selected"; }
+     else if($month=='03') { $selectmar="selected"; }
+     else if($month=='04') { $selectapr="selected"; }
+     else if($month=='05') { $selectmay="selected"; }
+     else if($month=='06') { $selectjun="selected"; }
+     else if($month=='07') { $selectjul="selected"; }
+     else if($month=='08') { $selectaug="selected"; }
+     else if($month=='09') { $selectsep="selected"; }
+     else if($month=='10') { $selectoct="selected"; }
+     else if($month=='11') { $selectnov="selected"; }
+     else if($month=='12') { $selectdec="selected"; }
+     echo "<td><select name=month>";
+     echo "<option value=01 $selectjan>Jan</option>";
+     echo "<option value=02 $selectfeb>Feb</option>";
+     echo "<option value=03 $selectmar>Mar</option>";
+     echo "<option value=04 $selectapr>Apr</option>";
+     echo "<option value=05 $selectmay>May</option>";
+     echo "<option value=06 $selectjun>Jun</option>";
+     echo "<option value=07 $selectjul>Jul</option>";
+     echo "<option value=08 $selectaug>Aug</option>";
+     echo "<option value=09 $selectsep>Sep</option>";
+     echo "<option value=10 $selectoct>Oct</option>";
+     echo "<option value=11 $selectnov>Nov</option>";
+     echo "<option value=12 $selectdec>Dec</option>";
+     echo "</select></td>";
+
+     if($day=='01') { $select01="selected"; }
+     else if($day=='02') { $select02="selected"; }
+     else if($day=='03') { $select03="selected"; }
+     else if($day=='04') { $select04="selected"; }
+     else if($day=='05') { $select05="selected"; }
+     else if($day=='06') { $select06="selected"; }
+     else if($day=='07') { $select07="selected"; }
+     else if($day=='08') { $select08="selected"; }
+     else if($day=='09') { $select09="selected"; }
+     else if($day=='10') { $select10="selected"; }
+     else if($day=='11') { $select11="selected"; }
+     else if($day=='12') { $select12="selected"; }
+     else if($day=='13') { $select13="selected"; }
+     else if($day=='14') { $select14="selected"; }
+     else if($day=='15') { $select15="selected"; }
+     else if($day=='16') { $select16="selected"; }
+     else if($day=='17') { $select17="selected"; }
+     else if($day=='18') { $select18="selected"; }
+     else if($day=='19') { $select19="selected"; }
+     else if($day=='20') { $select20="selected"; }
+     else if($day=='21') { $select21="selected"; }
+     else if($day=='22') { $select22="selected"; }
+     else if($day=='23') { $select23="selected"; }
+     else if($day=='24') { $select24="selected"; }
+     else if($day=='25') { $select25="selected"; }
+     else if($day=='26') { $select26="selected"; }
+     else if($day=='27') { $select27="selected"; }
+     else if($day=='28') { $select28="selected"; }
+     else if($day=='29') { $select29="selected"; }
+     else if($day=='30') { $select30="selected"; }
+     else if($day=='31') { $select31="selected"; }
+     echo "<td><select name=day>";
+     echo "<option value=01 $select01>1</option>";
+     echo "<option value=02 $select02>2</option>";
+     echo "<option value=03 $select03>3</option>";
+     echo "<option value=04 $select04>4</option>";
+     echo "<option value=05 $select05>5</option>";
+     echo "<option value=06 $select06>6</option>";
+     echo "<option value=07 $select07>7</option>";
+     echo "<option value=08 $select08>8</option>";
+     echo "<option value=09 $select09>9</option>";
+     echo "<option value=10 $select10>10</option>";
+     echo "<option value=11 $select11>11</option>";
+     echo "<option value=12 $select12>12</option>";
+     echo "<option value=13 $select13>13</option>";
+     echo "<option value=14 $select14>14</option>";
+     echo "<option value=15 $select15>15</option>";
+     echo "<option value=16 $select16>16</option>";
+     echo "<option value=17 $select17>17</option>";
+     echo "<option value=18 $select18>18</option>";
+     echo "<option value=19 $select19>19</option>";
+     echo "<option value=20 $select20>20</option>";
+     echo "<option value=21 $select21>21</option>";
+     echo "<option value=22 $select22>22</option>";
+     echo "<option value=23 $select23>23</option>";
+     echo "<option value=24 $select24>24</option>";
+     echo "<option value=25 $select25>25</option>";
+     echo "<option value=26 $select26>26</option>";
+     echo "<option value=27 $select27>27</option>";
+     echo "<option value=28 $select28>28</option>";
+     echo "<option value=29 $select29>29</option>";
+     echo "<option value=30 $select30>30</option>";
+     echo "<option value=31 $select31>31</option>";
+     echo "</select></td></tr>";
+
+     echo "<tr><td>&nbsp;</td><td colspan=3 align=center><input type=submit value='Generate'>";
+     echo "</form></td></tr></table>";
+
+     echo "</td></tr></table></td></tr>";
+
+// check if cut-off date is existing in tblprojassignexpiring
+
+  $result3 = mysql_query("SELECT DISTINCT cutoffdate FROM tblprojassignexpiring WHERE cutoffdate=\"$cutoffdate\"", $dbh);
+  $found3 = 0;
+  while($myrow3 = mysql_fetch_row($result3))
+  {
+    $found3 = 1;
+    $cutoffdate3 = $myrow3[0];
+  }
+
+  if($found3 == 1)
+  {
+    echo "<tr><td><font color=\"red\"><h3>Sorry, cutoff date $cutoffdate3 already used.</h3></font></td></tr>";
+    echo "<tr><td><form action=projassignexpgenerate.php?loginid=$loginid method=post><input type=submit value=\"Back to Generate cut-off\"></form></td></tr>";
+  }
+  else
+  {
+// display results of cutoff query
+
+     echo "<tr><th colspan=\"38\">Displaying cut-off date: $cutoffdate</th></tr>";
+
+     // echo "<tr><td>";
+
+	echo "<tr><td>Ctr</td><td>Reference No.</td><td>Employee No.</td><td>LastName</td><td>FirstName</td><td>M.I.</td><td>Project Code</td><td>Project Name</td><td>Position</td><td>Date Start</td><td>Date End</td>";
+//	echo "<td bgcolor=yellow>Remarks</td><td bgcolor=yellow>Action</td>";
+	echo "<td colspan=\"3\">Salary</td><td colspan=\"3\">Incentive allowance</td><td colspan=\"3\">Project allowance</td><td colspan=\"3\">Field allowance</td><td colspan=\"3\">Accommodation allowance</td><td colspan=\"3\">Transpo allowance</td><td colspan=\"3\">Communication allowance</td><td colspan=\"2\">Per diem</td><td colspan=\"2\">Ecola1</td><td colspan=\"2\">Ecola2</td>";
+	echo "</tr>";
+
+	$result1 = mysql_query("SELECT tblprojassign.projassignid, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.idhrpositionctg, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblprojassign JOIN tblcontact ON tblprojassign.employeeid = tblcontact.employeeid WHERE (tblprojassign.durationto2 NOT NULL OR tblprojassign.durationto2 NOT LIKE '0000%') AND tblprojassign.durationto2 <= '$cutoffdate' AND (tblprojassign.term_resign IS NULL OR tblprojassign.term_resign = '0000-00-00') ORDER BY tblprojassign.durationto2 DESC", $dbh);
+
+	$ctr1 = 0;
+    if($myrow1 <> '')
+    {
+	while($myrow1 = mysql_fetch_row($result1))
+	{
+	  $found1 = 1;
+	  $ctr1 = $ctr1 + 1;
+	  $projassignid = $myrow1[0];
+	  $ref_no = $myrow1[1];
+	  $employeeid = $myrow1[2];
+	  $proj_code = $myrow1[3];
+	  $proj_name = $myrow1[4];
+	  $position = $myrow1[5];
+		$salary = $myrow1[6];
+		$salarycurrency = $myrow1[7];
+		$salarytype = $myrow1[8];
+		$allow_inc = $myrow1[9];
+		$allow_inc_currency = $myrow1[10];
+		$allow_inc_paytype = $myrow1[11];
+		$allow_proj = $myrow1[12];
+		$allow_proj_currency = $myrow1[13];
+		$allow_proj_paytype = $myrow1[14];
+		$ecola1 = $myrow1[15];
+		$ecola1_currency = $myrow1[16];
+		$ecola2 = $myrow1[17];
+		$ecola2_currency = $myrow1[18];
+		$allow_field_currency = $myrow1[19];
+		$allow_field_paytype = $myrow1[20];
+		$allow_field = $myrow1[21];
+		$allow_accomm = $myrow1[22];
+		$allow_accomm_currency = $myrow1[23];
+		$allow_accomm_paytype = $myrow1[24];
+		$allow_transpo = $myrow1[25];
+		$allow_transpo_currency = $myrow1[26];
+		$allow_transpo_paytype = $myrow1[27];
+		$allow_comm = $myrow1[28];
+		$allow_comm_currency = $myrow1[29];
+		$allow_comm_paytype = $myrow1[30];
+		$perdiem = $myrow1[31];
+		$perdiem_currency = $myrow1[32];
+	  $durationfrom = $myrow1[33];
+	  $durationto = $myrow1[34];
+	  $durationfrom2 = $myrow1[35];
+	  $durationto2 = $myrow1[36];
+	  $term_resign = $myrow1[37];
+	  $remarks = $myrow1[38];
+		$idhrpositionctg = $myrow1[39];
+	  $name_last = $myrow1[40];
+	  $name_first = $myrow1[41];
+	  $name_middle = $myrow1[42];
+
+	  if ($durationto2 <> '0000-00-00')
+	  {
+	    if ($durationto2 <= "$cutoffdate")
+	    {
+	      $durationto = $durationto2;
+	    }
+	  }
+
+	echo "<tr><td>$ctr1</td><td><a href=projassignmore.php?loginid=$loginid&eid=$employeeid&pid=$projassignid target=_blank>$ref_no</a></td><td>$employeeid</td><td>$name_last</td><td>$name_first</td><td>$name_middle[0]</td><td>$proj_code</td><td>$proj_name</td>";
+
+	// 20180606
+	if($position=='' && $idhrpositionctg!=0) {
+		// query tblhrpositionctg
+		$res19query="SELECT idhrpositionctg, code, name, deptcd FROM tblhrpositionctg WHERE idhrpositionctg=$idhrpositionctg";
+		$result19=""; $found19=0;
+		$result19=$dbh2->query($res19query);
+		if($result19->num_rows>0) {
+			while($myrow19=$result19->fetch_assoc()) {
+			$found19 = 1;
+			$idhrpositionctg19 = $myrow19['idhrpositionctg'];
+			$code19 = $myrow19['code'];
+			$name19 = $myrow19['name'];
+			$deptcd19 = $myrow19['deptcd'];
+			} // while($myrow19=$result19->fetch_assoc())
+		} // if($result19->num_rows>0)
+		echo "<td>$name19</td>";
+	} else {
+		echo "<td>$position</td>";
+	} // if
+
+	echo "<td>$durationfrom</td><td>$durationto</td>";
+	if($salary != 0 || $salary > 0) {
+		echo "<td align=\"right\">".number_format($salary, 2)."</td><td>$salarycurrency</td><td>$salarytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_inc != 0 || $allow_inc > 0) {
+		echo "<td align=\"right\">".number_format($allow_inc, 2)."</td><td>$allow_inc_currency</td><td>$allow_inc_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_proj != 0 || $allow_proj > 0) {
+		echo "<td align=\"right\">".number_format($allow_proj, 2)."</td><td>$allow_proj_currency</td><td>$allow_proj_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_field != 0 || $allow_field > 0) {
+		echo "<td align=\"right\">".number_format($allow_field, 2)."</td><td>$allow_field_currency</td><td>$allow_field_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_accomm != 0 || $allow_accomm > 0) {
+		echo "<td align=\"right\">".number_format($allow_accomm, 2)."</td><td>$allow_accomm_currency</td><td>$allow_accomm_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_transpo != 0 || $allow_transpo > 0) {
+		echo "<td align=\"right\">".number_format($allow_transpo, 2)."</td><td>$allow_transpo_currency</td><td>$allow_transpo_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_comm != 0 || $allow_comm > 0) {
+		echo "<td align=\"right\">".number_format($allow_comm, 2)."</td><td>$allow_comm_currency</td><td>$allow_comm_paytype</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($perdiem != 0 || $perdiem > 0) {
+		echo "<td align=\"right\">".number_format($perdiem, 2)."</td><td>$perdiem_currency</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+	if($ecola1 != 0 || $ecola1 > 0) {
+		echo "<td align=\"right\">".number_format($ecola1, 2)."</td><td>$ecola1_currency</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+	if($ecola2 != 0 || $ecola2 > 0) {
+		echo "<td align=\"right\">$ecola2</td><td>$ecola2_currency</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+
+	echo "</tr>";
+	}
+    }
+
+	$result2 = mysql_query("SELECT tblprojassign.projassignid, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.idhrpositionctg, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblprojassign JOIN tblcontact ON tblprojassign.employeeid = tblcontact.employeeid WHERE (tblprojassign.durationto2 IS NULL OR tblprojassign.durationto2 LIKE '0000%') AND tblprojassign.durationto NOT LIKE '0000%' AND tblprojassign.durationto <= '$cutoffdate' AND (tblprojassign.term_resign IS NULL OR tblprojassign.term_resign = '0000-00-00') ORDER BY tblprojassign.durationto DESC", $dbh);
+
+	$ctr2 = 0 + $ctr1;
+
+	while($myrow2 = mysql_fetch_row($result2))
+	{
+	  $found2 = 1;
+	  $ctr2 = $ctr2 + 1;
+	  $projassignid2 = $myrow2[0];
+	  $ref_no2 = $myrow2[1];
+	  $employeeid2 = $myrow2[2];
+	  $proj_code2 = $myrow2[3];
+	  $proj_name2 = $myrow2[4];
+	  $position2 = $myrow2[5];
+		$salary2 = $myrow2[6];
+		$salarycurrency2 = $myrow2[7];
+		$salarytype2 = $myrow2[8];
+		$allow_inc2 = $myrow2[9];
+		$allow_inc_currency2 = $myrow2[10];
+		$allow_inc_paytype2 = $myrow2[11];
+		$allow_proj2 = $myrow2[12];
+		$allow_proj_currency2 = $myrow2[13];
+		$allow_proj_paytype2 = $myrow2[14];
+		$ecola12 = $myrow2[15];
+		$ecola1_currency2 = $myrow2[16];
+		$ecola22 = $myrow2[17];
+		$ecola2_currency2 = $myrow2[18];
+		$allow_field_currency2 = $myrow2[19];
+		$allow_field_paytype2 = $myrow2[20];
+		$allow_field2 = $myrow2[21];
+		$allow_accomm2 = $myrow2[22];
+		$allow_accomm_currency2 = $myrow2[23];
+		$allow_accomm_paytype2 = $myrow2[24];
+		$allow_transpo2 = $myrow2[25];
+		$allow_transpo_currency2 = $myrow2[26];
+		$allow_transpo_paytype2 = $myrow2[27];
+		$allow_comm2 = $myrow2[28];
+		$allow_comm_currency2 = $myrow2[29];
+		$allow_comm_paytype2 = $myrow2[30];
+		$perdiem2 = $myrow2[31];
+		$perdiem_currency2 = $myrow2[32];
+	  $durationfrom2 = $myrow2[33];
+	  $durationto2 = $myrow2[34];
+	  $durationfrom22 = $myrow2[35];
+	  $durationto22 = $myrow2[36];
+	  $term_resign2 = $myrow2[37];
+	  $remarks2 = $myrow2[38];
+		$idhrpositionctg2 = $myrow2[39];
+	  $name_last2 = $myrow2[40];
+	  $name_first2 = $myrow2[41];
+	  $name_middle2 = $myrow2[42];
+
+	echo "<tr><td>$ctr2</td><td><a href=projassignmore.php?loginid=$loginid&eid=$employeeid2&pid=$projassignid2 target=_blank>$ref_no2</a></td><td>$employeeid2</td><td>$name_last2</td><td>$name_first2</td><td>$name_middle2[0]</td><td>$proj_code2</td><td>$proj_name2</td>";
+
+	// 20180606
+	if($position2=='' && $idhrpositionctg2!=0) {
+		// query tblhrpositionctg
+		$res20query="SELECT idhrpositionctg, code, name, deptcd FROM tblhrpositionctg WHERE idhrpositionctg=$idhrpositionctg2";
+		$result20=""; $found20=0;
+		$result20=$dbh2->query($res20query);
+		if($result20->num_rows>0) {
+			while($myrow20=$result20->fetch_assoc()) {
+			$found20 = 1;
+			$idhrpositionctg20 = $myrow20['idhrpositionctg'];
+			$code20 = $myrow20['code'];
+			$name20 = $myrow20['name'];
+			$deptcd20 = $myrow20['deptcd'];
+			} // while($myrow19=$result19->fetch_assoc())
+		} // if($result19->num_rows>0)
+		echo "<td>$name20</td>";
+	} else {
+		echo "<td>$position2</td>";
+	} // if
+
+	echo "<td>$durationfrom2</td><td>$durationto2</td>";
+	if($salary2 != 0 || $salary2 > 0) {
+		echo "<td align=\"right\">".number_format($salary2, 2)."</td><td>$salarycurrency2</td><td>$salarytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_inc2 != 0 || $allow_inc2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_inc2, 2)."</td><td>$allow_inc_currency2</td><td>$allow_inc_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_proj2 != 0 || $allow_proj2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_proj2, 2)."</td><td>$allow_proj_currency2</td><td>$allow_proj_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_field2 != 0 || $allow_field2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_field2, 2)."</td><td>$allow_field_currency2</td><td>$allow_field_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_accomm2 != 0 || $allow_accomm2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_accomm2, 2)."</td><td>$allow_accomm_currency2</td><td>$allow_accomm_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_transpo2 != 0 || $allow_transpo2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_transpo2, 2)."</td><td>$allow_transpo_currency2</td><td>$allow_transpo_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($allow_comm2 != 0 || $allow_comm2 > 0) {
+		echo "<td align=\"right\">".number_format($allow_comm2, 2)."</td><td>$allow_comm_currency2</td><td>$allow_comm_paytype2</td>";
+	} else {
+		echo "<td></td><td></td><td></td>";
+	}
+	if($perdiem2 != 0 || $perdiem2 > 0) {
+		echo "<td align=\"right\">".number_format($perdiem2, 2)."</td><td>$perdiem_currency2</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+	if($ecola12 != 0 || $ecola12 > 0) {
+		echo "<td align=\"right\">".number_format($ecola12, 2)."</td><td>$ecola1_currency2</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+	if($ecola22 != 0 || $ecola22 > 0) {
+		echo "<td align=\"right\">$ecola22</td><td>$ecola2_currency2</td>";
+	} else {
+		echo "<td></td><td></td>";
+	}
+
+	echo "</tr>";
+	}
+
+/*
+	$result12 = mysql_query("SELECT tblprojassign0.projectassign0id, tblprojassign0.ref_no, tblprojassign0.employeeid1, tblprojassign0.proj_code, tblprojassign0.proj_name, tblprojassign0.position, tblprojassign0.durationfrom, tblprojassign0.durationto, tblprojassign0.durationfrom2, tblprojassign0.durationto2, tblprojassign0.term_resign, tblprojassign0.remarks, tblprojassign0.name_last, tblprojassign0.name_first, tblprojassign0.name_middle FROM tblprojassign0 WHERE tblprojassign0.term_resign = '0000-00-00' ORDER BY tblprojassign0.durationto2 DESC, tblprojassign0.durationto DESC", $dbh);
+
+	echo "<tr><td bgcolor=lightgray colspan=13>Results from tmp.Project Assignment</td></tr>";
+
+	$ctr12 = $ctr1;
+
+	while($myrow12 = mysql_fetch_row($result12))
+	{
+	  $found12 = 1;
+	  $ctr12 = $ctr12 + 1;
+	  $projectassign0id = $myrow12[0];
+	  $ref_no12 = $myrow12[1];
+	  $employeeid12 = $myrow12[2];
+	  $proj_code12 = $myrow12[3];
+	  $proj_name12 = $myrow12[4];
+	  $position12 = $myrow12[5];
+	  $durationfrom12 = $myrow12[6];
+	  $durationto12 = $myrow12[7];
+	  $durationfrom212 = $myrow12[8];
+	  $durationto212 = $myrow12[9];
+	  $term_resign12 = $myrow12[10];
+	  $remarks12 = $myrow12[11];
+	  $name_last12 = $myrow12[12];
+	  $name_first12 = $myrow12[13];
+	  $name_middle12 = $myrow12[14];
+
+	  if ($durationto212 <> '0000-00-00')
+	  {
+	    if ($durationto212 <= "$cutoffdate")
+	    {
+	      $durationto12 = $durationto212;
+
+	echo "<tr><td>$projectassign0id</td><td><a href=projassignmore2.php?loginid=$loginid&e0id=$employeeid12&p0id=$projectassign0id target=_blank>$ref_no12</a></td><td>$employeeid12</td><td>$name_last12</td><td>$name_first12</td><td>$name_middle12[0]</td><td>$proj_code12</td><td>$proj_name12</td><td>$position12</td><td>$durationfrom12</td><td>$durationto12</td>";
+
+	    }
+	  }
+	  else if ($durationto12 <> '0000-00-00')
+	  {
+	    if ($durationto12 <= "$cutoffdate")
+	    {
+
+	echo "<tr><td>$ctr12</td><td><a href=projassignmore2.php?loginid=$loginid&e0id=$employeeid12&p0id=$projectassign0id target=_blank>$ref_no12</a></td><td>$employeeid12</td><td>$name_last12</td><td>$name_first12</td><td>$name_middle12[0]</td><td>$proj_code12</td><td>$proj_name12</td><td>$position12</td><td>$durationfrom12</td><td>$durationto12</td>";
+
+	    }
+	  }
+
+//	  echo "<td><input size=30 name=remarks12 value=\"$remarks12\"></td>";
+//	  echo "<form action=projassignindupdb.php?loginid=$loginid&pr0id=$projectassign0id&eid=$employeeid12 method=post><td><input type=submit value=\"Update\"></td></form>";
+	  echo "</tr>";
+	}
+*/
+
+     echo "<tr><td colspan=\"38\">";
+     echo "<table border=0 spacing=0><tr>";
+     echo "<form action=projassignexpsaveres.php?loginid=$loginid&codate=$cutoffdate method=post><td align=center><input type=submit value=\"Save Results\"></td></form>";
+//     echo "<form action=projassignemail.php?loginid=$loginid method=post><td align=center><input type=submit value=\"Send Email\"</td></form>";
+     echo "</tr></table>";
+     echo "</td></tr>";
+  }
+     echo "</td></tr></table>";
+
+// end contents here...
+
+     echo "</td></tr></table>";
+
+// edit body-footer
+     echo "<p><a href=projassignexpiring.php?loginid=$loginid>Back</a></p>";
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+     include ("footer.php");
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

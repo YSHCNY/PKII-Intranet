@@ -1,0 +1,39 @@
+<?php 
+
+require './db1.php';
+
+$loginid = (isset($_GET['loginid'])) ? $_GET['loginid'] :'';
+$employeetype = (isset($_POST['employeetype'])) ? $_POST['employeetype'] :'';
+
+$found = 0;
+
+if($loginid != "") {
+     include("logincheck.php");
+}
+
+if ($found == 1) {
+     include './header.php';
+     include './sidebar.php';
+
+     echo "<p><font size=1>Modules >> Personnel Pay/Bonus Notifier</font></p>";
+
+     echo "<table class='fin'>";
+     echo "<tr><th colspan='2'>Personnel Pay/Bonus Notifier</th></tr>";
+    echo "<tr><td>";
+    echo "<a href=\"./emppaybon01.php?loginid=$loginid\" class='btn btn-default' role='button'>Pay Notifier V1.00</a>";
+    echo "</td><td>";
+    echo "<a href=\"./emppaybonV2.php?loginid=$loginid\" class='btn btn-primary' role='button'>New Pay Notifier V2.00</a>";
+    echo "</td></tr>";
+
+     echo "</table>";
+
+     echo "<p><a href=\"index2.php?loginid=$loginid\" class='btn btn-default' role='button'>Back</a></p>";
+
+     include ("footer.php");
+} else {
+     include ("logindeny.php");
+}
+
+mysql_close($dbh);
+$dbh2->close();
+?> 

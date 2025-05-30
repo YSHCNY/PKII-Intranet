@@ -1,0 +1,96 @@
+<?php 
+
+include("db1.php");
+include("datetimenow.php");
+
+// $loginid = $_GET['loginid'];
+$loginid=1;
+
+$hosttype = "router";
+$ipaddress = "192.168.0.200";
+$urllink = "www.google.com";
+$remarks = "pinging $urllink";
+
+$found = 1;
+$found11 = 0;
+$count11 = 0;
+$result = 0;
+$statusdown = "";
+$status = "";
+
+
+if($loginid != "")
+{
+     include("logincheck.php");
+}
+
+if ($found == 1)
+{
+
+// start contents here...
+
+	$res11select="SELECT sysadpingid, hostname, description, type FROM tblsysadping WHERE type = '$hosttype' AND ipaddress=\"$ipaddress\"";
+	$result11=""; $found11=0; $ctr11=0;
+  $result11 = mysql_query("$res11select", $dbh);
+	if($result11 != "") {
+	  while ($myrow11 = mysql_fetch_row($result11)) {
+    $found11 = 1;
+    $count11 = $count11 + 1;
+		$sysadpingid11 = $myrow11[0];
+    $hostname11 = $myrow11[1];
+    $description11 = $myrow11[2];
+		$type11 = $myrow11[3];
+
+		// execute command
+    $command = "ping -c4 $urllink";
+    exec($command,$result,$rval);
+
+    if(count($result) <= 0) {
+      // echo "<td><font color=red>Sorry no response from server</font></td>";
+      exit;
+    }
+
+    for ($i = 0; $i < count($result); $i++) {
+      $regs = array();
+      if(ereg("Unreachable", "$result[$i]",$regs)) {
+				$statusdown = "down";
+      }
+    }
+
+	if($statusdown == "down") { $status="down"; } else { $status="up"; }
+
+	// send email notification if status is down
+	if($status == "down") {
+		$from = "noreply@philkoei.com.ph";
+		$to = "support@philkoei.com.ph";
+		$subject = "PKII-WAN-200 > down";
+		$message = "Warning: on $now the intranet server has detected that $hostname11 with ip:$ipaddress is DOWN";
+		$remarks =  $remarks." ".$message;
+
+		$ok = mail("$to", "$subject", "$message", "From: $from");
+	}
+
+	$res12select = "INSERT INTO tblsysadpingres SET timestamp=\"$now\", loginid=$loginid, hostname=\"$hostname11\", ipaddress=\"$ipaddress\", type=\"$type11\", status=\"$status\", remarks=\"$remarks\", idsysadping=$sysadpingid11";
+	$result12="";
+	$result12 = mysql_query("$res12select", $dbh);
+
+	// echo "<td>$res12select</td>";
+	// reset variables
+	$statusdown=""; $res12select=""; $status="";
+
+		}
+  }
+
+// end contents here...
+
+
+     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+
+}
+else
+{
+     include("logindeny.php");
+}
+
+mysql_close($dbh);
+?> 

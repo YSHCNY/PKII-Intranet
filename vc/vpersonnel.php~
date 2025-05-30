@@ -1,0 +1,96 @@
+<?php
+//
+// vpersonnel.php
+// fr: vc/index.php
+//page 22
+
+// get variables
+$lst = (isset($_GET['lst'])) ? $_GET['lst'] :'';
+$loginid = (isset($_GET['lid'])) ? $_GET['lid'] :'';
+$session = (isset($_GET['sess'])) ? $_GET['sess'] :'';
+$page = (isset($_GET['p'])) ? $_GET['p'] :'';
+
+$disptyp = (isset($_POST['disptyp'])) ? $_POST['disptyp'] :'';
+
+if($page=='') { $page=22; }
+?>
+	<div class="row">
+		<div class="col-md-12"><h3>PKII Active Personnels List</h3></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<tbody>
+<?php
+	echo "<form action=\"index.php?lst=$lst&lid=$loginid&sess=$session&p=$page\" method=\"POST\" name=\"vpersonnel\">";
+?>
+	<tr><td class="text-right">
+<?php
+	if($disptyp=='' || $disptyp=='all') {
+		$disptypallsel="selected"; $disptypempsel=""; $disptypconsel="";
+	} else if($disptyp=='employee') {
+		$disptypallsel=""; $disptypempsel="selected"; $disptypconsel="";
+	} else if($disptyp=='consultant') {
+		$disptypallsel=""; $disptypempsel=""; $disptypconsel="selected";
+	} // if
+	echo "<select name=\"disptyp\">";
+	echo "<option value='all' $disptypallsel>All</option>";
+	echo "<option value='employee' $disptypempsel>Employees</option>";
+	echo "<option value='consultant' $disptypconsel>Consultants</option>";
+	echo "</select>";
+?>
+	</td><td class="text-left">
+	<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+	</td></tr>
+<?php
+	echo "</form>";
+?>
+</tbody>
+</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+<table class="table">
+<thead>
+	<tr><th class="text-center">Count</th><th></th><th class="text-center">Personnel name</th><th class="text-center">E-mail</th><th class="text-center">Mobile</th></tr>
+</thead>
+<tbody>
+
+<?php 
+
+	include '../m/qrypersonnel.php';
+
+	$param11=count($employeeidArr);
+	for($x11 = 0; $x11 < $param11; $x11++) {
+		$found11=1;
+		$ctr11=$ctr11+1;
+		echo "<tr><td>$ctr11</td>";
+		if($picfnArr[$x11]!='') {
+		echo "<td><img src='$pathavatar/".$picfnArr[$x11]."' height=\"60\"></td>";
+		} else {
+		echo "<td></td>";
+		} // if
+		echo "<td>".$name_lastArr[$x11].", ".$name_firstArr[$x11]." ".substr($name_middleArr[$x11], 0, 1)."</td>";
+		echo "<td><address><a href='mailto:".$email1Arr[$x11]."' class=\"text-primary\">".$email1Arr[$x11]."</a></address></td>";
+		echo "<td>";
+		if($num_mobile1_ccArr[$x11]!='') { echo "+".$num_mobile1_ccArr[$x11]."&nbsp;"; }
+		if($num_mobile1_acArr[$x11]!='') { echo "".$num_mobile1_acArr[$x11]."&nbsp;"; }
+		echo "".$num_mobile1Arr[$x11]."";
+		echo "</td>";
+		echo "</tr>";
+	} // for
+
+$dbh->close();
+?> 
+</table>
+</tbody>
+		</div><!--  class="col-md-6" -->
+		<div class="col-md-1"></div>
+	</div><!-- class="row" -->
+
