@@ -1,19 +1,35 @@
-<div class=" pt-3 my-5">  
-    <div class="row mt-3 pt-3 mx-2">
-        
-            <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=cr" class = 'col-lg-6 col-auto ' method="post" target="_self">
-                        <div class="row">
-                            <div class="col-auto d-flex align-items-center gap-3">
-                                     <label for="date">Date range:</label> 
+<div class=" p-1 my-5">    
+    
+    <div class="row m-2">
+      
+        <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=cr" method="post" class = 'col-lg-6 col-auto ' target="_self">
+                <div class="row">
+                        <div class="col-auto d-flex align-items-center gap-3">
+                           <label for="date">Date range:</label> 
                                     <div class="d-flex align-items-center gap-3">
-                                    <input type = 'date' value = "<?= $yrmonthavlbl?>" name = 'yrmonthavlbl' class = 'form-control'>
-                                    <span ><i class = 'text-secondary'> to</i> </span>
-                                    <input type = 'date' value = "<?= $yrmonthavlbl2?>" name = 'yrmonthavlbl2' class = 'form-control'>
+                                    <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
+                                      
+                                        <?php 
+                                        if ($monthselector == ""){
+                                          echo "<option selected disabled>Choose Period</option>";
+                                        }
+                                        $sql = $dbh2->query("SELECT DISTINCT date_format(date, '%M %Y') as date FROM tblfincashreceipt WHERE cashreceiptid<>'' ORDER BY cashreceiptid DESC");
+                                        if($sql->num_rows > 0){
+                                          foreach($sql as $row){
+                                            $selected = ($monthselector == $row['date']) ? 'selected' : '';
+                                              echo "<option $selected >". $row['date']."</option>";
+                                          }
+                                        }
+                                        
+                                       
+                                        ?>
+                                    </select>
                                 </div>
-                                    <input type="submit" value="Submit" role="button" class="btn btn-info btn-sm ">
-                            </div>
-                    </div>
-            </form>
+                            <input type="submit" value="Submit" role="button" class="btn btn-info btn-sm ">
+                        </div>
+                </div>
+         
+        </form>
         
 
 
@@ -50,7 +66,7 @@
   </tr>
 </thead>
 <?php
-  $res11query = "SELECT DISTINCT cashreceiptnumber, date, companyid, contactid, explanation FROM tblfincashreceipt WHERE cashreceiptid<>'' AND date BETWEEN '$yrmonthavlbl' AND '$yrmonthavlbl2' ORDER BY date DESC, cashreceiptnumber DESC";
+  $res11query = "SELECT DISTINCT cashreceiptnumber, date, companyid, contactid, explanation FROM tblfincashreceipt WHERE cashreceiptid<>'' AND date_format(date, '%M %Y') = '$monthselector'  ORDER BY date DESC, cashreceiptnumber DESC";
   $result11="";
   if($searchcr != "") {
 //    $result11 = mysql_query("SELECT DISTINCT tblfincashreceipt.cashreceiptnumber, tblfincashreceipt.date FROM tblfincashreceipt LEFT JOIN tblfincashreceipttot ON tblfincashreceipt.cashreceiptnumber = tblfincashreceipttot.cashreceiptnumber WHERE tblfincashreceipt.cashreceiptnumber LIKE \"%$searchcr\" OR tblfincashreceipt.projcode LIKE \"%$searchcr%\" OR tblfincashreceipt.particulars LIKE \"%$searchcr%\" OR tblfincashreceipttot.explanation LIKE \"%$searchcr%\" ORDER BY tblfincashreceipt.date DESC, tblfincashreceipt.cashreceiptnumber DESC LIMIT 0, 100", $dbh);
