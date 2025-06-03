@@ -51,29 +51,129 @@ if($loginstat==1 && $loginid != "") {
 	include("../m/qryloginverify.php");
 
 	if($found0==1) {
-	include './header2.php';
+
+		$checkicon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+</svg>';
+	
+$xicon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>';
+	?>
+<style>
+
+
+		table{
+			border-collapse: collapse;
+		}
+		table th{
+			white-space: nowrap !important;
+		text-align: center !important;
+	}
+
+	table .fh{
+		color: rgb(73, 72, 72) !important;
+	}
+
+	table .sh{
+		color: rgb(2, 36, 104) !important;
+	}
+
+	table #remarks{
+		padding-inline: 2rem !important;
+	}
+
+	table #datetd{
+		text-align: center !important;
+		white-space: nowrap !important;
+
+	}
+
+
+	/* tr {
+  page-break-inside: avoid; 
+} */
+ /* uncomment to avoid unwated broken rows on printing */
+
+	
+	table #thactdetails{	
+    min-width: 25rem;
+    max-width: 25rem;
+    white-space: nowrap;
+  
+	}
+
+
+
+	@media print {
+	
+
+    @page {
+        
+        margin: 3mm;  /* Remove margins */
+    }
+  
+
+}
+</style>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+	<div class="">
+
+<?php
 
 	// start display contents
-	echo "<table class=\"fin\" border=\"1\">";
+	echo "<table class=\"table table-bordered\" border = '1'";
+echo "<tr><td  colspan=\"9\" align='center'>
+<img src='./img/newlogo.png' width = '300' name='pkiilogo1b'>
+</td></tr>";
+	echo "<tr>
+		<td colspan = '9' align = 'center' >
+			
+				<span class ='mx-5'><b>Name:</b> $name_last0, $name_first0 $name_middle0[0]. ($employeeid0)</span>
+				<span class ='mx-5'><b>Department:</b> $empdepartment0</span>
+				<span class ='mx-5'><b>Period:</b>  ".date("F Y", strtotime($yyyymm))." (<span class = 'text-capitalize'>$cutmonthfin</span>)</span>
 
-	echo "<tr><th colspan=\"10\">Activity log summary - $name_last0, $name_first0 $name_middle0[0]<br>For&nbsp;the&nbsp;$cutmonthfin&nbsp;of&nbsp;".date("Y-M", strtotime($yyyymm))."</td></tr>";
+			
+		</td>
+	</tr>";
+?>
 
-	echo "<tr><th rowspan='2' colspan=\"2\">date</th>";
+<tr>
+	<th colspan = '4' class = 'fh'>Timesheet</th>
+	<th  class = 'fh'></th>
+	<th colspan = '3' class = 'fh'>Time Summary</th>
+	<th  class = 'fh'></th>
+
+
+
+</tr>
+<?php
+	echo "<tr>
+	<th colspan=\"\"class = 'sh'>Date</th>
+	";
 
 	// check if personnel has records on biometrics device
 	include '../m/qrymactivitylog2.php';
 
 	if($att_userid12 != "") {
-		echo "<th rowspan='2'>time-in</th><th rowspan='2'>time-out</th>";
+		echo "<th class = 'sh'>IN</th><th class = 'sh'>OUT</th>";
 	}
 
-        echo "<th rowspan='2'>wfh?</th>";
-	echo "<th colspan='2'>activity</th>";
-	echo "<th rowspan='2'>man-hrs rendered per day</th>";
-	echo "<th rowspan='2'>man-hrs fr ofc e-door log</th>";
-	echo "<th rowspan='2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+        echo "<th class = 'sh'>WFH</th>";
+	echo "<th class = 'sh' id = 'thactdetails'>Acitvity Details</th>";
+
+	?>
+		<th	class = 'sh'>WFH</th>
+				<th class = 'sh'>Rendered</th>
+				<th class = 'sh'>Door Log</th>
+
+<?php
+	
+	echo "<th class = 'sh' id = 'remarks'>Remarks</th>";
 	echo "</tr>";
-	echo "<tr><td width='92%' align='center'>details</td><td width='8%' align='center'>computation of man-hrs</td></tr>";
+
 
 	// generate time log
 	if($yyyymm != "") {
@@ -81,15 +181,15 @@ if($loginstat==1 && $loginid != "") {
 		$dateval = date("Y-M-d", strtotime($cutstart));
 		// echo "$dateval<br>";
 		if(date("D", strtotime($dateval)) == "Sun") {
-		echo "<tr><td><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font></td><td align=\"center\"><font color=\"red\">".date("D", strtotime($dateval))."</font></td>";
+		echo "<tr><td id = 'datetd'><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font><br> <font color=\"red\">(".date("l", strtotime($dateval)).")</font></td>";
 		} else {
     // 20210726 chk if holiday, then font color=red
-    include '../m/qrymactivitylog1.php';
-    if($found11b==1 && $yyyymmdd11b==$cutstart) {
-		echo "<tr><td><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font></td><td align=\"center\"><font color=\"red\">".date("D", strtotime($dateval))."</font></td>";
-    } else {
-			echo "<tr><td>".date("Y-M-d", strtotime($dateval))."</td><td align=\"center\">".date("D", strtotime($dateval))."</td>";
-    } //if-else
+			include '../m/qrymactivitylog1.php';
+			if($found11b==1 && $yyyymmdd11b==$cutstart) {
+				echo "<tr><td id = 'datetd'><font color=\"red\">".date("Y-M-d", strtotime($dateval))."</font><br> <font color=\"red\">(".date("l", strtotime($dateval)).")</font></td>";
+			} else {
+					echo "<tr><td id = 'datetd'>".date("Y-M-d", strtotime($dateval))." <br>(".date("l", strtotime($dateval)).")</td>";
+			} //if-else
 		} // if(date("D", strtotime($dateval)) == "Sun")
 
 $timein14val=""; $timeout15val="";
@@ -102,7 +202,7 @@ $timein14val=""; $timeout15val="";
 			$param14 = count($hrattcheckinoutid14Arr);
 			for($x=0; $x<$param14; $x++) {
 				if($timein14Arr[$x] != "") {
-$timein14val=$timein14Arr[$x];
+				$timein14val=$timein14Arr[$x];
 				echo date("G:i", strtotime($timein14Arr[$x]));
 				echo "<br>";
 				$timein14Arr[$x]="";
@@ -110,12 +210,14 @@ $timein14val=$timein14Arr[$x];
 			} // for
                         if($found14==0) {
                             if($found14b==1 && date("G:i", strtotime($timestart14b))!="0:00") {
-                            echo "<i><font color=grey>".date("G:i", strtotime($timestart14b))."</font></i>";
+                            echo "<i><font color=gray>".date("G:i", strtotime($timestart14b))."</font></i>";
                             echo "<br>";
 			// echo "|$found14|$found14b<br>$dateval|$cutstart|$timestart14b<br>$res14bquery";
                             } //if
+							 echo "</td>"; $timein14Arr[$x]=""; $timestart14b=""; $res14query=""; $res14bquery="";
                         } //if
-                        echo "</td>"; $timein14Arr[$x]=""; $timestart14b=""; $res14query=""; $res14bquery="";
+                       
+					
 
 			echo "<td align=\"center\">";
 			// query atttimeout
@@ -143,7 +245,7 @@ $timeout15val=$timeout15Arr[$x];
     // display wfh column
     $wfhflag="";
     if($timein14val!="" || $timeout15val!="") {
-    $wfhflag="N";
+    $wfhflag="$xicon";
     } else {
         // chk if activity log has entries else blank
         $actrowctr=0;
@@ -153,7 +255,7 @@ $timeout15val=$timeout15Arr[$x];
 	    $actrowctr=$actrowctr16aArr[$x16a];
 	} //for
         if($actrowctr!=0) {
-        $wfhflag="Y";
+        $wfhflag="$checkicon";
         } else {
         $wfhflag="";
         } //if-else
@@ -175,20 +277,25 @@ $timeout15val=$timeout15Arr[$x];
 
 		$arrcutdate = split(" ", $cutstart);
 		$arrcutdate0 = $arrcutdate[0];
-		echo "<td colspan='2'>";
-		echo "<table class='fin' width='100%' border='1' spacing='0' cellspacing='0' cellpadding='0'>";
+		
+	
 		// query attactivity
 		include '../m/qrymactivitylog6.php';
 		// for loop
 		$param16 = count($hractlogid16Arr);
 		for($x = 0; $x < $param16; $x++) {
-		echo "<tr><td width='92%'>";
+	
 			// if($x > 0) { echo "<br /><br />"; }
+
+			if ($activity16Arr[$x] != ""){
+			echo "<td id = 'actlogid' >";
+			
 			echo "".nl2br($activity16Arr[$x])."";
+			
 			$timevaldailyactlog=$timeval16Arr[$x];
 			// disp proj
 			if($projcode16Arr[$x]!='') {				
-			echo "&nbsp;for&nbsp;".$projcode16Arr[$x].":";
+			echo "<br><br>Project: ".$projcode16Arr[$x]."";
 			if($proj_sname16Arr[$x]=='') {
 				echo "".substr($proj_fname16Arr[$x], 0 ,16)."";
 			} else {
@@ -199,10 +306,19 @@ $timeout15val=$timeout15Arr[$x];
 			if($timestart16Arr[$x]!='' && $timeend16Arr[$x]!='') {
 				if($timestart16Arr[$x]!='0000-00-00 00:00:00' && $timeend16Arr[$x]!='0000-00-00 00:00:00') {
 				$timedur = (strtotime($timeend16Arr[$x]) - strtotime($timestart16Arr[$x]))/3600;
-				echo "&nbsp;duration&nbsp;".date('H:i', strtotime($timestart16Arr[$x]))."&nbsp;to&nbsp;".date('H:i', strtotime($timeend16Arr[$x]))."";
+				echo "<br><br> ".date('H:i', strtotime($timestart16Arr[$x]))." - ".date('H:i', strtotime($timeend16Arr[$x]))."";
 				} //if
 			} // if
 			echo "</td>";
+			} else {
+			echo "<td >";
+			echo "</td>";
+
+		}
+
+			
+
+
 			// prep and disp est. man-hrs per activity
 			if($timestart16Arr[$x]!='' && $timeend16Arr[$x]!='') {				
 			  if($timestart16Arr[$x]!='0000-00-00 00:00:00' && $timeend16Arr[$x]!='0000-00-00 00:00:00') {
@@ -210,24 +326,35 @@ $timeout15val=$timeout15Arr[$x];
 			  }
 			}
 			// echo "<td width='2%'>|</td>";
-			echo "<td width='8%' align='right'>".number_format($timevaldaily, 2)."</td></tr>";
+		
+		
+			echo "<td align='center'>".number_format($timevaldaily, 2)."</td>";
+			
+
+		
+
+		
 			// reset var
 			$timevaldaily='';
 		} // for
-		echo "</table>";
-		echo "</td>";
+		
+	
 		// 20200508
     if($timevaldailyactlog!=0) {
     echo "<td align='right'><strong>".number_format($timevaldailyactlog, 2)."</strong></td>";
     } else {
     echo "<td></td>";
     } //if-else
+
     if($timeduredr!=0) {
     echo "<td align='right'><i>$timeduredr</i></td>";
     } else {
     echo "<td></td>";
     } //if-else
-		echo "<td></td>";
+		
+    echo "<td></td>";
+	
+
 
 		echo "</tr>";
 	    // compute total man hrs
@@ -237,12 +364,12 @@ $timeout15val=$timeout15Arr[$x];
 		$timevaldailyactlog=""; $timedur="";
 	} // while(strtotime($cutstart) <= strtotime($cutend))
 
-	echo "<tr><th colspan='7' align='right'>total man-hrs</th><th>".number_format($tottimevaldaily, 2)."</th>";
+	echo "<tr><th colspan='6' align='right'>Total Man Hours</th><th>".number_format($tottimevaldaily, 2)."</th>";
         echo "<th align='right'><i>$tottimeduredr</i></th>";
         echo "<th></th></tr>";
 
-	echo "<table class=\"fin\" border=\"0\" width=\"100%\">";
-		echo "<tr><td colspan=\"2\">";
+	echo "<table class = 'mt-5' border=\"0\" width=\"100%\">";
+		echo "<tr><td >";
 		echo "<table width=\"100%\" border=\"0\" spacing=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
 			echo "<tr><td align=\"center\">Submitted By:</td><td align=\"center\">Approved By:</td></tr>";
 			echo "<tr><td align=\"center\"><br>_______________________<br/>Personnel</td><td align=\"center\"><br>_______________________</td></tr>";
@@ -253,7 +380,10 @@ $timeout15val=$timeout15Arr[$x];
 	echo "</table>";
 
 	// end display contents
-
+?>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<?php
 	include './footer2.php';
 	} // if($found0==1)
 

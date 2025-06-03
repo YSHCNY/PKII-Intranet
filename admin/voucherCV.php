@@ -10,9 +10,23 @@
                             <div class="col-auto ">
                             <label for="date">Date range:</label> 
                                     <div class="d-flex align-items-center gap-3">
-                                    <input type = 'date' value = "<?= $yrmonthavlbl?>" name = 'yrmonthavlbl' class = 'form-control'>
-                                    <span ><i class = 'text-secondary'> to</i> </span>
-                                    <input type = 'date' value = "<?= $yrmonthavlbl2?>" name = 'yrmonthavlbl2' class = 'form-control'>
+                                  <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
+                                      
+                                        <?php 
+                                        if ($monthselector == ""){
+                                          echo "<option selected disabled>Choose Period</option>";
+                                        }
+                                        $sql = $dbh2->query("SELECT DISTINCT date_format(date, '%M %Y') as date FROM tblfindisbursement WHERE disbursementid <> '' ORDER BY disbursementid DESC ");
+                                        if($sql->num_rows > 0){
+                                          foreach($sql as $row){
+                                            $selected = ($monthselector == $row['date']) ? 'selected disabled' : '';
+                                              echo "<option $selected >". $row['date']."</option>";
+                                          }
+                                        }
+                                        
+                                       
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                     
@@ -118,21 +132,21 @@
       $res11query = "SELECT DISTINCT disbursementnumber, disbursementtype, date, companyid, contactid, explanation 
 FROM tblfindisbursement 
 WHERE disbursementid <> '' 
-AND date BETWEEN '$yrmonthavlbl' AND '$yrmonthavlbl2' ORDER BY date DESC";
+AND date_format(date, '%M %Y') = '$monthselector' ORDER BY date DESC";
   } else if($cvtype == 'cv') {
 
 
 $res11query = "SELECT DISTINCT disbursementnumber, disbursementtype, date, companyid, contactid, explanation 
 FROM tblfindisbursement 
 WHERE disbursementid<>''
- AND disbursementnumber NOT LIKE '%DM%' AND date BETWEEN '$yrmonthavlbl' AND '$yrmonthavlbl2' ORDER BY date DESC, disbursementnumber DESC";
+ AND disbursementnumber NOT LIKE '%DM%' AND date_format(date, '%M %Y') = '$monthselector'  ORDER BY date DESC, disbursementnumber DESC";
 
 
   } else if($cvtype == 'dm') {
       $res11query = "SELECT DISTINCT disbursementnumber, disbursementtype, date, companyid, contactid, explanation 
 FROM tblfindisbursement 
 WHERE disbursementid<>''
- AND disbursementnumber LIKE '%DM%' AND date BETWEEN '$yrmonthavlbl' AND '$yrmonthavlbl2' ORDER BY date DESC, disbursementnumber DESC";
+ AND disbursementnumber LIKE '%DM%' AND date_format(date, '%M %Y') = '$monthselector'  ORDER BY date DESC, disbursementnumber DESC";
   } // if($cvtype == 'all')
 
 

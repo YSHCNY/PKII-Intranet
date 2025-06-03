@@ -1,26 +1,35 @@
- <div class=" py-3 my-5">
-
+<div class=" p-1 my-5">    
+    
+    <div class="row m-2">
       
-      
-          
-              <div class="row  mt-3 pt-3 mx-2">
-
-          <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=jv" method="post" class = 'col-lg-6 col-auto ' target="_self">
-
-          <div class="row">
-            <div class="col-auto d-flex gap-3 align-items-center">
-                      <label for="date">Date range:</label> 
+        <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=jv" method="post" class = 'col-lg-6 col-auto ' target="_self">
+                <div class="row">
+                        <div class="col-auto d-flex align-items-center gap-3">
+                           <label for="date">Date range:</label> 
                                     <div class="d-flex align-items-center gap-3">
-                                    <input type = 'date' value = "<?= $yrmonthavlbl?>" name = 'yrmonthavlbl' class = 'form-control'>
-                                    <span ><i class = 'text-secondary'> to</i> </span>
-                                    <input type = 'date' value = "<?= $yrmonthavlbl2?>" name = 'yrmonthavlbl2' class = 'form-control'>
+                                    <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
+                                      
+                                        <?php 
+                                        if ($monthselector == ""){
+                                          echo "<option selected disabled>Choose Period</option>";
+                                        }
+                                        $sql = $dbh2->query("SELECT DISTINCT date_format(date, '%M %Y') as date FROM tblfinjournal WHERE journalid<>'' ORDER BY journalid DESC");
+                                        if($sql->num_rows > 0){
+                                          foreach($sql as $row){
+                                            $selected = ($monthselector == $row['date']) ? 'selected' : '';
+                                              echo "<option $selected >". $row['date']."</option>";
+                                          }
+                                        }
+                                        
+                                       
+                                        ?>
+                                    </select>
                                 </div>
                             <input type="submit" value="Submit" role="button" class="btn btn-info btn-sm ">
-                       
-              </div>
-              </div>
-          </form>
-
+                        </div>
+                </div>
+         
+        </form>
        
 
           <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=jv" method="post" target="_self" name="search" class = 'col-lg-6 col-auto  d-flex justify-content-end'>
@@ -57,7 +66,7 @@
   </tr>
 </thead>
 <?php
-  $res11query = "SELECT DISTINCT journalnumber, date FROM tblfinjournal WHERE journalid<>'' AND date BETWEEN '$yrmonthavlbl' AND '$yrmonthavlbl2' ORDER BY date DESC, journalnumber DESC";
+  $res11query = "SELECT DISTINCT journalnumber, date FROM tblfinjournal WHERE journalid<>''  AND date_format(date, '%M %Y') = '$monthselector' ORDER BY date DESC, journalnumber DESC";
   $result11="";
 
   if($searchjv != "") {
