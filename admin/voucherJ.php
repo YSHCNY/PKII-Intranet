@@ -71,7 +71,8 @@
 
   if($searchjv != "") {
     $res14query = "(SELECT DISTINCT journalnumber FROM tblfinjournal WHERE tblfinjournal.journalnumber LIKE \"%$searchjv%\" OR tblfinjournal.projcode LIKE \"%$searchjv%\" OR tblfinjournal.particulars LIKE \"%$searchjv%\") UNION (SELECT DISTINCT journalnumber FROM tblfinjournaltot WHERE tblfinjournaltot.explanation LIKE \"%$searchjv%\")";
-        echo " $res14query ";
+    $result14 = $dbh2->query($res14query);
+
   
     if($result14->num_rows>0) {
     while($myrow14=$result14->fetch_assoc()) {
@@ -240,9 +241,5 @@
 
   echo "</table>";
 ?>
-
-
-<?php 
-if ( $yrmonthavlbl2 == "" || $yrmonthavlbl2 == ""){echo "<div class='text-center'><h3 class = 'text-secondary'>No Date range selected.</h3></div>";}
-?> </div>
+</div>
 </div>

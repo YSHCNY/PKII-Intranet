@@ -47,7 +47,7 @@ if ($found == 1) {
                
           <div class="">
      
-               <a class= 'btn w-100 m-2 py-2 bg-info text-white' href="finvouchlist.php?loginid=<?php echo $loginid; ?>">List Vouchers</a>
+               <a class= 'btn w-100 m-2 py-2 bg-info text-white' href="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=ap">List Vouchers</a>
                <a class= 'btn w-100 m-2 py-2 bg-info text-white' href="finvouchadd.php?loginid=<?php echo $loginid; ?>">Add new entry</a>
           </div>
           </div>

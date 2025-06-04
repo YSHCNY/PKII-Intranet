@@ -28,10 +28,6 @@ $cvsearchtype = (isset($_POST['cvsearchtype'])) ? $_POST['cvsearchtype'] :'';
 
 if($cvtype == '') { $cvtype = 'all'; }
 
-
-
-
-
 if ($monthselector == ""){
 
 $date = new DateTime();
@@ -72,9 +68,6 @@ if($radiochecked == "") {
   $crdvstyle = "style='display:none;'";
   $jvdvstyle = "style='display:none;'";
 
-
-
- 
 } else if($radiochecked == "cv") {
   $cvchecked = "checked";
   $cvdvstyle = "";
