@@ -7,13 +7,13 @@
                         <div class="col-auto d-flex align-items-center gap-3">
                            <label for="date">Date range:</label> 
                                     <div class="d-flex align-items-center gap-3">
-                                    <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
+                                 <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
                                       
                                         <?php 
                                         if ($monthselector == ""){
                                           echo "<option selected disabled>Choose Period</option>";
                                         }
-                                        $sql = $dbh2->query("SELECT DISTINCT date_format(date, '%M %Y') as date FROM tblfincashreceipt WHERE cashreceiptid<>'' ORDER BY cashreceiptid DESC");
+                                        $sql = $dbh2->query("SELECT DISTINCT date_format(date, '%M %Y') as date FROM tblfinacctspayable WHERE acctspayableid<>'' ORDER BY acctspayableid DESC, acctspayablenumber DESC");
                                         if($sql->num_rows > 0){
                                           foreach($sql as $row){
                                             $selected = ($monthselector == $row['date']) ? 'selected' : '';
