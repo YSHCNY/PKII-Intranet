@@ -70,8 +70,9 @@
   $result11="";
 
   if($searchjv != "") {
-//    $result11 = mysql_query("SELECT DISTINCT tblfinjournal.journalnumber, tblfinjournal.date FROM tblfinjournal LEFT JOIN tblfinjournaltot ON tblfinjournal.journalnumber = tblfinjournaltot.journalnumber WHERE tblfinjournal.journalnumber LIKE \"%$searchjv%\" OR tblfinjournal.projcode LIKE \"%$searchjv%\" OR tblfinjournal.particulars LIKE \"%$searchjv%\" OR tblfinjournaltot.explanation LIKE \"%$searchjv%\" ORDER BY tblfinjournal.date DESC, tblfinjournal.journalnumber DESC", $dbh);
     $res14query = "(SELECT DISTINCT journalnumber FROM tblfinjournal WHERE tblfinjournal.journalnumber LIKE \"%$searchjv%\" OR tblfinjournal.projcode LIKE \"%$searchjv%\" OR tblfinjournal.particulars LIKE \"%$searchjv%\") UNION (SELECT DISTINCT journalnumber FROM tblfinjournaltot WHERE tblfinjournaltot.explanation LIKE \"%$searchjv%\")";
+        echo " $res14query ";
+  
     if($result14->num_rows>0) {
     while($myrow14=$result14->fetch_assoc()) {
       $found14 = 1;
@@ -80,6 +81,7 @@
       $res11query = "SELECT DISTINCT journalnumber, date FROM tblfinjournal WHERE journalnumber=\"$journalnumber14\" ORDER BY date DESC, journalnumber DESC";
       $result11="";
       $result11=$dbh2->query($res11query);
+     
   if($result11->num_rows>0) {
   while($myrow11=$result11->fetch_assoc()) {
     $found11 = 1;
@@ -133,7 +135,7 @@
 		
     if($accesslevel >= 3 && $accesslevel <= 5) {
       if($status12 == "finalized") {
-        echo "<td>&nbsp;</td><td>&nbsp;</td>";
+        echo "<td></td>";
       } else if($status12 == "cancelled") {
         echo "<td><a href=\"finvouchjvdel.php?loginid=$loginid&jvn=$journalnumber11\" role='button' class='btn btn-danger btn-sm'>Delete</td>";
         echo "<td></td>";

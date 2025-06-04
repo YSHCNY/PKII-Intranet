@@ -12,6 +12,11 @@ $idpaygroup = (isset($_POST['idpaygroup'])) ? $_POST['idpaygroup'] :'';
 $idcutoff =  (isset($_POST['idcutoff'])) ? $_POST['idcutoff'] :'';
 $employeeid = (isset($_POST['empid'])) ? $_POST['empid'] :'';
 
+
+$newempflaghidden = (isset($_GET['newempflaghidden'])) ? $_GET['newempflaghidden'] :'';
+$newempflaghidden2 = (isset($_POST['newempflaghidden'])) ? $_POST['newempflaghidden'] :'';
+
+
 if($idpaygroup0 != "") { $idpaygroup=$idpaygroup0; }
 if($idcutoff0 != "") { $idcutoff=$idcutoff0; }
 if($employeeid0 != "") { $employeeid=$employeeid0; }
@@ -36,55 +41,6 @@ function toggle(source) {
 }
 
 
-
-/* function enableDisableAll() {
-	// var myStringArray = ["Hello","World"];
-	var cbm = [];
-	var checkboxManual = [];
-	var timetotal = [];
-	var otutval = [];
-	var nightdiffval = [];
-	var arrayLength = cbm.length;
-	var i2;
-	for (i2 = 0; i2 < arrayLength; i2++) {
-    // alert(myStringArray[i]);
-		cbm = document.getElementById('checkboxManual').checked;
-	  document.getElementById('timetotal').disabled = !cbm;
-	  document.getElementById('otutval').disabled = !cbm;
-	  document.getElementById('nightdiffval').disabled = !cbm;
-    //Do something
-	}
-	// cbm = document.getElementById('checkboxManual').checked;
-  // document.getElementById('timetotal').disabled = !cbm;
-  // document.getElementById('valotut').disabled = !cbm;
-  // document.getElementById('valnightdiff').disabled = !cbm;
-} */
-
-// function toggle(checkboxmanID, inputfieldsID) {
-//      var checkboxman = document.getElementById('checkboxmanID');
-//      var inputfields = document.getElementById('inputfieldsID');
-//      updateToggle = checkboxman.checked ? toggle.disabled=false : toggle.disabled=true;
-// }
-
-/* function active()
-{
-	var checkboxManual = [];
-	var timetotal = [];
-	var otutval = [];
-	var nightdiffval = [];
-	// checkboxman = document.getElementById('checkboxManual[]');
-	// for(var i=0, n=document.getElementById('checkboxManual[]').length; i<n; i++) {
-  if(document.getElementById('checkboxManual').checked) {
-     document.getElementById('timetotal').disabled=false;
-     document.getElementById('otutval').disabled=false;
-     document.getElementById('nightdiffval').disabled=false;
-  } else {
-     document.getElementById('timetotal').disabled=true;
-     document.getElementById('otutval').disabled=true;
-     document.getElementById('nightdiffval').disabled=true;
-	}
-	// }
-} */
 </script>
 <?php
      include ("header.php");
@@ -204,7 +160,7 @@ function toggle(source) {
 		echo "</form>";
 		
 	echo "</div>";
-  } // endif accesslevel >= 4
+  } 
 
 // END FILTER LEVEL ////////////////////////
 
@@ -288,16 +244,27 @@ function toggle(source) {
 	} else {
 		$displaythis = 'FIX TIME';
 	}
-	echo "<div class = 'my-2 shadow border px-3 py-2'>";
-	echo "<h5><span class = 'text-secondary'>Personnel:</span> <b>".strtoupper($name_last14).",&nbsp;".strtoupper($name_first14)." ".strtoupper($name_middle14)." ($employeeid) </b></h5>";
-	echo "<h5><span class = 'text-secondary'>Preferred Schedule:</span> <b>$displaythis </b></h5>";
-	
-	echo "</div>";
+
 	
 	echo "<form action=\"hrtimeatttimelogupd2.php?loginid=$loginid&idpg=$idpaygroup&idct=$idcutoff\" method=\"post\" id=\"modhrtatimelogUpd\" name=\"modhrtatimelogupd\">";
 	echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
 	echo "<input type=\"hidden\" name=\"idhrtapaygrpemplst\" value=\"$idhrtapaygrpemplst14\">";
 
+
+	echo "<div class = 'my-2 shadow border px-3 py-2'>";
+	echo "<h5><span class = 'text-secondary'>Personnel:</span> <b>".strtoupper($name_last14).",&nbsp;".strtoupper($name_first14)." ".strtoupper($name_middle14)." ($employeeid) </b></h5>";
+	echo "<h5><span class = 'text-secondary'>Preferred Schedule:</span> <b>$displaythis </b></h5>";
+	
+	$getflag = "SELECT newempflag FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid WHERE newempflag = 1 AND tblhrtaemptimelog.employeeid='$employeeid' AND tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff";
+	$result142 = $dbh2->query($getflag);
+	if($result142->num_rows>0) {
+		$checkthisMain = 'checked';
+	} else {
+		$checkthisMain = '';
+	}
+
+	echo "<span class = 'text-secondary'>New Employee: </span><input type='checkbox' class = 'border' name='newemp' $checkthisMain> ";
+	echo "</div>";
 
 	if (isset($_SESSION['message'])) {
 		// Display the alert using Bootstrap
@@ -380,6 +347,9 @@ if($flexitime14==0) {
 	 // if($projchgtyp24 == "daily")
 	// echo "<th>project charge</th>";
 
+
+	echo "<th class = '$thcol h5 hidden deductCol' >Deduct Time</th>";
+
 	echo "<th class = '$thcol h5'>Manual</th>";
 	echo "<th class = '$thcol h5'>Total Time</th>";
 	echo "<th class = '$thcol h5'>Overtime</th>";
@@ -397,8 +367,8 @@ if($flexitime14==0) {
 
 	
 		// query emptimelog details if exists
-		// $res20query = "SELECT tblhrtaemptimelog.idhrtaemptimelog, tblhrtaemptimelog.cutstart, tblhrtaemptimelog.cutend, tblhrtaemptimelog.timein, tblhrtaemptimelog.timeout, tblhrtaemptimelog.otbeforeinsw, tblhrtaemptimelog.otafteroutsw, tblhrtaemptimelog.restdaysw, tblhrtaemptimelog.nextdaysw, tblhrtaemptimelog.mealallowsw, tblhrtaemptimelog.leavetype, tblhrtaemptimelog.leaveduration, tblhrtaemptimelog.manualcompsw, tblhrtaemptimelog.totaltime, tblhrtaemptimelog.otval, tblhrtaemptimelog.utval, tblhrtaemptimelog.otutval, tblhrtaemptimelog.nightdiffval, tblhrtaemptimelog.nootsw, tblhrtaemptimelog.noutsw, tblhrtaemptimelog.projcharge, tblhrtaemptimelog.projpercent, tblhrtaemptimelog.remarks, tblhrtaemptimelog.nofindings, tblhrtapaygrpemplst.idhrtapayshiftctg, tblhrtapaygrpemplst.projcode, tblhrtapaygrpemplst.projchgtyp, tblhrtapayshiftctg.shiftin, tblhrtapayshiftctg.shiftout FROM tblhrtaemptimelog INNER JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid INNER JOIN tblhrtapayshiftctg ON tblhrtapaygrpemplst.idtblhrtapaygrp=tblhrtapayshiftctg.idhrtapayshiftctg WHERE tblhrtaemptimelog.employeeid=\"$employeeid\" AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.logdate=\"$cutstart16\"";
 		$res20query = "SELECT * FROM tblhrtaemptimelog LEFT JOIN tblhrtapaygrpemplst ON tblhrtaemptimelog.employeeid=tblhrtapaygrpemplst.employeeid WHERE tblhrtaemptimelog.employeeid=\"$employeeid\" AND tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.logdate=\"$cutstart16\"";
+
 		$result20=""; $found20=0; $ctr20=0;
 		$result20 = $dbh2->query($res20query);
 		if($result20->num_rows>0) {
@@ -459,6 +429,8 @@ if($flexitime14==0) {
                         $flexitime20 = $myrow20['flexitime'];
 			$noform = $myrow20['coltrack'];
 			$cityinclude = $myrow20['cityinclude'];
+			$newempflag = $myrow20['newempflag'];
+
 			echo "<input type=\"hidden\" name=\"idhtlog[]\" value=\"$idhrtaemptimelog20\">";
 			} // while($myrow20 = $result20->fetch_assoc())
 		} // if($result20->num_rows>0)
@@ -467,6 +439,18 @@ if($flexitime14==0) {
 		} else {
 			$noformat = '';
 		}
+
+
+		// for new empboxes
+			if ($newempflag == 1 ){
+			$checkedthis = 'checked';
+			$s = 's';
+		} else {
+			$checkedthis = '';
+			$s = '';
+		}
+	
+		echo "<input type='hidden' name='newempflaghidden' value='$newempflag'>";
 
 
 		// query preferred time shift
@@ -546,13 +530,22 @@ if($flexitime14==0) {
 		} else if ($holidaytype21 === "city"){
 			echo "<tr class = 'success border'>";
 				echo "<td class = '$thcol'><i>$dateval</i></td>";
-				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i></td>";
+				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i>
+				
+				
+				
+				</td>";
 				
 			
 		} else if ($holidaytype21 === "shortened" ){
 				echo "<tr class = 'warning border'>";
 				echo "<td class = '$thcol'><i>$dateval</i></td>";
-				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i></td>";
+				echo "<td class = '$thcol' align=\"center\"><i>$dateday</i>
+				
+				<input type='hidden' name='shortenedin[]' value='$shiftin21' class=''>
+				<input type='hidden' name='shortenedout[]' value='$shiftout21' class=''>
+
+				</td>";
 				
 			
 		} 
@@ -740,6 +733,7 @@ $shiftin1hhwfh = $shiftinwfharr[0]; // Hour for timestart
 		$shiftout1hh = sprintf("%02d", $shiftout1arr[0]);
 		$shiftout1mm = sprintf("%02d", $shiftout1arr[1]);
 
+	
 	
 		if($flexitime14==0) {
 			// echo "<td><i>Felxible Time</i></td>";
@@ -1383,6 +1377,7 @@ $shiftin1hhwfh = $shiftinwfharr[0]; // Hour for timestart
 
 
 
+		 	echo "<td class = 'bg-danger hidden deductCol' ><input type = 'checkbox' class = '' name=\"newempcheckbox[]\" value = '$cutstart16' $checkedthis></td>";
 
 		
 		
@@ -1395,13 +1390,13 @@ $shiftin1hhwfh = $shiftinwfharr[0]; // Hour for timestart
 		} else if($manualcompsw20==0) {
 		$checkboxmanval=""; $tottimedisval="disabled"; $nightdiffdisval="disabled"; $otutdisval="disabled";
 		}
-		// echo "<td><input type=\"checkbox\" id=\"checkboxManual\" name=\"checkboxman[]\" onclick=\"active();\" value=\"$cutstart16\" $checkboxmanval></td>";
-                echo "<td class = ''><input class = '' type=\"checkbox\" name=\"checkboxman[]\"  value=\"$cutstart16\" $checkboxmanval></td>";
-		// 20170703 note: enable below and disable above if js function works
-		// echo "<td><input type=\"checkbox\" name=\"checkboxman[]\" value=\"$cutstart16\" id=\"checkboxManual\" onclick=\"enableDisableAll();\" $checkboxmanval></td>";
+		 echo "<td class = ''><input class = '' type=\"checkbox\" name=\"checkboxman[]\"  value=\"$cutstart16\" $checkboxmanval></td>";
+	
 
-		//
-		// total time
+
+
+
+
                 // display total time
 		if($totaltime20 == "") {
 			 $totaltime20=0; 
@@ -1762,7 +1757,24 @@ tbody td {
 </style>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleCheckbox = document.querySelector('input[name="newemp"]');
+  
+  toggleCheckbox.addEventListener('change', function() {
+    const isChecked = this.checked;
+    const headerCells = document.querySelectorAll('th.deductCol');
+    const dataCells = document.querySelectorAll('td.deductCol');
+    
+    // Show columns if checked, hide if unchecked
+    headerCells.forEach(cell => cell.classList.toggle('hidden', !isChecked));
+    dataCells.forEach(cell => cell.classList.toggle('hidden', !isChecked));
+  });
 
-<!-- echo "<script>";
-		echo "console.log('" . $shiftin20 . "');";
-		echo "</script>"; -->
+  // Initialize visibility based on checkbox state on page load
+  const initialChecked = toggleCheckbox.checked;
+  document.querySelectorAll('.deductCol').forEach(cell => {
+    cell.classList.toggle('hidden', !initialChecked);
+  });
+});
+</script>

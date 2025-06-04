@@ -20,7 +20,7 @@ $restdaysw = (isset($_POST['restdaysw'])) ? $_POST['restdaysw'] :'';
 $holidate = (isset($_POST['holidate'])) ? $_POST['holidate'] :'';
 
 
-
+$newempflaghidden = (isset($_POST['newempflaghidden'])) ? $_POST['newempflaghidden'] :'';
 
 $time_in1_hh = (isset($_POST['time_in1_hh'])) ? $_POST['time_in1_hh'] :'';
 $time_in1_mm = (isset($_POST['time_in1_mm'])) ? $_POST['time_in1_mm'] :'';
@@ -50,6 +50,8 @@ $leavedaydur = (isset($_POST['leavedaydur'])) ? $_POST['leavedaydur'] :'';
  
 $projcharge = (isset($_POST['projcharge'])) ? $_POST['projcharge'] :'';
 
+
+$newempcheckbox = (isset($_POST['newempcheckbox'])) ? $_POST['newempcheckbox'] :'';
 $checkboxman = (isset($_POST['checkboxman'])) ? $_POST['checkboxman'] :'';
 $otval = (isset($_POST['otval'])) ? $_POST['otval'] :'';
 $utval = (isset($_POST['utval'])) ? $_POST['utval'] :'';
@@ -72,6 +74,11 @@ $nextday2out = (isset($_POST['nextday2outsw'])) ? $_POST['nextday2outsw'] :'';
 
 $realvalwfh = (isset($_POST['realvalwfh'])) ? $_POST['realvalwfh'] :'';
 $cityinclude = (isset($_POST['cityinclude'])) ? $_POST['cityinclude'] :'';
+
+
+
+$shortenedin = (isset($_POST['shortenedin'])) ? $_POST['shortenedin'] :'';
+$shortenedout = (isset($_POST['shortenedout'])) ? $_POST['shortenedout'] :'';
 
 
 
@@ -102,10 +109,19 @@ if($found == 1) {
         if($nextday2in[$val]=="") { $nextday2in[$val]=0; }
         if($nextday2out[$val]=="") { $nextday2out[$val]=0; }
 
+
+	
         // test disp vars
     // echo "PRE cutstart:".$cutstart[$val].", val:$val, n:$n, restdaysw:".$restdaysw[$val].", timeinhh:".$time_in1_hh[$val].", timeinmm:".$time_in1_mm[$val].", otbeforeinsw:".$otbeforeinsw[$val].", timeouthh:".$time_out1_hh[$val].", timeoutmm:".$time_out1_mm[$val].", totaltime:".$totaltime[$val].", otafteroutsw:".$otafteroutsw[$val]."<br>nextday:".$nextday[$val].", timein2hh:".$time_in2_hh[$val].", timein2mm:".$time_in2_mm[$val].", timeout2hh:".$time_out2_hh[$val].", timeout2mm:".$time_out2_mm[$val].",nextday2in:".$nextday2in[$val].", nextday2out:".$nextday2out[$val].", mealallow:".$mealallow[$val].", leavid:".$leaveid[$val].", leavecd:".$leavecd[$val]."; leavedaydur:".$leavedaydur[$val].", projcharge:".$projcharge[$val]."<br>";
 	
+
+
+
         // prepare variables
+
+		$ShortenedTimeInDecimal = (((strtotime($shortenedout[$val]) - strtotime($shortenedin[$val]))/60)/60);
+
+
 	$leavetypeval = $leavecd[$val];
 	if ($realvalwfh[$val] == ""){
 		$realvalwfh[$val] = 'NC';
@@ -122,38 +138,6 @@ if($found == 1) {
 		} 
 	}
 
-// echo "$cityinclude[$val]";
-// echo "<br><h1> $flagcity, $valcity, $n <br><br><br><br><br><br></h1>";
-
-	// if (!empty($shiftin20)) {
-	// 	// Split the time into hours and minutes
-	// 	list($hourin, $minutein) = explode(':', $shiftin20);
-		
-	// 	$shiftin1a = $n." ".$hourin[$val].":".$minutein[$val].":00";
-	// 	$shiftin1b = $hourin[$val].":".$minutein[$val].":00";
-	// 	$shiftin1c = strtotime($shiftin1b);
-	// 	$shiftin1 = date("Y-m-d H:i:s", strtotime($shiftin1a));
-	// 	$shiftin1unx = strtotime($shiftin1);
-
-	
-	// 	echo "Shift Time (Formatted): in " . $shiftin1 . " ";
-	// 	echo "Unix Timestamp: " . $shiftin1unx . "<br>";
-	// } 
-
-	// if (!empty($shiftout20)) {
-	// 	// Split the time into hours and minutes
-	// 	list($hourout, $minuteout) = explode(':', $shiftout20);
-		
-	// 	$shiftout1a = $n." ".$hourout[$val].":".$minuteout[$val].":00";
-	// 	$shiftout1b = $hourout[$val].":".$minuteout[$val].":00";
-	// 	$shiftout1c = strtotime($shiftout1b);
-	// 	$shiftout1 = date("Y-m-d H:i:s", strtotime($shiftout1a));
-	// 	$shiftout1unx = strtotime($shiftout1);
-
-	
-	// 	echo "Shift Time (Formatted): out " . $shiftout1 . "<br>";
-	// 	echo "Unix Timestamp: " . $shiftout1unx . "<br><br><br><br><br>";
-	// } 
 
 
 		list($hourout, $minuteout) = explode(':', $shiftout20);
@@ -240,8 +224,6 @@ if($found == 1) {
 
 
 
-
-
     if($checkboxmanual==0) {
      if ($flexitime14 == 1){
 		$totaltime[$val] = (((strtotime($timeout1c) - strtotime($timein1))/60)/60)+(((strtotime($timeout2c) - strtotime($timein2))/60)/60);
@@ -282,8 +264,8 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 	} //if
 
 
-echo "$timein1:$timeout1c <br>";
-echo "$timein2:$timeout2c <br>";
+// echo "$timein1:$timeout1c <br>";
+// echo "$timein2:$timeout2c <br>";
 
 
 
@@ -392,21 +374,19 @@ echo "$timein2:$timeout2c <br>";
 					} 
 					$otspval = $totaltime[$val] - $otval1;
 					$otordval=0;
-				} 
-				else if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3){
+				} else if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3){
 					// calculate ot of rest day sun sat & special with overtime and complete time
 				
 					if ($totaltime[$val]> 8){
 						$otrest8val = $totaltime[$val] - $stdofchrs; 
 						$otval1 = $totaltime[$val] - $stdofchrs;
 						
-
 					} 
 					$otrestspval = $totaltime[$val] - $otrest8val;
 					$otordval=0;
-				}  
-				
-				else {
+
+
+				} else {
 					$otspsunval = 0;
 					$otspsun8val = 0;
 					$otrest8val = 0;
@@ -415,52 +395,70 @@ echo "$timein2:$timeout2c <br>";
 
 				
 
-// echo "$leavecd[$val]";
-				if ($leavedaydur[$val] == 0.50 ){
-					if($totaltime[$val] < 4.00 && $leavedaydur[$val] == 0.50 ){
-						$utval1 = 4.00 - $totaltime[$val]; 
+
+				// overtimes ????
+				 if($holidate[$val]  == 'shortened') {
+					// if shortened
+					if ($totaltime[$val] < $ShortenedTimeInDecimal){
+						$utval1 = $ShortenedTimeInDecimal - $totaltime[$val]; 
 						$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; 
-						$otutval1=4.00-$totaltime[$val];
-						
-					} else if ($totaltime[$val] > 4.00){
-						$totaltime[$val] = 4.00;
-					}
-				}	else if ($leavedaydur[$val] == 1){
-					$totaltime[$val] = 8.00;
-					$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1 =0;
+						$otutval1=$ShortenedTimeInDecimal - $totaltime[$val];
+					} else if ($totaltime[$val] > $ShortenedTimeInDecimal){
+						$otordval = $totaltime[$val] - $ShortenedTimeInDecimal; 
+						$otval1 = $otordval; 
+						$otutval1=$totaltime[$val]-$ShortenedTimeInDecimal;
 
-				}
-
-				//  normal ot
-					else if($totaltime[$val]>$stdofchrs) {
-						if ($holidate[$val] == 'legal' || $holidate[$val] == 'special' || $restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 ){
-							$otordval = 0;
-						} else {
-							$otordval = $totaltime[$val] - $stdofchrs; 
-							$otval1 = $otordval; 
-							$otutval1=$totaltime[$val]-$stdofchrs;
-						}
-					
-
-
-			    } else if($totaltime[$val]<$stdofchrs) {
-					if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $restdaysw[$val] == 4 || $holidaytype21 == 'legal' || $holidaytype21 == 'special' || ($holidate[$val] == 'city' && $flagcity == 1)){
-						$utval = 0;
-						$utval1 = 0;
 					} else {
-						
-					
-						$utval1 = $stdofchrs - $totaltime[$val]; 
-						$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; 
-						$otutval1=$totaltime[$val]-$stdofchrs;
-						
-					}
-			    } else {
-					$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1=0; $otutval1=0;
-			    } //if-else
+						$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1=0; $otutval1=0;
+					} 
 
 
+				} else {
+					// if not shortened
 
+							if ($leavedaydur[$val] == 0.50 ){
+								if($totaltime[$val] < 4.00 && $leavedaydur[$val] == 0.50 ){
+									$utval1 = 4.00 - $totaltime[$val]; 
+									$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; 
+									$otutval1=4.00-$totaltime[$val];
+									
+								} else if ($totaltime[$val] > 4.00){
+									$totaltime[$val] = 4.00;
+								}
+							}	else if ($leavedaydur[$val] == 1){
+								$totaltime[$val] = 8.00;
+								$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1 =0;
+
+							}
+
+							//  normal ot
+								else if($totaltime[$val]>$stdofchrs) {
+									if ($holidate[$val] == 'legal' || $holidate[$val] == 'special' || $restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 ){
+										$otordval = 0;
+									}  else {
+										$otordval = $totaltime[$val] - $stdofchrs; 
+										$otval1 = $otordval; 
+										$otutval1=$totaltime[$val]-$stdofchrs;
+									}
+								
+
+							} else if($totaltime[$val]<$stdofchrs) {
+								if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $restdaysw[$val] == 4 || $holidaytype21 == 'legal' || $holidaytype21 == 'special' || ($holidate[$val] == 'city' && $flagcity == 1)){
+									$utval = 0;
+									$utval1 = 0;
+								} else{
+
+									$utval1 = $stdofchrs - $totaltime[$val]; 
+									$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; 
+									$otutval1=$totaltime[$val]-$stdofchrs;
+									
+								}
+							}  else {
+								$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1=0; $otutval1=0;
+							} 
+
+
+			}
 					
 			
 			
@@ -668,12 +666,25 @@ echo "$timein2:$timeout2c <br>";
 				}
 			} else {
 
-				if ($totaltime[$val] > 8){
-					$totaltime[$val] = 8;
+				if ($holidate[$val] == 'shortened'){
+					// check if shortened and display shortened time
+						if ($totaltime[$val] > $ShortenedTimeInDecimal){
+							$totaltime[$val] = $ShortenedTimeInDecimal;
 
+						} else {
+							$totaltime[$val] = $totaltime[$val];
+
+						}
 				} else {
-					$totaltime[$val] = $totaltime[$val];
+					// if not shortened keep ordinary time
+				
+					if ($totaltime[$val] > 8){
+						$totaltime[$val] = 8;
 
+					} else {
+						$totaltime[$val] = $totaltime[$val];
+
+					}
 				}
 				
 			
@@ -688,6 +699,7 @@ echo "$timein2:$timeout2c <br>";
 				$otrestspval = 0;
 				$otspval = 0;
 				$otsp8val = 0;
+
 				if ($restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $holidate[$val] == 'legal' || $holidate[$val] == 'special' ){
 					$totaltime[$val] = 0.00;
 				
@@ -757,6 +769,8 @@ echo "$timein2:$timeout2c <br>";
 
 
 
+
+
 		if ($restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $holidate[$val] == 'legal' || $holidate[$val] == 'special' || ($holidate[$val] == 'city' && $flagcity == 1) ){
 
 			$utvalfin=0;
@@ -764,7 +778,12 @@ echo "$timein2:$timeout2c <br>";
 			if ($leavedaydur[$val] == 1 ){
 				$totaltime[$val] = 8.00;
 			} else if ($leavedaydur[$val] == 0 && $totaltime[$val] == 0) {
-				$utvalfin = 8;
+				if ($holidate[$val] == 'shortened'){
+					$utvalfin = $ShortenedTimeInDecimal;
+				} else {
+			
+					$utvalfin = 8;
+				}
 			}
 			 else {
 				$totaltime[$val];
@@ -772,6 +791,44 @@ echo "$timein2:$timeout2c <br>";
 			}
 			
 		}
+
+
+			
+echo "no loop =".$newempcheckbox[$val]." - $n <br>";
+
+	$newempbox = 0;
+	foreach($newempcheckbox as $val23 => $n23) {
+		if($n23 == $n) { $newempbox = 1; }
+	}
+	echo "with loop = ".$newempbox." - $n <br><br>";
+
+	if ($newempbox == 1){
+		if ($holidate[$val] == 'shortened'){
+				$utvalfin = $ShortenedTimeInDecimal;
+				$otutvalfin = $ShortenedTimeInDecimal;
+		}else {
+					$utvalfin = 8.00;
+					$otutvalfin = 8.00;
+
+		}
+		$totaltime[$val] = 0;
+		$otvalfin = 0;
+		$nightdiffvalfin = 0;
+		$otordval = 0;
+		$otrestspval = 0;
+		$otspval = 0;
+		$otlegalval = 0;
+		$otrest8val = 0;
+		$otsp8val = 0;
+		$otspsunval = 0;
+		$otspsun8val = 0;
+		$otlegal8val = 0;
+		$otlegalsunval = 0;
+		$otlegalsun8val = 0;
+		
+	} 
+
+
 
 		//
 		// db queries
@@ -831,7 +888,8 @@ echo "$timein2:$timeout2c <br>";
 				otlegalsunval='$otlegalsunval', 
 				otlegalsun8val='$otlegalsun8val',
 				wfhval='$realvalwfh[$val]',
-				cityinclude = '$flagcity'
+				cityinclude = '$flagcity',
+				newempflag = '$newempbox'
 			WHERE idhrtaemptimelog='$idhrtaemptimelog11'
 			 AND logdate=\"$n\";
 ";
@@ -889,7 +947,10 @@ echo "$timein2:$timeout2c <br>";
 				otlegalsunval='".$otlegalsunval."', 
 				wfhval='$realvalwfh[$val]', 
 				cityinclude = '$flagcity',
-				otlegalsun8val='".$otlegalsun8val."'";
+				otlegalsun8val='".$otlegalsun8val."'
+				newempflag = '$newempbox'
+				
+				";
 				
 			$result12 = $dbh2->query($res12insert);
 			$insid = mysql_insert_id();
