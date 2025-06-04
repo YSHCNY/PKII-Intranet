@@ -31,13 +31,11 @@ if($cvtype == '') { $cvtype = 'all'; }
 
 
 
-if ($yrmonthavlbl2 == "" && $yrmonthavlbl == ""){
 
-$date = new DateTime('first day of this month');
-$yrmonthavlbl = $date->format('Y-m-d');
+if ($monthselector == ""){
 
-$date = new DateTime('last day of this month');
-$yrmonthavlbl2 = $date->format('Y-m-d');
+$date = new DateTime();
+$monthselector = $date->format('M Y');
 
 
 }

@@ -360,9 +360,5 @@
 ?>
 
 
-<?php 
-if ( $yrmonthavlbl2 == "" || $yrmonthavlbl2 == ""){echo "<div class='text-center'><h3 class = 'text-secondary'>No Date range selected.</h3></div>";}
-?>
-
 </div>
 </div>

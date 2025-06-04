@@ -132,7 +132,7 @@
       $res11query = "SELECT DISTINCT disbursementnumber, disbursementtype, date, companyid, contactid, explanation 
 FROM tblfindisbursement 
 WHERE disbursementid <> '' 
-AND date_format(date, '%M %Y') = '$monthselector' ORDER BY date DESC";
+AND date_format(date, '%M %Y') = '$monthselector' ORDER BY date DESC, disbursementid DESC";
   } else if($cvtype == 'cv') {
 
 
@@ -432,7 +432,7 @@ WHERE disbursementid<>''
 
     if($accesslevel >= 3 && $accesslevel <= 5) {
       if($status12 == "finalized") {
-        echo "<td>&nbsp;</td><td>&nbsp;</td>";
+        echo "<td></td>";
       } else if($status12 == "cancelled") {
         echo "<td><a href=\"finvouchcvdel.php?loginid=$loginid&cvn=$disbursementnumber11\" role='button' class='btn btn-danger '>$deleteicon</td>";
     

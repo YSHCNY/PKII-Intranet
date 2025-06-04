@@ -5,6 +5,7 @@
 //
 		$res21query = "SELECT idhrtaholidays, holidayname, holidaytype, shiftin, shiftout FROM tblhrtaholidays WHERE applic_date=\"$cutstartfin\" AND (holidaytype=\"special\" OR holidaytype=\"legal\" OR holidaytype=\"shortened\" OR holidaytype=\"city\")";
 		$result21=""; $found21=0; $ctr21=0;
+		// echo $res21query ;
 		$result21 = $dbh2->query($res21query);
 		if($result21->num_rows>0) {
 			while($myrow21 = $result21->fetch_assoc()) {
