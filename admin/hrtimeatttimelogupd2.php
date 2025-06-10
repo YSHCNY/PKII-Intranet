@@ -776,7 +776,14 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 			$utvalfin=0;
 		} else {
 			if ($leavedaydur[$val] == 1 ){
-				$totaltime[$val] = 8.00;
+				if ($leavetypeval == 'sd'){
+						$utvalfin = 8.00;
+						$totaltime[$val] = 0.00;
+				} else {
+					
+					$totaltime[$val] = 8.00;
+				}
+			
 			} else if ($leavedaydur[$val] == 0 && $totaltime[$val] == 0) {
 				if ($holidate[$val] == 'shortened'){
 					$utvalfin = $ShortenedTimeInDecimal;

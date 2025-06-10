@@ -97,6 +97,7 @@ GROUP BY
     tblhrtaemptimelog.idhrtaemptimelog
 ORDER BY 
     tblcontact.name_last, 
+	tblcontact.name_first,
     tblhrtaemptimelog.logdate ASC;
 ";
 
@@ -561,7 +562,7 @@ GROUP BY
     tblhrtaemptimelog.idhrtaemptimelog
 ORDER BY 
     tblhrtaemptimelog.employeeid ASC";
-
+// echo $res24query . "<br>";
 		
 
 	
@@ -570,61 +571,19 @@ ORDER BY
 		if($result24->num_rows>0) {
 			while($myrow24 = $result24->fetch_assoc()) {
 			$found24=1;
-			$logdate24 = $myrow24['logdate'];
-			$timein24 = $myrow24['timein'];
-			$timeout24 = $myrow24['timeout'];
-			$otbeforeinsw24 = $myrow24['otbeforeinsw'];
-			$otafteroutsw24 = $myrow24['otafteroutsw'];
-			$restdaysw24 = $myrow24['restdaysw'];
-			$nextdaysw24 = $myrow24['nextdaysw'];
+
 			$mealallowsw24 = $myrow24['mealallowsw'];
 			$leavetype24 = $myrow24['leavetype'];
 			$leaveduration24 = $myrow24['leaveduration'];
-$manualcompsw24 = $myrow24['manualcompsw']; 
 			$totaltime24 = $myrow24['totaltime'];
 			$otval24 = $myrow24['otval'];
 			$utval24 = $myrow24['utval'];
 			$otutval24 = $myrow24['otutval'];
 			$nightdiffval24 = $myrow24['nightdiffval'];
-			$nootsw24 = $myrow24['nootsw'];
-			$noutsw24 = $myrow24['noutsw'];
-			$projcharge24 = $myrow24['projcharge'];
-			$projpercent24 = $myrow24['projpercent'];
-			$nofindings24 = $myrow24['nofindings'];
-			$remarks24 = $myrow24['remarks'];
-$leaveid24 = $myrow24['leaveid']; 
-$holiday24 = $myrow24['holiday']; 
-$timein224 = $myrow24['timein2']; 
-$timeout224 = $myrow24['timeout2']; 
-$nextday2insw24 = $myrow24['nextday2insw']; 
-$nextday2outsw24 = $myrow24['nextday2outsw']; 
-$otordval24 = $myrow24['otordval']; 
-$otrestval24 = $myrow24['otrestval']; 
-$otlegalval24 = $myrow24['otlegalval']; 
-$otrest8val24 = $myrow24['otrest8val']; 
-$otspsunval24 = $myrow24['otspsunval']; 
-$otspsun8val24 = $myrow24['otspsun8val']; 
-$otlegal8val24 = $myrow24['otlegal8val']; 
-$otlegalsunval24 = $myrow24['otlegalsunval']; 
-$otlegalsun8val24 = $myrow24['otlegalsun8val']; 
-$otspval24 = $myrow24['otspval']; 
-$otsp8val24 = $myrow24['otsp8val']; 
-			$contactid24 = $myrow24['contactid'];
-			$bankacctid24 = $myrow24['bankacctid'];
-			$restday23 = $myrow24['restday'];
-			$projcode24 = $myrow24['projcode'];
-$projchgtyp24 = $myrow24['projchgtyp']; 
-$allowotdflt24 = $myrow24['allowotdflt']; 
-$allowotbfidflt24 = $myrow24['allowotbfidflt']; 
-			$activesw24 = $myrow24['activesw'];
-$projassignid24 = $myrow24['projassignid']; 
-$flexitime24 = $myrow24['flexitime']; 
-			$shiftin24 = $myrow24['shiftin'];
-			$holidaytype24 = $myrow24['holidaytype'];
-$name_last24 = $myrow24['name_last']; 
-$name_first24 = $myrow24['name_first']; 
-$name_middle24 = $myrow24['name_middle']; 
-$transpo = $myrow24['transpo'];
+			$name_last24 = $myrow24['name_last']; 
+			$name_first24 = $myrow24['name_first']; 
+			$name_middle24 = $myrow24['name_middle']; 
+			$transpo = $myrow24['transpo'];
 		// compute
 		// echo "<tr><td colspan=\"5\">compute eid:$employeeid23, curr:$empidcurr, nxt:$empidnxt</td></tr>";
 		// compute total
@@ -637,45 +596,61 @@ $transpo = $myrow24['transpo'];
 			$tot_trans += $transpo;
 			
 			if($leavetype24!="" && $leaveduration24!=0) {
-				if($leavetype24=="sick") {
-					$tot_lvtyp_sick = $tot_lvtyp_sick + $leaveduration24;
-				} else if($leavetype24=="vacation") {
-					$tot_lvtyp_vacation = $tot_lvtyp_vacation + $leaveduration24;
-				} else if($leavetype24=="paternity") {
-					$tot_lvtyp_paternity = $tot_lvtyp_paternity + $leaveduration24;
-				} else if($leavetype24=="maternityn") {
-					$tot_lvtyp_maternityn = $tot_lvtyp_maternityn + $leaveduration24;
-				} else if($leavetype24=="maternityc") {
-					$tot_lvtyp_maternityc = $tot_lvtyp_maternityc + $leaveduration24;
-				} else if($leavetype24=="special") {
-					$tot_lvtyp_special = $tot_lvtyp_special + $leaveduration24;
-				} else if($leavetype24=="accumulated") {
-					$tot_lvtyp_accumulated = $tot_lvtyp_accumulated + $leaveduration24;
-				} else if($leavetype24=="absent") {
-					$tot_lvtyp_absent = $tot_lvtyp_absent + $leaveduration24;
-				} else if($leavetype24=="sd") {
-					$tot_lvtyp_sd = $tot_lvtyp_sd + $leaveduration24;
-				} else if($leavetype24=="cc") {
-					$tot_lvtyp_cc = $tot_lvtyp_cc + $leaveduration24;
-				} else if($leavetype24=="ob") {
-					$tot_lvtyp_ob = $tot_lvtyp_ob + $leaveduration24;
-				} else if($leavetype24=="hds") {
-					$tot_lvtyp_hds = $tot_lvtyp_hds + $leaveduration24;
-				} else if($leavetype24=="hdv") {
-					$tot_lvtyp_hdv = $tot_lvtyp_hdv + $leaveduration24;
+				if($leavetype24=="sick" || $leavetype24 =="hds") {
+					$tot_lvtyp_sick +=  $leaveduration24;
+				} else if($leavetype24 == "vacation" || $leavetype24 == "hdv") {
+    			$tot_lvtyp_vacation += $leaveduration24; // Now combines vacation + hdv
+				} else if($leavetype24 =="paternity") {
+					$tot_lvtyp_paternity = $leaveduration24;
+				} else if($leavetype24 =="maternityn") {
+					$tot_lvtyp_maternityn = $leaveduration24;
+				} else if($leavetype24 =="maternityc") {
+					$tot_lvtyp_maternityc = $leaveduration24;
+				} else if($leavetype24 =="special") {
+					$tot_lvtyp_special = $leaveduration24;
+				} else if($leavetype24 =="accumulated") {
+					$tot_lvtyp_accumulated = $leaveduration24;
+				} else if($leavetype24 =="absent") {
+					$tot_lvtyp_absent = $leaveduration24;
+				} else if($leavetype24 =="sd") {
+					$tot_lvtyp_sd = $leaveduration24;
+				} else if($leavetype24 =="cc") {
+					$tot_lvtyp_cc = $leaveduration24;
+				} else if($leavetype24 =="ob") {
+					$tot_lvtyp_ob = $leaveduration24;
+				} else {
+					// do nothing
 				} // if($leavetype23=="sick")
+
+				$totalVacation = $tot_lvtyp_vacation + $tot_lvtyp_hdv;
+				$totalSick = $tot_lvtyp_sick + $tot_lvtyp_hds;
 			} // if($leavetype23!="" && $leaveduration23!=0)
 
 			} // while($myrow24 = $result24->fetch_assoc())
+
+			
 		} // if($result24->num_rows>0)
 
-		// echo "<tr><td colspan=\"5\">display summary eid:$employeeid23, curr:$empidcurr, nxt:$empidnxt</td></tr>";
-		// display total
-		$totalVacation = $tot_lvtyp_hdv + $tot_lvtyp_vacation;
-		$totalSick = $tot_lvtyp_hds + $tot_lvtyp_sick;
+	
+	
 			$ctr23b += 1;
-			echo "<tr>
 			
+			echo "<tr>";
+			
+// 					echo "<td> Total Sick Leave: " . $tot_lvtyp_sick . "<br>";
+// echo "Total Vacation Leave: " . $tot_lvtyp_vacation . "<br>";
+// echo "Total Paternity Leave: " . $tot_lvtyp_paternity . "<br>";
+// echo "Total Maternity (Normal) Leave: " . $tot_lvtyp_maternityn . "<br>";
+// echo "Total Maternity (CS) Leave: " . $tot_lvtyp_maternityc . "<br>";
+// echo "Total Special Leave: " . $tot_lvtyp_special . "<br>";
+// echo "Total Accumulated Leave: " . $tot_lvtyp_accumulated . "<br>";
+// echo "Total Absent: " . $tot_lvtyp_absent . "<br>";
+// echo "Total SD Leave: " . $tot_lvtyp_sd . "<br>";
+// echo "Total CC Leave: " . $tot_lvtyp_cc . "<br>";
+// echo "Total OB Leave: " . $tot_lvtyp_ob . "<br>";
+// echo "Total HDS Leave: " . $tot_lvtyp_hds . "<br>";
+// echo "Total HDV Leave: " . $tot_lvtyp_hdv . "<br> </td>";
+			echo"
 			<td>$name_last23, $name_first23 $name_middle23[0] ($employeeid23)</td>";
 			if($tot_totaltime!=0) {
 			echo "<td align=\"right\">".number_format($tot_totaltime, 2)."</td>";
@@ -723,16 +698,22 @@ $transpo = $myrow24['transpo'];
 				}
 
 
-			if($tot_lvtyp_vacation!=0) {
-			echo "<td align=\"center\">$totalVacation</td>";
+			if($tot_lvtyp_vacation!=0 || $tot_lvtyp_hdv!=0) {
+		
+			echo "<td align=\"center\">$totalVacation </td>";
 			} else {
 			echo "<td align=\"center\">-</td>";
 			}
-			if($tot_lvtyp_sick!=0) {
+
+
+			if($tot_lvtyp_sick!=0 || $tot_lvtyp_hds!=0) {
+
 			echo "<td align=\"center\">$totalSick</td>";
 			} else {
 			echo "<td align=\"center\">-</td>";
 			}
+
+
 			if($tot_lvtyp_sd!=0) {
 			echo "<td align=\"center\">$tot_lvtyp_sd</td>";
 			} else {
