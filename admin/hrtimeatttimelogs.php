@@ -1300,32 +1300,7 @@ $shiftin1hhwfh = $shiftinwfharr[0]; // Hour for timestart
 		} else {
 			echo "<td class = ''><div class = 'text-center'><h5 class = ''>NLF </h5> <input type = 'hidden' value = '0' name=\"leavedaydur[]\"> 
 			</div></td>";
-		//
-		// leave day duration
-
-		// if($leavedate1001 == $dateval){
-		// 	$leavedur1sel="selected"; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="";
-		// }
-		// else{
- 		// 	$leavedur1sel=""; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="selected";
- 		// 	if($found20 == 1) {
-		// 	if($leaveduration20 == "1.00") { $leavedur1sel="selected"; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel=""; }
-		// 		else if($leaveduration20 == "0.50a") { $leavedur1sel=""; $leavedur5asel="selected"; $leavedur5psel=""; $leavedurnonesel=""; }
-		// 		else if($leaveduration20 == "0.50p") { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel="selected"; $leavedurnonesel=""; }
-		// 		else if($leaveduration20 == "") { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel; $leavedurnonesel="selected"; }
-		// 	} else { $leavedur1sel=""; $leavedur5asel=""; $leavedur5psel=""; $leavedurnonesel="selected"; }
-		// }
-
-		
-		// echo "<td><select class = 'form-control text-center p-0 m-1'> name=\"leavedaydur[]\">";
-		// echo "<option value=\"0.00\" $leavedurnonesel>n/a</option>";
-		// echo "<option value=\"1.00\" $leavedur1sel>1.0 day</option>";
-		// echo "<option value=\"0.50a\" $leavedur5asel>0.5 day (am)</option>";
-		// echo "<option value=\"0.50p\" $leavedur5psel>0.5 day (pm)</option>";
-		// echo "</select></td>";
-		
-
-		//
+	
 		} // if-else
 
 		
