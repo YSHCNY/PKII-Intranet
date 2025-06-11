@@ -279,8 +279,10 @@ ORDER BY
 		}
 
 		// otrest 
+		
 		if($otrestval21 != 0){
-			echo "<td align=\"center\">$otrestval21</td>";
+			$finaloret = $otrestval21 + $otrest8val21;
+			echo "<td align=\"center\">$finaloret </td>";
 		} else {
 			echo"<td></td> ";
 		}
@@ -443,7 +445,7 @@ echo "</td>";
 
 
 		// official business
-		if($leavetype21=="ob") {
+		if($leavetype21=="ob" || $leavetype21=="hdob" ) {
 		echo "<td align=\"center\">$leaveduration21</td>";
 		} else {
 		echo "<td></td>";
@@ -601,23 +603,23 @@ ORDER BY
 				} else if($leavetype24 == "vacation" || $leavetype24 == "hdv") {
     			$tot_lvtyp_vacation += $leaveduration24; // Now combines vacation + hdv
 				} else if($leavetype24 =="paternity") {
-					$tot_lvtyp_paternity = $leaveduration24;
+					$tot_lvtyp_paternity += $leaveduration24;
 				} else if($leavetype24 =="maternityn") {
-					$tot_lvtyp_maternityn = $leaveduration24;
+					$tot_lvtyp_maternityn += $leaveduration24;
 				} else if($leavetype24 =="maternityc") {
-					$tot_lvtyp_maternityc = $leaveduration24;
+					$tot_lvtyp_maternityc += $leaveduration24;
 				} else if($leavetype24 =="special") {
-					$tot_lvtyp_special = $leaveduration24;
+					$tot_lvtyp_special += $leaveduration24;
 				} else if($leavetype24 =="accumulated") {
-					$tot_lvtyp_accumulated = $leaveduration24;
+					$tot_lvtyp_accumulated += $leaveduration24;
 				} else if($leavetype24 =="absent") {
-					$tot_lvtyp_absent = $leaveduration24;
+					$tot_lvtyp_absent += $leaveduration24;
 				} else if($leavetype24 =="sd") {
-					$tot_lvtyp_sd = $leaveduration24;
+					$tot_lvtyp_sd += $leaveduration24;
 				} else if($leavetype24 =="cc") {
-					$tot_lvtyp_cc = $leaveduration24;
-				} else if($leavetype24 =="ob") {
-					$tot_lvtyp_ob = $leaveduration24;
+					$tot_lvtyp_cc += $leaveduration24;
+				} else if($leavetype24 =="ob" || $leavetype24 =="hdob") {
+					$tot_lvtyp_ob += $leaveduration24;
 				} else {
 					// do nothing
 				} // if($leavetype23=="sick")
@@ -861,6 +863,16 @@ ORDER BY
 
 
 
+
+#sumtbl th{
+	  flex: 1; /* Distribute space evenly */
+  white-space: nowrap; /* Prevent wrapping */
+  position: sticky !important;
+  top: 6rem !important;
+  text-align: center !important;
+  background-color: gray !important;
+  color: white !important;
+}
 
 
 #this th {
