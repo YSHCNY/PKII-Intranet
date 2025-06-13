@@ -40,11 +40,11 @@ if($result16->num_rows>0) {
 		$email116 = $myrow16['email1'];
 		$email216 = $myrow16['email2'];
 		echo "<tr><td>$ctr16</td>";
-		if($checkall=="yes") {
-		    echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\" checked>$employeeid16</td>";			
-		} else {
-		    echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\">$employeeid16</td>";
-		} //if-else
+		// if($checkall=="yes") {
+		    echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\" CHECKED>$employeeid16</td>";			
+		// } else {
+		    // echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\">$employeeid16</td>";
+		// } //if-else
 		echo "<td>$name_last16, $name_first16 $name_middle16[0]</td><td>$email116</td><td>".number_format($net_pay16, 2)."</td>";
 		echo "</tr>";
 	} //while

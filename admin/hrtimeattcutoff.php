@@ -48,17 +48,20 @@ include 'timeattmenu.php';
 	echo "<div class = 'col'>";
 		echo "<select name=\"idhrtapaygrp\" class = 'form-select h5' onchange=\"this.form.submit()\">";
 		if($idhrtapaygrp == "") { echo "<option value=''>select paygroup</option>"; }
-		$result11=""; $found11=0; $ctr11=0;
-		$result11 = mysql_query("SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY datecreated DESC", $dbh);
-		if($result11 != "") {
-			while($myrow11 = mysql_fetch_row($result11)) {
+		$res11query=""; $result11=""; $found11=0; $ctr11=0;
+		$res11query="SELECT idtblhrtapaygrp, paygroupname FROM tblhrtapaygrp ORDER BY datecreated DESC";
+		$result11=$dbh2->query($res11query);
+		if($result11->num_rows>0) {
+			while($myrow11=$result11->fetch_assoc()) {
 			$found11 = 1;
-			$idtblhrtapaygrp11 = $myrow11[0];
-			$paygroupname11 = $myrow11[1];
+			$idtblhrtapaygrp11 = $myrow11['idtblhrtapaygrp'];
+			$paygroupname11 = $myrow11['paygroupname'];
 			if($idtblhrtapaygrp11 == $idhrtapaygrp) { $idhrtapgsel="selected"; } else { $idhrtapgsel=""; }
 			echo "<option value=\"$idtblhrtapaygrp11\" $idhrtapgsel>$paygroupname11</option>";
-			}
-		}
+				
+			} //while
+		} //if
+
 		echo "</select>";
 		echo "</div>";
 
@@ -78,14 +81,16 @@ include 'timeattmenu.php';
 	echo "<div class = 'shadow border p-4'>";
 
 		echo "<form action=\"hrtimeattcutoffadd.php?loginid=$loginid\" method=\"post\" name=\"modhrtacutoffadd\">";
-		$result12=""; $found12=0; $ctr12=0;
-		$result12 = mysql_query("SELECT paygroupname FROM tblhrtapaygrp WHERE idtblhrtapaygrp=$idhrtapaygrp", $dbh);
-		if($result12 != "") {
-			while($myrow12 = mysql_fetch_row($result12)) {
+		$res12query=""; $result12=""; $found12=0; $ctr12=0;
+		$res12query="SELECT paygroupname FROM tblhrtapaygrp WHERE idtblhrtapaygrp=$idhrtapaygrp";
+		$result12=$dbh2->query($res12query);
+		if($result12->num_rows>0) {
+			while($myrow12=$result12->fetch_assoc()) {
 			$found12 = 1;
-			$paygroupname12 = $myrow12[0];
-			}
-		}
+			$paygroupname12 = $myrow12['paygroupname'];
+				
+			} //while
+		} //if
 
 		echo "<input type=\"hidden\" name=\"idhrtapaygrp\" value=\"$idhrtapaygrp\">";
     	echo "<div class = 'row p-4'>";
@@ -137,24 +142,29 @@ include 'timeattmenu.php';
 	echo "</thead>";
 	echo "<tbody>";
 
-	$result14=""; $found14=0;
-	$result14 = mysql_query("SELECT tblhrtacutoff.idhrtacutoff, tblhrtacutoff.cutstart, tblhrtacutoff.cutend, tblhrtacutoff.remarks, tblhrtapaygrp.paygroupname FROM tblhrtacutoff LEFT JOIN tblhrtapaygrp ON tblhrtacutoff.idhrtapaygrp=tblhrtapaygrp.idtblhrtapaygrp WHERE tblhrtapaygrp.idtblhrtapaygrp=$idhrtapaygrp AND status=1 ORDER BY cutstart DESC", $dbh);
-	if($result14 != "") {
-		while($myrow14 = mysql_fetch_row($result14)) {
+	$res14query=""; $result14=""; $found14=0;
+	$res14query="SELECT tblhrtacutoff.idhrtacutoff, tblhrtacutoff.cutstart, tblhrtacutoff.cutend, tblhrtacutoff.remarks, tblhrtapaygrp.paygroupname FROM tblhrtacutoff LEFT JOIN tblhrtapaygrp ON tblhrtacutoff.idhrtapaygrp=tblhrtapaygrp.idtblhrtapaygrp WHERE tblhrtapaygrp.idtblhrtapaygrp=$idhrtapaygrp AND status=1 ORDER BY cutstart DESC";
+	$result14=$dbh2->query($res14query);
+	if($result14->num_rows>0) {
+		while($myrow14=$result14->fetch_assoc()) {
 		$found14 = 1;
-		$idhrtacutoff14 = $myrow14[0];
-		$cutstart14 = $myrow14[1];
-		$cutend14 = $myrow14[2];
-		$remarks14 = $myrow14[3];
-		$paygroupname14 = $myrow14[4];
-		$ctr14 = $ctr14 + 1;
+		$idhrtacutoff14 = $myrow14['idhrtacutoff'];
+		$cutstart14 = $myrow14['cutstart'];
+		$cutend14 = $myrow14['cutend'];
+		$remarks14 = $myrow14['remarks'];
+		$paygroupname14 = $myrow14['paygroupname'];
+		$ctr14++;
 		echo "<tr><td>".date("M d Y", strtotime($cutstart14))."</td><td>".date("M d Y", strtotime($cutend14))."</td>";
 		echo "<td>$paygroupname14</td>";
-		echo "<td><a class=\"btn mx-1 text-white bg-warning\" href=\"hrtimeattcutoffedit.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">Edit</a>";
+		echo "<td>";
+		// echo "<a class=\"btn mx-1 text-white bg-warning\" href=\"hrtimeattcutoffedit.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">Edit</a>";
+		echo "<a class=\"btn mx-1 text-white bg-primary\" href=\"hrtimeattcutoffedit.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">View list</a>";
 		echo "<a class=\"btn mx-1 text-white bg-danger\" href=\"hrtimeattcutoffdel.php?loginid=$loginid&idpg=$idhrtapaygrp&idct=$idhrtacutoff14\">Delete</a></td>";
 		echo "</tr>";
-		}
-	}
+			
+		} //while
+	} //if
+
 	echo "</tbody>";
 
 	echo "</table>";
@@ -167,13 +177,14 @@ echo "</div>";
 
 // edit body-footer
 
-     $result = mysql_query("UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid", $dbh); 
+     $resquery="UPDATE tbladminlogin SET login_status=1 WHERE adminloginid=$loginid";
+    $result=$dbh2->query($resquery);	 
 
      include ("footer.php");
 } else {
      include("logindeny.php");
 }
 
-mysql_close($dbh);
+// mysql_close($dbh);
 $dbh2->close();
 ?> 

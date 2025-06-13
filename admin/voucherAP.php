@@ -7,7 +7,7 @@
                         <div class="col-auto d-flex align-items-center gap-3">
                            <label for="date">Date range:</label> 
                                     <div class="d-flex align-items-center gap-3">
-                                    <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg'>
+                                    <select name = 'monthselector' value = '<?= $monthselector?>'class = 'form-select form-select-lg' onchange = 'this.form.submit();'>
                                       
                                         <?php 
                                         if ($monthselector == ""){
@@ -75,8 +75,8 @@
 </thead>
 <?php
   // $res11query = "SELECT DISTINCT acctspayablenumber, payee, due_date, date FROM tblfinacctspayable WHERE acctspayableid<>'' AND DATE_FORMAT(date, '%Y %M') = \"$yrmonthavlbl\" order by acctspayablenumber DESC";
+  $res11query=""; $result11=""; $found11=0;
   $res11query = "SELECT DISTINCT acctspayablenumber, payee, due_date, date FROM tblfinacctspayable WHERE acctspayableid<>'' AND DATE_FORMAT(date, '%M %Y') = '$monthselector' ORDER BY acctspayableid DESC, acctspayablenumber DESC";
-  $result11=""; $found11=0;
  
 // echo $res11query ;
 

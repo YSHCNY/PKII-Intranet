@@ -36,7 +36,8 @@ if ($found == 1) {
 
 
   if($accesslevel >= 3) {
-		echo "<form action=\"finpaysyspost.php?loginid=88&pg=vr&act=1\" method=\"post\" name=\"finpaysyspostresult\" >";
+		// echo "<form action=\"finpaysyspost.php?loginid=88&pg=vr&act=1\" method=\"post\" name=\"finpaysyspostresult\" >";
+		echo "<form action=\"finpaysyspost.php?loginid=$loginid&pg=vr&act=1\" method=\"post\" name=\"finpaysyspostresult\" >";
 
 
 		// pay group name dropdown

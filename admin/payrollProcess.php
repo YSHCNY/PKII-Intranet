@@ -174,21 +174,42 @@ if ($found == 1) {
 
         // query projassignid if exists or query latest rec
 		$res25query=""; $result25=""; $found25=0; $ctr25=0;
-		$res25query="SELECT tblhrtapaygrpemplst.idhrtapaygrpemplst, tblhrtapaygrpemplst.projassignid FROM tblhrtapaygrpemplst WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid23\" AND  tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup";
+		$res25query="SELECT tblhrtapaygrpemplst.idhrtapaygrpemplst, tblhrtapaygrpemplst.projassignid, tblhrtapaygrpemplst.projcode FROM tblhrtapaygrpemplst WHERE tblhrtapaygrpemplst.employeeid=\"$employeeid23\" AND  tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup";
 		$result25=$dbh2->query($res25query);
 		if($result25->num_rows>0) {
 			while($myrow25=$result25->fetch_assoc()) {
 				$found25=1;
 				$idhrtapaygrpemplst25 = $myrow25['idhrtapaygrpemplst'];
 				$projassignid25 = $myrow25['projassignid'];
+				$projcode25 = $myrow25['projcode'];
 			} //while
+		} //if
+		
+		//get proj short name
+		if($found25==1 && $projcode25!="") {
+			$res25bquery=""; $result25b=""; $found25=0;
+			$res25bquery="SELECT proj_sname FROM tblproject1 WHERE proj_code=\"$projcode25\"";
+			$result25b=$dbh2->query($res25bquery);
+			if($result25b->num_rows>0) {
+				while($myrow25b=$result25b->fetch_assoc()) {
+					$proj_sname25b = $myrow25b['proj_sname'];
+					if($proj_sname25b=="") {
+						$proj_sname25b=$projcode25;
+					}//if
+				} //while
+			} //if
 		} //if
 
 		
 		echo "";
 
-        if($found25!=0 && $projassignid25!=0) {
-		$res3query = "SELECT tblprojassign.projassignid, tblprojassign.projdate, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.employeeid0, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.empprojctr, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationtotal, tblprojassign.durationtotprop, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.duration2total, tblprojassign.duration2totprop, tblprojassign.durationprojassigntot, tblprojassign.durationprojassigntotprop, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.remarks2, tblprojassign.net_of_tax, tblprojassign.filepath, tblprojassign.filename, tblprojassign.idhrpositionctg FROM tblprojassign WHERE employeeid=\"$employeeid23\" AND projassignid=$projassignid25";			
+        if($found25!=0 && ($projassignid25!=0 || $projcode25!="")) {
+			if($projcode!="") {
+		$res3query = "SELECT tblprojassign.projassignid, tblprojassign.projdate, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.employeeid0, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.empprojctr, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationtotal, tblprojassign.durationtotprop, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.duration2total, tblprojassign.duration2totprop, tblprojassign.durationprojassigntot, tblprojassign.durationprojassigntotprop, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.remarks2, tblprojassign.net_of_tax, tblprojassign.filepath, tblprojassign.filename, tblprojassign.idhrpositionctg FROM tblprojassign WHERE employeeid=\"$employeeid23\" AND proj_code=$projcode25";				
+			} else {
+		$res3query = "SELECT tblprojassign.projassignid, tblprojassign.projdate, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.employeeid0, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.empprojctr, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationtotal, tblprojassign.durationtotprop, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.duration2total, tblprojassign.duration2totprop, tblprojassign.durationprojassigntot, tblprojassign.durationprojassigntotprop, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.remarks2, tblprojassign.net_of_tax, tblprojassign.filepath, tblprojassign.filename, tblprojassign.idhrpositionctg FROM tblprojassign WHERE employeeid=\"$employeeid23\" AND projassignid=$projassignid25";				
+			}
+			
 		} else {
 		$res3query = "SELECT tblprojassign.projassignid, tblprojassign.projdate, tblprojassign.ref_no, tblprojassign.employeeid, tblprojassign.employeeid0, tblprojassign.proj_code, tblprojassign.proj_name, tblprojassign.empprojctr, tblprojassign.position, tblprojassign.salary, tblprojassign.salarycurrency, tblprojassign.salarytype, tblprojassign.allow_inc, tblprojassign.allow_inc_currency, tblprojassign.allow_inc_paytype, tblprojassign.allow_proj, tblprojassign.allow_proj_currency, tblprojassign.allow_proj_paytype, tblprojassign.ecola1, tblprojassign.ecola1_currency, tblprojassign.ecola2, tblprojassign.ecola2_currency, tblprojassign.allow_field_currency, tblprojassign.allow_field_paytype, tblprojassign.allow_field, tblprojassign.allow_accomm, tblprojassign.allow_accomm_currency, tblprojassign.allow_accomm_paytype, tblprojassign.allow_transpo, tblprojassign.allow_transpo_currency, tblprojassign.allow_transpo_paytype, tblprojassign.allow_comm, tblprojassign.allow_comm_currency, tblprojassign.allow_comm_paytype, tblprojassign.perdiem, tblprojassign.perdiem_currency, tblprojassign.durationfrom, tblprojassign.durationto, tblprojassign.durationtotal, tblprojassign.durationtotprop, tblprojassign.durationfrom2, tblprojassign.durationto2, tblprojassign.duration2total, tblprojassign.duration2totprop, tblprojassign.durationprojassigntot, tblprojassign.durationprojassigntotprop, tblprojassign.term_resign, tblprojassign.remarks, tblprojassign.remarks2, tblprojassign.net_of_tax, tblprojassign.filepath, tblprojassign.filename, tblprojassign.idhrpositionctg FROM tblprojassign WHERE employeeid=\"$employeeid23\" AND durationto=\"0000-00-00\" AND tblprojassign.salary<>0 ORDER BY projassignid DESC LIMIT 1";			
 		} //if-else
@@ -1283,6 +1304,8 @@ WHERE
 			} //if
 			
 			// query tblproject1
+		if($projcode25=="") {
+			
 			if($proj_code!="") {
 			$res28query=""; $result28=""; $found28=0; $ctr28=0;
 			$res28query="SELECT projectid, proj_code, proj_sname, proj_fname FROM tblproject1 WHERE proj_code=\"$proj_code\"";
@@ -1303,6 +1326,10 @@ WHERE
 			} //if($result28->num_rows>0)				
 			} //if($proj_code!="")
 			
+		} else {
+			$proj_code28=$projcode25;
+			$proj_sname28=$proj_sname25b;
+		} //if
 
 /*			
 			echo "<tr><td colspan='21'><p>";
