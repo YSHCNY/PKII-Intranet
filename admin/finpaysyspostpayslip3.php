@@ -169,7 +169,7 @@ if($idpaygroup!=0 && $idcutoff!=0) {
 
     // send individual email/s
     $ok = "";
-	// $ok = mail("$email", "$subject", "$message", "From: $from");
+	$ok = mail("$email", "$subject", "$message", "From: $from");
 	if($ok) {
 		echo "<p>Congratulations your email has been sent</p>";
 		
