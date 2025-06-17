@@ -20,6 +20,7 @@ if($idcutoff0 != "") { $idcutoff=$idcutoff0; }
 if($disptyp0 != "") { $disptyp=$disptyp0; }
 
 $checkall = (isset($_POST['checkall'])) ? $_POST['checkall'] :'';
+if($checkall="on") { $checkallsel="CHECKED"; } else { $checkallsel=""; }
 
 $found = 0;
 
@@ -76,7 +77,7 @@ if ($found == 1) {
 		if($idcutoff == "") {
 		echo "<option value=''>select cutoff</option>";
 		}
-		$res15query="SELECT DISTINCT fk_idhrtacutoff, cut_start, cut_end FROM tblemppayroll WHERE fk_idhrtapaygrp=$idpaygroup ORDER BY cut_start DESC";
+		$res15query="SELECT DISTINCT fk_idhrtacutoff, cut_start, cut_end FROM tblemppayroll WHERE fk_idhrtapaygrp=$idpaygroup ORDER BY cut_end DESC";
 		$result15=""; $found15=0; $ctr15=0;
 		$result15 = $dbh2->query($res15query);
 		if($result15->num_rows>0) {
@@ -151,6 +152,7 @@ if ($found == 1) {
       const choices = new Choices(selectElement, {
         removeItemButton: true, // Enable remove button for selected items
         searchEnabled: true,    // Allow searching
+		shouldSort: false,
       });
 
 	  

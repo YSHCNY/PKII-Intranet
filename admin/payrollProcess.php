@@ -749,7 +749,7 @@ WHERE
 			$overtimesubtotal = $otamttot + $transpoamt + $mealallowamt;
 			// $overtimeTaxable = $otamttot + $nightdiffamt;
 			$overtimeTaxable = $otamttot;
-			$comprate = $netbasicpay + $totalVatableIncome + $overtimeTaxable;
+			// $comprate = $netbasicpay + $totalVatableIncome + $overtimeTaxable;
 
 			// echo "<td align=\"center\">";
 			// echo number_format($perDay,2);
@@ -935,8 +935,10 @@ WHERE
 			echo "</td>";
 
 			//end additional incomes
+			
+			$comprate = $netbasicpay + $totalVatableIncome + $overtimeTaxable; //transferred fr:ln:752
 
-			$grosspay = $comprate + $totalNonvatableIncome + $totalMealAllowance + $totalVatableIncome;
+			$grosspay = $comprate + $totalNonvatableIncome + $totalMealAllowance;
 
 			echo "<td class=\"text-right\">";
 			echo number_format($grosspay,2);
@@ -1212,6 +1214,7 @@ WHERE
 			echo "<td class=\"text-right\">";
 			echo number_format($wtax2023,2);
 			// echo "<br>f14:".$found14.",idwtx:".$idwtax202314.",pct:".$percent14.",cmprt:".$comprate.",crmin:".$crmin14.",prescramt:".$prescramt14.",wtax2k23:".$wtax2023;
+			// echo "<br>nbp:$netbasicpay,txblinc:$totalVatableIncome,otamt:$overtimeTaxable<br>cmprate:$comprate,cmprate2:$comprate2|id:$idwtax202314|crmin:$crmin14|pct:$percent14|prscramt:$prescramt14<br>ottxbl:$overtimeTaxable,otamttot:$otamttot";
 			echo "</td>";
 
 			//end tax
@@ -1257,7 +1260,7 @@ WHERE
 			echo "</td>";
 
 			$totalDeductions = $wtax2023 + $totalContributions + $totaldeductamount + $latesubtot;
-			$totalNetPay = $grosspay - $totalDeductions;
+			$totalNetPay = $grosspay - $totalDeductions - $sdtotamt;
 
 			echo "<td class=\"text-right\">".number_format($totalDeductions,2)."</td>";
 
@@ -1484,6 +1487,7 @@ if ($flagthis == 1){
 			$tot_totaltime=0; $tot_otval=0; $tot_utval=0; $tot_otutval=0; $tot_ndval=0; $tot_meal=0; $tot_lvtyp_sick=0; $tot_lvtyp_vacation=0; $tot_lvtyp_paternity=0; $tot_lvtyp_maternityn=0; $tot_lvtyp_maternityc=0; $tot_lvtyp_special=0; $tot_lvtyp_accumulated=0; $tot_lvtyp_absent=0; $tot_lvtyp_sd=0; $tot_lvtyp_cc=0; $tot_lvtyp_ob=0; $fintxtlvtyp=""; $fintotlvdur=0;$latesubtot =0; $overtimesubtot=0; $nigthdifsubtot = 0; $totalDeductions = 0; $totaldeductamount=0; $totalNetPay =0; $grosspay =0; $totalRestday =0;$totalLegalHoliday = 0; $totalSpecialHoliday = 0; $tot_specialholidaytime =0; $tot_legalholidaytime =0; $tot_restdaytime = 0; $latesubtot= 0; $totalMealAllowance=0;
 			$wtax2023=0; $philhealth2020=0; $deductionfin=0; $sdtotval=0; $sdtotamt=0;
 			$totalVatableIncome=0; //20250513 //20250527 moved fr ln:1346
+			$comprate2=0; $comprate=0; //20250616
 
 
 		} // while($myrow23 = mysql_fetch_row($result23))

@@ -168,9 +168,17 @@ if ($found == 1) {
 
 
 <style>
-	.stickythis{
+	th{
 		position: sticky !important;
-		bottom: 20 !important;
+		top: 30 !important;
+		border: 1px solid rgb(221, 221, 221) !important;
+		background-color:rgb(185, 185, 185) !important;
+	}
+
+	td {
+		padding: 15px 10px  !important;
+		white-space: nowrap !important;
+
 	}
 </style>
 		<?php

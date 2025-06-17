@@ -39,7 +39,7 @@ if($idpaygroup!=0 && $idcutoff!=0) {
     echo "<html><pre>";
     foreach($employeeid as $value) {
 		$res12query=""; $result12=""; $found12=0; $ctr12=0;
-		$res12query="SELECT tblemppayroll.emppayrollid, tblemppayroll.emp_salary, tblemppayroll.absentamt, tblemppayroll.otherincometaxable, tblemppayroll.otherincome, tblemppayroll.net_pay, tblemppayroll.totaltardy, tblemppayroll.emp_dep, tblemppayroll.nightdiffamt, tblemppayroll.overamt, tblemppayroll.otsundayamt, tblemppayroll.speholidayamt, tblemppayroll.regholidayamt, tblemppayroll.tax, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.philemp, tblemppayroll.pagibig, tblemppayroll.otherdeduction, tblemppayroll.emp_sick, tblemppayroll.emp_vacation, tblemppayroll.vlused, tblemppayroll.slused, tblemppayroll.deduction, tblemppayroll.emp_over_duration, tblemppayroll.otsunday, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.nightdiffminutes, tblemppayroll.projcode, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblemppayroll LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid WHERE tblemppayroll.employeeid=\"$value\" AND fk_idhrtapaygrp=$idpaygroup AND fk_idhrtacutoff=$idcutoff AND tblcontact.contact_type=\"personnel\"";
+		$res12query="SELECT tblemppayroll.emppayrollid, tblemppayroll.emp_salary, tblemppayroll.absentamt, tblemppayroll.otherincometaxable, tblemppayroll.otherincome, tblemppayroll.net_pay, tblemppayroll.totaltardy, tblemppayroll.emp_dep, tblemppayroll.nightdiffamt, tblemppayroll.overamt, tblemppayroll.otsundayamt, tblemppayroll.speholidayamt, tblemppayroll.regholidayamt, tblemppayroll.tax, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.philemp, tblemppayroll.pagibig, tblemppayroll.otherdeduction, tblemppayroll.emp_sick, tblemppayroll.emp_vacation, tblemppayroll.cut_start, tblemppayroll.cut_end, tblemppayroll.vlused, tblemppayroll.slused, tblemppayroll.deduction, tblemppayroll.emp_over_duration, tblemppayroll.otsunday, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.nightdiffminutes, tblemppayroll.projcode, tblemppayroll.ottotval, tblemppayroll.ottotamt, tblemppayroll.otrest8val, tblemppayroll.otrest8amt, tblemppayroll.otspsun8val, tblemppayroll.otspsun8amt, tblemppayroll.otlegal8val, tblemppayroll.otlegal8amt, tblemppayroll.otlegalsunval, tblemppayroll.otlegalsunamt, tblemppayroll.otlegalsun8val, tblemppayroll.otlegalsun8amt, tblemppayroll.otsp8val, tblemppayroll.otsp8amt, tblemppayroll.otrestval, tblemppayroll.otrestamt, tblemppayroll.transpoallow, tblemppayroll.transpoallowamt, tblemppayroll.mealallow, tblemppayroll.mealallowamt, tblemppayroll.sdval, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblcontact.email1, tblcontact.email2 FROM tblemppayroll LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid WHERE tblemppayroll.employeeid=\"$value\" AND fk_idhrtapaygrp=$idpaygroup AND fk_idhrtacutoff=$idcutoff AND tblcontact.contact_type=\"personnel\"";
 		$result12=$dbh2->query($res12query);
 		if($result12->num_rows>0) {
 			while($myrow12=$result12->fetch_assoc()) {
@@ -65,6 +65,12 @@ if($idpaygroup!=0 && $idcutoff!=0) {
 				$otherdeduction12 = $myrow12['otherdeduction'];
 				$emp_sick12 = $myrow12['emp_sick'];
 				$emp_vacation12 = $myrow12['emp_vacation'];
+				
+				$cut_start12 = $myrow12['cut_start'];
+				$start=$cut_start12;
+				$cut_end12 = $myrow12['cut_end'];
+				$end=$cut_end12;
+				
 				$vlused12 = $myrow12['vlused'];
 				$slused12 = $myrow12['slused'];
 				$deduction12 = $myrow12['deduction'];
@@ -74,17 +80,52 @@ if($idpaygroup!=0 && $idcutoff!=0) {
 				$speholiday12 = $myrow12['speholiday'];
 				$nightdiffminutes12 = $myrow12['nightdiffminutes'];
 				$projcode12 = $myrow12['projcode'];
+				
+				$ottotval12 = $myrow12['ottotval'];
+				$ottotamt12 = $myrow12['ottotamt'];
+				$otrest8val12 = $myrow12['otrest8val'];
+				$otrest8amt12 = $myrow12['otrest8amt'];
+				$otspsun8val12 = $myrow12['otspsun8val'];
+				$otspsun8amt12 = $myrow12['otspsun8amt'];
+				$otlegal8val12 = $myrow12['otlegal8val'];
+				$otlegal8amt12 = $myrow12['otlegal8amt'];
+				$otlegalsunval12 = $myrow12['otlegalsunval'];
+				$otlegalsunamt12 = $myrow12['otlegalsunamt'];
+				$otlegalsun8val12 = $myrow12['otlegalsun8val'];
+				$otlegalsun8amt12 = $myrow12['otlegalsun8amt'];
+				$otsp8val12 = $myrow12['otsp8val'];
+				$otsp8amt12 = $myrow12['otsp8amt'];
+				$otrestval12 = $myrow12['otrestval'];
+				$otrestamt12 = $myrow12['otrestamt'];
+				$transpoallow12 = $myrow12['transpoallow'];
+				$transpoallowamt12 = $myrow12['transpoallowamt'];
+				$mealallow12 = $myrow12['mealallow'];
+				$mealallowamt12 = $myrow12['mealallowamt'];
+				$sdval12 = $myrow12['sdval'];
+				
 				$name_last12 = $myrow12['name_last'];
 				$name_first12 = $myrow12['name_first'];
 				$name_middle12 = $myrow12['name_middle'];
 				$email112 = $myrow12['email1'];
+			if($email112!="") { $email=$email112; }
 				$email212 = $myrow12['email2'];
 				
     // $payrate = $emp_salary12 / 2;
 	$payrate = $emp_salary12;
     $totallateabsent = $totaltardy12 + $absentamt12;
     $netbasicpay = $payrate - $totallateabsent;
-    $totalovertime = $nightdiffamt12 + $overamt12 + $otsundayamt12 + $speholidayamt12 + $regholidayamt12;
+	
+    // $totalovertime = $nightdiffamt12 + $overamt12 + $otsundayamt12 + $speholidayamt12 + $regholidayamt12;
+	$totalovertime = $nightdiffamt12 + $overamt12 + $otsundayamt12 + $speholidayamt12 + $regholidayamt12 + $otrest8amt12 + $otspsun8amt12 + $otlegal8amt12 + $otlegalsunamt12 + $otlegalsun8amt12 + $otsp8amt12 + $otrestamt12; //20250617upd
+	$totalovertime = number_format($totalovertime,2);
+	
+	$otsumrestval = $otsunday12 + $otrest8val12 + $otrestval12;
+	$otsumrestamt = number_format($otrest8amt12 + $otsundayamt12 + $otrestamt12,2);
+	
+	$otsumspeholidayamt = number_format($speholidayamt12 + $otsp8amt12 + $otspsun8amt12,2);
+	
+	$otsumlegalholiamt = number_format($regholidayamt12 + $otlegal8amt12 + $otlegalsunamt12 + $otlegalsun8amt12,2);
+
     $grosspay = $netbasicpay + $totalovertime + $otherincometaxable12 + $otherincome12;
     $deductionstotal = $tax12 + $deduction12 + $philemp12 + $pagibig12 + $otherdeduction12;
 
@@ -98,13 +139,16 @@ if($idpaygroup!=0 && $idcutoff!=0) {
 	$message = $message . "Project: $emp_dep12\n\n";
 	
 	$message = $message . "PAY RATE: " . formatMoney($payrate) . "\n\n";
-	$message = $message . "Total Late_Absent: $totallateabsent\n";
+	$message = $message . "Total Late_Absent: " . $totallateabsent . "\n";
 	$message = $message . "NET BASIC PAY: " . formatMoney($netbasicpay) . "\n\n";
 	
 	$message = $message . "Regular Overtime: " . formatMoney($overamt12) . "\n";
-	$message = $message . "Reg.Sun/Sat. OT: $otsunday" . " (mins) - " . formatMoney($otsundayamt12) . "\n";
-	$message = $message . "Legal Holiday OT: " . formatMoney($regholidayamt12) . "\n";
-	$message = $message . "Special Holiday OT: " . formatMoney($speholidayamt12) . "\n";
+	// $message = $message . "Reg.Sun/Sat. OT: " . $otsunday . " (mins) - " . formatMoney($otsundayamt12) . "\n";
+	$message = $message . "Reg.Sun/Sat. OT: " . $otsumrestval . " (hrs) - " . formatMoney($otsumrestamt) . "\n";
+	// $message = $message . "Legal Holiday OT: " . formatMoney($regholidayamt12) . "\n";
+	$message = $message . "Legal Holiday OT: " . formatMoney($otsumlegalholiamt) . "\n";
+	// $message = $message . "Special Holiday OT: " . formatMoney($speholidayamt12) . "\n";
+	$message = $message . "Special Holiday OT: " . formatMoney($otsumspeholidayamt) . "\n";
 	$message = $message . "Night Differential: " . formatMoney($nightdiffamt12) . "\n";
 	$message = $message . "TOTAL OVERTIME: " . formatMoney($totalovertime) . "\n\n";
 
@@ -171,7 +215,7 @@ if($idpaygroup!=0 && $idcutoff!=0) {
     $ok = "";
 	$ok = mail("$email", "$subject", "$message", "From: $from");
 	if($ok) {
-		echo "<p>Congratulations your email has been sent</p>";
+		echo "<p class='text-success'>Congratulations! email SENT successfuly</p>";
 		
 		$processed = $processed . $message . "------------------------------------------------------------------------------------------------------------\n";
 	} else { // if($ok)
@@ -187,7 +231,7 @@ if($idpaygroup!=0 && $idcutoff!=0) {
 	
     $File = "/var/www/pkii/admin/logs/". date("y-m-d_H:i:s", time()) . "_" . $start . "_" . $end . ".txt";
 	$Handle = fopen($File, 'w');
-	$Data = "$processed"; 
+	$Data = $processed; 
 	fwrite($Handle, $Data);
 	fclose($Handle);
 	

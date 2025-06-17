@@ -1,3 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
 <?php
 //
 // finpaysyspostresult2.php on 20250115
@@ -15,20 +18,25 @@
 		} //while
 	} //if
 
-echo "<div class='table-'><table class='table table-hover table-striped table-bordered'>";
+
+
+echo "<div class=''>
+<button class = 'btn  btn-success my-3' onclick='exportToExcel()'><i class='bi bi-file-earmark-excel '></i> Export to Excel</button>
+<table class='table table-hover table-striped table-bordered table-sm' id = 'payrollsummary'>";
 echo "<thead>";
 // disp title
-echo "<tr><th colspan='17'>Philkoei International Inc.<br>Employees Payroll Summary<br>From ".date('Y-M-d', strtotime($cut_start15b))." To ".date('Y-M-d', strtotime($cut_end15b))."</th></tr>";
+echo "<tr><td colspan='15' class ='h4 fw-bold'>Philkoei International Inc. (Employees Payroll Summary From ".date('Y-M-d', strtotime($cut_start15b))." To ".date('Y-M-d', strtotime($cut_end15b)).")</td> 
+</tr>";
 // disp column header
 echo "<tr>";
-echo "<th>Employee No.</th>";
+echo "<th>ID</th>";
 echo "<th>Name</th>";
-echo "<th>Emp_Salary</th>";
-echo "<th>Total Late/Absent</th>";
+echo "<th>Employee Salary</th>";
+echo "<th>Total L/A</th>";
 echo "<th>Net Basic Pay</th>";
-echo "<th>Emp Overtime</th>";
+echo "<th>Overtime</th>";
 echo "<th>Taxable Income</th>";
-echo "<th>Other Income Non-Taxable</th>";
+echo "<th>Non-Taxable Income</th>";
 echo "<th>Gross Pay</th>";
 echo "<th>Withholding Tax</th>";
 echo "<th>SSS Deduction</th>";
@@ -43,8 +51,7 @@ echo "</thead>";
 echo "<tbody>";
 // query tblemppayroll
     $res16query=""; $result16=""; $found16=0; $ctr16=0;
-	// $res16query="SELECT tblemppayroll.emppayrollid, tblemppayroll.employeeid, tblemppayroll.emp_salary, tblemppayroll.deduction, tblemppayroll.phil_ded, tblemppayroll.tax, tblemppayroll.emp_over_duration, tblemppayroll.net_pay, tblemppayroll.emp_date_wrk, tblemppayroll.emp_sick, tblemppayroll.emp_vacation, tblemppayroll.cut_start, tblemppayroll.cut_end, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.emp_late_duration, tblemppayroll.otsunday, tblemppayroll.regholidayamt, tblemppayroll.speholidayamt, tblemppayroll.otsundayamt, tblemppayroll.overamt, tblemppayroll.nightdiffminutes, tblemppayroll.nightdiffamt, tblemppayroll.totaltardy, tblemppayroll.otherincome, tblemppayroll.otherincometaxable, tblemppayroll.otherdeduction, tblemppayroll.emp_dep, tblemppayroll.pagibig, tblemppayroll.vlused, tblemppayroll.slused, tblemppayroll.philemp, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.bracket, tblemppayroll.absentamt, tblemppayroll.ottotval, tblemppayroll.ottotamt, tblemppayroll.otrest8val, tblemppayroll.otrest8amt, tblemppayroll.otspsun8val, tblemppayroll.otspsun8amt, tblemppayroll.otlegal8val, tblemppayroll.otlegal8amt, tblemppayroll.otlegalsunval, tblemppayroll.otlegalsunamt, tblemppayroll.otlegalsun8val, tblemppayroll.otlegalsun8amt, tblemppayroll.otsp8val, tblemppayroll.otsp8amt, tblemppayroll.otrestval, tblemppayroll.otrestamt, tblemppayroll.transpoallow, tblemppayroll.transpoallowamt, tblemppayroll.mealallow, tblemppayroll.mealallowamt, tblemppayroll.sdval, tblemppayroll.projcode, tblhrtapaygrpemplst.projassignid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblproject1.proj_fname, tblproject1.proj_sname FROM tblemppayroll LEFT JOIN tblhrtapaygrpemplst ON tblhrtapaygrpemplst.employeeid=tblemppayroll.employeeid LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid LEFT JOIN tblproject1 ON tblemppayroll.projcode=tblproject1.proj_code WHERE tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblemppayroll.fk_idhrtapaygrp=$idpaygroup AND tblemppayroll.fk_idhrtacutoff=$idcutoff GROUP BY tblhrtapaygrpemplst.projassignid ORDER BY tblhrtapaygrpemplst.projassignid ASC, tblemppayroll.projcode ASC, tblcontact.name_last ASC, tblcontact.name_first ASC";
-	// $res16query="SELECT tblemppayroll.emppayrollid, tblemppayroll.employeeid, tblemppayroll.emp_salary, tblemppayroll.deduction, tblemppayroll.phil_ded, tblemppayroll.tax, tblemppayroll.emp_over_duration, tblemppayroll.net_pay, tblemppayroll.emp_date_wrk, tblemppayroll.emp_sick, tblemppayroll.emp_vacation, tblemppayroll.cut_start, tblemppayroll.cut_end, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.emp_late_duration, tblemppayroll.otsunday, tblemppayroll.regholidayamt, tblemppayroll.speholidayamt, tblemppayroll.otsundayamt, tblemppayroll.overamt, tblemppayroll.nightdiffminutes, tblemppayroll.nightdiffamt, tblemppayroll.totaltardy, tblemppayroll.otherincome, tblemppayroll.otherincometaxable, tblemppayroll.otherdeduction, tblemppayroll.emp_dep, tblemppayroll.pagibig, tblemppayroll.vlused, tblemppayroll.slused, tblemppayroll.philemp, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.bracket, tblemppayroll.absentamt, tblemppayroll.ottotval, tblemppayroll.ottotamt, tblemppayroll.otrest8val, tblemppayroll.otrest8amt, tblemppayroll.otspsun8val, tblemppayroll.otspsun8amt, tblemppayroll.otlegal8val, tblemppayroll.otlegal8amt, tblemppayroll.otlegalsunval, tblemppayroll.otlegalsunamt, tblemppayroll.otlegalsun8val, tblemppayroll.otlegalsun8amt, tblemppayroll.otsp8val, tblemppayroll.otsp8amt, tblemppayroll.otrestval, tblemppayroll.otrestamt, tblemppayroll.transpoallow, tblemppayroll.transpoallowamt, tblemppayroll.mealallow, tblemppayroll.mealallowamt, tblemppayroll.sdval, tblemppayroll.projcode, tblhrtapaygrpemplst.projassignid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblproject1.proj_fname, tblproject1.proj_sname FROM tblemppayroll LEFT JOIN tblhrtapaygrpemplst ON tblhrtapaygrpemplst.employeeid=tblemppayroll.employeeid LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid LEFT JOIN tblproject1 ON tblemppayroll.projcode=tblproject1.proj_code WHERE tblhrtapaygrpemplst.idtblhrtapaygrp=$idpaygroup AND tblemppayroll.fk_idhrtapaygrp=$idpaygroup AND tblemppayroll.fk_idhrtacutoff=$idcutoff ORDER BY tblemppayroll.projcode ASC, tblcontact.name_last ASC, tblcontact.name_first ASC";
+	
 	$res16query="SELECT tblemppayroll.emppayrollid, tblemppayroll.employeeid, tblemppayroll.emp_salary, tblemppayroll.deduction, tblemppayroll.phil_ded, tblemppayroll.tax, tblemppayroll.emp_over_duration, tblemppayroll.net_pay, tblemppayroll.emp_date_wrk, tblemppayroll.emp_sick, tblemppayroll.emp_vacation, tblemppayroll.cut_start, tblemppayroll.cut_end, tblemppayroll.regholiday, tblemppayroll.speholiday, tblemppayroll.emp_late_duration, tblemppayroll.otsunday, tblemppayroll.regholidayamt, tblemppayroll.speholidayamt, tblemppayroll.otsundayamt, tblemppayroll.overamt, tblemppayroll.nightdiffminutes, tblemppayroll.nightdiffamt, tblemppayroll.totaltardy, tblemppayroll.otherincome, tblemppayroll.otherincometaxable, tblemppayroll.otherdeduction, tblemppayroll.emp_dep, tblemppayroll.pagibig, tblemppayroll.vlused, tblemppayroll.slused, tblemppayroll.philemp, tblemppayroll.ss, tblemppayroll.ec, tblemppayroll.bracket, tblemppayroll.absentamt, tblemppayroll.ottotval, tblemppayroll.ottotamt, tblemppayroll.otrest8val, tblemppayroll.otrest8amt, tblemppayroll.otspsun8val, tblemppayroll.otspsun8amt, tblemppayroll.otlegal8val, tblemppayroll.otlegal8amt, tblemppayroll.otlegalsunval, tblemppayroll.otlegalsunamt, tblemppayroll.otlegalsun8val, tblemppayroll.otlegalsun8amt, tblemppayroll.otsp8val, tblemppayroll.otsp8amt, tblemppayroll.otrestval, tblemppayroll.otrestamt, tblemppayroll.transpoallow, tblemppayroll.transpoallowamt, tblemppayroll.mealallow, tblemppayroll.mealallowamt, tblemppayroll.sdval, tblemppayroll.projcode, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle, tblproject1.proj_fname, tblproject1.proj_sname FROM tblemppayroll LEFT JOIN tblcontact ON tblemppayroll.employeeid=tblcontact.employeeid LEFT JOIN tblproject1 ON tblemppayroll.projcode=tblproject1.proj_code WHERE tblemppayroll.fk_idhrtapaygrp=$idpaygroup AND tblemppayroll.fk_idhrtacutoff=$idcutoff ORDER BY tblemppayroll.projcode ASC, tblcontact.name_last ASC, tblcontact.name_first ASC";
 	$result16=$dbh2->query($res16query);
 	if($result16->num_rows>0) {
@@ -139,17 +146,18 @@ echo "<tbody>";
 				$proj_sname16a = $myrow16a['proj_sname'];
 				} //while
 			} //if
+
 			if($projcode16=="C00-001" || $projcode16=="") {
-				echo "<tr><td colspan='17'>GAE</td></tr>";
+				echo "<tr><td colspan='15' class = 'fw-bold h4'>GAE</td></tr>";
 			} else {
 				if($proj_sname16!="") {
-		        echo "<tr><td colspan='17'>$proj_sname16</td></tr>";												
+		        echo "<tr><td colspan='15' class = 'fw-bold h4'>$proj_sname16</td></tr>";												
 				} else {
-				echo "<tr><td colspan='17'>".substr($proj_fname16,0,25)."</td></tr>";
+				echo "<tr><td colspan='15' class = 'fw-bold h4'>".substr($proj_fname16,0,25)."</td></tr>";
 				} //if-else
 			} //if
 		} //if
-		echo "<tr><td>$ctr16<br>$employeeid16</td><td>$name_last16, $name_first16 $name_middle16[0]</td>";
+		echo "<tr><td>$employeeid16</td><td>$name_last16, $name_first16 $name_middle16[0]</td>";
         // echo "<td class='text-right'>".number_format($payrate, 2)."</td>";
 		echo "<td class='text-right'>".number_format($emp_salary16, 2)."</td>";
 		echo "<td class='text-right'>".number_format($totallateabsent, 2)."</td>";
@@ -222,7 +230,12 @@ echo "<tbody>";
 	if($found16==1) {
 		
 	// display summary (grand) total
-	echo "<tr><th colspan=\"3\" class='text-right'>Grand TOTAL</th>";
+
+
+
+	echo "<tr>";
+	echo "<th></th>";
+	echo "<th></th><th colspan=\"\" class='text-right'>Grand TOTAL</th>";
 	echo "<th class='text-right'>".number_format($tottotallateabsent, 2)."</th>";
 	echo "<th class='text-right'>".number_format($totnetbasicpay, 2)."</th>";
 	echo "<th class='text-right'>".number_format($tottotalovertime, 2)."</th>";
@@ -241,60 +254,70 @@ echo "<tbody>";
 	} //if($found16==1)
 	
 	// display signatories
-	echo "<tr><td></td>";
+
+	echo "<tr></tr>";
+	echo "<tr></tr>";
+	echo "<tr  class ='markedTR'>";
 	// prepared
-	echo "<td colspan='4'>Prepared by:</td>";
+	echo "<td align = 'center' colspan='4'>Prepared by:</td>";
 	// checked
-	echo "<td colspan='4'>Checked by:</td>";
+	echo "<td align = 'center' colspan='4'>Checked by:</td>";
 	// noted
-	echo "<td colspan='4'>Noted by:</td>";
+	echo "<td align = 'center' colspan='4'>Noted by:</td>";
 	// approved
-	echo "<td colspan='4'>Approved by:</td>";
+	echo "<td align = 'center' colspan='4'>Approved by:</td>";
 	echo "</tr>";
 
-	echo "<tr><td></td>";
+	echo "<tr  class ='markedTR'>";
 	// prepared
-	echo "<td colspan='4'>";
+	echo "<td align = 'center' colspan='4'>";
 	echo "________________________"; 
 	echo "</td>";
 	// checked
-	echo "<td colspan='4'>";
+	echo "<td align = 'center' colspan='4'>";
 	echo "________________________"; 
 	echo "</td>";
 	// noted
-	echo "<td colspan='4'>";
+	echo "<td align = 'center' colspan='4'>";
 	echo "________________________"; 
 	echo "</td>";
 	// approved
-	echo "<td colspan='4'>";
+	echo "<td align = 'center' colspan='4'>";
 	echo "________________________"; 
 	echo "</td>";
 	echo "</tr>";
 
-	echo "<tr><td></td>";
+	echo "<tr  class ='markedTR'>";
 	// prepared
-	echo "<th colspan='4'>$preparedbyname</th>";
+	echo "<td class = 'fw-bold h4' align = 'center' colspan='4'>$preparedbyname</td>";
 	// checked
-	echo "<th colspan='4'>$checkedbyname</th>";
+	echo "<td class = 'fw-bold h4' align = 'center' colspan='4'>$checkedbyname</td>";
 	// noted
-	echo "<th colspan='4'>$notedbyname</th>";
+	echo "<td class = 'fw-bold h4' align = 'center' colspan='4'>$notedbyname</td>";
 	// approved
-	echo "<th colspan='4'>$approvedbyname</th>";
+	echo "<td class = 'fw-bold h4' align = 'center' colspan='4'>$approvedbyname</td>";
 	echo "</tr>";
 
-	echo "<tr><td></td>";
+	echo "<tr  class ='markedTR'>";
 	// prepared
-	echo "<td colspan='4'>$preparedbyposition</td>";
+	echo "<td align = 'center' colspan='4'>$preparedbyposition</td>";
 	// checked
-	echo "<td colspan='4'>$checkedbyposition</td>";
+	echo "<td align = 'center' colspan='4'>$checkedbyposition</td>";
 	// noted
-	echo "<td colspan='4'>$notedbyposition</td>";
+	echo "<td align = 'center' colspan='4'>$notedbyposition</td>";
 	// approved
-	echo "<td colspan='4'>$approvedbyposition</td>";
+	echo "<td align = 'center' colspan='4'>$approvedbyposition</td>";
 	echo "</tr>";
 
+
+	
 echo "</tbody>";
 echo "</table></div>";
+
+
+
+
+
 
 
 	if($found16==1) {
@@ -436,4 +459,180 @@ echo "</table></div>";
 		echo "<p class='text-color:red'>Sorry, No records for this cutoff period</p>";
 	} //if
 
+
+	$filetitle = date('Y-M-d', strtotime($cut_start15b)) ." To ". date('Y-M-d', strtotime($cut_end15b));
+
+	
 ?>
+
+
+<script>
+async function exportToExcel() {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('PayrollSummary');
+
+  const table = document.getElementById("payrollsummary");
+  const rows = table.querySelectorAll('tr');
+  const mergeRanges = [];
+
+  rows.forEach((row, rowIndex) => {
+    const cells = row.querySelectorAll('td, th');
+    let excelCells = [];
+    let currentColumn = 1;
+
+    // Build row with merged cells based on colspan
+    cells.forEach(cell => {
+      const colspan = parseInt(cell.getAttribute('colspan')) || 1;
+      const cellValue = cell.textContent.trim();
+
+      // Set value in current column
+      excelCells[currentColumn - 1] = cellValue;
+
+      // Fill in the rest with nulls and prepare merge
+      if (colspan > 1) {
+        mergeRanges.push({
+          start: { row: worksheet.rowCount + 1, column: currentColumn },
+          end: { row: worksheet.rowCount + 1, column: currentColumn + colspan - 1 }
+        });
+
+        for (let i = 1; i < colspan; i++) {
+          excelCells[currentColumn - 1 + i] = null;
+        }
+      }
+
+      currentColumn += colspan;
+    });
+
+    const excelRow = worksheet.addRow(excelCells);
+
+    // === Styling logic ===
+
+    // If colspan=15 (e.g., title rows)
+    const firstCell = cells[0];
+    if (firstCell && firstCell.colSpan === 15) {
+      excelRow.font = { bold: true, size: 14, color: { argb: '000000' } };
+      excelRow.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'E6E6E6' }
+      };
+      excelRow.alignment = {
+        vertical: 'middle',
+        wrapText: false
+      };
+      excelRow.height = 30;
+    }
+
+    // Grand TOTAL row styling
+    else if (row.textContent.includes('Grand TOTAL')) {
+      excelRow.font = { bold: true, size: 12 };
+      excelRow.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'F2F2F2' }
+      };
+
+      excelRow.eachCell((cell, colNumber) => {
+        if (colNumber >= 4) {
+          cell.alignment = {
+            vertical: 'middle',
+            horizontal: 'right',
+            indent: 1
+          };
+          cell.numFmt = '#,##0.00';
+        }
+      });
+    }
+
+    // Header row
+    else if (rowIndex === 0) {
+      excelRow.font = { bold: true, size: 12 };
+      excelRow.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'D3D3D3' }
+      };
+      excelRow.alignment = {
+        vertical: 'middle',
+        horizontal: 'center',
+        wrapText: false
+      };
+      excelRow.height = 25;
+    }
+
+	else if (row.classList.contains('markedTR')) {
+	  excelRow.font = { bold: true, size: 12 };
+	  excelRow.fill = {
+		type: 'pattern',
+		pattern: 'solid',
+		fgColor: { argb: 'f2f2f2' }
+	  };
+	  excelRow.alignment = {
+		vertical: 'middle',
+		horizontal: 'center',
+		wrapText: false
+	  };
+	  excelRow.height = 25;
+	}
+
+	// Normal rows
+	else {
+	  excelRow.font = { size: 11 };
+	  excelRow.alignment = {
+		vertical: 'middle',
+		horizontal: 'right',
+		wrapText: true
+	  };
+	  excelRow.height = 25;
+
+	}
+
+    // All rows
+    excelRow.eachCell((cell, colNumber) => {
+	
+      cell.alignment = cell.alignment || {
+        vertical: 'middle',
+        horizontal: 'center',
+        indent: 1
+      };
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+
+	    excelRow.height = 20;
+
+      // Format numeric
+      if (colNumber >= 4 && !isNaN(cell.value)) {
+        cell.numFmt = '#,##0.00';
+      }
+    });
+  });
+
+  // Merge cells after adding rows
+  mergeRanges.forEach(range => {
+    try {
+      worksheet.mergeCells(
+        range.start.row, range.start.column,
+        range.end.row, range.end.column
+      );
+    } catch (e) {
+      console.warn('Merge failed:', range, e);
+    }
+  });
+
+  // Set column widths
+  worksheet.columns = [
+    { width: 8 },  { width: 29 }, { width: 25 }, { width: 20 },
+    { width: 20 }, { width: 20 }, { width: 20 }, { width: 20 },
+    { width: 20 }, { width: 20 }, { width: 20 }, { width: 20 },
+    { width: 20 }, { width: 20 }, { width: 20 }, { width: 20 },
+    { width: 20 }
+  ];
+
+  const buffer = await workbook.xlsx.writeBuffer();
+  saveAs(new Blob([buffer]), 'Payroll_SUMMARY<?= $filetitle ?>.xlsx');
+}
+</script>

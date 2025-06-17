@@ -13,16 +13,20 @@
 <tr><th>ctr</th><th>EmpID</th><th>Name</th><th>email</th><th>NetPay</th></tr>
 </thead>
 <body>
+
+
+
+
 <?php
 echo "<div class='form'><form action=\"finpaysyspostpayslip3.php?loginid=$loginid\" method=\"POST\" name=\"finpaysyspostpayslip3\">";
 echo "<div class='form-group'>";
 echo "<input type=\"hidden\" name=\"idpaygroup\" value=\"$idpaygroup\">";
 echo "<input type=\"hidden\" name=\"idcutoff\" value=\"$idcutoff\">";
 
-	echo "<div class='custom-control custom-checkbox'>";
-	echo "<input type='checkbox' class='h5 custom-control-input'  name='checkall' value='yes' id='customCheck1' CHECKED>";
-	echo "<label class='h5 custom-control-label' for='customCheck1'>Check All</label>";
-   	echo "</div>";
+echo "<div class='custom-control custom-checkbox mb-2'>";
+echo "<input type='checkbox' class='custom-control-input' id='customCheck1'>";
+echo "<label class='custom-control-label' for='customCheck1'><strong>Check All</strong></label>";
+echo "</div>";
 
 // query tblemppayroll based idpaygroup and idcutoff
 $res16query=""; $result16=""; $found16=0; $ctr16=0;
@@ -41,7 +45,8 @@ if($result16->num_rows>0) {
 		$email216 = $myrow16['email2'];
 		echo "<tr><td>$ctr16</td>";
 		// if($checkall=="yes") {
-		    echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\" CHECKED>$employeeid16</td>";			
+echo "<td><input type=\"checkbox\" class='child-checkbox' name=\"employeeid[]\" value=\"$employeeid16\"> $employeeid16</td>";
+		
 		// } else {
 		    // echo "<td><input type=\"checkbox\" class='form-check' name=\"employeeid[]\" value=\"$employeeid16\">$employeeid16</td>";
 		// } //if-else
@@ -51,6 +56,11 @@ if($result16->num_rows>0) {
 } //if
 ?>
 </table></div>
+
+
+
+
+
 <div class='table'><table class='table'>
 <?php
 // query tblemailnotifier for the email template
@@ -88,3 +98,18 @@ echo "</form></div>";
 <?php
 // echo "<p>$res16query</p>";
 ?>
+
+<script>
+    const checkAll = document.getElementById("customCheck1");
+    const checkboxes = document.querySelectorAll(".child-checkbox");
+
+    checkAll.addEventListener("change", function () {
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            checkAll.checked = [...checkboxes].every(cb => cb.checked);
+        });
+    });
+</script>

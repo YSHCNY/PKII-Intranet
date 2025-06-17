@@ -79,6 +79,7 @@ if($found == 1) {
 
 
 
+
 		// cut-off period dropdown
 		echo "<div class = 'col'>";
 
@@ -123,33 +124,7 @@ if($found == 1) {
 				echo "</select>";
 		echo "</div>";
 
-		// dropdown for detailed summary, hide this if disptyp==summary
-		// if($disptyp=="detailed") {
-		// // query personnel from selected cutoff and display as dropdown
-		// 		echo "";
-		// echo "<div class = 'col'>";
-				
-		// 		echo "<select name=\"empid\" class = 'form-control' onchange=\"this.form.submit()\">";
-		// 		echo "<option value=''>select personnel</option>";
-		// 		// $res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblhrtaemptimelog.employeeid ASC";
-		// 		$res12query="SELECT DISTINCT tblhrtaemptimelog.employeeid, tblcontact.name_last, tblcontact.name_first, tblcontact.name_middle FROM tblhrtaemptimelog LEFT JOIN tblcontact ON tblhrtaemptimelog.employeeid=tblcontact.employeeid WHERE tblhrtaemptimelog.idcutoff=$idcutoff AND tblhrtaemptimelog.idpaygroup=$idpaygroup AND tblcontact.contact_type=\"personnel\" ORDER BY tblcontact.name_last ASC, tblcontact.name_first ASC";
-		// 		$result12=""; $found12=0;
-		// 		$result12 = $dbh2->query($res12query);
-		// 		if($result12->num_rows>0) {
-		// 			while($myrow12 = $result12->fetch_assoc()) {
-		// 			$found12 = 1;
-		// 			$employeeid12 = $myrow12['employeeid'];
-		// 			$name_last12 = $myrow12['name_last'];
-		// 			$name_first12 = $myrow12['name_first'];
-		// 			$name_middle12 = $myrow12['name_middle'];
-		// 			if($employeeid12 == $employeeid) { $empidsel="selected"; } else { $empidsel=""; }
-		// 			echo "<option value=\"$employeeid12\" $empidsel>$employeeid12 - $name_last12, $name_first12 $name_middle12[0]</option>";
-		// 			}
-		// 		}
-		// 		echo "</select>";
-		// echo "</div>";
-		// 		echo "";
-		// } // if($disptyp=="detailed")
+	
 
 		// submit button
 		echo "</div>";

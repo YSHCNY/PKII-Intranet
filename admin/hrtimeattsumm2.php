@@ -1,3 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
 <?php
 // hrtimeattsumm2.php
 // fr hrtimeattsumm.php & finpaysystasumm.php // updated 20241008
@@ -39,7 +42,7 @@ $formattedDateRange = $startMonthDay . ' - ' . $endDay . ', ' . $year;
 
 				echo "<th class = 'h5 text-light bg-secondary'>IN</th>";
 				echo "<th class = 'h5 text-light bg-secondary'>OUT</th>";
-				echo "<th class = 'h5 text-light bg-secondary'>Hrs</th>";
+				echo "<th class = 'h5 text-light bg-secondary'>HRS</th>";
 				echo "<th class = 'h5 text-light bg-secondary'>UT</th>";
 				echo "<th class = 'h5 text-light bg-secondary'>Regular Day</th>";
 				echo "<th class = 'h5 text-light bg-secondary'>Rest Day</th>";
@@ -509,10 +512,17 @@ echo "</td>";
 	//
 	// start display of summarized list
 	//
+			echo '
+			<div class = "text-end mb-2">
+				<button class = "btn  btn-success  " onclick="exportToExcel()"><i class="bi bi-file-earmark-excel "></i> Export to Excel</button>
+			</div>
+			';
+
+
 echo "<table width=\"100%\" class=\"table table-bordered table-striped table-hover\" id = 'sumtbl'>";
 	echo "<tr class = ''><th>Name</th>";
 	// echo "<th>PrefTime</th><th colspan=\"2\">Date</th><th>TimeIN</th><th>TimeOUT</th>";
-	echo "<th>Hrs</th>
+	echo "<th>HRS</th>
 	<th>OT</th>
 	<th>UT</th><th>Night differential</th><th>Meal allowance</th><th>Transportation allowance</th>";
 	// echo "<th>Trans allow.</th><th>Proj/Dept</th>";
@@ -652,6 +662,24 @@ ORDER BY
 // echo "Total OB Leave: " . $tot_lvtyp_ob . "<br>";
 // echo "Total HDS Leave: " . $tot_lvtyp_hds . "<br>";
 // echo "Total HDV Leave: " . $tot_lvtyp_hdv . "<br> </td>";
+
+
+// for overall totals
+$New_tot_totaltime += round($tot_totaltime, 2);
+$New_tot_otval += round($tot_otval, 2);
+$New_tot_utval += round($tot_utval, 2);
+$New_tot_ndval += round($tot_ndval, 2);
+$New_tot_lvtyp_vacation += round($tot_lvtyp_vacation, 2);
+$New_tot_lvtyp_sick += round($tot_lvtyp_sick, 2);
+$New_tot_lvtyp_sd += round($tot_lvtyp_sd, 2);
+$New_tot_lvtyp_cc += round($tot_lvtyp_cc, 2);
+$New_tot_lvtyp_ob += round($tot_lvtyp_ob, 2);
+$New_tot_lvtyp_special += round($tot_lvtyp_special, 2);
+
+
+
+
+
 			echo"
 			<td>$name_last23, $name_first23 $name_middle23[0] ($employeeid23)</td>";
 			if($tot_totaltime!=0) {
@@ -752,6 +780,25 @@ ORDER BY
  //    echo "</form>";
 	// echo "</td>";
 	// echo "</tr>";
+	echo "<tr class = 'success'>";
+	echo "<td><h5><b>TOTAL</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_totaltime ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_otval ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_utval ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_ndval ."</b></h5></td>";
+	echo "<td></td>";
+	echo "<td></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_vacation ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_sick ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_sd ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_cc ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_ob ."</b></h5></td>";
+	echo "<td  align='center'><h5><b>". $New_tot_lvtyp_special ."</b></h5></td>";
+
+
+
+
+	echo "</tr>";
 	echo "</table>";
 	//
 	// end display of summarized list
@@ -767,6 +814,71 @@ ORDER BY
 ?>
 
 
+<script>
+async function exportToExcel() {
+  // Include these in your HTML:
+
+
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Summary');
+  
+  // Get table data
+  const table = document.getElementById("sumtbl");
+  const rows = table.querySelectorAll('tr');
+  
+  // Add rows to worksheet with styling
+  rows.forEach((row, rowIndex) => {
+    const cells = row.querySelectorAll('td, th');
+    const excelRow = worksheet.addRow(Array.from(cells).map(cell => cell.textContent));
+    
+    // Header row styling
+    if (rowIndex === 0) {
+      excelRow.font = {
+        bold: true,
+        size: 12,
+        color: { argb: '000000' }
+      };
+      excelRow.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'D3D3D3' }
+      };
+      excelRow.alignment = { 
+        vertical: 'middle', 
+        horizontal: 'center',
+        wrapText: true
+      };
+      excelRow.height = 25;
+    }
+    
+    // Set cell padding/alignment for all cells
+    excelRow.eachCell((cell) => {
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'left',
+        indent: 1
+      };
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+    });
+  });
+  
+  // Set column widths
+  worksheet.columns = [
+    { width: 30 },
+    { width: 15 },
+    { width: 25 }
+  ];
+  
+  // Export
+  const buffer = await workbook.xlsx.writeBuffer();
+  saveAs(new Blob([buffer]), 'TAL_SUMMARY<?php echo " $cutstart15 to $cutend15"?>.xlsx');
+}
+</script>
 
 
 <style>
@@ -821,42 +933,6 @@ ORDER BY
     </style>
 
 
-
-<script>
- function printTable() {
-        const table = document.getElementById('this');
-        const newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Time log Summary</title>');
-        newWindow.document.write('<style>');
-        newWindow.document.write('table{font-size: 10px; font-family: "Trebuchet MS", sans-serif;}');
-		
-        newWindow.document.write('#this table { width: 100%; border-collapse: collapse;  white-space: nowrap; text-align: center;  color: black; }');
-        newWindow.document.write('th, td { border: 1px solid black; padding: 5px;}');
-        newWindow.document.write('th {background-color: gray; color: white;}');
-
-        newWindow.document.write('h1{text-align: center; }');
-
-
-
-        newWindow.document.write('.warning { background-color: #e7e0bd; }');
-        newWindow.document.write('.success { background-color: #c1d8b7; }');
-        newWindow.document.write('.white { background-color: white; }');
-        newWindow.document.write('@media print { @page { size: A3 landscape; margin: 5mm; } }');
-        newWindow.document.write('</style>');
-        newWindow.document.write('</head><body>');
-
-
-	
-        newWindow.document.write(table.outerHTML);
-   
-		
-        newWindow.document.write('</body></html>');
-        newWindow.document.close();
-        newWindow.print();
-    }
-
-
-</script>
 
 
 <style>
