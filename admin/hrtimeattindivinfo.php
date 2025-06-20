@@ -655,18 +655,19 @@ echo "<td align=\"right\">Rest day</td><td align=\"left\" colspan=\"3\">";
 	// -end-
 	echo "</select>";
 	*/
-	echo "<select name=\"projchgtyp\">";
+	echo "<div class ='d-flex align-items-center'>";
+	echo "<select name=\"projchgtyp\" class = 'm-2'>";
 	if($projchgtyp14 != "") {
 		if($projchgtyp14 == "percent") { $projchgtyppctsel="selected"; $projchgtypdlysel=""; } else if($projchgtyp14 == "daily") { $projchgtyppctsel=""; $projchgtypdlysel="selected"; }
 	} else { echo "<option value=''>select</option>"; }
-	echo "<option value=\"percent\" $projchgtyppctsel>percentage</option>";
-	echo "<option value=\"daily\" $projchgtypdlysel>daily</option>";
+	echo "<option value=\"percent\" $projchgtyppctsel>Percentage</option>";
+	echo "<option value=\"daily\" $projchgtypdlysel>Daily</option>";
 	echo "</select>";
 	if($projchgtyp14=='daily') {
 	// disp default proj_code dropdown
 	$res20query="SELECT DISTINCT tblproject1.proj_code, tblproject1.proj_sname, tblproject1.proj_fname FROM tblproject1 WHERE ((tblproject1.proj_code>=\"C00-001\" AND tblproject1.proj_code<=\"C00-002\") OR tblproject1.proj_code>=\"C2008-01\") ORDER BY tblproject1.proj_code DESC";
 	$result20=""; $found20=0; $ctr20=0;
-	echo "<br /><select name=\"projcode\">";
+	echo "<br /><select name=\"projcode\" class ='m-2 GlobalSelectWx'>";
 	$result20=$dbh2->query($res20query);
 	if($result20->num_rows>0) {
 		while($myrow20=$result20->fetch_assoc()) {
@@ -710,20 +711,21 @@ echo "<td align=\"right\">Rest day</td><td align=\"left\" colspan=\"3\">";
 
 	// display manage project percentage
 	if($projchgtyp14 == "percent") {
-		echo "<tr><th colspan=\"2\">Project percentage info</th></tr>";
-		// disp labels
-		echo "<tr><th>Add project percentage</th><th>Result/s</th></tr>";
-		echo "<tr><td>";
+	
+	
 		//
 		// col1: mng projpct
-			echo "<table class=\"fin\">";
+			
 			echo "<form action=\"hrtimeattindivprojpctadd.php?loginid=$loginid\" method=\"POST\" name=\"hrtimeattindivprojpctadd\">";
 			echo "<input type=\"hidden\" name=\"idpaygroup\" value=\"$idpaygroup\">";
 			$idcutoff=0;
 			echo "<input type=\"hidden\" name=\"idcutoff\" value=\"$idcutoff\">";
 			echo "<input type=\"hidden\" name=\"employeeid\" value=\"$employeeid\">";
-			echo "<tr><th align=\"right\">Project</th><td>";
-			echo "<select name=\"projcode\">";
+			echo "<table class=\" table table-bordered table-striped table-hover\">";
+			echo " <tr><td colspan=\"2\" class=\"text-dark\"><strong>Manage Project Percentage</strong></td></tr>
+			<tr>
+			";
+			echo "<td align=\"right\">Project</td><td><select name=\"projcode\" class = 'GlobalSelectWx  w-50'>";
 			// query, disp dropdown of tblprojassign left join tblproject1 tblprojassign
 			// $res17query="SELECT DISTINCT tblprojassign.proj_code, tblprojassign.proj_name, tblproject1.proj_fname FROM tblprojassign LEFT JOIN tblproject1 ON tblprojassign.proj_code=tblproject1.proj_code WHERE tblprojassign.employeeid=\"$employeeid\" ORDER BY tblprojassign.durationto DESC, tblprojassign.durationto2 DESC";
 			$res17query="SELECT DISTINCT tblproject1.proj_code, tblproject1.proj_fname, tblproject1.proj_sname FROM tblproject1 ORDER BY tblproject1.proj_code DESC";
@@ -751,12 +753,14 @@ echo "<td align=\"right\">Rest day</td><td align=\"left\" colspan=\"3\">";
 				} // while
 			} // if
 			echo "</select>";
-			echo "</td>";
-			echo "<tr><th align=\"right\">Percent</th><td><input type=\"number\" min=\"0\" max=\"100\" step=\"1\" name=\"projpercent\" value=\"0\" /></td>";
-			echo "<tr><td colspan=\"2\" align=\"center\"><button type=\"submit\" class=\"btn btn-success\">Add</button></td></tr>";
+			echo "</td></tr>";
+			
+			echo "<td align=\"right\">Percent</td><td><input type=\"number\" min=\"0\" max=\"100\" class = 'form-control-lg w-50' step=\"1\" name=\"projpercent\" value=\"0\" /> <button type=\"submit\" class=\"btn btn-success\">Add</button></td>";
+			echo "<tr><td colspan = 2></td></tr>";
 			echo "</form>";
-			echo "</table>";
-		echo "</td><td>";
+			echo "</table></div>";
+
+		
 		//
 		// cols2: disp projpct
 			echo "<table class=\"fin\">";

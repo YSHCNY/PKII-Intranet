@@ -104,6 +104,7 @@ ORDER BY
     tblhrtaemptimelog.logdate ASC;
 ";
 
+
 	// echo "$dbq21";
 	$result21=""; $found21=0; $ctr21=0;
 	/*

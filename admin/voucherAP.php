@@ -2,7 +2,16 @@
     
     <div class="row m-2">
       
-        <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=ap" method="post" class = 'col-lg-6 col-auto ' target="_self">
+    <?php
+// At the top of your PHP script
+// if (empty($_POST['monthselector']) && !isset($_GET['form_submitted'])) {
+//     echo '<script>window.onload = function() { document.getElementById("myForm").submit(); };</script>';
+//     // Add a parameter to prevent infinite loop
+//     echo '<input type="hidden" name="form_submitted" value="1">';
+// }
+?>
+
+        <form action="finvouchlist.php?loginid=<?php echo $loginid; ?>&rs=ap" method="post" class = 'col-lg-6 col-auto ' id="myForm" target="_self">
                 <div class="row">
                         <div class="col-auto d-flex align-items-center gap-3">
                            <label for="date">Date range:</label> 
@@ -41,13 +50,17 @@
                       <label for="select">Search:</label>
 
                         <input name="searchap" placeholder = 'Search Accounts Payable' class = 'form-control' size="20" value="<?php echo $searchap; ?>" >
-                        <button type="submit" role="button" class="btn  btn-info btn-sm  "> <?php echo $searchicon?> </button>
+                        <button type="submit" role="button" class="btn  btn-info btn-sm  " > <?php echo $searchicon?> </button>
                     </div>
                 </div>
                     
         </form>
     
 
+<script>
+
+
+</script>
 
       </div>
 
@@ -74,10 +87,12 @@
   </tr>
 </thead>
 <?php
-  // $res11query = "SELECT DISTINCT acctspayablenumber, payee, due_date, date FROM tblfinacctspayable WHERE acctspayableid<>'' AND DATE_FORMAT(date, '%Y %M') = \"$yrmonthavlbl\" order by acctspayablenumber DESC";
+
+// if ($monthselector == "")
   $res11query=""; $result11=""; $found11=0;
   $res11query = "SELECT DISTINCT acctspayablenumber, payee, due_date, date FROM tblfinacctspayable WHERE acctspayableid<>'' AND DATE_FORMAT(date, '%M %Y') = '$monthselector' ORDER BY acctspayableid DESC, acctspayablenumber DESC";
- 
+    $result11=""; $found11=0;
+  $result11=$dbh2->query($res11query);
 // echo $res11query ;
 
 

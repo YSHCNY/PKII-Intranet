@@ -17,8 +17,6 @@ $searchjv = (isset($_POST['searchjv'])) ? $_POST['searchjv'] :'';
 $yrmonthavlbl = (isset($_POST['yrmonthavlbl'])) ? $_POST['yrmonthavlbl'] :'';
 $yrmonthavlbl2 = (isset($_POST['yrmonthavlbl2'])) ? $_POST['yrmonthavlbl2'] :'';
 
-$monthselector = (isset($_POST['monthselector'])) ? $_POST['monthselector'] : '';
-
 
 
 // echo $monthselector;
@@ -27,6 +25,10 @@ $cvtype = (isset($_POST['cvtype'])) ? $_POST['cvtype'] :'';
 $cvsearchtype = (isset($_POST['cvsearchtype'])) ? $_POST['cvsearchtype'] :'';
 
 if($cvtype == '') { $cvtype = 'all'; }
+
+
+$monthselector = (isset($_POST['monthselector'])) ? $_POST['monthselector'] : '';
+
 
 if ($monthselector == ""){
 

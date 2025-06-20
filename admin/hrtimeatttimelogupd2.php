@@ -376,15 +376,16 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 					$otordval=0;
 				} else if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3){
 					// calculate ot of rest day sun sat & special with overtime and complete time
-				
+					
 					if ($totaltime[$val]> 8){
 						$otrest8val = $totaltime[$val] - $stdofchrs; 
+						
 						$otval1 = $totaltime[$val] - $stdofchrs;
 						
 					} 
-					$otrestspval = $totaltime[$val] - $otrest8val;
+					$otrestspval = $totaltime[$val];
 					$otordval=0;
-
+					
 
 				} else {
 					$otspsunval = 0;
@@ -394,7 +395,6 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 				}
 
 				
-
 
 				// overtimes ????
 				 if($holidate[$val]  == 'shortened') {
@@ -432,17 +432,7 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 							}
 
 							//  normal ot
-								else if($totaltime[$val]>$stdofchrs) {
-									if ($holidate[$val] == 'legal' || $holidate[$val] == 'special' || $restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 ){
-										$otordval = 0;
-									}  else {
-										$otordval = $totaltime[$val] - $stdofchrs; 
-										$otval1 = $otordval; 
-										$otutval1=$totaltime[$val]-$stdofchrs;
-									}
-								
-
-							} else if($totaltime[$val]<$stdofchrs) {
+						 if($totaltime[$val]<$stdofchrs) {
 								if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $restdaysw[$val] == 4 || $holidaytype21 == 'legal' || $holidaytype21 == 'special' || ($holidate[$val] == 'city' && $flagcity == 1)){
 									$utval = 0;
 									$utval1 = 0;
@@ -459,14 +449,8 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 
 
 			}
+echo $otrestspval . " thisssssssssssssssssss";
 					
-			
-			
-
-			
-
-				// echo "$leavedaydur[$val], $utval1 <br>";
-
 
 			} else {
 
@@ -663,7 +647,12 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 					$totaltime[$val] = $totaltime[$val];
 					$otvalfin = $otvalfin;
 					
+
+
+
 				}
+
+				
 			} else {
 
 				if ($holidate[$val] == 'shortened'){
@@ -966,7 +955,8 @@ echo "no loop =".$newempcheckbox[$val]." - $n <br>";
 		//
 		// display vars
 		//
-
+echo $res12update ."<br> this is update";
+echo "<br>res12insert:".$res12insert."<br>\r\n";
 		//
 		// reset variables
     $otval1=0; $utval1=0; $otutval1=0;
