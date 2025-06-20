@@ -439,7 +439,7 @@ if($flexitime14==0) {
 		} else {
 			$noformat = '';
 		}
-// echo $res20query
+// echo $res20query;
 
 		// for new empboxes
 			if ($newempflag == 1 ){

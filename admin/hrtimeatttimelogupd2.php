@@ -432,7 +432,7 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 							}
 
 							//  normal ot
-						 if($totaltime[$val]<$stdofchrs) {
+							else if($totaltime[$val]<$stdofchrs) {
 								if ($restdaysw[$val] == 1 || $restdaysw[$val] == 2 || $restdaysw[$val] == 3 || $restdaysw[$val] == 4 || $holidaytype21 == 'legal' || $holidaytype21 == 'special' || ($holidate[$val] == 'city' && $flagcity == 1)){
 									$utval = 0;
 									$utval1 = 0;
@@ -444,12 +444,14 @@ if ((strtotime($timein1) < strtotime($shiftin1))) {
 									
 								}
 							}  else {
-								$otordval=0; $otrestspval=0; $otlegalval=0; $otval1=0; $utval1=0; $otutval1=0;
+										$otordval = $totaltime[$val] - $stdofchrs; 
+										$otval1 = $otordval; 
+										$otutval1=$totaltime[$val]-$stdofchrs;
 							} 
 
 
 			}
-echo $otrestspval . " thisssssssssssssssssss";
+// echo $otrestspval . " thisssssssssssssssssss";
 					
 
 			} else {
@@ -955,8 +957,8 @@ echo "no loop =".$newempcheckbox[$val]." - $n <br>";
 		//
 		// display vars
 		//
-echo $res12update ."<br> this is update";
-echo "<br>res12insert:".$res12insert."<br>\r\n";
+// echo $res12update ."<br> this is update";
+// echo "<br>res12insert:".$res12insert."<br>\r\n";
 		//
 		// reset variables
     $otval1=0; $utval1=0; $otutval1=0;
